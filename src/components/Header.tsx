@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar } from "lucide-react";
+import { Calendar, Phone, Instagram } from "lucide-react";
 import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
@@ -43,12 +43,20 @@ export const Header = () => {
             </button>
           </nav>
 
-          <Button variant="hero" asChild>
+          <div className="flex items-center gap-4">
+            <a href="tel:+48573818260" className="text-muted-foreground hover:text-primary transition-colors">
+              <Phone className="h-5 w-5" />
+            </a>
+            <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+              <Instagram className="h-5 w-5" />
+            </a>
+            <Button variant="hero" asChild>
             <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
               <Calendar className="h-4 w-4" />
               <span className="hidden sm:inline">Rezerwuj</span>
             </a>
           </Button>
+          </div>
         </div>
       </div>
     </header>
