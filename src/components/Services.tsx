@@ -28,7 +28,7 @@ export const Services = () => {
     title: "Więcej Wariantów Usług",
     price: "Sprawdź",
     duration: "Różne opcje",
-    features: ["Pojedyncze przekłucie", "Przekłucia chrząstki", "Pakiety rodzinne", "Dodatkowe lokalizacje"],
+    features: ["Przekłucie chrząstki (helix, tragus, conch)", "Przekłucie płatka ucha (lobe)", "Różne opcje kolczyków", "Pakiety rodzinne"],
     description: "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
     badge: "Booksy"
   }];
