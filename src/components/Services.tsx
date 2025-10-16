@@ -104,23 +104,23 @@ export const Services = () => {
             Informacje o Cenach
           </h3>
           <div className="space-y-4">
-            <p className="flex items-center gap-2">
+            <p className="flex items-center justify-center gap-2">
               <span className="text-primary">ℹ</span>
               <span>Cena nie obejmuje kosztu kolczyków</span>
             </p>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center justify-center gap-2">
               <span className="text-primary">💎</span>
               <span>Dodatkowa opłata za kolczyki: 80-150 zł za parę</span>
             </p>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center justify-center gap-2">
               <span className="text-primary">🚗</span>
               <span>Dojazd mobilny: +50 zł do ceny usługi</span>
             </p>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center justify-center gap-2">
               <span className="text-primary">✨</span>
               <span>Ponad 20 modeli kolczyków medycznych do wyboru</span>
             </p>
-            <p className="flex items-center gap-2">
+            <p className="flex items-center justify-center gap-2">
               <span className="text-primary">🔄</span>
               <span>Po 6-8 tygodniach możesz wymienić kolczyk na własny</span>
             </p>
