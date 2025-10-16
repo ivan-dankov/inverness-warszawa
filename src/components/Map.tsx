@@ -1,12 +1,18 @@
 import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { Button } from '@/components/ui/button';
+import { Navigation } from 'lucide-react';
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoiaXZhbmRhbmtvdiIsImEiOiJjbWd0ZGJzMDcwMzl1Mmxxa2tud2dlbWZoIn0.EIWOSBMEmqZ43QOW07tzHg';
 
 export const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
+
+  const handleGetDirections = () => {
+    window.open('https://maps.app.goo.gl/bNzo84j1b16JmKuB6', '_blank');
+  };
 
   const initializeMap = () => {
     if (!mapContainer.current || map.current) return;
@@ -25,7 +31,7 @@ export const Map = () => {
       .setLngLat([20.9452, 52.2258])
       .setPopup(
         new mapboxgl.Popup().setHTML(
-          '<strong>Inverness MED</strong><br/>Gizów 6<br/>01-249 Warszawa'
+          '<strong>Inverness MED</strong><br/>Gizów 6<br/>01-249 Warszawa<br/><a href="https://maps.app.goo.gl/bNzo84j1b16JmKuB6" target="_blank" rel="noopener noreferrer" style="color: #0891b2; text-decoration: underline; margin-top: 8px; display: inline-block;">Get Directions →</a>'
         )
       )
       .addTo(map.current);
@@ -45,6 +51,14 @@ export const Map = () => {
   return (
     <div className="relative w-full h-[400px]">
       <div ref={mapContainer} className="absolute inset-0 rounded-lg shadow-lg" />
+      <Button
+        onClick={handleGetDirections}
+        className="absolute bottom-4 left-4 z-10 shadow-lg"
+        variant="default"
+      >
+        <Navigation className="mr-2 h-4 w-4" />
+        Get Directions
+      </Button>
     </div>
   );
 };
