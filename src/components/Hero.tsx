@@ -1,19 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
-
 export const Hero = () => {
-  return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-b from-primary-light/20 to-background overflow-hidden">
+  return <section className="relative min-h-[90vh] flex items-center bg-gradient-to-b from-primary-light/20 to-background overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-transparent z-0" />
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-30"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      />
+      <div className="absolute inset-0 bg-cover bg-center opacity-30" style={{
+      backgroundImage: `url(${heroImage})`
+    }} />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight lg:text-5xl">
             Medyczne Przekłuwanie Uszu
             <span className="block text-primary mt-2">Inverness MED</span>
           </h1>
@@ -50,6 +47,5 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
