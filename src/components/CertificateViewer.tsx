@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, FileText, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, FileText, X, ChevronRight as ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 
@@ -66,35 +66,27 @@ export const CertificateViewer = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="space-y-3">
         {certificates.map((cert, index) => (
           <Card
             key={index}
-            className="p-4 cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50 group"
+            className="p-4 cursor-pointer hover:shadow-lg transition-all duration-300 hover:translate-x-1 border-border/50 group"
             onClick={() => openModal(index)}
           >
-            <div className="aspect-[3/4] bg-muted/30 rounded-lg mb-3 flex items-center justify-center overflow-hidden relative">
-              <iframe
-                src={cert.file}
-                className="w-full h-full pointer-events-none scale-50 origin-top-left"
-                style={{ width: "200%", height: "200%" }}
-                title={`${cert.title} preview`}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/80 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-xs font-medium text-primary">Kliknij aby zobaczyć</span>
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                <FileText className="h-6 w-6 text-primary" />
               </div>
-            </div>
-            <div className="space-y-2">
-              <div className="flex items-start gap-2">
-                <FileText className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                <h4 className="text-xs font-semibold text-foreground leading-tight">
+              <div className="flex-1 min-w-0">
+                <h4 className="text-sm font-semibold text-foreground mb-1 truncate">
                   {cert.title}
                 </h4>
+                <div className="text-xs text-muted-foreground space-y-0.5">
+                  <div>Wystawca: {cert.issuer}</div>
+                  <div>Rok: {cert.year}</div>
+                </div>
               </div>
-              <div className="text-xs text-muted-foreground space-y-0.5 ml-6">
-                <div>Wystawca: {cert.issuer}</div>
-                <div>Rok: {cert.year}</div>
-              </div>
+              <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
             </div>
           </Card>
         ))}
