@@ -20,7 +20,7 @@ export const Services = () => {
     price: "70 zł",
     duration: "30 min",
     discount: "30%",
-    features: ["Dla dzieci 0+", "Cichy i delikatny mechanizm", "Kolczyki z krótszą igłą", "Opieka i wsparcie rodziców"],
+    features: ["Dla dzieci 0+", "Cichy i delikatny mechanizm", "Opieka i wsparcie rodziców"],
     description: "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
     badge: "Dla Dzieci"
   }, {
@@ -28,7 +28,7 @@ export const Services = () => {
     title: "Więcej Wariantów Usług",
     price: "Sprawdź",
     duration: "Różne opcje",
-    features: ["Przekłucie chrząstki (helix, tragus, conch)", "Przekłucie płatka ucha (lobe)", "Różne opcje kolczyków", "Pakiety rodzinne"],
+    features: ["Przekłucie chrząstki (helix, tragus, conch)", "Przekłucie płatka ucha (lobe)", "Różne opcje kolczyków"],
     description: "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
     badge: "Booksy"
   }];
