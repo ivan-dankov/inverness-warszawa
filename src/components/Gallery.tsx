@@ -10,7 +10,6 @@ import img1171 from "@/assets/gallery/IMG_1171.jpg";
 import img1383 from "@/assets/gallery/IMG_1383.jpg";
 import img1604 from "@/assets/gallery/IMG_1604.jpg";
 import img2107 from "@/assets/gallery/IMG_2107.jpg";
-import img2115 from "@/assets/gallery/IMG_2115.jpg";
 
 export const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -22,7 +21,6 @@ export const Gallery = () => {
     { src: img1383, alt: "Przekłucie conch z wiszącym kolczykiem" },
     { src: img1604, alt: "Przekłucie płatka ucha dla mężczyzn" },
     { src: img2107, alt: "Przekłucie ucha dziecka" },
-    { src: img2115, alt: "Przekłucie ucha małego dziecka" },
     {
       src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/fe2fefa17af54b6c919f56d37e7e97-inverness-med-medyczne-przeklu-biz-photo-895cc6a308e44d68bbb7a349741529-booksy.jpeg",
       alt: "System Inverness MED"
