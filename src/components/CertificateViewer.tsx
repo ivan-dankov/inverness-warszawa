@@ -66,27 +66,27 @@ export const CertificateViewer = () => {
 
   return (
     <>
-      <div className="space-y-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {certificates.map((cert, index) => (
           <Card
             key={index}
-            className="p-4 cursor-pointer hover:shadow-lg transition-all duration-300 hover:translate-x-1 border-border/50 group"
+            className="p-5 cursor-pointer hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border/50 group"
             onClick={() => openModal(index)}
           >
-            <div className="flex items-center gap-4">
-              <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                <FileText className="h-6 w-6 text-primary" />
+            <div className="flex flex-col items-center text-center gap-3">
+              <div className="h-16 w-16 bg-primary/10 rounded-xl flex items-center justify-center">
+                <FileText className="h-8 w-8 text-primary" />
               </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="text-sm font-semibold text-foreground mb-1 truncate">
+              <div className="space-y-2">
+                <h4 className="text-sm font-semibold text-foreground leading-tight">
                   {cert.title}
                 </h4>
                 <div className="text-xs text-muted-foreground space-y-0.5">
-                  <div>Wystawca: {cert.issuer}</div>
-                  <div>Rok: {cert.year}</div>
+                  <div>{cert.issuer}</div>
+                  <div>{cert.year}</div>
                 </div>
               </div>
-              <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+              <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors mt-1" />
             </div>
           </Card>
         ))}
