@@ -10,7 +10,7 @@ export const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-rose-100 via-rose-200 to-pink-100 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/70 z-0" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
