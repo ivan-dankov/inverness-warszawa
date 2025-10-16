@@ -12,26 +12,38 @@ export const CertificateViewer = () => {
     {
       title: "FDA Certificate",
       file: "/certificates/FDA-Certificate.pdf",
+      issuer: "FDA",
+      year: "2024",
     },
     {
       title: "Declaration of Conformity",
       file: "/certificates/Declaration-of-Conformity.pdf",
+      issuer: "Inverness Medical",
+      year: "2024",
     },
     {
-      title: "UL - Ball Earring",
+      title: "UL - Ball Earring Verification",
       file: "/certificates/UL-Ball-Earring.pdf",
+      issuer: "UL Solutions",
+      year: "2024",
     },
     {
-      title: "UL - Crystal",
+      title: "UL - Crystal Earring Verification",
       file: "/certificates/UL-Crystal-Earring.pdf",
+      issuer: "UL Solutions",
+      year: "2024",
     },
     {
-      title: "UL - CZ Prong",
+      title: "UL - CZ Prong Verification",
       file: "/certificates/UL-CZ-Prong.pdf",
+      issuer: "UL Solutions",
+      year: "2024",
     },
     {
       title: "Italian Test Report",
       file: "/certificates/Italian-Test-Report.pdf",
+      issuer: "Italian Laboratory",
+      year: "2024",
     },
   ];
 
@@ -72,11 +84,17 @@ export const CertificateViewer = () => {
                 <span className="text-xs font-medium text-primary">Kliknij aby zobaczyć</span>
               </div>
             </div>
-            <div className="flex items-start gap-2">
-              <FileText className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-              <h4 className="text-xs font-semibold text-foreground line-clamp-2">
-                {cert.title}
-              </h4>
+            <div className="space-y-2">
+              <div className="flex items-start gap-2">
+                <FileText className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                <h4 className="text-xs font-semibold text-foreground leading-tight">
+                  {cert.title}
+                </h4>
+              </div>
+              <div className="text-xs text-muted-foreground space-y-0.5 ml-6">
+                <div>Wystawca: {cert.issuer}</div>
+                <div>Rok: {cert.year}</div>
+              </div>
             </div>
           </Card>
         ))}
