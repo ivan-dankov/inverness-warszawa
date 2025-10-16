@@ -6,8 +6,8 @@ export const Services = () => {
   const services = [{
     icon: Users,
     title: "Przekłuwanie Uszu (2 przekłucia)",
-    originalPrice: "100 zł",
-    price: "70 zł",
+    originalPrice: "150 zł",
+    price: "105 zł",
     duration: "30 min",
     discount: "30%",
     features: ["2 dowolne przekłucia", "System Inverness MED", "Konsultacja i doradztwo", "Instrukcje pielęgnacji"],
@@ -16,8 +16,8 @@ export const Services = () => {
   }, {
     icon: Baby,
     title: "Przekłuwanie Uszu Dzieciom",
-    originalPrice: "100 zł",
-    price: "70 zł",
+    originalPrice: "150 zł",
+    price: "105 zł",
     duration: "30 min",
     discount: "30%",
     features: ["Dla dzieci 0+", "Cichy i delikatny mechanizm", "Opieka i wsparcie rodziców"],
