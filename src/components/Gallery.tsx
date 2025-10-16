@@ -110,7 +110,7 @@ export const Gallery = () => {
             onClick={() => openImage(0)}
           >
             <div className="text-center">
-              <p className="text-2xl font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
+              <p className="text-lg font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
                 Zobacz Wszystkie
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
