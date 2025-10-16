@@ -2,10 +2,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Instagram, Clock, Calendar } from "lucide-react";
 import { Map } from "./Map";
-
 export const Contact = () => {
-  return (
-    <section id="contact" className="py-20 bg-background">
+  return <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
@@ -41,10 +39,7 @@ export const Contact = () => {
                 <Phone className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Telefon</h4>
-                  <a 
-                    href="tel:+48573818260" 
-                    className="text-primary hover:underline"
-                  >
+                  <a href="tel:+48573818260" className="text-primary hover:underline">
                     +48 573 818 260
                   </a>
                   <p className="text-sm text-muted-foreground mt-1">
@@ -57,12 +52,7 @@ export const Contact = () => {
                 <Instagram className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Instagram</h4>
-                  <a 
-                    href="https://instagram.com/prokol_ushej_warszawa" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline"
-                  >
+                  <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                     @prokol_ushej_warszawa
                   </a>
                 </div>
@@ -80,20 +70,7 @@ export const Contact = () => {
               </div>
             </div>
 
-            <div className="mt-8 pt-8 border-t border-border space-y-3">
-              <Button size="lg" variant="hero" className="w-full" asChild>
-                <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
-                  <Calendar className="h-5 w-5" />
-                  Rezerwuj Online
-                </a>
-              </Button>
-              <Button size="lg" variant="outline" className="w-full" asChild>
-                <a href="tel:+48573818260">
-                  <Phone className="h-5 w-5" />
-                  Zadzwoń Teraz
-                </a>
-              </Button>
-            </div>
+            
           </Card>
 
           <Card className="p-8 shadow-card">
@@ -104,6 +81,5 @@ export const Contact = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
