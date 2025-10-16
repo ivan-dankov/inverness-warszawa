@@ -99,7 +99,7 @@ export const Services = () => {
           ))}
         </div>
 
-        <Card className="p-8 bg-muted/50 border-border/50 max-w-3xl mx-auto">
+        <Card className="p-8 bg-muted/50 border-border/50">
           <h3 className="text-xl font-semibold text-foreground mb-4 text-center">
             Informacje o Cenach
           </h3>
