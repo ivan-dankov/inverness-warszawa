@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
+import logo from "@/assets/inverness-logo-hero.jpg";
 
 export const Hero = () => {
   const galleryImages = [
@@ -19,7 +20,7 @@ export const Hero = () => {
           <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight lg:text-5xl">
               Medyczne Przekłuwanie Uszu
-              <span className="block text-primary mt-2">Inverness MED</span>
+              <img src={logo} alt="Inverness MED" className="block mt-4 max-w-md" />
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 leading-relaxed">
               Jedyny system w Europie zatwierdzony przez lekarzy do bezpiecznego przekłuwania uszu u dzieci i dorosłych. Certyfikaty FDA i ISO gwarantują najwyższe standardy sterylności.
