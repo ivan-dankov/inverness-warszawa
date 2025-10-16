@@ -65,8 +65,18 @@ export const CertificateViewer = () => {
   };
 
   return (
-    <>
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
+    <section id="certificates" className="py-20 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Certyfikaty
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Nasze certyfikaty jakości i bezpieczeństwa
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
         {certificates.map((cert, index) => (
           <Card
             key={index}
@@ -92,6 +102,7 @@ export const CertificateViewer = () => {
             </div>
           </Card>
         ))}
+        </div>
       </div>
 
       <Dialog open={selectedIndex !== null} onOpenChange={closeModal}>
@@ -148,6 +159,6 @@ export const CertificateViewer = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </>
+    </section>
   );
 };
