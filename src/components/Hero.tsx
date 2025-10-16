@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, Instagram } from "lucide-react";
+import { Calendar, Instagram } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
 export const Hero = () => {
@@ -22,9 +22,9 @@ export const Hero = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <Button size="lg" variant="hero" asChild>
-              <a href="tel:+48573818260">
-                <Phone className="h-5 w-5" />
-                Umów Wizytę
+              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+                <Calendar className="h-5 w-5" />
+                Rezerwuj Online
               </a>
             </Button>
             <Button size="lg" variant="accent" asChild>

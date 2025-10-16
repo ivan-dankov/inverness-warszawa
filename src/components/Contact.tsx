@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Instagram, Clock, Star } from "lucide-react";
+import { MapPin, Phone, Instagram, Clock, Calendar } from "lucide-react";
 
 export const Contact = () => {
   return (
@@ -70,31 +70,23 @@ export const Contact = () => {
               <div className="flex items-start gap-4">
                 <Clock className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Dostępność</h4>
-                  <p className="text-muted-foreground">
-                    Usługa mobilna - przyjedziemy do Ciebie!
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <Star className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">Ocena</h4>
-                  <div className="flex items-center gap-2">
-                    <div className="flex">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                      ))}
-                    </div>
-                    <span className="text-muted-foreground">5.0 (7 opinii)</span>
+                  <h4 className="font-semibold text-foreground mb-1">Godziny Otwarcia</h4>
+                  <div className="space-y-1 text-muted-foreground">
+                    <p><span className="font-medium">Niedziela:</span> 10:00 - 20:00 (lokalizacja)</p>
+                    <p><span className="font-medium">Inne dni:</span> 10:00 - 20:00 (mobilna)</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 pt-8 border-t border-border">
+            <div className="mt-8 pt-8 border-t border-border space-y-3">
               <Button size="lg" variant="hero" className="w-full" asChild>
+                <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+                  <Calendar className="h-5 w-5" />
+                  Rezerwuj Online
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" className="w-full" asChild>
                 <a href="tel:+48573818260">
                   <Phone className="h-5 w-5" />
                   Zadzwoń Teraz

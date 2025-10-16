@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Baby, Users, Phone } from "lucide-react";
+import { Baby, Users, Calendar } from "lucide-react";
 
 export const Services = () => {
   const services = [
@@ -90,9 +90,9 @@ export const Services = () => {
               </ul>
 
               <Button size="lg" variant="hero" className="w-full" asChild>
-                <a href="tel:+48573818260">
-                  <Phone className="h-5 w-5" />
-                  Umów Wizytę
+                <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+                  <Calendar className="h-5 w-5" />
+                  Rezerwuj Online
                 </a>
               </Button>
             </Card>
