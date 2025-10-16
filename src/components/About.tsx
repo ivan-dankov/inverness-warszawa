@@ -19,7 +19,7 @@ export const About = () => {
     title: "Szybkie Gojenie",
     description: "Precyzyjne, atraumatyczne przekłucie bez rozrywania tkanek"
   }];
-  return <section id="about" className="py-20 bg-gradient-to-b from-background to-primary-light/10">
+  return <section id="about" className="py-20 bg-gradient-to-b from-background to-primary-light/10 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
