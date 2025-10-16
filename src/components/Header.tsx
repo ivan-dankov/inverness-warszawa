@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Phone, Instagram } from "lucide-react";
-import logo from "@/assets/logo.jpg";
+import logo from "@/assets/inverness-logo.jpg";
 
 export const Header = () => {
   const scrollToSection = (id: string) => {
