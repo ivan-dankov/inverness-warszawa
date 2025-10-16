@@ -77,8 +77,8 @@ export const CertificateViewer = () => {
               <div className="h-9 w-9 bg-primary/10 rounded-lg flex items-center justify-center">
                 <FileText className="h-4.5 w-4.5 text-primary" />
               </div>
-              <div className="space-y-0.5">
-                <h4 className="text-xs font-semibold text-foreground leading-tight line-clamp-2 min-h-[2.2rem]">
+              <div className="space-y-0">
+                <h4 className="text-sm font-semibold text-foreground leading-tight line-clamp-2 min-h-[2.2rem] mb-1">
                   {cert.title}
                 </h4>
                 <div className="text-[11px] text-muted-foreground">
