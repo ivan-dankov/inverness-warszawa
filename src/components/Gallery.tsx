@@ -24,12 +24,12 @@ export const Gallery = () => {
           {galleryImages.map((image, index) => (
             <div 
               key={index}
-              className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-all duration-300 hover:scale-105 group"
+              className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-shadow duration-300 group"
             >
               <img 
                 src={image}
                 alt={`Inverness MED galeria ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-full object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

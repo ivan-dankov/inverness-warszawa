@@ -55,7 +55,7 @@ export const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              className="p-8 hover:shadow-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+              className="p-8 hover:shadow-card transition-shadow duration-300 relative overflow-hidden"
             >
               {service.badge && (
                 <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
@@ -103,7 +103,7 @@ export const Services = () => {
           <h3 className="text-xl font-semibold text-foreground mb-4 text-center">
             Informacje o Cenach
           </h3>
-          <div className="space-y-3 text-muted-foreground">
+          <div className="space-y-4">
             <p className="flex items-start gap-2">
               <span className="text-primary mt-1">ℹ</span>
               <span>Cena nie obejmuje kosztu kolczyków</span>
@@ -111,6 +111,10 @@ export const Services = () => {
             <p className="flex items-start gap-2">
               <span className="text-primary mt-1">💎</span>
               <span>Dodatkowa opłata za kolczyki: 80-150 zł za parę</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="text-primary mt-1">🚗</span>
+              <span>Dojazd mobilny: +50 zł do ceny usługi</span>
             </p>
             <p className="flex items-start gap-2">
               <span className="text-primary mt-1">✨</span>

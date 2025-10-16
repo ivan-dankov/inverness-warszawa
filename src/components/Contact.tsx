@@ -25,10 +25,13 @@ export const Contact = () => {
               <div className="flex items-start gap-4">
                 <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Adres</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-foreground mb-1">Lokalizacja</h4>
+                  <p className="text-muted-foreground mb-2">
                     Gizów 6<br />
                     01-249 Warszawa, Wola
+                  </p>
+                  <p className="text-sm text-primary font-medium">
+                    Dojazd mobilny: +50 zł
                   </p>
                 </div>
               </div>
