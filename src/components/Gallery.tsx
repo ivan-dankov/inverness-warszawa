@@ -88,7 +88,7 @@ export const Gallery = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image, index) => (
+          {galleryImages.slice(0, 7).map((image, index) => (
             <div 
               key={index}
               className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-shadow duration-300 group cursor-pointer"
@@ -103,6 +103,22 @@ export const Gallery = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
+          
+          {/* See All Button */}
+          <div 
+            className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-shadow duration-300 group cursor-pointer bg-muted/50 flex items-center justify-center"
+            onClick={() => openImage(0)}
+          >
+            <div className="text-center">
+              <Button variant="hero" size="lg" className="pointer-events-none">
+                Zobacz Wszystkie
+              </Button>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {galleryImages.length} zdjęć
+              </p>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </div>
         </div>
       </div>
 
