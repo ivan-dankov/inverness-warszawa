@@ -11,9 +11,8 @@ export const Hero = () => {
           {/* Content */}
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
-              Inverness MED
-              <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2">Medyczne Przekłuwanie Uszu</span>
-              <img src={logo} alt="Inverness MED" className="block mt-6 sm:mt-8 mb-4 w-48 sm:w-64 lg:max-w-sm" />
+              Medyczne Przekłuwanie Uszu
+              <img src={logo} alt="Inverness MED" className="block mt-3 sm:mt-4 w-48 sm:w-64 lg:max-w-sm" />
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               Jedyny system w Europie zatwierdzony przez lekarzy do bezpiecznego przekłuwania uszu u dzieci i dorosłych. Certyfikaty FDA i ISO gwarantują najwyższe standardy sterylności.
