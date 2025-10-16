@@ -136,29 +136,50 @@ export const Gallery = () => {
 
             {selectedImage !== null && (
               <>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute left-4 z-50 text-white hover:bg-white/20"
-                  onClick={prevImage}
-                >
-                  <ChevronLeft className="h-8 w-8" />
-                </Button>
-
                 <img
                   src={galleryImages[selectedImage].src}
                   alt={galleryImages[selectedImage].alt}
                   className="max-w-full max-h-full object-contain animate-fade-in"
                 />
 
+                {/* Desktop Navigation - Sides */}
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute right-4 z-50 text-white hover:bg-white/20"
+                  className="hidden md:flex absolute left-4 z-50 text-white hover:bg-white/20"
+                  onClick={prevImage}
+                >
+                  <ChevronLeft className="h-8 w-8" />
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hidden md:flex absolute right-4 z-50 text-white hover:bg-white/20"
                   onClick={nextImage}
                 >
                   <ChevronRight className="h-8 w-8" />
                 </Button>
+
+                {/* Mobile Navigation - Bottom */}
+                <div className="md:hidden absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20"
+                    onClick={prevImage}
+                  >
+                    <ChevronLeft className="h-8 w-8" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20"
+                    onClick={nextImage}
+                  >
+                    <ChevronRight className="h-8 w-8" />
+                  </Button>
+                </div>
 
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
                   {selectedImage + 1} / {galleryImages.length}
