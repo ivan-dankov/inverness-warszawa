@@ -1,19 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiaXZhbmRhbmtvdiIsImEiOiJjbWd0ZGJzMDcwMzl1Mmxxa2tud2dlbWZoIn0.EIWOSBMEmqZ43QOW07tzHg';
 
 export const Map = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
-  const [token, setToken] = useState('');
-  const [tokenInput, setTokenInput] = useState('');
 
-  const initializeMap = (accessToken: string) => {
+  const initializeMap = () => {
     if (!mapContainer.current || map.current) return;
 
-    mapboxgl.accessToken = accessToken;
+    mapboxgl.accessToken = MAPBOX_TOKEN;
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -36,50 +34,13 @@ export const Map = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      initializeMap(token);
-    }
+    initializeMap();
 
     return () => {
       map.current?.remove();
       map.current = null;
     };
-  }, [token]);
-
-  if (!token) {
-    return (
-      <div className="w-full h-[400px] flex items-center justify-center bg-muted/30 rounded-lg">
-        <div className="text-center space-y-4 p-6 max-w-md">
-          <p className="text-sm text-muted-foreground">
-            Wprowadź swój Mapbox public token aby wyświetlić mapę
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Znajdź token na{' '}
-            <a 
-              href="https://mapbox.com/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-primary hover:underline"
-            >
-              mapbox.com
-            </a>
-          </p>
-          <div className="flex gap-2">
-            <Input
-              type="text"
-              placeholder="pk.ey..."
-              value={tokenInput}
-              onChange={(e) => setTokenInput(e.target.value)}
-              className="flex-1"
-            />
-            <Button onClick={() => setToken(tokenInput)}>
-              Załaduj
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div className="relative w-full h-[400px]">
