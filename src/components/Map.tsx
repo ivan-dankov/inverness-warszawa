@@ -18,13 +18,13 @@ export const Map = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [20.9448, 52.2265], // Gizów 6, Warszawa coordinates
-      zoom: 15,
+      center: [20.9445, 52.2260], // Gizów 6, 01-249 Warszawa, Wola
+      zoom: 16,
     });
 
     // Add marker for the location
     new mapboxgl.Marker({ color: '#0891b2' })
-      .setLngLat([20.9448, 52.2265])
+      .setLngLat([20.9445, 52.2260])
       .setPopup(
         new mapboxgl.Popup().setHTML(
           '<strong>Inverness MED</strong><br/>Gizów 6<br/>01-249 Warszawa'
