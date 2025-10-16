@@ -55,38 +55,19 @@ export const About = () => {
           ))}
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <Card className="p-8 bg-card shadow-card">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
+        <div className="max-w-6xl mx-auto">
+          <Card className="p-6 sm:p-8 lg:p-10 bg-card shadow-card">
+            <div className="grid lg:grid-cols-[1fr,1.2fr] gap-8 lg:gap-12">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-foreground">
                   Najwyższe Standardy Bezpieczeństwa
                 </h3>
                 <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Sterylne, jednorazowe narzędzia dla każdego klienta</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Nie rozrywa tkanek jak tradycyjny pistolet do kolczykowania</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Ponad 20 modeli kolczyków medycznych do wyboru</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Kolczyki dla dzieci z krótszą igłą dla większego komfortu</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-primary mt-1">✓</span>
-                    <span>Pełne wygojenie w 6-8 tygodni</span>
-                  </li>
+...
                 </ul>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground mb-4 text-center">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-foreground">
                   Certyfikaty i Atesty
                 </h3>
                 <CertificateViewer />
