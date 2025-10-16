@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Phone, Instagram, Clock, Calendar } from "lucide-react";
+import { Map } from "./Map";
 
 export const Contact = () => {
   return (
@@ -95,82 +96,11 @@ export const Contact = () => {
             </div>
           </Card>
 
-          <Card className="p-8 shadow-card bg-gradient-to-br from-primary-light/20 to-secondary/20">
+          <Card className="p-8 shadow-card">
             <h3 className="text-2xl font-bold text-foreground mb-6">
-              Dlaczego My?
+              Lokalizacja
             </h3>
-            
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary font-bold">1</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">
-                    Jedyny Certyfikowany System w Europie
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Inverness MED zatwierdzony przez lekarzy z certyfikatami FDA i ISO
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary font-bold">2</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">
-                    Bezpieczeństwo dla Dzieci 0+
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Cichy, delikatny mechanizm idealny dla najmłodszych
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary font-bold">3</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">
-                    Sterylność i Higiena
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Jednorazowe narzędzia dla każdego klienta
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary font-bold">4</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">
-                    Szeroki Wybór Kolczyków
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Ponad 20 modeli z tytanu, niobu i stali medycznej
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-primary font-bold">5</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-foreground mb-1">
-                    Usługa Mobilna
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    Przyjazd do domu - komfort i wygoda
-                  </p>
-                </div>
-              </div>
-            </div>
+            <Map />
           </Card>
         </div>
       </div>
