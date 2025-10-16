@@ -64,7 +64,7 @@ export const Contact = () => {
                   <h4 className="font-semibold text-foreground mb-1">Godziny Otwarcia</h4>
                   <div className="space-y-1 text-muted-foreground">
                     <p><span className="font-medium">Niedziela:</span> 10:00 - 20:00 (lokalizacja)</p>
-                    <p><span className="font-medium">Inne dni:</span> 10:00 - 20:00 (mobilna)</p>
+                    <p><span className="font-medium">Inne dni:</span> 10:00 - 20:00 (dojazd)</p>
                   </div>
                 </div>
               </div>
