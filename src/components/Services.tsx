@@ -23,6 +23,14 @@ export const Services = () => {
     features: ["Dla dzieci 0+", "Cichy i delikatny mechanizm", "Kolczyki z krótszą igłą", "Opieka i wsparcie rodziców"],
     description: "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
     badge: "Dla Dzieci"
+  }, {
+    icon: Calendar,
+    title: "Więcej Wariantów Usług",
+    price: "Sprawdź",
+    duration: "Różne opcje",
+    features: ["Pojedyncze przekłucie", "Przekłucia chrząstki", "Pakiety rodzinne", "Dodatkowe lokalizacje"],
+    description: "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
+    badge: "Booksy"
   }];
   return <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,7 +43,7 @@ export const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
           {services.map((service, index) => <Card key={index} className="p-8 hover:shadow-card transition-shadow duration-300 relative overflow-hidden">
               {service.badge && <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
                   {service.badge}
@@ -50,8 +58,8 @@ export const Services = () => {
               
               <div className="flex items-baseline gap-2 mb-4">
                 <span className="text-4xl font-bold text-primary">{service.price}</span>
-                <span className="text-xl text-muted-foreground line-through">{service.originalPrice}</span>
-                <Badge variant="secondary" className="ml-2">-{service.discount}</Badge>
+                {service.originalPrice && <span className="text-xl text-muted-foreground line-through">{service.originalPrice}</span>}
+                {service.discount && <Badge variant="secondary" className="ml-2">-{service.discount}</Badge>}
               </div>
               
               <div className="text-sm text-muted-foreground mb-6">
