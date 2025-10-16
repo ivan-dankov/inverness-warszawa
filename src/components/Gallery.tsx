@@ -106,18 +106,17 @@ export const Gallery = () => {
           
           {/* See All Button */}
           <div 
-            className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-shadow duration-300 group cursor-pointer bg-muted/50 flex items-center justify-center"
+            className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-all duration-300 group cursor-pointer bg-muted/50 flex items-center justify-center hover:bg-primary/10"
             onClick={() => openImage(0)}
           >
             <div className="text-center">
-              <Button variant="hero" size="lg" className="pointer-events-none">
+              <p className="text-2xl font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
                 Zobacz Wszystkie
-              </Button>
+              </p>
               <p className="mt-2 text-sm text-muted-foreground">
                 {galleryImages.length} zdjęć
               </p>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
         </div>
       </div>
