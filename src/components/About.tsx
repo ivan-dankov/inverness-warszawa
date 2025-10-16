@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Shield, Heart, Sparkles, Award } from "lucide-react";
-import certificationsImage from "@/assets/certifications.jpg";
+import { CertificateViewer } from "@/components/CertificateViewer";
 
 export const About = () => {
   const benefits = [
@@ -85,12 +85,11 @@ export const About = () => {
                   </li>
                 </ul>
               </div>
-              <div className="flex justify-center">
-                <img 
-                  src={certificationsImage} 
-                  alt="Certyfikaty FDA i ISO" 
-                  className="rounded-lg shadow-soft max-w-full h-auto"
-                />
+              <div>
+                <h3 className="text-xl font-bold text-foreground mb-4 text-center">
+                  Certyfikaty i Atesty
+                </h3>
+                <CertificateViewer />
               </div>
             </div>
           </Card>
