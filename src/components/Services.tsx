@@ -1,0 +1,128 @@
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Baby, Users, Phone } from "lucide-react";
+
+export const Services = () => {
+  const services = [
+    {
+      icon: Users,
+      title: "Przekłuwanie Uszu (2 przekłucia)",
+      originalPrice: "100 zł",
+      price: "70 zł",
+      duration: "30 min",
+      discount: "30%",
+      features: [
+        "2 dowolne przekłucia",
+        "System Inverness MED",
+        "Konsultacja i doradztwo",
+        "Instrukcje pielęgnacji",
+      ],
+      description: "Idealny dla dorosłych pragnących klasycznego przekłucia płatków uszu",
+      badge: "Promocja",
+    },
+    {
+      icon: Baby,
+      title: "Przekłuwanie Uszu Dzieciom",
+      originalPrice: "100 zł",
+      price: "70 zł",
+      duration: "30 min",
+      discount: "30%",
+      features: [
+        "Dla dzieci 0+",
+        "Cichy i delikatny mechanizm",
+        "Kolczyki z krótszą igłą",
+        "Opieka i wsparcie rodziców",
+      ],
+      description: "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
+      badge: "Dla Dzieci",
+    },
+  ];
+
+  return (
+    <section id="services" className="py-20 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Nasze Usługi
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Profesjonalne przekłuwanie uszu z wykorzystaniem certyfikowanego systemu medycznego
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
+          {services.map((service, index) => (
+            <Card 
+              key={index}
+              className="p-8 hover:shadow-card transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+            >
+              {service.badge && (
+                <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
+                  {service.badge}
+                </Badge>
+              )}
+              <service.icon className="h-12 w-12 text-primary mb-4" />
+              <h3 className="text-2xl font-bold text-foreground mb-2">
+                {service.title}
+              </h3>
+              <p className="text-muted-foreground mb-4 text-sm">
+                {service.description}
+              </p>
+              
+              <div className="flex items-baseline gap-2 mb-4">
+                <span className="text-4xl font-bold text-primary">{service.price}</span>
+                <span className="text-xl text-muted-foreground line-through">{service.originalPrice}</span>
+                <Badge variant="secondary" className="ml-2">-{service.discount}</Badge>
+              </div>
+              
+              <div className="text-sm text-muted-foreground mb-6">
+                Czas trwania: {service.duration}
+              </div>
+
+              <ul className="space-y-2 mb-6">
+                {service.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <span className="text-primary mt-0.5">✓</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <Button size="lg" variant="hero" className="w-full" asChild>
+                <a href="tel:+48573818260">
+                  <Phone className="h-5 w-5" />
+                  Umów Wizytę
+                </a>
+              </Button>
+            </Card>
+          ))}
+        </div>
+
+        <Card className="p-8 bg-muted/50 border-border/50 max-w-3xl mx-auto">
+          <h3 className="text-xl font-semibold text-foreground mb-4 text-center">
+            Informacje o Cenach
+          </h3>
+          <div className="space-y-3 text-muted-foreground">
+            <p className="flex items-start gap-2">
+              <span className="text-primary mt-1">ℹ</span>
+              <span>Cena nie obejmuje kosztu kolczyków</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="text-primary mt-1">💎</span>
+              <span>Dodatkowa opłata za kolczyki: 80-150 zł za parę</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="text-primary mt-1">✨</span>
+              <span>Ponad 20 modeli kolczyków medycznych do wyboru</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="text-primary mt-1">🔄</span>
+              <span>Po 6-8 tygodniach możesz wymienić kolczyk na własny</span>
+            </p>
+          </div>
+        </Card>
+      </div>
+    </section>
+  );
+};
