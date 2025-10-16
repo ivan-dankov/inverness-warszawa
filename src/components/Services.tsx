@@ -44,10 +44,7 @@ export const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-          {services.map((service, index) => <Card key={index} className="p-8 hover:shadow-card transition-shadow duration-300 relative overflow-hidden">
-              {service.badge && <Badge className="absolute top-4 right-4 bg-accent text-accent-foreground">
-                  {service.badge}
-                </Badge>}
+          {services.map((service, index) => <Card key={index} className="p-8 hover:shadow-card transition-shadow duration-300 flex flex-col">
               <service.icon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold text-foreground mb-2">
                 {service.title}
@@ -66,14 +63,14 @@ export const Services = () => {
                 Czas trwania: {service.duration}
               </div>
 
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2 mb-6 flex-grow">
                 {service.features.map((feature, idx) => <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                     <span className="text-primary mt-0.5">✓</span>
                     <span>{feature}</span>
                   </li>)}
               </ul>
 
-              <Button size="lg" variant="hero" className="w-full" asChild>
+              <Button size="lg" variant="hero" className="w-full mt-auto" asChild>
                 <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-5 w-5" />
                   Rezerwuj Online
