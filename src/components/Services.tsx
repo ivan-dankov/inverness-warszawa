@@ -90,7 +90,7 @@ export const Services = () => {
             </p>
             <p className="flex items-center justify-center gap-2">
               <span className="text-primary">💎</span>
-              <span>Dodatkowa opłata za kolczyki: 80-150 zł za parę</span>
+              <span>Dodatkowa opłata za kolczyki: od 100 zł za parę</span>
             </p>
             <p className="flex items-center justify-center gap-2">
               <span className="text-primary">🚗</span>
