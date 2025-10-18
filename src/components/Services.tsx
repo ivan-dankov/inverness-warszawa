@@ -1,34 +1,24 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Baby, Users, Calendar } from "lucide-react";
+import { Sparkles, Calendar } from "lucide-react";
 export const Services = () => {
   const services = [{
-    icon: Users,
-    title: "Przekłuwanie Uszu (2 przekłucia)",
-    originalPrice: "150 zł",
-    price: "105 zł",
+    icon: Sparkles,
+    title: "Przekłucie chrząstki (helix, tragus, conch)",
+    originalPrice: "80,00 zł",
+    price: "56,00 zł",
     duration: "30 min",
     discount: "30%",
-    features: ["2 dowolne przekłucia", "System Inverness MED", "Konsultacja i doradztwo", "Instrukcje pielęgnacji"],
-    description: "Idealny dla dorosłych pragnących klasycznego przekłucia płatków uszu",
-    badge: "Promocja"
-  }, {
-    icon: Baby,
-    title: "Przekłuwanie Uszu Dzieciom",
-    originalPrice: "150 zł",
-    price: "105 zł",
-    duration: "30 min",
-    discount: "30%",
-    features: ["Dla dzieci 0+", "Cichy i delikatny mechanizm", "Opieka i wsparcie rodziców"],
-    description: "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
-    badge: "Dla Dzieci"
+    features: ["Cena nie obejmuje kosztu kolczyków", "Dodatkowa opłata za wybrane kolczyki", "System Inverness MED", "Najniższa cena z 30 dni przed obniżką: 60,00 zł"],
+    description: "Profesjonalne przekłucie chrząstki ucha z wykorzystaniem certyfikowanego systemu",
+    badge: "Zaoszczędź do 30%"
   }, {
     icon: Calendar,
     title: "Więcej Wariantów Usług",
     price: "Sprawdź",
     duration: "Różne opcje",
-    features: ["Przekłucie chrząstki (helix, tragus, conch)", "Przekłucie płatka ucha (lobe)", "Różne opcje kolczyków"],
+    features: ["Przekłucie płatka ucha (lobe) INVERNESS MED", "Różne opcje kolczyków", "Konsultacja i doradztwo"],
     description: "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
     badge: "Booksy"
   }];
@@ -43,7 +33,7 @@ export const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
           {services.map((service, index) => <Card key={index} className="p-8 hover:shadow-card transition-shadow duration-300 flex flex-col">
               <service.icon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold text-foreground mb-2">
