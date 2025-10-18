@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
 
@@ -17,6 +17,7 @@ export default function EarringDetail() {
   const earring = earrings[currentIndex];
   
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
   const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   // Auto-scroll active thumbnail into view
@@ -33,7 +34,7 @@ export default function EarringDetail() {
   // Reset image index when product changes
   useEffect(() => {
     setSelectedImageIndex(0);
-    window.scrollTo(0, 0);
+    setImageLoaded(false);
   }, [currentIndex]);
 
   // Handle invalid product ID
@@ -56,38 +57,42 @@ export default function EarringDetail() {
     }
   };
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft' && hasPrevious) {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight' && hasNext) {
+        goToNext();
+      } else if (e.key === 'Escape') {
+        navigate('/earrings');
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentIndex, hasPrevious, hasNext]);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
       <main className="flex-grow">
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
-          {/* Breadcrumb & Close */}
-          <div className="flex items-center justify-between mb-6 sm:mb-8">
-            <nav className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground">
-              <Link to="/" className="hover:text-teal-600 transition-colors">
-                Strona główna
-              </Link>
-              <span>/</span>
-              <Link to="/earrings" className="hover:text-teal-600 transition-colors">
-                Kolczyki
-              </Link>
-              <span>/</span>
-              <span className="text-foreground truncate max-w-[150px] sm:max-w-none">
-                {earring.name}
-              </span>
-            </nav>
-            
-            <Button
-              onClick={() => navigate('/')}
-              variant="ghost"
-              size="icon"
-              className="flex-shrink-0"
-              aria-label="Close"
-            >
-              <X className="h-5 w-5" />
-            </Button>
-          </div>
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
+            <Link to="/" className="hover:text-primary transition-colors">
+              Strona główna
+            </Link>
+            <span>/</span>
+            <Link to="/earrings" className="hover:text-primary transition-colors">
+              Kolczyki
+            </Link>
+            <span>/</span>
+            <span className="text-foreground truncate max-w-[150px] sm:max-w-none">
+              {earring.name}
+            </span>
+          </nav>
 
           {/* Product Viewer */}
           <div className="max-w-6xl mx-auto">
@@ -124,11 +129,19 @@ export default function EarringDetail() {
             </div>
 
             {/* Main Image Display */}
-            <div className="flex items-center justify-center mb-6 sm:mb-8 bg-muted/30 rounded-lg p-4 sm:p-8 min-h-[50vh] sm:min-h-[60vh]">
+            <div className="flex items-center justify-center mb-6 sm:mb-8 bg-muted/30 rounded-lg p-4 sm:p-8 min-h-[50vh] sm:min-h-[60vh] relative">
+              {!imageLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                </div>
+              )}
               <img
                 src={earring.images[selectedImageIndex]}
                 alt={`${earring.name} - Zdjęcie ${selectedImageIndex + 1}`}
-                className="max-w-full max-h-[50vh] sm:max-h-[60vh] object-contain"
+                className={`max-w-full max-h-[50vh] sm:max-h-[60vh] object-contain transition-opacity duration-300 ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoad={() => setImageLoaded(true)}
               />
             </div>
 
@@ -178,34 +191,36 @@ export default function EarringDetail() {
             </div>
 
             {/* Navigation Buttons - Mobile/Tablet */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 lg:hidden">
+            <div className="flex flex-col gap-3 lg:hidden">
               <Button
                 onClick={() => navigate('/earrings')}
                 variant="outline"
-                className="gap-2 w-full sm:w-auto"
+                className="gap-2 w-full min-h-[44px]"
               >
                 <ArrowLeft className="h-5 w-5" />
                 Wróć do galerii
               </Button>
               
-              <div className="flex gap-3 w-full sm:w-auto">
+              <div className="flex gap-3 w-full">
                 <Button
                   onClick={goToPrevious}
                   disabled={!hasPrevious}
                   variant="outline"
-                  className="gap-2 flex-1 sm:flex-initial"
+                  className="gap-2 flex-1 min-h-[44px]"
                 >
                   <ChevronLeft className="h-5 w-5" />
-                  Poprzedni
+                  <span className="hidden xs:inline">Poprzedni</span>
+                  <span className="xs:hidden">Poprz.</span>
                 </Button>
                 
                 <Button
                   onClick={goToNext}
                   disabled={!hasNext}
                   variant="outline"
-                  className="gap-2 flex-1 sm:flex-initial"
+                  className="gap-2 flex-1 min-h-[44px]"
                 >
-                  Następny
+                  <span className="hidden xs:inline">Następny</span>
+                  <span className="xs:hidden">Nast.</span>
                   <ChevronRight className="h-5 w-5" />
                 </Button>
               </div>
