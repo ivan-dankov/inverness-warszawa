@@ -51,10 +51,12 @@ export const Services = () => {
                 {service.description}
               </p>
               
-              <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-primary">{service.price}</span>
-                {service.originalPrice && <span className="text-xl text-muted-foreground line-through">{service.originalPrice}</span>}
-                {service.discount && <Badge variant="secondary" className="ml-2">-{service.discount}</Badge>}
+              <div className="flex flex-col gap-1 mb-4">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-bold text-primary">{service.price}</span>
+                  {service.discount && <Badge variant="secondary">-{service.discount}</Badge>}
+                </div>
+                {service.originalPrice && <span className="text-lg text-muted-foreground line-through">{service.originalPrice}</span>}
               </div>
               
               <div className="text-sm text-muted-foreground mb-6">
