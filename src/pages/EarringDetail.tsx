@@ -15,8 +15,6 @@ export default function EarringDetail() {
   const earring = earrings[currentIndex];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [description, setDescription] = useState<string>('');
-  const [loadingDescription, setLoadingDescription] = useState(true);
 
   // Get random other items (excluding current) - uses product index as seed for consistency
   const otherEarrings = useMemo(() => {
@@ -49,36 +47,6 @@ export default function EarringDetail() {
     setSelectedImageIndex(0);
     setImageLoaded(false);
   }, [currentIndex]);
-
-  // Fetch product description via scraping
-  useEffect(() => {
-    if (!earring) return;
-    const fetchDescription = async () => {
-      try {
-        setLoadingDescription(true);
-        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/scrape-product`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            url: earring.product_url
-          })
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch description');
-        }
-        const data = await response.json();
-        setDescription(data.description || '');
-      } catch (err) {
-        console.error('Failed to fetch description:', err);
-        setDescription('');
-      } finally {
-        setLoadingDescription(false);
-      }
-    };
-    fetchDescription();
-  }, [earring?.product_url]);
 
   // Keyboard navigation - Escape only
   useEffect(() => {
@@ -146,17 +114,17 @@ export default function EarringDetail() {
                   {earring.name}
                 </h1>
                 
-                
-                
-                {/* Scraped Description */}
-                <div className="prose prose-sm dark:prose-invert max-w-none">
-                  {loadingDescription ? <div className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                      <span>Loading details...</span>
-                    </div> : description ? <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
-                      {description}
-                    </p> : null}
-                </div>
+                {/* Description Points */}
+                {earring.description_points && earring.description_points.length > 0 && (
+                  <ul className="space-y-2 text-foreground/80">
+                    {earring.description_points.map((point, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-primary mt-1.5">•</span>
+                        <span className="leading-relaxed">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
             

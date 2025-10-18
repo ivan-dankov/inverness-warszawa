@@ -1,10 +1,12 @@
 import earringsData from "@/data/earrings.json";
+import earringsDescriptions from "@/data/earrings-descriptions.json";
 
 export interface Earring {
   name: string;
   product_url: string;
   images: string[];
   price: string;
+  description_points?: string[];
 }
 
 // Deduplicate images while preserving angle variants but removing size duplicates
@@ -45,9 +47,16 @@ export const getUniqueImages = (images: string[]): string[] => {
 };
 
 export const getAllEarrings = (): Earring[] => {
+  // Create a map of descriptions by product_url for quick lookup
+  const descriptionsMap = new Map(
+    (earringsDescriptions as Array<{product_url: string; description_points: string[]}>)
+      .map(d => [d.product_url, d.description_points])
+  );
+  
   return (earringsData as Earring[]).map(e => ({
     ...e,
-    images: getUniqueImages(e.images)
+    images: getUniqueImages(e.images),
+    description_points: descriptionsMap.get(e.product_url) || []
   }));
 };
 
