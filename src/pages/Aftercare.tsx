@@ -2,7 +2,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyBookingCTA } from "@/components/StickyBookingCTA";
 import { Card, CardContent } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useEffect } from "react";
 
 export default function Aftercare() {
@@ -31,7 +30,7 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   🧼 Higiena i czystość
                 </h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
                   <li>Zawsze utrzymuj miejsce przekłucia czyste, suche i z dostępem powietrza.</li>
                   <li>Nie dotykaj uszu brudnymi rękami. Przed każdorazowym dotknięciem ucha lub kolczyków dokładnie umyj ręce.</li>
                   <li>Nie obracaj ani nie poruszaj kolczykami bez potrzeby.</li>
@@ -44,7 +43,7 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   🌙 Sen i codzienna pielęgnacja
                 </h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
                   <li>Zmień pościel lub przynajmniej poszewkę poduszki na czystą.</li>
                   <li>Śpij na wznak, aby uniknąć ucisku.</li>
                   <li>Tkliwość lub lekki obrzęk to normalny objaw gojenia.</li>
@@ -57,7 +56,7 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   💧 Dezynfekcja
                 </h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
                   <li><strong>3× dziennie</strong> oczyść miejsce przekłucia z przodu i z tyłu za pomocą <strong>EAR CARE SOLUTION</strong> lub innego środka odkażającego.</li>
                   <li>Używaj czystych rąk i nowego wacika dla każdego ucha.</li>
                   <li>Po przemyciu delikatnie obróć kolczyk w lewo i w prawo o 180°.</li>
@@ -70,7 +69,7 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   💄 Kosmetyki i stylizacja
                 </h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
                   <li>W okresie gojenia unikaj: lakieru do włosów, perfum, farb, podkładów, pudrów i innych kosmetyków w okolicy przekłucia.</li>
                   <li>Po umyciu włosów dokładnie osusz ucho jednorazową chusteczką i zdezynfekuj miejsce przekłucia.</li>
                   <li>Zachowaj ostrożność przy czesaniu włosów, zakładaniu czapki i szalika.</li>
@@ -83,7 +82,7 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   🚫 Czego unikać
                 </h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
                   <li>Unikaj basenu, sauny i solarium.</li>
                   <li>Dzieci powinny unikać piaskownicy i sal zabaw.</li>
                   <li>Korzystaj z prysznica zamiast wanny.</li>
@@ -97,7 +96,7 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   💎 Zmiana kolczyków
                 </h2>
-                <div className="space-y-3 text-muted-foreground">
+                <div className="space-y-3 text-foreground">
                   <p>Nie wyjmuj kolczyków przed upływem:</p>
                   <ul className="list-disc list-inside space-y-2 ml-4">
                     <li><strong>6 tygodni</strong> – przy przekłuciu płatka ucha,</li>
@@ -114,19 +113,21 @@ export default function Aftercare() {
                 <h2 className="text-2xl font-semibold text-foreground mb-4">
                   💖 Dalsza pielęgnacja po zagojeniu
                 </h2>
-                <ul className="space-y-3 text-muted-foreground">
+                <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
                   <li>Pełne gojenie trwa ok. roku.</li>
                   <li>Po zdjęciu kolczyków Inverness wybieraj lekkie, hipoalergiczne kolczyki, np. z linii BIOJOUX (bez niklu), aby uniknąć alergii.</li>
                 </ul>
               </CardContent>
             </Card>
 
-            <Alert className="border-destructive/50 text-destructive">
-              <AlertDescription>
-                <h2 className="text-xl font-semibold mb-2">⚕️ W razie problemów</h2>
-                <p>Jeśli pojawi się infekcja lub silny stan zapalny, <strong>nie wyjmuj kolczyków</strong> — skontaktuj się z lekarzem.</p>
-              </AlertDescription>
-            </Alert>
+            <Card>
+              <CardContent className="pt-6">
+                <h2 className="text-2xl font-semibold text-foreground mb-4">
+                  ⚕️ W razie problemów
+                </h2>
+                <p className="text-foreground">Jeśli pojawi się infekcja lub silny stan zapalny, <strong>nie wyjmuj kolczyków</strong> — skontaktuj się z lekarzem.</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
