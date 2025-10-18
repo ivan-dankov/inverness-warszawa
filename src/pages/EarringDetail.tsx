@@ -110,7 +110,7 @@ export default function EarringDetail() {
               
               {/* RIGHT: Description Section */}
               <div className="lg:pt-8">
-                <h1 className="text-3xl lg:text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+                <h1 className="text-2xl lg:text-3xl font-bold mb-8 text-foreground">
                   {earring.name}
                 </h1>
                 
