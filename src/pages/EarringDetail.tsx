@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
@@ -18,18 +18,6 @@ export default function EarringDetail() {
   
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const thumbnailRefs = useRef<(HTMLButtonElement | null)[]>([]);
-
-  // Auto-scroll active thumbnail into view
-  useEffect(() => {
-    if (thumbnailRefs.current[selectedImageIndex]) {
-      thumbnailRefs.current[selectedImageIndex]?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
-    }
-  }, [selectedImageIndex]);
 
   // Reset image index when product changes
   useEffect(() => {
@@ -128,51 +116,99 @@ export default function EarringDetail() {
               </Button>
             </div>
 
-            {/* Main Image Display */}
-            <div className="flex items-center justify-center mb-6 sm:mb-8 bg-muted/30 rounded-lg p-4 sm:p-8 min-h-[50vh] sm:min-h-[60vh] relative">
-              {!imageLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+            {/* Image Viewer with Side Thumbnails - Desktop */}
+            <div className="hidden lg:flex gap-6 mb-6">
+              {/* Main Image */}
+              <div className="flex-1 flex items-center justify-center bg-muted/30 rounded-lg p-8 min-h-[60vh] relative">
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+                  </div>
+                )}
+                <img
+                  src={earring.images[selectedImageIndex]}
+                  alt={`${earring.name} - Zdjęcie ${selectedImageIndex + 1}`}
+                  className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${
+                    imageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                />
+              </div>
+
+              {/* Vertical Thumbnail Grid - Desktop Only */}
+              {earring.images.length > 1 && (
+                <div className="w-32 flex flex-col gap-3 max-h-[60vh] overflow-y-auto pr-2">
+                  {earring.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setSelectedImageIndex(idx);
+                        setImageLoaded(false);
+                      }}
+                      className={`flex-shrink-0 w-full aspect-square rounded-lg overflow-hidden transition-all duration-200 border-2 ${
+                        idx === selectedImageIndex
+                          ? 'border-teal-500 scale-105'
+                          : 'border-border hover:border-teal-500/50 opacity-70 hover:opacity-100'
+                      }`}
+                      aria-label={`Pokaż zdjęcie ${idx + 1} z ${earring.images.length}`}
+                    >
+                      <img
+                        src={img}
+                        alt={`${earring.name} miniatura ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
                 </div>
               )}
-              <img
-                src={earring.images[selectedImageIndex]}
-                alt={`${earring.name} - Zdjęcie ${selectedImageIndex + 1}`}
-                className={`max-w-full max-h-[50vh] sm:max-h-[60vh] object-contain transition-opacity duration-300 ${
-                  imageLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                onLoad={() => setImageLoaded(true)}
-              />
             </div>
 
-            {/* Thumbnail Strip */}
-            {earring.images.length > 1 && (
-              <div className="mb-6 sm:mb-8">
-                <ScrollArea className="w-full">
-                  <div className="flex gap-2 sm:gap-3 pb-2">
-                    {earring.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        ref={el => thumbnailRefs.current[idx] = el}
-                        onClick={() => setSelectedImageIndex(idx)}
-                        className={`flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden transition-all duration-200 border-2 ${
-                          idx === selectedImageIndex
-                            ? 'border-teal-500 scale-105'
-                            : 'border-border hover:border-teal-500/50 opacity-70 hover:opacity-100'
-                        }`}
-                        aria-label={`Pokaż zdjęcie ${idx + 1} z ${earring.images.length}`}
-                      >
-                        <img
-                          src={img}
-                          alt={`${earring.name} miniatura ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
+            {/* Image Viewer - Mobile/Tablet */}
+            <div className="lg:hidden mb-6">
+              {/* Main Image */}
+              <div className="flex items-center justify-center bg-muted/30 rounded-lg p-4 sm:p-8 min-h-[50vh] relative mb-4">
+                {!imageLoaded && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                   </div>
-                </ScrollArea>
+                )}
+                <img
+                  src={earring.images[selectedImageIndex]}
+                  alt={`${earring.name} - Zdjęcie ${selectedImageIndex + 1}`}
+                  className={`max-w-full max-h-[50vh] object-contain transition-opacity duration-300 ${
+                    imageLoaded ? 'opacity-100' : 'opacity-0'
+                  }`}
+                  onLoad={() => setImageLoaded(true)}
+                />
               </div>
-            )}
+
+              {/* Horizontal Thumbnails - Mobile/Tablet */}
+              {earring.images.length > 1 && (
+                <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0">
+                  {earring.images.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setSelectedImageIndex(idx);
+                        setImageLoaded(false);
+                      }}
+                      className={`flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden transition-all duration-200 border-2 ${
+                        idx === selectedImageIndex
+                          ? 'border-teal-500 scale-105'
+                          : 'border-border hover:border-teal-500/50 opacity-70 hover:opacity-100'
+                      }`}
+                      aria-label={`Pokaż zdjęcie ${idx + 1} z ${earring.images.length}`}
+                    >
+                      <img
+                        src={img}
+                        alt={`${earring.name} miniatura ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Product Information */}
             <div className="text-center mb-8">
