@@ -18,13 +18,30 @@ export default function EarringDetail() {
   const [description, setDescription] = useState<string>('');
   const [loadingDescription, setLoadingDescription] = useState(true);
 
-  // Get random other items (excluding current) - memoized to prevent reshuffling on thumbnail clicks
+  // Get random other items (excluding current) - uses product index as seed for consistency
   const otherEarrings = useMemo(() => {
     if (!earring) return [];
-    return earrings
-      .filter((_, idx) => idx !== currentIndex)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 8);
+    
+    // Seeded shuffle function for deterministic randomization
+    const seededShuffle = <T,>(array: T[], seed: number): T[] => {
+      const shuffled = [...array];
+      let currentSeed = seed;
+      
+      const random = () => {
+        currentSeed = (currentSeed * 9301 + 49297) % 233280;
+        return currentSeed / 233280;
+      };
+      
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      
+      return shuffled;
+    };
+    
+    const otherItems = earrings.filter((_, idx) => idx !== currentIndex);
+    return seededShuffle(otherItems, currentIndex).slice(0, 8);
   }, [currentIndex, earrings, earring]);
 
   // Reset image index when product changes
