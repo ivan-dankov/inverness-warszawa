@@ -30,18 +30,32 @@ export default function Aftercare() {
           <div className="space-y-6">
             {(t('aftercare.sections', { returnObjects: true }) as Array<{
               title: string;
-              points: string[];
-            }>).map((section, index) => (
+              text?: string;
+              points?: string[];
+              afterText?: string;
+              removal?: string;
+            }> || []).map((section, index) => (
               <Card key={index}>
                 <CardContent className="pt-6">
                   <h2 className="text-2xl font-semibold text-foreground mb-4">
                     {section.title}
                   </h2>
-                  <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
-                    {section.points.map((point, idx) => (
-                      <li key={idx} dangerouslySetInnerHTML={{ __html: point }} />
-                    ))}
-                  </ul>
+                  {section.text && (
+                    <p className="text-foreground mb-3">{section.text}</p>
+                  )}
+                  {section.points && section.points.length > 0 && (
+                    <ul className="list-disc list-inside space-y-3 text-foreground ml-2">
+                      {section.points.map((point, idx) => (
+                        <li key={idx} dangerouslySetInnerHTML={{ __html: point }} />
+                      ))}
+                    </ul>
+                  )}
+                  {section.afterText && (
+                    <p className="text-foreground mt-4">{section.afterText}</p>
+                  )}
+                  {section.removal && (
+                    <p className="text-foreground mt-4">{section.removal}</p>
+                  )}
                 </CardContent>
               </Card>
             ))}
