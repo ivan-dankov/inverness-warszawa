@@ -7,6 +7,8 @@ import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
 import { useTranslation } from 'react-i18next';
 import { getSpecificationTranslation } from "@/lib/specificationTranslations";
+import { Helmet } from "react-helmet-async";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export default function EarringDetail() {
   const { t } = useTranslation();
@@ -68,6 +70,25 @@ export default function EarringDetail() {
     return <NotFound />;
   }
   return <div className="min-h-screen flex flex-col bg-background">
+      <Helmet>
+        <title>{earring.name} - Kolczyki Inverness MED Warszawa</title>
+        <meta name="description" content={earring.description_points?.[0] || `${earring.name}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie.`} />
+        <link rel="canonical" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <link rel="alternate" hreflang="pl" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <link rel="alternate" hreflang="en" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <link rel="alternate" hreflang="ru" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <link rel="alternate" hreflang="uk" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <link rel="alternate" hreflang="x-default" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <meta property="og:title" content={earring.name} />
+        <meta property="og:image" content={earring.images[0]} />
+        <meta property="og:url" content={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <meta property="og:type" content="product" />
+      </Helmet>
+      <BreadcrumbSchema items={[
+        { name: t('earringDetail.breadcrumbHome'), url: 'https://inverness-med.lovable.app/' },
+        { name: t('earringDetail.breadcrumbEarrings'), url: 'https://inverness-med.lovable.app/earrings' },
+        { name: earring.name, url: `https://inverness-med.lovable.app/earrings/${productId}` }
+      ]} />
       <Header />
       
       <main className="flex-grow">

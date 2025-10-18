@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import EarringsGallery from "./pages/EarringsGallery";
 import EarringDetail from "./pages/EarringDetail";
@@ -70,24 +71,26 @@ const LanguageManager = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <LanguageManager />
-        <SmartScrollManager />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/earrings" element={<EarringsGallery />} />
-          <Route path="/earrings/:productId" element={<EarringDetail />} />
-          <Route path="/aftercare" element={<Aftercare />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <LanguageManager />
+          <SmartScrollManager />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/earrings" element={<EarringsGallery />} />
+            <Route path="/earrings/:productId" element={<EarringDetail />} />
+            <Route path="/aftercare" element={<Aftercare />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 export default App;

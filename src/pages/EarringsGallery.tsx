@@ -5,6 +5,8 @@ import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings } from "@/lib/earrings";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from 'react-i18next';
+import { Helmet } from "react-helmet-async";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export default function EarringsGallery() {
   const { t } = useTranslation();
@@ -16,6 +18,20 @@ export default function EarringsGallery() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{t('earringsGallery.title')} - {earrings.length} wzorów | Inverness MED Warszawa</title>
+        <meta name="description" content={`Przeglądaj ${earrings.length} różnych wzorów kolczyków medycznych Inverness. Bezpieczne, hipoalergiczne, certyfikowane FDA i ISO.`} />
+        <link rel="canonical" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hreflang="pl" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hreflang="en" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hreflang="ru" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hreflang="uk" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hreflang="x-default" href="https://inverness-med.lovable.app/earrings" />
+      </Helmet>
+      <BreadcrumbSchema items={[
+        { name: t('earringsGallery.breadcrumbHome'), url: 'https://inverness-med.lovable.app/' },
+        { name: t('earringsGallery.title'), url: 'https://inverness-med.lovable.app/earrings' }
+      ]} />
       <Header />
       
       <main className="flex-grow bg-gradient-to-b from-background to-muted/20">

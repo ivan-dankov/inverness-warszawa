@@ -6,17 +6,32 @@ import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet-async";
+import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
   
   useEffect(() => {
-    document.title = t('aftercare.pageTitle');
     window.scrollTo(0, 0);
-  }, [t, i18n.language]);
+  }, [i18n.language]);
 
   return (
     <>
+      <Helmet>
+        <title>{t('aftercare.pageTitle')}</title>
+        <meta name="description" content="Kompletny przewodnik pielęgnacji po przekłuciu uszu. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki." />
+        <link rel="canonical" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hreflang="pl" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hreflang="en" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hreflang="ru" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hreflang="uk" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hreflang="x-default" href="https://inverness-med.lovable.app/aftercare" />
+      </Helmet>
+      <BreadcrumbSchema items={[
+        { name: t('aftercare.backButton'), url: 'https://inverness-med.lovable.app/' },
+        { name: t('aftercare.title'), url: 'https://inverness-med.lovable.app/aftercare' }
+      ]} />
       <Header />
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">

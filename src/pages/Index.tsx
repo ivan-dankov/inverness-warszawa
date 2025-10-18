@@ -11,10 +11,28 @@ import { FAQSchema } from "@/components/FAQSchema";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { StickyBookingCTA } from "@/components/StickyBookingCTA";
+import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 
 const Index = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Inverness MED - Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
+        <meta name="description" content={t('hero.subtitle')} />
+        <link rel="canonical" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hreflang="pl" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hreflang="en" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hreflang="ru" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hreflang="uk" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hreflang="x-default" href="https://inverness-med.lovable.app/" />
+        <meta property="og:title" content="Inverness MED - Przekłuwanie Uszu Warszawa" />
+        <meta property="og:description" content={t('hero.subtitle')} />
+        <meta property="og:url" content="https://inverness-med.lovable.app/" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <FAQSchema />
       <Header />
       <main className="flex-grow">
