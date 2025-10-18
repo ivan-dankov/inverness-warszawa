@@ -37,6 +37,11 @@ const SmartScrollManager = () => {
         }, 0);
       }
     }
+    // Reset scroll when coming from homepage or any non-earrings page
+    else if (currentPath === '/earrings' && prevLocation && !prevLocation.startsWith('/earrings')) {
+      sessionStorage.removeItem('earrings-gallery-scroll');
+      window.scrollTo(0, 0);
+    }
     // Always scroll to top for detail pages (treat as static pages)
     else if (currentPath.startsWith('/earrings/')) {
       window.scrollTo(0, 0);

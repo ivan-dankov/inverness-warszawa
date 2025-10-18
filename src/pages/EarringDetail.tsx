@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
 export default function EarringDetail() {
@@ -143,17 +144,16 @@ export default function EarringDetail() {
               </h2>
               
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
-                {otherEarrings.map((item, idx) => {
-                const itemIndex = earrings.findIndex(e => e.name === item.name);
-                return <Link key={idx} to={`/earrings/${itemIndex}`} className="group">
-                      <div className="aspect-square bg-muted/30 rounded-lg overflow-hidden mb-3">
-                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                      <p className="text-sm line-clamp-2 group-hover:text-primary transition-colors">
-                        {item.name}
-                      </p>
-                    </Link>;
-              })}
+                {otherEarrings.map((item) => {
+                  const itemIndex = earrings.findIndex(e => e.name === item.name);
+                  return (
+                    <EarringCard 
+                      key={itemIndex}
+                      earring={item}
+                      index={itemIndex}
+                    />
+                  );
+                })}
               </div>
             </div>
           </div>

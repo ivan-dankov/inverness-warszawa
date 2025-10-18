@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings } from "@/lib/earrings";
 import { ArrowLeft } from "lucide-react";
 
@@ -41,25 +42,11 @@ export default function EarringsGallery() {
           {/* Gallery Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
             {earrings.map((earring, index) => (
-              <Link
+              <EarringCard 
                 key={index}
-                to={`/earrings/${index}`}
-                className="group relative aspect-square overflow-hidden rounded-lg bg-card border border-border hover:border-teal-600/50 transition-all duration-300 hover:shadow-lg"
-              >
-                <img
-                  src={earring.images[0]}
-                  alt={earring.name}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                    <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">
-                      {earring.name}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+                earring={earring}
+                index={index}
+              />
             ))}
           </div>
 
