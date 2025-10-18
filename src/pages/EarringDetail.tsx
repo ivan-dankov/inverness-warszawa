@@ -4,7 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
 
@@ -96,14 +96,7 @@ export default function EarringDetail() {
                 Poprzedni
               </Button>
               
-              <Button
-                onClick={() => navigate('/earrings')}
-                variant="outline"
-                className="gap-2"
-              >
-                <ArrowLeft className="h-5 w-5" />
-                Wróć do galerii
-              </Button>
+              <div></div>
               
               <Button
                 onClick={goToNext}
@@ -227,39 +220,28 @@ export default function EarringDetail() {
             </div>
 
             {/* Navigation Buttons - Mobile/Tablet */}
-            <div className="flex flex-col gap-3 lg:hidden">
+            <div className="flex gap-3 lg:hidden">
               <Button
-                onClick={() => navigate('/earrings')}
+                onClick={goToPrevious}
+                disabled={!hasPrevious}
                 variant="outline"
-                className="gap-2 w-full min-h-[44px]"
+                className="gap-2 flex-1 min-h-[44px]"
               >
-                <ArrowLeft className="h-5 w-5" />
-                Wróć do galerii
+                <ChevronLeft className="h-5 w-5" />
+                <span className="hidden xs:inline">Poprzedni</span>
+                <span className="xs:hidden">Poprz.</span>
               </Button>
               
-              <div className="flex gap-3 w-full">
-                <Button
-                  onClick={goToPrevious}
-                  disabled={!hasPrevious}
-                  variant="outline"
-                  className="gap-2 flex-1 min-h-[44px]"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                  <span className="hidden xs:inline">Poprzedni</span>
-                  <span className="xs:hidden">Poprz.</span>
-                </Button>
-                
-                <Button
-                  onClick={goToNext}
-                  disabled={!hasNext}
-                  variant="outline"
-                  className="gap-2 flex-1 min-h-[44px]"
-                >
-                  <span className="hidden xs:inline">Następny</span>
-                  <span className="xs:hidden">Nast.</span>
-                  <ChevronRight className="h-5 w-5" />
-                </Button>
-              </div>
+              <Button
+                onClick={goToNext}
+                disabled={!hasNext}
+                variant="outline"
+                className="gap-2 flex-1 min-h-[44px]"
+              >
+                <span className="hidden xs:inline">Następny</span>
+                <span className="xs:hidden">Nast.</span>
+                <ChevronRight className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
