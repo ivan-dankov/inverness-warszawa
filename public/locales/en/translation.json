@@ -15,186 +15,171 @@
     "phone": "Phone"
   },
   "hero": {
-    "title": "Medical Ear Piercing",
-    "subtitle": "The only system in Europe with medical certification",
+    "title": "Medical Ear Piercing - Warsaw",
+    "subtitle": "Safe ear piercing with Inverness MED system with international FDA and ISO certificates. For children 0+ and adults in Warsaw or with mobile service (+50 PLN)",
     "features": [
-      "Sterile, single-use instruments",
-      "Painless and safe",
-      "For children 0+"
+      "For children 0+",
+      "FDA and ISO certificates",
+      "Mobile service +50 PLN"
     ],
     "buttons": {
-      "book": "Book Online",
-      "instagram": "View Instagram"
+      "book": "Book Appointment",
+      "instagram": "Instagram"
     }
   },
   "about": {
     "title": "Why Inverness MED?",
-    "subtitle": "Medically certified system, safe for everyone",
+    "subtitle": "The only ear piercing system approved by doctors throughout Europe",
     "benefits": [
       {
-        "title": "Medical Safety",
-        "description": "Certified system with single-use, sterile instruments"
+        "title": "FDA and ISO Certificates",
+        "description": "International confirmation of safety and quality"
       },
       {
-        "title": "Professional Service",
-        "description": "Experienced team with certificates and training"
+        "title": "Painless and Gentle",
+        "description": "Quiet mechanism ideal for children and sensitive individuals"
       },
       {
-        "title": "Wide Selection",
-        "description": "Over 200 earring designs from hypoallergenic materials"
+        "title": "Hypoallergenic Earrings",
+        "description": "Titanium, niobium or highest quality medical steel"
       },
       {
-        "title": "Certificates and Standards",
-        "description": "We meet the highest EU safety standards"
+        "title": "Fast Healing",
+        "description": "Precise, atraumatic piercing without tissue tearing"
       }
     ]
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "Choose the right package for you",
+    "subtitle": "Professional ear piercing using certified medical system",
     "cards": [
       {
-        "title": "Single Ear Piercing",
-        "description": "Perfect for those who want to pierce only one ear",
-        "price": "80 PLN",
-        "duration": "~15 min",
+        "title": "Cartilage (helix, tragus, conch) and earlobe (lobe) piercing",
+        "description": "Professional cartilage or earlobe piercing using certified system",
+        "badge": "Save up to 30%",
+        "originalPrice": "80.00 PLN",
+        "price": "56.00 PLN",
+        "discount": "30%",
+        "duration": "30 min",
         "features": [
-          "Pre-procedure consultation",
-          "Marking the piercing location",
-          "Sterile piercing with Inverness system",
-          "Pair of medical earrings included",
-          "Aftercare instructions"
-        ],
-        "badge": "Popular"
+          "Price does not include earrings"
+        ]
       },
       {
-        "title": "Double Ear Piercing",
-        "description": "Most popular choice - classic earlobe piercing",
-        "price": "120 PLN",
-        "originalPrice": "160 PLN",
-        "duration": "~20 min",
-        "features": [
-          "Pre-procedure consultation",
-          "Marking piercing locations",
-          "Sterile piercing with Inverness system",
-          "Two pairs of medical earrings included",
-          "Aftercare instructions",
-          "40 PLN discount"
-        ],
-        "badge": "Bestseller"
-      },
-      {
-        "title": "Helix Piercing",
-        "description": "Modern upper cartilage ear piercing",
+        "title": "Children's Ear Piercing",
+        "description": "Safe piercing approved by doctors for the youngest",
+        "badge": "For Children",
         "price": "150 PLN",
-        "duration": "~25 min",
+        "duration": "30 min",
         "features": [
-          "Consultation and style advice",
-          "Precise location marking",
-          "Sterile piercing with Inverness system",
-          "Pair of medical helix earrings",
-          "Detailed aftercare instructions",
-          "Free 2-week follow-up"
-        ],
-        "badge": "Premium"
+          "For children 0+",
+          "Quiet and gentle mechanism",
+          "Parental care and support"
+        ]
+      },
+      {
+        "title": "More Service Options",
+        "description": "Discover our full range of services and find the perfect option for you",
+        "badge": "Booksy",
+        "price": "Check",
+        "duration": "Various options",
+        "features": [
+          "Earlobe (lobe) piercing INVERNESS MED",
+          "Various earring options",
+          "Consultation and advice"
+        ]
       }
     ],
-    "mobile": {
-      "title": "Mobile service",
-      "price": "+50 PLN"
-    },
     "pricing": {
       "title": "Pricing Information",
-      "features": [
-        "Prices include a pair of medical earrings",
-        "Additional earrings available from 30 PLN/pair",
-        "Mobile service: +50 PLN",
-        "Payment by cash or card"
-      ],
-      "button": "Check Availability on Booksy"
-    }
+      "earringsInfo": "Price does not include earrings",
+      "earringsPrice": "Additional charge for earrings: from 100 PLN per pair",
+      "mobileVisit": "Mobile service: +50 PLN to service price"
+    },
+    "bookButton": "Book Online",
+    "durationLabel": "Duration:"
   },
   "earrings": {
-    "title": "Our Earrings",
-    "subtitle": "Over 200 medical earring designs",
-    "viewAll": "View all earrings",
-    "seeAll": "See all"
+    "title": "Earring Collection",
+    "inverness": "Inverness MED",
+    "subtitle": "Highest quality medical earrings - safe, hypoallergenic and elegant",
+    "seeAll": "See All",
+    "productCount": "{{count}} earrings"
   },
   "gallery": {
     "title": "Gallery",
-    "subtitle": "See our work"
+    "subtitle": "See our professional equipment and work results",
+    "seeAll": "See All",
+    "photoCount": "{{count}} photos"
   },
   "certificates": {
-    "title": "Certificates and Safety",
-    "subtitle": "All our products have safety certificates",
-    "names": {
-      "declaration": "Declaration of Conformity",
-      "fda": "FDA Certificate",
-      "italian": "Italian Test Report",
-      "ball": "UL Ball Earrings",
-      "prong": "UL Prong Crystals",
-      "crystal": "UL Crystal Earrings"
-    }
+    "title": "Certificates",
+    "subtitle": "Our quality and safety certificates"
   },
   "testimonials": {
     "title": "Customer Reviews",
-    "subtitle": "What our customers say about us"
+    "subtitle": "See what satisfied Inverness MED clients say about us",
+    "onBooksy": "on Booksy"
   },
   "faq": {
     "title": "Frequently Asked Questions",
-    "subtitle": "Answers to popular questions",
+    "subtitle": "Find answers to questions about Inverness MED ear piercing system",
+    "aftercareLink": "See full aftercare recommendations →",
     "items": [
       {
-        "question": "From what age can ears be pierced?",
-        "answer": "The Inverness MED system is safe from birth. Infants (0-6 months) require consent and presence of both parents."
+        "question": "Does ear piercing hurt?",
+        "answer": "The Inverness MED system is exceptionally gentle and much less painful than traditional gun. The earring gently separates tissue instead of puncturing it, making discomfort minimal. Most of our clients agree that the procedure is virtually painless."
       },
       {
-        "question": "Does piercing hurt?",
-        "answer": "The Inverness system uses fast, simultaneous piercing that minimizes discomfort. Most people describe the feeling as a brief pinch."
+        "question": "From what age can children's ears be pierced?",
+        "answer": "The Inverness MED system is doctor-approved for ear piercing in children from 0+. It is the only system in Europe with such certification. The quiet, precise mechanism doesn't scare the youngest, and 100% sterility guarantees safety."
       },
       {
-        "question": "How long does healing take?",
-        "answer": "Earlobes: 6-8 weeks. Cartilage (helix): 3-6 months. You'll receive detailed aftercare instructions after the procedure."
+        "question": "How long does healing take after piercing?",
+        "answer": "For earlobes, healing takes about 6-8 weeks. For cartilage piercing (helix, tragus, conch), the healing process can take 3-6 months. Inverness MED system speeds up healing thanks to precise, atraumatic piercing."
       },
       {
-        "question": "Are the earrings hypoallergenic?",
-        "answer": "Yes! All Inverness earrings are made from hypoallergenic materials (316L medical steel, titanium, 14K or 24K gold)."
+        "question": "Is the Inverness MED system safe?",
+        "answer": "Yes! The Inverness MED system has international FDA and ISO certificates, confirming the highest quality and safety standards. We use single-use, closed sterile cassettes, which guarantees 100% sterility."
       },
       {
-        "question": "How to prepare for the procedure?",
-        "answer": "Wash your hair and ears before the visit. Don't use makeup or creams near the ears. Eat a meal before the procedure."
+        "question": "What earrings are available?",
+        "answer": "Our offer includes over 30 earring models made of titanium, niobium or medical steel. All are hypoallergenic and have REACH certificate. We have earrings for both children and adults in various styles and colors."
+      },
+      {
+        "question": "How to prepare for the visit?",
+        "answer": "No special preparation is required. We recommend coming with clean ears and tied hair or the ability to tie them. For children, it's worth explaining beforehand what the procedure will look like so they feel calm."
       },
       {
         "question": "How much does ear piercing cost?",
-        "answer": "One ear: 80 PLN, two ears: 120 PLN (40 PLN discount), helix: 150 PLN. Prices include a pair of medical earrings."
+        "answer": "The procedure price starts from 130 PLN for piercing two earlobes. The cost of earrings must be added to the price — from 90 to 150 PLN per pair. We also offer mobile service with home visit (+50 PLN). You'll find the current price list in the 'Our services' section."
       },
       {
-        "question": "How to care for freshly pierced ears?",
-        "answer": "Detailed instructions can be found on our aftercare page.",
+        "question": "Can I pierce cartilage (helix, tragus)?",
+        "answer": "Yes! We specialize in ear cartilage piercing, including helix, tragus and conch. The Inverness MED system is particularly suitable for this type of piercing because it is precise and doesn't tear tissue like a typical gun."
+      },
+      {
+        "question": "How to care for pierced ears?",
+        "answer": "After piercing, you will receive detailed care instructions. Basic rules are: washing hands before touching earrings, gentle cleaning 2 times a day with special solution, avoiding pools and water bodies for the first 2 weeks, and regular earring rotation.",
         "link": true
-      },
-      {
-        "question": "Do you offer mobile service?",
-        "answer": "Yes! We offer mobile service for an additional fee of 50 PLN. Contact us to schedule an appointment."
       }
     ]
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "Contact us or book an appointment",
-    "labels": {
-      "location": "Location",
-      "phone": "Phone",
-      "instagram": "Instagram",
-      "hours": "Opening hours"
-    },
-    "days": {
-      "monday": "Monday - Friday",
-      "weekend": "Saturday - Sunday"
-    },
-    "status": {
-      "appointment": "By appointment"
-    }
+    "title": "Contact Us",
+    "subtitle": "Book an appointment today or ask us a question",
+    "contactInfo": "Contact Information",
+    "location": "Location",
+    "address": "Gizów 6/208, 01-249 Warsaw, Wola",
+    "phone": "Phone",
+    "phoneNumber": "+48 573 818 260",
+    "instagram": "Instagram",
+    "instagramHandle": "@prokol_ushej_warszawa",
+    "hours": "Opening Hours",
+    "days": "Monday - Sunday",
+    "hoursTime": "10:00 - 20:00",
+    "mobileVisit": "Mobile service: +50 PLN",
+    "messengers": "WhatsApp / Telegram"
   },
   "footer": {
     "company": {
@@ -213,115 +198,89 @@
       "instagram": "Instagram",
       "location": "Location"
     },
-    "certificates": {
-      "title": "Certificates"
-    },
     "copyright": "© {{year}} Inverness MED. All rights reserved."
   },
   "aftercare": {
-    "title": "Ear Piercing Aftercare",
-    "subtitle": "Follow these guidelines for optimal healing",
+    "pageTitle": "Ear Piercing Aftercare - Inverness MED Warsaw",
+    "title": "💎 Ear Piercing Aftercare",
+    "subtitle": "Complete care instructions after Inverness MED system procedure",
     "sections": [
       {
-        "emoji": "🧼",
-        "title": "Hygiene and cleanliness",
+        "title": "🧼 Hygiene and cleanliness",
         "points": [
-          "Wash hands before touching earrings",
-          "Don't touch earrings unnecessarily",
-          "Avoid swimming pools for the first 2 weeks",
-          "Protect ears from dirt and dust"
+          "Always keep the piercing site clean, dry and with access to air.",
+          "Don't touch ears with dirty hands. Always wash your hands thoroughly before touching the ear or earrings.",
+          "Don't rotate or move the earrings unnecessarily."
         ]
       },
       {
-        "emoji": "🌙",
-        "title": "Sleep and daily care",
+        "title": "🌙 Sleep and daily care",
         "points": [
-          "Sleep on clean pillowcase (change every 2-3 days)",
-          "Avoid sleeping on freshly pierced ear for 2 weeks",
-          "Carefully comb hair, avoiding catching on earrings",
-          "Use over-ear headphones instead of earbuds"
+          "Change bedding or at least pillowcase to clean.",
+          "Sleep on your back to avoid pressure.",
+          "Tenderness or slight swelling is a normal healing symptom."
         ]
       },
       {
-        "emoji": "💧",
-        "title": "Disinfection",
+        "title": "💧 Disinfection",
         "points": [
-          "Disinfect 2 times daily with solution provided after procedure",
-          "Gently rotate earring during disinfection",
-          "Don't remove earrings for minimum 6 weeks",
-          "Continue disinfection throughout healing period"
+          "3× daily clean the piercing site front and back using EAR CARE SOLUTION or other disinfectant.",
+          "Use clean hands and new cotton swab for each ear.",
+          "After washing, gently rotate the earring left and right 180°."
         ]
       },
       {
-        "emoji": "💄",
-        "title": "Cosmetics and styling",
+        "title": "💄 Cosmetics and styling",
         "points": [
-          "Avoid hair sprays near ears",
-          "Don't use perfume on freshly pierced ears",
-          "Be careful when removing clothes over head",
-          "Avoid hair dyeing for the first 2 weeks"
+          "During healing, avoid: hairspray, perfumes, dyes, foundations, powders and other cosmetics near the piercing.",
+          "After washing hair, thoroughly dry the ear with a disposable tissue and disinfect the piercing site.",
+          "Be careful when combing hair, putting on a hat and scarf."
         ]
       },
       {
-        "emoji": "🚫",
-        "title": "What to avoid",
+        "title": "🚫 What to avoid",
         "points": [
-          "Don't remove earrings before 6 weeks",
-          "Don't use alcohol or hydrogen peroxide for cleaning",
-          "Avoid stuffed animals and hats pressing on ears",
-          "Don't twist earrings too forcefully"
+          "Avoid pool, sauna and solarium.",
+          "Children should avoid sandbox and playgrounds.",
+          "Use shower instead of bath.",
+          "Limit alcohol, coffee, black tea and cola consumption as they may increase swelling."
         ]
       },
       {
-        "emoji": "💎",
-        "title": "Changing earrings",
+        "title": "💎 Changing earrings",
+        "text": "Do not remove earrings before:",
         "points": [
-          "Earlobes: you can change after 6 weeks",
-          "Cartilage (helix): wait minimum 3 months",
-          "First new earrings should be lightweight",
-          "Always disinfect new earrings before insertion"
+          "6 weeks – for earlobe piercing,",
+          "12 weeks – for cartilage or nose piercing."
+        ],
+        "afterText": "After this time you can safely replace them.",
+        "removal": "To remove Inverness earrings, firmly hold the Safety Back tip, and with the other hand twist and pull the earring front."
+      },
+      {
+        "title": "💖 Further care after healing",
+        "points": [
+          "Complete healing takes about a year.",
+          "After removing Inverness earrings, choose light, hypoallergenic earrings, e.g. from BIOJOUX line (nickel-free), to avoid allergies."
         ]
       },
       {
-        "emoji": "💖",
-        "title": "Further care after healing",
-        "points": [
-          "Clean earrings regularly with warm water and soap",
-          "Remove earrings at night if more comfortable",
-          "Avoid cheap earrings with nickel",
-          "Regularly check earring clasps"
-        ]
-      },
-      {
-        "emoji": "⚕️",
-        "title": "In case of problems",
-        "points": [
-          "Mild redness in the first days is normal",
-          "If severe pain, swelling or discharge appears - contact us",
-          "Don't remove earrings during infection without consultation",
-          "When in doubt - always call or write"
-        ]
+        "title": "⚕️ In case of problems",
+        "text": "If infection or severe inflammation appears, do not remove the earrings — contact a doctor."
       }
     ]
   },
   "earringsGallery": {
-    "title": "Medical Earrings",
-    "breadcrumb": {
-      "home": "Home",
-      "earrings": "Earrings"
-    },
-    "products": "products",
+    "breadcrumbHome": "Home",
+    "title": "All Earrings",
+    "inverness": "Inverness MED",
+    "productCount": "{{count}} medical products",
     "backToTop": "Back to top"
   },
   "earringDetail": {
-    "breadcrumb": {
-      "home": "Home",
-      "earrings": "Earrings"
-    },
-    "price": "Price",
-    "specifications": "Specifications",
-    "otherProducts": "Other Products",
-    "viewAll": "View all earrings"
+    "breadcrumbHome": "Home",
+    "breadcrumbEarrings": "Earrings",
+    "specification": "Specification",
+    "otherProducts": "Other Products"
   },
   "common": {
     "loading": "Loading...",

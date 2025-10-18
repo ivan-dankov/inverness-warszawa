@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { getAllEarrings } from "@/lib/earrings";
+import { useTranslation } from "react-i18next";
 
 export const Earrings = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const earrings = getAllEarrings();
   const displayedEarrings = earrings.slice(0, 7);
@@ -11,10 +13,10 @@ export const Earrings = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
-            Kolekcja Kolczyków <span className="text-teal-600">Inverness MED</span>
+            {t('earrings.title')} <span className="text-teal-600">{t('earrings.inverness')}</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Najwyższej jakości kolczyki medyczne - bezpieczne, hipoalergiczne i eleganckie
+            {t('earrings.subtitle')}
           </p>
         </div>
 
@@ -45,10 +47,10 @@ export const Earrings = () => {
           >
             <div className="text-center">
               <p className="text-lg font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
-                Zobacz Wszystkie
+                {t('earrings.seeAll')}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                {earrings.length} kolczyków
+                {t('earrings.productCount', { count: earrings.length })}
               </p>
             </div>
           </div>

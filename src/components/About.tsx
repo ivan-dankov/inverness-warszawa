@@ -1,32 +1,21 @@
 import { Card } from "@/components/ui/card";
 import { Shield, Heart, Sparkles, Award } from "lucide-react";
-import certificationsImage from "@/assets/certifications.jpg";
+import { useTranslation } from "react-i18next";
+
 export const About = () => {
-  const benefits = [{
-    icon: Shield,
-    title: "Certyfikaty FDA i ISO",
-    description: "Międzynarodowe potwierdzenie bezpieczeństwa i jakości"
-  }, {
-    icon: Heart,
-    title: "Bezbolesne i Delikatne",
-    description: "Cichy mechanizm idealny dla dzieci i osób wrażliwych"
-  }, {
-    icon: Sparkles,
-    title: "Hipoalergiczne Kolczyki",
-    description: "Tytan, niob lub stal medyczna najwyższej jakości"
-  }, {
-    icon: Award,
-    title: "Szybkie Gojenie",
-    description: "Precyzyjne, atraumatyczne przekłucie bez rozrywania tkanek"
-  }];
+  const { t } = useTranslation();
+  const benefits = (t('about.benefits', { returnObjects: true }) as Array<{title: string, description: string}>).map((benefit, index) => ({
+    ...benefit,
+    icon: [Shield, Heart, Sparkles, Award][index]
+  }));
   return <section id="about" className="py-20 bg-gradient-to-b from-background to-primary-light/10 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Dlaczego Inverness MED?
+            {t('about.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Jedyny system przekłuwania uszu zatwierdzony przez lekarzy w całej Europie
+            {t('about.subtitle')}
           </p>
         </div>
 
