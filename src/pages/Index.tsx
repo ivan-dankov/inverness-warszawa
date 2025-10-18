@@ -7,6 +7,7 @@ import { Earrings } from "@/components/Earrings";
 import { Gallery } from "@/components/Gallery";
 import { CertificateViewer } from "@/components/CertificateViewer";
 import { FAQ } from "@/components/FAQ";
+import { FAQSchema } from "@/components/FAQSchema";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { StickyBookingCTA } from "@/components/StickyBookingCTA";
@@ -14,6 +15,7 @@ import { StickyBookingCTA } from "@/components/StickyBookingCTA";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <FAQSchema />
       <Header />
       <main className="flex-grow">
         <Hero />
