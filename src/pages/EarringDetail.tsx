@@ -4,25 +4,21 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
-
 export default function EarringDetail() {
-  const { productId } = useParams();
+  const {
+    productId
+  } = useParams();
   const navigate = useNavigate();
   const earrings = getAllEarrings();
-  
   const currentIndex = parseInt(productId || '0');
   const earring = earrings[currentIndex];
-  
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [description, setDescription] = useState<string>('');
   const [loadingDescription, setLoadingDescription] = useState(true);
 
   // Get random other items (excluding current)
-  const otherEarrings = earring ? earrings
-    .filter((_, idx) => idx !== currentIndex)
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 8) : [];
+  const otherEarrings = earring ? earrings.filter((_, idx) => idx !== currentIndex).sort(() => Math.random() - 0.5).slice(0, 8) : [];
 
   // Reset image index when product changes
   useEffect(() => {
@@ -33,26 +29,21 @@ export default function EarringDetail() {
   // Fetch product description via scraping
   useEffect(() => {
     if (!earring) return;
-    
     const fetchDescription = async () => {
       try {
         setLoadingDescription(true);
-        
-        const response = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/scrape-product`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ url: earring.product_url })
-          }
-        );
-
+        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/scrape-product`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            url: earring.product_url
+          })
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch description');
         }
-
         const data = await response.json();
         setDescription(data.description || '');
       } catch (err) {
@@ -62,7 +53,6 @@ export default function EarringDetail() {
         setLoadingDescription(false);
       }
     };
-
     fetchDescription();
   }, [earring?.product_url]);
 
@@ -73,7 +63,6 @@ export default function EarringDetail() {
         navigate('/earrings');
       }
     };
-    
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [navigate]);
@@ -82,9 +71,7 @@ export default function EarringDetail() {
   if (isNaN(currentIndex) || !earring) {
     return <NotFound />;
   }
-
-  return (
-    <div className="min-h-screen flex flex-col bg-background">
+  return <div className="min-h-screen flex flex-col bg-background">
       <Header />
       
       <main className="flex-grow">
@@ -112,47 +99,21 @@ export default function EarringDetail() {
               <div>
                 {/* Main Image */}
                 <div className="flex items-center justify-center bg-muted/30 rounded-lg p-8 min-h-[60vh] relative mb-6">
-                  {!imageLoaded && (
-                    <div className="absolute inset-0 flex items-center justify-center">
+                  {!imageLoaded && <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                    </div>
-                  )}
-                  <img
-                    src={earring.images[selectedImageIndex]}
-                    alt={`${earring.name} - Image ${selectedImageIndex + 1}`}
-                    className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${
-                      imageLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    onLoad={() => setImageLoaded(true)}
-                  />
+                    </div>}
+                  <img src={earring.images[selectedImageIndex]} alt={`${earring.name} - Image ${selectedImageIndex + 1}`} className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
                 </div>
                 
                 {/* Horizontal Thumbnails Below */}
-                {earring.images.length > 1 && (
-                  <div className="grid grid-cols-4 gap-3">
-                    {earring.images.map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => {
-                          setSelectedImageIndex(idx);
-                          setImageLoaded(false);
-                        }}
-                        className={`aspect-square rounded-lg overflow-hidden transition-all duration-200 border-2 ${
-                          idx === selectedImageIndex
-                            ? 'border-primary scale-105'
-                            : 'border-border hover:border-primary/50 opacity-70 hover:opacity-100'
-                        }`}
-                        aria-label={`Show image ${idx + 1} of ${earring.images.length}`}
-                      >
-                        <img
-                          src={img}
-                          alt={`Thumbnail ${idx + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
+                {earring.images.length > 1 && <div className="grid grid-cols-4 gap-3">
+                    {earring.images.map((img, idx) => <button key={idx} onClick={() => {
+                  setSelectedImageIndex(idx);
+                  setImageLoaded(false);
+                }} className={`aspect-square rounded-lg overflow-hidden transition-all duration-200 border-2 ${idx === selectedImageIndex ? 'border-primary scale-105' : 'border-border hover:border-primary/50 opacity-70 hover:opacity-100'}`} aria-label={`Show image ${idx + 1} of ${earring.images.length}`}>
+                        <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                      </button>)}
+                  </div>}
               </div>
               
               {/* RIGHT: Description Section */}
@@ -161,25 +122,16 @@ export default function EarringDetail() {
                   {earring.name}
                 </h1>
                 
-                <div className="text-sm text-muted-foreground mb-6 space-y-1">
-                  <p>Product {currentIndex + 1} of {earrings.length}</p>
-                  {earring.images.length > 1 && (
-                    <p>Image {selectedImageIndex + 1} of {earring.images.length}</p>
-                  )}
-                </div>
+                
                 
                 {/* Scraped Description */}
                 <div className="prose prose-sm dark:prose-invert max-w-none">
-                  {loadingDescription ? (
-                    <div className="flex items-center gap-2 text-muted-foreground">
+                  {loadingDescription ? <div className="flex items-center gap-2 text-muted-foreground">
                       <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                       <span>Loading details...</span>
-                    </div>
-                  ) : description ? (
-                    <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
+                    </div> : description ? <p className="text-foreground/80 leading-relaxed whitespace-pre-wrap">
                       {description}
-                    </p>
-                  ) : null}
+                    </p> : null}
                 </div>
               </div>
             </div>
@@ -192,26 +144,16 @@ export default function EarringDetail() {
               
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
                 {otherEarrings.map((item, idx) => {
-                  const itemIndex = earrings.findIndex(e => e.name === item.name);
-                  return (
-                    <Link 
-                      key={idx} 
-                      to={`/earrings/${itemIndex}`}
-                      className="group"
-                    >
+                const itemIndex = earrings.findIndex(e => e.name === item.name);
+                return <Link key={idx} to={`/earrings/${itemIndex}`} className="group">
                       <div className="aspect-square bg-muted/30 rounded-lg overflow-hidden mb-3">
-                        <img 
-                          src={item.images[0]} 
-                          alt={item.name}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                        />
+                        <img src={item.images[0]} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
                       </div>
                       <p className="text-sm line-clamp-2 group-hover:text-primary transition-colors">
                         {item.name}
                       </p>
-                    </Link>
-                  );
-                })}
+                    </Link>;
+              })}
               </div>
             </div>
           </div>
@@ -219,6 +161,5 @@ export default function EarringDetail() {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 }
