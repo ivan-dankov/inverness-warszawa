@@ -6,8 +6,11 @@ import { useTranslation } from 'react-i18next';
 
 export const Services = () => {
   const { t } = useTranslation();
-  const services = t('services.cards', { returnObjects: true }) as Array<{
-    icon: string;
+  
+  // Icons are UI elements, not translations
+  const icons = [Sparkles, Baby, Calendar];
+  
+  const servicesData = t('services.cards', { returnObjects: true }) as Array<{
     title: string;
     originalPrice?: string;
     price: string;
@@ -17,12 +20,6 @@ export const Services = () => {
     description: string;
     badge: string;
   }>;
-
-  const iconMap: Record<string, any> = {
-    Sparkles,
-    Baby,
-    Calendar,
-  };
 
   return <section id="services" className="py-20 bg-background border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,10 +33,10 @@ export const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-          {services.map((service, index) => {
-            const IconComponent = iconMap[service.icon];
+          {servicesData.map((service, index) => {
+            const Icon = icons[index];
             return <Card key={index} className="p-6 sm:p-8 hover:shadow-card transition-shadow duration-300 flex flex-col">
-              <IconComponent className="h-12 w-12 text-primary mb-4" />
+              <Icon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold text-foreground mb-2">
                 {service.title}
               </h3>
