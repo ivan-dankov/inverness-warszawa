@@ -7,36 +7,30 @@ export interface Earring {
   price: string;
 }
 
-// Deduplicate images while preserving size and angle variants
+// Deduplicate images while preserving angle variants but removing size duplicates
 export const getUniqueImages = (images: string[]): string[] => {
   const seen = new Set<string>();
   const uniqueImages: string[] = [];
   
-  // Sort to prioritize /l/ over /m/ for the SAME variant
+  // Sort to prioritize /l/ over /m/ - /l/ will be kept when duplicates exist
   const sorted = [...images].sort((a, b) => {
     const aSize = a.includes('/l/') ? 'l' : a.includes('/m/') ? 'm' : 'other';
     const bSize = b.includes('/l/') ? 'l' : b.includes('/m/') ? 'm' : 'other';
     
-    // Extract variant letters (A, B, C, etc.)
-    const aVariant = a.match(/-([A-Z])-/)?.[1] || '';
-    const bVariant = b.match(/-([A-Z])-/)?.[1] || '';
-    
-    // If same variant, prefer /l/ over /m/
-    if (aVariant === bVariant) {
-      if (aSize === 'l' && bSize !== 'l') return -1;
-      if (aSize !== 'l' && bSize === 'l') return 1;
-    }
+    // Prefer /l/ over everything
+    if (aSize === 'l' && bSize !== 'l') return -1;
+    if (aSize !== 'l' && bSize === 'l') return 1;
     
     return 0;
   });
   
   for (const img of sorted) {
-    // Create a unique key based on: size + variant letter + domain
-    const size = img.includes('/l/') ? 'l' : img.includes('/m/') ? 'm' : 'other';
+    // Create a unique key based on: variant letter + domain (NO SIZE)
+    // This makes /m/K1232c-A and /l/K1232c-A collapse to the same key
     const variant = img.match(/-([A-Z])-/)?.[1] || 'default';
     const domain = new URL(img).hostname;
     
-    const uniqueKey = `${size}_${variant}_${domain}`;
+    const uniqueKey = `${variant}_${domain}`;
     
     if (!seen.has(uniqueKey)) {
       seen.add(uniqueKey);
