@@ -11,7 +11,7 @@ export const Map = () => {
   const map = useRef<mapboxgl.Map | null>(null);
 
   const handleGetDirections = () => {
-    window.open('https://maps.app.goo.gl/bNzo84j1b16JmKuB6', '_blank');
+    window.open('https://maps.app.goo.gl/X5kTSdfj1hgBb2Eg8', '_blank');
   };
 
   const initializeMap = () => {
@@ -22,16 +22,16 @@ export const Map = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [20.9452, 52.2258], // Gizów 6/208, 01-249 Warszawa, Wola
+      center: [20.945046328079172, 52.22594129500684], // Gizów 6/208, 01-249 Warszawa, Wola
       zoom: 16,
     });
 
     // Add marker for the location
     new mapboxgl.Marker({ color: '#0891b2' })
-      .setLngLat([20.9452, 52.2258])
+      .setLngLat([20.945046328079172, 52.22594129500684])
       .setPopup(
         new mapboxgl.Popup().setHTML(
-          '<strong>Inverness MED</strong><br/>Gizów 6/208<br/>01-249 Warszawa<br/><a href="https://maps.app.goo.gl/bNzo84j1b16JmKuB6" target="_blank" rel="noopener noreferrer" style="color: #0891b2; text-decoration: underline; margin-top: 8px; display: inline-block;">Get Directions →</a>'
+          '<strong>Inverness MED</strong><br/>Gizów 6/208<br/>01-249 Warszawa<br/><a href="https://maps.app.goo.gl/X5kTSdfj1hgBb2Eg8" target="_blank" rel="noopener noreferrer" style="color: #0891b2; text-decoration: underline; margin-top: 8px; display: inline-block;">Get Directions →</a>'
         )
       )
       .addTo(map.current);
