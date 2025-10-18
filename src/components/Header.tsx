@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Phone, Instagram } from "lucide-react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -10,34 +14,71 @@ export const Header = () => {
     }
   };
 
+  const handleNavClick = (sectionId: string) => {
+    if (location.pathname === '/') {
+      scrollToSection(sectionId);
+    } else {
+      navigate('/');
+      setTimeout(() => scrollToSection(sectionId), 100);
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <img src={logo} alt="Inverness MED" className="h-12" />
+          <Link to="/" className="cursor-pointer">
+            <img src={logo} alt="Inverness MED" className="h-12" />
+          </Link>
 
           <nav className="hidden md:flex items-center gap-6">
             <button 
-              onClick={() => scrollToSection('about')}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => handleNavClick('about')}
+              className={`text-sm font-medium transition-colors ${
+                location.pathname === '/' && location.hash === '#about' 
+                  ? 'text-primary' 
+                  : 'text-muted-foreground hover:text-primary'
+              }`}
             >
               O Nas
             </button>
             <button 
-              onClick={() => scrollToSection('services')}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => handleNavClick('services')}
+              className={`text-sm font-medium transition-colors ${
+                location.pathname === '/' && location.hash === '#services' 
+                  ? 'text-primary' 
+                  : 'text-muted-foreground hover:text-primary'
+              }`}
             >
               Usługi
             </button>
             <button 
-              onClick={() => scrollToSection('gallery')}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => navigate('/earrings')}
+              className={`text-sm font-medium transition-colors ${
+                location.pathname.startsWith('/earrings') 
+                  ? 'text-primary' 
+                  : 'text-muted-foreground hover:text-primary'
+              }`}
+            >
+              Kolczyki
+            </button>
+            <button 
+              onClick={() => handleNavClick('gallery')}
+              className={`text-sm font-medium transition-colors ${
+                location.pathname === '/' && location.hash === '#gallery' 
+                  ? 'text-primary' 
+                  : 'text-muted-foreground hover:text-primary'
+              }`}
             >
               Galeria
             </button>
             <button 
-              onClick={() => scrollToSection('contact')}
-              className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+              onClick={() => handleNavClick('contact')}
+              className={`text-sm font-medium transition-colors ${
+                location.pathname === '/' && location.hash === '#contact' 
+                  ? 'text-primary' 
+                  : 'text-muted-foreground hover:text-primary'
+              }`}
             >
               Kontakt
             </button>
