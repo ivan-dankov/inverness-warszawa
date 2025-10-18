@@ -54,19 +54,21 @@ export const Header = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <LanguageSwitch />
+            <Button variant="hero" asChild className="min-h-[44px]">
+              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+                <Calendar className="h-4 w-4" />
+                <span>{t('header.buttons.book')}</span>
+              </a>
+            </Button>
             <a href="tel:+48573818260" className="text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
               <Phone className="h-5 w-5" />
             </a>
-            <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <div className="hidden sm:flex">
+              <LanguageSwitch />
+            </div>
+            <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" className="hidden md:flex text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] items-center justify-center">
               <Instagram className="h-5 w-5" />
             </a>
-            <Button variant="hero" asChild className="min-h-[44px]">
-            <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="ml-2">
-              <Calendar className="h-4 w-4" />
-              <span className="hidden sm:inline">{t('header.buttons.book')}</span>
-            </a>
-          </Button>
           </div>
         </div>
       </div>
