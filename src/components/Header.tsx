@@ -1,8 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Phone, Instagram } from "lucide-react";
+import { Calendar, Phone, Instagram, Menu } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
@@ -28,11 +35,48 @@ export const Header = () => {
   return <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="cursor-pointer">
-            <img src={logo} alt="Inverness MED" className="h-12" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="lg:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[280px]">
+                <SheetHeader>
+                  <SheetTitle>
+                    <img src={logo} alt="Inverness MED" className="h-12" />
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-8">
+                  <button onClick={() => handleNavClick('about')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#about' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.about')}
+                  </button>
+                  <button onClick={() => handleNavClick('services')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#services' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.services')}
+                  </button>
+                  <button onClick={() => navigate('/earrings')} className={`text-left text-base font-medium transition-colors ${location.pathname.startsWith('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.earrings')}
+                  </button>
+                  <button onClick={() => handleNavClick('gallery')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.gallery')}
+                  </button>
+                  <button onClick={() => navigate('/aftercare')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.aftercare')}
+                  </button>
+                  <button onClick={() => handleNavClick('contact')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.contact')}
+                  </button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            
+            <Link to="/" className="cursor-pointer">
+              <img src={logo} alt="Inverness MED" className="h-12" />
+            </Link>
+          </div>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             <button onClick={() => handleNavClick('about')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#about' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.about')}
             </button>
@@ -55,18 +99,18 @@ export const Header = () => {
 
           <div className="flex items-center gap-2">
             <LanguageSwitch />
-            <a href="tel:+48573818260" className="text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <a href="tel:+48573818260" className="hidden sm:flex text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] items-center justify-center">
               <Phone className="h-5 w-5" />
             </a>
-            <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
+            <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" className="hidden sm:flex text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] items-center justify-center">
               <Instagram className="h-5 w-5" />
             </a>
             <Button variant="hero" asChild className="min-h-[44px]">
-            <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="ml-2">
-              <Calendar className="h-4 w-4" />
-              <span className="hidden sm:inline">{t('header.buttons.book')}</span>
-            </a>
-          </Button>
+              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+                <Calendar className="h-4 w-4" />
+                <span className="ml-2">{t('header.buttons.book')}</span>
+              </a>
+            </Button>
           </div>
         </div>
       </div>
