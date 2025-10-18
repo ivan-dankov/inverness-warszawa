@@ -73,21 +73,21 @@ export default function EarringDetail() {
       <Helmet>
         <title>{earring.name} - Kolczyki Inverness MED Warszawa</title>
         <meta name="description" content={earring.description_points?.[0] || `${earring.name}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie.`} />
-        <link rel="canonical" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="pl" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="en" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="ru" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="uk" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="x-default" href={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <link rel="canonical" href={`https://gentlepiercing.pl/earrings/${productId}`} />
+        <link rel="alternate" hrefLang="pl" href={`https://gentlepiercing.pl/earrings/${productId}`} />
+        <link rel="alternate" hrefLang="en" href={`https://gentlepiercing.pl/earrings/${productId}`} />
+        <link rel="alternate" hrefLang="ru" href={`https://gentlepiercing.pl/earrings/${productId}`} />
+        <link rel="alternate" hrefLang="uk" href={`https://gentlepiercing.pl/earrings/${productId}`} />
+        <link rel="alternate" hrefLang="x-default" href={`https://gentlepiercing.pl/earrings/${productId}`} />
         <meta property="og:title" content={earring.name} />
         <meta property="og:image" content={earring.images[0]} />
-        <meta property="og:url" content={`https://inverness-med.lovable.app/earrings/${productId}`} />
+        <meta property="og:url" content={`https://gentlepiercing.pl/earrings/${productId}`} />
         <meta property="og:type" content="product" />
       </Helmet>
       <BreadcrumbSchema items={[
-        { name: t('earringDetail.breadcrumbHome'), url: 'https://inverness-med.lovable.app/' },
-        { name: t('earringDetail.breadcrumbEarrings'), url: 'https://inverness-med.lovable.app/earrings' },
-        { name: earring.name, url: `https://inverness-med.lovable.app/earrings/${productId}` }
+        { name: t('earringDetail.breadcrumbHome'), url: 'https://gentlepiercing.pl/' },
+        { name: t('earringDetail.breadcrumbEarrings'), url: 'https://gentlepiercing.pl/earrings' },
+        { name: earring.name, url: `https://gentlepiercing.pl/earrings/${productId}` }
       ]} />
       <Header />
       

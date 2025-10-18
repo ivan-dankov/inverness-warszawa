@@ -21,16 +21,16 @@ export default function Aftercare() {
       <Helmet>
         <title>{t('aftercare.pageTitle')}</title>
         <meta name="description" content="Kompletny przewodnik pielęgnacji po przekłuciu uszu. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki." />
-        <link rel="canonical" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hrefLang="pl" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hrefLang="en" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hrefLang="ru" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hrefLang="uk" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hrefLang="x-default" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="canonical" href="https://gentlepiercing.pl/aftercare" />
+        <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/aftercare" />
+        <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/aftercare" />
+        <link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/aftercare" />
+        <link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/aftercare" />
+        <link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/aftercare" />
       </Helmet>
       <BreadcrumbSchema items={[
-        { name: t('aftercare.backButton'), url: 'https://inverness-med.lovable.app/' },
-        { name: t('aftercare.title'), url: 'https://inverness-med.lovable.app/aftercare' }
+        { name: t('aftercare.backButton'), url: 'https://gentlepiercing.pl/' },
+        { name: t('aftercare.title'), url: 'https://gentlepiercing.pl/aftercare' }
       ]} />
       <Header />
       <main className="min-h-screen bg-background">

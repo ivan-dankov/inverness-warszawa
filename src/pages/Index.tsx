@@ -22,15 +22,15 @@ const Index = () => {
       <Helmet>
         <title>Inverness MED - Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
         <meta name="description" content={t('hero.subtitle')} />
-        <link rel="canonical" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hrefLang="pl" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hrefLang="en" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hrefLang="ru" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hrefLang="uk" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hrefLang="x-default" href="https://inverness-med.lovable.app/" />
+        <link rel="canonical" href="https://gentlepiercing.pl/" />
+        <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/" />
+        <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/" />
+        <link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/" />
+        <link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/" />
+        <link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/" />
         <meta property="og:title" content="Inverness MED - Przekłuwanie Uszu Warszawa" />
         <meta property="og:description" content={t('hero.subtitle')} />
-        <meta property="og:url" content="https://inverness-med.lovable.app/" />
+        <meta property="og:url" content="https://gentlepiercing.pl/" />
         <meta property="og:type" content="website" />
       </Helmet>
       <FAQSchema />
