@@ -7,24 +7,39 @@ export interface Earring {
   price: string;
 }
 
-// Deduplicate images - prefer larger /l/ versions
+// Deduplicate images while preserving size and angle variants
 export const getUniqueImages = (images: string[]): string[] => {
   const seen = new Set<string>();
   const uniqueImages: string[] = [];
   
-  // Sort to prioritize /l/ over /m/ over others
+  // Sort to prioritize /l/ over /m/ for the SAME variant
   const sorted = [...images].sort((a, b) => {
-    if (a.includes('/l/') && !b.includes('/l/')) return -1;
-    if (!a.includes('/l/') && b.includes('/l/')) return 1;
+    const aSize = a.includes('/l/') ? 'l' : a.includes('/m/') ? 'm' : 'other';
+    const bSize = b.includes('/l/') ? 'l' : b.includes('/m/') ? 'm' : 'other';
+    
+    // Extract variant letters (A, B, C, etc.)
+    const aVariant = a.match(/-([A-Z])-/)?.[1] || '';
+    const bVariant = b.match(/-([A-Z])-/)?.[1] || '';
+    
+    // If same variant, prefer /l/ over /m/
+    if (aVariant === bVariant) {
+      if (aSize === 'l' && bSize !== 'l') return -1;
+      if (aSize !== 'l' && bSize === 'l') return 1;
+    }
+    
     return 0;
   });
   
   for (const img of sorted) {
-    const filename = img.split('/').pop() || '';
-    const cleanName = filename.split('-')[0]; // Get base name without variants
+    // Create a unique key based on: size + variant letter + domain
+    const size = img.includes('/l/') ? 'l' : img.includes('/m/') ? 'm' : 'other';
+    const variant = img.match(/-([A-Z])-/)?.[1] || 'default';
+    const domain = new URL(img).hostname;
     
-    if (!seen.has(cleanName)) {
-      seen.add(cleanName);
+    const uniqueKey = `${size}_${variant}_${domain}`;
+    
+    if (!seen.has(uniqueKey)) {
+      seen.add(uniqueKey);
       uniqueImages.push(img);
     }
   }
