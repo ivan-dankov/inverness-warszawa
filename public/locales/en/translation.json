@@ -15,16 +15,16 @@
     "phone": "Phone"
   },
   "hero": {
-    "title": "Medical Ear Piercing - Warsaw",
-    "subtitle": "Safe ear piercing with Inverness MED system with international FDA and ISO certificates. For children 0+ and adults in Warsaw or with mobile service (+50 PLN)",
+    "title": "Medical Ear Piercing",
+    "subtitle": "The only system in Europe approved by doctors for safe ear piercing for children and adults. FDA and ISO certificates guarantee the highest standards of sterility.",
     "features": [
-      "For children 0+",
-      "FDA and ISO certificates",
-      "Mobile service +50 PLN"
+      "Sterile, single-use tools",
+      "Painless and safe",
+      "For children 0+"
     ],
     "buttons": {
-      "book": "Book Appointment",
-      "instagram": "Instagram"
+      "book": "Book Online",
+      "instagram": "See Instagram"
     }
   },
   "about": {

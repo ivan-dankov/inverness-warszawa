@@ -15,16 +15,16 @@
     "phone": "Telefon"
   },
   "hero": {
-    "title": "Medyczne Przekłuwanie Uszu - Warszawa",
-    "subtitle": "Bezpieczne przekłuwanie uszu systemem Inverness MED z międzynarodowymi certyfikatami FDA i ISO. Dla dzieci 0+ i dorosłych w Warszawie lub z dojazdem mobilnym (+50 zł)",
+    "title": "Medyczne Przekłuwanie Uszu",
+    "subtitle": "Jedyny system w Europie zatwierdzony przez lekarzy do bezpiecznego przekłuwania uszu u dzieci i dorosłych. Certyfikaty FDA i ISO gwarantują najwyższe standardy sterylności.",
     "features": [
-      "Dla dzieci 0+",
-      "Certyfikaty FDA i ISO",
-      "Dojazd mobilny +50 zł"
+      "Sterylne, jednorazowe narzędzia",
+      "Bezbolesne i bezpieczne",
+      "Dla dzieci 0+"
     ],
     "buttons": {
-      "book": "Zarezerwuj Wizytę",
-      "instagram": "Instagram"
+      "book": "Rezerwuj Online",
+      "instagram": "Zobacz Instagram"
     }
   },
   "about": {
