@@ -295,5 +295,36 @@
     "loading": "Loading...",
     "error": "An error occurred",
     "notFound": "Not found"
+  },
+  "specifications": {
+    "materials": {
+      "medicalSteel": "Material: medical steel (nickel-free, the main metal allergen).",
+      "goldPlatedSteel": "Material: gold-plated medical steel (nickel-free, the main metal allergen).",
+      "titanium": "Material: titanium (nickel-free, the main metal allergen).",
+      "niobium": "Material: niobium (nickel-free, the main metal allergen).",
+      "goldCoatedSteel": "Material: medical steel coated with 24-karat gold (nickel-free, the main metal allergen)."
+    },
+    "embellishments": {
+      "crystals": "Crystal embellishment.",
+      "zirconia": "Zirconia embellishment.",
+      "none": "No embellishment.",
+      "pearl": "Pearl.",
+      "swarovski": "Swarovski crystal insert."
+    },
+    "coatings": {
+      "gold24kt": "Coating - 24Kt gold.",
+      "rhodium": "Rhodium coating."
+    },
+    "size": {
+      "diameter": "Earring diameter: {{size}}mm.",
+      "height": "Height: {{size}}mm."
+    },
+    "safety": "Patented Safety Back closure.",
+    "packaging": {
+      "sterile": "Hermetically sealed sterile packaging.",
+      "individual": "Each earring is packaged in a separate sterile capsule.",
+      "individualPiercing": "Each earring is packaged in a separate sterile capsule for piercing."
+    },
+    "origin": "Manufactured by Inverness Med (USA)."
   }
 }
