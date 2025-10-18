@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Index from "./pages/Index";
 import EarringsGallery from "./pages/EarringsGallery";
 import EarringDetail from "./pages/EarringDetail";
@@ -58,12 +59,23 @@ const SmartScrollManager = () => {
   return null;
 };
 
+const LanguageManager = () => {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <LanguageManager />
         <SmartScrollManager />
         <Routes>
           <Route path="/" element={<Index />} />

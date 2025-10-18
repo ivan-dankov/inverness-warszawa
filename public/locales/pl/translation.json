@@ -1,0 +1,331 @@
+{
+  "header": {
+    "nav": {
+      "about": "O Nas",
+      "services": "Usługi",
+      "gallery": "Galeria",
+      "contact": "Kontakt",
+      "earrings": "Kolczyki",
+      "aftercare": "Pielęgnacja"
+    },
+    "buttons": {
+      "book": "Rezerwuj Online",
+      "instagram": "Zobacz Instagram"
+    },
+    "phone": "Telefon"
+  },
+  "hero": {
+    "title": "Medyczne Przekłuwanie Uszu",
+    "subtitle": "Jedyny system w Europie z certyfikatem medycznym",
+    "features": [
+      "Sterylne, jednorazowe narzędzia",
+      "Bezbolesne i bezpieczne",
+      "Dla dzieci 0+"
+    ],
+    "buttons": {
+      "book": "Rezerwuj Online",
+      "instagram": "Zobacz Instagram"
+    }
+  },
+  "about": {
+    "title": "Dlaczego Inverness MED?",
+    "subtitle": "System certyfikowany medycznie, bezpieczny dla każdego",
+    "benefits": [
+      {
+        "title": "Bezpieczeństwo Medyczne",
+        "description": "Certyfikowany system z jednorazowymi, sterylnymi narzędziami"
+      },
+      {
+        "title": "Profesjonalna Obsługa",
+        "description": "Doświadczony zespół z certyfikatami i szkoleniami"
+      },
+      {
+        "title": "Szeroki Wybór",
+        "description": "Ponad 200 wzorów kolczyków z hipoalergicznych materiałów"
+      },
+      {
+        "title": "Certyfikaty i Normy",
+        "description": "Spełniamy najwyższe standardy bezpieczeństwa UE"
+      }
+    ]
+  },
+  "services": {
+    "title": "Nasze Usługi",
+    "subtitle": "Wybierz odpowiedni pakiet dla siebie",
+    "cards": [
+      {
+        "title": "Przekłucie 1 Ucha",
+        "description": "Idealne dla osób, które chcą przekłuć tylko jedno ucho",
+        "price": "80 zł",
+        "duration": "~15 min",
+        "features": [
+          "Konsultacja przed zabiegiem",
+          "Oznaczenie miejsca przekłucia",
+          "Sterylne przekłucie systemem Inverness",
+          "Para kolczyków medycznych w cenie",
+          "Instrukcja pielęgnacji"
+        ],
+        "badge": "Popularne"
+      },
+      {
+        "title": "Przekłucie 2 Uszu",
+        "description": "Najpopularniejszy wybór - klasyczne przekłucie płatków",
+        "price": "120 zł",
+        "originalPrice": "160 zł",
+        "duration": "~20 min",
+        "features": [
+          "Konsultacja przed zabiegiem",
+          "Oznaczenie miejsc przekłucia",
+          "Sterylne przekłucie systemem Inverness",
+          "Dwie pary kolczyków medycznych w cenie",
+          "Instrukcja pielęgnacji",
+          "Rabat 40 zł"
+        ],
+        "badge": "Bestseller"
+      },
+      {
+        "title": "Przekłucie Helix",
+        "description": "Nowoczesne przekłucie górnej chrząstki ucha",
+        "price": "150 zł",
+        "duration": "~25 min",
+        "features": [
+          "Konsultacja i doradztwo stylistyczne",
+          "Precyzyjne oznaczenie miejsca",
+          "Sterylne przekłucie systemem Inverness",
+          "Para kolczyków medycznych do helix",
+          "Szczegółowa instrukcja pielęgnacji",
+          "Kontrola po 2 tygodniach gratis"
+        ],
+        "badge": "Premium"
+      }
+    ],
+    "mobile": {
+      "title": "Dojazd mobilny",
+      "price": "+50 zł"
+    },
+    "pricing": {
+      "title": "Informacje o Cenach",
+      "features": [
+        "Ceny zawierają parę kolczyków medycznych",
+        "Dodatkowe kolczyki dostępne od 30 zł/para",
+        "Dojazd mobilny: +50 zł",
+        "Płatność gotówką lub kartą"
+      ],
+      "button": "Sprawdź Dostępność na Booksy"
+    }
+  },
+  "earrings": {
+    "title": "Nasze Kolczyki",
+    "subtitle": "Ponad 200 wzorów kolczyków medycznych",
+    "viewAll": "Zobacz wszystkie kolczyki",
+    "seeAll": "Zobacz wszystkie"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "subtitle": "Zobacz nasze realizacje"
+  },
+  "certificates": {
+    "title": "Certyfikaty i Bezpieczeństwo",
+    "subtitle": "Wszystkie nasze produkty posiadają certyfikaty bezpieczeństwa",
+    "names": {
+      "declaration": "Deklaracja Zgodności",
+      "fda": "Certyfikat FDA",
+      "italian": "Raport Testów Włoski",
+      "ball": "UL Kolczyki Kulkowe",
+      "prong": "UL Kryształy Prong",
+      "crystal": "UL Kolczyki Kryształowe"
+    }
+  },
+  "testimonials": {
+    "title": "Opinie Klientów",
+    "subtitle": "Co mówią o nas nasi klienci"
+  },
+  "faq": {
+    "title": "Najczęściej Zadawane Pytania",
+    "subtitle": "Odpowiedzi na popularne pytania",
+    "items": [
+      {
+        "question": "Od jakiego wieku można przekłuwać uszy?",
+        "answer": "System Inverness MED jest bezpieczny już od urodzenia. Niemowlęta (0-6 miesięcy) wymagają zgody i obecności obojga rodziców."
+      },
+      {
+        "question": "Czy przekłuwanie boli?",
+        "answer": "System Inverness wykorzystuje szybkie, jednoczesne przekłucie, które minimalizuje dyskomfort. Większość osób określa uczucie jako krótkie szczypnięcie."
+      },
+      {
+        "question": "Jak długo trwa gojenie?",
+        "answer": "Płatki uszu: 6-8 tygodni. Chrząstka (helix): 3-6 miesięcy. Szczegółowe instrukcje pielęgnacji otrzymasz po zabiegu."
+      },
+      {
+        "question": "Czy kolczyki są hipoalergiczne?",
+        "answer": "Tak! Wszystkie kolczyki Inverness wykonane są z hipoalergicznych materiałów (stal medyczna 316L, tytan, złoto 14K lub 24K)."
+      },
+      {
+        "question": "Jak przygotować się do zabiegu?",
+        "answer": "Umyj włosy i uszy przed wizytą. Nie używaj makijażu ani kremów w okolicy uszu. Zjedz posiłek przed zabiegiem."
+      },
+      {
+        "question": "Ile kosztuje przekłucie uszu?",
+        "answer": "Jedno ucho: 80 zł, dwa uszy: 120 zł (rabat 40 zł), helix: 150 zł. Ceny zawierają parę kolczyków medycznych."
+      },
+      {
+        "question": "Jak dbać o świeżo przekłute uszy?",
+        "answer": "Szczegółowe instrukcje znajdziesz na naszej stronie pielęgnacji.",
+        "link": true
+      },
+      {
+        "question": "Czy oferujecie dojazd do klienta?",
+        "answer": "Tak! Oferujemy usługę dojazdu mobilnego za dodatkową opłatą 50 zł. Skontaktuj się z nami, aby umówić wizytę."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Skontaktuj się z nami lub umów wizytę",
+    "labels": {
+      "location": "Lokalizacja",
+      "phone": "Telefon",
+      "instagram": "Instagram",
+      "hours": "Godziny otwarcia"
+    },
+    "days": {
+      "monday": "Poniedziałek - Piątek",
+      "weekend": "Sobota - Niedziela"
+    },
+    "status": {
+      "appointment": "Po umówieniu"
+    }
+  },
+  "footer": {
+    "company": {
+      "title": "Inverness MED",
+      "description": "Profesjonalne przekłuwanie uszu systemem medycznym"
+    },
+    "links": {
+      "title": "Przydatne Linki",
+      "aftercare": "Pielęgnacja",
+      "earrings": "Kolczyki",
+      "contact": "Kontakt"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "phone": "Telefon",
+      "instagram": "Instagram",
+      "location": "Lokalizacja"
+    },
+    "certificates": {
+      "title": "Certyfikaty"
+    },
+    "copyright": "© {{year}} Inverness MED. Wszystkie prawa zastrzeżone."
+  },
+  "aftercare": {
+    "title": "Pielęgnacja po Przekłuciu Uszu",
+    "subtitle": "Postępuj zgodnie z poniższymi wskazówkami dla optymalnego gojenia",
+    "sections": [
+      {
+        "emoji": "🧼",
+        "title": "Higiena i czystość",
+        "points": [
+          "Myj ręce przed dotykaniem kolczyków",
+          "Nie dotykaj kolczyków bez potrzeby",
+          "Unikaj basenów przez pierwsze 2 tygodnie",
+          "Chroń uszy przed brudem i kurzem"
+        ]
+      },
+      {
+        "emoji": "🌙",
+        "title": "Sen i codzienna pielęgnacja",
+        "points": [
+          "Śpij na czystej poszewce (zmieniaj co 2-3 dni)",
+          "Unikaj spania na świeżo przekłutym uchu przez 2 tygodnie",
+          "Ostrożnie czesz włosy, unikając zahaczenia o kolczyki",
+          "Używaj słuchawek nausznych zamiast dousznych"
+        ]
+      },
+      {
+        "emoji": "💧",
+        "title": "Dezynfekcja",
+        "points": [
+          "Dezynfekuj 2 razy dziennie środkiem otrzymanym po zabiegu",
+          "Delikatnie obracaj kolczykiem podczas dezynfekcji",
+          "Nie zdejmuj kolczyków przez minimum 6 tygodni",
+          "Kontynuuj dezynfekcję przez cały okres gojenia"
+        ]
+      },
+      {
+        "emoji": "💄",
+        "title": "Kosmetyki i stylizacja",
+        "points": [
+          "Unikaj sprayów do włosów w okolicy uszu",
+          "Nie używaj perfum na świeżo przekłute uszy",
+          "Zachowaj ostrożność przy zdejmowaniu ubrań przez głowę",
+          "Unikaj farbowania włosów przez pierwsze 2 tygodnie"
+        ]
+      },
+      {
+        "emoji": "🚫",
+        "title": "Czego unikać",
+        "points": [
+          "Nie zdejmuj kolczyków przed upływem 6 tygodni",
+          "Nie używaj alkoholu ani nadtlenku wodoru do czyszczenia",
+          "Unikaj maskotek i czapek uciskających uszy",
+          "Nie przekręcaj kolczyków zbyt mocno"
+        ]
+      },
+      {
+        "emoji": "💎",
+        "title": "Zmiana kolczyków",
+        "points": [
+          "Płatki uszu: możesz zmienić po 6 tygodniach",
+          "Chrząstka (helix): czekaj minimum 3 miesiące",
+          "Pierwsze nowe kolczyki powinny być lekkie",
+          "Zawsze dezynfekuj nowe kolczyki przed założeniem"
+        ]
+      },
+      {
+        "emoji": "💖",
+        "title": "Dalsza pielęgnacja po zagojeniu",
+        "points": [
+          "Czyść kolczyki regularnie ciepłą wodą z mydłem",
+          "Zdejmuj kolczyki na noc, jeśli to wygodniejsze",
+          "Unikaj tanich kolczyków z niklem",
+          "Regularnie sprawdzaj zapięcia kolczyków"
+        ]
+      },
+      {
+        "emoji": "⚕️",
+        "title": "W razie problemów",
+        "points": [
+          "Lekkie zaczerwienienie pierwszych dni jest normalne",
+          "Jeśli pojawi się silny ból, obrzęk lub wyciek - skontaktuj się z nami",
+          "Nie usuwaj kolczyków przy zakażeniu bez konsultacji",
+          "W razie wątpliwości - zawsze zadzwoń lub napisz"
+        ]
+      }
+    ]
+  },
+  "earringsGallery": {
+    "title": "Kolczyki Medyczne",
+    "breadcrumb": {
+      "home": "Strona główna",
+      "earrings": "Kolczyki"
+    },
+    "products": "produktów",
+    "backToTop": "Wróć na górę"
+  },
+  "earringDetail": {
+    "breadcrumb": {
+      "home": "Strona główna",
+      "earrings": "Kolczyki"
+    },
+    "price": "Cena",
+    "specifications": "Specyfikacja",
+    "otherProducts": "Inne Produkty",
+    "viewAll": "Zobacz wszystkie kolczyki"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "notFound": "Nie znaleziono"
+  }
+}

@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Phone, Instagram } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitch } from "@/components/LanguageSwitch";
 import logo from "@/assets/logo.jpg";
+
 export const Header = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const scrollToSection = (id: string) => {
@@ -30,26 +34,27 @@ export const Header = () => {
 
           <nav className="hidden md:flex items-center gap-8">
             <button onClick={() => handleNavClick('about')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#about' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              O Nas
+              {t('header.nav.about')}
             </button>
             <button onClick={() => handleNavClick('services')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#services' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              Usługi
+              {t('header.nav.services')}
             </button>
             <button onClick={() => navigate('/earrings')} className={`text-sm font-medium transition-colors ${location.pathname.startsWith('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              Kolczyki
+              {t('header.nav.earrings')}
             </button>
             <button onClick={() => handleNavClick('gallery')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              Galeria
+              {t('header.nav.gallery')}
             </button>
             <button onClick={() => navigate('/aftercare')} className={`text-sm font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              Pielęgnacja
+              {t('header.nav.aftercare')}
             </button>
             <button onClick={() => handleNavClick('contact')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              Kontakt
+              {t('header.nav.contact')}
             </button>
           </nav>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitch />
             <a href="tel:+48573818260" className="text-muted-foreground hover:text-primary transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
               <Phone className="h-5 w-5" />
             </a>
@@ -59,7 +64,7 @@ export const Header = () => {
             <Button variant="hero" asChild className="min-h-[44px]">
             <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="ml-2">
               <Calendar className="h-4 w-4" />
-              <span className="hidden sm:inline">Rezerwuj</span>
+              <span className="hidden sm:inline">{t('header.buttons.book')}</span>
             </a>
           </Button>
           </div>
