@@ -5,7 +5,10 @@ import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings } from "@/lib/earrings";
 import NotFound from "./NotFound";
+import { useTranslation } from 'react-i18next';
+
 export default function EarringDetail() {
+  const { t } = useTranslation();
   const {
     productId
   } = useParams();
@@ -71,11 +74,11 @@ export default function EarringDetail() {
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
             <Link to="/" className="hover:text-primary transition-colors">
-              Strona główna
+              {t('earringDetail.breadcrumbHome')}
             </Link>
             <span>/</span>
             <Link to="/earrings" className="hover:text-primary transition-colors">
-              Kolczyki
+              {t('earringDetail.breadcrumbEarrings')}
             </Link>
             <span>/</span>
             <span className="text-foreground truncate max-w-[150px] sm:max-w-none">
@@ -117,7 +120,7 @@ export default function EarringDetail() {
                 {/* Description Points */}
                 {earring.description_points && earring.description_points.length > 0 && (
                   <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
-                    <h2 className="text-lg font-semibold mb-4 text-foreground">Specyfikacja</h2>
+                    <h2 className="text-lg font-semibold mb-4 text-foreground">{t('earringDetail.specification')}</h2>
                     <ul className="space-y-3">
                       {earring.description_points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-3 group animate-fade-in" style={{ animationDelay: `${idx * 50}ms` }}>
@@ -141,7 +144,7 @@ export default function EarringDetail() {
             {/* Other Items Section */}
             <div className="border-t pt-12 mt-12">
               <h2 className="text-2xl lg:text-3xl font-bold mb-8">
-                Inne Produkty
+                {t('earringDetail.otherProducts')}
               </h2>
               
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">

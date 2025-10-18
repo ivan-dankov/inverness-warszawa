@@ -7,8 +7,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useTranslation } from 'react-i18next';
 
 export const Testimonials = () => {
+  const { t } = useTranslation();
   const testimonials = [
     {
       name: "Anna P",
@@ -80,10 +82,10 @@ export const Testimonials = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Opinie Naszych Klientów
+            {t('testimonials.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Zobacz, co mówią o nas zadowoleni klienci Inverness MED
+            {t('testimonials.subtitle')}
           </p>
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="flex">
@@ -92,7 +94,7 @@ export const Testimonials = () => {
               ))}
             </div>
             <span className="text-lg font-semibold">5.0</span>
-            <span className="text-muted-foreground">na Booksy</span>
+            <span className="text-muted-foreground">{t('testimonials.onBooksy')}</span>
           </div>
         </div>
 

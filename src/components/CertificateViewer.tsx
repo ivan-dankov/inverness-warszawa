@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, FileText, X, ChevronRight as ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
+import { useTranslation } from 'react-i18next';
 
 export const CertificateViewer = () => {
+  const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -69,10 +71,10 @@ export const CertificateViewer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Certyfikaty
+            {t('certificates.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Nasze certyfikaty jakości i bezpieczeństwa
+            {t('certificates.subtitle')}
           </p>
         </div>
 

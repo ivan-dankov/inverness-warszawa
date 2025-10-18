@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from 'react-i18next';
 
 // Import gallery images
 import img1129 from "@/assets/gallery/IMG_1129.jpg";
@@ -17,6 +18,7 @@ import img8214 from "@/assets/gallery/IMG_8214.jpg";
 import img5442 from "@/assets/gallery/IMG_5442.jpg";
 
 export const Gallery = () => {
+  const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
@@ -108,10 +110,10 @@ export const Gallery = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Galeria
+            {t('gallery.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Zobacz nasz profesjonalny sprzęt i efekty naszej pracy
+            {t('gallery.subtitle')}
           </p>
         </div>
 
@@ -139,10 +141,10 @@ export const Gallery = () => {
           >
             <div className="text-center">
               <p className="text-lg font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
-                Zobacz Wszystkie
+                {t('gallery.seeAll')}
               </p>
               <p className="mt-2 text-sm text-muted-foreground">
-                {galleryImages.length} zdjęć
+                {t('gallery.photoCount', { count: galleryImages.length })}
               </p>
             </div>
           </div>

@@ -4,8 +4,10 @@ import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings } from "@/lib/earrings";
 import { ArrowLeft } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 export default function EarringsGallery() {
+  const { t } = useTranslation();
   const earrings = getAllEarrings();
 
   const scrollToTop = () => {
@@ -25,17 +27,17 @@ export default function EarringsGallery() {
               className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-teal-600 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Strona główna
+              {t('earringsGallery.breadcrumbHome')}
             </Link>
           </nav>
 
           {/* Title */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
-              Wszystkie Kolczyki <span className="text-teal-600">Inverness MED</span>
+              {t('earringsGallery.title')} <span className="text-teal-600">Inverness MED</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground">
-              {earrings.length} produktów medycznych
+              {t('earringsGallery.productCount', { count: earrings.length })}
             </p>
           </div>
 
@@ -56,7 +58,7 @@ export default function EarringsGallery() {
               onClick={scrollToTop}
               className="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
             >
-              Wróć na górę
+              {t('earringsGallery.backToTop')}
             </button>
           </div>
         </div>
