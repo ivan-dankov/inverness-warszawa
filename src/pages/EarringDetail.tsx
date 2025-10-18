@@ -110,20 +110,30 @@ export default function EarringDetail() {
               
               {/* RIGHT: Description Section */}
               <div className="lg:pt-8">
-                <h1 className="text-3xl lg:text-4xl font-bold mb-6">
+                <h1 className="text-3xl lg:text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
                   {earring.name}
                 </h1>
                 
                 {/* Description Points */}
                 {earring.description_points && earring.description_points.length > 0 && (
-                  <ul className="space-y-2 text-foreground/80">
-                    {earring.description_points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="text-primary mt-1.5">•</span>
-                        <span className="leading-relaxed">{point}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
+                    <h2 className="text-lg font-semibold mb-4 text-foreground">Specyfikacja</h2>
+                    <ul className="space-y-3">
+                      {earring.description_points.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-3 group animate-fade-in" style={{ animationDelay: `${idx * 50}ms` }}>
+                          <svg 
+                            className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className="leading-relaxed text-foreground/90 group-hover:text-foreground transition-colors">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
             </div>
