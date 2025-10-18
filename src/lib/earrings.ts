@@ -12,8 +12,11 @@ export const getUniqueImages = (images: string[]): string[] => {
   const seen = new Set<string>();
   const uniqueImages: string[] = [];
   
+  // Filter out kosmeta.lv images - only use mozfiles.com
+  const filteredImages = images.filter(img => !img.includes('kosmeta.lv'));
+  
   // Sort to prioritize /l/ over /m/ - /l/ will be kept when duplicates exist
-  const sorted = [...images].sort((a, b) => {
+  const sorted = [...filteredImages].sort((a, b) => {
     const aSize = a.includes('/l/') ? 'l' : a.includes('/m/') ? 'm' : 'other';
     const bSize = b.includes('/l/') ? 'l' : b.includes('/m/') ? 'm' : 'other';
     
