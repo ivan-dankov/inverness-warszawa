@@ -26,7 +26,7 @@ export const Contact = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Lokalizacja</h4>
                   <p className="text-muted-foreground mb-2">
-                    Gizów 6<br />
+                    Gizów 6/208<br />
                     01-249 Warszawa, Wola
                   </p>
                   <p className="text-sm text-primary font-medium">

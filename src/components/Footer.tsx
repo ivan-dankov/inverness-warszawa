@@ -23,7 +23,7 @@ export const Footer = () => {
           <div>
             <h3 className="font-semibold text-foreground mb-4">Kontakt</h3>
             <div className="space-y-2 text-sm text-muted-foreground">
-              <p>Gizów 6, 01-249 Warszawa</p>
+              <p>Gizów 6/208, 01-249 Warszawa</p>
               <p>
                 <a href="tel:+48573818260" className="hover:text-primary transition-colors">
                   +48 573 818 260

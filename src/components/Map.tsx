@@ -22,7 +22,7 @@ export const Map = () => {
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v12',
-      center: [20.9452, 52.2258], // Gizów 6, 01-249 Warszawa, Wola
+      center: [20.9452, 52.2258], // Gizów 6/208, 01-249 Warszawa, Wola
       zoom: 16,
     });
 
@@ -31,7 +31,7 @@ export const Map = () => {
       .setLngLat([20.9452, 52.2258])
       .setPopup(
         new mapboxgl.Popup().setHTML(
-          '<strong>Inverness MED</strong><br/>Gizów 6<br/>01-249 Warszawa<br/><a href="https://maps.app.goo.gl/bNzo84j1b16JmKuB6" target="_blank" rel="noopener noreferrer" style="color: #0891b2; text-decoration: underline; margin-top: 8px; display: inline-block;">Get Directions →</a>'
+          '<strong>Inverness MED</strong><br/>Gizów 6/208<br/>01-249 Warszawa<br/><a href="https://maps.app.goo.gl/bNzo84j1b16JmKuB6" target="_blank" rel="noopener noreferrer" style="color: #0891b2; text-decoration: underline; margin-top: 8px; display: inline-block;">Get Directions →</a>'
         )
       )
       .addTo(map.current);
