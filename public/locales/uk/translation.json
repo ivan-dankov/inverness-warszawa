@@ -198,6 +198,14 @@
       "instagram": "Instagram",
       "location": "Місцезнаходження"
     },
+    "certificates": {
+      "title": "Сертифікати",
+      "items": [
+        "FDA Approved",
+        "ISO Certified",
+        "Medical Grade Equipment"
+      ]
+    },
     "copyright": "© {{year}} Inverness MED. Усі права захищені."
   },
   "aftercare": {

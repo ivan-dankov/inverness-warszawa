@@ -198,6 +198,14 @@
       "instagram": "Instagram",
       "location": "Местоположение"
     },
+    "certificates": {
+      "title": "Сертификаты",
+      "items": [
+        "FDA Approved",
+        "ISO Certified",
+        "Medical Grade Equipment"
+      ]
+    },
     "copyright": "© {{year}} Inverness MED. Все права защищены."
   },
   "aftercare": {

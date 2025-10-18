@@ -198,6 +198,14 @@
       "instagram": "Instagram",
       "location": "Location"
     },
+    "certificates": {
+      "title": "Certificates",
+      "items": [
+        "FDA Approved",
+        "ISO Certified",
+        "Medical Grade Equipment"
+      ]
+    },
     "copyright": "© {{year}} Inverness MED. All rights reserved."
   },
   "aftercare": {
