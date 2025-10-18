@@ -37,9 +37,9 @@ const SmartScrollManager = () => {
         }, 0);
       }
     }
-    // Don't auto-scroll for earring detail pages
+    // Always scroll to top for detail pages (treat as static pages)
     else if (currentPath.startsWith('/earrings/')) {
-      // Leave scroll position as-is
+      window.scrollTo(0, 0);
     }
     // Reset scroll for all other routes
     else if (!currentPath.startsWith('/earrings')) {
