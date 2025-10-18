@@ -2,8 +2,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyBookingCTA } from "@/components/StickyBookingCTA";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
@@ -18,6 +21,13 @@ export default function Aftercare() {
       <Header />
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
+          <Link to="/">
+            <Button variant="ghost" className="mb-8 gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              {t('aftercare.backButton')}
+            </Button>
+          </Link>
+          
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
               {t('aftercare.title')}
