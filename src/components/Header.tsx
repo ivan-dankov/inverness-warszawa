@@ -54,7 +54,7 @@ export const Header = () => {
               <Instagram className="h-5 w-5" />
             </a>
             <Button variant="hero" asChild className="min-h-[44px]">
-            <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+            <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="ml-2">
               <Calendar className="h-4 w-4" />
               <span className="hidden sm:inline">Rezerwuj</span>
             </a>
