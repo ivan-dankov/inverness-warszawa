@@ -141,7 +141,7 @@ export default function EarringDetail() {
             {/* Other Items Section */}
             <div className="border-t pt-12 mt-12">
               <h2 className="text-2xl lg:text-3xl font-bold mb-8">
-                Other Items
+                Inne Produkty
               </h2>
               
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">

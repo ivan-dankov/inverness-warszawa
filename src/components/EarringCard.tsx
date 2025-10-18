@@ -13,7 +13,7 @@ export const EarringCard = ({ earring, index, className = "" }: EarringCardProps
   return (
     <Link
       to={`/earrings/${index}`}
-      className={`group relative aspect-square overflow-hidden rounded-lg bg-card border border-border hover:border-teal-600/50 transition-all duration-300 hover:shadow-lg ${className}`}
+      className={`group relative aspect-square overflow-hidden rounded-lg bg-card border border-border hover:border-teal-600/50 transition-all duration-300 hover:shadow-lg min-h-[120px] sm:min-h-[160px] ${className}`}
     >
       <img
         src={earring.images[0]}

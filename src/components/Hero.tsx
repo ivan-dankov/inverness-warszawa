@@ -49,12 +49,22 @@ export const Hero = () => {
 
           {/* Images Grid */}
           <div className="hidden lg:grid grid-cols-2 gap-4 relative">
-            {galleryImages.map((image, index) => <div key={index} className="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group hover-scale" style={{
-            animationDelay: `${index * 0.1}s`
-          }}>
-                <img src={image} alt={`Inverness MED ${index + 1}`} className="w-full h-full object-cover" loading="eager" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>)}
+            {galleryImages.map((image, index) => {
+              const altTexts = [
+                "System Inverness MED do bezpiecznego przekłuwania uszu",
+                "Profesjonalny sprzęt Inverness do medycznego przekłuwania",
+                "Kolekcja medycznych kolczyków Inverness",
+                "Eleganckie kolczyki medyczne po przekłuciu"
+              ];
+              return (
+                <div key={index} className="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group hover-scale" style={{
+                  animationDelay: `${index * 0.1}s`
+                }}>
+                  <img src={image} alt={altTexts[index]} className="w-full h-full object-cover" loading="eager" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,8 @@ import img5442 from "@/assets/gallery/IMG_5442.jpg";
 
 export const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const galleryImages = [
     { src: img1129, alt: "Przekłucie ucha z trzema eleganckimi kolczykami" },
@@ -77,6 +79,30 @@ export const Gallery = () => {
     }
   };
 
+  // Touch gesture handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swipe left - next image
+        nextImage();
+      } else {
+        // Swipe right - previous image
+        prevImage();
+      }
+    }
+  };
+
   return (
     <section id="gallery" className="py-20 bg-gradient-to-b from-primary-light/10 to-background border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,7 +152,12 @@ export const Gallery = () => {
       {/* Lightbox Viewer */}
       <Dialog open={selectedImage !== null} onOpenChange={() => closeImage()}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-none">
-          <div className="relative w-full h-[95vh] flex items-center justify-center">
+          <div 
+            className="relative w-full h-[95vh] flex items-center justify-center"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <Button
               variant="ghost"
               size="icon"

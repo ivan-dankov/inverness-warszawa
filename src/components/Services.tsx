@@ -42,7 +42,7 @@ export const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-          {services.map((service, index) => <Card key={index} className="p-8 hover:shadow-card transition-shadow duration-300 flex flex-col">
+          {services.map((service, index) => <Card key={index} className="p-6 sm:p-8 hover:shadow-card transition-shadow duration-300 flex flex-col">
               <service.icon className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-2xl font-bold text-foreground mb-2">
                 {service.title}
@@ -70,7 +70,7 @@ export const Services = () => {
                   </li>)}
               </ul>
 
-              <Button size="lg" variant="hero" className="w-full mt-auto" asChild>
+              <Button size="lg" variant="hero" className="w-full mt-auto min-h-[48px]" asChild>
                 <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-5 w-5" />
                   Rezerwuj Online
