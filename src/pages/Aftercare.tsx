@@ -22,11 +22,11 @@ export default function Aftercare() {
         <title>{t('aftercare.pageTitle')}</title>
         <meta name="description" content="Kompletny przewodnik pielęgnacji po przekłuciu uszu. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki." />
         <link rel="canonical" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hreflang="pl" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hreflang="en" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hreflang="ru" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hreflang="uk" href="https://inverness-med.lovable.app/aftercare" />
-        <link rel="alternate" hreflang="x-default" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hrefLang="pl" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hrefLang="en" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hrefLang="ru" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hrefLang="uk" href="https://inverness-med.lovable.app/aftercare" />
+        <link rel="alternate" hrefLang="x-default" href="https://inverness-med.lovable.app/aftercare" />
       </Helmet>
       <BreadcrumbSchema items={[
         { name: t('aftercare.backButton'), url: 'https://inverness-med.lovable.app/' },

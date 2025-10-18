@@ -22,11 +22,11 @@ export default function EarringsGallery() {
         <title>{t('earringsGallery.title')} - {earrings.length} wzorów | Inverness MED Warszawa</title>
         <meta name="description" content={`Przeglądaj ${earrings.length} różnych wzorów kolczyków medycznych Inverness. Bezpieczne, hipoalergiczne, certyfikowane FDA i ISO.`} />
         <link rel="canonical" href="https://inverness-med.lovable.app/earrings" />
-        <link rel="alternate" hreflang="pl" href="https://inverness-med.lovable.app/earrings" />
-        <link rel="alternate" hreflang="en" href="https://inverness-med.lovable.app/earrings" />
-        <link rel="alternate" hreflang="ru" href="https://inverness-med.lovable.app/earrings" />
-        <link rel="alternate" hreflang="uk" href="https://inverness-med.lovable.app/earrings" />
-        <link rel="alternate" hreflang="x-default" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hrefLang="pl" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hrefLang="en" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hrefLang="ru" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hrefLang="uk" href="https://inverness-med.lovable.app/earrings" />
+        <link rel="alternate" hrefLang="x-default" href="https://inverness-med.lovable.app/earrings" />
       </Helmet>
       <BreadcrumbSchema items={[
         { name: t('earringsGallery.breadcrumbHome'), url: 'https://inverness-med.lovable.app/' },

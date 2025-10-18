@@ -23,11 +23,11 @@ const Index = () => {
         <title>Inverness MED - Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
         <meta name="description" content={t('hero.subtitle')} />
         <link rel="canonical" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hreflang="pl" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hreflang="en" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hreflang="ru" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hreflang="uk" href="https://inverness-med.lovable.app/" />
-        <link rel="alternate" hreflang="x-default" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hrefLang="pl" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hrefLang="en" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hrefLang="ru" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hrefLang="uk" href="https://inverness-med.lovable.app/" />
+        <link rel="alternate" hrefLang="x-default" href="https://inverness-med.lovable.app/" />
         <meta property="og:title" content="Inverness MED - Przekłuwanie Uszu Warszawa" />
         <meta property="og:description" content={t('hero.subtitle')} />
         <meta property="og:url" content="https://inverness-med.lovable.app/" />
