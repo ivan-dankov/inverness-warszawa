@@ -1,10 +1,11 @@
 import { Instagram, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
@@ -48,6 +49,22 @@ export const Footer = () => {
                 </a>
               </div>
             </div>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-foreground mb-4">Przydatne linki</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link to="/aftercare" className="hover:text-primary transition-colors">
+                  Pielęgnacja po zabiegu
+                </Link>
+              </li>
+              <li>
+                <Link to="/earrings" className="hover:text-primary transition-colors">
+                  Kolczyki
+                </Link>
+              </li>
+            </ul>
           </div>
 
           <div>

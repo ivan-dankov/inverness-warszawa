@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Index from "./pages/Index";
 import EarringsGallery from "./pages/EarringsGallery";
 import EarringDetail from "./pages/EarringDetail";
+import Aftercare from "./pages/Aftercare";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/earrings" element={<EarringsGallery />} />
           <Route path="/earrings/:productId" element={<EarringDetail />} />
+          <Route path="/aftercare" element={<Aftercare />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

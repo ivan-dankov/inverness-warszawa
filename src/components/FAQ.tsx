@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 
 export const FAQ = () => {
   const faqs = [
@@ -41,7 +42,8 @@ export const FAQ = () => {
     },
     {
       question: "Jak dbać o przekłute uszy?",
-      answer: "Po przekłuciu otrzymasz szczegółowe instrukcje pielęgnacji. Podstawowe zasady to: mycie rąk przed dotknięciem kolczyków, delikatne oczyszczanie 2 razy dziennie specjalnym płynem, unikanie basenów i zbiorników wodnych przez pierwsze 2 tygodnie, oraz regularne obracanie kolczykiem."
+      answer: "Po przekłuciu otrzymasz szczegółowe instrukcje pielęgnacji. Podstawowe zasady to: mycie rąk przed dotknięciem kolczyków, delikatne oczyszczanie 2 razy dziennie specjalnym płynem, unikanie basenów i zbiorników wodnych przez pierwsze 2 tygodnie, oraz regularne obracanie kolczykiem.",
+      link: true
     }
   ];
 
@@ -66,6 +68,14 @@ export const FAQ = () => {
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground text-sm sm:text-base">
                   {faq.answer}
+                  {faq.link && (
+                    <>
+                      {" "}
+                      <Link to="/aftercare" className="text-primary hover:underline font-medium">
+                        Zobacz pełne zalecenia pielęgnacyjne →
+                      </Link>
+                    </>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}

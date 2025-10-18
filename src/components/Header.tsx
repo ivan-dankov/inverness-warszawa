@@ -41,6 +41,9 @@ export const Header = () => {
             <button onClick={() => handleNavClick('gallery')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               Galeria
             </button>
+            <button onClick={() => navigate('/aftercare')} className={`text-sm font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+              Pielęgnacja
+            </button>
             <button onClick={() => handleNavClick('contact')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               Kontakt
             </button>
