@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -18,8 +18,14 @@ export default function EarringDetail() {
   const [description, setDescription] = useState<string>('');
   const [loadingDescription, setLoadingDescription] = useState(true);
 
-  // Get random other items (excluding current)
-  const otherEarrings = earring ? earrings.filter((_, idx) => idx !== currentIndex).sort(() => Math.random() - 0.5).slice(0, 8) : [];
+  // Get random other items (excluding current) - memoized to prevent reshuffling on thumbnail clicks
+  const otherEarrings = useMemo(() => {
+    if (!earring) return [];
+    return earrings
+      .filter((_, idx) => idx !== currentIndex)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 8);
+  }, [currentIndex, earrings, earring]);
 
   // Reset image index when product changes
   useEffect(() => {
