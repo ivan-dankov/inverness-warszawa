@@ -33,7 +33,7 @@ export const FAQ = () => {
     },
     {
       question: "Ile kosztuje przekłuwanie uszu?",
-      answer: "Cena wynosi od 130 zł za 2 płatki ucha. Do tego dochodzi koszt kolczyków, który wynosi od 90 do 150 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Wszystkie aktualne ceny znajdziesz w sekcji 'Nasze Usługi'."
+      answer: "Cena zabiegu zaczyna się od 130 zł za przekłucie dwóch płatków uszu. Do ceny należy doliczyć koszt kolczyków — od 90 do 150 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
     },
     {
       question: "Czy mogę przekłuć chrząstkę (helix, tragus)?",
