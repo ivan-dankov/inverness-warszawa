@@ -41,17 +41,14 @@ export const Earrings = () => {
           {/* See All Tile */}
           <div 
             onClick={() => navigate('/earrings')}
-            className="relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-gradient-to-br from-teal-600/20 to-teal-800/20 backdrop-blur-sm border-2 border-teal-600/30 group hover:border-teal-600/60 transition-all duration-300"
+            className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-all duration-300 group cursor-pointer bg-muted/50 flex items-center justify-center hover:bg-primary/10"
           >
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-teal-600 mb-2">
-                {earrings.length}+
-              </div>
-              <p className="text-sm sm:text-base lg:text-lg font-semibold text-foreground">
+            <div className="text-center">
+              <p className="text-lg font-bold text-foreground group-hover:scale-105 transition-transform duration-300">
                 Zobacz Wszystkie
               </p>
-              <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                Kolczyki
+              <p className="mt-2 text-sm text-muted-foreground">
+                {earrings.length} kolczyków
               </p>
             </div>
           </div>
