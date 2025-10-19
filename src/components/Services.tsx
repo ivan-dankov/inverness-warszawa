@@ -53,7 +53,7 @@ export const Services = () => {
               </div>
               
               <div className="text-sm text-muted-foreground mb-6">
-                {t('services.durationLabel')}: {service.duration}
+                {t('services.durationLabel')} {service.duration}
               </div>
 
               <ul className="space-y-2 mb-6 flex-grow">
