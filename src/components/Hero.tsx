@@ -1,7 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/inverness-logo-hero.jpg";
+// @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
+import heroLogo_192 from "@/assets/inverness-logo-hero.jpg?w=192&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
+import heroLogo_256 from "@/assets/inverness-logo-hero.jpg?w=256&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
+import heroLogo_384 from "@/assets/inverness-logo-hero.jpg?w=384&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
+import heroLogo_512 from "@/assets/inverness-logo-hero.jpg?w=512&format=webp";
 
 // Hero image - multiple sizes
 // @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
@@ -64,11 +71,14 @@ export const Hero = () => {
               <span className="text-teal-600">Inverness MED</span> {t('hero.title')}
             </h1>
             <img 
-              src={logo} 
+              srcSet={`${heroLogo_192} 192w, ${heroLogo_256} 256w, ${heroLogo_384} 384w, ${heroLogo_512} 512w`}
+              sizes="(max-width: 640px) 192px, (max-width: 1024px) 256px, 384px"
+              src={heroLogo_256}
               alt="Inverness MED" 
               className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm" 
               loading="eager"
               fetchPriority="high"
+              decoding="async"
               width="256"
               height="auto"
             />
