@@ -2,10 +2,14 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/inverness-logo-hero.jpg";
+import hero1 from "@/assets/hero/hero-1.jpg";
+import hero2 from "@/assets/hero/hero-2.jpg";
+import hero3 from "@/assets/hero/hero-3.jpg";
+import hero4 from "@/assets/hero/hero-4.jpg";
 
 export const Hero = () => {
   const { t } = useTranslation();
-  const galleryImages = ["https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/fe2fefa17af54b6c919f56d37e7e97-inverness-med-medyczne-przeklu-biz-photo-895cc6a308e44d68bbb7a349741529-booksy.jpeg", "https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/a6527f5bd2f047ca941c32318ba345-inverness-med-biz-photo-ebc63a90adca41af88dc95c41a56a9-booksy.jpeg", "https://d375139ucebi94.cloudfront.net/region2/pl/319418/inspiration/5f477df20f4b409ebdf3f3c595f3f8-inverness-med-medyczne-przeklu-inspiration-71c579082715496b9fb2c2a943dcdf-booksy.jpeg", "https://d375139ucebi94.cloudfront.net/region2/pl/319418/inspiration/18ce8b6047ac48ceb1603022f8df8c-inverness-med-medyczne-przeklu-inspiration-3ab9c2b17a99482ca0f77f7b4fe564-booksy.jpeg"];
+  const galleryImages = [hero1, hero2, hero3, hero4];
   return <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/70 z-0" />
       
