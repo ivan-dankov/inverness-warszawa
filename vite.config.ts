@@ -61,7 +61,6 @@ export default defineConfig(({ mode }) => ({
         }
       }
     },
-    chunkSizeWarningLimit: 1000,
-    target: 'es2015'
+    chunkSizeWarningLimit: 1000
   }
 }));
