@@ -5,17 +5,16 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 
 // Import gallery images
-import img1129 from "@/assets/gallery/IMG_1129.jpg";
-import img1154 from "@/assets/gallery/IMG_1154.jpg";
-import img1171 from "@/assets/gallery/IMG_1171.jpg";
-import img1383 from "@/assets/gallery/IMG_1383.jpg";
-import img1604 from "@/assets/gallery/IMG_1604.jpg";
-import img2107 from "@/assets/gallery/IMG_2107.jpg";
-import img7879 from "@/assets/gallery/IMG_7879.jpg";
-import img7906 from "@/assets/gallery/IMG_7906.jpg";
-import img8087 from "@/assets/gallery/IMG_8087.jpg";
-import img8214 from "@/assets/gallery/IMG_8214.jpg";
-import img5442 from "@/assets/gallery/IMG_5442.jpg";
+import img0976 from "@/assets/gallery/IMG_0976.jpg";
+import img0977 from "@/assets/gallery/IMG_0977.jpg";
+import img0978 from "@/assets/gallery/IMG_0978.jpg";
+import img0979 from "@/assets/gallery/IMG_0979.jpg";
+import img0980 from "@/assets/gallery/IMG_0980.jpg";
+import img0981 from "@/assets/gallery/IMG_0981.jpg";
+import img0982 from "@/assets/gallery/IMG_0982.jpg";
+import img0983 from "@/assets/gallery/IMG_0983.jpg";
+import img0984 from "@/assets/gallery/IMG_0984.jpg";
+import img0985 from "@/assets/gallery/IMG_0985.jpg";
 
 export const Gallery = () => {
   const { t } = useTranslation();
@@ -24,41 +23,16 @@ export const Gallery = () => {
   const touchEndX = useRef<number>(0);
 
   const galleryImages = [
-    { src: img1129, alt: "Przekłucie ucha z trzema eleganckimi kolczykami" },
-    { src: img1154, alt: "Złoty kolczyk w płatku ucha" },
-    { src: img1171, alt: "Przekłucie helix i płatka z niebieskimi kolczykami" },
-    { src: img1383, alt: "Przekłucie conch z wiszącym kolczykiem" },
-    { src: img1604, alt: "Przekłucie płatka ucha dla mężczyzn" },
-    { src: img2107, alt: "Przekłucie ucha dziecka" },
-    { src: img7879, alt: "Przekłucie ucha małego dziecka z kolczykiem" },
-    { src: img7906, alt: "Przekłucie ucha dziecka z niebieskim kolczykiem" },
-    { src: img8087, alt: "Przekłucie ucha dziecka z białym kolczykiem" },
-    { src: img8214, alt: "Przekłucie ucha dziewczynki ze złotym kolczykiem" },
-    { src: img5442, alt: "Przekłucie ucha męskie z czarnym kolczykiem" },
-    {
-      src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/fe2fefa17af54b6c919f56d37e7e97-inverness-med-medyczne-przeklu-biz-photo-895cc6a308e44d68bbb7a349741529-booksy.jpeg",
-      alt: "System Inverness MED"
-    },
-    {
-      src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/a6527f5bd2f047ca941c32318ba345-inverness-med-biz-photo-ebc63a90adca41af88dc95c41a56a9-booksy.jpeg",
-      alt: "Profesjonalny sprzęt Inverness"
-    },
-    {
-      src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/inspiration/5f477df20f4b409ebdf3f3c595f3f8-inverness-med-medyczne-przeklu-inspiration-71c579082715496b9fb2c2a943dcdf-booksy.jpeg",
-      alt: "Kolczyki Inverness"
-    },
-    {
-      src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/inspiration/18ce8b6047ac48ceb1603022f8df8c-inverness-med-medyczne-przeklu-inspiration-3ab9c2b17a99482ca0f77f7b4fe564-booksy.jpeg",
-      alt: "Kolczyki medyczne"
-    },
-    {
-      src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/inspiration/ccb0e94cdec74ca9a622ab9c467ced-inverness-med-medyczne-przeklu-inspiration-4a4ec2db35f14fbb95e1fc187473e1-booksy.jpeg",
-      alt: "Eleganckie kolczyki"
-    },
-    {
-      src: "https://d375139ucebi94.cloudfront.net/region2/pl/319418/inspiration/9f9b7244c5d24cc2b1fe2082c39a80-inverness-med-medyczne-przeklu-inspiration-1f6c092935c94932a5d90d9d251363-booksy.jpeg",
-      alt: "Różne style kolczyków"
-    },
+    { src: img0985, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
+    { src: img0984, alt: "Przekłucie płatka ucha przed i po z kryształowym kolczykiem - medyczne przekłuwanie" },
+    { src: img0983, alt: "Przekłucie ucha dziecka z perłowym kolczykiem Inverness" },
+    { src: img0982, alt: "Przekłucie płatka i conch przed i po z wiszącymi kolczykami kryształowymi" },
+    { src: img0981, alt: "Przekłucie helix i płatka ucha z kolczykami złotymi i kryształami" },
+    { src: img0980, alt: "Przekłucie ucha dziecka przed i po z różowym kwiatowym kolczykiem" },
+    { src: img0979, alt: "Profesjonalne przekłucie uszu dziecka z fioletowym kryształowym kolczykiem" },
+    { src: img0978, alt: "Medyczne przekłucie ucha dziewczynki z holograficznym kolczykiem" },
+    { src: img0977, alt: "Zadowolone dziecko po przekłuciu uszu - bezbolesny system Inverness MED" },
+    { src: img0976, alt: "Przekłucie uszu dziecka ze złotymi kolczykami w salonie Inverness MED" },
   ];
 
   const openImage = (index: number) => {
