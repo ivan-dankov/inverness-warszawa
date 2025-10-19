@@ -71,26 +71,26 @@
       "methods": {
         "gun": {
           "name": "Pistolet",
-          "sterility": "🔸 Częściowo sterylny",
-          "comfort": "😣 Głośny, może być bolesny",
-          "healing": "⏳ Dłuższe, czasem z powikłaniami",
+          "sterility": "⚠️ Częściowo sterylny",
+          "comfort": "❌ Głośny, może być bolesny",
+          "healing": "⚠️ Dłuższe, czasem z powikłaniami",
           "suitability": "⚠️ Tylko płatek ucha",
           "features": "Szybki, ale mniej delikatny"
         },
         "needle": {
           "name": "Igła (profesjonalna)",
           "sterility": "✅ Wysoka, jeśli zachowana sterylność",
-          "comfort": "🙂 Umiarkowany komfort",
-          "healing": "⏱ Dobre gojenie przy właściwej pielęgnacji",
+          "comfort": "⚠️ Umiarkowany komfort",
+          "healing": "✅ Dobre gojenie przy właściwej pielęgnacji",
           "suitability": "✅ Tak",
           "features": "Precyzyjna metoda, zależna od doświadczenia specjalisty"
         },
         "inverness": {
-          "name": "Inverness 💎",
-          "sterility": "🧊 W 100% sterylny, jednorazowy system",
-          "comfort": "😊 Cicho i delikatnie",
-          "healing": "⚡️ Szybkie, czyste gojenie",
-          "suitability": "🌟 Odpowiedni dla dzieci i chrząstki",
+          "name": "Inverness",
+          "sterility": "✅ W 100% sterylny, jednorazowy system",
+          "comfort": "✅ Cicho i delikatnie",
+          "healing": "✅ Szybkie, czyste gojenie",
+          "suitability": "✅ Odpowiedni dla dzieci i chrząstki",
           "features": "Pewność, komfort i bezpieczeństwo w jednym"
         }
       }
