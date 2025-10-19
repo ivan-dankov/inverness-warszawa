@@ -36,11 +36,3 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </Suspense>
 );
-
-// Hide static shell after React hydrates
-setTimeout(() => {
-  const staticShell = document.querySelector('.hero-static-shell');
-  if (staticShell) {
-    staticShell.classList.add('hydrated');
-  }
-}, 0);

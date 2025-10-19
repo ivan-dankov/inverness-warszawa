@@ -16,147 +16,19 @@
     <link rel="preload" as="image" href="/images/inverness-logo-hero.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="image" href="/images/inverness-logo-hero.jpg" fetchpriority="high" />
     
-    <!-- Inline critical CSS for instant LCP -->
+    <!-- Inline critical CSS for LCP text to prevent render blocking -->
     <style>
-      /* Reset and base styles */
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-        line-height: 1.5;
-      }
-      
-      /* Hero section critical styles */
-      .hero-static-shell {
-        min-height: 80vh;
-        display: flex;
-        align-items: center;
-      }
-      
-      .bg-rose-50 {
-        background-color: #fff1f2;
-      }
-      
-      .gradient-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
-        z-index: 0;
-      }
-      
-      .text-foreground {
-        color: #0c0a09;
-      }
-      
-      .text-muted-foreground {
-        color: hsl(215 16% 47%);
-      }
-      
-      .container {
-        width: 100%;
-        max-width: 1280px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        position: relative;
-        z-index: 10;
-      }
-      
-      .hero-content {
-        max-width: 42rem;
-      }
-      
-      .hero-h1 {
-        font-size: 1.875rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-      }
-      
-      .hero-logo {
-        display: block;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        width: 12rem;
-      }
-      
       .hero-subtitle-critical {
         font-size: 1.125rem;
+        line-height: 1.75rem;
+        margin-bottom: 2rem;
+        color: hsl(215 16% 47%);
         line-height: 1.625;
-        margin-bottom: 2rem;
-        color: hsl(215 16% 47%);
       }
-      
-      .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-      }
-      
-      .hero-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        font-weight: 500;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        transition: all 0.2s;
-      }
-      
-      .hero-button-primary {
-        background: hsl(210 40% 96%);
-        color: hsl(222.2 47.4% 11.2%);
-        border: 1px solid hsl(214.3 31.8% 91.4%);
-      }
-      
-      .hero-button-accent {
-        background: linear-gradient(135deg, hsl(280 100% 70%), hsl(305 100% 70%));
-        color: white;
-      }
-      
-      .hero-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        font-size: 0.875rem;
-        color: hsl(215 16% 47%);
-      }
-      
-      .hero-feature {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      
-      .hero-feature-dot {
-        height: 0.5rem;
-        width: 0.5rem;
-        border-radius: 9999px;
-        background-color: hsl(340 80% 60%);
-      }
-      
-      @media (min-width: 640px) {
-        .hero-static-shell { min-height: 90vh; }
-        .hero-h1 { font-size: 2.25rem; }
-        .hero-logo { width: 16rem; }
-        .hero-buttons { flex-direction: row; gap: 1rem; }
-        .hero-button { width: auto; }
-      }
-      
       @media (min-width: 1024px) {
-        .hero-h1 { font-size: 3rem; margin-bottom: 2rem; }
-        .hero-logo { margin-top: 2rem; margin-bottom: 2rem; }
-        .hero-subtitle-critical { font-size: 1.25rem; }
-      }
-      
-      /* Hide static shell after React hydrates */
-      .hero-static-shell.hydrated {
-        display: none;
+        .hero-subtitle-critical {
+          font-size: 1.25rem;
+        }
       }
     </style>
     
@@ -236,57 +108,7 @@
 </head>
 
   <body>
-    <div id="root">
-      <!-- Static Hero Content for Instant LCP -->
-      <div class="hero-static-shell">
-        <section class="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-rose-50 overflow-hidden">
-          <div class="gradient-overlay"></div>
-          
-          <div class="container">
-            <div class="hero-content">
-              <h1 class="hero-h1 text-foreground">
-                Bezpieczne Przekłuwanie Uszu Warszawa - Inverness MED
-              </h1>
-              <img 
-                src="/images/inverness-logo-hero.jpg" 
-                alt="Inverness MED - Professional Medical Ear Piercing System" 
-                class="hero-logo"
-                width="256"
-                height="87"
-                fetchpriority="high"
-              />
-              <p class="hero-subtitle-critical">
-                Jedyny system w Europie zatwierdzony przez lekarzy do bezpiecznego przekłuwania uszu u dzieci i dorosłych. Certyfikaty FDA i ISO gwarantują najwyższe standardy sterylności.
-              </p>
-              <div class="hero-buttons">
-                <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" class="hero-button hero-button-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
-                  Rezerwuj Online
-                </a>
-                <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer" class="hero-button hero-button-accent">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-                  Zobacz Instagram
-                </a>
-              </div>
-              <div class="hero-features">
-                <div class="hero-feature">
-                  <div class="hero-feature-dot"></div>
-                  <span>Sterylne, jednorazowe narzędzia</span>
-                </div>
-                <div class="hero-feature">
-                  <div class="hero-feature-dot"></div>
-                  <span>Bezbolesne i bezpieczne</span>
-                </div>
-                <div class="hero-feature">
-                  <div class="hero-feature-dot"></div>
-                  <span>Dla dzieci 0+</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </div>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
