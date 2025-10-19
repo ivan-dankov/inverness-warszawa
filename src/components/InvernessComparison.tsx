@@ -21,7 +21,7 @@ export const InvernessComparison = () => {
   const columns = ['sterility', 'comfort', 'healing', 'suitability', 'features'];
 
   return (
-    <section className="py-20 bg-background border-t border-border">
+    <section id="comparison" className="py-20 bg-background border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
