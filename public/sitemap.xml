@@ -5,32 +5,32 @@
     <lastmod>2025-10-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://gentlepiercing.pl/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gentlepiercing.pl/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gentlepiercing.pl/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://gentlepiercing.pl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gentlepiercing.pl/"/>
   </url>
   <url>
     <loc>https://gentlepiercing.pl/earrings</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/earrings"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://gentlepiercing.pl/earrings"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gentlepiercing.pl/earrings"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gentlepiercing.pl/earrings"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://gentlepiercing.pl/earrings"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gentlepiercing.pl/earrings"/>
   </url>
   <url>
     <loc>https://gentlepiercing.pl/aftercare</loc>
     <lastmod>2025-10-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/aftercare"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://gentlepiercing.pl/aftercare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gentlepiercing.pl/aftercare"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://gentlepiercing.pl/aftercare"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://gentlepiercing.pl/aftercare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gentlepiercing.pl/aftercare"/>
   </url>
 </urlset>
