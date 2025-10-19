@@ -47,7 +47,8 @@ export default defineConfig(({ mode }) => ({
           // i18n
           'i18n-vendor': [
             'i18next',
-            'react-i18next'
+            'react-i18next',
+            'i18next-browser-languagedetector'
           ]
         }
       }

@@ -36,16 +36,3 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </Suspense>
 );
-
-// Hide static shell once React has rendered
-// Double RAF ensures React content is fully painted before fade starts
-requestAnimationFrame(() => {
-  requestAnimationFrame(() => {
-    const staticShell = document.querySelector('.hero-static-shell');
-    if (staticShell) {
-      staticShell.classList.add('hydrated');
-      // Remove from DOM after fade transition completes
-      setTimeout(() => staticShell.remove(), 300);
-    }
-  });
-});
