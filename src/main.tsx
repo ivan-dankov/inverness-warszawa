@@ -36,3 +36,16 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </Suspense>
 );
+
+// Hide branded loading screen after React successfully renders
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+      loadingScreen.classList.add('hide');
+      setTimeout(() => {
+        loadingScreen.remove();
+      }, 500);
+    }
+  });
+});

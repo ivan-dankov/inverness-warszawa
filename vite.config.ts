@@ -49,10 +49,26 @@ export default defineConfig(({ mode }) => ({
             'i18next',
             'react-i18next',
             'i18next-browser-languagedetector'
+          ],
+          // Tanstack Query
+          'query-vendor': [
+            '@tanstack/react-query'
+          ],
+          // Icons
+          'icons-vendor': [
+            'lucide-react'
           ]
         }
       }
     },
     chunkSizeWarningLimit: 1000,
+    target: 'es2015',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   }
 }));
