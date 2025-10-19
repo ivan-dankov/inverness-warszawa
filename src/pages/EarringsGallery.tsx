@@ -19,7 +19,7 @@ export default function EarringsGallery() {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>{`${t('earringsGallery.title') || 'Kolczyki'} - ${earrings.length} wzorów | Inverness MED Warszawa`}</title>
+        <title>{t('earringsGallery.title')} - {earrings.length} wzorów | Inverness MED Warszawa</title>
         <meta name="description" content={`Przeglądaj ${earrings.length} różnych wzorów kolczyków medycznych Inverness. Bezpieczne, hipoalergiczne, certyfikowane FDA i ISO.`} />
         <link rel="canonical" href="https://gentlepiercing.pl/earrings" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/earrings" />

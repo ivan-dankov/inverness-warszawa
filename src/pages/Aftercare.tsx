@@ -19,7 +19,7 @@ export default function Aftercare() {
   return (
     <>
       <Helmet>
-        <title>{t('aftercare.pageTitle') || 'Pielęgnacja po przekłuciu uszu - Inverness MED Warszawa'}</title>
+        <title>{t('aftercare.pageTitle')}</title>
         <meta name="description" content="Kompletny przewodnik pielęgnacji po przekłuciu uszu. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki." />
         <link rel="canonical" href="https://gentlepiercing.pl/aftercare" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/aftercare" />

@@ -11,24 +11,18 @@ const path = window.location.pathname;
 const search = window.location.search;
 const hash = window.location.hash;
 
-let shouldRedirect = false;
-let redirectUrl = '';
-
 // Redirect www to non-www
 if (hostname.startsWith('www.')) {
-  shouldRedirect = true;
-  redirectUrl = `${protocol}//${hostname.substring(4)}${path}${search}${hash}`;
+  const newUrl = `${protocol}//${hostname.substring(4)}${path}${search}${hash}`;
+  window.location.replace(newUrl);
+  throw new Error('Redirecting to non-www domain');
 }
 
-// Redirect Lovable subdomain to custom domain (only if not already redirecting)
-if (!shouldRedirect && hostname.includes('.lovable.app')) {
-  shouldRedirect = true;
-  redirectUrl = `https://gentlepiercing.pl${path}${search}${hash}`;
-}
-
-// Perform redirect if needed
-if (shouldRedirect) {
-  window.location.replace(redirectUrl);
+// Redirect Lovable subdomain to custom domain
+if (hostname.includes('.lovable.app')) {
+  const newUrl = `https://gentlepiercing.pl${path}${search}${hash}`;
+  window.location.replace(newUrl);
+  throw new Error('Redirecting to custom domain');
 }
 
 createRoot(document.getElementById("root")!).render(
@@ -36,16 +30,3 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </Suspense>
 );
-
-// Hide branded loading screen after React successfully renders
-requestAnimationFrame(() => {
-  requestAnimationFrame(() => {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-      loadingScreen.classList.add('hide');
-      setTimeout(() => {
-        loadingScreen.remove();
-      }, 400);
-    }
-  });
-});
