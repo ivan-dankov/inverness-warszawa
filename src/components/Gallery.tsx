@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 
 // Import gallery images
+import img0968 from "@/assets/gallery/IMG_0968.jpg";
+import img0969 from "@/assets/gallery/IMG_0969.jpg";
+import img0970 from "@/assets/gallery/IMG_0970.jpg";
+import img0971 from "@/assets/gallery/IMG_0971.jpg";
+import img0972 from "@/assets/gallery/IMG_0972.jpg";
+import img0973 from "@/assets/gallery/IMG_0973.jpg";
+import img0974 from "@/assets/gallery/IMG_0974.jpg";
+import img0975 from "@/assets/gallery/IMG_0975.jpg";
 import img0976 from "@/assets/gallery/IMG_0976.jpg";
 import img0977 from "@/assets/gallery/IMG_0977.jpg";
 import img0978 from "@/assets/gallery/IMG_0978.jpg";
@@ -33,6 +41,14 @@ export const Gallery = () => {
     { src: img0978, alt: "Medyczne przekłucie ucha dziewczynki z holograficznym kolczykiem" },
     { src: img0977, alt: "Zadowolone dziecko po przekłuciu uszu - bezbolesny system Inverness MED" },
     { src: img0976, alt: "Przekłucie uszu dziecka ze złotymi kolczykami w salonie Inverness MED" },
+    { src: img0975, alt: "Luksusowe przekłucie ucha z czterema kolczykami - księżyc, krzyżyk i kryształy" },
+    { src: img0974, alt: "Przekłucie płatka ucha dziecka ze złotym kwiatkiem Inverness" },
+    { src: img0973, alt: "Przekłucie conch i płatka z trzema złotymi kolczykami z gwiazdką" },
+    { src: img0972, alt: "Przekłucie rook i helix z kryształowymi kolczykami medycznymi" },
+    { src: img0971, alt: "Przekłucie rook, daith i płatka ze złotymi wiszącymi kolczykami z kryształami" },
+    { src: img0970, alt: "Przekłucie tragus i płatka z błyszczącym wiszącym kolczykiem kryształowym" },
+    { src: img0969, alt: "Przekłucie conch z czerwonym kryształem i płatka z kryształem Inverness MED" },
+    { src: img0968, alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
   ];
 
   const openImage = (index: number) => {
