@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import logo from "@/assets/inverness-logo-hero.jpg";
 
 export const Hero = () => {
   const { t } = useTranslation();
@@ -16,7 +15,14 @@ export const Hero = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               {t('hero.h1')}
             </h1>
-            <img src={logo} alt="Inverness MED" className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm" />
+            <img 
+              src="/images/inverness-logo-hero.jpg" 
+              alt="Inverness MED - Professional Medical Ear Piercing System" 
+              className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm"
+              width="256"
+              height="87"
+              fetchPriority="high"
+            />
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               {t('hero.subtitle')}
             </p>
@@ -57,7 +63,7 @@ export const Hero = () => {
                 <div key={index} className="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group hover-scale" style={{
                   animationDelay: `${index * 0.1}s`
                 }}>
-                  <img src={image} alt={altTexts[index]} className="w-full h-full object-cover" loading="eager" />
+                  <img src={image} alt={altTexts[index]} className="w-full h-full object-cover" loading="lazy" width="400" height="400" />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               );
