@@ -1,29 +1,18 @@
-import { lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
+import { Testimonials } from "@/components/Testimonials";
 import { Earrings } from "@/components/Earrings";
+import { Gallery } from "@/components/Gallery";
 import { CertificateViewer } from "@/components/CertificateViewer";
+import { FAQ } from "@/components/FAQ";
+import { FAQSchema } from "@/components/FAQSchema";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { StickyBookingCTA } from "@/components/StickyBookingCTA";
-import { FAQSchema } from "@/components/FAQSchema";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-
-// Lazy load below-the-fold components for better performance
-const Gallery = lazy(() => import("@/components/Gallery"));
-const Testimonials = lazy(() => import("@/components/Testimonials"));
-const FAQ = lazy(() => import("@/components/FAQ"));
-const InvernessComparison = lazy(() => import("@/components/InvernessComparison"));
-
-// Loading component for lazy sections
-const SectionLoader = () => (
-  <div className="py-20 flex items-center justify-center">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-  </div>
-);
 
 const Index = () => {
   const { t } = useTranslation();
@@ -31,8 +20,8 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Bezpieczne Przekłuwanie Uszu Warszawa - Inverness MED dla Dzieci 0+</title>
-        <meta name="description" content={t('seo.homeDescription')} />
+        <title>Inverness MED - Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
+        <meta name="description" content={t('hero.subtitle')} />
         <link rel="canonical" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/" />
@@ -50,20 +39,11 @@ const Index = () => {
         <Hero />
         <About />
         <Services />
-        <Suspense fallback={<SectionLoader />}>
-          <Testimonials />
-        </Suspense>
+        <Testimonials />
         <Earrings />
-        <Suspense fallback={<SectionLoader />}>
-          <Gallery />
-        </Suspense>
-        <Suspense fallback={<SectionLoader />}>
-          <InvernessComparison />
-        </Suspense>
+        <Gallery />
         <CertificateViewer />
-        <Suspense fallback={<SectionLoader />}>
-          <FAQ />
-        </Suspense>
+        <FAQ />
         <Contact />
       </main>
       <Footer />

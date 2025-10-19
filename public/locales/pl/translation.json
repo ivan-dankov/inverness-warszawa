@@ -1,13 +1,9 @@
 {
-  "seo": {
-    "homeDescription": "Bezpieczne przekłuwanie uszu w Warszawie systemem Inverness MED. Certyfikaty FDA i ISO. Dla dzieci 0+. Sterylne, bezbolesne. Rezerwuj online!"
-  },
   "header": {
     "nav": {
       "about": "O Nas",
       "services": "Usługi",
       "gallery": "Galeria",
-      "comparison": "Porównanie",
       "contact": "Kontakt",
       "earrings": "Kolczyki",
       "aftercare": "Pielęgnacja"
@@ -19,7 +15,6 @@
     "phone": "Telefon"
   },
   "hero": {
-    "h1": "Bezpieczne Przekłuwanie Uszu Warszawa - Inverness MED",
     "title": "Przekłuwanie Uszu Warszawa",
     "subtitle": "Jedyny system w Europie zatwierdzony przez lekarzy do bezpiecznego przekłuwania uszu u dzieci i dorosłych. Certyfikaty FDA i ISO gwarantują najwyższe standardy sterylności.",
     "features": [
@@ -53,48 +48,6 @@
         "description": "Precyzyjne, atraumatyczne przekłucie bez rozrywania tkanek"
       }
     ]
-  },
-  "invernessComparison": {
-    "title": "💎 Dlaczego Inverness?",
-    "subtitle": "Bezpiecznie. Cicho. Sterylnie.",
-    "description": "System Inverness to nowoczesna metoda przekłuwania uszu – delikatna, jednorazowa i w pełni higieniczna. Idealna dla dzieci i dorosłych.",
-    "compareTitle": "🔍 Porównaj metody przekłuwania uszu",
-    "table": {
-      "headers": {
-        "method": "Metoda",
-        "sterility": "Sterylność",
-        "comfort": "Komfort",
-        "healing": "Gojenie",
-        "suitability": "Dla dzieci / chrząstki",
-        "features": "Cechy szczególne"
-      },
-      "methods": {
-        "gun": {
-          "name": "Pistolet",
-          "sterility": "⚠️ Częściowo sterylny",
-          "comfort": "❌ Głośny, może być bolesny",
-          "healing": "⚠️ Dłuższe, czasem z powikłaniami",
-          "suitability": "⚠️ Tylko płatek ucha",
-          "features": "Szybki, ale mniej delikatny"
-        },
-        "needle": {
-          "name": "Igła (profesjonalna)",
-          "sterility": "✅ Wysoka, jeśli zachowana sterylność",
-          "comfort": "⚠️ Zależy od umiejętności specjalisty",
-          "healing": "✅ Dobre gojenie przy właściwej pielęgnacji",
-          "suitability": "✅ Tak",
-          "features": "⚠️ Wszystkie wyniki zależą od doświadczenia i sterylności specjalisty"
-        },
-        "inverness": {
-          "name": "Inverness",
-          "sterility": "✅ W 100% sterylny, jednorazowy system",
-          "comfort": "✅ Cicho i delikatnie",
-          "healing": "✅ Szybkie, czyste gojenie",
-          "suitability": "✅ Odpowiedni dla dzieci i chrząstki",
-          "features": "Pewność, komfort i bezpieczeństwo w jednym"
-        }
-      }
-    }
   },
   "services": {
     "title": "Nasze Usługi",
@@ -140,7 +93,7 @@
     "pricing": {
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 90 zł za parę",
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 100 zł za parę",
       "mobileVisit": "Dojazd mobilny: +50 zł do ceny usługi"
     },
     "bookButton": "Rezerwuj Online",
