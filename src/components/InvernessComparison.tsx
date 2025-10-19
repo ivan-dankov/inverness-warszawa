@@ -10,7 +10,12 @@ import {
 } from "@/components/ui/table";
 
 export const InvernessComparison = () => {
-  const { t } = useTranslation();
+  const { t, ready } = useTranslation();
+  
+  // Don't render until translations are ready
+  if (!ready) {
+    return null;
+  }
   
   const methods = ['gun', 'needle', 'inverness'];
   const columns = ['sterility', 'comfort', 'healing', 'suitability', 'features'];
