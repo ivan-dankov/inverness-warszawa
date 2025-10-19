@@ -45,7 +45,7 @@ requestAnimationFrame(() => {
       loadingScreen.classList.add('hide');
       setTimeout(() => {
         loadingScreen.remove();
-      }, 500);
+      }, 400);
     }
   });
 });
