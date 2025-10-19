@@ -30,6 +30,7 @@ const Gallery = () => {
   const [imageLoadStatus, setImageLoadStatus] = useState<Record<number, boolean>>({});
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const isTouchingButton = useRef<boolean>(false);
 
   const galleryImages = [
     { src: img0985, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
@@ -83,14 +84,28 @@ const Gallery = () => {
 
   // Touch gesture handlers
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Check if touch started on a button or its child
+    const target = e.target as HTMLElement;
+    isTouchingButton.current = target.closest('button') !== null;
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
+    // If finger moved significantly, it's a swipe not a button tap
+    const moveDistance = Math.abs(touchStartX.current - touchEndX.current);
+    if (moveDistance > 10 && isTouchingButton.current) {
+      isTouchingButton.current = false;
+    }
   };
 
   const handleTouchEnd = () => {
+    // Don't process swipe if user tapped a button
+    if (isTouchingButton.current) {
+      isTouchingButton.current = false;
+      return;
+    }
+
     const swipeDistance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 50;
 
