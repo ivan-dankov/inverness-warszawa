@@ -14,7 +14,7 @@ export const Hero = () => {
           {/* Content */}
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
-              <span className="text-teal-600">Inverness MED</span> {t('hero.title')}
+              {t('hero.h1')}
             </h1>
             <img src={logo} alt="Inverness MED" className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm" />
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">

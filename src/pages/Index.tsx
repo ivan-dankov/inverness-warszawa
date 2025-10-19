@@ -21,8 +21,8 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Inverness MED - Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
-        <meta name="description" content={t('hero.subtitle')} />
+        <title>Bezpieczne Przekłuwanie Uszu Warszawa - Inverness MED dla Dzieci 0+</title>
+        <meta name="description" content={t('seo.homeDescription')} />
         <link rel="canonical" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/" />

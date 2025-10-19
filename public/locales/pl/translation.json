@@ -1,4 +1,7 @@
 {
+  "seo": {
+    "homeDescription": "Bezpieczne przekłuwanie uszu w Warszawie systemem Inverness MED. Certyfikaty FDA i ISO. Dla dzieci 0+. Sterylne, bezbolesne. Rezerwuj online!"
+  },
   "header": {
     "nav": {
       "about": "O Nas",
@@ -16,6 +19,7 @@
     "phone": "Telefon"
   },
   "hero": {
+    "h1": "Bezpieczne Przekłuwanie Uszu Warszawa - Inverness MED",
     "title": "Przekłuwanie Uszu Warszawa",
     "subtitle": "Jedyny system w Europie zatwierdzony przez lekarzy do bezpiecznego przekłuwania uszu u dzieci i dorosłych. Certyfikaty FDA i ISO gwarantują najwyższe standardy sterylności.",
     "features": [

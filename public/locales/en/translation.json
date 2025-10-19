@@ -1,4 +1,7 @@
 {
+  "seo": {
+    "homeDescription": "Safe ear piercing in Warsaw with Inverness MED system. FDA & ISO certificates. For children 0+. Sterile, painless. Book online!"
+  },
   "header": {
     "nav": {
       "about": "About Us",
@@ -16,6 +19,7 @@
     "phone": "Phone"
   },
   "hero": {
+    "h1": "Safe Ear Piercing Warsaw - Inverness MED",
     "title": "Ear Piercing Warsaw",
     "subtitle": "The only system in Europe approved by doctors for safe ear piercing for children and adults. FDA and ISO certificates guarantee the highest standards of sterility.",
     "features": [
