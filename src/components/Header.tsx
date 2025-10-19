@@ -10,8 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import logo1x from "@/assets/logo.jpg?w=144&h=48&format=webp&fit=cover";
-import logo2x from "@/assets/logo.jpg?w=288&h=96&format=webp&fit=cover";
+import logo from "@/assets/logo.jpg";
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -37,17 +36,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="cursor-pointer">
-            <img 
-              srcSet={`${logo1x} 1x, ${logo2x} 2x`}
-              src={logo1x}
-              alt="Inverness MED" 
-              className="h-12 w-auto" 
-              width="144"
-              height="48"
-              loading="eager"
-              fetchPriority="high"
-              decoding="async"
-            />
+            <img src={logo} alt="Inverness MED" className="h-12" />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
@@ -101,16 +90,7 @@ export const Header = () => {
               <SheetContent side="right" className="w-[280px]">
                 <SheetHeader>
                   <SheetTitle>
-                    <img 
-                      srcSet={`${logo1x} 1x, ${logo2x} 2x`}
-                      src={logo1x}
-                      alt="Inverness MED" 
-                      className="h-12 w-auto" 
-                      width="144"
-                      height="48"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <img src={logo} alt="Inverness MED" className="h-12" />
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8">

@@ -4,17 +4,29 @@ import { useTranslation } from "react-i18next";
 import logo from "@/assets/inverness-logo-hero.jpg";
 
 // Hero image - multiple sizes
+// @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
 import hero1_400 from "@/assets/hero/hero-1.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero1_800 from "@/assets/hero/hero-1.jpg?w=800&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero1_1200 from "@/assets/hero/hero-1.jpg?w=1200&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero2_400 from "@/assets/hero/hero-2.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero2_800 from "@/assets/hero/hero-2.jpg?w=800&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero2_1200 from "@/assets/hero/hero-2.jpg?w=1200&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero3_400 from "@/assets/hero/hero-3.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero3_800 from "@/assets/hero/hero-3.jpg?w=800&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero3_1200 from "@/assets/hero/hero-3.jpg?w=1200&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero4_400 from "@/assets/hero/hero-4.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero4_800 from "@/assets/hero/hero-4.jpg?w=800&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import hero4_1200 from "@/assets/hero/hero-4.jpg?w=1200&format=webp";
 
 export const Hero = () => {

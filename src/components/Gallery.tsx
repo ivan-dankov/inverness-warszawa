@@ -5,41 +5,77 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 
 // Import gallery images - thumbnails for grid, full for lightbox
+// @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
 import img0968_thumb from "@/assets/gallery/IMG_0968.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0968_full from "@/assets/gallery/IMG_0968.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0969_thumb from "@/assets/gallery/IMG_0969.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0969_full from "@/assets/gallery/IMG_0969.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0970_thumb from "@/assets/gallery/IMG_0970.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0970_full from "@/assets/gallery/IMG_0970.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0971_thumb from "@/assets/gallery/IMG_0971.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0971_full from "@/assets/gallery/IMG_0971.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0972_thumb from "@/assets/gallery/IMG_0972.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0972_full from "@/assets/gallery/IMG_0972.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0973_thumb from "@/assets/gallery/IMG_0973.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0973_full from "@/assets/gallery/IMG_0973.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0974_thumb from "@/assets/gallery/IMG_0974.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0974_full from "@/assets/gallery/IMG_0974.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0975_thumb from "@/assets/gallery/IMG_0975.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0975_full from "@/assets/gallery/IMG_0975.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0976_thumb from "@/assets/gallery/IMG_0976.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0976_full from "@/assets/gallery/IMG_0976.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0977_thumb from "@/assets/gallery/IMG_0977.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0977_full from "@/assets/gallery/IMG_0977.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0978_thumb from "@/assets/gallery/IMG_0978.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0978_full from "@/assets/gallery/IMG_0978.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0979_thumb from "@/assets/gallery/IMG_0979.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0979_full from "@/assets/gallery/IMG_0979.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0980_thumb from "@/assets/gallery/IMG_0980.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0980_full from "@/assets/gallery/IMG_0980.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0981_thumb from "@/assets/gallery/IMG_0981.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0981_full from "@/assets/gallery/IMG_0981.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0982_thumb from "@/assets/gallery/IMG_0982.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0982_full from "@/assets/gallery/IMG_0982.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0983_thumb from "@/assets/gallery/IMG_0983.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0983_full from "@/assets/gallery/IMG_0983.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0984_thumb from "@/assets/gallery/IMG_0984.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0984_full from "@/assets/gallery/IMG_0984.jpg?w=1920&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0985_thumb from "@/assets/gallery/IMG_0985.jpg?w=400&format=webp";
+// @ts-expect-error - vite-imagetools query parameters
 import img0985_full from "@/assets/gallery/IMG_0985.jpg?w=1920&format=webp";
 
 export const Gallery = () => {
