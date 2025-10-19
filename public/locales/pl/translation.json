@@ -79,11 +79,11 @@
         },
         "needle": {
           "name": "Igła (profesjonalna)",
-          "sterility": "✅ Wysoka, jeśli zachowana sterylność",
-          "comfort": "⚠️ Umiarkowany komfort",
-          "healing": "✅ Dobre gojenie przy właściwej pielęgnacji",
+          "sterility": "⚠️ Zależy od protokołów sterylności specjalisty",
+          "comfort": "⚠️ Zależy od umiejętności specjalisty",
+          "healing": "⚠️ Dobre JEŚLI właściwa technika + sterylność",
           "suitability": "✅ Tak",
-          "features": "Precyzyjna metoda, zależna od doświadczenia specjalisty"
+          "features": "⚠️ Wszystkie wyniki zależą od doświadczenia i sterylności specjalisty"
         },
         "inverness": {
           "name": "Inverness",

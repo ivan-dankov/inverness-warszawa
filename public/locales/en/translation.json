@@ -77,14 +77,14 @@
           "suitability": "⚠️ Earlobe only",
           "features": "Fast, but less gentle"
         },
-        "needle": {
-          "name": "Needle (professional)",
-          "sterility": "✅ High, if sterility is maintained",
-          "comfort": "⚠️ Moderate comfort",
-          "healing": "✅ Good healing with proper care",
-          "suitability": "✅ Yes",
-          "features": "Precise method, depends on specialist's experience"
-        },
+      "needle": {
+        "name": "Needle (professional)",
+        "sterility": "⚠️ Depends on specialist's sterility protocols",
+        "comfort": "⚠️ Varies by specialist's skill",
+        "healing": "⚠️ Good IF proper technique + sterility maintained",
+        "suitability": "✅ Yes",
+        "features": "⚠️ All results depend on specialist's experience and sterility"
+      },
         "inverness": {
           "name": "Inverness",
           "sterility": "✅ 100% sterile, single-use system",
