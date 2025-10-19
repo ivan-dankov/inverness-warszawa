@@ -4,6 +4,7 @@
       "about": "O Nas",
       "services": "Usługi",
       "gallery": "Galeria",
+      "comparison": "Porównanie",
       "contact": "Kontakt",
       "earrings": "Kolczyki",
       "aftercare": "Pielęgnacja"
@@ -111,6 +112,46 @@
     "subtitle": "Zobacz nasz profesjonalny sprzęt i efekty naszej pracy",
     "seeAll": "Zobacz Wszystkie",
     "photoCount": "{{count}} zdjęć"
+  },
+  "comparison": {
+    "title": "💎 Dlaczego Inverness?",
+    "subtitle": "Bezpiecznie. Cicho. Sterylnie.",
+    "description": "System Inverness to nowoczesna metoda przekłuwania uszu – delikatna, jednorazowa i w pełni higieniczna. Idealna dla dzieci i dorosłych.",
+    "tableTitle": "🔍 Porównaj metody przekłuwania uszu",
+    "attributes": {
+      "method": "Metoda",
+      "sterility": "Sterylność",
+      "comfort": "Komfort",
+      "healing": "Gojenie",
+      "suitability": "Dla dzieci / chrząstki",
+      "features": "Cechy szczególne"
+    },
+    "methods": {
+      "gun": {
+        "name": "Pistolet",
+        "sterility": "Częściowo sterylny",
+        "comfort": "Głośny, może być bolesny",
+        "healing": "Dłuższe, czasem z powikłaniami",
+        "suitability": "Tylko płatek ucha",
+        "features": "Szybki, ale mniej delikatny"
+      },
+      "needle": {
+        "name": "Igła (profesjonalna)",
+        "sterility": "Wysoka, jeśli zachowana sterylność",
+        "comfort": "Umiarkowany komfort",
+        "healing": "Dobre przy właściwej pielęgnacji",
+        "suitability": "Tak",
+        "features": "Precyzyjna metoda, zależna od doświadczenia specjalisty"
+      },
+      "inverness": {
+        "name": "Inverness 💎",
+        "sterility": "W 100% sterylny, jednorazowy system",
+        "comfort": "Cicho i delikatnie",
+        "healing": "Szybkie, czyste gojenie",
+        "suitability": "Odpowiedni dla dzieci i chrząstki",
+        "features": "Pewność, komfort i bezpieczeństwo w jednym"
+      }
+    }
   },
   "certificates": {
     "title": "Certyfikaty",
