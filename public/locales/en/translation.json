@@ -1,9 +1,13 @@
 {
+  "seo": {
+    "homeDescription": "Safe ear piercing in Warsaw with Inverness MED system. FDA & ISO certificates. For children 0+. Sterile, painless. Book online!"
+  },
   "header": {
     "nav": {
       "about": "About Us",
       "services": "Services",
       "gallery": "Gallery",
+      "comparison": "Comparison",
       "contact": "Contact",
       "earrings": "Earrings",
       "aftercare": "Aftercare"
@@ -15,6 +19,7 @@
     "phone": "Phone"
   },
   "hero": {
+    "h1": "Safe Ear Piercing Warsaw - Inverness MED",
     "title": "Ear Piercing Warsaw",
     "subtitle": "The only system in Europe approved by doctors for safe ear piercing for children and adults. FDA and ISO certificates guarantee the highest standards of sterility.",
     "features": [
@@ -48,6 +53,48 @@
         "description": "Precise, atraumatic piercing without tissue tearing"
       }
     ]
+  },
+  "invernessComparison": {
+    "title": "💎 Why Inverness?",
+    "subtitle": "Safe. Quiet. Sterile.",
+    "description": "The Inverness system is a modern ear piercing method – gentle, single-use, and fully hygienic. Ideal for children and adults.",
+    "compareTitle": "🔍 Compare Ear Piercing Methods",
+    "table": {
+      "headers": {
+        "method": "Method",
+        "sterility": "Sterility",
+        "comfort": "Comfort",
+        "healing": "Healing",
+        "suitability": "For children / cartilage",
+        "features": "Special Features"
+      },
+      "methods": {
+        "gun": {
+          "name": "Gun",
+          "sterility": "⚠️ Partially sterile",
+          "comfort": "❌ Loud, can be painful",
+          "healing": "⚠️ Longer, sometimes with complications",
+          "suitability": "⚠️ Earlobe only",
+          "features": "Fast, but less gentle"
+        },
+      "needle": {
+        "name": "Needle (professional)",
+        "sterility": "✅ High, if sterility is maintained",
+        "comfort": "⚠️ Varies by specialist's skill",
+        "healing": "✅ Good healing with proper care",
+        "suitability": "✅ Yes",
+        "features": "⚠️ All results depend on specialist's experience and sterility"
+      },
+        "inverness": {
+          "name": "Inverness",
+          "sterility": "✅ 100% sterile, single-use system",
+          "comfort": "✅ Quiet and gentle",
+          "healing": "✅ Fast, clean healing",
+          "suitability": "✅ Suitable for children and cartilage",
+          "features": "Confidence, comfort and safety in one"
+        }
+      }
+    }
   },
   "services": {
     "title": "Our Services",
@@ -93,7 +140,7 @@
     "pricing": {
       "title": "Pricing Information",
       "earringsInfo": "Price does not include earrings",
-      "earringsPrice": "Additional charge for earrings: from 100 PLN per pair",
+      "earringsPrice": "Additional charge for earrings: from 90 PLN per pair",
       "mobileVisit": "Mobile service: +50 PLN to service price"
     },
     "bookButton": "Book Online",

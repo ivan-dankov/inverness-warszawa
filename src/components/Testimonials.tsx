@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { useTranslation } from 'react-i18next';
 
-export const Testimonials = () => {
+const Testimonials = () => {
   const { t } = useTranslation();
   const testimonials = [
     {
@@ -139,3 +139,5 @@ export const Testimonials = () => {
     </section>
   );
 };
+
+export default Testimonials;

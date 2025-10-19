@@ -3,32 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inverness MED - Medyczne Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
-    <meta name="description" content="Medyczne przekłuwanie uszu Inverness MED w Warszawie. Jedyny system w Europie zatwierdzony przez lekarzy. Bezpieczne, sterylne i bezbolesne dla dzieci 0+ i dorosłych. Certyfikaty FDA i ISO.">
     <meta name="author" content="Inverness MED" />
-    <meta name="keywords" content="przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha">
-    <link rel="canonical" href="https://gentlepiercing.pl/" />
+    <meta name="keywords" content="przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha" />
+    
+    <!-- Performance: DNS Prefetch & Preconnect for External Resources -->
+    <link rel="dns-prefetch" href="https://booksy.com" />
+    <link rel="dns-prefetch" href="https://d375139ucebi94.cloudfront.net" />
+    <link rel="dns-prefetch" href="https://instagram.com" />
+    <link rel="preconnect" href="https://booksy.com" crossorigin />
+    
+    <!-- Performance: Preload Critical Images and Fonts -->
+    <link rel="preload" as="image" href="/images/inverness-logo-hero.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/images/inverness-logo-hero.jpg" fetchpriority="high" />
+    
+    <!-- Inline critical CSS for LCP text to prevent render blocking -->
+    <style>
+      .hero-subtitle-critical {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        margin-bottom: 2rem;
+        color: hsl(215 16% 47%);
+        line-height: 1.625;
+      }
+      @media (min-width: 1024px) {
+        .hero-subtitle-critical {
+          font-size: 1.25rem;
+        }
+      }
+
+    /* === LOADING SCREEN STYLES === */
+    .loading-screen {
+      position: fixed;
+      inset: 0;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 400ms ease-out;
+    }
+
+    .loading-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loading-spinner {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      border: 2px solid transparent;
+      border-bottom-color: hsl(184 77% 34%);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    </style>
     
     <!-- Geo Tags for Local SEO -->
     <meta name="geo.region" content="PL-MZ" />
     <meta name="geo.placename" content="Warszawa" />
     <meta name="geo.position" content="52.22594129500684;20.945046328079172" />
     <meta name="ICBM" content="52.22594129500684, 20.945046328079172" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://gentlepiercing.pl/" />
-    <meta property="og:site_name" content="Inverness MED" />
-    <meta property="og:locale" content="pl_PL" />
-    <meta property="og:title" content="Inverness MED - Medyczne Przekłuwanie Uszu Warszawa">
-    <meta property="og:description" content="Profesjonalne przekłuwanie uszu systemem medycznym Inverness MED. Bezpieczne dla dzieci 0+ i dorosłych. Certyfikaty FDA i ISO.">
-    <meta property="og:image" content="https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/fe2fefa17af54b6c919f56d37e7e97-inverness-med-medyczne-przeklu-biz-photo-895cc6a308e44d68bbb7a349741529-booksy.jpeg">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="Inverness MED - Medyczne Przekłuwanie Uszu Warszawa">
-    <meta property="twitter:description" content="Profesjonalne przekłuwanie uszu systemem medycznym Inverness MED. Bezpieczne dla dzieci 0+ i dorosłych.">
-    <meta property="twitter:image" content="https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/fe2fefa17af54b6c919f56d37e7e97-inverness-med-medyczne-przeklu-biz-photo-895cc6a308e44d68bbb7a349741529-booksy.jpeg">
     
     <!-- Structured Data / JSON-LD -->
     <script type="application/ld+json">
@@ -97,59 +136,15 @@
     ]
     </script>
     <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/gpt-engineer-file-uploads/GB4s5JEzk4Um0prNkFcFiNvoBTE2/uploads/1760622427421-233270ba-12aa-4f67-bf1c-81bc617a0ff7.jpeg">
-    
-    <style>
-      #loading-screen {
-        position: fixed;
-        inset: 0;
-        background: hsl(0 0% 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        transition: opacity 0.3s ease-out;
-      }
-      
-      #loading-screen.fade-out {
-        opacity: 0;
-        pointer-events: none;
-      }
-      
-      .loading-spinner {
-        width: 4rem;
-        height: 4rem;
-        border-radius: 9999px;
-        border: 4px solid hsl(184 77% 34%);
-        border-top-color: transparent;
-        animation: spin 1s linear infinite;
-      }
-      
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-      
-      @media (prefers-color-scheme: dark) {
-        #loading-screen {
-          background: hsl(224 71% 4%);
-        }
-      }
-    </style>
 </head>
 
   <body>
-    <div id="loading-screen">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
       <div class="loading-spinner"></div>
     </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      window.addEventListener('load', () => {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-          loadingScreen.classList.add('fade-out');
-          setTimeout(() => loadingScreen.remove(), 300);
-        }
-      });
-    </script>
   </body>
 </html>

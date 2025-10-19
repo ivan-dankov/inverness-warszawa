@@ -24,11 +24,13 @@ import img0983 from "@/assets/gallery/IMG_0983.jpg";
 import img0984 from "@/assets/gallery/IMG_0984.jpg";
 import img0985 from "@/assets/gallery/IMG_0985.jpg";
 
-export const Gallery = () => {
+const Gallery = () => {
   const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [imageLoadStatus, setImageLoadStatus] = useState<Record<number, boolean>>({});
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const isTouchingButton = useRef<boolean>(false);
 
   const galleryImages = [
     { src: img0985, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
@@ -51,6 +53,13 @@ export const Gallery = () => {
     { src: img0968, alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
   ];
 
+  const handleImageLoad = (index: number) => {
+    setImageLoadStatus(prev => ({
+      ...prev,
+      [index]: true
+    }));
+  };
+
   const openImage = (index: number) => {
     setSelectedImage(index);
   };
@@ -59,13 +68,15 @@ export const Gallery = () => {
     setSelectedImage(null);
   };
 
-  const nextImage = () => {
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (selectedImage !== null) {
       setSelectedImage((selectedImage + 1) % galleryImages.length);
     }
   };
 
-  const prevImage = () => {
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (selectedImage !== null) {
       setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
     }
@@ -73,14 +84,28 @@ export const Gallery = () => {
 
   // Touch gesture handlers
   const handleTouchStart = (e: React.TouchEvent) => {
+    // Check if touch started on a button or its child
+    const target = e.target as HTMLElement;
+    isTouchingButton.current = target.closest('button') !== null;
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
+    // If finger moved significantly, it's a swipe not a button tap
+    const moveDistance = Math.abs(touchStartX.current - touchEndX.current);
+    if (moveDistance > 10 && isTouchingButton.current) {
+      isTouchingButton.current = false;
+    }
   };
 
   const handleTouchEnd = () => {
+    // Don't process swipe if user tapped a button
+    if (isTouchingButton.current) {
+      isTouchingButton.current = false;
+      return;
+    }
+
     const swipeDistance = touchStartX.current - touchEndX.current;
     const minSwipeDistance = 50;
 
@@ -114,11 +139,21 @@ export const Gallery = () => {
               className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-shadow duration-300 group cursor-pointer"
               onClick={() => openImage(index)}
             >
+              {/* Skeleton Loader */}
+              {!imageLoadStatus[index] && (
+                <div className="absolute inset-0 bg-muted animate-pulse" />
+              )}
+              
               <img 
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
+                  imageLoadStatus[index] ? 'opacity-100' : 'opacity-0'
+                }`}
                 loading="lazy"
+                width="400"
+                height="400"
+                onLoad={() => handleImageLoad(index)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
@@ -161,10 +196,20 @@ export const Gallery = () => {
 
             {selectedImage !== null && (
               <>
+                {/* Loading spinner for lightbox */}
+                {!imageLoadStatus[selectedImage] && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-white border-t-transparent"></div>
+                  </div>
+                )}
+                
                 <img
                   src={galleryImages[selectedImage].src}
                   alt={galleryImages[selectedImage].alt}
-                  className="max-w-full max-h-full object-contain animate-fade-in"
+                  className={`max-w-full max-h-full object-contain transition-opacity duration-300 ${
+                    imageLoadStatus[selectedImage] ? 'opacity-100 animate-fade-in' : 'opacity-0'
+                  }`}
+                  onLoad={() => handleImageLoad(selectedImage)}
                 />
 
                 {/* Desktop Navigation - Sides */}
@@ -172,7 +217,7 @@ export const Gallery = () => {
                   variant="ghost"
                   size="icon"
                   className="hidden md:flex absolute left-4 z-50 text-white hover:bg-white/20"
-                  onClick={prevImage}
+                  onClick={(e) => prevImage(e)}
                 >
                   <ChevronLeft className="h-8 w-8" />
                 </Button>
@@ -181,7 +226,7 @@ export const Gallery = () => {
                   variant="ghost"
                   size="icon"
                   className="hidden md:flex absolute right-4 z-50 text-white hover:bg-white/20"
-                  onClick={nextImage}
+                  onClick={(e) => nextImage(e)}
                 >
                   <ChevronRight className="h-8 w-8" />
                 </Button>
@@ -192,7 +237,7 @@ export const Gallery = () => {
                     variant="ghost"
                     size="icon"
                     className="text-white hover:bg-white/20"
-                    onClick={prevImage}
+                    onClick={(e) => prevImage(e)}
                   >
                     <ChevronLeft className="h-8 w-8" />
                   </Button>
@@ -200,7 +245,7 @@ export const Gallery = () => {
                     variant="ghost"
                     size="icon"
                     className="text-white hover:bg-white/20"
-                    onClick={nextImage}
+                    onClick={(e) => nextImage(e)}
                   >
                     <ChevronRight className="h-8 w-8" />
                   </Button>
@@ -217,3 +262,5 @@ export const Gallery = () => {
     </section>
   );
 };
+
+export default Gallery;

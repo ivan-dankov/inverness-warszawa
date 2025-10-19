@@ -52,6 +52,9 @@ export const Header = () => {
             <button onClick={() => handleNavClick('gallery')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.gallery')}
             </button>
+            <button onClick={() => handleNavClick('comparison')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+              {t('header.nav.comparison')}
+            </button>
             <button onClick={() => navigate('/aftercare')} className={`text-sm font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.aftercare')}
             </button>
@@ -102,6 +105,9 @@ export const Header = () => {
                   </button>
                   <button onClick={() => handleNavClick('gallery')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.gallery')}
+                  </button>
+                  <button onClick={() => handleNavClick('comparison')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.comparison')}
                   </button>
                   <button onClick={() => navigate('/aftercare')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.aftercare')}

@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
-export const FAQ = () => {
+const FAQ = () => {
   const { t } = useTranslation();
   const faqs = t('faq.items', { returnObjects: true }) as Array<{
     question: string;
@@ -55,3 +55,5 @@ export const FAQ = () => {
     </section>
   );
 };
+
+export default FAQ;
