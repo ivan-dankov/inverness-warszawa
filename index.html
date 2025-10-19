@@ -170,11 +170,37 @@
         .hero-container { padding: 2rem; }
         .hero-h1 { font-size: 3rem; }
         .hero-subtitle-critical { font-size: 1.25rem; }
+        .hero-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       }
       
-      /* Hide static shell after React hydrates */
-      .hero-static-shell.hydrated {
+      /* Gallery placeholder (hidden but maintains layout) */
+      .hero-gallery {
         display: none;
+      }
+      
+      @media (min-width: 1024px) {
+        .hero-gallery {
+          display: block;
+        }
+      }
+      
+      /* Smooth fade-out transition for static shell */
+      .hero-static-shell {
+        position: relative;
+        z-index: 9999;
+        transition: opacity 300ms ease-out;
+        opacity: 1;
+      }
+      
+      .hero-static-shell.hydrated {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      /* Ensure React content renders behind during transition */
+      #root > :not(.hero-static-shell) {
+        position: relative;
+        z-index: 1;
       }
     </style>
     
@@ -319,6 +345,9 @@
                   </div>
                 </div>
               </div>
+              
+              <!-- Right Column: Gallery Placeholder -->
+              <div class="hero-gallery"></div>
             </div>
           </div>
         </section>
