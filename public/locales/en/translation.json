@@ -49,6 +49,48 @@
       }
     ]
   },
+  "invernessComparison": {
+    "title": "💎 Why Inverness?",
+    "subtitle": "Safe. Quiet. Sterile.",
+    "description": "The Inverness system is a modern ear piercing method – gentle, single-use, and fully hygienic. Ideal for children and adults.",
+    "compareTitle": "🔍 Compare Ear Piercing Methods",
+    "table": {
+      "headers": {
+        "method": "Method",
+        "sterility": "Sterility",
+        "comfort": "Comfort",
+        "healing": "Healing",
+        "suitability": "For children / cartilage",
+        "features": "Special Features"
+      },
+      "methods": {
+        "gun": {
+          "name": "Gun",
+          "sterility": "🔸 Partially sterile",
+          "comfort": "😣 Loud, can be painful",
+          "healing": "⏳ Longer, sometimes with complications",
+          "suitability": "⚠️ Earlobe only",
+          "features": "Fast, but less gentle"
+        },
+        "needle": {
+          "name": "Needle (professional)",
+          "sterility": "✅ High, if sterility is maintained",
+          "comfort": "🙂 Moderate comfort",
+          "healing": "⏱ Good healing with proper care",
+          "suitability": "✅ Yes",
+          "features": "Precise method, depends on specialist's experience"
+        },
+        "inverness": {
+          "name": "Inverness 💎",
+          "sterility": "🧊 100% sterile, single-use system",
+          "comfort": "😊 Quiet and gentle",
+          "healing": "⚡️ Fast, clean healing",
+          "suitability": "🌟 Suitable for children and cartilage",
+          "features": "Confidence, comfort and safety in one"
+        }
+      }
+    }
+  },
   "services": {
     "title": "Our Services",
     "subtitle": "Professional ear piercing using certified medical system",
