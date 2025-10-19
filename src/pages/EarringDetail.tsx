@@ -71,8 +71,8 @@ export default function EarringDetail() {
   }
   return <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
-        <title>{earring.name} - Kolczyki Inverness MED Warszawa</title>
-        <meta name="description" content={earring.description_points?.[0] || `${earring.name}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie.`} />
+        <title>{earring.name || 'Kolczyki'} - Kolczyki Inverness MED Warszawa</title>
+        <meta name="description" content={earring.description_points?.[0] || `${earring.name || 'Kolczyki'}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie.`} />
         <link rel="canonical" href={`https://gentlepiercing.pl/earrings/${productId}`} />
         <link rel="alternate" hrefLang="pl" href={`https://gentlepiercing.pl/earrings/${productId}`} />
         <link rel="alternate" hrefLang="en" href={`https://gentlepiercing.pl/earrings/${productId}`} />
