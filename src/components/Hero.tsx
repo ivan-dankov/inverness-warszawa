@@ -32,7 +32,7 @@ export const Hero = () => {
                 decoding="async"
               />
             </picture>
-            <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed" style={{ contain: 'layout', willChange: 'auto' }}>
+            <p className="hero-subtitle-critical">
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">

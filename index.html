@@ -12,8 +12,25 @@
     <link rel="dns-prefetch" href="https://instagram.com" />
     <link rel="preconnect" href="https://booksy.com" crossorigin />
     
-    <!-- Performance: Preload Critical Images -->
+    <!-- Performance: Preload Critical Images and Fonts -->
+    <link rel="preload" as="image" href="/images/inverness-logo-hero.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="image" href="/images/inverness-logo-hero.jpg" fetchpriority="high" />
+    
+    <!-- Inline critical CSS for LCP text to prevent render blocking -->
+    <style>
+      .hero-subtitle-critical {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        margin-bottom: 2rem;
+        color: hsl(215 16% 47%);
+        line-height: 1.625;
+      }
+      @media (min-width: 1024px) {
+        .hero-subtitle-critical {
+          font-size: 1.25rem;
+        }
+      }
+    </style>
     
     <!-- Geo Tags for Local SEO -->
     <meta name="geo.region" content="PL-MZ" />
