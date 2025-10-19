@@ -2,14 +2,45 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/inverness-logo-hero.jpg";
-import hero1 from "@/assets/hero/hero-1.jpg";
-import hero2 from "@/assets/hero/hero-2.jpg";
-import hero3 from "@/assets/hero/hero-3.jpg";
-import hero4 from "@/assets/hero/hero-4.jpg";
+
+// Hero image - multiple sizes
+import hero1_400 from "@/assets/hero/hero-1.jpg?w=400&format=webp";
+import hero1_800 from "@/assets/hero/hero-1.jpg?w=800&format=webp";
+import hero1_1200 from "@/assets/hero/hero-1.jpg?w=1200&format=webp";
+import hero2_400 from "@/assets/hero/hero-2.jpg?w=400&format=webp";
+import hero2_800 from "@/assets/hero/hero-2.jpg?w=800&format=webp";
+import hero2_1200 from "@/assets/hero/hero-2.jpg?w=1200&format=webp";
+import hero3_400 from "@/assets/hero/hero-3.jpg?w=400&format=webp";
+import hero3_800 from "@/assets/hero/hero-3.jpg?w=800&format=webp";
+import hero3_1200 from "@/assets/hero/hero-3.jpg?w=1200&format=webp";
+import hero4_400 from "@/assets/hero/hero-4.jpg?w=400&format=webp";
+import hero4_800 from "@/assets/hero/hero-4.jpg?w=800&format=webp";
+import hero4_1200 from "@/assets/hero/hero-4.jpg?w=1200&format=webp";
 
 export const Hero = () => {
   const { t } = useTranslation();
-  const galleryImages = [hero1, hero2, hero3, hero4];
+  const galleryImages = [
+    {
+      srcset: `${hero1_400} 400w, ${hero1_800} 800w, ${hero1_1200} 1200w`,
+      sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
+      src: hero1_800,
+    },
+    {
+      srcset: `${hero2_400} 400w, ${hero2_800} 800w, ${hero2_1200} 1200w`,
+      sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
+      src: hero2_800,
+    },
+    {
+      srcset: `${hero3_400} 400w, ${hero3_800} 800w, ${hero3_1200} 1200w`,
+      sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
+      src: hero3_800,
+    },
+    {
+      srcset: `${hero4_400} 400w, ${hero4_800} 800w, ${hero4_1200} 1200w`,
+      sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
+      src: hero4_800,
+    },
+  ];
   return <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/70 z-0" />
       
@@ -70,7 +101,9 @@ export const Hero = () => {
                   animationDelay: `${index * 0.1}s`
                 }}>
                   <img 
-                    src={image} 
+                    srcSet={image.srcset}
+                    sizes={image.sizes}
+                    src={image.src}
                     alt={altTexts[index]} 
                     className="w-full h-full object-cover" 
                     loading={index < 2 ? "eager" : "lazy"}

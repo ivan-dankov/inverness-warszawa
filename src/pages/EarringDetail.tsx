@@ -127,6 +127,7 @@ export default function EarringDetail() {
                     loading="eager"
                     fetchPriority="high"
                     decoding="async"
+                    style={{ maxWidth: '800px' }}
                   />
                 </div>
                 
@@ -144,6 +145,10 @@ export default function EarringDetail() {
                           decoding="async"
                           width="120"
                           height="120"
+                          style={{ 
+                            contentVisibility: 'auto',
+                            containIntrinsicSize: '120px 120px'
+                          }}
                         />
                       </button>)}
                   </div>}

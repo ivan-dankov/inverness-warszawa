@@ -4,25 +4,43 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from 'react-i18next';
 
-// Import gallery images
-import img0968 from "@/assets/gallery/IMG_0968.jpg";
-import img0969 from "@/assets/gallery/IMG_0969.jpg";
-import img0970 from "@/assets/gallery/IMG_0970.jpg";
-import img0971 from "@/assets/gallery/IMG_0971.jpg";
-import img0972 from "@/assets/gallery/IMG_0972.jpg";
-import img0973 from "@/assets/gallery/IMG_0973.jpg";
-import img0974 from "@/assets/gallery/IMG_0974.jpg";
-import img0975 from "@/assets/gallery/IMG_0975.jpg";
-import img0976 from "@/assets/gallery/IMG_0976.jpg";
-import img0977 from "@/assets/gallery/IMG_0977.jpg";
-import img0978 from "@/assets/gallery/IMG_0978.jpg";
-import img0979 from "@/assets/gallery/IMG_0979.jpg";
-import img0980 from "@/assets/gallery/IMG_0980.jpg";
-import img0981 from "@/assets/gallery/IMG_0981.jpg";
-import img0982 from "@/assets/gallery/IMG_0982.jpg";
-import img0983 from "@/assets/gallery/IMG_0983.jpg";
-import img0984 from "@/assets/gallery/IMG_0984.jpg";
-import img0985 from "@/assets/gallery/IMG_0985.jpg";
+// Import gallery images - thumbnails for grid, full for lightbox
+import img0968_thumb from "@/assets/gallery/IMG_0968.jpg?w=400&format=webp";
+import img0968_full from "@/assets/gallery/IMG_0968.jpg?w=1920&format=webp";
+import img0969_thumb from "@/assets/gallery/IMG_0969.jpg?w=400&format=webp";
+import img0969_full from "@/assets/gallery/IMG_0969.jpg?w=1920&format=webp";
+import img0970_thumb from "@/assets/gallery/IMG_0970.jpg?w=400&format=webp";
+import img0970_full from "@/assets/gallery/IMG_0970.jpg?w=1920&format=webp";
+import img0971_thumb from "@/assets/gallery/IMG_0971.jpg?w=400&format=webp";
+import img0971_full from "@/assets/gallery/IMG_0971.jpg?w=1920&format=webp";
+import img0972_thumb from "@/assets/gallery/IMG_0972.jpg?w=400&format=webp";
+import img0972_full from "@/assets/gallery/IMG_0972.jpg?w=1920&format=webp";
+import img0973_thumb from "@/assets/gallery/IMG_0973.jpg?w=400&format=webp";
+import img0973_full from "@/assets/gallery/IMG_0973.jpg?w=1920&format=webp";
+import img0974_thumb from "@/assets/gallery/IMG_0974.jpg?w=400&format=webp";
+import img0974_full from "@/assets/gallery/IMG_0974.jpg?w=1920&format=webp";
+import img0975_thumb from "@/assets/gallery/IMG_0975.jpg?w=400&format=webp";
+import img0975_full from "@/assets/gallery/IMG_0975.jpg?w=1920&format=webp";
+import img0976_thumb from "@/assets/gallery/IMG_0976.jpg?w=400&format=webp";
+import img0976_full from "@/assets/gallery/IMG_0976.jpg?w=1920&format=webp";
+import img0977_thumb from "@/assets/gallery/IMG_0977.jpg?w=400&format=webp";
+import img0977_full from "@/assets/gallery/IMG_0977.jpg?w=1920&format=webp";
+import img0978_thumb from "@/assets/gallery/IMG_0978.jpg?w=400&format=webp";
+import img0978_full from "@/assets/gallery/IMG_0978.jpg?w=1920&format=webp";
+import img0979_thumb from "@/assets/gallery/IMG_0979.jpg?w=400&format=webp";
+import img0979_full from "@/assets/gallery/IMG_0979.jpg?w=1920&format=webp";
+import img0980_thumb from "@/assets/gallery/IMG_0980.jpg?w=400&format=webp";
+import img0980_full from "@/assets/gallery/IMG_0980.jpg?w=1920&format=webp";
+import img0981_thumb from "@/assets/gallery/IMG_0981.jpg?w=400&format=webp";
+import img0981_full from "@/assets/gallery/IMG_0981.jpg?w=1920&format=webp";
+import img0982_thumb from "@/assets/gallery/IMG_0982.jpg?w=400&format=webp";
+import img0982_full from "@/assets/gallery/IMG_0982.jpg?w=1920&format=webp";
+import img0983_thumb from "@/assets/gallery/IMG_0983.jpg?w=400&format=webp";
+import img0983_full from "@/assets/gallery/IMG_0983.jpg?w=1920&format=webp";
+import img0984_thumb from "@/assets/gallery/IMG_0984.jpg?w=400&format=webp";
+import img0984_full from "@/assets/gallery/IMG_0984.jpg?w=1920&format=webp";
+import img0985_thumb from "@/assets/gallery/IMG_0985.jpg?w=400&format=webp";
+import img0985_full from "@/assets/gallery/IMG_0985.jpg?w=1920&format=webp";
 
 export const Gallery = () => {
   const { t } = useTranslation();
@@ -31,24 +49,24 @@ export const Gallery = () => {
   const touchEndX = useRef<number>(0);
 
   const galleryImages = [
-    { src: img0985, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
-    { src: img0984, alt: "Przekłucie płatka ucha przed i po z kryształowym kolczykiem - medyczne przekłuwanie" },
-    { src: img0983, alt: "Przekłucie ucha dziecka z perłowym kolczykiem Inverness" },
-    { src: img0982, alt: "Przekłucie płatka i conch przed i po z wiszącymi kolczykami kryształowymi" },
-    { src: img0981, alt: "Przekłucie helix i płatka ucha z kolczykami złotymi i kryształami" },
-    { src: img0980, alt: "Przekłucie ucha dziecka przed i po z różowym kwiatowym kolczykiem" },
-    { src: img0979, alt: "Profesjonalne przekłucie uszu dziecka z fioletowym kryształowym kolczykiem" },
-    { src: img0978, alt: "Medyczne przekłucie ucha dziewczynki z holograficznym kolczykiem" },
-    { src: img0977, alt: "Zadowolone dziecko po przekłuciu uszu - bezbolesny system Inverness MED" },
-    { src: img0976, alt: "Przekłucie uszu dziecka ze złotymi kolczykami w salonie Inverness MED" },
-    { src: img0975, alt: "Luksusowe przekłucie ucha z czterema kolczykami - księżyc, krzyżyk i kryształy" },
-    { src: img0974, alt: "Przekłucie płatka ucha dziecka ze złotym kwiatkiem Inverness" },
-    { src: img0973, alt: "Przekłucie conch i płatka z trzema złotymi kolczykami z gwiazdką" },
-    { src: img0972, alt: "Przekłucie rook i helix z kryształowymi kolczykami medycznymi" },
-    { src: img0971, alt: "Przekłucie rook, daith i płatka ze złotymi wiszącymi kolczykami z kryształami" },
-    { src: img0970, alt: "Przekłucie tragus i płatka z błyszczącym wiszącym kolczykiem kryształowym" },
-    { src: img0969, alt: "Przekłucie conch z czerwonym kryształem i płatka z kryształem Inverness MED" },
-    { src: img0968, alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
+    { thumb: img0985_thumb, full: img0985_full, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
+    { thumb: img0984_thumb, full: img0984_full, alt: "Przekłucie płatka ucha przed i po z kryształowym kolczykiem - medyczne przekłuwanie" },
+    { thumb: img0983_thumb, full: img0983_full, alt: "Przekłucie ucha dziecka z perłowym kolczykiem Inverness" },
+    { thumb: img0982_thumb, full: img0982_full, alt: "Przekłucie płatka i conch przed i po z wiszącymi kolczykami kryształowymi" },
+    { thumb: img0981_thumb, full: img0981_full, alt: "Przekłucie helix i płatka ucha z kolczykami złotymi i kryształami" },
+    { thumb: img0980_thumb, full: img0980_full, alt: "Przekłucie ucha dziecka przed i po z różowym kwiatowym kolczykiem" },
+    { thumb: img0979_thumb, full: img0979_full, alt: "Profesjonalne przekłucie uszu dziecka z fioletowym kryształowym kolczykiem" },
+    { thumb: img0978_thumb, full: img0978_full, alt: "Medyczne przekłucie ucha dziewczynki z holograficznym kolczykiem" },
+    { thumb: img0977_thumb, full: img0977_full, alt: "Zadowolone dziecko po przekłuciu uszu - bezbolesny system Inverness MED" },
+    { thumb: img0976_thumb, full: img0976_full, alt: "Przekłucie uszu dziecka ze złotymi kolczykami w salonie Inverness MED" },
+    { thumb: img0975_thumb, full: img0975_full, alt: "Luksusowe przekłucie ucha z czterema kolczykami - księżyc, krzyżyk i kryształy" },
+    { thumb: img0974_thumb, full: img0974_full, alt: "Przekłucie płatka ucha dziecka ze złotym kwiatkiem Inverness" },
+    { thumb: img0973_thumb, full: img0973_full, alt: "Przekłucie conch i płatka z trzema złotymi kolczykami z gwiazdką" },
+    { thumb: img0972_thumb, full: img0972_full, alt: "Przekłucie rook i helix z kryształowymi kolczykami medycznymi" },
+    { thumb: img0971_thumb, full: img0971_full, alt: "Przekłucie rook, daith i płatka ze złotymi wiszącymi kolczykami z kryształami" },
+    { thumb: img0970_thumb, full: img0970_full, alt: "Przekłucie tragus i płatka z błyszczącym wiszącym kolczykiem kryształowym" },
+    { thumb: img0969_thumb, full: img0969_full, alt: "Przekłucie conch z czerwonym kryształem i płatka z kryształem Inverness MED" },
+    { thumb: img0968_thumb, full: img0968_full, alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
   ];
 
   const openImage = (index: number) => {
@@ -115,7 +133,7 @@ export const Gallery = () => {
               onClick={() => openImage(index)}
             >
               <img 
-                src={image.src}
+                src={image.thumb}
                 alt={image.alt}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
@@ -165,7 +183,7 @@ export const Gallery = () => {
             {selectedImage !== null && (
               <>
                 <img
-                  src={galleryImages[selectedImage].src}
+                  src={galleryImages[selectedImage].full}
                   alt={galleryImages[selectedImage].alt}
                   className="max-w-full max-h-full object-contain animate-fade-in"
                   loading="eager"

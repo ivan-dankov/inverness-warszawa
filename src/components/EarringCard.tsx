@@ -23,6 +23,10 @@ export const EarringCard = ({ earring, index, className = "" }: EarringCardProps
         decoding="async"
         width="400"
         height="400"
+        style={{ 
+          contentVisibility: 'auto',
+          containIntrinsicSize: '400px 400px'
+        }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
