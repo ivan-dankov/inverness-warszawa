@@ -24,9 +24,10 @@ import img0983 from "@/assets/gallery/IMG_0983.jpg";
 import img0984 from "@/assets/gallery/IMG_0984.jpg";
 import img0985 from "@/assets/gallery/IMG_0985.jpg";
 
-export const Gallery = () => {
+const Gallery = () => {
   const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
+  const [imageLoadStatus, setImageLoadStatus] = useState<Record<number, boolean>>({});
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
 
@@ -50,6 +51,13 @@ export const Gallery = () => {
     { src: img0969, alt: "Przekłucie conch z czerwonym kryształem i płatka z kryształem Inverness MED" },
     { src: img0968, alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
   ];
+
+  const handleImageLoad = (index: number) => {
+    setImageLoadStatus(prev => ({
+      ...prev,
+      [index]: true
+    }));
+  };
 
   const openImage = (index: number) => {
     setSelectedImage(index);
@@ -114,11 +122,21 @@ export const Gallery = () => {
               className="relative aspect-square overflow-hidden rounded-lg shadow-soft hover:shadow-card transition-shadow duration-300 group cursor-pointer"
               onClick={() => openImage(index)}
             >
+              {/* Skeleton Loader */}
+              {!imageLoadStatus[index] && (
+                <div className="absolute inset-0 bg-muted animate-pulse" />
+              )}
+              
               <img 
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${
+                  imageLoadStatus[index] ? 'opacity-100' : 'opacity-0'
+                }`}
                 loading="lazy"
+                width="400"
+                height="400"
+                onLoad={() => handleImageLoad(index)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
@@ -161,10 +179,20 @@ export const Gallery = () => {
 
             {selectedImage !== null && (
               <>
+                {/* Loading spinner for lightbox */}
+                {!imageLoadStatus[selectedImage] && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-white border-t-transparent"></div>
+                  </div>
+                )}
+                
                 <img
                   src={galleryImages[selectedImage].src}
                   alt={galleryImages[selectedImage].alt}
-                  className="max-w-full max-h-full object-contain animate-fade-in"
+                  className={`max-w-full max-h-full object-contain transition-opacity duration-300 ${
+                    imageLoadStatus[selectedImage] ? 'opacity-100 animate-fade-in' : 'opacity-0'
+                  }`}
+                  onLoad={() => handleImageLoad(selectedImage)}
                 />
 
                 {/* Desktop Navigation - Sides */}
@@ -217,3 +245,5 @@ export const Gallery = () => {
     </section>
   );
 };
+
+export default Gallery;

@@ -1,19 +1,29 @@
+import { lazy, Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
-import { InvernessComparison } from "@/components/InvernessComparison";
 import { Services } from "@/components/Services";
-import { Testimonials } from "@/components/Testimonials";
 import { Earrings } from "@/components/Earrings";
-import { Gallery } from "@/components/Gallery";
 import { CertificateViewer } from "@/components/CertificateViewer";
-import { FAQ } from "@/components/FAQ";
-import { FAQSchema } from "@/components/FAQSchema";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { StickyBookingCTA } from "@/components/StickyBookingCTA";
+import { FAQSchema } from "@/components/FAQSchema";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+
+// Lazy load below-the-fold components for better performance
+const Gallery = lazy(() => import("@/components/Gallery"));
+const Testimonials = lazy(() => import("@/components/Testimonials"));
+const FAQ = lazy(() => import("@/components/FAQ"));
+const InvernessComparison = lazy(() => import("@/components/InvernessComparison"));
+
+// Loading component for lazy sections
+const SectionLoader = () => (
+  <div className="py-20 flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+  </div>
+);
 
 const Index = () => {
   const { t } = useTranslation();
@@ -40,12 +50,20 @@ const Index = () => {
         <Hero />
         <About />
         <Services />
-        <Testimonials />
+        <Suspense fallback={<SectionLoader />}>
+          <Testimonials />
+        </Suspense>
         <Earrings />
-        <Gallery />
-        <InvernessComparison />
+        <Suspense fallback={<SectionLoader />}>
+          <Gallery />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <InvernessComparison />
+        </Suspense>
         <CertificateViewer />
-        <FAQ />
+        <Suspense fallback={<SectionLoader />}>
+          <FAQ />
+        </Suspense>
         <Contact />
       </main>
       <Footer />

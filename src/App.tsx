@@ -3,14 +3,16 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
-import EarringsGallery from "./pages/EarringsGallery";
-import EarringDetail from "./pages/EarringDetail";
-import Aftercare from "./pages/Aftercare";
-import NotFound from "./pages/NotFound";
+
+// Lazy load route components for better performance
+const EarringsGallery = lazy(() => import("./pages/EarringsGallery"));
+const EarringDetail = lazy(() => import("./pages/EarringDetail"));
+const Aftercare = lazy(() => import("./pages/Aftercare"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -79,14 +81,20 @@ const App = () => (
         <BrowserRouter>
           <LanguageManager />
           <SmartScrollManager />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/earrings" element={<EarringsGallery />} />
-            <Route path="/earrings/:productId" element={<EarringDetail />} />
-            <Route path="/aftercare" element={<Aftercare />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          }>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/earrings" element={<EarringsGallery />} />
+              <Route path="/earrings/:productId" element={<EarringDetail />} />
+              <Route path="/aftercare" element={<Aftercare />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

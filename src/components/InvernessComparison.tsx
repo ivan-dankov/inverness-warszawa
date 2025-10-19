@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export const InvernessComparison = () => {
+const InvernessComparison = () => {
   const { t, ready } = useTranslation();
   
   // Don't render until translations are ready
@@ -92,3 +92,5 @@ export const InvernessComparison = () => {
     </section>
   );
 };
+
+export default InvernessComparison;
