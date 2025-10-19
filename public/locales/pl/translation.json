@@ -79,9 +79,9 @@
         },
         "needle": {
           "name": "Igła (profesjonalna)",
-          "sterility": "⚠️ Zależy od protokołów sterylności specjalisty",
+          "sterility": "✅ Wysoka, jeśli zachowana sterylność",
           "comfort": "⚠️ Zależy od umiejętności specjalisty",
-          "healing": "⚠️ Dobre JEŚLI właściwa technika + sterylność",
+          "healing": "✅ Dobre gojenie przy właściwej pielęgnacji",
           "suitability": "✅ Tak",
           "features": "⚠️ Wszystkie wyniki zależą od doświadczenia i sterylności specjalisty"
         },

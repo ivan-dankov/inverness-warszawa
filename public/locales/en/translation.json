@@ -79,9 +79,9 @@
         },
       "needle": {
         "name": "Needle (professional)",
-        "sterility": "⚠️ Depends on specialist's sterility protocols",
+        "sterility": "✅ High, if sterility is maintained",
         "comfort": "⚠️ Varies by specialist's skill",
-        "healing": "⚠️ Good IF proper technique + sterility maintained",
+        "healing": "✅ Good healing with proper care",
         "suitability": "✅ Yes",
         "features": "⚠️ All results depend on specialist's experience and sterility"
       },
