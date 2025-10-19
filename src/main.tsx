@@ -36,3 +36,13 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </Suspense>
 );
+
+// Hide static shell once React has rendered
+setTimeout(() => {
+  const staticShell = document.querySelector('.hero-static-shell');
+  if (staticShell) {
+    staticShell.classList.add('hydrated');
+    // Remove from DOM after transition completes
+    setTimeout(() => staticShell.remove(), 300);
+  }
+}, 0);
