@@ -67,13 +67,15 @@ const Gallery = () => {
     setSelectedImage(null);
   };
 
-  const nextImage = () => {
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (selectedImage !== null) {
       setSelectedImage((selectedImage + 1) % galleryImages.length);
     }
   };
 
-  const prevImage = () => {
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
     if (selectedImage !== null) {
       setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
     }
@@ -200,7 +202,7 @@ const Gallery = () => {
                   variant="ghost"
                   size="icon"
                   className="hidden md:flex absolute left-4 z-50 text-white hover:bg-white/20"
-                  onClick={prevImage}
+                  onClick={(e) => prevImage(e)}
                 >
                   <ChevronLeft className="h-8 w-8" />
                 </Button>
@@ -209,7 +211,7 @@ const Gallery = () => {
                   variant="ghost"
                   size="icon"
                   className="hidden md:flex absolute right-4 z-50 text-white hover:bg-white/20"
-                  onClick={nextImage}
+                  onClick={(e) => nextImage(e)}
                 >
                   <ChevronRight className="h-8 w-8" />
                 </Button>
@@ -220,7 +222,7 @@ const Gallery = () => {
                     variant="ghost"
                     size="icon"
                     className="text-white hover:bg-white/20"
-                    onClick={prevImage}
+                    onClick={(e) => prevImage(e)}
                   >
                     <ChevronLeft className="h-8 w-8" />
                   </Button>
@@ -228,7 +230,7 @@ const Gallery = () => {
                     variant="ghost"
                     size="icon"
                     className="text-white hover:bg-white/20"
-                    onClick={nextImage}
+                    onClick={(e) => nextImage(e)}
                   >
                     <ChevronRight className="h-8 w-8" />
                   </Button>
