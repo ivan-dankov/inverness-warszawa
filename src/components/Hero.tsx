@@ -20,18 +20,15 @@ export const Hero = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               {t('hero.h1')}
             </h1>
-            <picture>
-              <source srcSet="/images/inverness-logo-hero.webp" type="image/webp" />
-              <img 
-                src="/images/inverness-logo-hero.jpg" 
-                alt="Inverness MED - Professional Medical Ear Piercing System" 
-                className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm"
-                width="256"
-                height="87"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </picture>
+            <img 
+              src="/images/inverness-logo-hero.jpg" 
+              alt="Inverness MED - Professional Medical Ear Piercing System" 
+              className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm"
+              width="256"
+              height="87"
+              fetchPriority="high"
+              decoding="async"
+            />
             <p className="hero-subtitle-critical">
               {t('hero.subtitle')}
             </p>
