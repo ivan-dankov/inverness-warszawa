@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { StickyBookingCTA } from "@/components/StickyBookingCTA";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
@@ -90,7 +89,6 @@ export default function Aftercare() {
         </div>
       </main>
       <Footer />
-      <StickyBookingCTA />
     </>
   );
 }

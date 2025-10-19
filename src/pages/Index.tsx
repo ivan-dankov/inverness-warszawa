@@ -11,7 +11,6 @@ import { FAQ } from "@/components/FAQ";
 import { FAQSchema } from "@/components/FAQSchema";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { StickyBookingCTA } from "@/components/StickyBookingCTA";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
@@ -49,7 +48,6 @@ const Index = () => {
         <Contact />
       </main>
       <Footer />
-      <StickyBookingCTA />
     </div>
   );
 };
