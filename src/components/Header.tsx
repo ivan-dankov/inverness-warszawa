@@ -11,9 +11,9 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 // @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
-import logo1x from "@/assets/logo.jpg?w=144&h=48&format=webp&fit=cover";
+import logo1x from "@/assets/logo.jpg?h=48&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
-import logo2x from "@/assets/logo.jpg?w=288&h=96&format=webp&fit=cover";
+import logo2x from "@/assets/logo.jpg?h=96&format=webp";
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -44,7 +44,7 @@ export const Header = () => {
               src={logo1x}
               alt="Inverness MED" 
               className="h-12 w-auto" 
-              width="144"
+              width="48"
               height="48"
               loading="eager"
               fetchPriority="high"
@@ -108,7 +108,7 @@ export const Header = () => {
                       src={logo1x}
                       alt="Inverness MED" 
                       className="h-12 w-auto" 
-                      width="144"
+                      width="48"
                       height="48"
                       loading="lazy"
                       decoding="async"
