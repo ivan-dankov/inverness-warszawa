@@ -16,7 +16,15 @@ export const Hero = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               <span className="text-teal-600">Inverness MED</span> {t('hero.title')}
             </h1>
-            <img src={logo} alt="Inverness MED" className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm" />
+            <img 
+              src={logo} 
+              alt="Inverness MED" 
+              className="block mt-6 sm:mt-8 mb-6 sm:mb-8 w-48 sm:w-64 lg:max-w-sm" 
+              loading="eager"
+              fetchPriority="high"
+              width="256"
+              height="auto"
+            />
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
               {t('hero.subtitle')}
             </p>
@@ -57,7 +65,16 @@ export const Hero = () => {
                 <div key={index} className="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group hover-scale" style={{
                   animationDelay: `${index * 0.1}s`
                 }}>
-                  <img src={image} alt={altTexts[index]} className="w-full h-full object-cover" loading="eager" />
+                  <img 
+                    src={image} 
+                    alt={altTexts[index]} 
+                    className="w-full h-full object-cover" 
+                    loading={index < 2 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    decoding="async"
+                    width="400"
+                    height="400"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               );

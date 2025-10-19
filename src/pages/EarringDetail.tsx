@@ -119,7 +119,15 @@ export default function EarringDetail() {
                   {!imageLoaded && <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                     </div>}
-                  <img src={earring.images[selectedImageIndex]} alt={earring.name} className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} onLoad={() => setImageLoaded(true)} />
+                  <img 
+                    src={earring.images[selectedImageIndex]} 
+                    alt={earring.name} 
+                    className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} 
+                    onLoad={() => setImageLoaded(true)}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                  />
                 </div>
                 
                 {/* Horizontal Thumbnails Below */}
@@ -128,7 +136,15 @@ export default function EarringDetail() {
                   setSelectedImageIndex(idx);
                   setImageLoaded(false);
                 }} className={`aspect-square rounded-lg overflow-hidden transition-all duration-200 border-2 ${idx === selectedImageIndex ? 'border-primary scale-105' : 'border-border hover:border-primary/50 opacity-70 hover:opacity-100'}`} aria-label={`Show image ${idx + 1} of ${earring.images.length}`}>
-                        <img src={img} alt={earring.name} className="w-full h-full object-cover" />
+                        <img 
+                          src={img} 
+                          alt={earring.name} 
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                          width="120"
+                          height="120"
+                        />
                       </button>)}
                   </div>}
               </div>
