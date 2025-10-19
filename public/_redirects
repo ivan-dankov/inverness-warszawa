@@ -1,0 +1,5 @@
+# Redirect all lovable.app subdomains to custom domain (301 permanent)
+https://*.lovable.app/*  https://gentlepiercing.pl/:splat  301!
+
+# Redirect www to non-www
+https://www.gentlepiercing.pl/*  https://gentlepiercing.pl/:splat  301!

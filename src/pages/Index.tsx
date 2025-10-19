@@ -13,15 +13,18 @@ import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
+import { shouldNoIndex } from "@/lib/seo-utils";
 
 const Index = () => {
   const { t } = useTranslation();
+  const noIndex = shouldNoIndex();
   
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Inverness MED - Przekłuwanie Uszu Warszawa | Bezpieczne Piercing dla Dzieci 0+</title>
         <meta name="description" content={t('hero.subtitle')} />
+        {noIndex && <meta name="robots" content="noindex, nofollow" />}
         <link rel="canonical" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/" />

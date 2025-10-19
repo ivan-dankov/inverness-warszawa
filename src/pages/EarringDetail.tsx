@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { getSpecificationTranslation } from "@/lib/specificationTranslations";
 import { Helmet } from "react-helmet-async";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { shouldNoIndex } from "@/lib/seo-utils";
 
 export default function EarringDetail() {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ export default function EarringDetail() {
   const earring = earrings[currentIndex];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const noIndex = shouldNoIndex();
 
   // Get random other items (excluding current) - uses product index as seed for consistency
   const otherEarrings = useMemo(() => {
@@ -73,6 +75,7 @@ export default function EarringDetail() {
       <Helmet>
         <title>{`${earring.name} - Kolczyki Inverness MED Warszawa`}</title>
         <meta name="description" content={earring.description_points?.[0] || `${earring.name}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie.`} />
+        {noIndex && <meta name="robots" content="noindex, nofollow" />}
         <link rel="canonical" href={`https://gentlepiercing.pl/earrings/${productId}`} />
         <link rel="alternate" hrefLang="pl" href={`https://gentlepiercing.pl/earrings/${productId}`} />
         <link rel="alternate" hrefLang="en" href={`https://gentlepiercing.pl/earrings/${productId}`} />

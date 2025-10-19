@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { shouldNoIndex } from "@/lib/seo-utils";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
+  const noIndex = shouldNoIndex();
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -20,6 +22,7 @@ export default function Aftercare() {
       <Helmet>
         <title>{t('aftercare.pageTitle') || 'Pielęgnacja Po Przekłuciu | Inverness MED'}</title>
         <meta name="description" content="Kompletny przewodnik pielęgnacji po przekłuciu uszu. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki." />
+        {noIndex && <meta name="robots" content="noindex, nofollow" />}
         <link rel="canonical" href="https://gentlepiercing.pl/aftercare" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/aftercare" />
         <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/aftercare" />

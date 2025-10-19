@@ -7,10 +7,12 @@ import { ArrowLeft } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { Helmet } from "react-helmet-async";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
+import { shouldNoIndex } from "@/lib/seo-utils";
 
 export default function EarringsGallery() {
   const { t } = useTranslation();
   const earrings = getAllEarrings();
+  const noIndex = shouldNoIndex();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -21,6 +23,7 @@ export default function EarringsGallery() {
       <Helmet>
         <title>{`${t('earringsGallery.title') || 'Galeria Kolczyków'} - ${earrings.length} wzorów | Inverness MED Warszawa`}</title>
         <meta name="description" content={`Przeglądaj ${earrings.length} różnych wzorów kolczyków medycznych Inverness. Bezpieczne, hipoalergiczne, certyfikowane FDA i ISO.`} />
+        {noIndex && <meta name="robots" content="noindex, nofollow" />}
         <link rel="canonical" href="https://gentlepiercing.pl/earrings" />
         <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/earrings" />
         <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/earrings" />

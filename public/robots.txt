@@ -1,16 +1,8 @@
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Production domain - allow all crawlers
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://gentlepiercing.pl/sitemap.xml
+
+# Note: Preview domains (*.lovable.app) are blocked via meta robots tag
