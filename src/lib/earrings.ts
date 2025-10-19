@@ -1,5 +1,4 @@
-import earringsData from "@/data/earrings.json";
-import earringsDescriptions from "@/data/earrings-descriptions.json";
+import { loadEarrings } from './lazyEarrings';
 
 export interface Earring {
   name: string;
@@ -46,22 +45,17 @@ export const getUniqueImages = (images: string[]): string[] => {
   return uniqueImages;
 };
 
-export const getAllEarrings = (): Earring[] => {
-  // Create a map of descriptions by product_url for quick lookup
-  const descriptionsMap = new Map(
-    (earringsDescriptions as Array<{product_url: string; description_points: string[]}>)
-      .map(d => [d.product_url, d.description_points])
-  );
+export const getAllEarrings = async (): Promise<Earring[]> => {
+  const earrings = await loadEarrings();
   
-  return (earringsData as Earring[]).map(e => ({
+  return earrings.map(e => ({
     ...e,
-    images: getUniqueImages(e.images),
-    description_points: descriptionsMap.get(e.product_url) || []
+    images: getUniqueImages(e.images)
   }));
 };
 
-export const getEarring = (index: number): Earring | null => {
-  const earrings = getAllEarrings();
+export const getEarring = async (index: number): Promise<Earring | null> => {
+  const earrings = await getAllEarrings();
   if (index < 0 || index >= earrings.length) return null;
   return earrings[index];
 };

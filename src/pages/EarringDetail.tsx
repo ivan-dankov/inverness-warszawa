@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
-import { getAllEarrings } from "@/lib/earrings";
+import { getAllEarrings, type Earring } from "@/lib/earrings";
 import NotFound from "./NotFound";
 import { useTranslation } from 'react-i18next';
 import { getSpecificationTranslation } from "@/lib/specificationTranslations";
@@ -13,16 +13,22 @@ import { shouldNoIndex } from "@/lib/seo-utils";
 
 export default function EarringDetail() {
   const { t } = useTranslation();
-  const {
-    productId
-  } = useParams();
+  const { productId } = useParams();
   const navigate = useNavigate();
-  const earrings = getAllEarrings();
+  const [earrings, setEarrings] = useState<Earring[]>([]);
+  const [loading, setLoading] = useState(true);
   const currentIndex = parseInt(productId || '0');
   const earring = earrings[currentIndex];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
   const noIndex = shouldNoIndex();
+
+  useEffect(() => {
+    getAllEarrings().then(data => {
+      setEarrings(data);
+      setLoading(false);
+    });
+  }, []);
 
   // Get random other items (excluding current) - uses product index as seed for consistency
   const otherEarrings = useMemo(() => {
@@ -66,6 +72,19 @@ export default function EarringDetail() {
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, [navigate]);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col bg-background">
+        <Header />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   // Handle invalid product ID
   if (isNaN(currentIndex) || !earring) {

@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
-import { getAllEarrings } from "@/lib/earrings";
+import { getAllEarrings, type Earring } from "@/lib/earrings";
 import { ArrowLeft } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { Helmet } from "react-helmet-async";
@@ -11,12 +12,32 @@ import { shouldNoIndex } from "@/lib/seo-utils";
 
 export default function EarringsGallery() {
   const { t } = useTranslation();
-  const earrings = getAllEarrings();
+  const [earrings, setEarrings] = useState<Earring[]>([]);
+  const [loading, setLoading] = useState(true);
   const noIndex = shouldNoIndex();
+
+  useEffect(() => {
+    getAllEarrings().then(data => {
+      setEarrings(data);
+      setLoading(false);
+    });
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

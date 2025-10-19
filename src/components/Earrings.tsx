@@ -1,12 +1,44 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllEarrings } from "@/lib/earrings";
+import { getAllEarrings, type Earring } from "@/lib/earrings";
 import { useTranslation } from "react-i18next";
 
 export const Earrings = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const earrings = getAllEarrings();
+  const [earrings, setEarrings] = useState<Earring[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllEarrings().then(data => {
+      setEarrings(data);
+      setLoading(false);
+    });
+  }, []);
+
   const displayedEarrings = earrings.slice(0, 7);
+
+  if (loading) {
+    return (
+      <section id="earrings" className="py-12 sm:py-20 bg-gradient-to-b from-background to-muted/20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+              {t('earrings.title')} <span className="text-teal-600">{t('earrings.inverness')}</span>
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              {t('earrings.subtitle')}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="aspect-square rounded-lg bg-muted animate-pulse" />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="earrings" className="py-12 sm:py-20 bg-gradient-to-b from-background to-muted/20">
