@@ -84,14 +84,6 @@ export const Hero = () => {
                 </a>
               </Button>
             </div>
-            <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-muted-foreground">
-              {(t('hero.features', {
-              returnObjects: true
-            }) as string[]).map((feature: string, index: number) => <div key={index} className="flex items-center gap-2">
-                  <div className="h-2 w-2 rounded-full bg-primary" />
-                  <span>{feature}</span>
-                </div>)}
-            </div>
           </div>
 
           {/* Images Grid */}
