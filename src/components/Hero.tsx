@@ -56,7 +56,7 @@ export const Hero = () => {
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
     src: hero4_800
   }];
-  return <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center overflow-hidden">
+  return <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-background-alt/95 via-background-alt/85 to-background-alt/70 z-0" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 sm:py-0">
