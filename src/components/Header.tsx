@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import logo from "@/assets/logo.svg";
+import logo from "@/assets/logomark.svg";
 
 export const Header = () => {
   const { t } = useTranslation();
