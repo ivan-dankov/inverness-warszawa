@@ -29,24 +29,24 @@
     }
   },
   "about": {
-    "title": "Why Inverness MED?",
-    "subtitle": "The only ear piercing system approved by doctors throughout Europe",
+    "title": "About Us",
+    "subtitle": "Safe place for first earrings 💎",
     "benefits": [
       {
-        "title": "FDA and ISO Certificates",
-        "description": "International confirmation of safety and quality"
+        "title": "💎 Safety first",
+        "description": "We work exclusively in sterile conditions using disposable tools."
       },
       {
-        "title": "Painless and Gentle",
-        "description": "Quiet mechanism ideal for children and sensitive individuals"
+        "title": "👶 For children and adults",
+        "description": "Gentle method suitable from 0+."
       },
       {
-        "title": "Hypoallergenic Earrings",
-        "description": "Titanium, niobium or highest quality medical steel"
+        "title": "🩺 Inverness medical system",
+        "description": "Certified by FDA and ISO, guarantees the highest quality."
       },
       {
-        "title": "Fast Healing",
-        "description": "Precise, atraumatic piercing without tissue tearing"
+        "title": "💖 Gentleness and calm",
+        "description": "We create a friendly atmosphere so everyone feels comfortable."
       }
     ]
   },
