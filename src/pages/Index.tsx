@@ -41,7 +41,7 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
-        <Separator className="bg-border/50" />
+        <Separator />
         <About />
         <Services />
         <Testimonials />
