@@ -26,7 +26,11 @@ if (hostname.includes('.lovable.app')) {
 }
 
 createRoot(document.getElementById("root")!).render(
-  <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+  <Suspense fallback={
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+    </div>
+  }>
     <App />
   </Suspense>
 );
