@@ -64,7 +64,7 @@ export const Hero = () => {
           {/* Content */}
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
-              <span className="text-teal-600">Inverness MED</span> {t('hero.title')}
+              <span className="text-teal-600">gentle piercing</span> {t('hero.title')}
             </h1>
             
             <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
