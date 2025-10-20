@@ -17,15 +17,15 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
 
-    --primary: 184 77% 34%;
+    --primary: 220 40% 40%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 184 65% 88%;
+    --primary-light: 220 40% 90%;
 
-    --secondary: 340 85% 85%;
+    --secondary: 340 65% 79%;
     --secondary-foreground: 340 55% 25%;
 
-    --accent: 340 82% 67%;
+    --accent: 340 65% 70%;
     --accent-foreground: 0 0% 100%;
 
     --muted: 210 20% 96%;
@@ -36,16 +36,16 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 184 77% 34%;
-
+    --ring: 220 40% 40%;
+    
     --radius: 0.75rem;
     
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(184 77% 34%), hsl(184 65% 45%));
-    --gradient-accent: linear-gradient(135deg, hsl(340 82% 67%), hsl(340 85% 75%));
-    --gradient-hero: linear-gradient(180deg, hsl(184 65% 98%), hsl(0 0% 100%));
-    --shadow-soft: 0 4px 24px -4px hsl(184 77% 34% / 0.12);
-    --shadow-card: 0 8px 32px -8px hsl(184 77% 34% / 0.15);
+    --gradient-primary: linear-gradient(135deg, hsl(220 40% 40%), hsl(220 40% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(340 65% 70%), hsl(340 65% 79%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 40% 98%), hsl(0 0% 100%));
+    --shadow-soft: 0 4px 24px -4px hsl(220 40% 40% / 0.12);
+    --shadow-card: 0 8px 32px -8px hsl(220 40% 40% / 0.15);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
@@ -75,15 +75,15 @@ All colors MUST be HSL.
     --popover: 215 28% 17%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 184 70% 45%;
+    --primary: 220 40% 50%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 184 50% 25%;
+    --primary-light: 220 40% 25%;
 
-    --secondary: 340 70% 55%;
+    --secondary: 340 65% 65%;
     --secondary-foreground: 0 0% 100%;
 
-    --accent: 340 75% 60%;
+    --accent: 340 65% 60%;
     --accent-foreground: 0 0% 100%;
 
     --muted: 215 25% 25%;
@@ -94,7 +94,7 @@ All colors MUST be HSL.
 
     --border: 215 25% 30%;
     --input: 215 25% 30%;
-    --ring: 184 70% 45%;
+    --ring: 220 40% 50%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
