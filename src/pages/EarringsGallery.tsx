@@ -62,7 +62,7 @@ export default function EarringsGallery() {
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Breadcrumb */}
           <nav className="mb-6 sm:mb-8">
-            <Link to="/" className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-teal-600 transition-colors">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
               <ArrowLeft className="h-4 w-4" />
               {t('earringsGallery.breadcrumbHome')}
             </Link>
@@ -71,7 +71,7 @@ export default function EarringsGallery() {
           {/* Title */}
           <div className="text-center mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
-              {t('earringsGallery.title')} <span className="text-[3E588F] text-[#3e588f]">Inverness MED</span>
+              {t('earringsGallery.title')} <span className="text-primary">Inverness MED</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground">
               {t('earringsGallery.productCount', {
@@ -87,7 +87,7 @@ export default function EarringsGallery() {
 
           {/* Back to top button */}
           <div className="text-center mt-12">
-            <button onClick={scrollToTop} className="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors">
+            <button onClick={scrollToTop} className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
               {t('earringsGallery.backToTop')}
             </button>
           </div>

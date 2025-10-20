@@ -21,7 +21,7 @@ export const Earrings = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
-              {t('earrings.title')} <span className="text-teal-600">{t('earrings.inverness')}</span>
+              {t('earrings.title')} <span className="text-primary">{t('earrings.inverness')}</span>
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               {t('earrings.subtitle')}
@@ -39,7 +39,7 @@ export const Earrings = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
-            {t('earrings.title')} <span className="text-[#3e588f]">{t('earrings.inverness')}</span>
+            {t('earrings.title')} <span className="text-primary">{t('earrings.inverness')}</span>
           </h2>
           <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {t('earrings.subtitle')}

@@ -40,7 +40,7 @@ export default function Aftercare() {
           <nav className="mb-8">
             <Link 
               to="/" 
-              className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-teal-600 transition-colors"
+              className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
               {t('aftercare.backButton')}
