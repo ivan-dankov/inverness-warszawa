@@ -10,10 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-// @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
-import logo1x from "@/assets/logo.jpg?h=48&format=webp";
-// @ts-expect-error - vite-imagetools query parameters
-import logo2x from "@/assets/logo.jpg?h=96&format=webp";
+import logo from "@/assets/logo.svg";
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -40,15 +37,11 @@ export const Header = () => {
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="cursor-pointer">
             <img 
-              srcSet={`${logo1x} 1x, ${logo2x} 2x`}
-              src={logo1x}
+              src={logo}
               alt="Inverness MED" 
               className="h-12 w-auto" 
-              width="48"
-              height="48"
               loading="eager"
               fetchPriority="high"
-              decoding="async"
             />
           </Link>
 
@@ -104,14 +97,10 @@ export const Header = () => {
                 <SheetHeader>
                   <SheetTitle>
                     <img 
-                      srcSet={`${logo1x} 1x, ${logo2x} 2x`}
-                      src={logo1x}
+                      src={logo}
                       alt="Inverness MED" 
                       className="h-12 w-auto" 
-                      width="48"
-                      height="48"
                       loading="lazy"
-                      decoding="async"
                     />
                   </SheetTitle>
                 </SheetHeader>
