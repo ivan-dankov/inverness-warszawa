@@ -90,7 +90,7 @@ export const Testimonials = () => {
           <div className="flex items-center justify-center gap-2 mt-4">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
               ))}
             </div>
             <span className="text-lg font-semibold">5.0</span>
@@ -117,7 +117,7 @@ export const Testimonials = () => {
                       </div>
                       <div className="flex">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                          <Star key={i} className="h-4 w-4 fill-yellow-500 text-yellow-500" />
                         ))}
                       </div>
                     </div>
