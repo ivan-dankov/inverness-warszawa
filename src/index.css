@@ -17,10 +17,10 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
 
-    --primary: 220 40% 40%;
+    --primary: 221 43% 50%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 220 40% 90%;
+    --primary-light: 221 43% 90%;
 
     --secondary: 340 65% 79%;
     --secondary-foreground: 340 55% 25%;
@@ -36,16 +36,16 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 220 40% 40%;
+    --ring: 221 43% 50%;
     
     --radius: 0.75rem;
     
     /* Custom design tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(220 40% 40%), hsl(220 40% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(221 43% 50%), hsl(221 43% 60%));
     --gradient-accent: linear-gradient(135deg, hsl(340 65% 70%), hsl(340 65% 79%));
-    --gradient-hero: linear-gradient(180deg, hsl(220 40% 98%), hsl(0 0% 100%));
-    --shadow-soft: 0 4px 24px -4px hsl(220 40% 40% / 0.12);
-    --shadow-card: 0 8px 32px -8px hsl(220 40% 40% / 0.15);
+    --gradient-hero: linear-gradient(180deg, hsl(221 43% 98%), hsl(0 0% 100%));
+    --shadow-soft: 0 4px 24px -4px hsl(221 43% 50% / 0.12);
+    --shadow-card: 0 8px 32px -8px hsl(221 43% 50% / 0.15);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
@@ -75,10 +75,10 @@ All colors MUST be HSL.
     --popover: 215 28% 17%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 220 40% 50%;
+    --primary: 221 43% 55%;
     --primary-foreground: 0 0% 100%;
     
-    --primary-light: 220 40% 25%;
+    --primary-light: 221 43% 25%;
 
     --secondary: 340 65% 65%;
     --secondary-foreground: 0 0% 100%;
@@ -94,7 +94,7 @@ All colors MUST be HSL.
 
     --border: 215 25% 30%;
     --input: 215 25% 30%;
-    --ring: 220 40% 50%;
+    --ring: 221 43% 55%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
