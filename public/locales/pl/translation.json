@@ -29,24 +29,24 @@
     }
   },
   "about": {
-    "title": "Dlaczego Inverness MED?",
-    "subtitle": "Jedyny system przekłuwania uszu zatwierdzony przez lekarzy w całej Europie",
+    "title": "O nas – gentle piercing",
+    "subtitle": "",
     "benefits": [
       {
-        "title": "Certyfikaty FDA i ISO",
-        "description": "Międzynarodowe potwierdzenie bezpieczeństwa i jakości"
+        "title": "💎 Bezpieczeństwo przede wszystkim",
+        "description": "Pracujemy wyłącznie w sterylnych warunkach z użyciem jednorazowych narzędzi."
       },
       {
-        "title": "Bezbolesne i Delikatne",
-        "description": "Cichy mechanizm idealny dla dzieci i osób wrażliwych"
+        "title": "👶 Dla dzieci i dorosłych",
+        "description": "Delikatna metoda odpowiednia już od 0+."
       },
       {
-        "title": "Hipoalergiczne Kolczyki",
-        "description": "Tytan, niob lub stal medyczna najwyższej jakości"
+        "title": "🩺 System medyczny Inverness",
+        "description": "Certyfikowany przez FDA i ISO, gwarantuje najwyższą jakość."
       },
       {
-        "title": "Szybkie Gojenie",
-        "description": "Precyzyjne, atraumatyczne przekłucie bez rozrywania tkanek"
+        "title": "💖 Delikatność i spokój",
+        "description": "Tworzymy przyjazną atmosferę, by każdy czuł się komfortowo."
       }
     ]
   },
