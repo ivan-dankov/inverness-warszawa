@@ -19,11 +19,11 @@ import hero1_800 from "@/assets/hero/hero-studio.jpg?w=800&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
 import hero1_1200 from "@/assets/hero/hero-studio.jpg?w=1200&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
-import hero2_400 from "@/assets/hero/hero-2.jpg?w=400&format=webp";
+import hero2_400 from "@/assets/hero/hero-client.jpg?w=400&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
-import hero2_800 from "@/assets/hero/hero-2.jpg?w=800&format=webp";
+import hero2_800 from "@/assets/hero/hero-client.jpg?w=800&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
-import hero2_1200 from "@/assets/hero/hero-2.jpg?w=1200&format=webp";
+import hero2_1200 from "@/assets/hero/hero-client.jpg?w=1200&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
 import hero3_400 from "@/assets/hero/hero-3.jpg?w=400&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
@@ -91,7 +91,7 @@ export const Hero = () => {
           {/* Images Grid */}
           <div className="hidden lg:grid grid-cols-2 gap-4 relative">
             {galleryImages.map((image, index) => {
-            const altTexts = ["Studio Inverness MED z profesjonalnym sprzętem do przekłuwania uszu", "Profesjonalny sprzęt Inverness do medycznego przekłuwania", "Kolekcja medycznych kolczyków Inverness", "Eleganckie kolczyki medyczne po przekłuciu"];
+            const altTexts = ["Studio Inverness MED z profesjonalnym sprzętem do przekłuwania uszu", "Zadowolone dziecko z dyplomem Inverness MED po przekłuciu uszu", "Kolekcja medycznych kolczyków Inverness", "Eleganckie kolczyki medyczne po przekłuciu"];
             return <div key={index} className="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group hover-scale" style={{
               animationDelay: `${index * 0.1}s`
             }}>
