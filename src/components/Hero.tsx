@@ -64,7 +64,7 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <div className="max-w-2xl">
-            <img src={logoWide} alt="Inverness Logo" className="h-8 sm:h-10 lg:h-12 w-auto mb-6 sm:mb-8" />
+            <img src={logoWide} alt="Inverness Logo" className="h-6 sm:h-8 lg:h-10 w-auto mb-6 sm:mb-8" />
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               {t('hero.title')}
             </h1>
