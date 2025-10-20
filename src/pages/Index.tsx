@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
+import { Separator } from "@/components/ui/separator";
 import { Testimonials } from "@/components/Testimonials";
 import { Earrings } from "@/components/Earrings";
 import { Gallery } from "@/components/Gallery";
@@ -40,6 +41,7 @@ const Index = () => {
       <Header />
       <main className="flex-grow">
         <Hero />
+        <Separator className="bg-border/50" />
         <About />
         <Services />
         <Testimonials />
