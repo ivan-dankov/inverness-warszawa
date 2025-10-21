@@ -2,6 +2,7 @@ import { Instagram, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
+import logoWide from "@/assets/logo-wide.svg";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -10,14 +11,8 @@ export const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">IM</span>
-              </div>
-              <div>
-                <div className="font-bold text-foreground">Inverness MED</div>
-                <div className="text-xs text-muted-foreground">Warszawa</div>
-              </div>
+            <div className="mb-4">
+              <img src={logoWide} alt="Inverness MED" className="h-8 w-auto" />
             </div>
             <p className="text-sm text-muted-foreground">
               {t('footer.company.description')}
