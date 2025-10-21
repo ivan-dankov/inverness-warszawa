@@ -5,6 +5,16 @@ declare global {
   interface ImportMeta {
     glob: (pattern: string, options?: { eager?: boolean; as?: string }) => Record<string, any>;
   }
+  
+  // Google Analytics 4 type declarations
+  interface Window {
+    gtag: (
+      command: 'config' | 'event' | 'js' | 'set',
+      targetId: string | Date,
+      config?: Record<string, any>
+    ) => void;
+    dataLayer: any[];
+  }
 }
 
 // Allow importing images with query parameters

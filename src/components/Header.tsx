@@ -3,6 +3,7 @@ import { Calendar, Phone, Instagram, Menu } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
+import { trackBookingClick } from "@/lib/analytics";
 import {
   Sheet,
   SheetContent,
@@ -80,7 +81,7 @@ export const Header = () => {
               </a>
             </div>
             
-            <Button variant="hero" asChild className="min-h-[44px]">
+            <Button variant="hero" asChild className="min-h-[44px]" onClick={() => trackBookingClick('header')}>
               <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
                 <Calendar className="h-4 w-4" />
                 <span className="ml-2">{t('header.buttons.book')}</span>

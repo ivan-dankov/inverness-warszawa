@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logoWide from "@/assets/logo-wide.svg";
+import { trackBookingClick } from "@/lib/analytics";
 // @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
 import heroLogo_192 from "@/assets/inverness-logo-hero.jpg?w=192&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
@@ -73,7 +74,7 @@ export const Hero = () => {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <Button size="lg" variant="hero" asChild className="w-full sm:w-auto">
+              <Button size="lg" variant="hero" asChild className="w-full sm:w-auto" onClick={() => trackBookingClick('hero')}>
                 <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-5 w-5" />
                   {t('hero.buttons.book')}

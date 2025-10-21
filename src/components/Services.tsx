@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Baby, Calendar } from "lucide-react";
 import { useTranslation } from 'react-i18next';
+import { trackBookingClick } from "@/lib/analytics";
 
 export const Services = () => {
   const { t } = useTranslation();
@@ -63,7 +64,7 @@ export const Services = () => {
                   </li>)}
               </ul>
 
-              <Button size="lg" variant="hero" className="w-full mt-auto min-h-[48px]" asChild>
+              <Button size="lg" variant="hero" className="w-full mt-auto min-h-[48px]" asChild onClick={() => trackBookingClick(`services_card_${index}`)}>
                 <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-5 w-5" />
                   {t('services.bookButton')}
