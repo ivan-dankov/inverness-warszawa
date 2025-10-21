@@ -44,9 +44,9 @@ const Index = () => {
         <Separator />
         <About />
         <Services />
+        <Gallery />
         <Testimonials />
         <Earrings />
-        <Gallery />
         <Comparison />
         <CertificateViewer />
         <FAQ />
