@@ -123,8 +123,8 @@
       "sterility": "Sterylność",
       "comfort": "Komfort",
       "healing": "Gojenie",
-      "childrenSuitability": "Dla dzieci (0–8 lat)",
-      "cartilageSuitability": "Dla chrząstki (helix, tragus, conch)",
+        "childrenSuitability": "Dla dzieci",
+        "cartilageSuitability": "Chrząstka",
       "features": "Cechy szczególne"
     },
     "methods": {

@@ -123,8 +123,8 @@
       "sterility": "Стерильність",
       "comfort": "Комфорт",
       "healing": "Загоєння",
-      "childrenSuitability": "Для дітей (0–8 років)",
-      "cartilageSuitability": "Для хряща (helix, tragus, conch)",
+        "childrenSuitability": "Для дітей",
+        "cartilageSuitability": "Хрящ",
       "features": "Особливості"
     },
     "methods": {

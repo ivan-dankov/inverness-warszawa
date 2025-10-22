@@ -123,8 +123,8 @@
       "sterility": "Sterility",
       "comfort": "Comfort",
       "healing": "Healing",
-      "childrenSuitability": "For children (0–8 years)",
-      "cartilageSuitability": "For cartilage (helix, tragus, conch)",
+        "childrenSuitability": "For children",
+        "cartilageSuitability": "Cartilage",
       "features": "Special features"
     },
     "methods": {
