@@ -123,7 +123,8 @@
       "sterility": "Sterility",
       "comfort": "Comfort",
       "healing": "Healing",
-      "suitability": "For children / cartilage",
+      "childrenSuitability": "For children (0–8 years)",
+      "cartilageSuitability": "For cartilage (helix, tragus, conch)",
       "features": "Special features"
     },
     "methods": {
@@ -132,7 +133,8 @@
         "sterility": "Partially sterile",
         "comfort": "Loud, may be painful",
         "healing": "Longer, sometimes with complications",
-        "suitability": "Only earlobe",
+        "childrenSuitability": "No, not suitable for children",
+        "cartilageSuitability": "No, only earlobe",
         "features": "Fast, but less gentle"
       },
       "needle": {
@@ -140,7 +142,8 @@
         "sterility": "High, if sterility maintained",
         "comfort": "Moderate comfort",
         "healing": "Good with proper care",
-        "suitability": "Yes",
+        "childrenSuitability": "Yes, but needle piercing is recommended from age 9 — not suitable for toddlers 0–5 years.",
+        "cartilageSuitability": "Yes, suitable for cartilage",
         "features": "Precise method, depends on specialist experience"
       },
       "inverness": {
@@ -148,7 +151,8 @@
         "sterility": "100% sterile, single-use system",
         "comfort": "Quiet and gentle",
         "healing": "Fast, clean healing",
-        "suitability": "Suitable for children and cartilage",
+        "childrenSuitability": "Yes, approved for children 0+",
+        "cartilageSuitability": "Yes, perfect for cartilage",
         "features": "Certainty, comfort and safety in one"
       }
     }

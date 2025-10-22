@@ -123,7 +123,8 @@
       "sterility": "Sterylność",
       "comfort": "Komfort",
       "healing": "Gojenie",
-      "suitability": "Dla dzieci / chrząstki",
+      "childrenSuitability": "Dla dzieci (0–8 lat)",
+      "cartilageSuitability": "Dla chrząstki (helix, tragus, conch)",
       "features": "Cechy szczególne"
     },
     "methods": {
@@ -132,7 +133,8 @@
         "sterility": "Częściowo sterylny",
         "comfort": "Głośny, może być bolesny",
         "healing": "Dłuższe, czasem z powikłaniami",
-        "suitability": "Tylko płatek ucha",
+        "childrenSuitability": "Nie, nieodpowiedni dla dzieci",
+        "cartilageSuitability": "Nie, tylko płatek ucha",
         "features": "Szybki, ale mniej delikatny"
       },
       "needle": {
@@ -140,7 +142,8 @@
         "sterility": "Wysoka, jeśli zachowana sterylność",
         "comfort": "Umiarkowany komfort",
         "healing": "Dobre przy właściwej pielęgnacji",
-        "suitability": "Tak",
+        "childrenSuitability": "Tak, ale przekłucie igłą zalecane jest od 9 roku życia — nieodpowiednie dla maluchów 0–5 lat.",
+        "cartilageSuitability": "Tak, odpowiedni dla chrząstki",
         "features": "Precyzyjna metoda, zależna od doświadczenia specjalisty"
       },
       "inverness": {
@@ -148,7 +151,8 @@
         "sterility": "W 100% sterylny, jednorazowy system",
         "comfort": "Cicho i delikatnie",
         "healing": "Szybkie, czyste gojenie",
-        "suitability": "Odpowiedni dla dzieci i chrząstki",
+        "childrenSuitability": "Tak, zatwierdzony dla dzieci 0+",
+        "cartilageSuitability": "Tak, idealny dla chrząstki",
         "features": "Pewność, komfort i bezpieczeństwo w jednym"
       }
     }

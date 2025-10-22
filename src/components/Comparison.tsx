@@ -7,13 +7,13 @@ export const Comparison = () => {
   const { t } = useTranslation();
 
   const methods = ['gun', 'needle', 'inverness'];
-  const attributes = ['sterility', 'comfort', 'healing', 'suitability', 'features'];
+  const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'cartilageSuitability', 'features'];
 
   const getIcon = (method: string, attribute: string) => {
     if (method === 'inverness') {
       return <Check className="h-5 w-5 text-primary inline-block mr-2" />;
     }
-    if (method === 'gun' && (attribute === 'sterility' || attribute === 'comfort' || attribute === 'healing')) {
+    if (method === 'gun' && (attribute === 'sterility' || attribute === 'comfort' || attribute === 'healing' || attribute === 'childrenSuitability' || attribute === 'cartilageSuitability')) {
       return <X className="h-5 w-5 text-destructive inline-block mr-2" />;
     }
     return <AlertCircle className="h-5 w-5 text-muted-foreground inline-block mr-2" />;
