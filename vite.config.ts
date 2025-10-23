@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => ({
           ],
           'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector', 'i18next-http-backend'],
           'carousel': ['embla-carousel-react'],
-          'utils': ['date-fns', 'clsx', 'tailwind-merge', 'class-variance-authority'],
+          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name || 'asset';
