@@ -23,8 +23,35 @@ export default defineConfig(({ mode }) => ({
   build: {
     assetsInlineLimit: 4096,
     cssCodeSplit: true,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+      },
+    },
     rollupOptions: {
       output: {
+        manualChunks: {
+          'react-core': ['react', 'react-dom', 'react-router-dom'],
+          'ui-components': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-accordion',
+            '@radix-ui/react-tabs',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-popover',
+            '@radix-ui/react-select',
+            '@radix-ui/react-toast',
+            '@radix-ui/react-slot',
+            '@radix-ui/react-separator',
+            '@radix-ui/react-scroll-area',
+          ],
+          'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector', 'i18next-http-backend'],
+          'mapbox': ['mapbox-gl'],
+          'carousel': ['embla-carousel-react'],
+          'utils': ['date-fns', 'clsx', 'tailwind-merge', 'class-variance-authority'],
+        },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name || 'asset';
           let extType = name.split('.').at(-1) || 'other';
