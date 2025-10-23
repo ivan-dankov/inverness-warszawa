@@ -1,56 +1,24 @@
-import { useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { Button } from '@/components/ui/button';
 import { Navigation } from 'lucide-react';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiaXZhbmRhbmtvdiIsImEiOiJjbWd0ZGJzMDcwMzl1Mmxxa2tud2dlbWZoIn0.EIWOSBMEmqZ43QOW07tzHg';
-
 export const Map = () => {
-  const mapContainer = useRef<HTMLDivElement>(null);
-  const map = useRef<mapboxgl.Map | null>(null);
-
   const handleGetDirections = () => {
     window.open('https://maps.app.goo.gl/X5kTSdfj1hgBb2Eg8', '_blank');
   };
 
-  const initializeMap = () => {
-    if (!mapContainer.current || map.current) return;
-
-    mapboxgl.accessToken = MAPBOX_TOKEN;
-    
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [20.945046328079172, 52.22594129500684], // Gizów 6/208, 01-249 Warszawa, Wola
-      zoom: 16,
-    });
-
-    // Add marker for the location
-    new mapboxgl.Marker({ color: '#0891b2' })
-      .setLngLat([20.945046328079172, 52.22594129500684])
-      .setPopup(
-        new mapboxgl.Popup().setHTML(
-          '<strong>Inverness MED</strong><br/>Gizów 6/208<br/>01-249 Warszawa<br/><a href="https://maps.app.goo.gl/X5kTSdfj1hgBb2Eg8" target="_blank" rel="noopener noreferrer" style="color: #0891b2; text-decoration: underline; margin-top: 8px; display: inline-block;">Get Directions →</a>'
-        )
-      )
-      .addTo(map.current);
-
-    map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
-  };
-
-  useEffect(() => {
-    initializeMap();
-
-    return () => {
-      map.current?.remove();
-      map.current = null;
-    };
-  }, []);
-
   return (
     <div className="relative w-full h-[400px]">
-      <div ref={mapContainer} className="absolute inset-0 rounded-lg shadow-lg" />
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2443.582675789186!2d20.94294631618464!3d52.22594127976359!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecc8c6e3a1e1f%3A0x8b8f0f0f0f0f0f0f!2sGiz%C3%B3w%206%2F208%2C%2001-249%20Warszawa!5e0!3m2!1sen!2spl!4v1234567890123!5m2!1sen!2spl"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Inverness MED - Gizów 6/208, 01-249 Warszawa"
+        className="rounded-lg shadow-lg"
+      />
       <Button
         onClick={handleGetDirections}
         className="absolute bottom-4 left-4 z-10 shadow-lg"
