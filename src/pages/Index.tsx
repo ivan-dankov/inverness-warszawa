@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Przekłuwanie uszu Warszawa – Inverness Med</title>
+        <title>Przekłuwanie Uszu w Warszawie - Gentle Piercing</title>
         <meta name="description" content="Bezpieczne i bezbolesne przekłuwanie uszu w Warszawie 💎 Dla dzieci 0+ i dorosłych. Sterylność i precyzja systemu Inverness Med." />
         {noIndex && <meta name="robots" content="noindex, nofollow" />}
         <link rel="canonical" href="https://gentlepiercing.pl/" />
@@ -32,7 +32,7 @@ const Index = () => {
         <link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/" />
         <link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/" />
-        <meta property="og:title" content="Przekłuwanie uszu Warszawa – Inverness Med" />
+        <meta property="og:title" content="Przekłuwanie Uszu w Warszawie - Gentle Piercing" />
         <meta property="og:description" content="Bezpieczne i bezbolesne przekłuwanie uszu w Warszawie 💎 Dla dzieci 0+ i dorosłych. Sterylność i precyzja systemu Inverness Med." />
         <meta property="og:url" content="https://gentlepiercing.pl/" />
         <meta property="og:type" content="website" />

@@ -1,0 +1,76 @@
+# Gentle Piercing - Medyczne Przekłuwanie Uszu Warszawa
+
+> Profesjonalne medyczne przekłuwanie uszu systemem Inverness MED w Warszawie
+
+## About
+Gentle Piercing (Inverness MED) oferuje bezpieczne i bezbolesne przekłuwanie uszu w Warszawie dla dzieci 0+ i dorosłych. Używamy systemu Inverness Med - jedynego systemu w Europie zatwierdzonego przez lekarzy.
+
+## Services
+- Przekłuwanie płatka ucha (earlobe)
+- Przekłuwanie chrząstki (helix, tragus, conch)
+- Dla dzieci od 0+ lat
+- Dla dorosłych
+- System Inverness Med - 100% sterylny
+- Certyfikaty: FDA, ISO, UL
+
+## Contact
+- Nazwa: Inverness MED - Medyczne Przekłuwanie Uszu
+- Adres: Gizów 6, 01-249 Warszawa, Wola
+- Telefon: +48 573 818 260
+- Email: medinverness@gmail.com
+- Instagram: @prokol_ushej_warszawa
+- Strona: https://gentlepiercing.pl
+
+## Location
+- Dzielnica: Wola, Warszawa
+- Współrzędne: 52.22594129500684, 20.945046328079172
+- Godziny otwarcia: Poniedziałek-Niedziela 09:00-20:00
+
+## Languages
+- Polski (PL)
+- English (EN)
+- Русский (RU)
+- Українська (UK)
+
+## Pages
+- / - Strona główna
+- /earrings - Galeria kolczyków
+- /earrings/:id - Szczegóły kolczyka
+- /aftercare - Pielęgnacja po przekłuciu
+
+## Technology
+- React 18
+- TypeScript
+- Tailwind CSS
+- Vite
+- React Router
+- i18next (internationalization)
+- Supabase (backend)
+
+## Keywords
+przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha, gentle piercing
+
+## Pricing
+150-250 zł za przekłucie
+
+## Rating
+5.0/5 (14 opinii)
+
+## Social Proof
+"Najlepszy salon w Warszawie! Moja córka w ogóle się nie bała." - Marta K.
+"Profesjonalna obsługa, sterylność na najwyższym poziomie." - Anna W.
+
+## Comparison
+Inverness Med vs Pistolet vs Igła:
+- Inverness: 100% sterylny, bezbolesny, zatwierdzony dla dzieci 0+, idealny dla chrząstki
+- Pistolet: Nieodpowiedni dla dzieci, tylko płatek ucha, może być bolesny
+- Igła: Od 9 lat, dobry dla chrząstki, zależy od doświadczenia
+
+## Certificates
+- FDA Certificate (USA)
+- UL Certificates (Ball Earring, CZ Prong, Crystal Earring)
+- Italian Test Report
+- Declaration of Conformity
+
+## Gallery
+30+ zdjęć przedstawiających proces przekłuwania, studio, zadowolonych klientów i różne rodzaje kolczyków.
