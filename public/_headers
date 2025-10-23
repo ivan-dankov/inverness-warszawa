@@ -1,31 +1,42 @@
-# Cache static assets with hash in filename for 1 year
+# Cache ALL assets in /assets/ folder (these have hashes in filenames)
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Cache images for 1 year
-*.jpg
+# Cache images at root level for 1 year
+/*.jpg
   Cache-Control: public, max-age=31536000, immutable
-*.jpeg
+/*.jpeg
   Cache-Control: public, max-age=31536000, immutable
-*.png
+/*.png
   Cache-Control: public, max-age=31536000, immutable
-*.webp
+/*.webp
   Cache-Control: public, max-age=31536000, immutable
-*.svg
+/*.svg
   Cache-Control: public, max-age=31536000, immutable
-*.gif
+/*.gif
   Cache-Control: public, max-age=31536000, immutable
-*.ico
+/*.ico
   Cache-Control: public, max-age=31536000, immutable
 
 # Cache fonts for 1 year
-*.woff
+/fonts/*
   Cache-Control: public, max-age=31536000, immutable
-*.woff2
+/*.woff
   Cache-Control: public, max-age=31536000, immutable
-*.ttf
+/*.woff2
   Cache-Control: public, max-age=31536000, immutable
-*.eot
+/*.ttf
+  Cache-Control: public, max-age=31536000, immutable
+/*.eot
   Cache-Control: public, max-age=31536000, immutable
 
 # Cache PDF documents for 1 month
