@@ -7,7 +7,8 @@
       "comparison": "Method",
       "contact": "Contact",
       "earrings": "Earrings",
-      "aftercare": "Aftercare"
+      "aftercare": "Aftercare",
+      "blog": "Blog"
     },
     "buttons": {
       "book": "Book Online",
@@ -94,8 +95,8 @@
     "pricing": {
       "title": "Pricing Information",
       "earringsInfo": "Price does not include earrings",
-      "earringsPrice": "Additional charge for earrings: from 90 PLN per pair",
-      "mobileVisit": "Mobile service: +50 PLN to service price"
+      "earringsPrice": "Additional charge for earrings: from 100 PLN per pair",
+      "mobileVisit": "Mobile service: 50 PLN, may be higher depending on distance"
     },
     "bookButton": "Book Online",
     "durationLabel": "Duration:"
@@ -235,6 +236,7 @@
       "title": "Useful Links",
       "aftercare": "Aftercare",
       "earrings": "Earrings",
+      "blog": "Blog",
       "contact": "Contact"
     },
     "contact": {
@@ -335,6 +337,10 @@
     "breadcrumbEarrings": "Earrings",
     "specification": "Specification",
     "otherProducts": "Other Products"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "blog": "Blog"
   },
   "common": {
     "loading": "Loading...",

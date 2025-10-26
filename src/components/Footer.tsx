@@ -65,6 +65,11 @@ export const Footer = () => {
                   {t('footer.links.earrings')}
                 </Link>
               </li>
+              <li>
+                <Link to={`/${currentLang}/blog`} className="hover:text-primary transition-colors">
+                  {t('footer.links.blog')}
+                </Link>
+              </li>
             </ul>
           </div>
 

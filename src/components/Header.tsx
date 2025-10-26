@@ -69,6 +69,9 @@ export function Header({ currentLang }: HeaderProps) {
             <button onClick={() => navigate(`/${currentLang}/aftercare`)} className={`text-sm font-medium transition-colors ${location.pathname.includes('/aftercare') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.aftercare')}
             </button>
+            <button onClick={() => navigate(`/${currentLang}/blog`)} className={`text-sm font-medium transition-colors ${location.pathname.includes('/blog') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+              {t('header.nav.blog')}
+            </button>
             <button onClick={() => handleNavClick('contact')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.contact')}
             </button>
@@ -127,6 +130,9 @@ export function Header({ currentLang }: HeaderProps) {
                   </button>
                   <button onClick={() => navigate(`/${currentLang}/aftercare`)} className={`text-left text-base font-medium transition-colors ${location.pathname.includes('/aftercare') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.aftercare')}
+                  </button>
+                  <button onClick={() => navigate(`/${currentLang}/blog`)} className={`text-left text-base font-medium transition-colors ${location.pathname.includes('/blog') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                    {t('header.nav.blog')}
                   </button>
                   <button onClick={() => handleNavClick('contact')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.contact')}

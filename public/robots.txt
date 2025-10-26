@@ -11,4 +11,6 @@ Sitemap: https://gentlepiercing.pl/en/sitemap.xml
 # Main sitemap index
 Sitemap: https://gentlepiercing.pl/sitemap.xml
 
+# Last updated: 2025-01-27
+
 # Note: Preview domains (*.lovable.app) are blocked via meta robots tag

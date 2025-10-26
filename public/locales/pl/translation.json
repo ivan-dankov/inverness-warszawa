@@ -7,7 +7,8 @@
       "comparison": "Metoda",
       "contact": "Kontakt",
       "earrings": "Kolczyki",
-      "aftercare": "Pielęgnacja"
+      "aftercare": "Pielęgnacja",
+      "blog": "Blog"
     },
     "buttons": {
       "book": "Rezerwuj Online",
@@ -94,8 +95,8 @@
     "pricing": {
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 90 zł za parę",
-      "mobileVisit": "Dojazd mobilny: +50 zł do ceny usługi"
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 100 zł za parę",
+      "mobileVisit": "Dojazd mobilny: 50 zł, może być wyższa w zależności od odległości"
     },
     "bookButton": "Rezerwuj Online",
     "durationLabel": "Czas trwania:"
@@ -235,6 +236,7 @@
       "title": "Przydatne Linki",
       "aftercare": "Pielęgnacja",
       "earrings": "Kolczyki",
+      "blog": "Blog",
       "contact": "Kontakt"
     },
     "contact": {
@@ -335,6 +337,10 @@
     "breadcrumbEarrings": "Kolczyki",
     "specification": "Specyfikacja",
     "otherProducts": "Inne Produkty"
+  },
+  "breadcrumb": {
+    "home": "Strona główna",
+    "blog": "Blog"
   },
   "common": {
     "loading": "Ładowanie...",

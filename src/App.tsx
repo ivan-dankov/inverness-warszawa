@@ -12,6 +12,8 @@ import { Navigate } from "react-router-dom";
 import EarringsGallery from "./pages/EarringsGallery";
 import EarringDetail from "./pages/EarringDetail";
 import Aftercare from "./pages/Aftercare";
+import Blog from "./pages/Blog";
+import BlogArticle from "./pages/BlogArticle";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -97,12 +99,17 @@ const App = () => (
           {/* Language-specific Aftercare pages */}
           <Route path="/:lang/aftercare" element={<Aftercare />} />
           
+          {/* Language-specific Blog pages */}
+          <Route path="/:lang/blog" element={<Blog />} />
+          <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
+          
           {/* Language-specific Earrings pages */}
           <Route path="/:lang/earrings" element={<EarringsGallery />} />
           <Route path="/:lang/earrings/:productId" element={<EarringDetail />} />
           
           {/* Legacy routes - redirect to default language (Polish) */}
           <Route path="/aftercare" element={<Navigate to="/pl/aftercare" replace />} />
+          <Route path="/blog" element={<Navigate to="/pl/blog" replace />} />
           <Route path="/earrings" element={<Navigate to="/pl/earrings" replace />} />
           <Route path="/earrings/:productId" element={<Navigate to={`/pl/earrings/${window.location.pathname.split('/').pop()}`} replace />} />
             

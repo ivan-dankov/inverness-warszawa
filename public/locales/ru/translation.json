@@ -7,7 +7,8 @@
       "comparison": "Метод",
       "contact": "Контакты",
       "earrings": "Серьги",
-      "aftercare": "Уход"
+      "aftercare": "Уход",
+      "blog": "Блог"
     },
     "buttons": {
       "book": "Записаться онлайн",
@@ -94,8 +95,8 @@
     "pricing": {
       "title": "Информация о ценах",
       "earringsInfo": "Цена не включает стоимость серег",
-      "earringsPrice": "Дополнительная плата за серьги: от 90 зл за пару",
-      "mobileVisit": "Выезд на дом: +50 зл к цене услуги"
+      "earringsPrice": "Дополнительная плата за серьги: от 100 зл за пару",
+      "mobileVisit": "Выезд на дом: 50 зл, может быть выше в зависимости от расстояния"
     },
     "bookButton": "Записаться онлайн",
     "durationLabel": "Длительность:"
@@ -235,6 +236,7 @@
       "title": "Полезные ссылки",
       "aftercare": "Уход",
       "earrings": "Серьги",
+      "blog": "Блог",
       "contact": "Контакты"
     },
     "contact": {
@@ -335,6 +337,10 @@
     "breadcrumbEarrings": "Серьги",
     "specification": "Характеристики",
     "otherProducts": "Другие продукты"
+  },
+  "breadcrumb": {
+    "home": "Главная",
+    "blog": "Блог"
   },
   "common": {
     "loading": "Загрузка...",
