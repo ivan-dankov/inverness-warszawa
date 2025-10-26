@@ -169,7 +169,7 @@ export default function EarringDetail() {
               <li className="flex items-center">
                 <span className="mx-2">/</span>
                 <span className="text-foreground font-medium truncate max-w-[150px] sm:max-w-none">
-                  {earring.name}
+                  {t(`earringNames.${earring.name}`, earring.name)}
                 </span>
               </li>
             </ol>
