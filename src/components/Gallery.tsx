@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -81,8 +81,6 @@ import img0985_full from "@/assets/gallery/IMG_0985.jpg?w=1920&format=webp";
 export const Gallery = () => {
   const { t } = useTranslation();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const touchStartX = useRef<number>(0);
-  const touchEndX = useRef<number>(0);
 
   const galleryImages = [
     { thumb: img0985_thumb, full: img0985_full, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
@@ -122,30 +120,6 @@ export const Gallery = () => {
   const prevImage = () => {
     if (selectedImage !== null) {
       setSelectedImage((selectedImage - 1 + galleryImages.length) % galleryImages.length);
-    }
-  };
-
-  // Touch gesture handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const swipeDistance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 50;
-
-    if (Math.abs(swipeDistance) > minSwipeDistance) {
-      if (swipeDistance > 0) {
-        // Swipe left - next image
-        nextImage();
-      } else {
-        // Swipe right - previous image
-        prevImage();
-      }
     }
   };
 
@@ -222,9 +196,6 @@ export const Gallery = () => {
                   loading="eager"
                   decoding="async"
                   draggable={false}
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
                 />
 
                 {/* Desktop Navigation - Sides */}
