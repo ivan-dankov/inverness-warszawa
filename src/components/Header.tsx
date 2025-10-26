@@ -58,7 +58,7 @@ export function Header({ currentLang }: HeaderProps) {
               {t('header.nav.gallery')}
             </button>
             <button onClick={() => handleNavClick('testimonials')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              Opinie
+              {t('header.nav.testimonials')}
             </button>
             <button onClick={() => navigate(`/${currentLang}/earrings`)} className={`text-sm font-medium transition-colors ${location.pathname.includes('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.earrings')}
@@ -120,7 +120,7 @@ export function Header({ currentLang }: HeaderProps) {
                     {t('header.nav.gallery')}
                   </button>
                   <button onClick={() => handleNavClick('testimonials')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-                    Opinie
+                    {t('header.nav.testimonials')}
                   </button>
                   <button onClick={() => navigate(`/${currentLang}/earrings`)} className={`text-left text-base font-medium transition-colors ${location.pathname.includes('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.earrings')}
