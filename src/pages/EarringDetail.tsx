@@ -40,8 +40,8 @@ export default function EarringDetail() {
     return match ? match[1] : '';
   }, [earring]);
 
-  // Remove .jpg extension if present
-  const displayProductCode = productCode.replace(/\.jpg$/i, '');
+  // Remove .jpg extension and trailing -A/B/C if present
+  const displayProductCode = productCode.replace(/\.jpg$/i, '').replace(/-[ABC]$/i, '');
 
   const otherEarrings = useMemo(() => {
     if (!earring) return [];
