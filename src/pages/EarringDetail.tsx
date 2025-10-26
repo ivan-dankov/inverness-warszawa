@@ -9,14 +9,13 @@ import { useTranslation } from 'react-i18next';
 import { getSpecificationTranslation } from "@/lib/specificationTranslations";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
-import { getLanguageFromPath, getPageSEO } from "@/lib/language-routes";
+import { getPageSEO } from "@/lib/language-routes";
 
 export default function EarringDetail() {
   const { t } = useTranslation();
-  const { productId } = useParams();
+  const { productId, lang } = useParams<{ productId: string; lang: string }>();
   const navigate = useNavigate();
-  const location = useLocation();
-  const currentLang = getLanguageFromPath(location.pathname);
+  const currentLang = lang || 'pl';
   const [earrings, setEarrings] = useState<Earring[]>([]);
   const [loading, setLoading] = useState(true);
   const currentIndex = parseInt(productId || '0');

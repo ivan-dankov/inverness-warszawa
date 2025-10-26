@@ -3,16 +3,16 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
-import { getLanguageFromPath, getPageSEO } from "@/lib/language-routes";
+import { getPageSEO } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
-  const location = useLocation();
-  const currentLang = getLanguageFromPath(location.pathname);
+  const { lang } = useParams<{ lang: string }>();
+  const currentLang = lang || 'pl';
   const pageSEO = getPageSEO(currentLang);
   
   useEffect(() => {

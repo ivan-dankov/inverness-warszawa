@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
@@ -7,13 +7,13 @@ import { getAllEarrings, type Earring } from "@/lib/earrings";
 import { ArrowLeft, ArrowUp } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { MultilingualSEO } from "@/components/MultilingualSEO";
-import { getLanguageFromPath, getPageSEO } from "@/lib/language-routes";
+import { getPageSEO } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export default function EarringsGallery() {
   const { t } = useTranslation();
-  const location = useLocation();
-  const currentLang = getLanguageFromPath(location.pathname);
+  const { lang } = useParams<{ lang: string }>();
+  const currentLang = lang || 'pl';
   const [earrings, setEarrings] = useState<Earring[]>([]);
   const [loading, setLoading] = useState(true);
   const pageSEO = getPageSEO(currentLang);
