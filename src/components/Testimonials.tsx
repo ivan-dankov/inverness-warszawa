@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Star } from "@/lib/icons";
 import {
   Carousel,
   CarouselContent,

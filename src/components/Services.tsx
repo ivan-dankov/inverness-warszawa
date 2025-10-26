@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sparkles, Baby, Calendar } from "lucide-react";
+import { Sparkles, Baby, Calendar } from "@/lib/icons";
 import { useTranslation } from 'react-i18next';
 import { trackBookingClick } from "@/lib/analytics";
 import { getBooksyUrl } from "@/lib/language-routes";

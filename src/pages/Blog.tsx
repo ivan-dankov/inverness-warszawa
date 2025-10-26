@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, Navigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@/lib/icons";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { getPageSEO, isSupportedLanguage } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";

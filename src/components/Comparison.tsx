@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Check, X, AlertCircle, Sparkles } from "lucide-react";
+import { Check, X, AlertCircle, Sparkles } from "@/lib/icons";
 
 export const Comparison = () => {
   const { t } = useTranslation();

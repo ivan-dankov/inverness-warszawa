@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, FileText, X, ChevronRight as ArrowRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, FileText, X, ArrowRight } from "@/lib/icons";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { useTranslation } from 'react-i18next';

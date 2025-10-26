@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -15,8 +14,6 @@ import Aftercare from "./pages/Aftercare";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import NotFound from "./pages/NotFound";
-
-const queryClient = new QueryClient();
 
 const SmartScrollManager = () => {
   const location = useLocation();
@@ -82,43 +79,41 @@ const LanguageManager = () => {
 
 const App = () => (
   <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <LanguageManager />
-          <SmartScrollManager />
-          <Routes>
-            {/* Root - redirect to Polish homepage */}
-            <Route path="/" element={<Navigate to="/pl" replace />} />
-            
-          {/* Language-specific homepages */}
-          <Route path="/:lang" element={<LanguageHome />} />
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <LanguageManager />
+        <SmartScrollManager />
+        <Routes>
+          {/* Root - redirect to Polish homepage */}
+          <Route path="/" element={<Navigate to="/pl" replace />} />
           
-          {/* Language-specific Aftercare pages */}
-          <Route path="/:lang/aftercare" element={<Aftercare />} />
+        {/* Language-specific homepages */}
+        <Route path="/:lang" element={<LanguageHome />} />
+        
+        {/* Language-specific Aftercare pages */}
+        <Route path="/:lang/aftercare" element={<Aftercare />} />
+        
+        {/* Language-specific Blog pages */}
+        <Route path="/:lang/blog" element={<Blog />} />
+        <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
+        
+        {/* Language-specific Earrings pages */}
+        <Route path="/:lang/earrings" element={<EarringsGallery />} />
+        <Route path="/:lang/earrings/:productId" element={<EarringDetail />} />
+        
+        {/* Legacy routes - redirect to default language (Polish) */}
+        <Route path="/aftercare" element={<Navigate to="/pl/aftercare" replace />} />
+        <Route path="/blog" element={<Navigate to="/pl/blog" replace />} />
+        <Route path="/earrings" element={<Navigate to="/pl/earrings" replace />} />
+        <Route path="/earrings/:productId" element={<Navigate to={`/pl/earrings/${window.location.pathname.split('/').pop()}`} replace />} />
           
-          {/* Language-specific Blog pages */}
-          <Route path="/:lang/blog" element={<Blog />} />
-          <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
-          
-          {/* Language-specific Earrings pages */}
-          <Route path="/:lang/earrings" element={<EarringsGallery />} />
-          <Route path="/:lang/earrings/:productId" element={<EarringDetail />} />
-          
-          {/* Legacy routes - redirect to default language (Polish) */}
-          <Route path="/aftercare" element={<Navigate to="/pl/aftercare" replace />} />
-          <Route path="/blog" element={<Navigate to="/pl/blog" replace />} />
-          <Route path="/earrings" element={<Navigate to="/pl/earrings" replace />} />
-          <Route path="/earrings/:productId" element={<Navigate to={`/pl/earrings/${window.location.pathname.split('/').pop()}`} replace />} />
-            
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </HelmetProvider>
 );
 

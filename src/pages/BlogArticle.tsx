@@ -3,7 +3,7 @@ import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, Navigate } from "react-router-dom";
-import { ArrowLeft, Clock, User, Calendar } from "lucide-react";
+import { ArrowLeft, Clock, User, Calendar } from "@/lib/icons";
 import { Helmet } from "react-helmet-async";
 import { isSupportedLanguage } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";

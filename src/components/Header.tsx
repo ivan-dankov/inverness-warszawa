@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Phone, Instagram, Menu } from "lucide-react";
+import { Calendar, Phone, Instagram, Menu } from "@/lib/icons";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";

@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Navigation } from 'lucide-react';
+import { Navigation } from '@/lib/icons';
 
 export const Map = () => {
   const handleGetDirections = () => {

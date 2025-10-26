@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Instagram } from "lucide-react";
+import { Calendar, Instagram } from "@/lib/icons";
 import { useTranslation } from "react-i18next";
 import logoWide from "@/assets/logo-wide.svg";
 import { trackBookingClick } from "@/lib/analytics";
@@ -60,13 +60,13 @@ export function Hero({ currentLang }: HeroProps) {
     src: hero4_800
   }];
   return <section className="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-background-alt/95 via-background-alt/85 to-background-alt/70 z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background-alt/95 to-background-alt/70 z-0" />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 sm:py-0">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <div className="max-w-2xl">
-            <img src={logoWide} alt="Inverness Logo" className="h-6 sm:h-8 lg:h-10 w-auto mb-6 sm:mb-8" />
+            <img src={logoWide} alt="Inverness Logo" className="h-6 sm:h-8 lg:h-10 w-auto mb-6 sm:mb-8" width="320" height="64" loading="eager" fetchPriority="high" />
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
               {t('hero.title')}
             </h1>

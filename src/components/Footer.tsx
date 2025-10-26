@@ -1,4 +1,4 @@
-import { Instagram, Phone } from "lucide-react";
+import { Instagram, Phone } from "@/lib/icons";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";

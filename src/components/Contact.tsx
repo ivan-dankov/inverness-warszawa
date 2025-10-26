@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Instagram, Clock, Calendar } from "lucide-react";
+import { MapPin, Phone, Instagram, Clock, Calendar } from "@/lib/icons";
 import { Map } from "./Map";
 import { useTranslation } from 'react-i18next';
 
