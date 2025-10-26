@@ -40,6 +40,9 @@ export default function EarringDetail() {
     return match ? match[1] : '';
   }, [earring]);
 
+  // Remove .jpg extension if present
+  const displayProductCode = productCode.replace(/\.jpg$/i, '');
+
   const otherEarrings = useMemo(() => {
     if (!earring) return [];
     
@@ -199,7 +202,7 @@ export default function EarringDetail() {
                 {/* Product Code */}
                 <div className="mb-8">
                   <p className="text-sm text-muted-foreground">
-                    {t('specifications.productCode')}: <span className="font-mono font-medium text-foreground">{productCode}</span>
+                    {t('specifications.productCode')}: <span className="font-mono font-medium text-foreground">{displayProductCode}</span>
                   </p>
                 </div>
                 
