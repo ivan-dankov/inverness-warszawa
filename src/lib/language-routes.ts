@@ -138,8 +138,8 @@ export const getPageSEO = (lang: string): LanguageSEO => {
         description: 'Przydatne poradniki i wskazówki dotyczące przekłuwania uszu. Dowiedz się więcej o zabiegu, pielęgnacji i metodzie Inverness MED.'
       },
       earringDetail: (productName: string) => ({
-        title: `${productName} - Kolczyki Inverness MED Warszawa`,
-        description: `${productName}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie. Hipoalergiczne, certyfikowane, sterylne.`
+        title: `${productName} | Inverness MED Kolczyki Warszawa`,
+        description: `${productName}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie. Hipoalergiczne, sterylne, certyfikowane FDA i ISO. Dla dzieci i dorosłych.`
       })
     },
     uk: {
@@ -160,8 +160,8 @@ export const getPageSEO = (lang: string): LanguageSEO => {
         description: 'Корисні поради та поради щодо проколу вух. Дізнайтеся більше про процедуру, догляд та метод Inverness MED.'
       },
       earringDetail: (productName: string) => ({
-        title: `${productName} - Сережки Inverness MED Варшава`,
-        description: `${productName}. Безпечні медичні сережки Inverness MED у Варшаві. Гіпоалергенні, сертифіковані, стерильні.`
+        title: `${productName} | Inverness MED Сережки Варшава`,
+        description: `${productName}. Безпечні медичні сережки Inverness MED у Варшаві. Гіпоалергенні, стерильні, сертифіковані FDA та ISO. Для дітей і дорослих.`
       })
     },
     ru: {
@@ -182,8 +182,8 @@ export const getPageSEO = (lang: string): LanguageSEO => {
         description: 'Полезные советы и рекомендации по прокалыванию ушей. Узнайте больше о процедуре, уходе и методе Inverness MED.'
       },
       earringDetail: (productName: string) => ({
-        title: `${productName} - Серьги Inverness MED Варшава`,
-        description: `${productName}. Безопасные медицинские серьги Inverness MED в Варшаве. Гипоаллергенные, сертифицированные, стерильные.`
+        title: `${productName} | Inverness MED Серьги Варшава`,
+        description: `${productName}. Безопасные медицинские серьги Inverness MED в Варшаве. Гипоаллергенные, стерильные, сертифицированные FDA и ISO. Для детей и взрослых.`
       })
     },
     en: {
@@ -204,8 +204,8 @@ export const getPageSEO = (lang: string): LanguageSEO => {
         description: 'Useful guides and tips on ear piercing. Learn more about the procedure, aftercare and the Inverness MED method.'
       },
       earringDetail: (productName: string) => ({
-        title: `${productName} - Inverness MED Earrings Warsaw`,
-        description: `${productName}. Safe medical earrings Inverness MED in Warsaw. Hypoallergenic, certified, sterile.`
+        title: `${productName} | Inverness MED Earrings Warsaw`,
+        description: `${productName}. Safe medical earrings Inverness MED in Warsaw. Hypoallergenic, sterile, FDA and ISO certified. For children and adults.`
       })
     }
   };

@@ -6,6 +6,7 @@ import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings, type Earring } from "@/lib/earrings";
 import NotFound from "./NotFound";
 import { useTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet-async';
 import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { getPageSEO } from "@/lib/language-routes";
@@ -106,14 +107,40 @@ export default function EarringDetail() {
       <MultilingualSEO 
         currentLang={currentLang}
         pagePath={`/earrings/${productId}`}
-        customTitle={pageSEO.earringDetail(earring.name).title}
-        customDescription={pageSEO.earringDetail(earring.name).description}
+        customTitle={pageSEO.earringDetail(t(`earringNames.${earring.name}`, earring.name)).title}
+        customDescription={pageSEO.earringDetail(t(`earringNames.${earring.name}`, earring.name)).description}
+        ogImage={`https://gentlepiercing.pl${earring.images[0]}`}
+        ogType="product"
       />
+      
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": t(`earringNames.${earring.name}`, earring.name),
+            "image": earring.images.map(img => `https://gentlepiercing.pl${img}`),
+            "description": `${t(`earringNames.${earring.name}`, earring.name)}. ${t('specifications.safety')}`,
+            "sku": displayProductCode,
+            "brand": { 
+              "@type": "Brand", 
+              "name": "Inverness MED" 
+            },
+            "category": "Medical Earrings",
+            "material": "316L Medical Steel / Titanium / Niobium",
+            "manufacturer": {
+              "@type": "Organization",
+              "name": "Inverness Med",
+              "location": { "@type": "Country", "name": "USA" }
+            }
+          })}
+        </script>
+      </Helmet>
       
       <BreadcrumbSchema items={[
         { name: t('breadcrumb.home'), url: `https://gentlepiercing.pl/${currentLang}` },
         { name: t('header.nav.earrings'), url: `https://gentlepiercing.pl/${currentLang}/earrings` },
-        { name: earring.name, url: `https://gentlepiercing.pl/${currentLang}/earrings/${productId}` }
+        { name: t(`earringNames.${earring.name}`, earring.name), url: `https://gentlepiercing.pl/${currentLang}/earrings/${productId}` }
       ]} />
       <Header currentLang={currentLang} />
       
@@ -161,7 +188,7 @@ export default function EarringDetail() {
                     </div>}
                   <img 
                     src={earring.images[selectedImageIndex]} 
-                    alt={earring.name} 
+                    alt={t(`earringNames.${earring.name}`, earring.name)} 
                     className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} 
                     onLoad={() => setImageLoaded(true)}
                     loading="eager"
@@ -178,7 +205,7 @@ export default function EarringDetail() {
                 }} className={`aspect-square rounded-lg overflow-hidden transition-all duration-200 border-2 ${idx === selectedImageIndex ? 'border-primary scale-105' : 'border-border hover:border-primary/50 opacity-70 hover:opacity-100'}`} aria-label={`Show image ${idx + 1} of ${earring.images.length}`}>
                         <img 
                           src={img} 
-                          alt={earring.name} 
+                          alt={t(`earringNames.${earring.name}`, earring.name)} 
                           className="w-full h-full object-cover"
                           loading="lazy"
                           decoding="async"

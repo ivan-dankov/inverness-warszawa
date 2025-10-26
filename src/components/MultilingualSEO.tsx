@@ -7,13 +7,17 @@ interface MultilingualSEOProps {
   pagePath?: string;
   customTitle?: string;
   customDescription?: string;
+  ogImage?: string;
+  ogType?: string;
 }
 
 export const MultilingualSEO = ({ 
   currentLang, 
   pagePath = '', 
   customTitle, 
-  customDescription 
+  customDescription,
+  ogImage,
+  ogType 
 }: MultilingualSEOProps) => {
   const langConfig = getLanguageConfig(currentLang);
   const canonicalUrl = getCanonicalUrl(currentLang, pagePath);
@@ -41,10 +45,20 @@ export const MultilingualSEO = ({
       <link rel="alternate" hrefLang="x-default" href={hrefLangUrls['x-default']} />
       
       {/* Open Graph tags */}
+      <meta property="og:type" content={ogType || "website"} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:locale" content={currentLang === 'pl' ? 'pl_PL' : currentLang === 'en' ? 'en_US' : currentLang === 'uk' ? 'uk_UA' : 'ru_RU'} />
+      {ogImage && (
+        <>
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:image:secure_url" content={ogImage} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="1200" />
+          <meta property="og:image:alt" content={title} />
+        </>
+      )}
       
       {/* Alternate locales */}
       {Object.entries(hrefLangUrls).map(([lang, url]) => {
@@ -54,8 +68,10 @@ export const MultilingualSEO = ({
       })}
       
       {/* Twitter Card */}
+      {ogImage && <meta name="twitter:card" content="summary_large_image" />}
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
       
       {/* Robots - block preview domains */}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}

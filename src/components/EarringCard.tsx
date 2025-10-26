@@ -23,7 +23,7 @@ export const EarringCard = ({ earring, index, className = "" }: EarringCardProps
     >
       <img
         src={earring.images[0]}
-        alt={earring.name}
+        alt={t(`earringNames.${earring.name}`, earring.name)}
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         loading="lazy"
         decoding="async"
