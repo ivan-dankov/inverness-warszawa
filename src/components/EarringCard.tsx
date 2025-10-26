@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { getLanguageFromPath } from "@/lib/language-routes";
+import { useTranslation } from "react-i18next";
 
 interface EarringCardProps {
   earring: {
@@ -13,6 +14,7 @@ interface EarringCardProps {
 export const EarringCard = ({ earring, index, className = "" }: EarringCardProps) => {
   const location = useLocation();
   const currentLang = getLanguageFromPath(location.pathname);
+  const { t } = useTranslation();
   
   return (
     <Link
@@ -35,7 +37,7 @@ export const EarringCard = ({ earring, index, className = "" }: EarringCardProps
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
           <p className="text-white text-xs sm:text-sm font-medium line-clamp-2">
-            {earring.name}
+            {t(`earringNames.${earring.name}`, earring.name)}
           </p>
         </div>
       </div>

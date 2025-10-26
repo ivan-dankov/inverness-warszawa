@@ -29,6 +29,10 @@ export const specificationMap: Record<string, string> = {
   'Powłoka - złoto 24Kt.': 'specifications.coatings.gold24kt',
   'Powłoka rodowa.': 'specifications.coatings.rhodium',
   
+  // Finish (Wykończenie)
+  'Wykończenie: Kolor Srebrny Polerowany': 'specifications.finish.silverPolished',
+  'Wykończenie: Pozłacane 24 karatowe złoto': 'specifications.finish.gold24ktPlated',
+  
   // Standard features
   'Opatentowane zapięcie bezpieczeństwa Safety Back.': 'specifications.safety',
   'Hermetyczne sterylne opakowanie.': 'specifications.packaging.sterile',

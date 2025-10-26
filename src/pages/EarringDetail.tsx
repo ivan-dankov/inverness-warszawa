@@ -6,7 +6,6 @@ import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings, type Earring } from "@/lib/earrings";
 import NotFound from "./NotFound";
 import { useTranslation } from 'react-i18next';
-import { getSpecificationTranslation } from "@/lib/specificationTranslations";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { getPageSEO } from "@/lib/language-routes";
@@ -154,7 +153,6 @@ export default function EarringDetail() {
                     className={`max-w-full max-h-[60vh] object-contain transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`} 
                     onLoad={() => setImageLoaded(true)}
                     loading="eager"
-                    fetchPriority="high"
                     decoding="async"
                     style={{ maxWidth: '800px' }}
                   />
@@ -186,42 +184,35 @@ export default function EarringDetail() {
               {/* RIGHT: Description Section */}
               <div>
                 <h1 className="text-2xl lg:text-3xl font-bold mb-8 text-foreground">
-                  {earring.name}
+                  {t(`earringNames.${earring.name}`, earring.name)}
                 </h1>
                 
-                {/* Description Points */}
-                {earring.description_points && earring.description_points.length > 0 && (
-                  <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
-                    <h2 className="text-lg font-semibold mb-4 text-foreground">{t('earringDetail.specification')}</h2>
-                    <ul className="space-y-3">
-                      {earring.description_points.map((point, idx) => {
-                        // Get translation key and params
-                        const translation = getSpecificationTranslation(point);
-                        
-                        // Use translated text or fallback to original
-                        const translatedPoint = translation 
-                          ? String(t(translation.key, translation.params || {}))
-                          : point;
-                        
-                        return (
-                          <li key={idx} className="flex items-start gap-3 group animate-fade-in" style={{ animationDelay: `${idx * 50}ms` }}>
-                            <svg 
-                              className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" 
-                              fill="none" 
-                              viewBox="0 0 24 24" 
-                              stroke="currentColor"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span className="leading-relaxed text-foreground/90 group-hover:text-foreground transition-colors">
-                              {translatedPoint}
-                            </span>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                )}
+                {/* Standard Description Points */}
+                <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
+                  <h2 className="text-lg font-semibold mb-4 text-foreground">{t('earringDetail.specification')}</h2>
+                  <ul className="space-y-3">
+                    {[
+                      { key: 'specifications.safety', text: t('specifications.safety') },
+                      { key: 'specifications.packaging.sterile', text: t('specifications.packaging.sterile') },
+                      { key: 'specifications.packaging.individual', text: t('specifications.packaging.individual') },
+                      { key: 'specifications.origin', text: t('specifications.origin') }
+                    ].map((point, idx) => (
+                      <li key={point.key} className="flex items-start gap-3 group animate-fade-in" style={{ animationDelay: `${idx * 50}ms` }}>
+                        <svg 
+                          className="w-5 h-5 text-primary mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" 
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span className="leading-relaxed text-foreground/90 group-hover:text-foreground transition-colors">
+                          {point.text}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
             

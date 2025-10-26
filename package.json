@@ -8,7 +8,17 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "scrape": "node scripts/scrape-inverness.mjs",
+    "scrape:specific": "node scripts/scrape-specific.mjs",
+    "clean-images": "node scripts/clean-images.mjs",
+    "download-images": "node scripts/download-images.mjs",
+    "fix-paths": "node scripts/fix-image-paths.mjs",
+    "update-public": "node scripts/update-to-public.mjs",
+    "remove-600x600": "node scripts/remove-600x600.mjs",
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "update-all-images": "node scripts/update-all-images.mjs",
+    "clean-descriptions": "node scripts/clean-descriptions.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.11",

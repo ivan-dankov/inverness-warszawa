@@ -32,7 +32,20 @@ export const getUniqueImages = (images: string[]): string[] => {
     // Create a unique key based on: variant letter + domain (NO SIZE)
     // This makes /m/K1232c-A and /l/K1232c-A collapse to the same key
     const variant = img.match(/-([A-Z])-/)?.[1] || 'default';
-    const domain = new URL(img).hostname;
+    
+    // Handle both absolute URLs and relative paths
+    let domain = 'local';
+    try {
+      if (img.startsWith('http')) {
+        domain = new URL(img).hostname;
+      } else {
+        // For relative paths, use the filename as domain
+        domain = img.split('/').pop()?.split('-')[0] || 'local';
+      }
+    } catch (e) {
+      // If URL parsing fails, use filename
+      domain = img.split('/').pop()?.split('-')[0] || 'local';
+    }
     
     const uniqueKey = `${variant}_${domain}`;
     
@@ -48,10 +61,8 @@ export const getUniqueImages = (images: string[]): string[] => {
 export const getAllEarrings = async (): Promise<Earring[]> => {
   const earrings = await loadEarrings();
   
-  return earrings.map(e => ({
-    ...e,
-    images: getUniqueImages(e.images)
-  }));
+  // Return all images without deduplication
+  return earrings;
 };
 
 export const getEarring = async (index: number): Promise<Earring | null> => {
