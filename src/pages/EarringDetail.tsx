@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate, Link, useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
@@ -10,11 +10,14 @@ import { getSpecificationTranslation } from "@/lib/specificationTranslations";
 import { Helmet } from "react-helmet-async";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { shouldNoIndex } from "@/lib/seo-utils";
+import { getLanguageFromPath } from "@/lib/language-routes";
 
 export default function EarringDetail() {
   const { t } = useTranslation();
   const { productId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentLang = getLanguageFromPath(location.pathname);
   const [earrings, setEarrings] = useState<Earring[]>([]);
   const [loading, setLoading] = useState(true);
   const currentIndex = parseInt(productId || '0');
@@ -77,7 +80,7 @@ export default function EarringDetail() {
   if (loading) {
     return (
       <div className="min-h-screen flex flex-col bg-background">
-        <Header />
+        <Header currentLang={currentLang} />
         <main className="flex-grow flex items-center justify-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         </main>
@@ -111,7 +114,7 @@ export default function EarringDetail() {
         { name: t('earringDetail.breadcrumbEarrings'), url: 'https://gentlepiercing.pl/earrings' },
         { name: earring.name, url: `https://gentlepiercing.pl/earrings/${productId}` }
       ]} />
-      <Header />
+      <Header currentLang={currentLang} />
       
       <main className="flex-grow">
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">

@@ -32,7 +32,7 @@ export default function EarringsGallery() {
   };
   if (loading) {
     return <div className="min-h-screen flex flex-col">
-        <Header />
+        <Header currentLang={currentLang} />
         <main className="flex-grow flex items-center justify-center">
           <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
         </main>
@@ -58,7 +58,7 @@ export default function EarringsGallery() {
       name: t('earringsGallery.title'),
       url: 'https://gentlepiercing.pl/earrings'
     }]} />
-      <Header />
+      <Header currentLang={currentLang} />
       
       <main className="flex-grow bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
