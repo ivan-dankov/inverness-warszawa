@@ -183,9 +183,16 @@ export default function EarringDetail() {
               
               {/* RIGHT: Description Section */}
               <div>
-                <h1 className="text-2xl lg:text-3xl font-bold mb-8 text-foreground">
+                <h1 className="text-2xl lg:text-3xl font-bold mb-2 text-foreground">
                   {t(`earringNames.${earring.name}`, earring.name)}
                 </h1>
+                
+                {/* Product Code */}
+                <div className="mb-8">
+                  <p className="text-sm text-muted-foreground">
+                    {t('specifications.productCode')}: <span className="font-mono font-medium text-foreground">{currentIndex + 1}</span>
+                  </p>
+                </div>
                 
                 {/* Standard Description Points */}
                 <div className="bg-muted/30 rounded-xl p-6 border border-border/50">
