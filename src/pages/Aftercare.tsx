@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, Navigate } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { getPageSEO, isSupportedLanguage } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
@@ -35,21 +34,30 @@ export default function Aftercare() {
       />
       
       <BreadcrumbSchema items={[
-        { name: t('aftercare.backButton'), url: `https://gentlepiercing.pl/${currentLang}` },
-        { name: t('aftercare.title'), url: `https://gentlepiercing.pl/${currentLang}/aftercare` }
+        { name: t('breadcrumb.home'), url: `https://gentlepiercing.pl/${currentLang}` },
+        { name: t('header.nav.aftercare'), url: `https://gentlepiercing.pl/${currentLang}/aftercare` }
       ]} />
       
       <Header currentLang={currentLang} />
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
-          <nav className="mb-8">
-            <Link 
-              to={`/${currentLang}`}
-              className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              {t('aftercare.backButton')}
-            </Link>
+          <nav className="mb-8" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <li>
+                <Link 
+                  to={`/${currentLang}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {t('breadcrumb.home')}
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <span className="mx-2">/</span>
+                <span className="text-foreground font-medium">
+                  {t('header.nav.aftercare')}
+                </span>
+              </li>
+            </ol>
           </nav>
           
           <div className="text-center mb-12">

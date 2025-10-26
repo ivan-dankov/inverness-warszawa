@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings, type Earring } from "@/lib/earrings";
-import { ArrowLeft, ArrowUp } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { getPageSEO } from "@/lib/language-routes";
@@ -47,19 +46,31 @@ export default function EarringsGallery() {
       />
       
       <BreadcrumbSchema items={[
-        { name: t('earringsGallery.breadcrumbHome'), url: `https://gentlepiercing.pl/${currentLang}` },
-        { name: t('earringsGallery.title'), url: `https://gentlepiercing.pl/${currentLang}/earrings` }
+        { name: t('breadcrumb.home'), url: `https://gentlepiercing.pl/${currentLang}` },
+        { name: t('header.nav.earrings'), url: `https://gentlepiercing.pl/${currentLang}/earrings` }
       ]} />
       <Header currentLang={currentLang} />
       
       <main className="flex-grow bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Breadcrumb */}
-          <nav className="mb-6 sm:mb-8">
-            <Link to={`/${currentLang}`} className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
-              <ArrowLeft className="h-4 w-4" />
-              {t('earringsGallery.breadcrumbHome')}
-            </Link>
+          <nav className="mb-6 sm:mb-8" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <li>
+                <Link 
+                  to={`/${currentLang}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {t('breadcrumb.home')}
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <span className="mx-2">/</span>
+                <span className="text-foreground font-medium">
+                  {t('header.nav.earrings')}
+                </span>
+              </li>
+            </ol>
           </nav>
 
           {/* Title */}

@@ -210,7 +210,7 @@ export const Gallery = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="absolute top-4 right-4 z-50 text-white hover:bg-white/20"
+              className="absolute top-4 right-4 z-50 text-white hover:bg-white/20 h-12 w-12"
               onClick={closeImage}
             >
               <X className="h-6 w-6" />
@@ -224,13 +224,14 @@ export const Gallery = () => {
                   className="max-w-full max-h-full object-contain animate-fade-in"
                   loading="eager"
                   decoding="async"
+                  draggable={false}
                 />
 
                 {/* Desktop Navigation - Sides */}
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hidden md:flex absolute left-4 z-50 text-white hover:bg-white/20"
+                  className="hidden md:flex absolute left-4 z-50 text-white hover:bg-white/20 h-16 w-16"
                   onClick={prevImage}
                 >
                   <ChevronLeft className="h-8 w-8" />
@@ -239,27 +240,33 @@ export const Gallery = () => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="hidden md:flex absolute right-4 z-50 text-white hover:bg-white/20"
+                  className="hidden md:flex absolute right-4 z-50 text-white hover:bg-white/20 h-16 w-16"
                   onClick={nextImage}
                 >
                   <ChevronRight className="h-8 w-8" />
                 </Button>
 
-                {/* Mobile Navigation - Bottom */}
-                <div className="md:hidden absolute bottom-16 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
+                {/* Mobile Navigation - Top */}
+                <div className="md:hidden absolute top-16 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-white hover:bg-white/20"
-                    onClick={prevImage}
+                    className="text-white hover:bg-white/20 h-14 w-14"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevImage();
+                    }}
                   >
                     <ChevronLeft className="h-8 w-8" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="text-white hover:bg-white/20"
-                    onClick={nextImage}
+                    className="text-white hover:bg-white/20 h-14 w-14"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextImage();
+                    }}
                   >
                     <ChevronRight className="h-8 w-8" />
                   </Button>

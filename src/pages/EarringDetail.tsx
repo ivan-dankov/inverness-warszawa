@@ -100,8 +100,8 @@ export default function EarringDetail() {
       />
       
       <BreadcrumbSchema items={[
-        { name: t('earringDetail.breadcrumbHome'), url: `https://gentlepiercing.pl/${currentLang}` },
-        { name: t('earringDetail.breadcrumbEarrings'), url: `https://gentlepiercing.pl/${currentLang}/earrings` },
+        { name: t('breadcrumb.home'), url: `https://gentlepiercing.pl/${currentLang}` },
+        { name: t('header.nav.earrings'), url: `https://gentlepiercing.pl/${currentLang}/earrings` },
         { name: earring.name, url: `https://gentlepiercing.pl/${currentLang}/earrings/${productId}` }
       ]} />
       <Header currentLang={currentLang} />
@@ -109,18 +109,32 @@ export default function EarringDetail() {
       <main className="flex-grow">
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-            <Link to={`/${currentLang}`} className="hover:text-primary transition-colors">
-              {t('earringDetail.breadcrumbHome')}
-            </Link>
-            <span>/</span>
-            <Link to={`/${currentLang}/earrings`} className="hover:text-primary transition-colors">
-              {t('earringDetail.breadcrumbEarrings')}
-            </Link>
-            <span>/</span>
-            <span className="text-foreground truncate max-w-[150px] sm:max-w-none">
-              {earring.name}
-            </span>
+          <nav className="mb-6 sm:mb-8" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <li>
+                <Link 
+                  to={`/${currentLang}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {t('breadcrumb.home')}
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <span className="mx-2">/</span>
+                <Link 
+                  to={`/${currentLang}/earrings`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {t('header.nav.earrings')}
+                </Link>
+              </li>
+              <li className="flex items-center">
+                <span className="mx-2">/</span>
+                <span className="text-foreground font-medium truncate max-w-[150px] sm:max-w-none">
+                  {earring.name}
+                </span>
+              </li>
+            </ol>
           </nav>
 
           {/* Two-Column Layout */}
