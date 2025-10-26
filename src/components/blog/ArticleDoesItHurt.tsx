@@ -13,7 +13,6 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       inverness_link: "Inverness Medical",
       h2_2: "Przekłuwanie uszu u dzieci",
       p4: "Rodzice często pytają, czy dziecko będzie płakać. Dzięki delikatnej technice Inverness i spokojnej atmosferze zabieg jest krótki, cichy i bezpieczny — również dla najmłodszych. Wykonujemy przekłucia w studio lub z dojazdem na terenie Warszawy i okolic.",
-      book: "Zarezerwuj wizytę w Gentle Piercing przez Booksy",
       h2_3: "Dlaczego dobór kolczyków jest ważny",
       p5: "Odpowiednie kolczyki pomagają uniknąć alergii i przyspieszają gojenie — niezależnie od wieku. Wybieraj",
       earrings_link: "hipoalergiczne kolczyki medyczne",
@@ -38,7 +37,6 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       inverness_link: "Inverness Medical",
       h2_2: "Прокол вух у дітей",
       p4: "Батьки часто питають, чи буде дитина плакати. Завдяки ніжній техніці Inverness та спокійній атмосфері процедура коротка, тиха та безпечна — також для найменших. Ми виконуємо проколи в студії або з виїздом у Варшаві та околицях.",
-      book: "Запишіться на візит до Gentle Piercing через Booksy",
       h2_3: "Чому важливий вибір сережок",
       p5: "Належні серьги допомагають уникнути алергії та пришвидшують загоєння — незалежно від віку. Оберіть",
       earrings_link: "гіпоалергенні медичні серьги",
@@ -63,7 +61,6 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       inverness_link: "Inverness Medical",
       h2_2: "Прокалывание ушей у детей",
       p4: "Родители часто спрашивают, будет ли ребенок плакать. Благодаря деликатной технике Inverness и спокойной атмосфере процедура короткая, тихая и безопасная — также для самых маленьких. Мы выполняем прокалывания в студии или с выездом по Варшаве и окрестностям.",
-      book: "Запишитесь на визит в Gentle Piercing через Booksy",
       h2_3: "Почему важен выбор сережек",
       p5: "Надлежащие серьги помогают избежать аллергии и ускоряют заживление — независимо от возраста. Выберите",
       earrings_link: "гипоаллергенные медицинские серьги",
@@ -88,7 +85,6 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       inverness_link: "Inverness Medical",
       h2_2: "Ear piercing for children",
       p4: "Parents often ask if the child will cry. Thanks to the gentle Inverness technique and calm atmosphere, the procedure is short, quiet and safe — also for the youngest. We perform piercings at the studio or with mobile service in Warsaw and the surrounding area.",
-      book: "Book a visit to Gentle Piercing via Booksy",
       h2_3: "Why the choice of earrings is important",
       p5: "Proper earrings help avoid allergies and speed up healing — regardless of age. Choose",
       earrings_link: "hypoallergenic medical earrings",
@@ -140,11 +136,6 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       <p className="text-foreground mb-4">
         {t.p4}
       </p>
-      <p className="text-foreground mb-6">
-        <a href={getBooksyUrl('children')} target="_blank" rel="noopener" className="text-primary hover:underline font-semibold">
-          {t.book}
-        </a>
-      </p>
 
       <h2 className="text-3xl font-semibold text-foreground mb-4 mt-8">
         {t.h2_3}
@@ -160,14 +151,16 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       <h2 className="text-3xl font-semibold text-foreground mb-4 mt-8">
         {t.h2_4}
       </h2>
-      <ul className="list-none space-y-3 text-foreground mb-6">
-        {t.items.map((item, idx) => (
-          <li key={idx} className="flex items-start">
-            <span className="mr-2">{item.split(' ')[0]}</span>
-            <span>{item.split(' ').slice(1).join(' ')}</span>
-          </li>
-        ))}
-      </ul>
+      <div className="bg-muted/30 rounded-xl p-8 border border-border/50">
+        <ul className="list-none space-y-3 text-foreground">
+          {t.items.map((item, idx) => (
+            <li key={idx} className="flex items-start text-lg">
+              <span className="mr-3">{item.split(' ')[0]}</span>
+              <span className="leading-relaxed">{item.split(' ').slice(1).join(' ')}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <p className="text-foreground mb-8">
         <a href={getBooksyUrl('cta')} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-semibold">
