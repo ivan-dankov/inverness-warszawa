@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageHome } from "./pages/LanguageHome";
-import { LanguageRedirect } from "./components/LanguageRedirect";
 import { getLanguageFromPath } from "./lib/language-routes";
 import { Navigate } from "react-router-dom";
 import EarringsGallery from "./pages/EarringsGallery";
@@ -89,8 +88,8 @@ const App = () => (
           <LanguageManager />
           <SmartScrollManager />
           <Routes>
-            {/* Root - auto-detect language and redirect */}
-            <Route path="/" element={<LanguageRedirect />} />
+            {/* Root - redirect to Polish homepage */}
+            <Route path="/" element={<Navigate to="/pl" replace />} />
             
           {/* Language-specific homepages */}
           <Route path="/:lang" element={<LanguageHome />} />
