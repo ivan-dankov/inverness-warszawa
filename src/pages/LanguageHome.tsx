@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { supportedLanguages } from '@/lib/language-routes';
+import { isSupportedLanguage } from '@/lib/language-routes';
 import Index from './Index';
 
 /**
@@ -20,7 +20,7 @@ export const LanguageHome = () => {
   }, [lang, i18n]);
   
   // Validate language parameter
-  if (!lang || !supportedLanguages.includes(lang as any)) {
+  if (!isSupportedLanguage(lang)) {
     return <Navigate to="/pl" replace />;
   }
   

@@ -50,6 +50,13 @@ export const supportedLanguages = ['pl', 'uk', 'ru', 'en'] as const;
 export type SupportedLanguage = typeof supportedLanguages[number];
 
 /**
+ * Type guard to check if a string is a supported language
+ */
+export const isSupportedLanguage = (lang: string | undefined): lang is SupportedLanguage => {
+  return lang !== undefined && (lang === 'pl' || lang === 'uk' || lang === 'ru' || lang === 'en');
+};
+
+/**
  * Get language config by code
  */
 export const getLanguageConfig = (code: string): LanguageConfig => {
