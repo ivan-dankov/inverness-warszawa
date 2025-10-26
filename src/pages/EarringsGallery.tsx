@@ -4,12 +4,11 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
 import { getAllEarrings, type Earring } from "@/lib/earrings";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUp } from "lucide-react";
 import { useTranslation } from 'react-i18next';
-import { Helmet } from "react-helmet-async";
+import { MultilingualSEO } from "@/components/MultilingualSEO";
+import { getLanguageFromPath, getPageSEO } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
-import { shouldNoIndex } from "@/lib/seo-utils";
-import { getLanguageFromPath } from "@/lib/language-routes";
 
 export default function EarringsGallery() {
   const { t } = useTranslation();
@@ -17,7 +16,7 @@ export default function EarringsGallery() {
   const currentLang = getLanguageFromPath(location.pathname);
   const [earrings, setEarrings] = useState<Earring[]>([]);
   const [loading, setLoading] = useState(true);
-  const noIndex = shouldNoIndex();
+  const pageSEO = getPageSEO(currentLang);
   useEffect(() => {
     getAllEarrings().then(data => {
       setEarrings(data);
@@ -40,31 +39,24 @@ export default function EarringsGallery() {
       </div>;
   }
   return <div className="min-h-screen flex flex-col">
-      <Helmet>
-        <title>{`${t('earringsGallery.title') || 'Galeria Kolczyków'} - ${earrings.length} wzorów | Inverness MED Warszawa`}</title>
-        <meta name="description" content={`Przeglądaj ${earrings.length} różnych wzorów kolczyków medycznych Inverness. Bezpieczne, hipoalergiczne, certyfikowane FDA i ISO.`} />
-        {noIndex && <meta name="robots" content="noindex, nofollow" />}
-        <link rel="canonical" href="https://gentlepiercing.pl/earrings" />
-        <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/earrings" />
-        <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/earrings" />
-        <link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/earrings" />
-        <link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/earrings" />
-        <link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/earrings" />
-      </Helmet>
-      <BreadcrumbSchema items={[{
-      name: t('earringsGallery.breadcrumbHome'),
-      url: 'https://gentlepiercing.pl/'
-    }, {
-      name: t('earringsGallery.title'),
-      url: 'https://gentlepiercing.pl/earrings'
-    }]} />
+      <MultilingualSEO 
+        currentLang={currentLang}
+        pagePath="/earrings"
+        customTitle={`${pageSEO.earrings.title} - ${earrings.length} ${t('earringsGallery.productCount', { count: earrings.length }).split(' ')[1]}`}
+        customDescription={pageSEO.earrings.description}
+      />
+      
+      <BreadcrumbSchema items={[
+        { name: t('earringsGallery.breadcrumbHome'), url: `https://gentlepiercing.pl/${currentLang}` },
+        { name: t('earringsGallery.title'), url: `https://gentlepiercing.pl/${currentLang}/earrings` }
+      ]} />
       <Header currentLang={currentLang} />
       
       <main className="flex-grow bg-gradient-to-b from-background to-muted/20">
         <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Breadcrumb */}
           <nav className="mb-6 sm:mb-8">
-            <Link to="/" className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
+            <Link to={`/${currentLang}`} className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors">
               <ArrowLeft className="h-4 w-4" />
               {t('earringsGallery.breadcrumbHome')}
             </Link>

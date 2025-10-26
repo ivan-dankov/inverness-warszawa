@@ -60,13 +60,13 @@ export function Header({ currentLang }: HeaderProps) {
             <button onClick={() => handleNavClick('gallery')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.gallery')}
             </button>
-            <button onClick={() => navigate('/earrings')} className={`text-sm font-medium transition-colors ${location.pathname.startsWith('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+            <button onClick={() => navigate(`/${currentLang}/earrings`)} className={`text-sm font-medium transition-colors ${location.pathname.includes('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.earrings')}
             </button>
-            <button onClick={() => handleNavClick('comparison')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+            <button onClick={() => handleNavClick('comparison')} className={`text-sm font-medium transition-colors ${location.pathname === `/${currentLang}` && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.comparison')}
             </button>
-            <button onClick={() => navigate('/aftercare')} className={`text-sm font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+            <button onClick={() => navigate(`/${currentLang}/aftercare`)} className={`text-sm font-medium transition-colors ${location.pathname.includes('/aftercare') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.aftercare')}
             </button>
             <button onClick={() => handleNavClick('contact')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
@@ -119,13 +119,13 @@ export function Header({ currentLang }: HeaderProps) {
                   <button onClick={() => handleNavClick('gallery')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#gallery' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.gallery')}
                   </button>
-                  <button onClick={() => navigate('/earrings')} className={`text-left text-base font-medium transition-colors ${location.pathname.startsWith('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                  <button onClick={() => navigate(`/${currentLang}/earrings`)} className={`text-left text-base font-medium transition-colors ${location.pathname.includes('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.earrings')}
                   </button>
-                  <button onClick={() => handleNavClick('comparison')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                  <button onClick={() => handleNavClick('comparison')} className={`text-left text-base font-medium transition-colors ${location.pathname === `/${currentLang}` && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.comparison')}
                   </button>
-                  <button onClick={() => navigate('/aftercare')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/aftercare' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+                  <button onClick={() => navigate(`/${currentLang}/aftercare`)} className={`text-left text-base font-medium transition-colors ${location.pathname.includes('/aftercare') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.aftercare')}
                   </button>
                   <button onClick={() => handleNavClick('contact')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#contact' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>

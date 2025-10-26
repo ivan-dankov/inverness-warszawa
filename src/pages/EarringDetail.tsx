@@ -7,10 +7,9 @@ import { getAllEarrings, type Earring } from "@/lib/earrings";
 import NotFound from "./NotFound";
 import { useTranslation } from 'react-i18next';
 import { getSpecificationTranslation } from "@/lib/specificationTranslations";
-import { Helmet } from "react-helmet-async";
+import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
-import { shouldNoIndex } from "@/lib/seo-utils";
-import { getLanguageFromPath } from "@/lib/language-routes";
+import { getLanguageFromPath, getPageSEO } from "@/lib/language-routes";
 
 export default function EarringDetail() {
   const { t } = useTranslation();
@@ -24,7 +23,7 @@ export default function EarringDetail() {
   const earring = earrings[currentIndex];
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const noIndex = shouldNoIndex();
+  const pageSEO = getPageSEO(currentLang);
 
   useEffect(() => {
     getAllEarrings().then(data => {
@@ -69,12 +68,12 @@ export default function EarringDetail() {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        navigate('/earrings');
+        navigate(`/${currentLang}/earrings`);
       }
     };
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [navigate]);
+  }, [navigate, currentLang]);
 
   // Show loading state
   if (loading) {
@@ -94,25 +93,17 @@ export default function EarringDetail() {
     return <NotFound />;
   }
   return <div className="min-h-screen flex flex-col bg-background">
-      <Helmet>
-        <title>{`${earring.name} - Kolczyki Inverness MED Warszawa`}</title>
-        <meta name="description" content={earring.description_points?.[0] || `${earring.name}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie.`} />
-        {noIndex && <meta name="robots" content="noindex, nofollow" />}
-        <link rel="canonical" href={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="pl" href={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="en" href={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="ru" href={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="uk" href={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <link rel="alternate" hrefLang="x-default" href={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <meta property="og:title" content={earring.name} />
-        <meta property="og:image" content={earring.images[0]} />
-        <meta property="og:url" content={`https://gentlepiercing.pl/earrings/${productId}`} />
-        <meta property="og:type" content="product" />
-      </Helmet>
+      <MultilingualSEO 
+        currentLang={currentLang}
+        pagePath={`/earrings/${productId}`}
+        customTitle={pageSEO.earringDetail(earring.name).title}
+        customDescription={pageSEO.earringDetail(earring.name).description}
+      />
+      
       <BreadcrumbSchema items={[
-        { name: t('earringDetail.breadcrumbHome'), url: 'https://gentlepiercing.pl/' },
-        { name: t('earringDetail.breadcrumbEarrings'), url: 'https://gentlepiercing.pl/earrings' },
-        { name: earring.name, url: `https://gentlepiercing.pl/earrings/${productId}` }
+        { name: t('earringDetail.breadcrumbHome'), url: `https://gentlepiercing.pl/${currentLang}` },
+        { name: t('earringDetail.breadcrumbEarrings'), url: `https://gentlepiercing.pl/${currentLang}/earrings` },
+        { name: earring.name, url: `https://gentlepiercing.pl/${currentLang}/earrings/${productId}` }
       ]} />
       <Header currentLang={currentLang} />
       
@@ -120,11 +111,11 @@ export default function EarringDetail() {
         <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8">
-            <Link to="/" className="hover:text-primary transition-colors">
+            <Link to={`/${currentLang}`} className="hover:text-primary transition-colors">
               {t('earringDetail.breadcrumbHome')}
             </Link>
             <span>/</span>
-            <Link to="/earrings" className="hover:text-primary transition-colors">
+            <Link to={`/${currentLang}/earrings`} className="hover:text-primary transition-colors">
               {t('earringDetail.breadcrumbEarrings')}
             </Link>
             <span>/</span>

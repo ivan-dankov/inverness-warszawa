@@ -1,11 +1,14 @@
 import { Instagram, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
+import { getLanguageFromPath } from "@/lib/language-routes";
 import logoWide from "@/assets/logo-wide.svg";
 
 export const Footer = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  const currentLang = getLanguageFromPath(location.pathname);
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -53,12 +56,12 @@ export const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">{t('footer.links.title')}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link to="/aftercare" className="hover:text-primary transition-colors">
+                <Link to={`/${currentLang}/aftercare`} className="hover:text-primary transition-colors">
                   {t('footer.links.aftercare')}
                 </Link>
               </li>
               <li>
-                <Link to="/earrings" className="hover:text-primary transition-colors">
+                <Link to={`/${currentLang}/earrings`} className="hover:text-primary transition-colors">
                   {t('footer.links.earrings')}
                 </Link>
               </li>

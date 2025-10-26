@@ -5,16 +5,15 @@ import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { Helmet } from "react-helmet-async";
+import { MultilingualSEO } from "@/components/MultilingualSEO";
+import { getLanguageFromPath, getPageSEO } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
-import { shouldNoIndex } from "@/lib/seo-utils";
-import { getLanguageFromPath } from "@/lib/language-routes";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const currentLang = getLanguageFromPath(location.pathname);
-  const noIndex = shouldNoIndex();
+  const pageSEO = getPageSEO(currentLang);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,27 +21,24 @@ export default function Aftercare() {
 
   return (
     <>
-      <Helmet>
-        <title>{t('aftercare.pageTitle') || 'Pielęgnacja Po Przekłuciu | Inverness MED'}</title>
-        <meta name="description" content="Kompletny przewodnik pielęgnacji po przekłuciu uszu. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki." />
-        {noIndex && <meta name="robots" content="noindex, nofollow" />}
-        <link rel="canonical" href="https://gentlepiercing.pl/aftercare" />
-        <link rel="alternate" hrefLang="pl" href="https://gentlepiercing.pl/aftercare" />
-        <link rel="alternate" hrefLang="en" href="https://gentlepiercing.pl/aftercare" />
-        <link rel="alternate" hrefLang="ru" href="https://gentlepiercing.pl/aftercare" />
-        <link rel="alternate" hrefLang="uk" href="https://gentlepiercing.pl/aftercare" />
-        <link rel="alternate" hrefLang="x-default" href="https://gentlepiercing.pl/aftercare" />
-      </Helmet>
+      <MultilingualSEO 
+        currentLang={currentLang}
+        pagePath="/aftercare"
+        customTitle={pageSEO.aftercare.title}
+        customDescription={pageSEO.aftercare.description}
+      />
+      
       <BreadcrumbSchema items={[
-        { name: t('aftercare.backButton'), url: 'https://gentlepiercing.pl/' },
-        { name: t('aftercare.title'), url: 'https://gentlepiercing.pl/aftercare' }
+        { name: t('aftercare.backButton'), url: `https://gentlepiercing.pl/${currentLang}` },
+        { name: t('aftercare.title'), url: `https://gentlepiercing.pl/${currentLang}/aftercare` }
       ]} />
+      
       <Header currentLang={currentLang} />
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
           <nav className="mb-8">
             <Link 
-              to="/" 
+              to={`/${currentLang}`}
               className="inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-primary transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />

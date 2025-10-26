@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { getLanguageFromPath } from "@/lib/language-routes";
 
 interface EarringCardProps {
   earring: {
@@ -10,9 +11,12 @@ interface EarringCardProps {
 }
 
 export const EarringCard = ({ earring, index, className = "" }: EarringCardProps) => {
+  const location = useLocation();
+  const currentLang = getLanguageFromPath(location.pathname);
+  
   return (
     <Link
-      to={`/earrings/${index}`}
+      to={`/${currentLang}/earrings/${index}`}
       className={`group relative aspect-square overflow-hidden rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg min-h-[120px] sm:min-h-[160px] ${className}`}
     >
       <img
