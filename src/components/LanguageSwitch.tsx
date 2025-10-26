@@ -20,7 +20,8 @@ export const LanguageSwitch = () => {
   const changeLanguage = (langCode: string) => {
     // Extract the path after the current language code
     // e.g., "/pl/earrings/5" -> "/earrings/5"
-    const pathWithoutLang = location.pathname.replace(/^\/(pl|uk|ru|en)/, '');
+    // Handle both actual language codes and :lang placeholder
+    const pathWithoutLang = location.pathname.replace(/^\/(pl|uk|ru|en|:lang)/, '');
     
     // Navigate to the same path with new language
     navigate(`/${langCode}${pathWithoutLang}`);

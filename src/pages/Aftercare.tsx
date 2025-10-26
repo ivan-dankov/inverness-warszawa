@@ -3,15 +3,21 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
-import { getPageSEO } from "@/lib/language-routes";
+import { getPageSEO, isSupportedLanguage } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
   const { lang } = useParams<{ lang: string }>();
+  
+  // Validate language parameter
+  if (!isSupportedLanguage(lang)) {
+    return <Navigate to="/pl/aftercare" replace />;
+  }
+  
   const currentLang = lang || 'pl';
   const pageSEO = getPageSEO(currentLang);
   
