@@ -165,7 +165,8 @@
   "testimonials": {
     "title": "Opinie Naszych Klientów",
     "subtitle": "Zobacz, co mówią o nas zadowoleni klienci Gentle Piercing",
-    "onBooksy": "na Booksy"
+    "onBooksy": "na Booksy",
+    "onGoogleMaps": "na Google Maps"
   },
   "faq": {
     "title": "Najczęściej Zadawane Pytania",

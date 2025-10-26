@@ -87,14 +87,30 @@ export const Testimonials = () => {
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             {t('testimonials.subtitle')}
           </p>
-          <div className="flex items-center justify-center gap-2 mt-4">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
-              ))}
+          <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
+            <div className="flex items-center gap-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                ))}
+              </div>
+              <span className="text-lg font-semibold">5.0</span>
+              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                {t('testimonials.onBooksy')}
+              </a>
             </div>
-            <span className="text-lg font-semibold">5.0</span>
-            <span className="text-muted-foreground">{t('testimonials.onBooksy')}</span>
+            <span className="text-muted-foreground">•</span>
+            <div className="flex items-center gap-2">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                ))}
+              </div>
+              <span className="text-lg font-semibold">5.0</span>
+              <a href="https://maps.app.goo.gl/6a87CL7bf8aApZHDA" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                {t('testimonials.onGoogleMaps')}
+              </a>
+            </div>
           </div>
         </div>
 
