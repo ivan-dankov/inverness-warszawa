@@ -31,6 +31,15 @@ export default function EarringDetail() {
   }, []);
 
   // Get random other items (excluding current) - uses product index as seed for consistency
+  // Extract product code from first image filename
+  const productCode = useMemo(() => {
+    if (!earring || !earring.images[0]) return '';
+    const filename = earring.images[0].split('/').pop() || '';
+    // Extract code from filename like "896-3-A.jpg" -> "896-3"
+    const match = filename.match(/^([^-]+-[^-]+)/);
+    return match ? match[1] : '';
+  }, [earring]);
+
   const otherEarrings = useMemo(() => {
     if (!earring) return [];
     
@@ -190,7 +199,7 @@ export default function EarringDetail() {
                 {/* Product Code */}
                 <div className="mb-8">
                   <p className="text-sm text-muted-foreground">
-                    {t('specifications.productCode')}: <span className="font-mono font-medium text-foreground">{currentIndex + 1}</span>
+                    {t('specifications.productCode')}: <span className="font-mono font-medium text-foreground">{productCode}</span>
                   </p>
                 </div>
                 
