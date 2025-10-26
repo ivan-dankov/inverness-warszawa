@@ -203,9 +203,6 @@ export const Gallery = () => {
         <DialogContent className="max-w-[95vw] h-[100dvh] md:max-h-[95vh] p-0 bg-black/95 border-none">
           <div 
             className="relative w-full h-full flex items-center justify-center"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
           >
             <Button
               variant="ghost"
@@ -225,6 +222,9 @@ export const Gallery = () => {
                   loading="eager"
                   decoding="async"
                   draggable={false}
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
                 />
 
                 {/* Desktop Navigation - Sides */}
@@ -246,10 +246,30 @@ export const Gallery = () => {
                   <ChevronRight className="h-8 w-8" />
                 </Button>
 
-                {/* Mobile Hint Icons - Bottom */}
-                <div className="md:hidden absolute bottom-20 left-1/2 transform -translate-x-1/2 flex gap-8 z-40 opacity-40">
-                  <ChevronLeft className="h-6 w-6 text-white" />
-                  <ChevronRight className="h-6 w-6 text-white" />
+                {/* Mobile Navigation - Bottom */}
+                <div className="md:hidden absolute bottom-20 left-1/2 transform -translate-x-1/2 flex gap-4 z-50">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20 h-14 w-14"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      prevImage();
+                    }}
+                  >
+                    <ChevronLeft className="h-8 w-8" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20 h-14 w-14"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextImage();
+                    }}
+                  >
+                    <ChevronRight className="h-8 w-8" />
+                  </Button>
                 </div>
 
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
