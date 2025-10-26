@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -7,21 +7,19 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { ChevronDown } from 'lucide-react';
-
-const languages = [
-  { code: 'pl', name: 'Polski', flag: '🇵🇱' },
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'ru', name: 'Русский', flag: '⚪' },
-  { code: 'uk', name: 'Українська', flag: '🇺🇦' },
-];
+import { languages } from '@/lib/language-routes';
 
 export const LanguageSwitch = () => {
-  const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Extract current language from path
+  const currentLangCode = location.pathname.match(/^\/(pl|uk|ru|en)/)?.[1] || 'pl';
+  const currentLanguage = languages[currentLangCode];
 
-  const currentLanguage = languages.find((lang) => lang.code === i18n.language) || languages[0];
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+  const changeLanguage = (langCode: string) => {
+    // Navigate to the new language path
+    navigate(`/${langCode}`);
   };
 
   return (
@@ -33,7 +31,7 @@ export const LanguageSwitch = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        {languages.map((language) => (
+        {Object.values(languages).map((language) => (
           <DropdownMenuItem
             key={language.code}
             onClick={() => changeLanguage(language.code)}

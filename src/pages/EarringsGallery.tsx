@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { EarringCard } from "@/components/EarringCard";
@@ -9,10 +9,12 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from "react-helmet-async";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { shouldNoIndex } from "@/lib/seo-utils";
+import { getLanguageFromPath } from "@/lib/language-routes";
+
 export default function EarringsGallery() {
-  const {
-    t
-  } = useTranslation();
+  const { t } = useTranslation();
+  const location = useLocation();
+  const currentLang = getLanguageFromPath(location.pathname);
   const [earrings, setEarrings] = useState<Earring[]>([]);
   const [loading, setLoading] = useState(true);
   const noIndex = shouldNoIndex();

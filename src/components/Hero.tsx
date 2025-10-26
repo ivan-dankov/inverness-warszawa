@@ -3,6 +3,8 @@ import { Calendar, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logoWide from "@/assets/logo-wide.svg";
 import { trackBookingClick } from "@/lib/analytics";
+import { getBooksyUrl } from "@/lib/language-routes";
+import type { HeroProps } from "@/types/component-props";
 // @ts-expect-error - vite-imagetools query parameters not fully typed in bundler mode
 import heroLogo_192 from "@/assets/inverness-logo-hero.jpg?w=192&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
@@ -37,10 +39,9 @@ import hero4_400 from "@/assets/hero/hero-4.jpg?w=400&format=webp";
 import hero4_800 from "@/assets/hero/hero-4.jpg?w=800&format=webp";
 // @ts-expect-error - vite-imagetools query parameters
 import hero4_1200 from "@/assets/hero/hero-4.jpg?w=1200&format=webp";
-export const Hero = () => {
-  const {
-    t
-  } = useTranslation();
+export function Hero({ currentLang }: HeroProps) {
+  const { t } = useTranslation();
+  const booksyUrl = getBooksyUrl(currentLang, 'main');
   const galleryImages = [{
     srcset: `${hero1_400} 400w, ${hero1_800} 800w, ${hero1_1200} 1200w`,
     sizes: "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px",
@@ -74,8 +75,8 @@ export const Hero = () => {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <Button size="lg" variant="hero" asChild className="w-full sm:w-auto" onClick={() => trackBookingClick('hero')}>
-                <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="hero" asChild className="w-full sm:w-auto" onClick={() => trackBookingClick('hero', currentLang)}>
+                <a href={booksyUrl} target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-5 w-5" />
                   {t('hero.buttons.book')}
                 </a>
@@ -104,4 +105,4 @@ export const Hero = () => {
         </div>
       </div>
     </section>;
-};
+}

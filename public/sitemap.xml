@@ -1,36 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://gentlepiercing.pl/</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://gentlepiercing.pl/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gentlepiercing.pl/"/>
-  </url>
-  <url>
-    <loc>https://gentlepiercing.pl/earrings</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://gentlepiercing.pl/earrings"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gentlepiercing.pl/earrings"/>
-  </url>
-  <url>
-    <loc>https://gentlepiercing.pl/aftercare</loc>
-    <lastmod>2025-10-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="pl" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://gentlepiercing.pl/aftercare"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gentlepiercing.pl/aftercare"/>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://gentlepiercing.pl/pl/sitemap.xml</loc>
+    <lastmod>2025-10-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://gentlepiercing.pl/uk/sitemap.xml</loc>
+    <lastmod>2025-10-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://gentlepiercing.pl/ru/sitemap.xml</loc>
+    <lastmod>2025-10-26</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://gentlepiercing.pl/en/sitemap.xml</loc>
+    <lastmod>2025-10-26</lastmod>
+  </sitemap>
+</sitemapindex>

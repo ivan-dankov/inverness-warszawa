@@ -3,14 +3,17 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { shouldNoIndex } from "@/lib/seo-utils";
+import { getLanguageFromPath } from "@/lib/language-routes";
 
 export default function Aftercare() {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const currentLang = getLanguageFromPath(location.pathname);
   const noIndex = shouldNoIndex();
   
   useEffect(() => {
@@ -34,7 +37,7 @@ export default function Aftercare() {
         { name: t('aftercare.backButton'), url: 'https://gentlepiercing.pl/' },
         { name: t('aftercare.title'), url: 'https://gentlepiercing.pl/aftercare' }
       ]} />
-      <Header />
+      <Header currentLang={currentLang} />
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
           <nav className="mb-8">

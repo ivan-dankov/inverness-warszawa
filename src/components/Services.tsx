@@ -4,9 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { Sparkles, Baby, Calendar } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { trackBookingClick } from "@/lib/analytics";
+import { getBooksyUrl } from "@/lib/language-routes";
+import type { ServicesProps } from "@/types/component-props";
 
-export const Services = () => {
+export function Services({ currentLang }: ServicesProps) {
   const { t } = useTranslation();
+  const booksyUrl = getBooksyUrl(currentLang, 'services');
   
   // Icons are UI elements, not translations
   const icons = [Sparkles, Baby, Calendar];
@@ -64,8 +67,8 @@ export const Services = () => {
                   </li>)}
               </ul>
 
-              <Button size="lg" variant="hero" className="w-full mt-auto min-h-[48px]" asChild onClick={() => trackBookingClick(`services_card_${index}`)}>
-                <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="hero" className="w-full mt-auto min-h-[48px]" asChild onClick={() => trackBookingClick(`services_card_${index}`, currentLang)}>
+                <a href={booksyUrl} target="_blank" rel="noopener noreferrer">
                   <Calendar className="h-5 w-5" />
                   {t('services.bookButton')}
                 </a>
@@ -95,4 +98,4 @@ export const Services = () => {
         </Card>
       </div>
     </section>;
-};
+}

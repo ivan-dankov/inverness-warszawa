@@ -4,6 +4,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { trackBookingClick } from "@/lib/analytics";
+import { getBooksyUrl } from "@/lib/language-routes";
+import type { HeaderProps } from "@/types/component-props";
 import {
   Sheet,
   SheetContent,
@@ -13,10 +15,11 @@ import {
 } from "@/components/ui/sheet";
 import logo from "@/assets/logomark.svg";
 
-export const Header = () => {
+export function Header({ currentLang }: HeaderProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
+  const booksyUrl = getBooksyUrl(currentLang, 'header');
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -26,17 +29,18 @@ export const Header = () => {
     }
   };
   const handleNavClick = (sectionId: string) => {
-    if (location.pathname === '/') {
+    const basePath = `/${currentLang}`;
+    if (location.pathname === basePath) {
       scrollToSection(sectionId);
     } else {
-      navigate('/');
+      navigate(basePath);
       setTimeout(() => scrollToSection(sectionId), 100);
     }
   };
   return <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="cursor-pointer">
+          <Link to={`/${currentLang}`} className="cursor-pointer">
             <img 
               src={logo}
               alt="Inverness MED" 
@@ -81,8 +85,8 @@ export const Header = () => {
               </a>
             </div>
             
-            <Button variant="hero" asChild className="min-h-[44px]" onClick={() => trackBookingClick('header')}>
-              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer">
+            <Button variant="hero" asChild className="min-h-[44px]" onClick={() => trackBookingClick('header', currentLang)}>
+              <a href={booksyUrl} target="_blank" rel="noopener noreferrer">
                 <Calendar className="h-4 w-4" />
                 <span className="ml-2">{t('header.buttons.book')}</span>
               </a>
@@ -148,4 +152,4 @@ export const Header = () => {
         </div>
       </div>
     </header>;
-};
+}

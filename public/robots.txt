@@ -2,7 +2,13 @@
 User-agent: *
 Allow: /
 
-# Sitemap location
+# Language-specific sitemaps
+Sitemap: https://gentlepiercing.pl/pl/sitemap.xml
+Sitemap: https://gentlepiercing.pl/uk/sitemap.xml
+Sitemap: https://gentlepiercing.pl/ru/sitemap.xml
+Sitemap: https://gentlepiercing.pl/en/sitemap.xml
+
+# Main sitemap index
 Sitemap: https://gentlepiercing.pl/sitemap.xml
 
 # Note: Preview domains (*.lovable.app) are blocked via meta robots tag

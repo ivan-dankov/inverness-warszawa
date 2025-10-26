@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
-import Index from "./pages/Index";
+import { LanguageHome } from "./pages/LanguageHome";
+import { LanguageRedirect } from "./components/LanguageRedirect";
+import { getLanguageFromPath } from "./lib/language-routes";
 import EarringsGallery from "./pages/EarringsGallery";
 import EarringDetail from "./pages/EarringDetail";
 import Aftercare from "./pages/Aftercare";
@@ -62,10 +64,16 @@ const SmartScrollManager = () => {
 
 const LanguageManager = () => {
   const { i18n } = useTranslation();
+  const location = useLocation();
 
   useEffect(() => {
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
+    // Sync i18n with URL language
+    const lang = getLanguageFromPath(location.pathname);
+    if (i18n.language !== lang) {
+      i18n.changeLanguage(lang);
+    }
+    document.documentElement.lang = lang;
+  }, [location.pathname, i18n]);
 
   return null;
 };
@@ -80,10 +88,17 @@ const App = () => (
           <LanguageManager />
           <SmartScrollManager />
           <Routes>
-            <Route path="/" element={<Index />} />
+            {/* Root - auto-detect language and redirect */}
+            <Route path="/" element={<LanguageRedirect />} />
+            
+            {/* Language-specific homepages */}
+            <Route path="/:lang" element={<LanguageHome />} />
+            
+            {/* Other pages - TODO: localize these too */}
             <Route path="/earrings" element={<EarringsGallery />} />
             <Route path="/earrings/:productId" element={<EarringDetail />} />
             <Route path="/aftercare" element={<Aftercare />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
