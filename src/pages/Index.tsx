@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { FAQSchema } from "@/components/FAQSchema";
 import { MultilingualSEO } from "@/components/MultilingualSEO";
+import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import type { IndexProps } from "@/types/component-props";
 
 // Lazy load below-the-fold components
@@ -26,6 +27,7 @@ function Index({ currentLang }: IndexProps) {
     <div className="min-h-screen flex flex-col">
       <MultilingualSEO currentLang={currentLang} />
       <FAQSchema />
+      <LocalBusinessSchema currentLang={currentLang} />
       <Header currentLang={currentLang} />
       <main className="flex-grow">
         <Hero currentLang={currentLang} />

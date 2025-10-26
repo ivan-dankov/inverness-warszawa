@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import App from "./App.tsx";
 import "./index.css";
 import "./i18n/config";
+import { initGoogleAnalytics, trackPageView } from "./lib/analytics";
 
 // Redirect logic for SEO consolidation
 const hostname = window.location.hostname;
@@ -30,3 +31,24 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </Suspense>
 );
+
+// Initialize Google Analytics after it loads
+const initGA4 = () => {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    initGoogleAnalytics();
+    // Send initial page view
+    trackPageView(window.location.pathname);
+  } else {
+    // Try again after a short delay if gtag not ready
+    setTimeout(initGA4, 50);
+  }
+};
+
+// Wait for page load, then initialize GA4
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'complete') {
+    initGA4();
+  } else {
+    window.addEventListener('load', initGA4);
+  }
+}

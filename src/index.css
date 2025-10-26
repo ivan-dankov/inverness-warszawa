@@ -23,14 +23,6 @@
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-@font-face {
-  font-family: 'Poppins';
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/poppins/poppins-500-cyrillic.woff2') format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
 
 /* Poppins 600 (Semibold) */
 @font-face {
@@ -51,14 +43,6 @@
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-@font-face {
-  font-family: 'Poppins';
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/poppins/poppins-600-cyrillic.woff2') format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
 
 /* Poppins 700 (Bold) */
 @font-face {
@@ -79,14 +63,6 @@
   unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-@font-face {
-  font-family: 'Poppins';
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-  src: url('/fonts/poppins/poppins-700-cyrillic.woff2') format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.

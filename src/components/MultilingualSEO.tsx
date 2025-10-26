@@ -27,12 +27,22 @@ export const MultilingualSEO = ({
   const description = customDescription || langConfig.description;
   const noIndex = shouldNoIndex();
 
+  // Keywords for SEO
+  const keywords = {
+    pl: "przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha",
+    uk: "прокол вух, пірсинг, Варшава, Inverness MED, медичний прокол, діти, безпечне, стерильне, FDA, ISO, helix, tragus, conch, мочка вуха",
+    ru: "прокол ушей, пирсинг, Варшава, Inverness MED, медицинский прокол, дети, безопасное, стерильное, FDA, ISO, helix, tragus, conch, мочка уха",
+    en: "ear piercing, piercing, Warsaw, Inverness MED, medical piercing, children, safe, sterile, FDA, ISO, helix, tragus, conch, earlobe"
+  };
+
   return (
     <Helmet>
       {/* Basic meta tags */}
       <html lang={currentLang} />
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords[currentLang as keyof typeof keywords] || keywords.pl} />
+      <meta name="author" content="Inverness MED" />
       
       {/* Canonical URL - self-referencing */}
       <link rel="canonical" href={canonicalUrl} />
@@ -46,6 +56,7 @@ export const MultilingualSEO = ({
       
       {/* Open Graph tags */}
       <meta property="og:type" content={ogType || "website"} />
+      <meta property="og:site_name" content="Inverness MED" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />

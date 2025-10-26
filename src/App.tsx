@@ -14,6 +14,7 @@ import Aftercare from "./pages/Aftercare";
 import Blog from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
 import NotFound from "./pages/NotFound";
+import { trackPageView } from "./lib/analytics";
 
 const SmartScrollManager = () => {
   const location = useLocation();
@@ -21,6 +22,11 @@ const SmartScrollManager = () => {
 
   useEffect(() => {
     const currentPath = location.pathname;
+    
+    // Track page view for GA4 on each navigation (skip initial mount to avoid duplicate with gtag config)
+    if (prevLocation !== null) {
+      trackPageView(currentPath);
+    }
     
     // Clear earrings scroll storage when leaving earrings section entirely
     if (prevLocation?.includes('/earrings') && !currentPath.includes('/earrings')) {
