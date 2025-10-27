@@ -35,19 +35,19 @@ export default function Blog() {
   const articles = [
     {
       id: "does-ear-piercing-hurt",
-      slug: currentLang === 'pl' ? 'przekluwanie-uszu-czy-boli' : 
-            currentLang === 'uk' ? 'прокол-вух-це-боляче' :
-            currentLang === 'ru' ? 'прокол-ушей-больно-ли' : 
-            'does-ear-piercing-hurt',
-      title: currentLang === 'pl' ? 'Czy przekłuwanie uszu boli? Fakty i mity' :
-             currentLang === 'uk' ? 'Чи болить прокол вух? Факти та міфи' :
-             currentLang === 'ru' ? 'Больно ли прокалывать уши? Факты и мифы' :
-             'Does ear piercing hurt? Facts and myths',
-      excerpt: currentLang === 'pl' ? 'Dowiedz się, czy przekłuwanie uszu naprawdę boli i jak wygląda zabieg systemem Inverness. Delikatnie, bezpiecznie i bez stresu – także dla dorosłych i dzieci.' :
-              currentLang === 'uk' ? 'Дізнайтеся, чи дійсно болить прокол вух і як виглядає процедура системою Inverness. Делікатно, безпечно та без стресу — також для дорослих та дітей.' :
-              currentLang === 'ru' ? 'Узнайте, действительно ли болно прокалывать уши и как выглядит процедура системой Inverness. Деликатно, безопасно и без стресса — также для взрослых и детей.' :
-              'Learn whether ear piercing really hurts and how the Inverness system procedure looks. Gently, safely and stress-free – also for adults and children.',
-      date: '2025-01-27'
+      slug: currentLang === 'pl' ? 'czy-przekluwanie-uszu-boli' : 
+            currentLang === 'en' ? 'does-ear-piercing-hurt' :
+            currentLang === 'uk' ? 'chy-bolyt-prokol-vukh' :
+            'bolit-li-prokalyvanie-ushey',
+      title: currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
+             currentLang === 'uk' ? 'Чи болить прокол вух?' :
+             currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
+             'Does ear piercing hurt?',
+      excerpt: currentLang === 'pl' ? 'Delikatny, szybki i bezpieczny zabieg z systemem Inverness Med. Dowiedz się, jak wygląda proces, jak dbać o ucho i jak przygotować dziecko na pierwszy kolczyk.' :
+              currentLang === 'uk' ? 'Делікатна, швидка та безпечна процедура з системою Inverness Med. Дізнайтеся, як виглядає процес, як доглядати за вухом і як підготувати дитину до першої сережки.' :
+              currentLang === 'ru' ? 'Деликатная, быстрая и безопасная процедура с системой Inverness Med. Узнайте, как выглядит процесс, как ухаживать за ухом и как подготовить ребенка к первой серьге.' :
+              'Gentle, quick and safe procedure with the Inverness Med system. Find out how the process works, how to care for the ear and how to prepare your child for their first earring.',
+      date: '2025-10-27'
     }
   ];
 

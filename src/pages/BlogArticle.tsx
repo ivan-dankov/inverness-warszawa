@@ -33,19 +33,19 @@ export default function BlogArticle() {
   // Map of slugs for each language for the same article
   const languageSlugs = {
     'does-ear-piercing-hurt': {
-      pl: 'przekluwanie-uszu-czy-boli',
-      uk: 'прокол-вух-це-боляче',
-      ru: 'прокол-ушей-больно-ли',
-      en: 'does-ear-piercing-hurt'
+      pl: 'czy-przekluwanie-uszu-boli',
+      en: 'does-ear-piercing-hurt',
+      uk: 'chy-bolyt-prokol-vukh',
+      ru: 'bolit-li-prokalyvanie-ushey'
     }
   };
 
   // Map slugs to article IDs
   const articleSlugs = {
-    'przekluwanie-uszu-czy-boli': 'does-ear-piercing-hurt',
-    'прокол-вух-це-боляче': 'does-ear-piercing-hurt',
-    'прокол-ушей-больно-ли': 'does-ear-piercing-hurt',
-    'does-ear-piercing-hurt': 'does-ear-piercing-hurt'
+    'czy-przekluwanie-uszu-boli': 'does-ear-piercing-hurt',
+    'does-ear-piercing-hurt': 'does-ear-piercing-hurt',
+    'chy-bolyt-prokol-vukh': 'does-ear-piercing-hurt',
+    'bolit-li-prokalyvanie-ushey': 'does-ear-piercing-hurt'
   };
 
   const articleId = articleSlugs[slug as keyof typeof articleSlugs];
@@ -62,24 +62,24 @@ export default function BlogArticle() {
   // SEO metadata based on article
   const getArticleMetadata = () => {
     const baseUrls = {
-      pl: 'https://gentlepiercing.pl/pl/blog/przekluwanie-uszu-czy-boli',
-      uk: 'https://gentlepiercing.pl/uk/blog/прокол-вух-це-боляче',
-      ru: 'https://gentlepiercing.pl/ru/blog/прокол-ушей-больно-ли',
-      en: 'https://gentlepiercing.pl/en/blog/does-ear-piercing-hurt'
+      pl: 'https://gentlepiercing.pl/pl/blog/czy-przekluwanie-uszu-boli',
+      en: 'https://gentlepiercing.pl/en/blog/does-ear-piercing-hurt',
+      uk: 'https://gentlepiercing.pl/uk/blog/chy-bolyt-prokol-vukh',
+      ru: 'https://gentlepiercing.pl/ru/blog/bolit-li-prokalyvanie-ushey'
     };
 
     const titles = {
-      pl: 'Czy przekłuwanie uszu boli? Fakty i mity | Gentle Piercing Warszawa',
-      uk: 'Чи болить прокол вух? Факти та міфи | Gentle Piercing Варшава',
-      ru: 'Больно ли прокалывать уши? Факты и мифы | Gentle Piercing Варшава',
-      en: 'Does ear piercing hurt? Facts and myths | Gentle Piercing Warsaw'
+      pl: 'Czy przekłuwanie uszu boli? | Gentle Piercing Warszawa',
+      uk: 'Чи болить прокол вух? | Gentle Piercing Варшава',
+      ru: 'Больно ли прокалывать уши? | Gentle Piercing Варшава',
+      en: 'Does ear piercing hurt? | Gentle Piercing Warsaw'
     };
 
     const descriptions = {
-      pl: 'Dowiedz się, czy przekłuwanie uszu naprawdę boli i jak wygląda zabieg systemem Inverness. Delikatnie, bezpiecznie i bez stresu – także dla dorosłych i dzieci.',
-      uk: 'Дізнайтеся, чи дійсно болить прокол вух і як виглядає процедура системою Inverness. Делікатно, безпечно та без стресу — також для дорослих та дітей.',
-      ru: 'Узнайте, действительно ли болно прокалывать уши и как выглядит процедура системой Inverness. Деликатно, безопасно и без стресса — также для взрослых и детей.',
-      en: 'Learn whether ear piercing really hurts and how the Inverness system procedure looks. Gently, safely and stress-free – also for adults and children.'
+      pl: 'Delikatny, szybki i bezpieczny zabieg z systemem Inverness Med. Dowiedz się, jak wygląda proces, jak dbać o ucho i jak przygotować dziecko na pierwszy kolczyk.',
+      uk: 'Делікатна, швидка та безпечна процедура з системою Inverness Med. Дізнайтеся, як виглядає процес, як доглядати за вухом і як підготувати дитину до першої сережки.',
+      ru: 'Деликатная, быстрая и безопасная процедура с системой Inverness Med. Узнайте, как выглядит процесс, как ухаживать за ухом и как подготовить ребенка к первой серьге.',
+      en: 'Gentle, quick and safe procedure with the Inverness Med system. Find out how the process works, how to care for the ear and how to prepare your child for their first earring.'
     };
 
     return {
@@ -107,13 +107,13 @@ export default function BlogArticle() {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": articleId === 'does-ear-piercing-hurt' ? 
-      (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli? Fakty i mity' :
-       currentLang === 'uk' ? 'Чи болить прокол вух? Факти та міфи' :
-       currentLang === 'ru' ? 'Больно ли прокалывать уши? Факты и мифы' :
-       'Does ear piercing hurt? Facts and myths') : '',
+      (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
+       currentLang === 'uk' ? 'Чи болить прокол вух?' :
+       currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
+       'Does ear piercing hurt?') : '',
     "description": metadata.description,
     "image": "https://gentlepiercing.pl/hero-image.jpg",
-    "wordCount": 450,
+    "wordCount": 1200,
     "articleSection": "Health & Beauty",
     "keywords": getKeywords().split(', '),
     "inLanguage": currentLang,
@@ -135,8 +135,8 @@ export default function BlogArticle() {
       "@type": "WebPage",
       "@id": metadata.url
     },
-    "datePublished": "2025-01-27T00:00:00+01:00",
-    "dateModified": "2025-01-27T00:00:00+01:00"
+    "datePublished": "2025-10-27T00:00:00+01:00",
+    "dateModified": "2025-10-27T00:00:00+01:00"
   });
 
   const getFAQSchema = () => ({
@@ -220,8 +220,8 @@ export default function BlogArticle() {
         <meta name="keywords" content={getKeywords()} />
         <meta name="author" content="Gentle Piercing" />
         <meta name="publisher" content="Gentle Piercing" />
-        <meta name="article:published_time" content="2025-01-27T00:00:00+01:00" />
-        <meta name="article:modified_time" content="2025-01-27T00:00:00+01:00" />
+        <meta name="article:published_time" content="2025-10-27T00:00:00+01:00" />
+        <meta name="article:modified_time" content="2025-10-27T00:00:00+01:00" />
         <meta name="article:section" content="Health & Beauty" />
         <meta name="article:tag" content={getKeywords()} />
         <meta name="robots" content="index,follow" />
@@ -241,6 +241,7 @@ export default function BlogArticle() {
         <meta property="og:description" content={metadata.description} />
         <meta property="og:url" content={metadata.url} />
         <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Gentle Piercing" />
         <meta property="og:image" content="https://gentlepiercing.pl/hero-image.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -249,11 +250,16 @@ export default function BlogArticle() {
                                                currentLang === 'ru' ? 'Gentle Piercing - Прокол Ушей в Варшаве' :
                                                'Gentle Piercing - Ear Piercing in Warsaw'} />
         <meta property="og:locale" content={currentLang === 'pl' ? 'pl_PL' : currentLang === 'en' ? 'en_US' : currentLang === 'uk' ? 'uk_UA' : 'ru_RU'} />
+        {currentLang !== 'pl' && <meta property="og:locale:alternate" content="pl_PL" />}
+        {currentLang !== 'en' && <meta property="og:locale:alternate" content="en_US" />}
+        {currentLang !== 'uk' && <meta property="og:locale:alternate" content="uk_UA" />}
+        {currentLang !== 'ru' && <meta property="og:locale:alternate" content="ru_RU" />}
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />
+        <meta name="twitter:image" content="https://gentlepiercing.pl/hero-image.jpg" />
         
         {/* Article Schema */}
         <script type="application/ld+json">
@@ -323,10 +329,10 @@ export default function BlogArticle() {
           <div className="text-center mb-8">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight">
               {articleId === 'does-ear-piercing-hurt' ? 
-                (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli? Fakty i mity' :
-                 currentLang === 'uk' ? 'Чи болить прокол вух? Факти та міфи' :
-                 currentLang === 'ru' ? 'Больно ли прокалывать уши? Факты и мифы' :
-                 'Does ear piercing hurt? Facts and myths') : ''}
+                (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
+                 currentLang === 'uk' ? 'Чи болить прокол вух?' :
+                 currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
+                 'Does ear piercing hurt?') : ''}
             </h1>
             
             {/* Article Tags */}
@@ -385,15 +391,20 @@ export default function BlogArticle() {
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              <span>27 stycznia 2025</span>
+              <span>
+                {currentLang === 'pl' ? '27 października 2025' :
+                 currentLang === 'uk' ? '27 жовтня 2025' :
+                 currentLang === 'ru' ? '27 октября 2025' :
+                 'October 27, 2025'}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4" />
               <span>
-                {currentLang === 'pl' ? '2 min czytania' :
-                 currentLang === 'uk' ? '2 хв читання' :
-                 currentLang === 'ru' ? '2 мин чтения' :
-                 '2 min read'}
+                {currentLang === 'pl' ? '5 min czytania' :
+                 currentLang === 'uk' ? '5 хв читання' :
+                 currentLang === 'ru' ? '5 мин чтения' :
+                 '5 min read'}
               </span>
             </div>
           </div>

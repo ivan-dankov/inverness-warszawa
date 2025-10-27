@@ -3,13 +3,13 @@
     {
       "id": "does-ear-piercing-hurt",
       "slug": {
-        "pl": "przekluwanie-uszu-czy-boli",
-        "uk": "прокол-вух-це-боляче",
-        "ru": "прокол-ушей-больно-ли",
-        "en": "does-ear-piercing-hurt"
+        "pl": "czy-przekluwanie-uszu-boli",
+        "en": "does-ear-piercing-hurt",
+        "uk": "chy-bolyt-prokol-vukh",
+        "ru": "bolit-li-prokalyvanie-ushey"
       },
-      "publishDate": "2025-01-27",
-      "lastModified": "2025-01-27"
+      "publishDate": "2025-10-27",
+      "lastModified": "2025-10-27"
     }
   ]
 }

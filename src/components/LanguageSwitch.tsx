@@ -18,36 +18,47 @@ export const LanguageSwitch = () => {
   const currentLanguage = languages[currentLangCode];
 
   const changeLanguage = (langCode: string) => {
-    // Map of article slugs for different languages
-    const languageSlugs = {
+    // Map of article slugs by language code
+    const slugsByLang = {
+      'czy-przekluwanie-uszu-boli': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
       'does-ear-piercing-hurt': {
-        pl: 'przekluwanie-uszu-czy-boli',
-        uk: 'прокол-вух-це-боляче',
-        ru: 'прокол-ушей-больно-ли',
-        en: 'does-ear-piercing-hurt'
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'chy-bolyt-prokol-vukh': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'bolit-li-prokalyvanie-ushey': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
       }
     };
 
-    // Map slugs to article IDs
-    const articleSlugs = {
-      'przekluwanie-uszu-czy-boli': 'does-ear-piercing-hurt',
-      'прокол-вух-це-боляче': 'does-ear-piercing-hurt',
-      'прокол-ушей-больно-ли': 'does-ear-piercing-hurt',
-      'does-ear-piercing-hurt': 'does-ear-piercing-hurt'
-    };
-
-    // Extract the path after the current language code
-    const pathWithoutLang = location.pathname.replace(/^\/(pl|uk|ru|en|:lang)/, '');
+    // Extract the path after the language code
+    const pathWithoutLang = location.pathname.replace(/^\/(pl|uk|ru|en)/, '') || '/';
     
     // Check if this is a blog article page
     if (pathWithoutLang.startsWith('/blog/')) {
       const currentSlug = pathWithoutLang.replace('/blog/', '');
-      const articleId = articleSlugs[currentSlug as keyof typeof articleSlugs];
       
-      // If this is a known article, update the slug to match the new language
-      if (articleId && languageSlugs[articleId as keyof typeof languageSlugs]) {
-        const newSlug = languageSlugs[articleId as keyof typeof languageSlugs][langCode as keyof typeof languageSlugs[keyof typeof languageSlugs]];
-        // Use navigate with replace to avoid history issues
+      // Find the slug mapping for the current slug
+      const slugMap = slugsByLang[currentSlug as keyof typeof slugsByLang];
+      
+      if (slugMap && slugMap[langCode as keyof typeof slugMap]) {
+        const newSlug = slugMap[langCode as keyof typeof slugMap];
+        // Navigate to new language with corresponding slug
         navigate(`/${langCode}/blog/${newSlug}`, { replace: true });
         return;
       }
