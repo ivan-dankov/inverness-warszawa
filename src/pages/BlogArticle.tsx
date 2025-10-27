@@ -76,10 +76,10 @@ export default function BlogArticle() {
     };
 
     const descriptions = {
-      pl: 'Delikatny, szybki i bezpieczny zabieg z systemem Inverness Med. Dowiedz się, jak wygląda proces, jak dbać o ucho i jak przygotować dziecko na pierwszy kolczyk.',
-      uk: 'Делікатна, швидка та безпечна процедура з системою Inverness Med. Дізнайтеся, як виглядає процес, як доглядати за вухом і як підготувати дитину до першої сережки.',
-      ru: 'Деликатная, быстрая и безопасная процедура с системой Inverness Med. Узнайте, как выглядит процесс, как ухаживать за ухом и как подготовить ребенка к первой серьге.',
-      en: 'Gentle, quick and safe procedure with the Inverness Med system. Find out how the process works, how to care for the ear and how to prepare your child for their first earring.'
+      pl: 'Wiele osób zastanawia się nad metodą przekłuwania uszu. Poznaj różnice między tradycyjnymi pistoletami a nowoczesnym systemem medycznym Inverness Med.',
+      uk: 'Багато людей замислюються над методикою проколу вух. Ознайомтеся з відмінностями між традиційними пістолетами та сучасною медичною системою Inverness Med.',
+      ru: 'Многие люди задумываются о методе прокалывания ушей. Узнайте о различиях между традиционными пистолетами и современной медицинской системой Inverness Med.',
+      en: 'Many people wonder about the ear piercing method. Learn the differences between traditional guns and the modern Inverness Med medical system.'
     };
 
     return {

@@ -5,13 +5,13 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
   const content = {
     pl: {
       h1: "Czy przekłuwanie uszu boli?",
-      intro: "Delikatny, szybki i bezpieczny zabieg z systemem Inverness Med. Dowiedz się, jak wygląda proces, jak dbać o ucho i jak przygotować dziecko na pierwszy kolczyk.",
+      intro: "Wiele osób, które decydują się na przekłuwanie uszu po raz pierwszy, zastanawia się nie tylko nad tym, czy zabieg boli, ale też <strong>jaką metodę przekłuwania wybrać</strong>. Na rynku dostępnych jest kilka sposobów – od tradycyjnych pistoletów po nowoczesne, medyczne systemy takie jak <a href=\"https://www.invernesscorp.com/\" target=\"_blank\" rel=\"noopener\">Inverness Med</a>. Każda z metod różni się precyzją, poziomem higieny i komfortem, dlatego warto poznać ich zalety i wady, zanim podejmiesz decyzję.",
       
-      h2_1: "Na czym polega przekłuwanie uszu?",
-      p1_1: "Przekłuwanie uszu to zabieg tworzenia niewielkiego otworu w płatku lub chrząstce ucha, aby umieścić w nim kolczyk. Dzięki nowoczesnym metodom, jak ",
+      h2_1: "",
+      p1_1: "",
       inverness_link: "Inverness Med",
-      p1_2: ", jest to proces szybki, precyzyjny i sterylny.",
-      p1_3: "Ludzie decydują się na kolczyki z różnych powodów – estetycznych, kulturowych lub po prostu z chęci podkreślenia swojego stylu. Najważniejsze jest jednak bezpieczeństwo i higiena wykonania.",
+      p1_2: "",
+      p1_3: "",
       
       h2_2: "Różne metody przekłuwania – którą wybrać?",
       table_method: "Metoda",
@@ -83,13 +83,13 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
     },
     uk: {
       h1: "Чи болить прокол вух?",
-      intro: "Делікатна, швидка та безпечна процедура з системою Inverness Med. Дізнайтеся, як виглядає процес, як доглядати за вухом і як підготувати дитину до першої сережки.",
+      intro: "Багато людей, які вирішують проколоти вуха вперше, замислюються не тільки над тим, чи боляче ця процедура, але й <strong>яку методику проколювання вибрати</strong>. На ринку доступно кілька способів – від традиційних пістолетів до сучасних медичних систем, таких як <a href=\"https://www.invernesscorp.com/\" target=\"_blank\" rel=\"noopener\">Inverness Med</a>. Кожен із методів відрізняється точністю, рівнем гігієни та комфортом, тому перед прийняттям рішення варто ознайомитися з їхніми перевагами та недоліками.",
       
-      h2_1: "У чому полягає прокол вух?",
-      p1_1: "Прокол вух — це процедура створення невеликого отвору в мочці або хрящі вуха, щоб розмістити в ньому сережку. Завдяки сучасним методам, таким як ",
+      h2_1: "",
+      p1_1: "",
       inverness_link: "Inverness Med",
-      p1_2: ", це процес швидкий, точний та стерильний.",
-      p1_3: "Люди обирають сережки з різних причин — естетичних, культурних або просто з бажання підкреслити свій стиль. Найважливіше — це безпека та гігієна виконання.",
+      p1_2: "",
+      p1_3: "",
       
       h2_2: "Різні методи проколу — який вибрати?",
       table_method: "Метод",
@@ -161,13 +161,13 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
     },
     ru: {
       h1: "Больно ли прокалывать уши?",
-      intro: "Деликатная, быстрая и безопасная процедура с системой Inverness Med. Узнайте, как выглядит процесс, как ухаживать за ухом и как подготовить ребенка к первой серьге.",
+      intro: "Многие люди, которые впервые решаются на прокалывание ушей, задаются вопросом не только о том, больно ли это, но и <strong>какой метод прокалывания выбрать</strong>. На рынке доступно несколько способов – от традиционных пистолетов до современных медицинских систем, таких как <a href=\"https://www.invernesscorp.com/\" target=\"_blank\" rel=\"noopener\">Inverness Med</a>. Каждый из методов отличается точностью, уровнем гигиены и комфортом, поэтому перед принятием решения стоит ознакомиться с их преимуществами и недостатками.",
       
-      h2_1: "В чем заключается прокол ушей?",
-      p1_1: "Прокол ушей — это процедура создания небольшого отверстия в мочке или хряще уха, чтобы разместить в нем серьгу. Благодаря современным методам, таким как ",
+      h2_1: "",
+      p1_1: "",
       inverness_link: "Inverness Med",
-      p1_2: ", это процесс быстрый, точный и стерильный.",
-      p1_3: "Люди выбирают серьги по разным причинам — эстетическим, культурным или просто из желания подчеркнуть свой стиль. Важнее всего — безопасность и гигиена выполнения.",
+      p1_2: "",
+      p1_3: "",
       
       h2_2: "Различные методы прокалывания — какой выбрать?",
       table_method: "Метод",
@@ -239,13 +239,13 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
     },
     en: {
       h1: "Does ear piercing hurt?",
-      intro: "Gentle, quick and safe procedure with the Inverness Med system. Find out how the process works, how to care for the ear and how to prepare your child for their first earring.",
+      intro: "Many people who decide to have their ears pierced for the first time wonder not only whether the procedure hurts, but also <strong>which piercing method to choose</strong>. There are several methods available on the market – from traditional guns to modern medical systems such as <a href=\"https://www.invernesscorp.com/\" target=\"_blank\" rel=\"noopener\">Inverness Med</a>. Each method differs in terms of precision, hygiene, and comfort, so it is worth learning about their advantages and disadvantages before making a decision.",
       
-      h2_1: "What is ear piercing?",
-      p1_1: "Ear piercing is a procedure to create a small hole in the earlobe or cartilage to place an earring in it. Thanks to modern methods such as ",
+      h2_1: "",
+      p1_1: "",
       inverness_link: "Inverness Med",
-      p1_2: ", this is a fast, precise and sterile process.",
-      p1_3: "People choose earrings for various reasons — aesthetic, cultural, or simply to emphasize their style. Most important, however, is safety and hygienic execution.",
+      p1_2: "",
+      p1_3: "",
       
       h2_2: "Different piercing methods — which to choose?",
       table_method: "Method",
@@ -332,26 +332,7 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
   return (
     <article className="max-w-none">
       {/* Intro paragraph with larger text */}
-      <div className="text-lg text-foreground mb-12 leading-relaxed">
-        {t.intro}
-      </div>
-
-      {/* Section 1: What is ear piercing */}
-      <section>
-        <h2 className="text-3xl font-semibold text-foreground mb-4 mt-16">
-          {t.h2_1}
-        </h2>
-        <p className="text-foreground mb-4">
-          {t.p1_1}
-          <a href="https://www.invernesscorp.com/" target="_blank" rel="nofollow noopener" className="text-primary hover:underline">
-            {t.inverness_link}
-          </a>
-          {t.p1_2}
-        </p>
-        <p className="text-foreground mb-4">
-          {t.p1_3}
-        </p>
-      </section>
+      <div className="text-lg text-foreground mb-12 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.intro }} />
 
       {/* Section 2: Different methods */}
       <section>
