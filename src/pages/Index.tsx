@@ -17,6 +17,7 @@ const Earrings = lazy(() => import("@/components/Earrings").then(m => ({ default
 const Comparison = lazy(() => import("@/components/Comparison").then(m => ({ default: m.Comparison })));
 const CertificateViewer = lazy(() => import("@/components/CertificateViewer").then(m => ({ default: m.CertificateViewer })));
 const FAQ = lazy(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
+const RecentArticles = lazy(() => import("@/components/RecentArticles").then(m => ({ default: m.RecentArticles })));
 const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: m.Contact })));
 const Footer = lazy(() => import("@/components/Footer").then(m => ({ default: m.Footer })));
 
@@ -51,6 +52,9 @@ function Index({ currentLang }: IndexProps) {
         </Suspense>
         <Suspense fallback={<div className="h-96" />}>
           <FAQ />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <RecentArticles />
         </Suspense>
         <Suspense fallback={<div className="h-96" />}>
           <Contact />

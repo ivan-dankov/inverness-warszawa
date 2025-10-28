@@ -458,5 +458,11 @@
     },
     "origin": "Wyprodukowano przez Inverness Med (USA).",
     "productCode": "Kod produktu"
+  },
+  "recentArticles": {
+    "title": "Najnowszy artykuł",
+    "subtitle": "Poznaj więcej w naszym blogu o przekłuwaniu uszu",
+    "readMore": "Czytaj dalej",
+    "viewAll": "Zobacz wszystkie artykuły"
   }
 }

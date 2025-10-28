@@ -458,5 +458,11 @@
     },
     "origin": "Manufactured by Inverness Med (USA).",
     "productCode": "Product code"
+  },
+  "recentArticles": {
+    "title": "Latest article",
+    "subtitle": "Learn more in our ear piercing blog",
+    "readMore": "Read more",
+    "viewAll": "View all articles"
   }
 }
