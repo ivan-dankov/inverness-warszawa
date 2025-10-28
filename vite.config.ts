@@ -38,7 +38,6 @@ export default defineConfig(({ mode }) => ({
             '@radix-ui/react-dialog',
             '@radix-ui/react-accordion',
             '@radix-ui/react-tabs',
-            '@radix-ui/react-toast',
             '@radix-ui/react-slot',
             '@radix-ui/react-separator',
           ],

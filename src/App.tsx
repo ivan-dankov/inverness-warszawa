@@ -1,6 +1,3 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -23,10 +20,8 @@ const SmartScrollManager = () => {
   useEffect(() => {
     const currentPath = location.pathname;
     
-    // Track page view for GA4 on each navigation (skip initial mount to avoid duplicate with gtag config)
-    if (prevLocation !== null) {
-      trackPageView(currentPath);
-    }
+    // Track page view for GA4 on each navigation AND initial load
+    trackPageView(currentPath);
     
     // Clear earrings scroll storage when leaving earrings section entirely
     if (prevLocation?.includes('/earrings') && !currentPath.includes('/earrings')) {
@@ -85,10 +80,7 @@ const LanguageManager = () => {
 
 const App = () => (
   <HelmetProvider>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+    <BrowserRouter>
         <LanguageManager />
         <SmartScrollManager />
         <Routes>
@@ -118,8 +110,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    </BrowserRouter>
   </HelmetProvider>
 );
 

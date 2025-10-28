@@ -1,5 +1,15 @@
 import * as React from "react";
-import * as ToastPrimitives from "@radix-ui/react-toast";
+// Removed Radix Toast dependency; keeping a minimal stub to avoid bundle errors if imported accidentally.
+const noop = () => null as any;
+const ToastPrimitives = {
+  Provider: noop,
+  Viewport: noop as unknown as React.ElementType,
+  Root: noop as unknown as React.ElementType,
+  Action: noop as unknown as React.ElementType,
+  Close: noop as unknown as React.ElementType,
+  Title: noop as unknown as React.ElementType,
+  Description: noop as unknown as React.ElementType,
+} as const;
 import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "@/lib/icons";
 
