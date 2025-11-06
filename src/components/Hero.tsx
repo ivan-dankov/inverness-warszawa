@@ -88,9 +88,10 @@ export function Hero({ currentLang }: HeroProps) {
                 </a>
               </Button>
             </div>
-            <p className="text-sm sm:text-base text-muted-foreground">
-              {t('hero.locationNotice')}
-            </p>
+            <div className="text-sm sm:text-base text-muted-foreground space-y-1">
+              <p>{t('hero.locationNotice.studio')}</p>
+              <p>{t('hero.locationNotice.mobile')}</p>
+            </div>
           </div>
 
           {/* Images Grid */}

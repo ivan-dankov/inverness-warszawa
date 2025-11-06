@@ -29,7 +29,10 @@
       "book": "Book Online",
       "instagram": "See Instagram"
     },
-    "locationNotice": "📍 At our Wola studio or 🚗 with a home visit."
+    "locationNotice": {
+      "studio": "📍 At our Wola studio",
+      "mobile": "🚗 With a home visit"
+    }
   },
   "about": {
     "title": "About Us",
