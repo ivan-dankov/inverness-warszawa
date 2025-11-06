@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Calendar, Instagram } from "@/lib/icons";
+import { Calendar, MapPin } from "@/lib/icons";
 import { useTranslation } from "react-i18next";
 import logoWide from "@/assets/logo-wide.svg";
 import { trackBookingClick } from "@/lib/analytics";
@@ -82,9 +82,9 @@ export function Hero({ currentLang }: HeroProps) {
                 </a>
               </Button>
               <Button size="lg" variant="accent" asChild className="w-full sm:w-auto">
-                <a href="https://instagram.com/prokol_ushej_warszawa" target="_blank" rel="noopener noreferrer">
-                  <Instagram className="h-5 w-5" />
-                  {t('hero.buttons.instagram')}
+                <a href="#contact">
+                  <MapPin className="h-5 w-5" />
+                  {t('hero.buttons.contact')}
                 </a>
               </Button>
             </div>
