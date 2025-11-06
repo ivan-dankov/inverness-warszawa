@@ -12,7 +12,10 @@ declare global {
  */
 export function initGoogleAnalytics(): void {
   if (typeof window !== 'undefined' && window.gtag && window.dataLayer) {
-    window.gtag('config', 'G-5XNL50H7LN', {
+    // Detect localhost for debug mode
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname.includes('localhost');
+    
+    const config: Record<string, any> = {
       // Restore GA4 defaults for full advertising capabilities
       allow_google_signals: true,              // Enable cross-device tracking
       allow_ad_personalization_signals: true,  // Enable remarketing & optimization
@@ -20,9 +23,16 @@ export function initGoogleAnalytics(): void {
       cookie_flags: 'SameSite=Lax;Secure',     // Keep security
       cookie_domain: window.location.hostname,
       send_page_view: false                    // Disable auto page view - we track manually
-    });
+    };
+    
+    // Add debug_mode for localhost to exclude from production analytics
+    if (isLocalhost) {
+      config.debug_mode = true;
+    }
+    
+    window.gtag('config', 'G-5XNL50H7LN', config);
     if (import.meta.env.DEV) {
-      console.log('📊 GA4 initialized with default settings (full ad optimization enabled)');
+      console.log('📊 GA4 initialized with default settings (full ad optimization enabled)' + (isLocalhost ? ' [DEBUG MODE]' : ''));
     }
   }
 }

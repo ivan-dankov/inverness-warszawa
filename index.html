@@ -100,7 +100,11 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      // Configuration will be handled by initGoogleAnalytics() in main.tsx
+      // Early config for localhost detection - full config in initGoogleAnalytics()
+      if (window.location.hostname === 'localhost' || window.location.hostname.includes('localhost')) {
+        gtag('config', 'G-5XNL50H7LN', { 'debug_mode': true });
+      }
+      // Full configuration will be handled by initGoogleAnalytics() in main.tsx
     </script>
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
