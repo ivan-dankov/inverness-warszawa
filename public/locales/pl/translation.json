@@ -28,7 +28,8 @@
     "buttons": {
       "book": "Rezerwuj Online",
       "instagram": "Zobacz Instagram"
-    }
+    },
+    "locationNotice": "📍 W gabinecie na Woli lub z 🚗 dojazdem do domu."
   },
   "about": {
     "title": "O nas",

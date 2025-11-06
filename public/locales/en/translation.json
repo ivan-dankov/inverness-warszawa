@@ -28,7 +28,8 @@
     "buttons": {
       "book": "Book Online",
       "instagram": "See Instagram"
-    }
+    },
+    "locationNotice": "📍 At our Wola studio or 🚗 with a home visit."
   },
   "about": {
     "title": "About Us",
