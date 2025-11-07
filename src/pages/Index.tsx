@@ -13,9 +13,7 @@ import type { IndexProps } from "@/types/component-props";
 // Lazy load below-the-fold components
 const Gallery = lazy(() => import("@/components/Gallery").then(m => ({ default: m.Gallery })));
 const Testimonials = lazy(() => import("@/components/Testimonials").then(m => ({ default: m.Testimonials })));
-const Earrings = lazy(() => import("@/components/Earrings").then(m => ({ default: m.Earrings })));
 const Comparison = lazy(() => import("@/components/Comparison").then(m => ({ default: m.Comparison })));
-const CertificateViewer = lazy(() => import("@/components/CertificateViewer").then(m => ({ default: m.CertificateViewer })));
 const FAQ = lazy(() => import("@/components/FAQ").then(m => ({ default: m.FAQ })));
 const RecentArticles = lazy(() => import("@/components/RecentArticles").then(m => ({ default: m.RecentArticles })));
 const Contact = lazy(() => import("@/components/Contact").then(m => ({ default: m.Contact })));
@@ -42,13 +40,7 @@ function Index({ currentLang }: IndexProps) {
           <Testimonials />
         </Suspense>
         <Suspense fallback={<div className="h-96" />}>
-          <Earrings />
-        </Suspense>
-        <Suspense fallback={<div className="h-96" />}>
           <Comparison />
-        </Suspense>
-        <Suspense fallback={<div className="h-96" />}>
-          <CertificateViewer />
         </Suspense>
         <Suspense fallback={<div className="h-96" />}>
           <FAQ />

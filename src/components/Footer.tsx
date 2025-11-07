@@ -12,10 +12,10 @@ export const Footer = () => {
   return (
     <footer className="bg-muted/50 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           <div>
             <div className="mb-4">
-              <img src={logoWide} alt="Inverness MED" className="h-8 w-auto" />
+              <img src={logoWide} alt="Gentle Piercing" className="h-8 w-auto" />
             </div>
             <p className="text-sm text-muted-foreground">
               {t('footer.company.description')}
@@ -61,11 +61,6 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to={`/${currentLang}/earrings`} className="hover:text-primary transition-colors">
-                  {t('footer.links.earrings')}
-                </Link>
-              </li>
-              <li>
                 <Link to={`/${currentLang}/blog`} className="hover:text-primary transition-colors">
                   {t('footer.links.blog')}
                 </Link>
@@ -73,23 +68,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-foreground mb-4">{t('footer.certificates.title')}</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>FDA Approved</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>ISO Certified</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="text-primary">✓</span>
-                <span>Medical Grade Equipment</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">

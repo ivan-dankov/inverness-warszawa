@@ -60,9 +60,6 @@ export function Header({ currentLang }: HeaderProps) {
             <button onClick={() => handleNavClick('testimonials')} className={`text-sm font-medium transition-colors ${location.pathname === '/' && location.hash === '#testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.testimonials')}
             </button>
-            <button onClick={() => navigate(`/${currentLang}/earrings`)} className={`text-sm font-medium transition-colors ${location.pathname.includes('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-              {t('header.nav.earrings')}
-            </button>
             <button onClick={() => handleNavClick('comparison')} className={`text-sm font-medium transition-colors ${location.pathname === `/${currentLang}` && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
               {t('header.nav.comparison')}
             </button>
@@ -121,9 +118,6 @@ export function Header({ currentLang }: HeaderProps) {
                   </button>
                   <button onClick={() => handleNavClick('testimonials')} className={`text-left text-base font-medium transition-colors ${location.pathname === '/' && location.hash === '#testimonials' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.testimonials')}
-                  </button>
-                  <button onClick={() => navigate(`/${currentLang}/earrings`)} className={`text-left text-base font-medium transition-colors ${location.pathname.includes('/earrings') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-                    {t('header.nav.earrings')}
                   </button>
                   <button onClick={() => handleNavClick('comparison')} className={`text-left text-base font-medium transition-colors ${location.pathname === `/${currentLang}` && location.hash === '#comparison' ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
                     {t('header.nav.comparison')}

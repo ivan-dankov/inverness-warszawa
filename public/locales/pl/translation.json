@@ -6,7 +6,6 @@
       "gallery": "Galeria",
       "comparison": "Metoda",
       "contact": "Kontakt",
-      "earrings": "Kolczyki",
       "aftercare": "Pielęgnacja",
       "blog": "Blog",
       "testimonials": "Opinie"
@@ -106,13 +105,6 @@
     "bookButton": "Rezerwuj Online",
     "durationLabel": "Czas trwania:"
   },
-  "earrings": {
-    "title": "Kolekcja Kolczyków",
-    "inverness": "Inverness MED",
-    "subtitle": "Najwyższej jakości kolczyki medyczne - bezpieczne, hipoalergiczne i eleganckie",
-    "seeAll": "Zobacz Wszystkie",
-    "productCount": "{{count}} kolczyków"
-  },
   "gallery": {
     "title": "Galeria",
     "subtitle": "Zobacz nasz profesjonalny sprzęt i efekty naszej pracy",
@@ -162,10 +154,6 @@
         "features": "Pewność, komfort i bezpieczeństwo w jednym"
       }
     }
-  },
-  "certificates": {
-    "title": "Certyfikaty",
-    "subtitle": "Nasze certyfikaty jakości i bezpieczeństwa"
   },
   "testimonials": {
     "title": "Opinie Naszych Klientów",
@@ -235,13 +223,12 @@
   },
   "footer": {
     "company": {
-      "title": "Inverness MED",
+      "title": "Gentle Piercing",
       "description": "Profesjonalne przekłuwanie uszu systemem medycznym"
     },
     "links": {
       "title": "Przydatne Linki",
       "aftercare": "Pielęgnacja",
-      "earrings": "Kolczyki",
       "blog": "Blog",
       "contact": "Kontakt"
     },
@@ -251,15 +238,7 @@
       "instagram": "Instagram",
       "location": "Lokalizacja"
     },
-    "certificates": {
-      "title": "Certyfikaty",
-      "items": [
-        "FDA Approved",
-        "ISO Certified",
-        "Medical Grade Equipment"
-      ]
-    },
-    "copyright": "© {{year}} Inverness MED. Wszystkie prawa zastrzeżone."
+    "copyright": "© {{year}} Gentle Piercing. Wszystkie prawa zastrzeżone."
   },
   "aftercare": {
     "pageTitle": "Pielęgnacja po przekłuciu uszu - Inverness MED Warszawa",
@@ -331,19 +310,6 @@
       }
     ]
   },
-  "earringsGallery": {
-    "breadcrumbHome": "Strona główna",
-    "title": "Wszystkie Kolczyki",
-    "inverness": "Inverness MED",
-    "productCount": "{{count}} produktów medycznych",
-    "backToTop": "Wróć na górę"
-  },
-  "earringDetail": {
-    "breadcrumbHome": "Strona główna",
-    "breadcrumbEarrings": "Kolczyki",
-    "specification": "Specyfikacja",
-    "otherProducts": "Inne Produkty"
-  },
   "breadcrumb": {
     "home": "Strona główna",
     "blog": "Blog"
@@ -352,116 +318,6 @@
     "loading": "Ładowanie...",
     "error": "Wystąpił błąd",
     "notFound": "Nie znaleziono"
-  },
-  "earringNames": {
-    "Barretta Cono/Cono 5mm Acciaio Medicale 316L": "Kolczyk Stożek/Stożek 5mm Stal Medyczna 316L",
-    "BFLY Farfalla Aquamarina 4mm Acciaio Medicale 316L  Placc. Oro 24K": "Motyl Akwamaryna 4mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "BFLY Farfalla Rosa 4mm Acciaio Medicale 316L  Placc. Oro 24K": "Motyl Różowy 4mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Bottone Scacchi Rosa 5mm Acciaio Medicale 316L": "Guzik Szachownica Różowy 5mm Stal Medyczna 316L",
-    "Brillantino Crystal 4mm Titanio Medicale": "Kryształ Górski 4mm Tytan Medyczny",
-    "Cuore 5mm Acciaio Medicale 316L  Placc. Oro 24K": "Serce 5mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Cuore Crystal 4mm Acciaio Medicale 316L  Placc. Oro 24K": "Serce Kryształowe 4mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Cuore &#8211; 5mm Niobio Gambo Corto": "Serce 5mm Niob Krótka Nóżka",
-    "Farfalla 4mm Acciaio Medicale 316L  Placc. Oro 24K": "Motyl 4mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Farfallina Cristallo Rosa 5mm Acciaio Medicale 316L": "Motyli Kryształ Różowy 5mm Stal Medyczna 316L",
-    "Fiore 5 Zirconi 6mm Niobio Gambo Corto": "Kwiatek 5 Cyrkonii 6mm Niob Krótka Nóżka",
-    "Fiore Aqua/Crystal 5mm Niobio": "Kwiatek Akwamaryn/Kryształ 5mm Niob",
-    "Fiore Black Pearl/Crystal 5mm Niobio": "Kwiatek Czarna Perła/Kryształ 5mm Niob",
-    "Fiore Cristallo Aqua  6mm Acciaio Medicale 316L  Placc. Oro 24K": "Kwiatek Kryształ Akwamaryn 6mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Fiore Crystal/Crystal 5mm Acciaio Medicale 316L  Placc. Oro 24K": "Kwiatek Kryształ/Kryształ 5mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Fiore Crystal/Crystal 5mm Niobio": "Kwiatek Kryształ/Kryształ 5mm Niob",
-    "Fiore Crystal/Rosa 5mm Acciaio Medicle 316L": "Kwiatek Kryształ/Różowy 5mm Stal Medyczna 316L",
-    "Fiore Crystal/Rosa 5mm Titanio Medicale": "Kwiatek Kryształ/Różowy 5mm Tytan Medyczny",
-    "Fiore Crystal/Zaffiro 5mm Acciaio Medicle 316L": "Kwiatek Kryształ/Szafir 5mm Stal Medyczna 316L",
-    "Fiore Crystal/Zaffiro 5mm Titanio Medicale": "Kwiatek Kryształ/Szafir 5mm Tytan Medyczny",
-    "Fiore Rosa/Zaffiro 5mm Acciaio Medicale 316L": "Kwiatek Różowy/Szafir 5mm Stal Medyczna 316L",
-    "Fiore Rosa/Zaffiro 5mm Titanio Medicale": "Kwiatek Różowy/Szafir 5mm Tytan Medyczny",
-    "Fiore Zaffiro/Rosa 5mm Acciaio Medicale 316L": "Kwiatek Szafir/Różowy 5mm Stal Medyczna 316L",
-    "Fiore Zaffiro/Zaffiro 5mm Acciaio Medicale 316L": "Kwiatek Szafir/Szafir 5mm Stal Medyczna 316L",
-    "Fireball Cristallo 4mm Acciaio Medicale 316L": "Kula Ognista Kryształowa 4mm Stal Medyczna 316L",
-    "Fireball Rosa 4mm Acciaio Medicale 316L": "Kula Ognista Różowa 4mm Stal Medyczna 316L",
-    "Pallina 4mm &#8211; Gambo Lungo Titanio Medicale": "Kuleczka 4mm Długa Nóżka Tytan Medyczny",
-    "Pallina Boreale 4mm Acciaio Medicale 316L": "Kuleczka Fantazyjna 4mm Stal Medyczna 316L",
-    "Pallina Crystallo 4mm Titanio Anodizzato Blue": "Kuleczka Kryształowa 4mm Tytan Anodowany Niebieski",
-    "Pallina Mini 3mm Acciaio Medicale 316L": "Kuleczka Mini 3mm Stal Medyczna 316L",
-    "Pallina Mini 3mm Acciaio Medicale 316L  Placc. Oro 24K": "Kuleczka Mini 3mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Pallina Mini 3mm Titanio Anodizzato Blue": "Kuleczka Mini 3mm Tytan Anodowany Niebieski",
-    "Pallina Mini 3mm Titanio Medicale": "Kuleczka Mini 3mm Tytan Medyczny",
-    "Perla Crema 4mm Acciaio Medicale 316L": "Perła Kremowa 4mm Stal Medyczna 316L",
-    "Stella Crystal 4mm Acciaio Medicale 316L  Placc. Oro 24K": "Gwiazdka Kryształowa 4mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff. Acquamarina 3mm Acciaio Medicale 316L": "Kamień Akwamaryn 3mm Stal Medyczna 316L",
-    "Tiff. Cristallo 3mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Kryształowy 3mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff. Grande Zircone 5mm Acciaio Medicale 316L": "Kamień Duży Cyrkon 5mm Stal Medyczna 316L",
-    "Tiff. Grande Zircone 5mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Duży Cyrkon 5mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff Medio Zircone 3mm Titanio Medicale": "Kamień Średni Cyrkon 3mm Tytan Medyczny",
-    "Tiff. Medio Zircone 3mm Acciaio Medicale 316L": "Kamień Średni Cyrkon 3mm Stal Medyczna 316L",
-    "Tiff. Medio Zircone 3mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Średni Cyrkon 3mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff. Medio Zircone Quadrato 3mm Acciaio Medicale 316L": "Kamień Średni Cyrkon Kwadratowy 3mm Stal Medyczna 316L",
-    "Tiff. Medio Zircone Rosa 3mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Średni Cyrkon Różowy 3mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff. Mini Zircone 2mm Acciaio Medicale 316L": "Kamień Mały Cyrkon 2mm Stal Medyczna 316L",
-    "Tiff. Perla 4mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Perła 4mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff. Rosa 3mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Różowy 3mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff. Zaffiro 3mm Acciaio Medicale 316L  Placc. Oro 24K": "Kamień Szafir 3mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Tiff.  Maxi Zircone 7mm Acciaio Medicale 316L": "Kamień Maksymalny Cyrkon 7mm Stal Medyczna 316L",
-    "Tondo Nero 7mm Niobio": "Koło Czarne 7mm Niob",
-    "Coccinella 5mm Acciaio Medicale 316L": "Biedronka 5mm Stal Medyczna 316L",
-    "Cristallo Nero 3mm Acciaio Medicale 316L": "Kryształ Czarny 3mm Stal Medyczna 316L",
-    "Crystallo Neve 6mm Acciaio Medicale 316L  Placc. Oro 24K": "Kryształ Śnieżny 6mm Stal Medyczna 316L Pozłacane Złoto 24K",
-    "Crystals from Swarovski 3mm Niobio": "Kryształy Swarovski 3mm Niob",
-    "Crystals from Swarovski 4mm Niobio": "Kryształy Swarovski 4mm Niob",
-    "Crystals from Swarovski AB 3mm Niobio": "Kryształy Swarovski AB 3mm Niob",
-    "Crystals from Swarovski Rosa 3mm Niobio": "Kryształy Swarovski Różowy 3mm Niob",
-    "Crystals from Swarovski Violet 3mm Niobio": "Kryształy Swarovski Fioletowy 3mm Niob",
-    "Fiore Aqua/Blue 6mm Acciaio Medicale 316L Gambo Corto": "Kwiatek Akwamaryn/Niebieski 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Baby Panda 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Mała Panda 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Coroncina 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Coroncina 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Cuore Rosa 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Serce Różowy 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Farfalla Rosa Glitter 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Motyl Różowy Glitter 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Fiore Rosa Cristallo 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Kwiatek Różowy Kryształ 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Fiore Rosa/Fucsia 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Kwiatek Różowy/Fucsia 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS KITTY 6mm Acciaio Medicale 316L Gambo Corto": "KIDS KITTY 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Margerira Gialla/Rosa 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Margerira Gialla/Różowy 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Margherita Rosa 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Margherita Różowy 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Pallina Dorata 3mm Acciaio Medicale 316L  Placc. Oro 24K Gambo Corto": "KIDS Kuleczka Dorata 3mm Stal Medyczna 316L Pozłacane Złoto 24K Krótka Nóżka",
-    "KIDS Pesciolino Rosa 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Pesciolino Różowy 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Puppy 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Puppy 6mm Stal Medyczna 316L Krótka Nóżka",
-    "KIDS Unicorno Rosa 6mm Acciaio Medicale 316L Gambo Corto": "KIDS Unicorno Różowy 6mm Stal Medyczna 316L Krótka Nóżka"
-  },
-  "specifications": {
-    "materials": {
-      "medicalSteel": "Materiał: stal medyczna (nie zawiera niklu, który jest głównym alergenem metali).",
-      "goldPlatedSteel": "Materiał: stal medyczna złocona (nie zawiera niklu, który jest głównym alergenem metali).",
-      "titanium": "Materiał: tytan (nie zawiera niklu, który jest głównym alergenem metali).",
-      "niobium": "Materiał: niob (nie zawiera niklu, który jest głównym alergenem metali).",
-      "goldCoatedSteel": "Materiał: stal medyczna pokryta 24-karatowym złotem (nie zawiera niklu, głównego alergenu metali)."
-    },
-    "embellishments": {
-      "crystals": "Inkrustacja kryształkami.",
-      "zirconia": "Inkrustacja cyrkonią.",
-      "none": "Bez inkrustacji.",
-      "pearl": "Perła.",
-      "swarovski": "Wkładka z kryształów Swarovskiego."
-    },
-    "coatings": {
-      "gold24kt": "Powłoka - złoto 24Kt.",
-      "rhodium": "Powłoka rodowa."
-    },
-    "finish": {
-      "silverPolished": "Kolor Srebrny Polerowany",
-      "gold24ktPlated": "Pozłacane 24 karatowe złoto"
-    },
-    "size": {
-      "diameter": "Średnica kolczyka: {{size}} mm.",
-      "height": "Wysokość: {{size}} mm."
-    },
-    "safety": "Opatentowane zapięcie bezpieczeństwa Safety Back.",
-    "packaging": {
-      "sterile": "Hermetyczne sterylne opakowanie.",
-      "individual": "Każdy kolczyk zapakowany jest w oddzielną sterylną kapsułkę.",
-      "individualPiercing": "Każdy kolczyk zapakowany jest w oddzielną sterylną kapsułkę do przekłucia."
-    },
-    "origin": "Wyprodukowano przez Inverness Med (USA).",
-    "productCode": "Kod produktu"
   },
   "recentArticles": {
     "title": "Najnowszy artykuł",

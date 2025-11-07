@@ -29,10 +29,10 @@ export const MultilingualSEO = ({
 
   // Keywords for SEO
   const keywords = {
-    pl: "przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha",
-    uk: "прокол вух, пірсинг, Варшава, Inverness MED, медичний прокол, діти, безпечне, стерильне, FDA, ISO, helix, tragus, conch, мочка вуха",
-    ru: "прокол ушей, пирсинг, Варшава, Inverness MED, медицинский прокол, дети, безопасное, стерильное, FDA, ISO, helix, tragus, conch, мочка уха",
-    en: "ear piercing, piercing, Warsaw, Inverness MED, medical piercing, children, safe, sterile, FDA, ISO, helix, tragus, conch, earlobe"
+    pl: "przekłuwanie uszu, piercing, Warszawa, Gentle Piercing, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, helix, tragus, conch, płatek ucha",
+    uk: "прокол вух, пірсинг, Варшава, Gentle Piercing, медичний прокол, діти, безпечне, стерильне, helix, tragus, conch, мочка вуха",
+    ru: "прокол ушей, пирсинг, Варшава, Gentle Piercing, медицинский прокол, дети, безопасное, стерильное, helix, tragus, conch, мочка уха",
+    en: "ear piercing, piercing, Warsaw, Gentle Piercing, medical piercing, children, safe, sterile, helix, tragus, conch, earlobe"
   };
 
   return (
@@ -42,7 +42,7 @@ export const MultilingualSEO = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords[currentLang as keyof typeof keywords] || keywords.pl} />
-      <meta name="author" content="Inverness MED" />
+      <meta name="author" content="Gentle Piercing" />
       
       {/* Canonical URL - self-referencing */}
       <link rel="canonical" href={canonicalUrl} />
@@ -56,7 +56,7 @@ export const MultilingualSEO = ({
       
       {/* Open Graph tags */}
       <meta property="og:type" content={ogType || "website"} />
-      <meta property="og:site_name" content="Inverness MED" />
+      <meta property="og:site_name" content="Gentle Piercing" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />

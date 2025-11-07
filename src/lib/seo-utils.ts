@@ -19,7 +19,7 @@ export const shouldNoIndex = (): boolean => {
 
 /**
  * Gets the canonical URL for the current page
- * @param path - The current path (e.g., "/earrings" or "/")
+ * @param path - The current path (e.g., "/blog" or "/")
  * @returns The canonical URL
  */
 export const getCanonicalUrl = (path: string): string => {

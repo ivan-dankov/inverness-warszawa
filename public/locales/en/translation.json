@@ -6,7 +6,6 @@
       "gallery": "Gallery",
       "comparison": "Method",
       "contact": "Contact",
-      "earrings": "Earrings",
       "aftercare": "Aftercare",
       "blog": "Blog",
       "testimonials": "Reviews"
@@ -106,13 +105,6 @@
     "bookButton": "Book Online",
     "durationLabel": "Duration:"
   },
-  "earrings": {
-    "title": "Earring Collection",
-    "inverness": "Inverness MED",
-    "subtitle": "Highest quality medical earrings - safe, hypoallergenic and elegant",
-    "seeAll": "See All",
-    "productCount": "{{count}} earrings"
-  },
   "gallery": {
     "title": "Gallery",
     "subtitle": "See our professional equipment and work results",
@@ -162,10 +154,6 @@
         "features": "Certainty, comfort and safety in one"
       }
     }
-  },
-  "certificates": {
-    "title": "Certificates",
-    "subtitle": "Our quality and safety certificates"
   },
   "testimonials": {
     "title": "Customer Reviews",
@@ -235,13 +223,12 @@
   },
   "footer": {
     "company": {
-      "title": "Inverness MED",
+      "title": "Gentle Piercing",
       "description": "Professional ear piercing with medical system"
     },
     "links": {
       "title": "Useful Links",
       "aftercare": "Aftercare",
-      "earrings": "Earrings",
       "blog": "Blog",
       "contact": "Contact"
     },
@@ -251,15 +238,7 @@
       "instagram": "Instagram",
       "location": "Location"
     },
-    "certificates": {
-      "title": "Certificates",
-      "items": [
-        "FDA Approved",
-        "ISO Certified",
-        "Medical Grade Equipment"
-      ]
-    },
-    "copyright": "© {{year}} Inverness MED. All rights reserved."
+    "copyright": "© {{year}} Gentle Piercing. All rights reserved."
   },
   "aftercare": {
     "pageTitle": "Ear Piercing Aftercare - Inverness MED Warsaw",
@@ -331,19 +310,6 @@
       }
     ]
   },
-  "earringsGallery": {
-    "breadcrumbHome": "Home",
-    "title": "All Earrings",
-    "inverness": "Inverness MED",
-    "productCount": "{{count}} medical products",
-    "backToTop": "Back to top"
-  },
-  "earringDetail": {
-    "breadcrumbHome": "Home",
-    "breadcrumbEarrings": "Earrings",
-    "specification": "Specification",
-    "otherProducts": "Other Products"
-  },
   "breadcrumb": {
     "home": "Home",
     "blog": "Blog"
@@ -353,31 +319,8 @@
     "error": "An error occurred",
     "notFound": "Not found"
   },
-  "earringNames": {
-    "Kolczyk Stożek/Stożek 5mm Stal Medyczna 316L": "Cone/Cone Earring 5mm 316L Medical Steel",
-    "Motyl Akwamaryna 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Aquamarine Butterfly 4mm 316L Medical Steel 24K Gold Plated",
-    "Motyl Różowy 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Pink Butterfly 4mm 316L Medical Steel 24K Gold Plated",
-    "Guzik Szachownica Różowy 5mm Stal Medyczna 316L": "Chessboard Pink Button 5mm 316L Medical Steel",
-    "Kryształ Górski 4mm Tytan Medyczny": "Mountain Crystal 4mm Medical Titanium",
-    "Biedronka 5mm Stal Medyczna 316L": "Ladybug 5mm 316L Medical Steel",
-    "Kryształ Czarny 3mm Stal Medyczna 316L": "Black Crystal 3mm 316L Medical Steel",
-    "Kryształ Śnieżny 6mm Stal Medyczna 316L Pozłacane Złoto 24K": "Snow Crystal 6mm 316L Medical Steel 24K Gold Plated",
-    "Kryształy Swarovski 3mm Niob": "Swarovski Crystals 3mm Niobium",
-    "Kryształy Swarovski 4mm Niob": "Swarovski Crystals 4mm Niobium",
-    "Kryształy Swarovski AB 3mm Niob": "Swarovski AB Crystals 3mm Niobium",
-    "Kryształy Swarovski Różowy 3mm Niob": "Pink Swarovski Crystals 3mm Niobium",
-    "Kryształy Swarovski Fioletowy 3mm Niob": "Purple Swarovski Crystals 3mm Niobium",
-    "Serce 5mm Niob Krótka Nóżka": "Heart 5mm Niobium Short Stem",
-    "Serce 5mm Stal Medyczna 316L Pozłacane Złoto 24K": "Heart 5mm 316L Medical Steel 24K Gold Plated",
-    "Serce Kryształowe 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Crystal Heart 4mm 316L Medical Steel 24K Gold Plated",
-    "Motyl 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Butterfly 4mm 316L Medical Steel 24K Gold Plated",
-    "Motyli Kryształ Różowy 5mm Stal Medyczna 316L": "Butterfly Crystal Pink 5mm 316L Medical Steel",
-    "Kwiatek 5 Cyrkonii 6mm Niob Krótka Nóżka": "Flower 5 Zirconia 6mm Niobium Short Stem",
-    "Kwiatek Akwamaryn/Kryształ 5mm Niob": "Aquamarine/Crystal Flower 5mm Niobium",
-    "Kwiatek Czarna Perła/Kryształ 5mm Niob": "Black Pearl/Crystal Flower 5mm Niobium",
-    "Kwiatek Kryształ Akwamaryn 6mm Stal Medyczna 316L Pozłacane Złoto 24K": "Aquamarine Crystal Flower 6mm 316L Medical Steel 24K Gold Plated",
-    "Kwiatek Kryształ/Kryształ 5mm Stal Medyczna 316L Pozłacane Złoto 24K": "Crystal/Crystal Flower 5mm 316L Medical Steel 24K Gold Plated",
-    "Kwiatek Kryształ/Kryształ 5mm Niob": "Crystal/Crystal Flower 5mm Niobium",
+  "recentArticles": {
+    "title": "Latest article",
     "Kwiatek Kryształ/Różowy 5mm Stal Medyczna 316L": "Crystal/Pink Flower 5mm 316L Medical Steel",
     "Kwiatek Kryształ/Różowy 5mm Tytan Medyczny": "Crystal/Pink Flower 5mm Medical Titanium",
     "Kwiatek Kryształ/Szafir 5mm Stal Medyczna 316L": "Crystal/Sapphire Flower 5mm 316L Medical Steel",
@@ -419,52 +362,6 @@
     "KIDS Motyl Różowy Glitter 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Pink Glitter Butterfly 6mm 316L Medical Steel Short Stem",
     "KIDS Kwiatek Różowy Kryształ 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Pink Crystal Flower 6mm 316L Medical Steel Short Stem",
     "KIDS Kwiatek Różowy/Fucsia 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Pink/Fuchsia Flower 6mm 316L Medical Steel Short Stem",
-    "KIDS KITTY 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS KITTY 6mm 316L Medical Steel Short Stem",
-    "KIDS Margerira Gialla/Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Yellow Daisy/Pink 6mm 316L Medical Steel Short Stem",
-    "KIDS Margherita Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Pink Daisy 6mm 316L Medical Steel Short Stem",
-    "KIDS Kuleczka Dorata 3mm Stal Medyczna 316L Pozłacane Złoto 24K Krótka Nóżka": "KIDS Golden Bead 3mm 316L Medical Steel 24K Gold Plated Short Stem",
-    "KIDS Pesciolino Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Pink Little Fish 6mm 316L Medical Steel Short Stem",
-    "KIDS Puppy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Puppy 6mm 316L Medical Steel Short Stem",
-    "KIDS Unicorno Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Pink Unicorn 6mm 316L Medical Steel Short Stem"
-  },
-  "specifications": {
-    "materials": {
-      "medicalSteel": "Material: medical steel (nickel-free, the main metal allergen).",
-      "goldPlatedSteel": "Material: gold-plated medical steel (nickel-free, the main metal allergen).",
-      "titanium": "Material: titanium (nickel-free, the main metal allergen).",
-      "niobium": "Material: niobium (nickel-free, the main metal allergen).",
-      "goldCoatedSteel": "Material: medical steel coated with 24-karat gold (nickel-free, the main metal allergen)."
-    },
-    "embellishments": {
-      "crystals": "Crystal embellishment.",
-      "zirconia": "Zirconia embellishment.",
-      "none": "No embellishment.",
-      "pearl": "Pearl.",
-      "swarovski": "Swarovski crystal insert."
-    },
-    "coatings": {
-      "gold24kt": "Coating - 24Kt gold.",
-      "rhodium": "Rhodium coating."
-    },
-    "finish": {
-      "silverPolished": "Silver Color Polished",
-      "gold24ktPlated": "Plated 24 Karat Gold"
-    },
-    "size": {
-      "diameter": "Earring diameter: {{size}}mm.",
-      "height": "Height: {{size}}mm."
-    },
-    "safety": "Patented Safety Back closure.",
-    "packaging": {
-      "sterile": "Hermetically sealed sterile packaging.",
-      "individual": "Each earring is packaged in a separate sterile capsule.",
-      "individualPiercing": "Each earring is packaged in a separate sterile capsule for piercing."
-    },
-    "origin": "Manufactured by Inverness Med (USA).",
-    "productCode": "Product code"
-  },
-  "recentArticles": {
-    "title": "Latest article",
     "subtitle": "Learn more in our ear piercing blog",
     "readMore": "Read more",
     "viewAll": "View all articles"

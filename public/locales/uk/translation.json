@@ -6,7 +6,6 @@
       "gallery": "Галерея",
       "comparison": "Метод",
       "contact": "Контакти",
-      "earrings": "Сережки",
       "aftercare": "Догляд",
       "blog": "Блог",
       "testimonials": "Відгуки"
@@ -106,13 +105,6 @@
     "bookButton": "Записатися онлайн",
     "durationLabel": "Тривалість:"
   },
-  "earrings": {
-    "title": "Колекція сережок",
-    "inverness": "Inverness MED",
-    "subtitle": "Медичні сережки найвищої якості - безпечні, гіпоалергенні та елегантні",
-    "seeAll": "Дивитися всі",
-    "productCount": "{{count}} сережок"
-  },
   "gallery": {
     "title": "Галерея",
     "subtitle": "Подивіться наше професійне обладнання та результати роботи",
@@ -162,10 +154,6 @@
         "features": "Впевненість, комфорт і безпека в одному"
       }
     }
-  },
-  "certificates": {
-    "title": "Сертифікати",
-    "subtitle": "Наші сертифікати якості та безпеки"
   },
   "testimonials": {
     "title": "Відгуки наших клієнтів",
@@ -235,13 +223,12 @@
   },
   "footer": {
     "company": {
-      "title": "Inverness MED",
+      "title": "Gentle Piercing",
       "description": "Професійний прокол вух медичною системою"
     },
     "links": {
       "title": "Корисні посилання",
       "aftercare": "Догляд",
-      "earrings": "Сережки",
       "blog": "Блог",
       "contact": "Контакти"
     },
@@ -251,15 +238,7 @@
       "instagram": "Instagram",
       "location": "Місцезнаходження"
     },
-    "certificates": {
-      "title": "Сертифікати",
-      "items": [
-        "FDA Approved",
-        "ISO Certified",
-        "Medical Grade Equipment"
-      ]
-    },
-    "copyright": "© {{year}} Inverness MED. Усі права захищені."
+    "copyright": "© {{year}} Gentle Piercing. Усі права захищені."
   },
   "aftercare": {
     "pageTitle": "Догляд після проколу вух - Inverness MED Варшава",
@@ -331,19 +310,6 @@
       }
     ]
   },
-  "earringsGallery": {
-    "breadcrumbHome": "Головна",
-    "title": "Всі сережки",
-    "inverness": "Inverness MED",
-    "productCount": "{{count}} медичних продуктів",
-    "backToTop": "Нагору"
-  },
-  "earringDetail": {
-    "breadcrumbHome": "Головна",
-    "breadcrumbEarrings": "Сережки",
-    "specification": "Характеристики",
-    "otherProducts": "Інші продукти"
-  },
   "breadcrumb": {
     "home": "Головна",
     "blog": "Блог"
@@ -352,116 +318,6 @@
     "loading": "Завантаження...",
     "error": "Сталася помилка",
     "notFound": "Не знайдено"
-  },
-  "earringNames": {
-    "Kolczyk Stożek/Stożek 5mm Stal Medyczna 316L": "Сережки Конус/Конус 5мм Медична Сталь 316L",
-    "Motyl Akwamaryna 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Метелик Аквамарин 4мм Медична Сталь 316L Позолочення 24К",
-    "Motyl Różowy 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Рожевий Метелик 4мм Медична Сталь 316L Позолочення 24К",
-    "Guzik Szachownica Różowy 5mm Stal Medyczna 316L": "Шахова Кнопка Рожева 5мм Медична Сталь 316L",
-    "Kryształ Górski 4mm Tytan Medyczny": "Гірський Кришталь 4мм Медичний Титан",
-    "Biedronka 5mm Stal Medyczna 316L": "Божа Коровка 5мм Медична Сталь 316L",
-    "Kryształ Czarny 3mm Stal Medyczna 316L": "Чорний Кришталь 3мм Медична Сталь 316L",
-    "Kryształ Śnieżny 6mm Stal Medyczna 316L Pozłacane Złoto 24K": "Сніжний Кришталь 6мм Медична Сталь 316L Позолочення 24К",
-    "Kryształy Swarovski 3mm Niob": "Кришталі Swarovski 3мм Ніобій",
-    "Kryształy Swarovski 4mm Niob": "Кришталі Swarovski 4мм Ніобій",
-    "Kryształy Swarovski AB 3mm Niob": "Кришталі Swarovski AB 3мм Ніобій",
-    "Kryształy Swarovski Różowy 3mm Niob": "Рожеві Кришталі Swarovski 3мм Ніобій",
-    "Kryształy Swarovski Fioletowy 3mm Niob": "Фіолетові Кришталі Swarovski 3мм Ніобій",
-    "Serce 5mm Niob Krótka Nóżka": "Серце 5мм Ніобій Коротка Ніжка",
-    "Serce 5mm Stal Medyczna 316L Pozłacane Złoto 24K": "Серце 5мм Медична Сталь 316L Позолочення 24К",
-    "Serce Kryształowe 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Кришталеве Серце 4мм Медична Сталь 316L Позолочення 24К",
-    "Motyl 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Метелик 4мм Медична Сталь 316L Позолочення 24К",
-    "Motyli Kryształ Różowy 5mm Stal Medyczna 316L": "Метелик Кришталь Рожевий 5мм Медична Сталь 316L",
-    "Kwiatek 5 Cyrkonii 6mm Niob Krótka Nóżka": "Квіточка 5 Цирконій 6мм Ніобій Коротка Ніжка",
-    "Kwiatek Akwamaryn/Kryształ 5mm Niob": "Квіточка Аквамарин/Кришталь 5мм Ніобій",
-    "Kwiatek Czarna Perła/Kryształ 5mm Niob": "Квіточка Чорна Перлина/Кришталь 5мм Ніобій",
-    "Kwiatek Kryształ Akwamaryn 6mm Stal Medyczna 316L Pozłacane Złoto 24K": "Квіточка Кришталь Аквамарин 6мм Медична Сталь 316L Позолочення 24К",
-    "Kwiatek Kryształ/Kryształ 5mm Stal Medyczna 316L Pozłacane Złoto 24K": "Квіточка Кришталь/Кришталь 5мм Медична Сталь 316L Позолочення 24К",
-    "Kwiatek Kryształ/Kryształ 5mm Niob": "Квіточка Кришталь/Кришталь 5мм Ніобій",
-    "Kwiatek Kryształ/Różowy 5mm Stal Medyczna 316L": "Квіточка Кришталь/Рожева 5мм Медична Сталь 316L",
-    "Kwiatek Kryształ/Różowy 5mm Tytan Medyczny": "Квіточка Кришталь/Рожева 5мм Медичний Титан",
-    "Kwiatek Kryształ/Szafir 5mm Stal Medyczna 316L": "Квіточка Кришталь/Сапфір 5мм Медична Сталь 316L",
-    "Kwiatek Kryształ/Szafir 5mm Tytan Medyczny": "Квіточка Кришталь/Сапфір 5мм Медичний Титан",
-    "Kwiatek Różowy/Szafir 5mm Stal Medyczna 316L": "Квіточка Рожева/Сапфір 5мм Медична Сталь 316L",
-    "Kwiatek Różowy/Szafir 5mm Tytan Medyczny": "Квіточка Рожева/Сапфір 5мм Медичний Титан",
-    "Kwiatek Szafir/Różowy 5mm Stal Medyczna 316L": "Квіточка Сапфір/Рожева 5мм Медична Сталь 316L",
-    "Kwiatek Szafir/Szafir 5mm Stal Medyczna 316L": "Квіточка Сапфір/Сапфір 5мм Медична Сталь 316L",
-    "Kula Ognista Kryształowa 4mm Stal Medyczna 316L": "Вогняна Куля Кришталь 4мм Медична Сталь 316L",
-    "Kula Ognista Różowa 4mm Stal Medyczna 316L": "Вогняна Куля Рожева 4мм Медична Сталь 316L",
-    "Kuleczka 4mm Długa Nóżka Tytan Medyczny": "Кулька 4мм Довга Ніжка Медичний Титан",
-    "Kuleczka Fantazyjna 4mm Stal Medyczna 316L": "Фантазійна Кулька 4мм Медична Сталь 316L",
-    "Kuleczka Kryształowa 4mm Tytan Anodowany Niebieski": "Кришталева Кулька 4мм Синій Анодований Титан",
-    "Kuleczka Mini 3mm Stal Medyczna 316L": "Міні Кулька 3мм Медична Сталь 316L",
-    "Kuleczka Mini 3mm Stal Medyczna 316L Pozłacane Złoto 24K": "Міні Кулька 3мм Медична Сталь 316L Позолочення 24К",
-    "Kuleczka Mini 3mm Tytan Anodowany Niebieski": "Міні Кулька 3мм Синій Анодований Титан",
-    "Kuleczka Mini 3mm Tytan Medyczny": "Міні Кулька 3мм Медичний Титан",
-    "Perła Kremowa 4mm Stal Medyczna 316L": "Кремова Перлина 4мм Медична Сталь 316L",
-    "Gwiazdka Kryształowa 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Кришталева Зірочка 4мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Średni Cyrkon 3mm Tytan Medyczny": "Камінь Середній Цирконій 3мм Медичний Титан",
-    "Kamień Maksymalny Cyrkon 7mm Stal Medyczna 316L": "Камінь Максимальний Цирконій 7мм Медична Сталь 316L",
-    "Kamień Akwamaryn 3mm Stal Medyczna 316L": "Камінь Аквамарин 3мм Медична Сталь 316L",
-    "Kamień Kryształowy 3mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Кришталевий 3мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Duży Cyrkon 5mm Stal Medyczna 316L": "Камінь Великий Цирконій 5мм Медична Сталь 316L",
-    "Kamień Duży Cyrkon 5mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Великий Цирконій 5мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Średni Cyrkon 3mm Stal Medyczna 316L": "Камінь Середній Цирконій 3мм Медична Сталь 316L",
-    "Kamień Średni Cyrkon 3mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Середній Цирконій 3мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Średni Cyrkon Kwadratowy 3mm Stal Medyczna 316L": "Камінь Середній Цирконій Квадратний 3мм Медична Сталь 316L",
-    "Kamień Średni Cyrkon Różowy 3mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Середній Цирконій Рожевий 3мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Mały Cyrkon 2mm Stal Medyczna 316L": "Камінь Малий Цирконій 2мм Медична Сталь 316L",
-    "Kamień Perła 4mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Перлина 4мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Różowy 3mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Рожевий 3мм Медична Сталь 316L Позолочення 24К",
-    "Kamień Szafir 3mm Stal Medyczna 316L Pozłacane Złoto 24K": "Камінь Сапфір 3мм Медична Сталь 316L Позолочення 24К",
-    "Koło Czarne 7mm Niob": "Чорне Коло 7мм Ніобій",
-    "Kwiatek Akwamaryn/Niebieski 6mm Stal Medyczna 316L Krótka Nóżka": "Квіточка Аквамарин/Синь 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Mała Panda 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Маленька Панда 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Coroncina 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Маленька Корона 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Serce Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожеве Серце 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Motyl Różowy Glitter 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожевий Метелик Гліттер 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Kwiatek Różowy Kryształ 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожева Квіточка Кришталь 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Kwiatek Różowy/Fucsia 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожева/Фуксія Квіточка 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS KITTY 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS КІТИК 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Margerira Gialla/Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Жовта Маргаритка/Рожевий 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Margherita Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожева Маргаритка 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Kuleczka Dorata 3mm Stal Medyczna 316L Pozłacane Złoto 24K Krótka Nóżka": "KIDS Золота Кулька 3мм Медична Сталь 316L Позолочення 24К Коротка Ніжка",
-    "KIDS Pesciolino Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожева Рибка 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Puppy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Цуценя 6мм Медична Сталь 316L Коротка Ніжка",
-    "KIDS Unicorno Różowy 6mm Stal Medyczna 316L Krótka Nóżka": "KIDS Рожевий Єдиноріг 6мм Медична Сталь 316L Коротка Ніжка"
-  },
-  "specifications": {
-    "materials": {
-      "medicalSteel": "Матеріал: медична сталь (не містить нікелю, основного металевого алергену).",
-      "goldPlatedSteel": "Матеріал: медична сталь із позолотою (не містить нікелю, основного металевого алергену).",
-      "titanium": "Матеріал: титан (не містить нікелю, основного металевого алергену).",
-      "niobium": "Матеріал: ніобій (не містить нікелю, основного металевого алергену).",
-      "goldCoatedSteel": "Матеріал: медична сталь, покрита 24-каратним золотом (не містить нікелю, основного металевого алергену)."
-    },
-    "embellishments": {
-      "crystals": "Інкрустація кристалами.",
-      "zirconia": "Інкрустація цирконієм.",
-      "none": "Без інкрустації.",
-      "pearl": "Перлина.",
-      "swarovski": "Вставка з кристалів Сваровскі."
-    },
-    "coatings": {
-      "gold24kt": "Покриття - золото 24Кт.",
-      "rhodium": "Родієве покриття."
-    },
-    "finish": {
-      "silverPolished": "Сріблястий колір полірований",
-      "gold24ktPlated": "Позолочене 24-каратне золото"
-    },
-    "size": {
-      "diameter": "Діаметр сережки: {{size}}мм.",
-      "height": "Висота: {{size}}мм."
-    },
-    "safety": "Запатентована застібка безпеки Safety Back.",
-    "packaging": {
-      "sterile": "Герметична стерильна упаковка.",
-      "individual": "Кожна сережка упакована в окрему стерильну капсулу.",
-      "individualPiercing": "Кожна сережка упакована в окрему стерильну капсулу для проколу."
-    },
-    "origin": "Виробник: Inverness Med (США).",
-    "productCode": "Код товару"
   },
   "recentArticles": {
     "title": "Остання стаття",
