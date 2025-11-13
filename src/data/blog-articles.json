@@ -1,6 +1,17 @@
 {
   "articles": [
     {
+      "id": "inverness-vs-gun",
+      "slug": {
+        "pl": "inverness-vs-pistolet",
+        "en": "inverness-vs-gun",
+        "uk": "inverness-vs-pistolet",
+        "ru": "inverness-vs-pistolet"
+      },
+      "publishDate": "2025-11-13",
+      "lastModified": "2025-11-13"
+    },
+    {
       "id": "does-ear-piercing-hurt",
       "slug": {
         "pl": "czy-przekluwanie-uszu-boli",

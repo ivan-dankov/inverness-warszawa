@@ -8,6 +8,10 @@ import { useLocation } from "react-router-dom";
 import blogThumbnail_400 from '@/assets/blog/art001.jpg?w=400&h=250&format=webp&fit=cover';
 // @ts-expect-error - vite-imagetools query parameters
 import blogThumbnail_600 from '@/assets/blog/art001.jpg?w=600&h=350&format=webp&fit=cover';
+// @ts-expect-error - vite-imagetools query parameters
+import blogThumbnail2_400 from '@/assets/blog/art002.jpg?w=400&h=250&format=webp&fit=cover';
+// @ts-expect-error - vite-imagetools query parameters
+import blogThumbnail2_600 from '@/assets/blog/art002.jpg?w=600&h=350&format=webp&fit=cover';
 
 export const RecentArticles = () => {
   const { t } = useTranslation();
@@ -16,6 +20,22 @@ export const RecentArticles = () => {
 
   // Article metadata
   const articles = [
+    {
+      id: "inverness-vs-gun",
+      slug: currentLang === 'pl' ? 'inverness-vs-pistolet' : 
+            currentLang === 'en' ? 'inverness-vs-gun' :
+            currentLang === 'uk' ? 'inverness-vs-pistolet' :
+            'inverness-vs-pistolet',
+      title: currentLang === 'pl' ? 'Inverness Med vs pistolet – co jest bezpieczniejsze?' :
+             currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
+             currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
+             'Inverness vs Piercing Gun — Which Method Is Safer?',
+      excerpt: currentLang === 'pl' ? 'Porównanie Inverness Med i pistoletu. Sterylność, hipoalergiczne materiały, bezpieczeństwo dla dzieci 0+. Najlepszy sposób przekłuwania uszu w Warszawie.' :
+              currentLang === 'uk' ? 'Порівняння методів проколу вух: медичний Inverness Med та пістолет. Безпечний стерильний прокол у Варшаві. Підходить для дітей 0+ і дорослих.' :
+              currentLang === 'ru' ? 'Сравнение Inverness Med и пистолета: стерильность, безопасность, материалы. Лучший способ прокола ушей в Варшаве для детей и взрослых.' :
+              'A detailed comparison of the Inverness Med system and piercing gun. Sterile ear piercing for babies and adults in Warsaw. Hypoallergenic earrings and fast healing.',
+      image: 'art002'
+    },
     {
       id: "does-ear-piercing-hurt",
       slug: currentLang === 'pl' ? 'czy-przekluwanie-uszu-boli' : 
@@ -30,6 +50,7 @@ export const RecentArticles = () => {
               currentLang === 'uk' ? 'Делікатна, швидка та безпечна процедура з системою Inverness Med. Дізнайтеся, як виглядає процес, як доглядати за вухом і як підготувати дитину до першої сережки.' :
               currentLang === 'ru' ? 'Деликатная, быстрая и безопасная процедура с системой Inverness Med. Узнайте, как выглядит процесс, как ухаживать за ухом и как подготовить ребенка к первой серьге.' :
               'Gentle, quick and safe procedure with the Inverness Med system. Find out how the process works, how to care for the ear and how to prepare your child for their first earring.',
+      image: 'art001'
     }
   ];
 
@@ -56,15 +77,31 @@ export const RecentArticles = () => {
             {/* Article Thumbnail Image */}
             <div className="w-full h-64 overflow-hidden">
               <img 
-                src={blogThumbnail_600}
-                srcSet={`
-                  ${blogThumbnail_400} 400w,
-                  ${blogThumbnail_600} 600w
-                `}
+                src={recentArticle.image === 'art002' ? blogThumbnail2_600 : blogThumbnail_600}
+                srcSet={
+                  recentArticle.image === 'art002' ? `
+                    ${blogThumbnail2_400} 400w,
+                    ${blogThumbnail2_600} 600w
+                  ` : `
+                    ${blogThumbnail_400} 400w,
+                    ${blogThumbnail_600} 600w
+                  `
+                }
                 sizes="(max-width: 768px) 100vw, 600px"
-                alt={recentArticle.title}
+                alt={
+                  recentArticle.id === 'inverness-vs-gun' ? 
+                  (currentLang === 'pl' ? 'Inverness Med vs pistolet - bezpieczne przekłuwanie uszu w Warszawie' :
+                   currentLang === 'uk' ? 'Inverness Med vs пістолет - безпечне проколювання вух у Варшаві' :
+                   currentLang === 'ru' ? 'Inverness Med vs пистолет - безопасное прокалывание ушей в Варшаве' :
+                   'Inverness Med vs piercing gun - safe ear piercing in Warsaw') :
+                  recentArticle.title
+                }
+                title={recentArticle.title}
+                width="600"
+                height="350"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
+                decoding="async"
               />
             </div>
             
