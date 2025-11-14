@@ -2,6 +2,13 @@
 User-agent: *
 Allow: /
 
+# Disallow old earrings pages (redirected to main page)
+Disallow: /pl/earrings
+Disallow: /en/earrings
+Disallow: /uk/earrings
+Disallow: /ru/earrings
+Disallow: /earrings
+
 # Language-specific sitemaps
 Sitemap: https://gentlepiercing.pl/pl/sitemap.xml
 Sitemap: https://gentlepiercing.pl/uk/sitemap.xml
