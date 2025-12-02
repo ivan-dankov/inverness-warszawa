@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ComparisonTable } from "@/components/ui/comparison-table";
+import { BlogArticleCTA } from "@/components/blog/BlogArticleCTA";
 
 export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
   const content = {
@@ -483,12 +484,11 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
         </p>
       </section>
 
-      {/* CTA Button */}
-      <div className="mt-12">
-        <a href={getBooksyUrl()} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-semibold">
-          {t.cta}
-        </a>
-      </div>
+      <BlogArticleCTA
+        currentLang={currentLang}
+        articleId="does-ear-piercing-hurt"
+        getBooksyUrl={getBooksyUrl}
+      />
     </article>
   );
 };

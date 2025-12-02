@@ -18,6 +18,10 @@ import blogThumbnail_600 from '@/assets/blog/art001.jpg?w=600&h=350&format=webp&
 import blogThumbnail2_400 from '@/assets/blog/art002.jpg?w=400&h=250&format=webp&fit=cover';
 // @ts-expect-error - vite-imagetools query parameters  
 import blogThumbnail2_600 from '@/assets/blog/art002.jpg?w=600&h=350&format=webp&fit=cover';
+// @ts-expect-error - vite-imagetools query parameters
+import blogThumbnail3_400 from '@/assets/blog/art003.jpg?w=400&h=250&format=webp&fit=cover';
+// @ts-expect-error - vite-imagetools query parameters
+import blogThumbnail3_600 from '@/assets/blog/art003.jpg?w=600&h=350&format=webp&fit=cover';
 
 export default function Blog() {
   const { t, i18n } = useTranslation();
@@ -37,6 +41,23 @@ export default function Blog() {
 
   // Article metadata
   const articles = [
+    {
+      id: "children-age",
+      slug: currentLang === 'pl' ? 'od-jakiego-wieku-przekluwac-uszy-dziecku' : 
+            currentLang === 'en' ? 'at-what-age-to-pierce-child-ears' :
+            currentLang === 'uk' ? 'z-yakoho-viku-prokoluvaty-vukha-dytyni' :
+            's-kakogo-vozrasta-prokalyvat-ushi-rebenku',
+      title: currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+             currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+             currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+             'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+',
+      excerpt: currentLang === 'pl' ? 'Odpowiedź na pytanie: od jakiego wieku można przekłuwać uszy dziecku? System Inverness Med jest certyfikowany dla dzieci od 0+. Poradnik dla rodziców w Warszawie z porównaniem różnych grup wiekowych.' :
+              currentLang === 'uk' ? 'Відповідь на питання: з якого віку можна проколювати вуха дитині? Система Inverness Med сертифікована для дітей від 0+. Посібник для батьків у Варшаві з порівнянням різних вікових груп.' :
+              currentLang === 'ru' ? 'Ответ на вопрос: с какого возраста можно прокалывать уши ребенку? Система Inverness Med сертифицирована для детей от 0+. Руководство для родителей в Варшаве с сравнением разных возрастных групп.' :
+              'Answer to the question: at what age can you pierce a child\'s ears? The Inverness Med system is certified for children from 0+. Guide for parents in Warsaw with comparison of different age groups.',
+      date: '2025-12-02',
+      image: 'art003'
+    },
     {
       id: "inverness-vs-gun",
       slug: currentLang === 'pl' ? 'inverness-vs-pistolet' : 
@@ -121,7 +142,7 @@ export default function Blog() {
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
               <Card key={article.id} className="overflow-hidden hover:shadow-lg transition-shadow">
                 <Link 
@@ -131,11 +152,18 @@ export default function Blog() {
                   {/* Article Thumbnail Image */}
                   <div className="w-full h-64 overflow-hidden">
                     <img 
-                      src={article.image === 'art002' ? blogThumbnail2_600 : blogThumbnail_600}
+                      src={
+                        article.image === 'art002' ? blogThumbnail2_600 :
+                        article.image === 'art003' ? blogThumbnail3_600 :
+                        blogThumbnail_600
+                      }
                       srcSet={
                         article.image === 'art002' ? `
                           ${blogThumbnail2_400} 400w,
                           ${blogThumbnail2_600} 600w
+                        ` : article.image === 'art003' ? `
+                          ${blogThumbnail3_400} 400w,
+                          ${blogThumbnail3_600} 600w
                         ` : `
                           ${blogThumbnail_400} 400w,
                           ${blogThumbnail_600} 600w
@@ -148,6 +176,11 @@ export default function Blog() {
                          currentLang === 'uk' ? 'Inverness Med vs пістолет - безпечне проколювання вух у Варшаві' :
                          currentLang === 'ru' ? 'Inverness Med vs пистолет - безопасное прокалывание ушей в Варшаве' :
                          'Inverness Med vs piercing gun - safe ear piercing in Warsaw') :
+                        article.id === 'children-age' ?
+                        (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+                         currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+                         currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+                         'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
                         article.title
                       }
                       title={article.title}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ComparisonTable } from "@/components/ui/comparison-table";
+import { BlogArticleCTA } from "@/components/blog/BlogArticleCTA";
 // @ts-expect-error - vite-imagetools query parameters
 import comparisonImage from '@/assets/blog/art002-comparison.jpg?w=800&format=webp';
 
@@ -516,30 +517,11 @@ export const ArticleInvernessVsGun = ({ currentLang }: { currentLang: string }) 
         {t.p6_2 && <p className="text-foreground mb-4">{t.p6_2}</p>}
       </section>
 
-      {/* Section 7: CTA */}
-      <section>
-        <h2 className="text-3xl font-semibold text-foreground mb-4 mt-16">
-          {t.h2_7}
-        </h2>
-        <p className="text-foreground mb-4">
-          {t.p7_1}
-          <a href={getBooksyUrl()} target="_blank" rel="noopener" className="text-primary hover:underline">
-            Booksy
-          </a>
-          <br />
-          {t.p7_2}
-          <a href={t.contact_link} className="text-primary hover:underline">
-            {t.contact_text}
-          </a>
-        </p>
-      </section>
-
-      {/* CTA Button */}
-      <div className="mt-12">
-        <a href={getBooksyUrl()} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity font-semibold">
-          {t.cta}
-        </a>
-      </div>
+      <BlogArticleCTA
+        currentLang={currentLang}
+        articleId="inverness-vs-gun"
+        getBooksyUrl={getBooksyUrl}
+      />
     </article>
   );
 };

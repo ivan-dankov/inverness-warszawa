@@ -43,6 +43,42 @@ export const LanguageSwitch = () => {
         en: 'does-ear-piercing-hurt',
         uk: 'chy-bolyt-prokol-vukh',
         ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'inverness-vs-pistolet': {
+        pl: 'inverness-vs-pistolet',
+        en: 'inverness-vs-gun',
+        uk: 'inverness-vs-pistolet',
+        ru: 'inverness-vs-pistolet'
+      },
+      'inverness-vs-gun': {
+        pl: 'inverness-vs-pistolet',
+        en: 'inverness-vs-gun',
+        uk: 'inverness-vs-pistolet',
+        ru: 'inverness-vs-pistolet'
+      },
+      'od-jakiego-wieku-przekluwac-uszy-dziecku': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      'at-what-age-to-pierce-child-ears': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      'z-yakoho-viku-prokoluvaty-vukha-dytyni': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      's-kakogo-vozrasta-prokalyvat-ushi-rebenku': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
       }
     };
 

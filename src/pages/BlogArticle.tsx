@@ -9,6 +9,7 @@ import { isSupportedLanguage } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { ArticleDoesItHurt } from "@/components/blog/ArticleDoesItHurt";
 import { ArticleInvernessVsGun } from "@/components/blog/ArticleInvernessVsGun";
+import { ArticleChildrenAge } from "@/components/blog/ArticleChildrenAge";
 
 // Оптимізовані зображення для різних розмірів екранів
 // @ts-expect-error - vite-imagetools query parameters
@@ -29,6 +30,16 @@ import featuredImage2_800 from '@/assets/blog/art002.jpg?w=800&format=webp';
 import featuredImage2_1200 from '@/assets/blog/art002.jpg?w=1200&format=webp';
 // @ts-expect-error - vite-imagetools query parameters
 import featuredImage2_1600 from '@/assets/blog/art002.jpg?w=1600&format=webp';
+
+// Images for children age article
+// @ts-expect-error - vite-imagetools query parameters
+import featuredImage3_400 from '@/assets/blog/art003.jpg?w=400&format=webp';
+// @ts-expect-error - vite-imagetools query parameters  
+import featuredImage3_800 from '@/assets/blog/art003.jpg?w=800&format=webp';
+// @ts-expect-error - vite-imagetools query parameters
+import featuredImage3_1200 from '@/assets/blog/art003.jpg?w=1200&format=webp';
+// @ts-expect-error - vite-imagetools query parameters
+import featuredImage3_1600 from '@/assets/blog/art003.jpg?w=1600&format=webp';
 
 export default function BlogArticle() {
   const { t, i18n } = useTranslation();
@@ -54,6 +65,12 @@ export default function BlogArticle() {
       en: 'does-ear-piercing-hurt',
       uk: 'chy-bolyt-prokol-vukh',
       ru: 'bolit-li-prokalyvanie-ushey'
+    },
+    'children-age': {
+      pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+      en: 'at-what-age-to-pierce-child-ears',
+      uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+      ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
     }
   };
 
@@ -64,7 +81,11 @@ export default function BlogArticle() {
     'czy-przekluwanie-uszu-boli': 'does-ear-piercing-hurt',
     'does-ear-piercing-hurt': 'does-ear-piercing-hurt',
     'chy-bolyt-prokol-vukh': 'does-ear-piercing-hurt',
-    'bolit-li-prokalyvanie-ushey': 'does-ear-piercing-hurt'
+    'bolit-li-prokalyvanie-ushey': 'does-ear-piercing-hurt',
+    'od-jakiego-wieku-przekluwac-uszy-dziecku': 'children-age',
+    'at-what-age-to-pierce-child-ears': 'children-age',
+    'z-yakoho-viku-prokoluvaty-vukha-dytyni': 'children-age',
+    's-kakogo-vozrasta-prokalyvat-ushi-rebenku': 'children-age'
   };
 
   const articleId = articleSlugs[slug as keyof typeof articleSlugs];
@@ -100,6 +121,36 @@ export default function BlogArticle() {
         uk: 'Порівняння методів проколу вух: медичний Inverness Med та пістолет. Безпечний стерильний прокол у Варшаві. Підходить для дітей 0+ і дорослих.',
         ru: 'Сравнение Inverness Med и пистолета: стерильность, безопасность, материалы. Лучший способ прокола ушей в Варшаве для детей и взрослых.',
         en: 'A detailed comparison of the Inverness Med system and piercing gun. Sterile ear piercing for babies and adults in Warsaw. Hypoallergenic earrings and fast healing.'
+      };
+
+      return {
+        title: titles[currentLang as keyof typeof titles],
+        description: descriptions[currentLang as keyof typeof descriptions],
+        url: baseUrls[currentLang as keyof typeof baseUrls],
+        hreflang: baseUrls
+      };
+    }
+
+    if (articleId === 'children-age') {
+      const baseUrls = {
+        pl: 'https://gentlepiercing.pl/pl/blog/od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'https://gentlepiercing.pl/en/blog/at-what-age-to-pierce-child-ears',
+        uk: 'https://gentlepiercing.pl/uk/blog/z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 'https://gentlepiercing.pl/ru/blog/s-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      };
+
+      const titles = {
+        pl: 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+ | Gentle Piercing',
+        uk: 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+ | Gentle Piercing',
+        ru: 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+ | Gentle Piercing',
+        en: 'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+ | Gentle Piercing'
+      };
+
+      const descriptions = {
+        pl: 'Odpowiedź na pytanie: od jakiego wieku można przekłuwać uszy dziecku? System Inverness Med jest certyfikowany dla dzieci od 0+. Poradnik dla rodziców w Warszawie.',
+        uk: 'Відповідь на питання: з якого віку можна проколювати вуха дитині? Система Inverness Med сертифікована для дітей від 0+. Посібник для батьків у Варшаві.',
+        ru: 'Ответ на вопрос: с какого возраста можно прокалывать уши ребенку? Система Inverness Med сертифицирована для детей от 0+. Руководство для родителей в Варшаве.',
+        en: 'Answer to the question: at what age can you pierce a child\'s ears? The Inverness Med system is certified for children from 0+. Guide for parents in Warsaw.'
       };
 
       return {
@@ -152,6 +203,16 @@ export default function BlogArticle() {
       };
       return keywords[currentLang as keyof typeof keywords];
     }
+
+    if (articleId === 'children-age') {
+      const keywords = {
+        pl: "od jakiego wieku przekłuwać uszy dziecku, przekłuwanie uszu niemowlętom, Inverness Med dla dzieci, bezpieczne przekłuwanie uszu dzieci Warszawa, przekłuwanie uszu dzieci 0+, wiek przekłuwania uszu",
+        uk: "з якого віку проколювати вуха дитині, прокол вух немовлятам, Inverness Med для дітей, безпечний прокол вух дітям Варшава, прокол вух дітям 0+, вік проколу вух",
+        ru: "с какого возраста прокалывать уши ребенку, прокол ушей младенцам, Inverness Med для детей, безопасный прокол ушей детям Варшава, прокол ушей детям 0+, возраст прокалывания ушей",
+        en: "what age to pierce baby ears, infant ear piercing, Inverness Med for children, safe child ear piercing Warsaw, ear piercing children 0+, age to pierce ears"
+      };
+      return keywords[currentLang as keyof typeof keywords];
+    }
     
     const keywords = {
       pl: "przekłuwanie uszu, piercing Warszawa, Inverness MED, czy boli, dzieci, bezbolesne, bezpieczne",
@@ -174,6 +235,13 @@ export default function BlogArticle() {
                  'Inverness vs Piercing Gun — Which Method Is Safer?';
       datePublished = "2025-11-13T00:00:00+01:00";
       dateModified = "2025-11-13T00:00:00+01:00";
+    } else if (articleId === 'children-age') {
+      headline = currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+                 currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+                 currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+                 'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+';
+      datePublished = "2025-12-02T00:00:00+01:00";
+      dateModified = "2025-12-02T00:00:00+01:00";
     } else if (articleId === 'does-ear-piercing-hurt') {
       headline = currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
                  currentLang === 'uk' ? 'Чи болить прокол вух?' :
@@ -215,6 +283,57 @@ export default function BlogArticle() {
   };
 
   const getFAQSchema = () => {
+    if (articleId === 'children-age') {
+      return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": currentLang === 'pl' ? "Od jakiego wieku można przekłuwać uszy dziecku?" :
+                   currentLang === 'uk' ? "З якого віку можна проколювати вуха дитині?" :
+                   currentLang === 'ru' ? "С какого возраста можно прокалывать уши ребенку?" :
+                   "At what age can you pierce a child's ears?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": currentLang === 'pl' ? "System Inverness Med jest certyfikowany dla dzieci od 0+, co oznacza, że przekłuwanie uszu jest bezpieczne w każdym wieku przy użyciu odpowiedniej metody." :
+                     currentLang === 'uk' ? "Система Inverness Med сертифікована для дітей від 0+, що означає, що проколювання вух безпечне в будь-якому віці при використанні відповідного методу." :
+                     currentLang === 'ru' ? "Система Inverness Med сертифицирована для детей от 0+, что означает, что прокалывание ушей безопасно в любом возрасте при использовании правильного метода." :
+                     "The Inverness Med system is certified for children from 0+, which means that ear piercing is safe at any age when using the appropriate method."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": currentLang === 'pl' ? "Czy przekłuwanie uszu niemowlętom boli?" :
+                   currentLang === 'uk' ? "Чи болить прокол вух немовлятам?" :
+                   currentLang === 'ru' ? "Больно ли прокалывать уши младенцам?" :
+                   "Does piercing babies' ears hurt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": currentLang === 'pl' ? "Zabieg trwa kilka sekund. Niemowlęta mogą krótko płakać, ale dyskomfort mija bardzo szybko. System Inverness Med jest najbardziej delikatną dostępną metodą." :
+                     currentLang === 'uk' ? "Процедура триває кілька секунд. Немовлята можуть коротко плакати, але дискомфорт швидко минає. Система Inverness Med є найбільш деликатним доступним методом." :
+                     currentLang === 'ru' ? "Процедура длится несколько секунд. Младенцы могут кратко плакать, но дискомфорт быстро проходит. Система Inverness Med является самым деликатным доступным методом." :
+                     "The procedure lasts a few seconds. Babies may cry briefly, but the discomfort passes very quickly. The Inverness Med system is the most gentle method available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": currentLang === 'pl' ? "Ile kosztuje przekłucie uszu dziecku w Warszawie?" :
+                   currentLang === 'uk' ? "Скільки коштує прокол вух дитині у Варшаві?" :
+                   currentLang === 'ru' ? "Сколько стоит прокалывание ушей ребенку в Варшаве?" :
+                   "How much does it cost to pierce a child's ears in Warsaw?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": currentLang === 'pl' ? "Ceny zaczynają się od 150 zł i zależą od wybranego rodzaju kolczyków (tytan, złoto, stal chirurgiczna). Koszt obejmuje zabieg, sterylny kartridż i instrukcję pielęgnacji." :
+                     currentLang === 'uk' ? "Ціни починаються від 150 злотих і залежать від обраного типу сережок (титан, золото, хірургічна сталь). Вартість включає процедуру, стерильний картридж та інструкцію з догляду." :
+                     currentLang === 'ru' ? "Цены начинаются от 150 злотых и зависят от выбранного типа сережек (титан, золото, хирургическая сталь). Стоимость включает процедуру, стерильный картридж и инструкцию по уходу." :
+                     "Prices start from 150 PLN and depend on the chosen type of earrings (titanium, gold, surgical steel). The cost includes the procedure, sterile cartridge and care instructions."
+            }
+          }
+        ]
+      };
+    }
+
     if (articleId === 'inverness-vs-gun') {
       return {
         "@context": "https://schema.org",
@@ -348,8 +467,16 @@ export default function BlogArticle() {
         <meta name="keywords" content={getKeywords()} />
         <meta name="author" content="Gentle Piercing" />
         <meta name="publisher" content="Gentle Piercing" />
-        <meta name="article:published_time" content={articleId === 'inverness-vs-gun' ? "2025-11-13T00:00:00+01:00" : "2025-10-27T00:00:00+01:00"} />
-        <meta name="article:modified_time" content={articleId === 'inverness-vs-gun' ? "2025-11-13T00:00:00+01:00" : "2025-10-27T00:00:00+01:00"} />
+        <meta name="article:published_time" content={
+          articleId === 'inverness-vs-gun' ? "2025-11-13T00:00:00+01:00" :
+          articleId === 'children-age' ? "2025-12-02T00:00:00+01:00" :
+          "2025-10-27T00:00:00+01:00"
+        } />
+        <meta name="article:modified_time" content={
+          articleId === 'inverness-vs-gun' ? "2025-11-13T00:00:00+01:00" :
+          articleId === 'children-age' ? "2025-12-02T00:00:00+01:00" :
+          "2025-10-27T00:00:00+01:00"
+        } />
         <meta name="article:section" content="Health & Beauty" />
         <meta name="article:tag" content={getKeywords()} />
         <meta name="robots" content="index,follow" />
@@ -414,6 +541,11 @@ export default function BlogArticle() {
              currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
              currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
              'Inverness vs Piercing Gun — Which Method Is Safer?') :
+            articleId === 'children-age' ?
+            (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+             currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+             currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+             'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
             articleId === 'does-ear-piercing-hurt' ? 
             (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
              currentLang === 'uk' ? 'Чи болить прокол вух?' :
@@ -453,6 +585,11 @@ export default function BlogArticle() {
                      currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
                      currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
                      'Inverness vs Piercing Gun — Which Method Is Safer?') :
+                    articleId === 'children-age' ?
+                    (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+                     currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+                     currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+                     'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
                     articleId === 'does-ear-piercing-hurt' ? 
                     (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
                      currentLang === 'uk' ? 'Чи болить прокол вух?' :
@@ -471,6 +608,11 @@ export default function BlogArticle() {
                  currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
                  currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
                  'Inverness vs Piercing Gun — Which Method Is Safer?') :
+                articleId === 'children-age' ?
+                (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+                 currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+                 currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+                 'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
                 articleId === 'does-ear-piercing-hurt' ? 
                 (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
                  currentLang === 'uk' ? 'Чи болить прокол вух?' :
@@ -518,6 +660,35 @@ export default function BlogArticle() {
                   currentLang === 'uk' ? 'Inverness Med vs пістолет - безпечне проколювання вух у Варшаві' :
                   currentLang === 'ru' ? 'Inverness Med vs пистолет - безопасное прокалывание ушей в Варшаве' :
                   'Inverness Med vs piercing gun - safe ear piercing in Warsaw'
+                }
+                className="w-full h-auto object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width="1200"
+                height="630"
+              />
+            ) : articleId === 'children-age' ? (
+              <img 
+                src={featuredImage3_800}
+                srcSet={`
+                  ${featuredImage3_400} 400w,
+                  ${featuredImage3_800} 800w, 
+                  ${featuredImage3_1200} 1200w,
+                  ${featuredImage3_1600} 1600w
+                `}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+                alt={
+                  currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+ w Warszawie' :
+                  currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+ у Варшаві' :
+                  currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+ в Варшаве' :
+                  'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+ in Warsaw'
+                }
+                title={
+                  currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
+                  currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
+                  currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
+                  'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+'
                 }
                 className="w-full h-auto object-cover"
                 loading="eager"
@@ -577,6 +748,11 @@ export default function BlogArticle() {
                   currentLang === 'uk' ? '13 листопада 2025' :
                   currentLang === 'ru' ? '13 ноября 2025' :
                   'November 13, 2025'
+                ) : articleId === 'children-age' ? (
+                  currentLang === 'pl' ? '2 grudnia 2025' :
+                  currentLang === 'uk' ? '2 грудня 2025' :
+                  currentLang === 'ru' ? '2 декабря 2025' :
+                  'December 2, 2025'
                 ) : (
                   currentLang === 'pl' ? '27 października 2025' :
                   currentLang === 'uk' ? '27 жовтня 2025' :
@@ -598,6 +774,8 @@ export default function BlogArticle() {
           
           {articleId === 'inverness-vs-gun' ? (
             <ArticleInvernessVsGun currentLang={currentLang} />
+          ) : articleId === 'children-age' ? (
+            <ArticleChildrenAge currentLang={currentLang} />
           ) : (
             <ArticleDoesItHurt currentLang={currentLang} />
           )}
