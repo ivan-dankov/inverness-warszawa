@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
@@ -41,11 +41,6 @@ const LanguageManager = () => {
   return null;
 };
 
-const EarringsRedirect = () => {
-  const { lang } = useParams<{ lang: string }>();
-  return <Navigate to={`/${lang || 'pl'}`} replace />;
-};
-
 const App = () => (
   <HelmetProvider>
     <BrowserRouter>
@@ -65,13 +60,14 @@ const App = () => (
         <Route path="/:lang/blog" element={<Blog />} />
         <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
         
-        {/* Old earrings pages - redirect to main page */}
-        <Route path="/:lang/earrings" element={<EarringsRedirect />} />
+        {/* Old earrings pages - treat as 404 with noindex */}
+        <Route path="/:lang/earrings" element={<NotFound />} />
         
-        {/* Legacy routes - redirect to default language (Polish) */}
+        {/* Legacy routes */}
         <Route path="/aftercare" element={<Navigate to="/pl/aftercare" replace />} />
         <Route path="/blog" element={<Navigate to="/pl/blog" replace />} />
-        <Route path="/earrings" element={<Navigate to="/pl" replace />} />
+        {/* For legacy /earrings, show 404 so crawlers see noindex */}
+        <Route path="/earrings" element={<NotFound />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

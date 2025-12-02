@@ -425,9 +425,7 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
         </ul>
         <p className="text-foreground mb-4">
           {t.p5_1}
-          <Link to={`/${currentLang}/earrings`} className="text-primary hover:underline">
-            {t.earrings_link}
-          </Link>
+          <span className="font-semibold">{t.earrings_link}</span>
           {t.p5_2}
         </p>
       </section>
@@ -473,9 +471,7 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
             {t.p9_aftercare}
           </Link>
           {t.p9_3}
-          <Link to={`/${currentLang}/earrings`} className="text-primary hover:underline">
-            {t.p9_earrings}
-          </Link>
+          <span className="font-semibold">{t.p9_earrings}</span>
           {t.p9_4}
           <a href={getBooksyUrl()} target="_blank" rel="noopener" className="text-primary hover:underline">
             {t.p9_5}
