@@ -72,13 +72,13 @@ export const ArticleDoesItHurt = ({ currentLang }: { currentLang: string }) => {
       
       h2_9: "Podsumowanie",
       p9_1: "Przekłuwanie uszu to szybki i bezpieczny zabieg, jeśli wybierzesz odpowiednią metodę i profesjonalny salon. W Gentle Piercing korzystamy wyłącznie z systemu Inverness Med – bez bólu, stresu i ryzyka infekcji.",
-      p9_2: "Dowiedz się więcej o ",
-      p9_aftercare: "pielęgnacji",
-      p9_3: ", zobacz ",
-      p9_earrings: "kolczyki",
-      p9_4: " lub ",
-      p9_5: "zarezerwuj wizytę online",
-      p9_6: ".",
+      p9_2: "",
+      p9_aftercare: "",
+      p9_3: "",
+      p9_earrings: "",
+      p9_4: "",
+      p9_5: "",
+      p9_6: "",
       
       cta: "Zarezerwuj wizytę online"
     },
