@@ -13,7 +13,7 @@ export const LocalBusinessSchema = ({ currentLang }: LocalBusinessSchemaProps) =
     name: "Inverness MED - Medyczne Przekłuwanie Uszu",
     url: "https://gentlepiercing.pl",
     telephone: "+48573818260",
-    email: "medinverness@gmail.com",
+    email: "piercinggentle@gmail.com",
     address: {
       streetAddress: "Gizów 6",
       addressLocality: "Warszawa",

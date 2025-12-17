@@ -1,4 +1,4 @@
-import { Instagram, Phone } from "@/lib/icons";
+import { Instagram, Phone, Mail } from "@/lib/icons";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
@@ -31,6 +31,11 @@ export const Footer = () => {
                   +48 573 818 260
                 </a>
               </p>
+              <p>
+                <a href="mailto:piercinggentle@gmail.com" className="hover:text-primary transition-colors">
+                  piercinggentle@gmail.com
+                </a>
+              </p>
               <div className="flex gap-4 mt-4">
                 <a 
                   href="tel:+48573818260" 
@@ -47,6 +52,13 @@ export const Footer = () => {
                   aria-label="Instagram"
                 >
                   <Instagram className="h-5 w-5 text-primary" />
+                </a>
+                <a 
+                  href="mailto:piercinggentle@gmail.com" 
+                  className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
+                  aria-label={t('contact.email')}
+                >
+                  <Mail className="h-5 w-5 text-primary" />
                 </a>
               </div>
             </div>

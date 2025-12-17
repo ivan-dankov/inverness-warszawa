@@ -2,25 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gentlepiercing.pl/uk/</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://gentlepiercing.pl/uk/aftercare</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://gentlepiercing.pl/uk/blog</loc>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gentlepiercing.pl/uk/blog/прокол-вух-це-боляче</loc>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://gentlepiercing.pl/uk/blog/chy-bolyt-prokol-vukh</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gentlepiercing.pl/uk/blog/inverness-vs-pistolet</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://gentlepiercing.pl/uk/blog/z-yakoho-viku-prokoluvaty-vukha-dytyni</loc>
+    <lastmod>2025-12-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

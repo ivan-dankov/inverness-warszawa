@@ -110,17 +110,17 @@ export default function BlogArticle() {
       };
 
       const titles = {
-        pl: 'Inverness czy pistolet? Najbezpieczniejsze przekłuwanie uszu w Warszawie',
-        uk: 'Inverness Med чи пістолет — що безпечніше? Прокол вух у Варшаві | Gentle Piercing',
-        ru: 'Inverness или пистолет? Безопасный прокол ушей в Варшаве',
-        en: 'Inverness vs Piercing Gun | Safe Ear Piercing in Warsaw'
+        pl: 'Inverness vs pistolet | Najbezpieczniejsze przekłuwanie',
+        uk: 'Inverness Med vs пістолет | Безпечний прокол вух',
+        ru: 'Inverness vs пистолет | Безопасный прокол ушей',
+        en: 'Inverness vs piercing gun | Safe ear piercing Warsaw'
       };
 
       const descriptions = {
-        pl: 'Porównanie Inverness Med i pistoletu. Sterylność, hipoalergiczne materiały, bezpieczeństwo dla dzieci 0+. Najlepszy sposób przekłuwania uszu w Warszawie.',
-        uk: 'Порівняння методів проколу вух: медичний Inverness Med та пістолет. Безпечний стерильний прокол у Варшаві. Підходить для дітей 0+ і дорослих.',
-        ru: 'Сравнение Inverness Med и пистолета: стерильность, безопасность, материалы. Лучший способ прокола ушей в Варшаве для детей и взрослых.',
-        en: 'A detailed comparison of the Inverness Med system and piercing gun. Sterile ear piercing for babies and adults in Warsaw. Hypoallergenic earrings and fast healing.'
+        pl: 'Porównanie Inverness MED i pistoletu: sterylność, hipoalergiczne kolczyki i najbezpieczniejsze przekłuwanie uszu w Warszawie dla dzieci 0+ i dorosłych.',
+        uk: 'Порівняння Inverness MED і пістолета: стерильність, гіпоалергенні сережки та найбезпечніший прокол вух у Варшаві для дітей 0+ і дорослих.',
+        ru: 'Сравнение Inverness MED и пистолета: стерильность, гипоаллергенные серьги и самый безопасный прокол ушей в Варшаве для детей 0+ и взрослых.',
+        en: 'Compare the Inverness MED system and piercing gun: sterility, hypoallergenic earrings, and the safest ear piercing in Warsaw for babies and adults.'
       };
 
       return {
@@ -140,17 +140,17 @@ export default function BlogArticle() {
       };
 
       const titles = {
-        pl: 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+ | Gentle Piercing',
-        uk: 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+ | Gentle Piercing',
-        ru: 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+ | Gentle Piercing',
-        en: 'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+ | Gentle Piercing'
+        pl: 'Od jakiego wieku przekłuwać uszy dziecku? Inverness MED',
+        uk: 'З якого віку проколювати вуха дитині? Inverness MED',
+        ru: 'С какого возраста прокалывать уши ребенку? Inverness MED',
+        en: 'What age to pierce a child\'s ears? Inverness MED'
       };
 
       const descriptions = {
-        pl: 'Odpowiedź na pytanie: od jakiego wieku można przekłuwać uszy dziecku? System Inverness Med jest certyfikowany dla dzieci od 0+. Poradnik dla rodziców w Warszawie.',
-        uk: 'Відповідь на питання: з якого віку можна проколювати вуха дитині? Система Inverness Med сертифікована для дітей від 0+. Посібник для батьків у Варшаві.',
-        ru: 'Ответ на вопрос: с какого возраста можно прокалывать уши ребенку? Система Inverness Med сертифицирована для детей от 0+. Руководство для родителей в Варшаве.',
-        en: 'Answer to the question: at what age can you pierce a child\'s ears? The Inverness Med system is certified for children from 0+. Guide for parents in Warsaw.'
+        pl: 'Kiedy przekłuć uszy dziecku? Inverness MED jest certyfikowany dla dzieci od 0+. Przewodnik dla rodziców w Warszawie: bezpieczeństwo, przygotowanie i gojenie.',
+        uk: 'Коли проколювати вуха дитині? Inverness MED сертифікований для дітей від 0+. Порадник для батьків у Варшаві: безпека, підготовка та загоєння.',
+        ru: 'Когда прокалывать уши ребенку? Inverness MED сертифицирован для детей от 0+. Гид для родителей в Варшаве: безопасность, подготовка и заживление.',
+        en: 'When can you pierce a child\'s ears? Inverness MED is certified for babies 0+. Parent guide for Warsaw: safety, preparation, and healing.'
       };
 
       return {
@@ -169,17 +169,17 @@ export default function BlogArticle() {
     };
 
     const titles = {
-      pl: 'Czy przekłuwanie uszu boli? | Gentle Piercing Warszawa',
-      uk: 'Чи болить прокол вух? | Gentle Piercing Варшава',
-      ru: 'Больно ли прокалывать уши? | Gentle Piercing Варшава',
-      en: 'Does ear piercing hurt? | Gentle Piercing Warsaw'
+      pl: 'Czy przekłuwanie uszu boli? Inverness MED w Warszawie',
+      uk: 'Чи болить прокол вух? Inverness MED Варшава',
+      ru: 'Больно ли прокалывать уши? Inverness MED Варшава',
+      en: 'Does ear piercing hurt? Inverness MED Warsaw'
     };
 
     const descriptions = {
-      pl: 'Wiele osób zastanawia się nad metodą przekłuwania uszu. Poznaj różnice między tradycyjnymi pistoletami a nowoczesnym systemem medycznym Inverness Med.',
-      uk: 'Багато людей замислюються над методикою проколу вух. Ознайомтеся з відмінностями між традиційними пістолетами та сучасною медичною системою Inverness Med.',
-      ru: 'Многие люди задумываются о методе прокалывания ушей. Узнайте о различиях между традиционными пистолетами и современной медицинской системой Inverness Med.',
-      en: 'Many people wonder about the ear piercing method. Learn the differences between traditional guns and the modern Inverness Med medical system.'
+      pl: 'Jak bardzo boli przekłuwanie uszu? Sprawdź, jak system Inverness MED minimalizuje ból, jak przebiega zabieg i jak dbać o szybkie gojenie w Warszawie.',
+      uk: 'Наскільки боляче проколювати вуха? Дізнайтеся, як система Inverness MED зменшує біль, як проходить процедура та як доглядати для швидкого загоєння у Варшаві.',
+      ru: 'Насколько больно прокалывать уши? Узнайте, как система Inverness MED снижает боль, как проходит процедура и как ухаживать для быстрого заживления в Варшаве.',
+      en: 'How much does ear piercing hurt? See how the Inverness MED system reduces pain, how the procedure works, and aftercare for fast healing in Warsaw.'
     };
 
     return {

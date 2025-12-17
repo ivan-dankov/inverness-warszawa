@@ -1,9 +1,9 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageHome } from "./pages/LanguageHome";
-import { getLanguageFromPath } from "./lib/language-routes";
+import { getLanguageFromPath, isSupportedLanguage } from "./lib/language-routes";
 import { Navigate } from "react-router-dom";
 import Aftercare from "./pages/Aftercare";
 import Blog from "./pages/Blog";
@@ -41,6 +41,12 @@ const LanguageManager = () => {
   return null;
 };
 
+const EarringsRedirect = () => {
+  const { lang } = useParams<{ lang: string }>();
+  const targetLang = isSupportedLanguage(lang) ? lang : 'pl';
+  return <Navigate to={`/${targetLang}`} replace />;
+};
+
 const App = () => (
   <HelmetProvider>
     <BrowserRouter>
@@ -60,14 +66,14 @@ const App = () => (
         <Route path="/:lang/blog" element={<Blog />} />
         <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
         
-        {/* Old earrings pages - treat as 404 with noindex */}
-        <Route path="/:lang/earrings" element={<NotFound />} />
+        {/* Old earrings pages - redirect to language home */}
+        <Route path="/:lang/earrings" element={<EarringsRedirect />} />
         
         {/* Legacy routes */}
         <Route path="/aftercare" element={<Navigate to="/pl/aftercare" replace />} />
         <Route path="/blog" element={<Navigate to="/pl/blog" replace />} />
-        {/* For legacy /earrings, show 404 so crawlers see noindex */}
-        <Route path="/earrings" element={<NotFound />} />
+        {/* For legacy /earrings, redirect to default language home */}
+        <Route path="/earrings" element={<Navigate to="/pl" replace />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

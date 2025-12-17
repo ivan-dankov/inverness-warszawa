@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Instagram, Clock, Calendar } from "@/lib/icons";
+import { MapPin, Phone, Instagram, Clock, Calendar, Mail } from "@/lib/icons";
 import { Map } from "./Map";
 import { useTranslation } from 'react-i18next';
 
@@ -49,6 +49,16 @@ export const Contact = () => {
                   <p className="text-sm text-muted-foreground mt-1">
                     {t('contact.messengers')}
                   </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">{t('contact.email')}</h4>
+                  <a href="mailto:piercinggentle@gmail.com" className="text-primary hover:underline">
+                    {t('contact.emailAddress')}
+                  </a>
                 </div>
               </div>
 

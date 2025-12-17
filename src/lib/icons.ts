@@ -19,6 +19,7 @@ export {
   Menu,
   Navigation,
   Phone,
+  Mail,
   Sparkles,
   Star,
   User,

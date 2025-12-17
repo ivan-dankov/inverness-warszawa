@@ -16,32 +16,32 @@ export const languages: Record<string, LanguageConfig> = {
     code: 'pl',
     name: 'Polski',
     flag: '🇵🇱',
-    title: 'Gentle Piercing Warszawa | Bezpieczne przekłuwanie uszu systemem Inverness',
-    description: 'Bezpieczne i bezbolesne przekłuwanie uszu w Warszawie 💎 Dla dzieci 0+ i dorosłych. System Inverness – certyfikowany sprzęt medyczny. Sterylne kolczyki z tytanu.',
+    title: 'Gentle Piercing Warszawa | Bezpieczne przekłuwanie uszu',
+    description: 'Medyczne przekłuwanie uszu w Warszawie systemem Inverness MED. Sterylne kolczyki tytan/niob. Dla dzieci 0+ i dorosłych, spokojny, bezbolesny zabieg.',
     path: '/pl'
   },
   uk: {
     code: 'uk',
     name: 'Українська',
     flag: '🇺🇦',
-    title: 'Gentle Piercing Варшава | Безпечне проколювання вух системою Inverness',
-    description: 'Безпечне та безболісне проколювання вух у Варшаві 💎 Для дітей 0+ та дорослих. Система Inverness – сертифікований медичний обладнання. Стерильні сережки з титану.',
+    title: 'Gentle Piercing Варшава | Безпечний медичний прокол вух',
+    description: 'Медичний прокол вух у Варшаві системою Inverness MED. Стерильні титанові/ніобієві сережки. Для дітей 0+ та дорослих, спокійна безболісна процедура.',
     path: '/uk'
   },
   ru: {
     code: 'ru',
     name: 'Русский',
     flag: '⚪',
-    title: 'Gentle Piercing Варшава | Безопасное прокалывание ушей системой Inverness',
-    description: 'Безопасное и безболезненное прокалывание ушей в Варшаве 💎 Для детей 0+ и взрослых. Система Inverness – сертифицированное медицинское оборудование. Стерильные серьги из титана.',
+    title: 'Gentle Piercing Варшава | Безопасный медпрокол ушей',
+    description: 'Медицинский прокол ушей в Варшаве системой Inverness MED. Стерильные титановые/ниобиевые серьги. Для детей 0+ и взрослых, спокойная безболезненная процедура.',
     path: '/ru'
   },
   en: {
     code: 'en',
     name: 'English',
     flag: '🇬🇧',
-    title: 'Gentle Piercing Warsaw | Safe ear piercing with Inverness system',
-    description: 'Safe and painless ear piercing in Warsaw 💎 For children 0+ and adults. Inverness system – certified medical equipment. Sterile titanium earrings.',
+    title: 'Gentle Piercing Warsaw | Safe medical ear piercing',
+    description: 'Medical ear piercing in Warsaw with the Inverness MED system. Sterile titanium/niobium earrings for children 0+ and adults. Gentle, low-pain service.',
     path: '/en'
   }
 };
@@ -108,9 +108,7 @@ export interface PageSEOConfig {
 export interface LanguageSEO {
   home: PageSEOConfig;
   aftercare: PageSEOConfig;
-  earrings: PageSEOConfig;
   blog: PageSEOConfig;
-  earringDetail: (productName: string) => PageSEOConfig;
 }
 
 /**
@@ -122,91 +120,59 @@ export const getPageSEO = (lang: string): LanguageSEO => {
   const configs: Record<string, LanguageSEO> = {
     pl: {
       home: {
-        title: 'Gentle Piercing Warszawa | Bezpieczne przekłuwanie uszu systemem Inverness',
-        description: 'Bezpieczne i bezbolesne przekłuwanie uszu w Warszawie 💎 System Inverness MED (FDA, ISO) ✓ Dla dzieci 0+ ✓ Sterylne, jednorazowe narzędzia ✓ Chrząstka i płatek ucha'
+        title: 'Gentle Piercing Warszawa | Bezpieczne przekłuwanie uszu',
+        description: 'Medyczne przekłuwanie uszu w Warszawie systemem Inverness MED. Sterylne kolczyki tytan/niob. Dla dzieci 0+ i dorosłych, spokojny, bezbolesny zabieg.'
       },
       aftercare: {
-        title: 'Pielęgnacja Po Przekłuciu Uszu | Inverness MED Warszawa',
-        description: 'Kompletny przewodnik pielęgnacji po przekłuciu uszu systemem Inverness MED. Jak dbać o świeże przekłucie, czego unikać, kiedy zdejmować kolczyki.'
-      },
-      earrings: {
-        title: 'Galeria Kolczyków Inverness MED | Warszawa',
-        description: 'Bezpieczne, hipoalergiczne kolczyki medyczne Inverness. Certyfikowane FDA i ISO. Tytan, niob, stal medyczna. Dla dzieci i dorosłych.'
+        title: 'Pielęgnacja po przekłuciu uszu | Inverness MED Warszawa',
+        description: 'Instrukcja pielęgnacji po przekłuciu uszu systemem Inverness MED: higiena, czyszczenie, czego unikać i kiedy bezpiecznie wymienić kolczyki.'
       },
       blog: {
-        title: 'Blog | Poradniki Przekłuwania Uszu | Gentle Piercing Warszawa',
-        description: 'Przydatne poradniki i wskazówki dotyczące przekłuwania uszu. Dowiedz się więcej o zabiegu, pielęgnacji i metodzie Inverness MED.'
-      },
-      earringDetail: (productName: string) => ({
-        title: `${productName} | Inverness MED Kolczyki Warszawa`,
-        description: `${productName}. Bezpieczne medyczne kolczyki Inverness MED w Warszawie. Hipoalergiczne, sterylne, certyfikowane FDA i ISO. Dla dzieci i dorosłych.`
-      })
+        title: 'Blog Gentle Piercing | Poradniki przekłuwania uszu',
+        description: 'Artykuły o bezpiecznym przekłuwaniu uszu systemem Inverness MED, pielęgnacji po zabiegu i wyborze kolczyków w Warszawie.'
+      }
     },
     uk: {
       home: {
-        title: 'Gentle Piercing Варшава | Безпечний прокол вух системою Inverness',
-        description: 'Безпечний і безболісний прокол вух у Варшаві 💎 Система Inverness MED (FDA, ISO) ✓ Для дітей 0+ ✓ Стерильні одноразові інструменти ✓ Хрящ і мочка вуха'
+        title: 'Gentle Piercing Варшава | Безпечний медичний прокол вух',
+        description: 'Медичний прокол вух у Варшаві системою Inverness MED. Стерильні титанові/ніобієві сережки. Для дітей 0+ та дорослих, спокійна безболісна процедура.'
       },
       aftercare: {
-        title: 'Догляд Після Проколу Вух | Inverness MED Варшава',
-        description: 'Повний посібник з догляду після проколу вух системою Inverness MED. Як доглядати за свіжим проколом, чого уникати, коли знімати сережки.'
-      },
-      earrings: {
-        title: 'Галерея Сережок Inverness MED | Варшава',
-        description: 'Безпечні гіпоалергенні медичні сережки Inverness. Сертифіковані FDA та ISO. Титан, ніобій, медична сталь. Для дітей і дорослих.'
+        title: 'Догляд після проколу вух | Inverness MED Варшава',
+        description: 'Покроковий догляд після проколу вух системою Inverness MED: гігієна, очищення, чого уникати і коли безпечно змінювати сережки.'
       },
       blog: {
-        title: 'Блог | Поради Проколу Вух | Gentle Piercing Варшава',
-        description: 'Корисні поради та поради щодо проколу вух. Дізнайтеся більше про процедуру, догляд та метод Inverness MED.'
-      },
-      earringDetail: (productName: string) => ({
-        title: `${productName} | Inverness MED Сережки Варшава`,
-        description: `${productName}. Безпечні медичні сережки Inverness MED у Варшаві. Гіпоалергенні, стерильні, сертифіковані FDA та ISO. Для дітей і дорослих.`
-      })
+        title: 'Блог Gentle Piercing | Поради проколу вух',
+        description: 'Статті про безпечний прокол вух системою Inverness MED, догляд після процедури та вибір гіпоалергенних сережок у Варшаві.'
+      }
     },
     ru: {
       home: {
-        title: 'Gentle Piercing Варшава | Безопасный прокол ушей системой Inverness',
-        description: 'Безопасный и безболезненный прокол ушей в Варшаве 💎 Система Inverness MED (FDA, ISO) ✓ Для детей 0+ ✓ Стерильные одноразовые инструменты ✓ Хрящ и мочка уха'
+        title: 'Gentle Piercing Варшава | Безопасный медпрокол ушей',
+        description: 'Медицинский прокол ушей в Варшаве системой Inverness MED. Стерильные титановые/ниобиевые серьги. Для детей 0+ и взрослых, спокойная безболезненная процедура.'
       },
       aftercare: {
-        title: 'Уход После Прокола Ушей | Inverness MED Варшава',
-        description: 'Полное руководство по уходу после прокола ушей системой Inverness MED. Как ухаживать за свежим проколом, чего избегать, когда снимать серьги.'
-      },
-      earrings: {
-        title: 'Галерея Серёжек Inverness MED | Варшава',
-        description: 'Безопасные гипоаллергенные медицинские серьги Inverness. Сертифицированы FDA и ISO. Титан, ниобий, медицинская сталь. Для детей и взрослых.'
+        title: 'Уход после прокола ушей | Inverness MED Варшава',
+        description: 'Руководство по уходу после прокола ушей системой Inverness MED: гигиена, очищение, что избегать и когда безопасно менять серьги.'
       },
       blog: {
-        title: 'Блог | Советы Прокола Ушей | Gentle Piercing Варшава',
-        description: 'Полезные советы и рекомендации по прокалыванию ушей. Узнайте больше о процедуре, уходе и методе Inverness MED.'
-      },
-      earringDetail: (productName: string) => ({
-        title: `${productName} | Inverness MED Серьги Варшава`,
-        description: `${productName}. Безопасные медицинские серьги Inverness MED в Варшаве. Гипоаллергенные, стерильные, сертифицированные FDA и ISO. Для детей и взрослых.`
-      })
+        title: 'Блог Gentle Piercing | Советы по проколу ушей',
+        description: 'Статьи о безопасном проколе ушей системой Inverness MED, уходе после процедуры и выборе гипоаллергенных серег в Варшаве.'
+      }
     },
     en: {
       home: {
-        title: 'Gentle Piercing Warsaw | Safe Ear Piercing with Inverness System',
-        description: 'Safe and painless ear piercing in Warsaw 💎 Inverness MED System (FDA, ISO) ✓ For children 0+ ✓ Sterile single-use tools ✓ Cartilage and earlobe'
+        title: 'Gentle Piercing Warsaw | Safe medical ear piercing',
+        description: 'Medical ear piercing in Warsaw with the Inverness MED system. Sterile titanium/niobium earrings for children 0+ and adults. Gentle, low-pain service.'
       },
       aftercare: {
-        title: 'Ear Piercing Aftercare | Inverness MED Warsaw',
-        description: 'Complete aftercare guide after Inverness MED ear piercing. How to care for fresh piercing, what to avoid, when to remove earrings.'
-      },
-      earrings: {
-        title: 'Inverness MED Earrings Gallery | Warsaw',
-        description: 'Safe hypoallergenic medical earrings Inverness. FDA and ISO certified. Titanium, niobium, medical steel. For children and adults.'
+        title: 'Ear piercing aftercare | Inverness MED Warsaw',
+        description: 'Step-by-step aftercare for Inverness MED ear piercing: hygiene, cleaning, what to avoid, and when it is safe to change earrings.'
       },
       blog: {
-        title: 'Blog | Ear Piercing Guides | Gentle Piercing Warsaw',
-        description: 'Useful guides and tips on ear piercing. Learn more about the procedure, aftercare and the Inverness MED method.'
-      },
-      earringDetail: (productName: string) => ({
-        title: `${productName} | Inverness MED Earrings Warsaw`,
-        description: `${productName}. Safe medical earrings Inverness MED in Warsaw. Hypoallergenic, sterile, FDA and ISO certified. For children and adults.`
-      })
+        title: 'Gentle Piercing blog | Ear piercing guides Warsaw',
+        description: 'Tips on safe ear piercing with the Inverness MED system, aftercare best practices, and choosing hypoallergenic earrings in Warsaw.'
+      }
     }
   };
   
