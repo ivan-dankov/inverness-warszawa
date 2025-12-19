@@ -51,29 +51,30 @@ export default defineConfig(({ mode }) => ({
                 id.includes('node_modules/react-router-dom')) {
               return 'react-core';
             }
-            // Markdown rendering (only loaded on blog pages)
-            if (id.includes('react-markdown') || id.includes('remark') || id.includes('rehype')) {
-              return 'markdown';
+            // All React-dependent libraries MUST be in react-core to prevent undefined errors
+            // This includes libraries that use forwardRef, createElement, etc.
+            if (id.includes('react-markdown') || 
+                id.includes('remark') || 
+                id.includes('rehype') ||
+                id.includes('react-i18next') ||
+                id.includes('react-helmet') ||
+                id.includes('lucide-react') ||
+                id.includes('@radix-ui') ||
+                id.includes('embla-carousel-react')) {
+              // Keep React-dependent libraries with React to prevent undefined errors
+              return 'react-core';
             }
-            // UI components that depend on React
-            if (id.includes('@radix-ui')) {
-              return 'ui-components';
-            }
-            // i18n
-            if (id.includes('i18next') || id.includes('react-i18next')) {
+            // i18n (non-React parts)
+            if (id.includes('i18next') && !id.includes('react-i18next')) {
               return 'i18n';
             }
-            // Carousel
-            if (id.includes('embla-carousel')) {
+            // Carousel (non-React parts)
+            if (id.includes('embla-carousel') && !id.includes('embla-carousel-react')) {
               return 'carousel';
             }
             // Utils
             if (id.includes('clsx') || id.includes('tailwind-merge') || id.includes('class-variance-authority')) {
               return 'utils';
-            }
-            // React Helmet (SEO)
-            if (id.includes('react-helmet')) {
-              return 'seo';
             }
             // Everything else goes to vendor chunk
             return 'vendor';
