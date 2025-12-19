@@ -20,33 +20,54 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
   // Use glob to import all markdown files as raw text
   // Use eager: true to ensure all files are included in production build
   // Paths in import.meta.glob are relative to the file using it (src/lib/)
-  // Using query: '?raw' with import: 'default' for Vite 5+ compatibility
-  const modules = import.meta.glob('../content/blog/**/*.md', { 
-    eager: true,
-    query: '?raw',
-    import: 'default'
-  }) as Record<string, string>;
+  // Try both syntaxes for maximum compatibility
+  let modules: Record<string, string | (() => Promise<string>)>;
+  
+  try {
+    // Try new Vite 5+ syntax first
+    modules = import.meta.glob('../content/blog/**/*.md', { 
+      eager: true,
+      query: '?raw',
+      import: 'default'
+    }) as Record<string, string>;
+  } catch (e) {
+    // Fallback to deprecated but more reliable syntax
+    console.warn('[Markdown Loader] New syntax failed, using fallback:', e);
+    modules = import.meta.glob('../content/blog/**/*.md', { 
+      eager: true,
+      as: 'raw'
+    }) as Record<string, string>;
+  }
 
   const moduleKeys = Object.keys(modules);
   console.log(`[Markdown Loader] Found ${moduleKeys.length} markdown modules:`, moduleKeys);
   console.log(`[Markdown Loader] Module keys sample:`, moduleKeys.slice(0, 3));
+  console.log(`[Markdown Loader] First module type:`, typeof modules[moduleKeys[0]]);
 
   const articles: BlogArticle[] = [];
 
   for (const path in modules) {
     try {
-      // With eager: true and query: '?raw', import: 'default', 
-      // modules[path] should be the raw string content directly
+      // Handle both string (eager) and function (lazy) cases
       const moduleContent = modules[path];
+      let content: string;
       
-      // Content should be a string with eager loading
-      if (typeof moduleContent !== 'string') {
+      if (typeof moduleContent === 'string') {
+        // Eager loading - content is directly available
+        content = moduleContent;
+      } else if (typeof moduleContent === 'function') {
+        // Lazy loading - need to call the function
+        console.warn(`[Markdown Loader] Lazy loading detected for ${path} (unexpected with eager: true)`);
+        content = await moduleContent();
+      } else if (moduleContent && typeof moduleContent === 'object' && 'default' in moduleContent) {
+        // Wrapped in object with default export
+        const unwrapped = (moduleContent as any).default;
+        content = typeof unwrapped === 'string' ? unwrapped : await unwrapped();
+      } else {
         console.warn(`[Markdown Loader] Unexpected module content type for ${path}:`, typeof moduleContent);
         console.warn(`[Markdown Loader] Module content:`, moduleContent);
         continue;
       }
-      
-      const content = moduleContent;
       
       if (!content || typeof content !== 'string') {
         console.warn(`No valid content found for ${path}, type:`, typeof content);
