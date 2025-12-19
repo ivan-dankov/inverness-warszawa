@@ -6,19 +6,20 @@
       "source": "/api/decap-proxy/(.*)", 
       "destination": "/api/decap-proxy"
     },
-    {
-      "source": "/((?!admin/).*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html.*"
-        }
-      ],
-      "destination": "/index.html"
+    { 
+      "source": "/pl/:path*", 
+      "destination": "/index.html" 
     },
     { 
-      "source": "/:path((?!.*\\.).*)", 
+      "source": "/en/:path*", 
+      "destination": "/index.html" 
+    },
+    { 
+      "source": "/uk/:path*", 
+      "destination": "/index.html" 
+    },
+    { 
+      "source": "/ru/:path*", 
       "destination": "/index.html" 
     }
   ],
