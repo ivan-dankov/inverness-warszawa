@@ -53,9 +53,8 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
       // With eager: true and as: 'raw', content should be a string
       const moduleContent = modules[path];
       
-      if (typeof moduleContent !== 'string') {
-        console.error(`[Markdown Loader] CRITICAL: Expected string but got ${typeof moduleContent} for ${path}`);
-        console.error(`[Markdown Loader] Content:`, moduleContent);
+      if (!moduleContent || typeof moduleContent !== 'string') {
+        console.warn(`[Markdown Loader] Invalid content for ${path}, type: ${typeof moduleContent}`);
         continue;
       }
       
