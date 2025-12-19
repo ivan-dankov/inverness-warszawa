@@ -49,15 +49,18 @@ export default function Blog() {
 
   useEffect(() => {
     // Load articles from Markdown files
-    console.log(`Loading blog articles for language: ${currentLang}`);
+    console.log(`[Blog] Loading blog articles for language: ${currentLang}`);
     loadBlogArticlesByLang(currentLang)
       .then(loadedArticles => {
-        console.log(`Loaded ${loadedArticles.length} articles for ${currentLang}:`, loadedArticles.map(a => a.title));
+        console.log(`[Blog] Loaded ${loadedArticles.length} articles for ${currentLang}:`, loadedArticles.map(a => `${a.title} (${a.slug})`));
+        if (loadedArticles.length === 0) {
+          console.warn(`[Blog] No articles found for language: ${currentLang}`);
+        }
         setArticles(loadedArticles);
         setLoading(false);
       })
       .catch(error => {
-        console.error('Failed to load blog articles:', error);
+        console.error('[Blog] Failed to load blog articles:', error);
         setLoading(false);
       });
   }, [currentLang]);
