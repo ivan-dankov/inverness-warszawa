@@ -115,10 +115,25 @@ export default defineConfig(({ mode }) => ({
             }
             
             // ============================================
-            // Vendor chunk (everything else)
+            // Icons chunk (lucide-react)
             // ============================================
-            // All other node_modules go here
-            return 'vendor';
+            if (id.includes('lucide-react') || id.includes('lucide')) {
+              return 'icons';
+            }
+            
+            // ============================================
+            // SEO chunk (react-helmet)
+            // ============================================
+            if (id.includes('react-helmet') || id.includes('helmet')) {
+              return 'seo';
+            }
+            
+            // ============================================
+            // No vendor chunk - distribute everything into specific chunks
+            // ============================================
+            // If we reach here, it's likely a dev dependency or build tool
+            // Let Vite handle it automatically (undefined = default behavior)
+            return undefined;
           }
         },
         assetFileNames: (assetInfo) => {
