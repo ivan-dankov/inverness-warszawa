@@ -6,8 +6,19 @@
       "source": "/api/decap-proxy/(.*)", 
       "destination": "/api/decap-proxy"
     },
+    {
+      "source": "/((?!admin/).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "text/html.*"
+        }
+      ],
+      "destination": "/index.html"
+    },
     { 
-      "source": "/(.*)", 
+      "source": "/:path((?!.*\\.).*)", 
       "destination": "/index.html" 
     }
   ],
