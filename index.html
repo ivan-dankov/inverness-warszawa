@@ -95,37 +95,17 @@
     ]
     </script>
     
-    <!-- Google Analytics 4 - Load after page interaction for better performance -->
-    <script>
-      // Load GA4 only after user interaction or 3 seconds
-      let gaLoaded = false;
-      const loadGA = () => {
-        if (gaLoaded) return;
-        gaLoaded = true;
-        const script1 = document.createElement('script');
-        script1.async = true;
-        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN';
-        document.head.appendChild(script1);
-        
-        const script2 = document.createElement('script');
-        script2.textContent = `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          if (window.location.hostname === 'localhost' || window.location.hostname.includes('localhost')) {
-            gtag('config', 'G-5XNL50H7LN', { 'debug_mode': true });
-          }
-        `;
-        document.head.appendChild(script2);
-      };
-      
-      // Load on user interaction
-      ['mousedown', 'touchstart', 'keydown', 'scroll'].forEach(event => {
-        document.addEventListener(event, loadGA, { once: true, passive: true });
-      });
-      
-      // Fallback: load after 3 seconds
-      setTimeout(loadGA, 3000);
+    <!-- Google Analytics 4 - Deferred for performance -->
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN"></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // Early config for localhost detection - full config in initGoogleAnalytics()
+      if (window.location.hostname === 'localhost' || window.location.hostname.includes('localhost')) {
+        gtag('config', 'G-5XNL50H7LN', { 'debug_mode': true });
+      }
+      // Full configuration will be handled by initGoogleAnalytics() in main.tsx
     </script>
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">

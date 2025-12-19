@@ -1,6 +1,8 @@
 import { lazy, Suspense } from "react";
 import { Hero } from "@/components/Hero";
 import { Header } from "@/components/Header";
+import { About } from "@/components/About";
+import { Services } from "@/components/Services";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { FAQSchema } from "@/components/FAQSchema";
@@ -8,9 +10,7 @@ import { MultilingualSEO } from "@/components/MultilingualSEO";
 import { LocalBusinessSchema } from "@/components/LocalBusinessSchema";
 import type { IndexProps } from "@/types/component-props";
 
-// Lazy load all below-the-fold components
-const About = lazy(() => import("@/components/About").then(m => ({ default: m.About })));
-const Services = lazy(() => import("@/components/Services").then(m => ({ default: m.Services })));
+// Lazy load below-the-fold components
 const Gallery = lazy(() => import("@/components/Gallery").then(m => ({ default: m.Gallery })));
 const Testimonials = lazy(() => import("@/components/Testimonials").then(m => ({ default: m.Testimonials })));
 const Comparison = lazy(() => import("@/components/Comparison").then(m => ({ default: m.Comparison })));
@@ -31,12 +31,8 @@ function Index({ currentLang }: IndexProps) {
       <main className="flex-grow">
         <Hero currentLang={currentLang} />
         <Separator />
-        <Suspense fallback={<div className="h-96" />}>
-          <About />
-        </Suspense>
-        <Suspense fallback={<div className="h-96" />}>
-          <Services currentLang={currentLang} />
-        </Suspense>
+        <About />
+        <Services currentLang={currentLang} />
         <Suspense fallback={<div className="h-96" />}>
           <Gallery />
         </Suspense>
