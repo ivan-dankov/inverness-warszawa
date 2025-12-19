@@ -18,12 +18,13 @@ export interface BlogArticle {
  */
 export async function loadBlogArticles(): Promise<BlogArticle[]> {
   // Use glob to import all markdown files as raw text
-  // Use 'as: raw' option to import as strings
+  // Use eager: true to ensure all files are included in production build
   // Paths in import.meta.glob are relative to the file using it (src/lib/)
   const modules = import.meta.glob('../content/blog/**/*.md', { 
-    eager: false,
-    as: 'raw'
-  });
+    eager: true,
+    query: '?raw',
+    import: 'default'
+  }) as Record<string, string | (() => Promise<string>)>;
 
   const moduleKeys = Object.keys(modules);
   console.log(`[Markdown Loader] Found ${moduleKeys.length} markdown modules:`, moduleKeys);
@@ -32,7 +33,12 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
 
   for (const path in modules) {
     try {
-      const content = await modules[path]() as string;
+      // With eager: true, modules[path] should be the content string
+      // But handle both cases for compatibility
+      const moduleContent = modules[path];
+      const content = typeof moduleContent === 'function' 
+        ? await moduleContent()
+        : moduleContent;
       
       if (!content || typeof content !== 'string') {
         console.warn(`No valid content found for ${path}, type:`, typeof content);
