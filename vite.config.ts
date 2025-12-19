@@ -46,10 +46,13 @@ export default defineConfig(({ mode }) => ({
             // CRITICAL: React core and ALL React-dependent libraries MUST be in react-core
             // to prevent "Cannot read properties of undefined" errors
             
-            // Strategy: Check for ANY mention of "react" in the path first
+            // Strategy: Check for ANY mention of "react" or React-related packages in the path
             // This catches all React-related packages including dependencies
-            // Also check for scheduler (React's scheduler package)
-            if (id.includes('/react') || 
+            // CRITICAL: Order matters - check most specific patterns first
+            if (id.includes('node_modules/react/') || 
+                id.includes('node_modules/react-dom/') ||
+                id.includes('node_modules/scheduler/') ||
+                id.includes('/react') || 
                 id.includes('react/') ||
                 id.includes('react-') ||
                 id.includes('@react') ||
@@ -58,7 +61,8 @@ export default defineConfig(({ mode }) => ({
                 id.includes('remix-run') ||
                 id.includes('@floating-ui') ||
                 id.includes('floating-ui') ||
-                id.includes('scheduler')) {
+                id.includes('/scheduler') ||
+                id.includes('scheduler/')) {
               return 'react-core';
             }
             // i18n (non-React parts)
