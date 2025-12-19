@@ -43,16 +43,36 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // React core MUST be loaded first - keep together to prevent undefined errors
-            // Match exact React package paths to ensure proper separation
+            // CRITICAL: React core and ALL React-dependent libraries MUST be in react-core
+            // to prevent "Cannot read properties of undefined" errors
+            
+            // React core packages
             if (id.includes('node_modules/react/') || 
                 id.includes('node_modules/react-dom/') ||
                 id.includes('node_modules/react-router') ||
                 id.includes('node_modules/react-router-dom')) {
               return 'react-core';
             }
+            
+            // @remix-run/router is a dependency of react-router-dom and uses React
+            if (id.includes('@remix-run') || id.includes('remix-run')) {
+              return 'react-core';
+            }
+            
+            // @floating-ui is used by @radix-ui and may have React dependencies
+            if (id.includes('@floating-ui') || id.includes('floating-ui')) {
+              return 'react-core';
+            }
+            
+            // React utility libraries that may be used by other packages
+            if (id.includes('react-fast-compare') ||
+                id.includes('hoist-non-react-statics') ||
+                id.includes('react-is')) {
+              return 'react-core';
+            }
+            
             // All React-dependent libraries MUST be in react-core to prevent undefined errors
-            // This includes libraries that use forwardRef, createElement, etc.
+            // This includes libraries that use forwardRef, createElement, useLayoutEffect, etc.
             if (id.includes('react-markdown') || 
                 id.includes('remark') || 
                 id.includes('rehype') ||
@@ -60,7 +80,8 @@ export default defineConfig(({ mode }) => ({
                 id.includes('react-helmet') ||
                 id.includes('lucide-react') ||
                 id.includes('@radix-ui') ||
-                id.includes('embla-carousel-react')) {
+                id.includes('embla-carousel-react') ||
+                id.includes('@emotion/react')) {
               // Keep React-dependent libraries with React to prevent undefined errors
               return 'react-core';
             }
