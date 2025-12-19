@@ -62,7 +62,15 @@ async function prerender() {
   // Wait a bit for server to be ready
   await new Promise(resolve => setTimeout(resolve, 3000));
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ 
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu'
+    ]
+  });
   const page = await browser.newPage();
 
   // Set viewport
