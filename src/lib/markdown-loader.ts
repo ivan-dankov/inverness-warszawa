@@ -20,11 +20,10 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
   // Use glob to import all markdown files as raw text
   // Use eager: true to ensure all files are included in production build
   // Paths in import.meta.glob are relative to the file using it (src/lib/)
-  // Using the new Vite syntax: query: '?raw', import: 'default'
+  // Note: Using as: 'raw' for better compatibility (deprecated but more reliable)
   const modules = import.meta.glob('../content/blog/**/*.md', { 
     eager: true,
-    query: '?raw',
-    import: 'default'
+    as: 'raw'
   });
 
   const moduleKeys = Object.keys(modules);
@@ -34,24 +33,19 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
 
   for (const path in modules) {
     try {
-      // With eager: true and query: '?raw', modules[path] should be the raw string content
+      // With eager: true and as: 'raw', modules[path] should be the raw string content directly
       const moduleContent = modules[path];
       
-      // With eager: true and query: '?raw', import: 'default', 
-      // the content should be directly available as a string
+      // With eager: true and as: 'raw', content is directly available as a string
       let content: string;
       
       if (typeof moduleContent === 'string') {
         content = moduleContent;
       } else if (typeof moduleContent === 'function') {
-        // Fallback for lazy loading
+        // Fallback for lazy loading (shouldn't happen with eager: true)
         content = await moduleContent();
-      } else if (moduleContent && typeof moduleContent === 'object') {
-        // Handle wrapped content
-        const unwrapped = (moduleContent as any).default || moduleContent;
-        content = typeof unwrapped === 'string' ? unwrapped : await unwrapped();
       } else {
-        console.warn(`Unexpected module content type for ${path}:`, typeof moduleContent);
+        console.warn(`Unexpected module content type for ${path}:`, typeof moduleContent, moduleContent);
         continue;
       }
       
