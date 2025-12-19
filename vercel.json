@@ -1,6 +1,4 @@
 {
-  "buildCommand": "",
-  "outputDirectory": "dist",
   "rewrites": [
     { 
       "source": "/api/decap-proxy/(.*)", 
@@ -21,6 +19,18 @@
     { 
       "source": "/ru/:path*", 
       "destination": "/index.html" 
+    },
+    {
+      "source": "/aftercare",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/earrings/:path*",
+      "destination": "/index.html"
     }
   ],
   "headers": [

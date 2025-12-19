@@ -4,7 +4,13 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 
-// Note: Prerendering runs on GitHub Actions (has Chrome), not Vercel build
+// Skip prerendering on Vercel (Puppeteer doesn't work in their build environment)
+// SSG prerendering only works locally or on CI with Chrome installed
+if (process.env.VERCEL || process.env.CI) {
+  console.log('⚠️ Skipping prerendering (Vercel/CI environment detected)');
+  console.log('✓ Site will work as SPA with client-side rendering');
+  process.exit(0);
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
