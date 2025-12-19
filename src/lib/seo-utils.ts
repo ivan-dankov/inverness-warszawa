@@ -12,9 +12,8 @@ export const shouldNoIndex = (): boolean => {
   const hostname = window.location.hostname;
   
   // Block indexing for:
-  // 1. Lovable preview domains (*.lovable.app)
-  // 2. www subdomain (we prefer non-www)
-  return hostname.includes('lovable.app') || hostname.startsWith('www.');
+  // www subdomain (we prefer non-www)
+  return hostname.startsWith('www.');
 };
 
 /**

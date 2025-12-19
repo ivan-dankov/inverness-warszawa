@@ -1,0 +1,31 @@
+backend:
+  name: github
+  repo: ivan-dankov/inverness-warszawa
+  branch: main
+  base_url: https://api.github.com
+  auth_type: pkce
+  proxy_url: /api/decap-proxy
+  auth_scope: repo
+
+media_folder: public/assets/images/blog
+public_folder: /assets/images/blog
+
+i18n:
+  structure: multiple_folders
+  locales: [pl, en, uk, ru]
+  default_locale: pl
+
+collections:
+  - name: blog
+    label: Blog Articles
+    folder: src/content/blog
+    create: true
+    i18n: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Slug", name: "slug", widget: "string", i18n: true, hint: "URL-friendly slug (e.g., article-title)" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", i18n: true }
+      - { label: "Publish Date", name: "date", widget: "datetime", i18n: duplicate }
+      - { label: "Image", name: "image", widget: "string", i18n: duplicate, hint: "Image identifier (e.g., art001)" }
+      - { label: "Body", name: "body", widget: "markdown", i18n: true }

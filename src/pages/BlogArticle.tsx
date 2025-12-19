@@ -1,15 +1,16 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft, Clock, User, Calendar } from "@/lib/icons";
 import { Helmet } from "react-helmet-async";
 import { isSupportedLanguage } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
-import { ArticleDoesItHurt } from "@/components/blog/ArticleDoesItHurt";
-import { ArticleInvernessVsGun } from "@/components/blog/ArticleInvernessVsGun";
-import { ArticleChildrenAge } from "@/components/blog/ArticleChildrenAge";
+import { loadBlogArticle, type BlogArticle } from "@/lib/markdown-loader";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 // Оптимізовані зображення для різних розмірів екранів
 // @ts-expect-error - vite-imagetools query parameters
@@ -51,221 +52,180 @@ export default function BlogArticle() {
   }
   
   const currentLang = lang || 'pl';
-  
-  // Map of slugs for each language for the same article
-  const languageSlugs = {
-    'inverness-vs-gun': {
-      pl: 'inverness-vs-pistolet',
-      en: 'inverness-vs-gun',
-      uk: 'inverness-vs-pistolet',
-      ru: 'inverness-vs-pistolet'
-    },
-    'does-ear-piercing-hurt': {
-      pl: 'czy-przekluwanie-uszu-boli',
-      en: 'does-ear-piercing-hurt',
-      uk: 'chy-bolyt-prokol-vukh',
-      ru: 'bolit-li-prokalyvanie-ushey'
-    },
-    'children-age': {
-      pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
-      en: 'at-what-age-to-pierce-child-ears',
-      uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
-      ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
-    }
-  };
-
-  // Map slugs to article IDs
-  const articleSlugs = {
-    'inverness-vs-pistolet': 'inverness-vs-gun',
-    'inverness-vs-gun': 'inverness-vs-gun',
-    'czy-przekluwanie-uszu-boli': 'does-ear-piercing-hurt',
-    'does-ear-piercing-hurt': 'does-ear-piercing-hurt',
-    'chy-bolyt-prokol-vukh': 'does-ear-piercing-hurt',
-    'bolit-li-prokalyvanie-ushey': 'does-ear-piercing-hurt',
-    'od-jakiego-wieku-przekluwac-uszy-dziecku': 'children-age',
-    'at-what-age-to-pierce-child-ears': 'children-age',
-    'z-yakoho-viku-prokoluvaty-vukha-dytyni': 'children-age',
-    's-kakogo-vozrasta-prokalyvat-ushi-rebenku': 'children-age'
-  };
-
-  const articleId = articleSlugs[slug as keyof typeof articleSlugs];
-  
-  // If article not found by slug, redirect to blog listing
-  if (!articleId) {
-    return <Navigate to={`/${currentLang}/blog`} replace />;
-  }
+  const [article, setArticle] = useState<BlogArticle | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [i18n.language, slug]);
 
+  useEffect(() => {
+    // Load article from Markdown files
+    if (slug) {
+      loadBlogArticle(slug, currentLang)
+        .then(loadedArticle => {
+          if (loadedArticle) {
+            setArticle(loadedArticle);
+          } else {
+            // Article not found, redirect to blog listing
+            setArticle(null);
+          }
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Failed to load blog article:', error);
+          setLoading(false);
+        });
+    }
+  }, [slug, currentLang]);
+
+  // If article not found, redirect to blog listing
+  if (!loading && !article) {
+    return <Navigate to={`/${currentLang}/blog`} replace />;
+  }
+
+  if (loading || !article) {
+    return (
+      <>
+        <Header currentLang={currentLang} />
+        <main className="min-h-screen bg-background flex items-center justify-center">
+          <p className="text-muted-foreground">
+            {currentLang === 'pl' ? 'Ładowanie artykułu...' :
+             currentLang === 'uk' ? 'Завантаження статті...' :
+             currentLang === 'ru' ? 'Загрузка статьи...' :
+             'Loading article...'}
+          </p>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  // Get image based on article image field
+  const getArticleImage = () => {
+    if (article.image === 'art002') {
+      return {
+        src: featuredImage2_800,
+        srcSet: `${featuredImage2_400} 400w, ${featuredImage2_800} 800w, ${featuredImage2_1200} 1200w, ${featuredImage2_1600} 1600w`,
+        alt: article.title
+      };
+    } else if (article.image === 'art003') {
+      return {
+        src: featuredImage3_800,
+        srcSet: `${featuredImage3_400} 400w, ${featuredImage3_800} 800w, ${featuredImage3_1200} 1200w, ${featuredImage3_1600} 1600w`,
+        alt: article.title
+      };
+    } else {
+      return {
+        src: featuredImage_800,
+        srcSet: `${featuredImage_400} 400w, ${featuredImage_800} 800w, ${featuredImage_1200} 1200w, ${featuredImage_1600} 1600w`,
+        alt: article.title
+      };
+    }
+  };
+
+  const articleImage = getArticleImage();
+
+  // Generate hreflang URLs for all languages
+  const getHreflangUrls = () => {
+    const allArticles = [
+      { slug: 'czy-przekluwanie-uszu-boli', lang: 'pl' },
+      { slug: 'does-ear-piercing-hurt', lang: 'en' },
+      { slug: 'chy-bolyt-prokol-vukh', lang: 'uk' },
+      { slug: 'bolit-li-prokalyvanie-ushey', lang: 'ru' },
+      { slug: 'inverness-vs-pistolet', lang: 'pl' },
+      { slug: 'inverness-vs-gun', lang: 'en' },
+      { slug: 'od-jakiego-wieku-przekluwac-uszy-dziecku', lang: 'pl' },
+      { slug: 'at-what-age-to-pierce-child-ears', lang: 'en' },
+      { slug: 'z-yakoho-viku-prokoluvaty-vukha-dytyni', lang: 'uk' },
+      { slug: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku', lang: 'ru' },
+    ];
+
+    // Find related articles with same base slug (for multilingual linking)
+    const relatedSlugs: Record<string, string> = {};
+    // For now, use current article URL for all languages
+    relatedSlugs.pl = `https://gentlepiercing.pl/pl/blog/${article.slug}`;
+    relatedSlugs.en = `https://gentlepiercing.pl/en/blog/${article.slug}`;
+    relatedSlugs.uk = `https://gentlepiercing.pl/uk/blog/${article.slug}`;
+    relatedSlugs.ru = `https://gentlepiercing.pl/ru/blog/${article.slug}`;
+
+    return relatedSlugs;
+  };
+
+  const hreflangUrls = getHreflangUrls();
+  const canonicalUrl = `https://gentlepiercing.pl/${currentLang}/blog/${article.slug}`;
+
+  // Format date for display
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    };
+    return date.toLocaleDateString(
+      currentLang === 'pl' ? 'pl-PL' :
+      currentLang === 'uk' ? 'uk-UA' :
+      currentLang === 'ru' ? 'ru-RU' :
+      'en-US',
+      options
+    );
+  };
+
   // SEO metadata based on article
   const getArticleMetadata = () => {
-    if (articleId === 'inverness-vs-gun') {
-      const baseUrls = {
-        pl: 'https://gentlepiercing.pl/pl/blog/inverness-vs-pistolet',
-        en: 'https://gentlepiercing.pl/en/blog/inverness-vs-gun',
-        uk: 'https://gentlepiercing.pl/uk/blog/inverness-vs-pistolet',
-        ru: 'https://gentlepiercing.pl/ru/blog/inverness-vs-pistolet'
-      };
-
-      const titles = {
-        pl: 'Inverness vs pistolet | Najbezpieczniejsze przekłuwanie',
-        uk: 'Inverness Med vs пістолет | Безпечний прокол вух',
-        ru: 'Inverness vs пистолет | Безопасный прокол ушей',
-        en: 'Inverness vs piercing gun | Safe ear piercing Warsaw'
-      };
-
-      const descriptions = {
-        pl: 'Porównanie Inverness MED i pistoletu: sterylność, hipoalergiczne kolczyki i najbezpieczniejsze przekłuwanie uszu w Warszawie dla dzieci 0+ i dorosłych.',
-        uk: 'Порівняння Inverness MED і пістолета: стерильність, гіпоалергенні сережки та найбезпечніший прокол вух у Варшаві для дітей 0+ і дорослих.',
-        ru: 'Сравнение Inverness MED и пистолета: стерильность, гипоаллергенные серьги и самый безопасный прокол ушей в Варшаве для детей 0+ и взрослых.',
-        en: 'Compare the Inverness MED system and piercing gun: sterility, hypoallergenic earrings, and the safest ear piercing in Warsaw for babies and adults.'
-      };
-
-      return {
-        title: titles[currentLang as keyof typeof titles],
-        description: descriptions[currentLang as keyof typeof descriptions],
-        url: baseUrls[currentLang as keyof typeof baseUrls],
-        hreflang: baseUrls
-      };
-    }
-
-    if (articleId === 'children-age') {
-      const baseUrls = {
-        pl: 'https://gentlepiercing.pl/pl/blog/od-jakiego-wieku-przekluwac-uszy-dziecku',
-        en: 'https://gentlepiercing.pl/en/blog/at-what-age-to-pierce-child-ears',
-        uk: 'https://gentlepiercing.pl/uk/blog/z-yakoho-viku-prokoluvaty-vukha-dytyni',
-        ru: 'https://gentlepiercing.pl/ru/blog/s-kakogo-vozrasta-prokalyvat-ushi-rebenku'
-      };
-
-      const titles = {
-        pl: 'Od jakiego wieku przekłuwać uszy dziecku? Inverness MED',
-        uk: 'З якого віку проколювати вуха дитині? Inverness MED',
-        ru: 'С какого возраста прокалывать уши ребенку? Inverness MED',
-        en: 'What age to pierce a child\'s ears? Inverness MED'
-      };
-
-      const descriptions = {
-        pl: 'Kiedy przekłuć uszy dziecku? Inverness MED jest certyfikowany dla dzieci od 0+. Przewodnik dla rodziców w Warszawie: bezpieczeństwo, przygotowanie i gojenie.',
-        uk: 'Коли проколювати вуха дитині? Inverness MED сертифікований для дітей від 0+. Порадник для батьків у Варшаві: безпека, підготовка та загоєння.',
-        ru: 'Когда прокалывать уши ребенку? Inverness MED сертифицирован для детей от 0+. Гид для родителей в Варшаве: безопасность, подготовка и заживление.',
-        en: 'When can you pierce a child\'s ears? Inverness MED is certified for babies 0+. Parent guide for Warsaw: safety, preparation, and healing.'
-      };
-
-      return {
-        title: titles[currentLang as keyof typeof titles],
-        description: descriptions[currentLang as keyof typeof descriptions],
-        url: baseUrls[currentLang as keyof typeof baseUrls],
-        hreflang: baseUrls
-      };
-    }
-
-    const baseUrls = {
-      pl: 'https://gentlepiercing.pl/pl/blog/czy-przekluwanie-uszu-boli',
-      en: 'https://gentlepiercing.pl/en/blog/does-ear-piercing-hurt',
-      uk: 'https://gentlepiercing.pl/uk/blog/chy-bolyt-prokol-vukh',
-      ru: 'https://gentlepiercing.pl/ru/blog/bolit-li-prokalyvanie-ushey'
-    };
-
-    const titles = {
-      pl: 'Czy przekłuwanie uszu boli? Inverness MED w Warszawie',
-      uk: 'Чи болить прокол вух? Inverness MED Варшава',
-      ru: 'Больно ли прокалывать уши? Inverness MED Варшава',
-      en: 'Does ear piercing hurt? Inverness MED Warsaw'
-    };
-
-    const descriptions = {
-      pl: 'Jak bardzo boli przekłuwanie uszu? Sprawdź, jak system Inverness MED minimalizuje ból, jak przebiega zabieg i jak dbać o szybkie gojenie w Warszawie.',
-      uk: 'Наскільки боляче проколювати вуха? Дізнайтеся, як система Inverness MED зменшує біль, як проходить процедура та як доглядати для швидкого загоєння у Варшаві.',
-      ru: 'Насколько больно прокалывать уши? Узнайте, как система Inverness MED снижает боль, как проходит процедура и как ухаживать для быстрого заживления в Варшаве.',
-      en: 'How much does ear piercing hurt? See how the Inverness MED system reduces pain, how the procedure works, and aftercare for fast healing in Warsaw.'
-    };
-
+    // Use article data from Markdown
     return {
-      title: titles[currentLang as keyof typeof titles],
-      description: descriptions[currentLang as keyof typeof descriptions],
-      url: baseUrls[currentLang as keyof typeof baseUrls],
-      hreflang: baseUrls
+      title: article.title,
+      description: article.excerpt,
+      url: canonicalUrl,
+      hreflang: hreflangUrls
     };
   };
 
   const metadata = getArticleMetadata();
 
-  // Keywords based on article content
+  // Keywords based on article content - simplified
   const getKeywords = () => {
-    if (articleId === 'inverness-vs-gun') {
-      const keywords = {
-        pl: "przekłuwanie uszu Warszawa, Inverness Med, Inverness czy pistolet, bezpieczne przekłuwanie uszu, przekłuwanie uszu dzieci, kolczyki hipoalergiczne, Inverness system",
-        uk: "Inverness Med, пістолет для проколу, прокол вух Варшава, безпечне проколювання вух, Inverness vs пістолет, гіпоалергенні сережки, прокол вух дітям 0+",
-        ru: "прокол ушей Варшава, Inverness система, Inverness или пистолет, медицинский прокол ушей, гипоаллергенные серьги",
-        en: "ear piercing Warsaw, Inverness system, Inverness vs gun, baby ear piercing, hypoallergenic earrings, safe ear piercing"
-      };
-      return keywords[currentLang as keyof typeof keywords];
-    }
-
-    if (articleId === 'children-age') {
-      const keywords = {
-        pl: "od jakiego wieku przekłuwać uszy dziecku, przekłuwanie uszu niemowlętom, Inverness Med dla dzieci, bezpieczne przekłuwanie uszu dzieci Warszawa, przekłuwanie uszu dzieci 0+, wiek przekłuwania uszu",
-        uk: "з якого віку проколювати вуха дитині, прокол вух немовлятам, Inverness Med для дітей, безпечний прокол вух дітям Варшава, прокол вух дітям 0+, вік проколу вух",
-        ru: "с какого возраста прокалывать уши ребенку, прокол ушей младенцам, Inverness Med для детей, безопасный прокол ушей детям Варшава, прокол ушей детям 0+, возраст прокалывания ушей",
-        en: "what age to pierce baby ears, infant ear piercing, Inverness Med for children, safe child ear piercing Warsaw, ear piercing children 0+, age to pierce ears"
-      };
-      return keywords[currentLang as keyof typeof keywords];
-    }
-    
     const keywords = {
-      pl: "przekłuwanie uszu, piercing Warszawa, Inverness MED, czy boli, dzieci, bezbolesne, bezpieczne",
-      uk: "прокол вух, пірсинг Варшава, Inverness MED, чи болить, діти, безболісно, безпечно",
-      ru: "прокол ушей, пирсинг Варшава, Inverness MED, больно ли, дети, безболезненно, безопасно",
-      en: "ear piercing, piercing Warsaw, Inverness MED, does it hurt, children, painless, safe"
+      pl: "przekłuwanie uszu, piercing Warszawa, Inverness MED, bezpieczne przekłuwanie",
+      uk: "прокол вух, пірсинг Варшава, Inverness MED, безпечне проколювання",
+      ru: "прокол ушей, пирсинг Варшава, Inverness MED, безопасное прокалывание",
+      en: "ear piercing, piercing Warsaw, Inverness MED, safe ear piercing"
     };
     return keywords[currentLang as keyof typeof keywords];
   };
 
   const getArticleSchema = () => {
-    let headline = '';
-    let datePublished = "2025-10-27T00:00:00+01:00";
-    let dateModified = "2025-10-27T00:00:00+01:00";
-    
-    if (articleId === 'inverness-vs-gun') {
-      headline = currentLang === 'pl' ? 'Inverness Med vs pistolet – co jest bezpieczniejsze?' :
-                 currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
-                 currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
-                 'Inverness vs Piercing Gun — Which Method Is Safer?';
-      datePublished = "2025-11-13T00:00:00+01:00";
-      dateModified = "2025-11-13T00:00:00+01:00";
-    } else if (articleId === 'children-age') {
-      headline = currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
-                 currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
-                 currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
-                 'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+';
-      datePublished = "2025-12-02T00:00:00+01:00";
-      dateModified = "2025-12-02T00:00:00+01:00";
-    } else if (articleId === 'does-ear-piercing-hurt') {
-      headline = currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
-                 currentLang === 'uk' ? 'Чи болить прокол вух?' :
-                 currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
-                 'Does ear piercing hurt?';
-    }
+    const datePublished = article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString();
+    const dateModified = article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString();
     
     return {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": headline,
-      "description": metadata.description,
-      "image": "https://gentlepiercing.pl/hero-image.jpg",
-      "wordCount": 1200,
+      "headline": article.title,
+      "description": article.excerpt,
+      "image": [
+        {
+          "@type": "ImageObject",
+          "url": `https://gentlepiercing.pl/assets/images/blog/${article.image}.jpg`,
+          "width": 1200,
+          "height": 630
+        }
+      ],
+      "wordCount": article.body.split(/\s+/).length,
       "articleSection": "Health & Beauty",
       "keywords": getKeywords().split(', '),
       "inLanguage": currentLang,
       "author": {
         "@type": "Organization",
-        "name": "Gentle Piercing"
+        "name": "Gentle Piercing",
+        "url": "https://gentlepiercing.pl"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Gentle Piercing",
+        "url": "https://gentlepiercing.pl",
         "logo": {
           "@type": "ImageObject",
           "url": "https://gentlepiercing.pl/logo.png",
@@ -283,7 +243,8 @@ export default function BlogArticle() {
   };
 
   const getFAQSchema = () => {
-    if (articleId === 'children-age') {
+    // Simplified FAQ schema - can be enhanced later
+    if (article.slug.includes('dziecku') || article.slug.includes('child') || article.slug.includes('dytyni') || article.slug.includes('rebenku')) {
       return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -334,7 +295,7 @@ export default function BlogArticle() {
       };
     }
 
-    if (articleId === 'inverness-vs-gun') {
+    if (article.slug.includes('inverness') && (article.slug.includes('pistolet') || article.slug.includes('gun'))) {
       return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -393,12 +354,12 @@ export default function BlogArticle() {
           "@type": "Question",
           "name": currentLang === 'pl' ? "Czy przekłuwanie uszu boli?" :
                  currentLang === 'uk' ? "Чи болить прокол вух?" :
-                 currentLang === 'ru' ? "Больно ли прокалывать уши?" :
-                 "Does ear piercing hurt?",
+                   currentLang === 'ru' ? "Больно ли прокалывать уши?" :
+                   "Does ear piercing hurt?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": currentLang === 'pl' ? "System Inverness Med sprawia, że zabieg jest niemal bezbolesny" :
-                   currentLang === 'uk' ? "Система Inverness Med робить процедуру майже безболісною" :
+            "text": currentLang === 'pl' ? "System Inverness Med sprawia, że zabieg jest niemal bezbolesny. Większość osób porównuje to do lekkiego ukłucia komara." :
+                   currentLang === 'uk' ? "Система Inverness Med робить процедуру майже безболісною. Більшість людей порівнюють це з легким укусом комара." :
                    currentLang === 'ru' ? "Система Inverness Med делает процедуру почти безболезненной" :
                    "The Inverness Med system makes the procedure almost painless"
           }
@@ -467,16 +428,8 @@ export default function BlogArticle() {
         <meta name="keywords" content={getKeywords()} />
         <meta name="author" content="Gentle Piercing" />
         <meta name="publisher" content="Gentle Piercing" />
-        <meta name="article:published_time" content={
-          articleId === 'inverness-vs-gun' ? "2025-11-13T00:00:00+01:00" :
-          articleId === 'children-age' ? "2025-12-02T00:00:00+01:00" :
-          "2025-10-27T00:00:00+01:00"
-        } />
-        <meta name="article:modified_time" content={
-          articleId === 'inverness-vs-gun' ? "2025-11-13T00:00:00+01:00" :
-          articleId === 'children-age' ? "2025-12-02T00:00:00+01:00" :
-          "2025-10-27T00:00:00+01:00"
-        } />
+        <meta name="article:published_time" content={article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString()} />
+        <meta name="article:modified_time" content={article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString()} />
         <meta name="article:section" content="Health & Beauty" />
         <meta name="article:tag" content={getKeywords()} />
         <meta name="robots" content="index,follow" />
@@ -497,13 +450,10 @@ export default function BlogArticle() {
         <meta property="og:url" content={metadata.url} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Gentle Piercing" />
-        <meta property="og:image" content="https://gentlepiercing.pl/hero-image.jpg" />
+        <meta property="og:image" content={`https://gentlepiercing.pl/assets/images/blog/${article.image}.jpg`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={currentLang === 'pl' ? 'Gentle Piercing - Przekłuwanie Uszu w Warszawie' :
-                                               currentLang === 'uk' ? 'Gentle Piercing - Прокол Вух у Варшаві' :
-                                               currentLang === 'ru' ? 'Gentle Piercing - Прокол Ушей в Варшаве' :
-                                               'Gentle Piercing - Ear Piercing in Warsaw'} />
+        <meta property="og:image:alt" content={article.title} />
         <meta property="og:locale" content={currentLang === 'pl' ? 'pl_PL' : currentLang === 'en' ? 'en_US' : currentLang === 'uk' ? 'uk_UA' : 'ru_RU'} />
         {currentLang !== 'pl' && <meta property="og:locale:alternate" content="pl_PL" />}
         {currentLang !== 'en' && <meta property="og:locale:alternate" content="en_US" />}
@@ -514,7 +464,8 @@ export default function BlogArticle() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content="https://gentlepiercing.pl/hero-image.jpg" />
+        <meta name="twitter:image" content={`https://gentlepiercing.pl/assets/images/blog/${article.image}.jpg`} />
+        <meta name="twitter:image:alt" content={article.title} />
         
         {/* Article Schema */}
         <script type="application/ld+json">
@@ -536,21 +487,7 @@ export default function BlogArticle() {
         { name: t('breadcrumb.home'), url: `https://gentlepiercing.pl/${currentLang}` },
         { name: t('breadcrumb.blog'), url: `https://gentlepiercing.pl/${currentLang}/blog` },
         { 
-          name: articleId === 'inverness-vs-gun' ?
-            (currentLang === 'pl' ? 'Inverness Med vs pistolet – co jest bezpieczniejsze?' :
-             currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
-             currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
-             'Inverness vs Piercing Gun — Which Method Is Safer?') :
-            articleId === 'children-age' ?
-            (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
-             currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
-             currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
-             'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
-            articleId === 'does-ear-piercing-hurt' ? 
-            (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
-             currentLang === 'uk' ? 'Чи болить прокол вух?' :
-             currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
-             'Does ear piercing hurt?') : '',
+          name: article.title,
           url: metadata.url 
         }
       ]} />
@@ -580,21 +517,7 @@ export default function BlogArticle() {
               <li className="flex items-center">
                 <span className="mx-2">/</span>
                 <span className="text-foreground font-medium">
-                  {articleId === 'inverness-vs-gun' ?
-                    (currentLang === 'pl' ? 'Inverness Med vs pistolet – co jest bezpieczniejsze?' :
-                     currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
-                     currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
-                     'Inverness vs Piercing Gun — Which Method Is Safer?') :
-                    articleId === 'children-age' ?
-                    (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
-                     currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
-                     currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
-                     'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
-                    articleId === 'does-ear-piercing-hurt' ? 
-                    (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
-                     currentLang === 'uk' ? 'Чи болить прокол вух?' :
-                     currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
-                     'Does ear piercing hurt?') : ''}
+                  {article.title}
                 </span>
               </li>
             </ol>
@@ -603,21 +526,7 @@ export default function BlogArticle() {
           {/* Article Header Section - Centered */}
           <div className="text-center mb-8">
             <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight">
-              {articleId === 'inverness-vs-gun' ?
-                (currentLang === 'pl' ? 'Inverness Med vs pistolet – co jest bezpieczniejsze?' :
-                 currentLang === 'uk' ? 'Inverness Med vs пістолет — який метод проколу вух безпечніший?' :
-                 currentLang === 'ru' ? 'Inverness Med или пистолет — что безопаснее?' :
-                 'Inverness vs Piercing Gun — Which Method Is Safer?') :
-                articleId === 'children-age' ?
-                (currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
-                 currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
-                 currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
-                 'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+') :
-                articleId === 'does-ear-piercing-hurt' ? 
-                (currentLang === 'pl' ? 'Czy przekłuwanie uszu boli?' :
-                 currentLang === 'uk' ? 'Чи болить прокол вух?' :
-                 currentLang === 'ru' ? 'Больно ли прокалывать уши?' :
-                 'Does ear piercing hurt?') : ''}
+              {article.title}
             </h1>
             
             {/* Article Tags */}
@@ -639,94 +548,20 @@ export default function BlogArticle() {
 
           {/* FEATURED IMAGE - Centered with shadow and rounded corners */}
           <div className="w-full mb-8 rounded-xl overflow-hidden shadow-lg">
-            {articleId === 'inverness-vs-gun' ? (
-              <img 
-                src={featuredImage2_800}
-                srcSet={`
-                  ${featuredImage2_400} 400w,
-                  ${featuredImage2_800} 800w, 
-                  ${featuredImage2_1200} 1200w,
-                  ${featuredImage2_1600} 1600w
-                `}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
-                alt={
-                  currentLang === 'pl' ? 'Inverness Med vs pistolet - bezpieczne przekłuwanie uszu w Warszawie. System medyczny z USA dla dzieci 0+ i dorosłych' :
-                  currentLang === 'uk' ? 'Inverness Med vs пістолет - безпечне проколювання вух у Варшаві. Медична система з США для дітей 0+ та дорослих' :
-                  currentLang === 'ru' ? 'Inverness Med vs пистолет - безопасное прокалывание ушей в Варшаве. Медицинская система из США для детей 0+ и взрослых' :
-                  'Inverness Med vs piercing gun - safe ear piercing in Warsaw. Medical system from USA for children 0+ and adults'
-                }
-                title={
-                  currentLang === 'pl' ? 'Inverness Med vs pistolet - bezpieczne przekłuwanie uszu w Warszawie' :
-                  currentLang === 'uk' ? 'Inverness Med vs пістолет - безпечне проколювання вух у Варшаві' :
-                  currentLang === 'ru' ? 'Inverness Med vs пистолет - безопасное прокалывание ушей в Варшаве' :
-                  'Inverness Med vs piercing gun - safe ear piercing in Warsaw'
-                }
-                className="w-full h-auto object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                width="1200"
-                height="630"
-              />
-            ) : articleId === 'children-age' ? (
-              <img 
-                src={featuredImage3_800}
-                srcSet={`
-                  ${featuredImage3_400} 400w,
-                  ${featuredImage3_800} 800w, 
-                  ${featuredImage3_1200} 1200w,
-                  ${featuredImage3_1600} 1600w
-                `}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
-                alt={
-                  currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+ w Warszawie' :
-                  currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+ у Варшаві' :
-                  currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+ в Варшаве' :
-                  'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+ in Warsaw'
-                }
-                title={
-                  currentLang === 'pl' ? 'Od jakiego wieku można przekłuwać uszy dziecku? Inverness Med dla dzieci 0+' :
-                  currentLang === 'uk' ? 'З якого віку можна проколювати вуха дитині? Inverness Med для дітей 0+' :
-                  currentLang === 'ru' ? 'С какого возраста можно прокалывать уши ребенку? Inverness Med для детей 0+' :
-                  'At What Age Can You Pierce a Child\'s Ears? Inverness Med for Children 0+'
-                }
-                className="w-full h-auto object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                width="1200"
-                height="630"
-              />
-            ) : (
-              <img 
-                src={featuredImage_800}
-                srcSet={`
-                  ${featuredImage_400} 400w,
-                  ${featuredImage_800} 800w, 
-                  ${featuredImage_1200} 1200w,
-                  ${featuredImage_1600} 1600w
-                `}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
-                alt={
-                  currentLang === 'pl' ? 'Procedura przekłuwania uszu systemem Inverness' :
-                  currentLang === 'uk' ? 'Процедура проколу вух системою Inverness' :
-                  currentLang === 'ru' ? 'Процедура прокалывания ушей системой Inverness' :
-                  'Ear piercing procedure with Inverness system'
-                }
-                title={
-                  currentLang === 'pl' ? 'Procedura przekłuwania uszu systemem Inverness Med w Warszawie' :
-                  currentLang === 'uk' ? 'Процедура проколу вух системою Inverness Med у Варшаві' :
-                  currentLang === 'ru' ? 'Процедура прокалывания ушей системой Inverness Med в Варшаве' :
-                  'Ear piercing procedure with Inverness Med system in Warsaw'
-                }
-                className="w-full h-auto object-cover"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                width="1200"
-                height="630"
-              />
-            )}
+            <img 
+              src={articleImage.src}
+              srcSet={articleImage.srcSet}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+              alt={article.title}
+              title={article.title}
+              className="w-full h-auto object-cover"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="1200"
+              height="630"
+              itemProp="image"
+            />
           </div>
 
           {/* Article Metadata */}
@@ -743,22 +578,7 @@ export default function BlogArticle() {
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               <span>
-                {articleId === 'inverness-vs-gun' ? (
-                  currentLang === 'pl' ? '13 listopada 2025' :
-                  currentLang === 'uk' ? '13 листопада 2025' :
-                  currentLang === 'ru' ? '13 ноября 2025' :
-                  'November 13, 2025'
-                ) : articleId === 'children-age' ? (
-                  currentLang === 'pl' ? '2 grudnia 2025' :
-                  currentLang === 'uk' ? '2 грудня 2025' :
-                  currentLang === 'ru' ? '2 декабря 2025' :
-                  'December 2, 2025'
-                ) : (
-                  currentLang === 'pl' ? '27 października 2025' :
-                  currentLang === 'uk' ? '27 жовтня 2025' :
-                  currentLang === 'ru' ? '27 октября 2025' :
-                  'October 27, 2025'
-                )}
+                {article.date ? formatDate(article.date) : ''}
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -772,13 +592,97 @@ export default function BlogArticle() {
             </div>
           </div>
           
-          {articleId === 'inverness-vs-gun' ? (
-            <ArticleInvernessVsGun currentLang={currentLang} />
-          ) : articleId === 'children-age' ? (
-            <ArticleChildrenAge currentLang={currentLang} />
-          ) : (
-            <ArticleDoesItHurt currentLang={currentLang} />
-          )}
+          {/* Article Content - Rendered from Markdown */}
+          <article className="prose prose-lg max-w-none dark:prose-invert" itemScope itemType="https://schema.org/Article">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                // Customize link rendering to handle internal links
+                a: ({ node, href, children, ...props }) => {
+                  // Convert internal links to React Router Links
+                  if (href && href.startsWith('/')) {
+                    return (
+                      <Link to={href} className="text-primary underline hover:text-primary/90 transition-colors" {...props}>
+                        {children}
+                      </Link>
+                    );
+                  }
+                  return <a href={href} className="text-primary underline hover:text-primary/90 transition-colors" {...props}>{children}</a>;
+                },
+                // Style headings
+                h2: ({ node, ...props }) => (
+                  <h2 className="text-3xl font-semibold text-foreground mb-4 mt-16" {...props} />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h3 className="text-2xl font-semibold text-foreground mb-3 mt-8" {...props} />
+                ),
+                // Style paragraphs
+                p: ({ node, ...props }) => (
+                  <p className="text-foreground mb-4 leading-relaxed" {...props} />
+                ),
+                // Style lists
+                ul: ({ node, ...props }) => (
+                  <ul className="list-disc ml-6 md:ml-8 space-y-3 text-foreground mb-6 mt-4" {...props} />
+                ),
+                ol: ({ node, ...props }) => (
+                  <ol className="list-decimal ml-6 md:ml-8 space-y-3 text-foreground mb-6 mt-4" {...props} />
+                ),
+                li: ({ node, ...props }) => (
+                  <li className="text-foreground leading-relaxed pl-1" {...props} />
+                ),
+                // Style strong/bold
+                strong: ({ node, ...props }) => (
+                  <strong className="font-semibold text-foreground" {...props} />
+                ),
+                // Style blockquotes
+                blockquote: ({ node, ...props }) => (
+                  <blockquote className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4" {...props} />
+                ),
+                // Style tables
+                table: ({ node, ...props }) => (
+                  <div className="overflow-x-auto my-8 -mx-4 sm:mx-0">
+                    <table className="min-w-full border-collapse border border-border rounded-lg overflow-hidden bg-card" {...props} />
+                  </div>
+                ),
+                thead: ({ node, ...props }) => (
+                  <thead className="bg-muted" {...props} />
+                ),
+                tbody: ({ node, ...props }) => (
+                  <tbody className="divide-y divide-border bg-card" {...props} />
+                ),
+                tr: ({ node, ...props }) => (
+                  <tr className="border-b border-border hover:bg-muted/50 transition-colors even:bg-muted/20" {...props} />
+                ),
+                th: ({ node, ...props }) => (
+                  <th className="px-4 py-3 text-left text-sm font-semibold text-foreground border-r border-border last:border-r-0 whitespace-nowrap" {...props} />
+                ),
+                td: ({ node, ...props }) => (
+                  <td className="px-4 py-3 text-sm text-foreground border-r border-border last:border-r-0" {...props} />
+                ),
+                // Style code blocks
+                code: ({ node, inline, className, ...props }: any) => {
+                  if (inline) {
+                    return (
+                      <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-foreground" {...props} />
+                    );
+                  }
+                  return (
+                    <code className={`block bg-muted p-4 rounded-lg text-sm font-mono text-foreground overflow-x-auto ${className || ''}`} {...props} />
+                  );
+                },
+                pre: ({ node, ...props }) => (
+                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto my-4" {...props} />
+                ),
+                // Style images in markdown
+                img: ({ node, ...props }: any) => (
+                  <img className="rounded-lg my-6 max-w-full h-auto" {...props} />
+                ),
+              }}
+            >
+              {article.body}
+            </ReactMarkdown>
+          </article>
         </div>
       </main>
       <Footer />

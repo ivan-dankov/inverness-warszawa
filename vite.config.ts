@@ -19,6 +19,10 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Configure Vite to handle Markdown files
+  assetsInclude: ['**/*.md'],
+  // Ensure content directory is accessible
+  publicDir: 'public',
   build: {
     assetsInlineLimit: 4096,
     cssCodeSplit: true,
@@ -32,18 +36,30 @@ export default defineConfig(({ mode }) => ({
     },
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-core': ['react', 'react-dom', 'react-router-dom'],
-          'ui-components': [
-            '@radix-ui/react-dialog',
-            '@radix-ui/react-accordion',
-            '@radix-ui/react-tabs',
-            '@radix-ui/react-slot',
-            '@radix-ui/react-separator',
-          ],
-          'i18n': ['i18next', 'react-i18next', 'i18next-browser-languagedetector', 'i18next-http-backend'],
-          'carousel': ['embla-carousel-react'],
-          'utils': ['clsx', 'tailwind-merge', 'class-variance-authority'],
+        manualChunks(id) {
+          // Skip manual chunks for SSR build (external modules)
+          if (id.includes('node_modules')) {
+            // React core
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+              return 'react-core';
+            }
+            // UI components
+            if (id.includes('@radix-ui')) {
+              return 'ui-components';
+            }
+            // i18n
+            if (id.includes('i18next') || id.includes('react-i18next')) {
+              return 'i18n';
+            }
+            // Carousel
+            if (id.includes('embla-carousel')) {
+              return 'carousel';
+            }
+            // Utils
+            if (id.includes('clsx') || id.includes('tailwind-merge') || id.includes('class-variance-authority')) {
+              return 'utils';
+            }
+          }
         },
         assetFileNames: (assetInfo) => {
           const name = assetInfo.name || 'asset';

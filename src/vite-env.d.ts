@@ -1,9 +1,9 @@
 /// <reference types="vite/client" />
 
-// Global type declaration for vite-imagetools
+// Global type declaration for vite-imagetools and markdown files
 declare global {
   interface ImportMeta {
-    glob: (pattern: string, options?: { eager?: boolean; as?: string }) => Record<string, any>;
+    glob: (pattern: string, options?: { eager?: boolean; as?: string; query?: string; import?: string }) => Record<string, () => Promise<any>>;
   }
   
   // Google Analytics 4 type declarations

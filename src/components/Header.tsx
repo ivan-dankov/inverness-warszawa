@@ -46,7 +46,7 @@ export function Header({ currentLang }: HeaderProps) {
               alt="Inverness MED" 
               className="h-12 w-auto" 
               loading="eager"
-              fetchPriority="high"
+              fetchpriority="high"
             />
           </Link>
 

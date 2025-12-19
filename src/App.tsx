@@ -66,6 +66,17 @@ const App = () => (
         <Route path="/:lang/blog" element={<Blog />} />
         <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
         
+        {/* Decap CMS Admin */}
+        <Route path="/admin" element={
+          <div style={{ height: '100vh' }}>
+            <iframe 
+              src="/admin/index.html" 
+              style={{ width: '100%', height: '100%', border: 'none' }}
+              title="Decap CMS Admin"
+            />
+          </div>
+        } />
+        
         {/* Old earrings pages - redirect to language home */}
         <Route path="/:lang/earrings" element={<EarringsRedirect />} />
         
