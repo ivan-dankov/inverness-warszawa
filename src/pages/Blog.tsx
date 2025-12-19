@@ -23,6 +23,10 @@ import blogThumbnail2_600 from '@/assets/blog/art002.jpg?w=600&h=350&format=webp
 import blogThumbnail3_400 from '@/assets/blog/art003.jpg?w=400&h=250&format=webp&fit=cover';
 // @ts-expect-error - vite-imagetools query parameters
 import blogThumbnail3_600 from '@/assets/blog/art003.jpg?w=600&h=350&format=webp&fit=cover';
+// @ts-expect-error - vite-imagetools query parameters
+import blogThumbnail4_400 from '@/assets/blog/art004.png?w=400&h=250&format=webp&fit=cover';
+// @ts-expect-error - vite-imagetools query parameters
+import blogThumbnail4_600 from '@/assets/blog/art004.png?w=600&h=350&format=webp&fit=cover';
 
 export default function Blog() {
   const { t, i18n } = useTranslation();
@@ -138,6 +142,7 @@ export default function Blog() {
                         src={
                           article.image === 'art002' ? blogThumbnail2_600 :
                           article.image === 'art003' ? blogThumbnail3_600 :
+                          article.image === 'art004' ? blogThumbnail4_600 :
                           blogThumbnail_600
                         }
                         srcSet={
@@ -147,6 +152,9 @@ export default function Blog() {
                           ` : article.image === 'art003' ? `
                             ${blogThumbnail3_400} 400w,
                             ${blogThumbnail3_600} 600w
+                          ` : article.image === 'art004' ? `
+                            ${blogThumbnail4_400} 400w,
+                            ${blogThumbnail4_600} 600w
                           ` : `
                             ${blogThumbnail_400} 400w,
                             ${blogThumbnail_600} 600w
@@ -164,7 +172,7 @@ export default function Blog() {
                     </div>
                     
                     <CardContent className="pt-6 pb-6 flex flex-col h-full">
-                      <h2 className="text-xl font-semibold text-card-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]">
+                      <h2 className="text-xl font-semibold text-card-foreground mb-3 group-hover:text-primary transition-colors line-clamp-3 min-h-[5.25rem]">
                         {article.title}
                       </h2>
                       <p className="text-muted-foreground mb-4 line-clamp-2 text-sm leading-relaxed flex-grow">

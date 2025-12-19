@@ -230,8 +230,15 @@ All colors MUST be HSL.
   }
 
   .prose ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
+    list-style: none !important;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  
+  .prose ul li {
+    list-style: none !important;
+    padding-left: 0;
+    margin-left: 0;
   }
 
   .prose ol {
@@ -240,9 +247,8 @@ All colors MUST be HSL.
   }
 
   .prose li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
     line-height: 1.7;
-    padding-left: 0.25rem;
   }
 
   .prose li:last-child {

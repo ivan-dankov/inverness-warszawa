@@ -5,12 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft, Clock, User, Calendar } from "@/lib/icons";
 import { Helmet } from "react-helmet-async";
-import { isSupportedLanguage } from "@/lib/language-routes";
+import { isSupportedLanguage, getBooksyUrl } from "@/lib/language-routes";
 import { BreadcrumbSchema } from "@/components/BreadcrumbSchema";
 import { loadBlogArticle, type BlogArticle } from "@/lib/markdown-loader";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { BlogArticleCTA } from "@/components/blog/BlogArticleCTA";
+import { AuthorBlock } from "@/components/blog/AuthorBlock";
+import { RelatedArticlesBlock } from "@/components/blog/RelatedArticlesBlock";
 
 // Оптимізовані зображення для різних розмірів екранів
 // @ts-expect-error - vite-imagetools query parameters
@@ -41,6 +44,16 @@ import featuredImage3_800 from '@/assets/blog/art003.jpg?w=800&format=webp';
 import featuredImage3_1200 from '@/assets/blog/art003.jpg?w=1200&format=webp';
 // @ts-expect-error - vite-imagetools query parameters
 import featuredImage3_1600 from '@/assets/blog/art003.jpg?w=1600&format=webp';
+
+// Images for prepare child article
+// @ts-expect-error - vite-imagetools query parameters
+import featuredImage4_400 from '@/assets/blog/art004.png?w=400&format=webp';
+// @ts-expect-error - vite-imagetools query parameters  
+import featuredImage4_800 from '@/assets/blog/art004.png?w=800&format=webp';
+// @ts-expect-error - vite-imagetools query parameters
+import featuredImage4_1200 from '@/assets/blog/art004.png?w=1200&format=webp';
+// @ts-expect-error - vite-imagetools query parameters
+import featuredImage4_1600 from '@/assets/blog/art004.png?w=1600&format=webp';
 
 export default function BlogArticle() {
   const { t, i18n } = useTranslation();
@@ -115,6 +128,12 @@ export default function BlogArticle() {
         srcSet: `${featuredImage3_400} 400w, ${featuredImage3_800} 800w, ${featuredImage3_1200} 1200w, ${featuredImage3_1600} 1600w`,
         alt: article.title
       };
+    } else if (article.image === 'art004') {
+      return {
+        src: featuredImage4_800,
+        srcSet: `${featuredImage4_400} 400w, ${featuredImage4_800} 800w, ${featuredImage4_1200} 1200w, ${featuredImage4_1600} 1600w`,
+        alt: article.title
+      };
     } else {
       return {
         src: featuredImage_800,
@@ -126,28 +145,130 @@ export default function BlogArticle() {
 
   const articleImage = getArticleImage();
 
+  // Get absolute image URL for SEO
+  const getImageUrl = () => {
+    const imagePath = article.image === 'art002' 
+      ? featuredImage2_1200
+      : article.image === 'art003'
+      ? featuredImage3_1200
+      : article.image === 'art004'
+      ? featuredImage4_1200
+      : featuredImage_1200;
+    // Vite imports return paths like /assets/images/... or ./assets/images/...
+    // Ensure we have absolute path
+    const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath.replace(/^\./, '')}`;
+    return `https://gentlepiercing.pl${cleanPath}`;
+  };
+
+  const seoImageUrl = getImageUrl();
+
   // Generate hreflang URLs for all languages
   const getHreflangUrls = () => {
-    const allArticles = [
-      { slug: 'czy-przekluwanie-uszu-boli', lang: 'pl' },
-      { slug: 'does-ear-piercing-hurt', lang: 'en' },
-      { slug: 'chy-bolyt-prokol-vukh', lang: 'uk' },
-      { slug: 'bolit-li-prokalyvanie-ushey', lang: 'ru' },
-      { slug: 'inverness-vs-pistolet', lang: 'pl' },
-      { slug: 'inverness-vs-gun', lang: 'en' },
-      { slug: 'od-jakiego-wieku-przekluwac-uszy-dziecku', lang: 'pl' },
-      { slug: 'at-what-age-to-pierce-child-ears', lang: 'en' },
-      { slug: 'z-yakoho-viku-prokoluvaty-vukha-dytyni', lang: 'uk' },
-      { slug: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku', lang: 'ru' },
-    ];
+    // Article slug mappings for multilingual linking
+    const articleMappings: Record<string, Record<string, string>> = {
+      'czy-przekluwanie-uszu-boli': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'does-ear-piercing-hurt': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'chy-bolyt-prokol-vukh': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'bolit-li-prokalyvanie-ushey': {
+        pl: 'czy-przekluwanie-uszu-boli',
+        en: 'does-ear-piercing-hurt',
+        uk: 'chy-bolyt-prokol-vukh',
+        ru: 'bolit-li-prokalyvanie-ushey'
+      },
+      'inverness-vs-pistolet': {
+        pl: 'inverness-vs-pistolet',
+        en: 'inverness-vs-gun',
+        uk: 'inverness-vs-pistolet',
+        ru: 'inverness-vs-pistolet'
+      },
+      'inverness-vs-gun': {
+        pl: 'inverness-vs-pistolet',
+        en: 'inverness-vs-gun',
+        uk: 'inverness-vs-pistolet',
+        ru: 'inverness-vs-pistolet'
+      },
+      'od-jakiego-wieku-przekluwac-uszy-dziecku': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      'at-what-age-to-pierce-child-ears': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      'z-yakoho-viku-prokoluvaty-vukha-dytyni': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      's-kakogo-vozrasta-prokalyvat-ushi-rebenku': {
+        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
+        en: 'at-what-age-to-pierce-child-ears',
+        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
+        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      },
+      'how-to-prepare-a-child-for-ear-piercing-warsaw': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      },
+      'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      },
+      'kak-podgotovit-rebenka-k-prokolu-ushey-varshava': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      }
+    };
 
-    // Find related articles with same base slug (for multilingual linking)
+    // Find the mapping for the current article
+    const mapping = articleMappings[article.slug];
     const relatedSlugs: Record<string, string> = {};
-    // For now, use current article URL for all languages
-    relatedSlugs.pl = `https://gentlepiercing.pl/pl/blog/${article.slug}`;
-    relatedSlugs.en = `https://gentlepiercing.pl/en/blog/${article.slug}`;
-    relatedSlugs.uk = `https://gentlepiercing.pl/uk/blog/${article.slug}`;
-    relatedSlugs.ru = `https://gentlepiercing.pl/ru/blog/${article.slug}`;
+    
+    if (mapping) {
+      // Use the mapped slugs for each language
+      relatedSlugs.pl = `https://gentlepiercing.pl/pl/blog/${mapping.pl}`;
+      relatedSlugs.en = `https://gentlepiercing.pl/en/blog/${mapping.en}`;
+      relatedSlugs.uk = `https://gentlepiercing.pl/uk/blog/${mapping.uk}`;
+      relatedSlugs.ru = `https://gentlepiercing.pl/ru/blog/${mapping.ru}`;
+    } else {
+      // Fallback: use current article slug for all languages
+      relatedSlugs.pl = `https://gentlepiercing.pl/pl/blog/${article.slug}`;
+      relatedSlugs.en = `https://gentlepiercing.pl/en/blog/${article.slug}`;
+      relatedSlugs.uk = `https://gentlepiercing.pl/uk/blog/${article.slug}`;
+      relatedSlugs.ru = `https://gentlepiercing.pl/ru/blog/${article.slug}`;
+    }
 
     return relatedSlugs;
   };
@@ -200,15 +321,28 @@ export default function BlogArticle() {
     const datePublished = article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString();
     const dateModified = article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString();
     
+    // Strip markdown formatting from article body for schema
+    const articleBody = article.body
+      .replace(/^---[\s\S]*?---\n/, '') // Remove frontmatter
+      .replace(/#{1,6}\s+/g, '') // Remove headers
+      .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold
+      .replace(/\*(.*?)\*/g, '$1') // Remove italic
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // Remove links, keep text
+      .replace(/!\[([^\]]*)\]\([^\)]+\)/g, '') // Remove images
+      .replace(/\n{3,}/g, '\n\n') // Normalize line breaks
+      .trim();
+    
     return {
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": article.title,
       "description": article.excerpt,
+      "url": metadata.url,
+      "articleBody": articleBody,
       "image": [
         {
           "@type": "ImageObject",
-          "url": `https://gentlepiercing.pl/assets/images/blog/${article.image}.jpg`,
+          "url": seoImageUrl,
           "width": 1200,
           "height": 630
         }
@@ -218,9 +352,15 @@ export default function BlogArticle() {
       "keywords": getKeywords().split(', '),
       "inLanguage": currentLang,
       "author": {
-        "@type": "Organization",
-        "name": "Gentle Piercing",
-        "url": "https://gentlepiercing.pl"
+        "@type": "Person",
+        "name": t('blog.author.name'),
+        "jobTitle": t('blog.author.bio').split('–')[0].trim(),
+        "url": "https://gentlepiercing.pl",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Gentle Piercing",
+          "url": "https://gentlepiercing.pl"
+        }
       },
       "publisher": {
         "@type": "Organization",
@@ -229,7 +369,7 @@ export default function BlogArticle() {
         "logo": {
           "@type": "ImageObject",
           "url": "https://gentlepiercing.pl/logo.png",
-          "width": 200,
+          "width": 600,
           "height": 60
         }
       },
@@ -244,7 +384,7 @@ export default function BlogArticle() {
 
   const getFAQSchema = () => {
     // Simplified FAQ schema - can be enhanced later
-    if (article.slug.includes('dziecku') || article.slug.includes('child') || article.slug.includes('dytyni') || article.slug.includes('rebenku')) {
+    if (article.slug.includes('dziecku') || article.slug.includes('child') || article.slug.includes('dytyni') || article.slug.includes('rebenku') || article.slug.includes('przygotowac') || article.slug.includes('prepare') || article.slug.includes('pidhotuvaty') || article.slug.includes('podgotovit')) {
       return {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -419,6 +559,31 @@ export default function BlogArticle() {
     "priceRange": "150-250 zł"
   });
 
+  // Map article slug to articleId for BlogArticleCTA
+  const getArticleId = (slug: string): "children-age" | "inverness-vs-gun" | "does-ear-piercing-hurt" | null => {
+    const slugToIdMap: Record<string, "children-age" | "inverness-vs-gun" | "does-ear-piercing-hurt"> = {
+      // Polish
+      'czy-przekluwanie-uszu-boli': 'does-ear-piercing-hurt',
+      'inverness-vs-pistolet': 'inverness-vs-gun',
+      'od-jakiego-wieku-przekluwac-uszy-dziecku': 'children-age',
+      'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa': 'children-age',
+      // English
+      'does-ear-piercing-hurt': 'does-ear-piercing-hurt',
+      'inverness-vs-gun': 'inverness-vs-gun',
+      'at-what-age-to-pierce-child-ears': 'children-age',
+      'how-to-prepare-a-child-for-ear-piercing-warsaw': 'children-age',
+      // Ukrainian
+      'chy-bolyt-prokol-vukh': 'does-ear-piercing-hurt',
+      'z-yakoho-viku-prokoluvaty-vukha-dytyni': 'children-age',
+      'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava': 'children-age',
+      // Russian
+      'bolit-li-prokalyvanie-ushey': 'does-ear-piercing-hurt',
+      's-kakogo-vozrasta-prokalyvat-ushi-rebenku': 'children-age',
+      'kak-podgotovit-rebenka-k-prokolu-ushey-varshava': 'children-age',
+    };
+    return slugToIdMap[slug] || null;
+  };
+
   return (
     <>
       <Helmet>
@@ -426,7 +591,7 @@ export default function BlogArticle() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={getKeywords()} />
-        <meta name="author" content="Gentle Piercing" />
+        <meta name="author" content={t('blog.author.name')} />
         <meta name="publisher" content="Gentle Piercing" />
         <meta name="article:published_time" content={article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString()} />
         <meta name="article:modified_time" content={article.date ? `${article.date}T00:00:00+01:00` : new Date().toISOString()} />
@@ -450,7 +615,7 @@ export default function BlogArticle() {
         <meta property="og:url" content={metadata.url} />
         <meta property="og:type" content="article" />
         <meta property="og:site_name" content="Gentle Piercing" />
-        <meta property="og:image" content={`https://gentlepiercing.pl/assets/images/blog/${article.image}.jpg`} />
+        <meta property="og:image" content={seoImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content={article.title} />
@@ -464,7 +629,7 @@ export default function BlogArticle() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={metadata.title} />
         <meta name="twitter:description" content={metadata.description} />
-        <meta name="twitter:image" content={`https://gentlepiercing.pl/assets/images/blog/${article.image}.jpg`} />
+        <meta name="twitter:image" content={seoImageUrl} />
         <meta name="twitter:image:alt" content={article.title} />
         
         {/* Article Schema */}
@@ -524,20 +689,20 @@ export default function BlogArticle() {
           </nav>
 
           {/* Article Header Section - Centered */}
-          <div className="text-center mb-8">
-            <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 leading-tight">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-8 leading-tight tracking-tight">
               {article.title}
             </h1>
             
             {/* Article Tags */}
             <div className="flex justify-center gap-3 mb-8 flex-wrap">
-              <span className="px-4 py-2 bg-muted/50 text-muted-foreground rounded-full text-sm font-medium">
+              <span className="px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 text-foreground rounded-full text-sm font-medium border border-primary/20 backdrop-blur-sm">
                 {currentLang === 'pl' ? 'Przekłuwanie uszu' :
                  currentLang === 'uk' ? 'Прокол вух' :
                  currentLang === 'ru' ? 'Прокалывание ушей' :
                  'Ear Piercing'}
               </span>
-              <span className="px-4 py-2 bg-muted/50 text-muted-foreground rounded-full text-sm font-medium">
+              <span className="px-5 py-2.5 bg-gradient-to-r from-primary/10 to-primary/5 text-foreground rounded-full text-sm font-medium border border-primary/20 backdrop-blur-sm">
                 {currentLang === 'pl' ? 'Bezpieczeństwo' :
                  currentLang === 'uk' ? 'Безпека' :
                  currentLang === 'ru' ? 'Безопасность' :
@@ -565,25 +730,22 @@ export default function BlogArticle() {
           </div>
 
           {/* Article Metadata */}
-          <div className="flex items-center gap-6 mb-8 text-sm text-muted-foreground justify-center flex-wrap">
-            <div className="flex items-center gap-2">
-              <User className="h-4 w-4" />
-              <span className="font-medium">
-                {currentLang === 'pl' ? 'Gentle Piercing' :
-                 currentLang === 'uk' ? 'Gentle Piercing' :
-                 currentLang === 'ru' ? 'Gentle Piercing' :
-                 'Gentle Piercing'}
+          <div className="flex items-center gap-8 mb-12 text-sm text-muted-foreground justify-center flex-wrap pb-8 border-b border-border/50">
+            <div className="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+              <User className="h-4 w-4 text-primary" />
+              <span className="font-medium text-foreground">
+                {t('blog.author.name')}
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Calendar className="h-4 w-4" />
-              <span>
+            <div className="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+              <Calendar className="h-4 w-4 text-primary" />
+              <span className="text-foreground">
                 {article.date ? formatDate(article.date) : ''}
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4" />
-              <span>
+            <div className="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+              <Clock className="h-4 w-4 text-primary" />
+              <span className="text-foreground">
                 {currentLang === 'pl' ? '5 min czytania' :
                  currentLang === 'uk' ? '5 хв читання' :
                  currentLang === 'ru' ? '5 мин чтения' :
@@ -603,41 +765,52 @@ export default function BlogArticle() {
                   // Convert internal links to React Router Links
                   if (href && href.startsWith('/')) {
                     return (
-                      <Link to={href} className="text-primary underline hover:text-primary/90 transition-colors" {...props}>
+                      <Link to={href} className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors" {...props}>
                         {children}
                       </Link>
                     );
                   }
-                  return <a href={href} className="text-primary underline hover:text-primary/90 transition-colors" {...props}>{children}</a>;
+                  return <a href={href} className="text-primary font-medium underline underline-offset-2 hover:text-primary/80 transition-colors" {...props}>{children}</a>;
                 },
-                // Style headings
+                // Style headings with visual interest
                 h2: ({ node, ...props }) => (
-                  <h2 className="text-3xl font-semibold text-foreground mb-4 mt-16" {...props} />
+                  <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 mt-16 pt-8 border-t border-border/50" {...props} />
                 ),
                 h3: ({ node, ...props }) => (
-                  <h3 className="text-2xl font-semibold text-foreground mb-3 mt-8" {...props} />
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-foreground mb-4 mt-12 relative pl-4 border-l-4 border-primary/30" {...props} />
                 ),
-                // Style paragraphs
+                // Style paragraphs with better spacing
                 p: ({ node, ...props }) => (
-                  <p className="text-foreground mb-4 leading-relaxed" {...props} />
+                  <p className="text-foreground leading-relaxed mb-6 text-base first:mt-0 first:text-lg first:sm:text-xl first:font-light first:text-muted-foreground first:mb-8" {...props} />
                 ),
-                // Style lists
+                // Style lists with better visual design
                 ul: ({ node, ...props }) => (
-                  <ul className="list-disc ml-6 md:ml-8 space-y-3 text-foreground mb-6 mt-4" {...props} />
+                  <ul className="list-none ml-0 space-y-4 text-foreground mb-8 mt-6 pl-0" {...props} />
                 ),
                 ol: ({ node, ...props }) => (
-                  <ol className="list-decimal ml-6 md:ml-8 space-y-3 text-foreground mb-6 mt-4" {...props} />
+                  <ol className="list-decimal ml-6 md:ml-8 space-y-4 text-foreground mb-8 mt-6 marker:text-primary marker:font-semibold" {...props} />
                 ),
-                li: ({ node, ...props }) => (
-                  <li className="text-foreground leading-relaxed pl-1" {...props} />
-                ),
-                // Style strong/bold
+                li: ({ node, ...props }) => {
+                  const isOrdered = node?.parent?.tagName === 'ol';
+                  if (isOrdered) {
+                    return (
+                      <li className="text-foreground leading-relaxed pl-2" {...props} />
+                    );
+                  }
+                  return (
+                    <li className="text-foreground leading-relaxed list-none flex items-start gap-3" {...props}>
+                      <span className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-[0.6em]"></span>
+                      <span className="flex-1" {...props} />
+                    </li>
+                  );
+                },
+                // Style strong/bold with accent
                 strong: ({ node, ...props }) => (
-                  <strong className="font-semibold text-foreground" {...props} />
+                  <strong className="font-semibold text-foreground bg-primary/10 px-1.5 py-0.5 rounded" {...props} />
                 ),
-                // Style blockquotes
+                // Style blockquotes with enhanced design
                 blockquote: ({ node, ...props }) => (
-                  <blockquote className="border-l-4 border-primary pl-4 italic text-muted-foreground my-4" {...props} />
+                  <blockquote className="border-l-4 border-primary bg-muted/30 pl-6 pr-4 py-4 italic text-foreground my-8 rounded-r-lg" {...props} />
                 ),
                 // Style tables
                 table: ({ node, ...props }) => (
@@ -664,25 +837,40 @@ export default function BlogArticle() {
                 code: ({ node, inline, className, ...props }: any) => {
                   if (inline) {
                     return (
-                      <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono text-foreground" {...props} />
+                      <code className="bg-muted/80 px-2 py-1 rounded-md text-sm font-mono text-foreground border border-border/50" {...props} />
                     );
                   }
                   return (
-                    <code className={`block bg-muted p-4 rounded-lg text-sm font-mono text-foreground overflow-x-auto ${className || ''}`} {...props} />
+                    <code className={`block bg-muted/80 p-5 rounded-xl text-sm font-mono text-foreground overflow-x-auto border border-border/50 shadow-sm ${className || ''}`} {...props} />
                   );
                 },
                 pre: ({ node, ...props }) => (
-                  <pre className="bg-muted p-4 rounded-lg overflow-x-auto my-4" {...props} />
+                  <pre className="bg-muted/80 p-5 rounded-xl overflow-x-auto my-8 border border-border/50 shadow-sm" {...props} />
                 ),
                 // Style images in markdown
                 img: ({ node, ...props }: any) => (
-                  <img className="rounded-lg my-6 max-w-full h-auto" {...props} />
+                  <img className="rounded-xl my-10 max-w-full h-auto shadow-lg border border-border/30" {...props} />
                 ),
               }}
             >
               {article.body}
             </ReactMarkdown>
           </article>
+
+          {/* Blog Article CTA - Booking/Contact */}
+          {getArticleId(article.slug) && (
+            <BlogArticleCTA
+              currentLang={currentLang}
+              articleId={getArticleId(article.slug)!}
+              getBooksyUrl={() => getBooksyUrl(currentLang, 'blog')}
+            />
+          )}
+
+          {/* Author Block */}
+          <AuthorBlock currentLang={currentLang} />
+
+          {/* Related Articles Block */}
+          <RelatedArticlesBlock currentLang={currentLang} currentSlug={article.slug} />
         </div>
       </main>
       <Footer />

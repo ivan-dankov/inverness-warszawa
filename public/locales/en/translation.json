@@ -365,5 +365,16 @@
     "subtitle": "Learn more in our ear piercing blog",
     "readMore": "Read more",
     "viewAll": "View all articles"
+  },
+  "blog": {
+    "author": {
+      "title": "About the Author",
+      "name": "Kseniya Askerka",
+      "bio": "director of Gentle Piercing Warsaw, 3+ years of experience, over 500 piercings, certified training Sanico Poland."
+    },
+    "relatedArticles": {
+      "title": "Other Articles",
+      "readMore": "Read more"
+    }
   }
 }

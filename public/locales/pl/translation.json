@@ -324,5 +324,16 @@
     "subtitle": "Poznaj więcej w naszym blogu o przekłuwaniu uszu",
     "readMore": "Czytaj dalej",
     "viewAll": "Zobacz wszystkie artykuły"
+  },
+  "blog": {
+    "author": {
+      "title": "O autorze",
+      "name": "Kseniya Askerka",
+      "bio": "dyrektor Gentle Piercing Warszawa, 3+ lata doświadczenia, ponad 500 przekłuć, certyfikowane szkolenie Sanico Poland."
+    },
+    "relatedArticles": {
+      "title": "Inne artykuły",
+      "readMore": "Czytaj dalej"
+    }
   }
 }

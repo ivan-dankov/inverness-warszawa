@@ -79,6 +79,30 @@ export const LanguageSwitch = () => {
         en: 'at-what-age-to-pierce-child-ears',
         uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
         ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
+      },
+      'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      },
+      'how-to-prepare-a-child-for-ear-piercing-warsaw': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      },
+      'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
+      },
+      'kak-podgotovit-rebenka-k-prokolu-ushey-varshava': {
+        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
+        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
+        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
+        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
       }
     };
 
