@@ -115,8 +115,14 @@ async function prerender() {
   }
 
   await browser.close();
-  server.kill();
+  server.kill('SIGKILL');
   console.log('✓ Prerendering complete!');
+  
+  // Force exit to ensure all child processes are terminated
+  process.exit(0);
 }
 
-prerender().catch(console.error);
+prerender().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
