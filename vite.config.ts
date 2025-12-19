@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => ({
             
             // Strategy: Check for ANY mention of "react" in the path first
             // This catches all React-related packages including dependencies
+            // Also check for scheduler (React's scheduler package)
             if (id.includes('/react') || 
                 id.includes('react/') ||
                 id.includes('react-') ||
@@ -56,7 +57,8 @@ export default defineConfig(({ mode }) => ({
                 id.includes('@remix-run') ||
                 id.includes('remix-run') ||
                 id.includes('@floating-ui') ||
-                id.includes('floating-ui')) {
+                id.includes('floating-ui') ||
+                id.includes('scheduler')) {
               return 'react-core';
             }
             // i18n (non-React parts)
