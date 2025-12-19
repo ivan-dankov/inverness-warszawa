@@ -87,8 +87,11 @@ export default function BlogArticle() {
         })
         .catch(error => {
           console.error('Failed to load blog article:', error);
+          setArticle(null);
           setLoading(false);
         });
+    } else {
+      setLoading(false);
     }
   }, [slug, currentLang]);
 
