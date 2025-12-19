@@ -5,7 +5,21 @@
  * Route: /api/decap-proxy/[...path]
  */
 
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+// Vercel types - using inline types to avoid dependency
+type VercelRequest = {
+  method?: string;
+  url?: string;
+  headers?: Record<string, string | string[] | undefined>;
+  body?: any;
+  query?: Record<string, string | string[] | undefined>;
+};
+
+type VercelResponse = {
+  status: (code: number) => VercelResponse;
+  json: (data: any) => void;
+  send: (data: any) => void;
+  setHeader: (name: string, value: string) => void;
+};
 
 export default async function handler(
   req: VercelRequest,
