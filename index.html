@@ -16,9 +16,8 @@
     <link rel="dns-prefetch" href="https://booksy.com">
     
     <!-- Preload critical above-the-fold images -->
-    <!-- Note: Specific hashed filenames removed as they change on each build -->
-    <link rel="preload" as="image" href="/assets/images/logo-wide.svg" />
-    <link rel="preload" as="image" href="/assets/images/hero-studio.webp" fetchpriority="high" />
+    <!-- Note: Images are imported in components and will be automatically optimized by Vite -->
+    <!-- Static preload links removed to avoid 404 errors with hashed filenames in production -->
     
     <!-- Geo Tags for Local SEO -->
     <meta name="geo.region" content="PL-MZ" />
