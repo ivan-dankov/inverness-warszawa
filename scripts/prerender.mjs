@@ -4,6 +4,13 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { spawn } from 'child_process';
 
+// Skip prerendering on Vercel (Puppeteer doesn't work in their build environment)
+if (process.env.VERCEL) {
+  console.log('⚠️ Skipping prerendering on Vercel (Puppeteer not supported)');
+  console.log('✓ Site will work as SPA with client-side rendering');
+  process.exit(0);
+}
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const distPath = join(__dirname, '../dist');
