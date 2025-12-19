@@ -43,13 +43,12 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // CRITICAL: React core and ALL React-dependent libraries MUST be in react-core
+            // ============================================
+            // CRITICAL: React core chunk - MUST load first
+            // ============================================
+            // All React-dependent libraries MUST be in react-core
             // to prevent "Cannot read properties of undefined" errors
-            
-            // Strategy: Check for ANY mention of "react" or React-related packages in the path
-            // This catches all React-related packages including dependencies
-            // CRITICAL: Order matters - check most specific patterns first
-            // Also check for use-sidecar and react-remove-scroll which use React
+            // Order matters - check most specific patterns first
             if (id.includes('node_modules/react/') || 
                 id.includes('node_modules/react-dom/') ||
                 id.includes('node_modules/scheduler/') ||
@@ -68,19 +67,57 @@ export default defineConfig(({ mode }) => ({
                 id.includes('scheduler/')) {
               return 'react-core';
             }
-            // i18n (non-React parts)
+            
+            // ============================================
+            // Markdown processing chunk (used for blog)
+            // ============================================
+            // These are large libraries used only for blog articles
+            // Can be lazy-loaded when needed
+            if (id.includes('react-markdown') ||
+                id.includes('remark') ||
+                id.includes('rehype') ||
+                id.includes('unified') ||
+                id.includes('micromark') ||
+                id.includes('mdast') ||
+                id.includes('hast')) {
+              return 'markdown';
+            }
+            
+            // ============================================
+            // Radix UI chunk (UI components)
+            // ============================================
+            // All @radix-ui packages together for better caching
+            if (id.includes('@radix-ui')) {
+              return 'radix-ui';
+            }
+            
+            // ============================================
+            // i18n chunk (non-React parts)
+            // ============================================
             if (id.includes('i18next') && !id.includes('react-i18next')) {
               return 'i18n';
             }
-            // Carousel (non-React parts)
+            
+            // ============================================
+            // Carousel chunk (non-React parts)
+            // ============================================
             if (id.includes('embla-carousel') && !id.includes('embla-carousel-react')) {
               return 'carousel';
             }
-            // Utils
-            if (id.includes('clsx') || id.includes('tailwind-merge') || id.includes('class-variance-authority')) {
+            
+            // ============================================
+            // Utils chunk (small utility libraries)
+            // ============================================
+            if (id.includes('clsx') || 
+                id.includes('tailwind-merge') || 
+                id.includes('class-variance-authority')) {
               return 'utils';
             }
-            // Everything else goes to vendor chunk
+            
+            // ============================================
+            // Vendor chunk (everything else)
+            // ============================================
+            // All other node_modules go here
             return 'vendor';
           }
         },
