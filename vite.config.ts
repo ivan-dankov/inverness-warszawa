@@ -42,16 +42,19 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // React core (keep together for optimal tree-shaking)
-            // IMPORTANT: Match exact React paths to ensure proper loading order
-            if (id.includes('/react/') || id.includes('/react-dom/') || id.includes('/react-router')) {
+            // React core MUST be loaded first - keep together to prevent undefined errors
+            // Match exact React package paths to ensure proper separation
+            if (id.includes('node_modules/react/') || 
+                id.includes('node_modules/react-dom/') ||
+                id.includes('node_modules/react-router') ||
+                id.includes('node_modules/react-router-dom')) {
               return 'react-core';
             }
             // Markdown rendering (only loaded on blog pages)
             if (id.includes('react-markdown') || id.includes('remark') || id.includes('rehype')) {
               return 'markdown';
             }
-            // UI components
+            // UI components that depend on React
             if (id.includes('@radix-ui')) {
               return 'ui-components';
             }
