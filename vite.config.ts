@@ -39,7 +39,8 @@ export default defineConfig(({ mode }) => ({
         manualChunks(id) {
           if (id.includes('node_modules')) {
             // React core (keep together for optimal tree-shaking)
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+            // IMPORTANT: Keep react and react-dom together to prevent version conflicts
+            if (id.includes('react/') || id.includes('react-dom/') || id.includes('react-router')) {
               return 'react-core';
             }
             // Markdown rendering (only loaded on blog pages)
