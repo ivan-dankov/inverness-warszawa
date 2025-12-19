@@ -37,11 +37,14 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          // Skip manual chunks for SSR build (external modules)
           if (id.includes('node_modules')) {
-            // React core
+            // React core (keep together for optimal tree-shaking)
             if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
               return 'react-core';
+            }
+            // Markdown rendering (only loaded on blog pages)
+            if (id.includes('react-markdown') || id.includes('remark') || id.includes('rehype')) {
+              return 'markdown';
             }
             // UI components
             if (id.includes('@radix-ui')) {
@@ -59,6 +62,12 @@ export default defineConfig(({ mode }) => ({
             if (id.includes('clsx') || id.includes('tailwind-merge') || id.includes('class-variance-authority')) {
               return 'utils';
             }
+            // React Helmet (SEO)
+            if (id.includes('react-helmet')) {
+              return 'seo';
+            }
+            // Everything else goes to vendor chunk
+            return 'vendor';
           }
         },
         assetFileNames: (assetInfo) => {
