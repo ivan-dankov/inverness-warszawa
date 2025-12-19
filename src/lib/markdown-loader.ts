@@ -20,34 +20,33 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
   // Use glob to import all markdown files as raw text
   // Use eager: true to ensure all files are included in production build
   // Paths in import.meta.glob are relative to the file using it (src/lib/)
-  // Note: Using as: 'raw' for better compatibility (deprecated but more reliable)
+  // Using query: '?raw' with import: 'default' for Vite 5+ compatibility
   const modules = import.meta.glob('../content/blog/**/*.md', { 
     eager: true,
-    as: 'raw'
-  });
+    query: '?raw',
+    import: 'default'
+  }) as Record<string, string>;
 
   const moduleKeys = Object.keys(modules);
   console.log(`[Markdown Loader] Found ${moduleKeys.length} markdown modules:`, moduleKeys);
+  console.log(`[Markdown Loader] Module keys sample:`, moduleKeys.slice(0, 3));
 
   const articles: BlogArticle[] = [];
 
   for (const path in modules) {
     try {
-      // With eager: true and as: 'raw', modules[path] should be the raw string content directly
+      // With eager: true and query: '?raw', import: 'default', 
+      // modules[path] should be the raw string content directly
       const moduleContent = modules[path];
       
-      // With eager: true and as: 'raw', content is directly available as a string
-      let content: string;
-      
-      if (typeof moduleContent === 'string') {
-        content = moduleContent;
-      } else if (typeof moduleContent === 'function') {
-        // Fallback for lazy loading (shouldn't happen with eager: true)
-        content = await moduleContent();
-      } else {
-        console.warn(`Unexpected module content type for ${path}:`, typeof moduleContent, moduleContent);
+      // Content should be a string with eager loading
+      if (typeof moduleContent !== 'string') {
+        console.warn(`[Markdown Loader] Unexpected module content type for ${path}:`, typeof moduleContent);
+        console.warn(`[Markdown Loader] Module content:`, moduleContent);
         continue;
       }
+      
+      const content = moduleContent;
       
       if (!content || typeof content !== 'string') {
         console.warn(`No valid content found for ${path}, type:`, typeof content);
