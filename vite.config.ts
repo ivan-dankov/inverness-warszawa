@@ -49,9 +49,12 @@ export default defineConfig(({ mode }) => ({
             // Strategy: Check for ANY mention of "react" or React-related packages in the path
             // This catches all React-related packages including dependencies
             // CRITICAL: Order matters - check most specific patterns first
+            // Also check for use-sidecar and react-remove-scroll which use React
             if (id.includes('node_modules/react/') || 
                 id.includes('node_modules/react-dom/') ||
                 id.includes('node_modules/scheduler/') ||
+                id.includes('use-sidecar') ||
+                id.includes('react-remove-scroll') ||
                 id.includes('/react') || 
                 id.includes('react/') ||
                 id.includes('react-') ||
