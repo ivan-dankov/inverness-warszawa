@@ -34,13 +34,17 @@ export default defineConfig(({ mode }) => ({
         pure_funcs: [], // Don't remove any console functions
       },
     },
+    commonjsOptions: {
+      include: [/node_modules/],
+      transformMixedEsModules: true,
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
             // React core (keep together for optimal tree-shaking)
-            // IMPORTANT: Keep react and react-dom together to prevent version conflicts
-            if (id.includes('react/') || id.includes('react-dom/') || id.includes('react-router')) {
+            // IMPORTANT: Match exact React paths to ensure proper loading order
+            if (id.includes('/react/') || id.includes('/react-dom/') || id.includes('/react-router')) {
               return 'react-core';
             }
             // Markdown rendering (only loaded on blog pages)
