@@ -70,3 +70,4 @@ npm run preview
 ## Deployment
 
 The project is configured for deployment on Vercel with static site generation support.
+
