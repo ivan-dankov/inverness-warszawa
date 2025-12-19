@@ -32,11 +32,19 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
   console.log(`[Markdown Loader] Module keys:`, moduleKeys);
   
   if (moduleKeys.length === 0) {
-    console.error('[Markdown Loader] No modules found! This is a critical error.');
+    console.error('[Markdown Loader] CRITICAL: No modules found! This means markdown files are not being loaded.');
     return [];
   }
   
-  console.log(`[Markdown Loader] First module key: ${moduleKeys[0]}, type: ${typeof modules[moduleKeys[0]]}`);
+  // Log first module to verify it's working
+  const firstKey = moduleKeys[0];
+  const firstContent = modules[firstKey];
+  console.log(`[Markdown Loader] First module key: ${firstKey}`);
+  console.log(`[Markdown Loader] First module type: ${typeof firstContent}`);
+  if (typeof firstContent === 'string') {
+    console.log(`[Markdown Loader] First module content length: ${firstContent.length}`);
+    console.log(`[Markdown Loader] First module content preview: ${firstContent.substring(0, 100)}...`);
+  }
 
   const articles: BlogArticle[] = [];
 
