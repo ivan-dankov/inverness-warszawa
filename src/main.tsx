@@ -25,7 +25,8 @@ createRoot(document.getElementById("root")!).render(
   </Suspense>
 );
 
-// Initialize Google Analytics after it loads
+// Initialize Google Analytics after page is interactive (non-blocking)
+// Using requestIdleCallback for optimal performance and BFCache compatibility
 const initGA4 = () => {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     initGoogleAnalytics();
@@ -33,15 +34,31 @@ const initGA4 = () => {
     trackPageView(window.location.pathname);
   } else {
     // Try again after a short delay if gtag not ready
-    setTimeout(initGA4, 50);
+    setTimeout(initGA4, 100);
   }
 };
 
-// Wait for page load, then initialize GA4
+// Defer GA4 initialization until browser is idle to avoid blocking main thread
+// This improves BFCache compatibility and page performance
 if (typeof window !== 'undefined') {
-  if (document.readyState === 'complete') {
-    initGA4();
+  // Use requestIdleCallback if available, otherwise fall back to setTimeout
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      // Wait for page to be fully loaded before initializing
+      if (document.readyState === 'complete') {
+        initGA4();
+      } else {
+        window.addEventListener('load', initGA4, { once: true });
+      }
+    }, { timeout: 2000 });
   } else {
-    window.addEventListener('load', initGA4);
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(() => {
+      if (document.readyState === 'complete') {
+        initGA4();
+      } else {
+        window.addEventListener('load', initGA4, { once: true });
+      }
+    }, 1000);
   }
 }

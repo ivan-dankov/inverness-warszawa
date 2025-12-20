@@ -15,7 +15,7 @@ export const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8">
           <div>
             <div className="mb-4">
-              <img src={logoWide} alt="Gentle Piercing" className="h-8 w-auto" />
+              <img src={logoWide} alt="Gentle Piercing" className="h-8 w-auto" width="320" height="64" />
             </div>
             <p className="text-sm text-muted-foreground">
               {t('footer.company.description')}

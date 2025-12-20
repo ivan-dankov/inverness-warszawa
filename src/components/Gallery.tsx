@@ -196,6 +196,8 @@ export const Gallery = () => {
                   loading="eager"
                   decoding="async"
                   draggable={false}
+                  width="1920"
+                  height="1280"
                 />
 
                 {/* Desktop Navigation - Sides */}

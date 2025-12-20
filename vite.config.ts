@@ -25,22 +25,28 @@ export default defineConfig(({ mode }) => ({
   // Ensure content directory is accessible
   publicDir: 'public',
   build: {
-    assetsInlineLimit: 4096,
+    assetsInlineLimit: 2048, // Reduced from 4096 to inline fewer assets
     cssCodeSplit: true,
+    // CSS minification is enabled by default in production builds (using esbuild)
     minify: 'terser',
+    sourcemap: mode === 'development', // Disable sourcemaps in production for smaller bundles
     terserOptions: {
       compress: {
-        drop_console: false, // Keep console for debugging production issues
+        drop_console: mode === 'production', // Remove console in production only
         drop_debugger: true,
-        pure_funcs: [], // Don't remove any console functions
+        pure_funcs: mode === 'production' ? ['console.log', 'console.info', 'console.debug', 'console.trace'] : [], // Remove console functions in production
         unused: true, // Remove unused code
         dead_code: true, // Remove dead code
-        passes: 2, // Multiple passes for better optimization
+        passes: 3, // Increased from 2 to 3 for better optimization
       },
       mangle: {
         safari10: true, // Fix Safari 10 issues
+        keep_classnames: false, // Allow class name mangling for smaller bundles
+        keep_fnames: false, // Allow function name mangling for smaller bundles
       },
+      module: true, // Enable ES6+ optimizations
     },
+    chunkSizeWarningLimit: 1000, // Warn if chunks exceed 1MB
     commonjsOptions: {
       include: [/node_modules/],
       transformMixedEsModules: true,

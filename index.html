@@ -27,7 +27,39 @@
     
     <!-- Dynamic OG/Twitter tags are handled by MultilingualSEO component -->
     
-    <!-- Structured Data / JSON-LD -->
+    <!-- Google Analytics 4 - Loaded asynchronously after page interactive for optimal performance -->
+    <!-- Script loading is deferred and initialization happens via requestIdleCallback in main.tsx -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN"></script>
+    <script>
+      // Initialize dataLayer immediately but defer actual tracking
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // Early config for localhost detection - full config in initGoogleAnalytics()
+      if (window.location.hostname === 'localhost' || window.location.hostname.includes('localhost')) {
+        gtag('config', 'G-5XNL50H7LN', { 'debug_mode': true });
+      }
+      // Full configuration will be handled by initGoogleAnalytics() in main.tsx after page interactive
+    </script>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+
+  <body>
+    <div id="root">
+      <!-- SEO Fallback Navigation - Hidden but visible to crawlers -->
+      <nav style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+        <a href="/pl">Home</a>
+        <a href="/pl/aftercare">Aftercare</a>
+        <a href="/pl/blog">Blog</a>
+        <a href="/en">English</a>
+        <a href="/uk">Ukrainian</a>
+        <a href="/ru">Russian</a>
+      </nav>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Structured Data / JSON-LD - Loaded at end of body to avoid blocking render -->
     <script type="application/ld+json">
     [
       {
@@ -93,35 +125,5 @@
       }
     ]
     </script>
-    
-    <!-- Google Analytics 4 - Deferred for performance -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN"></script>
-    <script defer>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      // Early config for localhost detection - full config in initGoogleAnalytics()
-      if (window.location.hostname === 'localhost' || window.location.hostname.includes('localhost')) {
-        gtag('config', 'G-5XNL50H7LN', { 'debug_mode': true });
-      }
-      // Full configuration will be handled by initGoogleAnalytics() in main.tsx
-    </script>
-    
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-</head>
-
-  <body>
-    <div id="root">
-      <!-- SEO Fallback Navigation - Hidden but visible to crawlers -->
-      <nav style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
-        <a href="/pl">Home</a>
-        <a href="/pl/aftercare">Aftercare</a>
-        <a href="/pl/blog">Blog</a>
-        <a href="/en">English</a>
-        <a href="/uk">Ukrainian</a>
-        <a href="/ru">Russian</a>
-      </nav>
-    </div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -47,6 +47,8 @@ export function Header({ currentLang }: HeaderProps) {
               className="h-12 w-auto" 
               loading="eager"
               fetchpriority="high"
+              width="200"
+              height="48"
             />
           </Link>
 
@@ -106,6 +108,8 @@ export function Header({ currentLang }: HeaderProps) {
                       alt="Inverness MED" 
                       className="h-12 w-auto" 
                       loading="lazy"
+                      width="200"
+                      height="48"
                     />
                   </SheetTitle>
                 </SheetHeader>
