@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route, useLocation, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, Suspense, lazy } from "react";
 import { useTranslation } from "react-i18next";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageHome } from "./pages/LanguageHome";
 import { getLanguageFromPath, isSupportedLanguage } from "./lib/language-routes";
 import { Navigate } from "react-router-dom";
 import Aftercare from "./pages/Aftercare";
-import Blog from "./pages/Blog";
-import BlogArticle from "./pages/BlogArticle";
+// Lazy load blog pages to reduce initial bundle size
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogArticle = lazy(() => import("./pages/BlogArticle"));
 import NotFound from "./pages/NotFound";
 import { trackPageView } from "./lib/analytics";
 
@@ -62,9 +63,17 @@ const App = () => (
         {/* Language-specific Aftercare pages */}
         <Route path="/:lang/aftercare" element={<Aftercare />} />
         
-        {/* Language-specific Blog pages */}
-        <Route path="/:lang/blog" element={<Blog />} />
-        <Route path="/:lang/blog/:slug" element={<BlogArticle />} />
+        {/* Language-specific Blog pages - lazy loaded */}
+        <Route path="/:lang/blog" element={
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div></div>}>
+            <Blog />
+          </Suspense>
+        } />
+        <Route path="/:lang/blog/:slug" element={
+          <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div></div>}>
+            <BlogArticle />
+          </Suspense>
+        } />
         
         {/* Decap CMS Admin */}
         <Route path="/admin" element={

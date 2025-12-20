@@ -33,6 +33,12 @@ export default defineConfig(({ mode }) => ({
         drop_console: false, // Keep console for debugging production issues
         drop_debugger: true,
         pure_funcs: [], // Don't remove any console functions
+        unused: true, // Remove unused code
+        dead_code: true, // Remove dead code
+        passes: 2, // Multiple passes for better optimization
+      },
+      mangle: {
+        safari10: true, // Fix Safari 10 issues
       },
     },
     commonjsOptions: {
@@ -40,6 +46,12 @@ export default defineConfig(({ mode }) => ({
       transformMixedEsModules: true,
     },
     rollupOptions: {
+      // Enable tree-shaking and dead code elimination
+      treeshake: {
+        moduleSideEffects: 'no-external',
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false,
+      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
