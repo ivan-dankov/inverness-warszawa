@@ -18,58 +18,45 @@ export interface BlogArticle {
  */
 export async function loadBlogArticles(): Promise<BlogArticle[]> {
   // Use glob to import all markdown files as raw text
-  // Use eager: true to ensure all files are included in production build
+  // Use lazy loading (eager: false) to avoid loading all articles upfront
+  // This significantly reduces initial bundle size - markdown files are only loaded when blog is accessed
   // Paths in import.meta.glob are relative to the file using it (src/lib/)
-  // IMPORTANT: In production, Vite may not properly handle eager loading with query params
-  // So we use the deprecated but more reliable 'as: raw' syntax
   const modules = import.meta.glob('../content/blog/**/*.md', { 
-    eager: true,
+    eager: false,
     as: 'raw'
-  }) as Record<string, string>;
+  }) as Record<string, () => Promise<string>>;
 
   const moduleKeys = Object.keys(modules);
-  console.log(`[Markdown Loader] Found ${moduleKeys.length} markdown modules`);
-  console.log(`[Markdown Loader] Module keys:`, moduleKeys);
   
   if (moduleKeys.length === 0) {
     console.error('[Markdown Loader] CRITICAL: No modules found! This means markdown files are not being loaded.');
     return [];
   }
-  
-  // Log first module to verify it's working
-  const firstKey = moduleKeys[0];
-  const firstContent = modules[firstKey];
-  console.log(`[Markdown Loader] First module key: ${firstKey}`);
-  console.log(`[Markdown Loader] First module type: ${typeof firstContent}`);
-  if (typeof firstContent === 'string') {
-    console.log(`[Markdown Loader] First module content length: ${firstContent.length}`);
-    console.log(`[Markdown Loader] First module content preview: ${firstContent.substring(0, 100)}...`);
-  }
 
   const articles: BlogArticle[] = [];
 
-  for (const path in modules) {
+  // Load all markdown files in parallel for better performance
+  const loadPromises = moduleKeys.map(async (path) => {
     try {
-      // With eager: true and as: 'raw', content should be a string
-      const moduleContent = modules[path];
-      
-      if (!moduleContent || typeof moduleContent !== 'string') {
-        console.warn(`[Markdown Loader] Invalid content for ${path}, type: ${typeof moduleContent}`);
-        continue;
+      // With eager: false, modules are functions that return promises
+      const loadModule = modules[path];
+      if (!loadModule || typeof loadModule !== 'function') {
+        console.warn(`[Markdown Loader] Invalid module loader for ${path}`);
+        return null;
       }
       
-      const content = moduleContent;
+      const content = await loadModule();
       
       if (!content || typeof content !== 'string') {
         console.warn(`No valid content found for ${path}, type:`, typeof content);
-        continue;
+        return null;
       }
       
       // Parse frontmatter and body
       const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
       if (!frontmatterMatch) {
         console.warn(`No frontmatter found in ${path}, content length:`, content.length);
-        continue;
+        return null;
       }
 
       const frontmatter = frontmatterMatch[1];
@@ -87,7 +74,7 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
       const langFromPath = path.match(/content\/blog\/(pl|en|uk|ru)\//)?.[1] || langMatch?.[1] || 'pl';
 
       if (titleMatch && slugMatch) {
-        articles.push({
+        return {
           title: titleMatch[1],
           slug: slugMatch[1],
           excerpt: excerptMatch?.[1] || '',
@@ -95,17 +82,27 @@ export async function loadBlogArticles(): Promise<BlogArticle[]> {
           image: imageMatch?.[1] || '',
           lang: langFromPath,
           body,
-        });
-        console.log(`✓ Loaded article: ${titleMatch[1]} (${langFromPath})`);
+        };
       } else {
         console.warn(`Missing title or slug in ${path}`, { titleMatch, slugMatch });
+        return null;
       }
     } catch (error) {
       console.error(`Failed to load article from ${path}:`, error);
+      return null;
+    }
+  });
+
+  // Wait for all markdown files to load
+  const loadedArticles = await Promise.all(loadPromises);
+  
+  // Filter out null results and add to articles array
+  for (const article of loadedArticles) {
+    if (article) {
+      articles.push(article);
     }
   }
 
-  console.log(`✓ Loaded ${articles.length} blog articles total`);
   return articles;
 }
 
