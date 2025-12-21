@@ -1,153 +1,70 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { ChevronDown } from '@/lib/icons';
-import { languages } from '@/lib/language-routes';
+import { useState, useEffect } from 'react';
+import { languages } from '../lib/language-routes';
+import type { Locale } from '../lib/seo';
 
-export const LanguageSwitch = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  
-  // Extract current language from path
-  const currentLangCode = location.pathname.match(/^\/(pl|uk|ru|en)/)?.[1] || 'pl';
-  const currentLanguage = languages[currentLangCode];
+interface LanguageSwitchProps {
+  currentLocale: Locale;
+  currentPath: string;
+  translationSlugs?: Record<Locale, string>;
+}
 
-  const changeLanguage = (langCode: string) => {
-    // Map of article slugs by language code
-    const slugsByLang = {
-      'czy-przekluwanie-uszu-boli': {
-        pl: 'czy-przekluwanie-uszu-boli',
-        en: 'does-ear-piercing-hurt',
-        uk: 'chy-bolyt-prokol-vukh',
-        ru: 'bolit-li-prokalyvanie-ushey'
-      },
-      'does-ear-piercing-hurt': {
-        pl: 'czy-przekluwanie-uszu-boli',
-        en: 'does-ear-piercing-hurt',
-        uk: 'chy-bolyt-prokol-vukh',
-        ru: 'bolit-li-prokalyvanie-ushey'
-      },
-      'chy-bolyt-prokol-vukh': {
-        pl: 'czy-przekluwanie-uszu-boli',
-        en: 'does-ear-piercing-hurt',
-        uk: 'chy-bolyt-prokol-vukh',
-        ru: 'bolit-li-prokalyvanie-ushey'
-      },
-      'bolit-li-prokalyvanie-ushey': {
-        pl: 'czy-przekluwanie-uszu-boli',
-        en: 'does-ear-piercing-hurt',
-        uk: 'chy-bolyt-prokol-vukh',
-        ru: 'bolit-li-prokalyvanie-ushey'
-      },
-      'inverness-vs-pistolet': {
-        pl: 'inverness-vs-pistolet',
-        en: 'inverness-vs-gun',
-        uk: 'inverness-vs-pistolet',
-        ru: 'inverness-vs-pistolet'
-      },
-      'inverness-vs-gun': {
-        pl: 'inverness-vs-pistolet',
-        en: 'inverness-vs-gun',
-        uk: 'inverness-vs-pistolet',
-        ru: 'inverness-vs-pistolet'
-      },
-      'od-jakiego-wieku-przekluwac-uszy-dziecku': {
-        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
-        en: 'at-what-age-to-pierce-child-ears',
-        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
-        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
-      },
-      'at-what-age-to-pierce-child-ears': {
-        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
-        en: 'at-what-age-to-pierce-child-ears',
-        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
-        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
-      },
-      'z-yakoho-viku-prokoluvaty-vukha-dytyni': {
-        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
-        en: 'at-what-age-to-pierce-child-ears',
-        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
-        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
-      },
-      's-kakogo-vozrasta-prokalyvat-ushi-rebenku': {
-        pl: 'od-jakiego-wieku-przekluwac-uszy-dziecku',
-        en: 'at-what-age-to-pierce-child-ears',
-        uk: 'z-yakoho-viku-prokoluvaty-vukha-dytyni',
-        ru: 's-kakogo-vozrasta-prokalyvat-ushi-rebenku'
-      },
-      'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa': {
-        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
-        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
-        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
-        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
-      },
-      'how-to-prepare-a-child-for-ear-piercing-warsaw': {
-        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
-        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
-        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
-        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
-      },
-      'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava': {
-        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
-        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
-        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
-        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
-      },
-      'kak-podgotovit-rebenka-k-prokolu-ushey-varshava': {
-        pl: 'jak-przygotowac-dziecko-do-przekluwania-uszu-warszawa',
-        en: 'how-to-prepare-a-child-for-ear-piercing-warsaw',
-        uk: 'yak-pidhotuvaty-dytynu-do-prokolyuvannya-vuh-varshava',
-        ru: 'kak-podgotovit-rebenka-k-prokolu-ushey-varshava'
-      }
-    };
+function LanguageSwitch({ currentLocale, currentPath, translationSlugs }: LanguageSwitchProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const currentLanguage = languages[currentLocale];
 
-    // Extract the path after the language code
-    const pathWithoutLang = location.pathname.replace(/^\/(pl|uk|ru|en)/, '') || '/';
-    
-    // Check if this is a blog article page
-    if (pathWithoutLang.startsWith('/blog/')) {
-      const currentSlug = pathWithoutLang.replace('/blog/', '');
-      
-      // Find the slug mapping for the current slug
-      const slugMap = slugsByLang[currentSlug as keyof typeof slugsByLang];
-      
-      if (slugMap && slugMap[langCode as keyof typeof slugMap]) {
-        const newSlug = slugMap[langCode as keyof typeof slugMap];
-        // Navigate to new language with corresponding slug
-        navigate(`/${langCode}/blog/${newSlug}`, { replace: true });
-        return;
-      }
+  const getTargetUrl = (langCode: Locale): string => {
+    // If we have translation slugs (for blog posts), use them
+    if (translationSlugs && translationSlugs[langCode]) {
+      return `/${langCode}/blog/${translationSlugs[langCode]}`;
     }
-    
-    // For other pages, just change the language in the URL
-    navigate(`/${langCode}${pathWithoutLang}`, { replace: true });
+
+    // For other pages, replace the locale in the path
+    const pathWithoutLocale = currentPath.replace(/^\/(pl|uk|ru|en)/, '') || '/';
+    return `/${langCode}${pathWithoutLocale}`;
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2">
-          <span className="text-lg">{currentLanguage.flag}</span>
-          <ChevronDown className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {Object.values(languages).map((language) => (
-          <DropdownMenuItem
-            key={language.code}
-            onClick={() => changeLanguage(language.code)}
-            className="cursor-pointer"
-          >
-            <span className="mr-2">{language.flag}</span>
-            {language.name}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <div className="relative">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+      >
+        <span className="text-lg">{currentLanguage.flag}</span>
+        <svg
+          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-10"
+            onClick={() => setIsOpen(false)}
+          />
+          <div className="absolute right-0 mt-2 w-48 rounded-md border border-border bg-popover shadow-lg z-20">
+            <div className="py-1">
+              {Object.values(languages).map((language) => (
+                <a
+                  key={language.code}
+                  href={getTargetUrl(language.code as Locale)}
+                  className="block px-4 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="mr-2">{language.flag}</span>
+                  {language.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
-};
+}
+
+export default LanguageSwitch;

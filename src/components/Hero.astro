@@ -1,0 +1,117 @@
+---
+import { t } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import logoWide from '../assets/logo-wide.svg';
+import heroStudio from '../assets/hero/hero-studio.jpg';
+import heroClient from '../assets/hero/hero-client.jpg';
+import hero3 from '../assets/hero/hero-3.jpg';
+import hero4 from '../assets/hero/hero-4.jpg';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_main`;
+---
+
+<section id="hero" class="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-background-alt/95 to-background-alt/70 z-0" />
+  
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 sm:py-0">
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <!-- Content -->
+      <div class="max-w-2xl">
+        <img src={logoWide.src || logoWide} alt="Inverness Logo" class="h-6 sm:h-8 lg:h-10 w-auto mb-6 sm:mb-8" width="320" height="64" loading="eager" fetchpriority="high" />
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+          {t(locale, 'hero.title')}
+        </h1>
+        
+        <p class="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
+          {t(locale, 'hero.subtitle')}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <a 
+            href={booksyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-8 text-base w-full sm:w-auto"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {t(locale, 'hero.buttons.book')}
+          </a>
+          <a 
+            href="#contact"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-accent text-accent-foreground hover:bg-accent/90 shadow-soft hover:shadow-card transition-shadow duration-300 h-12 px-8 text-base w-full sm:w-auto"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {t(locale, 'hero.buttons.contact')}
+          </a>
+        </div>
+        <div class="text-sm sm:text-base text-muted-foreground space-y-1">
+          <p>{t(locale, 'hero.locationNotice.studio')}</p>
+          <p>{t(locale, 'hero.locationNotice.mobile')}</p>
+        </div>
+      </div>
+
+      <!-- Images Grid -->
+      <div class="hidden lg:grid grid-cols-2 gap-4 relative">
+        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
+          <img 
+            src={heroStudio.src || heroStudio} 
+            alt="Studio Inverness MED z profesjonalnym sprzętem do przekłuwania uszu" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+            loading="eager" 
+            fetchpriority="high" 
+            decoding="async" 
+            width="400" 
+            height="400" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
+          <img 
+            src={heroClient.src || heroClient} 
+            alt="Zadowolone dziecko z dyplomem Inverness MED po przekłuciu uszu" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+            loading="eager" 
+            decoding="async" 
+            width="400" 
+            height="400" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
+          <img 
+            src={hero3.src || hero3} 
+            alt="Kolekcja medycznych kolczyków Inverness" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+            loading="lazy" 
+            decoding="async" 
+            width="400" 
+            height="400" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
+          <img 
+            src={hero4.src || hero4} 
+            alt="Eleganckie kolczyki medyczne po przekłuciu" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+            loading="lazy" 
+            decoding="async" 
+            width="400" 
+            height="400" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

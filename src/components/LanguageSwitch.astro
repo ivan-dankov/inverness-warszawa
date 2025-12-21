@@ -1,0 +1,20 @@
+---
+import LanguageSwitchReact from './LanguageSwitch';
+import type { Locale } from '../lib/seo';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+  translationSlugs?: Record<Locale, string>;
+}
+
+const { locale, currentPath, translationSlugs } = Astro.props;
+---
+
+<LanguageSwitchReact 
+  client:idle
+  currentLocale={locale}
+  currentPath={currentPath}
+  translationSlugs={translationSlugs}
+/>
+

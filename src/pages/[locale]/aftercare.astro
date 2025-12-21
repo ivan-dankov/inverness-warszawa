@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageSEO, type Locale } from '../../lib/seo';
+import Aftercare from '../../components/Aftercare.astro';
+
+export async function getStaticPaths() {
+  const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
+  return locales.map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params;
+const currentLocale = locale as Locale;
+const seo = getPageSEO(currentLocale, 'aftercare');
+---
+
+<BaseLayout locale={currentLocale} seo={seo}>
+  <div class="min-h-screen bg-background">
+    <Aftercare locale={currentLocale} />
+  </div>
+</BaseLayout>
+

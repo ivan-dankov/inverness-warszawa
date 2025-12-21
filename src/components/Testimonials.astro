@@ -1,0 +1,79 @@
+---
+import { t } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import { Testimonials as TestimonialsReact } from './Testimonials.tsx';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const testimonials = [
+  {
+    name: "Valeriya",
+    date: "gru 14, 2025",
+    rating: 5,
+    text: "Bardzo miła Pani Ksenia, profesjonalna i mega zaangażowana! Wszystko dokładnie wytłumaczyła, szczegółowo omówiła, jak dbać o uszy podczas gojenia, a także dobrała mi odpowiednie kolczyki (mam alergię na niektóre metale). Przekłucie było szybkie, bezbolesne i bardzo sterylne, co było dla mnie niezwykle ważne. Jestem mega zadowolona i bardzo dziękuję! ⭐️",
+    service: "Przekłucia metodą INVERNESS MED"
+  },
+  {
+    name: "Anna K.",
+    date: "gru 13, 2025",
+    rating: 5,
+    text: "Dziękuję Pani za tak miłą i troskliwą opiekę podczas zabiegu przekłuwania uszu! Wszystko odbyło się w przyjaznej atmosferze! Dziecko nie było ani trochę przestraszone ani zdenerwowane.",
+    service: "Przekłuwanie uszu dzieciom 0+ INVERNESS MED"
+  },
+  {
+    name: "Magdalena S.",
+    date: "gru 12, 2025",
+    rating: 5,
+    text: "Bardzo polecam! Przekłucie uszu wykonane szybko, profesjonalnie i w miłej atmosferze. Wszystko zostało dokładnie wyjaśnione — od przygotowania, przez sam zabieg, aż po pielęgnację po przekłuciu. Sprzęt sterylny, pełne poczucie bezpieczeństwa i delikatne podejście, dzięki czemu stres był minimalny. Na pewno wrócę i z czystym sumieniem polecam każdemu! 🙂",
+    service: "Konsultacja przed przekłuciem"
+  },
+  {
+    name: "Paweł M.",
+    date: "gru 10, 2025",
+    rating: 5,
+    text: "Świetne podejście do dzieci, bezstresowo i bez bólu. Polecam!",
+    service: "Przekłuwanie uszu dzieciom 0+ INVERNESS MED"
+  },
+  {
+    name: "Olena W.",
+    date: "gru 8, 2025",
+    rating: 5,
+    text: "Polecam serdecznie 10/10",
+    service: "Przekłucie płatka ucha INVERNESS MED"
+  },
+  {
+    name: "Maria P.",
+    date: "gru 5, 2025",
+    rating: 5,
+    text: "Очень понравилось, все прошло быстро и безболезненно! Буду приходить ещё",
+    service: "Konsultacja przed przekłuciem"
+  },
+  {
+    name: "Katarzyna L.",
+    date: "gru 3, 2025",
+    rating: 5,
+    text: "Przekłuwaliśmy uszy naszej 7-letniej córce. Bardzo polecam! Sterylnie, czysto i bezboleśnie. Uszy pięknie zagoiły się od razu! Polecam!!! ❤️",
+    service: "Przekłuwanie uszu dzieciom 0+ INVERNESS MED"
+  },
+  {
+    name: "Weronika N.",
+    date: "paź 28, 2025",
+    rating: 5,
+    text: "Byłam u pani Kseniyi na przekłuciu uszu i jestem bardzo zadowolona z efektu! 💎 Wszystko odbyło się szybko, profesjonalnie i bezboleśnie. Pani Kseniya jest bardzo miła, delikatna i dokładna. Dziękuję serdecznie – polecam z całego serca! ❤️",
+    service: "Przekłuwanie uszu INVERNESS MED"
+  },
+  {
+    name: "Anastasiia P.",
+    date: "paź 25, 2025",
+    rating: 5,
+    text: "Jestem bardzo zadowolona! Przekłucie wykonane delikatnie i bez stresu. Świetny kontakt, wszystko wytłumaczone krok po kroku. Polecam każdemu, kto szuka bezpiecznego i profesjonalnego miejsca!",
+    service: "Przekłucie chrząstki"
+  }
+];
+---
+
+<TestimonialsReact client:visible locale={locale} testimonials={testimonials} />

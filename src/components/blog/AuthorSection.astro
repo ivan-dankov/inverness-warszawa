@@ -1,0 +1,50 @@
+---
+import { t } from '../../lib/translations';
+import type { Locale } from '../../lib/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+// Try to import author image, fallback if not found
+let authorImageSrc: string | null = null;
+try {
+  const authorImage = await import('../../assets/blog/author.jpg');
+  authorImageSrc = authorImage.default?.src || authorImage.default || null;
+} catch (e) {
+  // Author image not found, will show without image
+}
+---
+
+<section class="mt-16 pt-8 border-t border-border">
+  <div class="flex flex-col sm:flex-row gap-6 items-start">
+    <!-- Author Photo -->
+    {authorImageSrc && (
+      <div class="flex-shrink-0">
+        <img
+          src={authorImageSrc}
+          alt={t(locale, 'blog.author.name')}
+          class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-border shadow-md"
+          loading="lazy"
+          width="200"
+          height="200"
+        />
+      </div>
+    )}
+
+    <!-- Author Info -->
+    <div class="flex-1">
+      <h2 class="text-2xl font-semibold text-foreground mb-3">
+        {t(locale, 'blog.author.title')}
+      </h2>
+      <p class="text-foreground leading-relaxed">
+        <strong class="font-semibold">{t(locale, 'blog.author.name')}</strong>
+        {' – '}
+        {t(locale, 'blog.author.bio')}
+      </p>
+    </div>
+  </div>
+</section>
+

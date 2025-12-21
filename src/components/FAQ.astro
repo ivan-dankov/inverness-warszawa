@@ -1,0 +1,60 @@
+---
+import { t, getTranslations } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translations = getTranslations(locale);
+const faqs = translations.faq?.items || [];
+---
+
+<section id="faq" class="py-20 bg-background border-t border-border">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        {t(locale, 'faq.title')}
+      </h2>
+      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+        {t(locale, 'faq.subtitle')}
+      </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-4">
+        {faqs.map((faq: { question: string; answer: string; link?: boolean }, index: number) => (
+          <details 
+            key={index}
+            class="group bg-card rounded-lg border border-border p-6 hover:shadow-card transition-shadow duration-300"
+          >
+            <summary class="cursor-pointer font-semibold text-foreground text-base sm:text-lg list-none flex items-center justify-between">
+              <span>{faq.question}</span>
+              <svg 
+                class="h-5 w-5 text-muted-foreground transition-transform duration-300 group-open:rotate-180" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="mt-4 text-muted-foreground text-sm sm:text-base leading-relaxed">
+              {faq.answer}
+              {faq.link && (
+                <>
+                  {' '}
+                  <a href={`/${locale}/aftercare`} class="text-primary hover:underline font-medium">
+                    {t(locale, 'faq.aftercareLink')}
+                  </a>
+                </>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+

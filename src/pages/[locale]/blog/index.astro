@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getPageSEO, type Locale } from '../../../lib/seo';
+import { getPostsByLocale, urlFor } from '../../../lib/sanity';
+import { t } from '../../../lib/translations';
+
+export async function getStaticPaths() {
+  const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
+  return locales.map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params;
+const currentLocale = locale as Locale;
+const seo = getPageSEO(currentLocale, 'blog');
+let posts = [];
+try {
+  posts = await getPostsByLocale(currentLocale);
+} catch (error) {
+  console.warn('Could not fetch blog posts:', error);
+  // Continue with empty posts array
+}
+---
+
+<BaseLayout locale={currentLocale} seo={seo}>
+  <div class="bg-background">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-4">{t(currentLocale, 'blog.title')}</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          {t(currentLocale, 'blog.subtitle')}
+        </p>
+      </div>
+      
+      {posts.length === 0 ? (
+        <div class="text-center py-12">
+          <p class="text-muted-foreground mb-4">{t(currentLocale, 'blog.noPosts')}</p>
+        </div>
+      ) : (
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {posts.map((post) => (
+            <article class="border border-border rounded-lg p-6 hover:shadow-card transition-shadow duration-300 flex flex-col group">
+              <a href={`/${locale}/blog/${post.slug}`} class="block flex flex-col h-full no-underline text-inherit hover:text-inherit">
+                {post.coverImage && (
+                  <img
+                    src={urlFor(post.coverImage).width(400).format('webp').url()}
+                    srcset={`
+                      ${urlFor(post.coverImage).width(400).format('webp').url()} 400w,
+                      ${urlFor(post.coverImage).width(600).format('webp').url()} 600w
+                    `}
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    alt={post.title}
+                    class="w-full h-48 object-cover rounded-lg mb-4"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="250"
+                  />
+                )}
+                <h2 class="text-2xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                  {post.title}
+                </h2>
+                <p class="text-muted-foreground mb-4 flex-grow">{post.excerpt}</p>
+                <div class="flex items-center justify-between text-sm text-muted-foreground">
+                  <time>
+                    {new Date(post.publishedAt).toLocaleDateString(locale, { 
+                      year: 'numeric', 
+                      month: 'long', 
+                      day: 'numeric' 
+                    })}
+                  </time>
+                  <span class="text-primary group-hover:underline">
+                    {t(currentLocale, 'blog.readMore')} →
+                  </span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>
+

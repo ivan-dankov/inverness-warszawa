@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getPageSEO, getCanonicalUrl, getHreflangUrls, getArticleSchema, getBreadcrumbSchema, type Locale } from '../../../lib/seo';
+import { getPostBySlug, getTranslationGroup, urlFor, getAllPostSlugs } from '../../../lib/sanity';
+import { t } from '../../../lib/translations';
+import PortableTextRenderer from '../../../components/PortableTextRenderer';
+import AuthorSection from '../../../components/blog/AuthorSection.astro';
+import CTASection from '../../../components/blog/CTASection.astro';
+import RelatedArticles from '../../../components/blog/RelatedArticles.astro';
+
+export async function getStaticPaths() {
+  try {
+    const posts = await getAllPostSlugs();
+    const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
+    
+    // Return empty array if no posts (e.g., dataset doesn't exist yet)
+    if (!posts || posts.length === 0) {
+      return [];
+    }
+    
+    return posts.flatMap((post) =>
+      locales
+        .filter((locale) => post.locale === locale)
+        .map((locale) => ({
+          params: { locale, slug: post.slug },
+        }))
+    );
+  } catch (error) {
+    // If Sanity dataset doesn't exist or there's an error, return empty array
+    console.warn('Could not fetch blog posts:', error);
+    return [];
+  }
+}
+
+const { locale, slug } = Astro.params;
+
+if (!locale || !['pl', 'uk', 'ru', 'en'].includes(locale)) {
+  return Astro.redirect('/pl/blog', 301);
+}
+
+const currentLocale = locale as Locale;
+const post = await getPostBySlug(slug!, currentLocale);
+
+if (!post) {
+  return Astro.redirect(`/${locale}/blog`, 301);
+}
+
+// Get translation group for hreflang
+const translationGroup = await getTranslationGroup(post.translationGroupId);
+const translationSlugs: Record<Locale, string> = {
+  pl: translationGroup.pl?.slug || post.slug,
+  uk: translationGroup.uk?.slug || post.slug,
+  ru: translationGroup.ru?.slug || post.slug,
+  en: translationGroup.en?.slug || post.slug,
+};
+
+const canonical = getCanonicalUrl(currentLocale, `/blog/${post.slug}`);
+const hreflang = getHreflangUrls(`/blog/${post.slug}`, translationSlugs);
+
+const ogImage = post.ogImage
+  ? urlFor(post.ogImage).width(1200).height(630).format('webp').url()
+  : urlFor(post.coverImage).width(1200).height(630).format('webp').url();
+
+const seo = {
+  title: post.metaTitle || post.title,
+  description: post.metaDescription || post.excerpt,
+  ogImage,
+  canonical,
+  hreflang,
+  translationGroup: translationSlugs,
+};
+
+const articleSchema = getArticleSchema({
+  title: post.title,
+  description: post.excerpt,
+  url: canonical,
+  image: ogImage,
+  publishedAt: post.publishedAt,
+  updatedAt: post.updatedAt,
+  locale: currentLocale,
+});
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: t(currentLocale, 'breadcrumb.home'), url: getCanonicalUrl(currentLocale, '') },
+  { name: t(currentLocale, 'breadcrumb.blog'), url: getCanonicalUrl(currentLocale, '/blog') },
+  { name: post.title, url: canonical },
+]);
+
+const structuredData = [articleSchema, breadcrumbSchema];
+---
+
+<BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData} translationSlugs={translationSlugs}>
+  <div class="bg-background">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-muted-foreground">
+          <li>
+            <a href={`/${locale}`} class="hover:text-primary transition-colors">
+              {t(currentLocale, 'breadcrumb.home')}
+            </a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2">/</span>
+            <a href={`/${locale}/blog`} class="hover:text-primary transition-colors">
+              {t(currentLocale, 'breadcrumb.blog')}
+            </a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2">/</span>
+            <span class="text-foreground font-medium">{post.title}</span>
+          </li>
+        </ol>
+      </nav>
+
+      <article>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8">{post.title}</h1>
+        
+        <!-- Article Metadata -->
+        <div class="flex items-center gap-8 mb-8 text-sm text-muted-foreground justify-center flex-wrap pb-8 border-b border-border/50">
+          <div class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+            <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span class="font-medium text-foreground">
+              {t(currentLocale, 'blog.author.name')}
+            </span>
+          </div>
+          {post.publishedAt && (
+            <div class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+              <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span class="text-foreground">
+                {new Date(post.publishedAt).toLocaleDateString(
+                  currentLocale === 'pl' ? 'pl-PL' :
+                  currentLocale === 'uk' ? 'uk-UA' :
+                  currentLocale === 'ru' ? 'ru-RU' : 'en-US',
+                  { year: 'numeric', month: 'long', day: 'numeric' }
+                )}
+              </span>
+            </div>
+          )}
+          <div class="flex items-center gap-2.5 px-4 py-2 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+            <svg class="h-4 w-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-foreground">
+              {currentLocale === 'pl' ? '5 min czytania' :
+               currentLocale === 'uk' ? '5 хв читання' :
+               currentLocale === 'ru' ? '5 мин чтения' :
+               '5 min read'}
+            </span>
+          </div>
+        </div>
+        
+        {post.coverImage && (
+          <img
+            src={urlFor(post.coverImage).width(1200).format('webp').url()}
+            srcset={`
+              ${urlFor(post.coverImage).width(400).format('webp').url()} 400w,
+              ${urlFor(post.coverImage).width(800).format('webp').url()} 800w,
+              ${urlFor(post.coverImage).width(1200).format('webp').url()} 1200w,
+              ${urlFor(post.coverImage).width(1600).format('webp').url()} 1600w
+            `}
+            sizes="(max-width: 768px) 100vw, 1200px"
+            alt={post.title}
+            class="w-full rounded-xl mb-8"
+            loading="lazy"
+            decoding="async"
+            width="1200"
+            height="630"
+          />
+        )}
+
+        <div class="prose max-w-none">
+          <PortableTextRenderer client:idle content={post.content} locale={currentLocale} />
+        </div>
+
+        <!-- CTA Section -->
+        <CTASection locale={currentLocale} />
+
+        <!-- Author Section -->
+        <AuthorSection locale={currentLocale} />
+
+        <!-- Related Articles Section -->
+        <RelatedArticles locale={currentLocale} relatedArticles={post.relatedArticles} />
+      </article>
+    </div>
+  </div>
+</BaseLayout>
+

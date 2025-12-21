@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageSEO, type Locale } from '../../lib/seo';
+import { getLocalBusinessSchema } from '../../lib/seo';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Services from '../../components/Services.astro';
+import Gallery from '../../components/Gallery.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Comparison from '../../components/Comparison.astro';
+import FAQ from '../../components/FAQ.astro';
+import RecentArticles from '../../components/RecentArticles.astro';
+import Contact from '../../components/Contact.astro';
+
+export async function getStaticPaths() {
+  const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
+  return locales.map((locale) => ({
+    params: { locale },
+  }));
+}
+
+const { locale } = Astro.params;
+const currentLocale = locale as Locale;
+const seo = getPageSEO(currentLocale, 'home');
+const structuredData = [getLocalBusinessSchema(currentLocale)];
+---
+
+<BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData}>
+  <Hero locale={currentLocale} />
+  <About locale={currentLocale} />
+  <Services locale={currentLocale} />
+  <Gallery locale={currentLocale} />
+  <Testimonials locale={currentLocale} />
+  <Comparison locale={currentLocale} />
+  <FAQ locale={currentLocale} />
+  <RecentArticles locale={currentLocale} />
+  <Contact locale={currentLocale} />
+</BaseLayout>
+

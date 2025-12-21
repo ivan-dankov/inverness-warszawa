@@ -3,34 +3,6 @@
     { 
       "source": "/api/decap-proxy/(.*)", 
       "destination": "/api/decap-proxy"
-    },
-    { 
-      "source": "/pl/:path*", 
-      "destination": "/index.html" 
-    },
-    { 
-      "source": "/en/:path*", 
-      "destination": "/index.html" 
-    },
-    { 
-      "source": "/uk/:path*", 
-      "destination": "/index.html" 
-    },
-    { 
-      "source": "/ru/:path*", 
-      "destination": "/index.html" 
-    },
-    {
-      "source": "/aftercare",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/blog/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/earrings/:path*",
-      "destination": "/index.html"
     }
   ],
   "headers": [

@@ -1,0 +1,343 @@
+{
+  "header": {
+    "nav": {
+      "about": "O Nas",
+      "services": "Usługi",
+      "gallery": "Galeria",
+      "comparison": "Metoda",
+      "contact": "Kontakt",
+      "aftercare": "Pielęgnacja",
+      "blog": "Blog",
+      "testimonials": "Opinie"
+    },
+    "buttons": {
+      "book": "Rezerwuj Online",
+      "contact": "Kontakt"
+    },
+    "phone": "Telefon"
+  },
+  "hero": {
+    "title": "Przekłuwanie Uszu w Warszawie",
+    "subtitle": "Bezpieczne i delikatne przekłuwanie uszu dla dzieci i dorosłych. W Gentle Piercing korzystamy z medycznego systemu Inverness Med (USA), który zapewnia pełną sterylność, precyzję i komfort zabiegu.",
+    "features": [
+      "Sterylne, jednorazowe narzędzia",
+      "Bezbolesne i bezpieczne",
+      "Dla dzieci 0+"
+    ],
+    "buttons": {
+      "book": "Rezerwuj Online",
+      "contact": "Kontakt"
+    },
+    "locationNotice": {
+      "studio": "📍 W gabinecie na Woli",
+      "mobile": "🚗 Z dojazdem do domu"
+    }
+  },
+  "about": {
+    "title": "O nas",
+    "subtitle": "Bezpieczne miejsce dla pierwszych kolczyków",
+    "benefits": [
+      {
+        "title": "💎 Bezpieczeństwo przede wszystkim",
+        "description": "Pracujemy wyłącznie w sterylnych warunkach z użyciem jednorazowych narzędzi."
+      },
+      {
+        "title": "👶 Dla dzieci i dorosłych",
+        "description": "Delikatna metoda odpowiednia już od 0+."
+      },
+      {
+        "title": "Inverness Med",
+        "description": "Certyfikowany przez FDA i ISO, gwarantuje najwyższą jakość."
+      },
+      {
+        "title": "💖 Delikatność i spokój",
+        "description": "Tworzymy przyjazną atmosferę, by każdy czuł się komfortowo."
+      }
+    ]
+  },
+  "services": {
+    "title": "Nasze Usługi",
+    "subtitle": "Profesjonalne przekłuwanie uszu z wykorzystaniem certyfikowanego systemu medycznego",
+    "cards": [
+      {
+        "title": "Przekłucie chrząstki (helix, tragus, conch) i płatka ucha (lobe)",
+        "description": "Profesjonalne przekłucie chrząstki lub płatka ucha z wykorzystaniem certyfikowanego systemu",
+        "badge": "Cena standardowa",
+        "price": "80 zł",
+        "duration": "30 min",
+        "features": [
+          "Cena nie obejmuje kosztu kolczyków"
+        ]
+      },
+      {
+        "title": "Przekłuwanie Uszu Dzieciom",
+        "description": "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
+        "badge": "Dla Dzieci",
+        "price": "150 zł",
+        "duration": "30 min",
+        "features": [
+          "Dla dzieci 0+",
+          "Cichy i delikatny mechanizm",
+          "Opieka i wsparcie rodziców"
+        ]
+      },
+      {
+        "title": "Więcej Wariantów Usług",
+        "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
+        "badge": "Booksy",
+        "price": "Sprawdź",
+        "duration": "Różne opcje",
+        "features": [
+          "Dojazd mobilny",
+          "Różne opcje kolczyków",
+          "Konsultacja i doradztwo"
+        ]
+      }
+    ],
+    "pricing": {
+      "title": "Informacje o Cenach",
+      "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 100 zł za parę",
+      "mobileVisit": "Dojazd mobilny: 40 zł, może być wyższa w zależności od odległości"
+    },
+    "bookButton": "Rezerwuj Online",
+    "durationLabel": "Czas trwania:"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "subtitle": "Zobacz nasz profesjonalny sprzęt i efekty naszej pracy",
+    "seeAll": "Zobacz Wszystkie",
+    "photoCount": "{{count}} zdjęć"
+  },
+  "comparison": {
+    "title": "Dlaczego Inverness Med",
+    "subtitle": "Bezpiecznie. Cicho. Sterylnie.",
+    "description": "System Inverness to nowoczesna metoda przekłuwania uszu – delikatna, jednorazowa i w pełni higieniczna. Idealna dla dzieci i dorosłych.",
+    "tableTitle": "🔍 Porównaj metody przekłuwania uszu",
+    "attributes": {
+      "method": "Metoda",
+      "sterility": "Sterylność",
+      "comfort": "Komfort",
+      "healing": "Gojenie",
+      "childrenSuitability": "Dla dzieci",
+      "cartilageSuitability": "Chrząstka",
+      "features": "Cechy szczególne"
+    },
+    "methods": {
+      "gun": {
+        "name": "Pistolet",
+        "sterility": "Częściowo sterylny",
+        "comfort": "Głośny, może być bolesny",
+        "healing": "Dłuższe, czasem z powikłaniami",
+        "childrenSuitability": "Nie, nieodpowiedni dla dzieci",
+        "cartilageSuitability": "Nie, tylko płatek ucha",
+        "features": "Szybki, ale mniej delikatny"
+      },
+      "needle": {
+        "name": "Igła (profesjonalna)",
+        "sterility": "Wysoka, jeśli zachowana sterylność",
+        "comfort": "Umiarkowany komfort",
+        "healing": "Dobre przy właściwej pielęgnacji",
+        "childrenSuitability": "Tak, ale przekłucie igłą zalecane jest od 9 roku życia — nieodpowiednie dla maluchów 0–5 lat.",
+        "cartilageSuitability": "Tak, odpowiedni dla chrząstki",
+        "features": "Precyzyjna metoda, zależna od doświadczenia specjalisty"
+      },
+      "inverness": {
+        "name": "Inverness",
+        "sterility": "W 100% sterylny, jednorazowy system",
+        "comfort": "Cicho i delikatnie",
+        "healing": "Szybkie, czyste gojenie",
+        "childrenSuitability": "Tak, zatwierdzony dla dzieci 0+",
+        "cartilageSuitability": "Tak, idealny dla chrząstki",
+        "features": "Pewność, komfort i bezpieczeństwo w jednym"
+      }
+    }
+  },
+  "testimonials": {
+    "title": "Opinie Naszych Klientów",
+    "subtitle": "Zobacz, co mówią o nas zadowoleni klienci Gentle Piercing",
+    "onBooksy": "na Booksy",
+    "onGoogleMaps": "na Google Maps"
+  },
+  "faq": {
+    "title": "Najczęściej Zadawane Pytania",
+    "subtitle": "Znajdź odpowiedzi na pytania dotyczące przekłuwania uszu systemem Inverness MED",
+    "aftercareLink": "Zobacz pełne zalecenia pielęgnacyjne →",
+    "items": [
+      {
+        "question": "Czy przekłuwanie uszu boli?",
+        "answer": "System Inverness MED jest wyjątkowo delikatny i znacznie mniej bolesny niż tradycyjny pistolet. Kolczyk delikatnie rozsuwa tkankę zamiast ją przebijać, co sprawia, że dyskomfort jest minimalny. Większość naszych klientów zgadza się, że procedura jest praktycznie bezbolesna."
+      },
+      {
+        "question": "Od jakiego wieku można przekłuwać uszy dzieciom?",
+        "answer": "System Inverness MED jest zatwierdzony przez lekarzy do przekłuwania uszu u dzieci od 0+. Jest to jedyny system w Europie z taką certyfikacją. Cichy, precyzyjny mechanizm nie przestrasza najmłodszych, a 100% sterylność gwarantuje bezpieczeństwo."
+      },
+      {
+        "question": "Jak długo trwa gojenie po przekłuciu?",
+        "answer": "W przypadku płatka ucha gojenie trwa około 6-8 tygodni. Dla przekłucia chrząstki (helix, tragus, conch) proces gojenia może potrwać 3-6 miesięcy. System Inverness MED przyspiesza gojenie dzięki precyzyjnemu, atraumatycznemu przekłuciu."
+      },
+      {
+        "question": "Czy system Inverness MED jest bezpieczny?",
+        "answer": "Tak! System Inverness MED posiada międzynarodowe certyfikaty FDA oraz ISO, potwierdzające najwyższe standardy jakości i bezpieczeństwa. Używamy jednorazowych, zamkniętych kaset sterylnych, co gwarantuje 100% sterylność."
+      },
+      {
+        "question": "Jakie kolczyki są dostępne?",
+        "answer": "W naszej ofercie znajduje się ponad 30 modeli kolczyków wykonanych z tytanu, niobu lub stali medycznej. Wszystkie są hipoalergiczne i posiadają certyfikat REACH. Mamy kolczyki zarówno dla dzieci, jak i dorosłych w różnych stylach i kolorach."
+      },
+      {
+        "question": "Jak przygotować się do wizyty?",
+        "answer": "Nie wymaga się specjalnego przygotowania. Zalecamy przyjście z czystymi uszami i włosami związanymi lub z możliwością ich związania. Dla dzieci warto wyjaśnić wcześniej, jak będzie wyglądać procedura, aby czuły się spokojnie."
+      },
+      {
+        "question": "Ile kosztuje przekłuwanie uszu?",
+        "answer": "Cena zabiegu zaczyna się od 130 zł za przekłucie dwóch płatków uszu. Do ceny należy doliczyć koszt kolczyków — od 90 do 150 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
+      },
+      {
+        "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
+        "answer": "Tak! Specjalizujemy się w przekłuwaniu chrząstki ucha, w tym helix, tragus i conch. System Inverness MED jest szczególnie odpowiedni do tego typu przekłuć, ponieważ jest precyzyjny i nie rozrywa tkanek jak typowy pistolet."
+      },
+      {
+        "question": "Jak dbać o przekłute uszy?",
+        "answer": "Po przekłuciu otrzymasz szczegółowe instrukcje pielęgnacji. Podstawowe zasady to: mycie rąk przed dotknięciem kolczyków, delikatne oczyszczanie 2 razy dziennie specjalnym płynem, unikanie basenów i zbiorników wodnych przez pierwsze 2 tygodnie, oraz regularne obracanie kolczykiem.",
+        "link": true
+      }
+    ]
+  },
+  "contact": {
+    "title": "Skontaktuj Się z Nami",
+    "subtitle": "Zarezerwuj wizytę już dziś lub zadaj nam pytanie",
+    "contactInfo": "Informacje Kontaktowe",
+    "location": "Lokalizacja",
+    "address": "Gizów 6/208, 01-249 Warszawa, Wola",
+    "phone": "Telefon",
+    "phoneNumber": "+48 573 818 260",
+    "email": "E-mail",
+    "emailAddress": "piercinggentle@gmail.com",
+    "instagram": "Instagram",
+    "instagramHandle": "@prokol_ushej_warszawa",
+    "hours": "Godziny Otwarcia",
+    "days": "Poniedziałek - Niedziela",
+    "hoursTime": "10:00 - 20:00",
+    "mobileVisit": "Dojazd mobilny: +40 zł",
+    "messengers": "WhatsApp / Telegram"
+  },
+  "footer": {
+    "company": {
+      "title": "Gentle Piercing",
+      "description": "Profesjonalne przekłuwanie uszu systemem medycznym"
+    },
+    "links": {
+      "title": "Przydatne Linki",
+      "aftercare": "Pielęgnacja",
+      "blog": "Blog",
+      "contact": "Kontakt"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "phone": "Telefon",
+      "instagram": "Instagram",
+      "location": "Lokalizacja"
+    },
+    "copyright": "© {{year}} Gentle Piercing. Wszystkie prawa zastrzeżone."
+  },
+  "aftercare": {
+    "pageTitle": "Pielęgnacja po przekłuciu uszu - Inverness MED Warszawa",
+    "backButton": "Powrót do strony głównej",
+    "title": "Pielęgnacja po przekłuciu uszu",
+    "subtitle": "Kompletne instrukcje pielęgnacji po zabiegu systemem Inverness MED",
+    "sections": [
+      {
+        "title": "🧼 Higiena i czystość",
+        "points": [
+          "Zawsze utrzymuj miejsce przekłucia czyste, suche i z dostępem powietrza.",
+          "Nie dotykaj uszu brudnymi rękami. Przed każdorazowym dotknięciem ucha lub kolczyków dokładnie umyj ręce.",
+          "Nie obracaj ani nie poruszaj kolczykami bez potrzeby."
+        ]
+      },
+      {
+        "title": "🌙 Sen i codzienna pielęgnacja",
+        "points": [
+          "Zmień pościel lub przynajmniej poszewkę poduszki na czystą.",
+          "Śpij na wznak, aby uniknąć ucisku.",
+          "Tkliwość lub lekki obrzęk to normalny objaw gojenia."
+        ]
+      },
+      {
+        "title": "💧 Dezynfekcja",
+        "points": [
+          "3× dziennie oczyść miejsce przekłucia z przodu i z tyłu za pomocą EAR CARE SOLUTION lub innego środka odkażającego.",
+          "Używaj czystych rąk i nowego wacika dla każdego ucha.",
+          "Po przemyciu delikatnie obróć kolczyk w lewo i w prawo o 180°."
+        ]
+      },
+      {
+        "title": "💄 Kosmetyki i stylizacja",
+        "points": [
+          "W okresie gojenia unikaj: lakieru do włosów, perfum, farb, podkładów, pudrów i innych kosmetyków w okolicy przekłucia.",
+          "Po umyciu włosów dokładnie osusz ucho jednorazową chusteczką i zdezynfekuj miejsce przekłucia.",
+          "Zachowaj ostrożność przy czesaniu włosów, zakładaniu czapki i szalika."
+        ]
+      },
+      {
+        "title": "🚫 Czego unikać",
+        "points": [
+          "Unikaj basenu, sauny i solarium.",
+          "Dzieci powinny unikać piaskownicy i sal zabaw.",
+          "Korzystaj z prysznica zamiast wanny.",
+          "Ogranicz spożycie alkoholu, kawy, czarnej herbaty i coli, ponieważ mogą zwiększać obrzęk."
+        ]
+      },
+      {
+        "title": "💎 Zmiana kolczyków",
+        "text": "Nie wyjmuj kolczyków przed upływem:",
+        "points": [
+          "6 tygodni – przy przekłuciu płatka ucha,",
+          "12 tygodni – przy przekłuciu chrząstki lub nosa."
+        ],
+        "afterText": "Po tym czasie możesz je bezpiecznie wymienić.",
+        "removal": "Aby zdjąć kolczyki Inverness, mocno przytrzymaj końcówkę Safety Back, a drugą ręką przekręć i pociągnij przód kolczyka."
+      },
+      {
+        "title": "💖 Dalsza pielęgnacja po zagojeniu",
+        "points": [
+          "Pełne gojenie trwa ok. roku.",
+          "Po zdjęciu kolczyków Inverness wybieraj lekkie, hipoalergiczne kolczyki, np. z linii BIOJOUX (bez niklu), aby uniknąć alergii."
+        ]
+      },
+      {
+        "title": "⚕️ W razie problemów",
+        "text": "Jeśli pojawi się infekcja lub silny stan zapalny, nie wyjmuj kolczyków — skontaktuj się z lekarzem."
+      }
+    ]
+  },
+  "breadcrumb": {
+    "home": "Strona główna",
+    "blog": "Blog"
+  },
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Wystąpił błąd",
+    "notFound": "Nie znaleziono"
+  },
+  "recentArticles": {
+    "title": "Najnowszy artykuł",
+    "subtitle": "Poznaj więcej w naszym blogu o przekłuwaniu uszu",
+    "readMore": "Czytaj dalej",
+    "viewAll": "Zobacz wszystkie artykuły"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Poznaj więcej o przekłuwaniu uszu, pielęgnacji i wyborze kolczyków",
+    "noPosts": "Brak artykułów do wyświetlenia.",
+    "readMore": "Czytaj dalej",
+    "author": {
+      "title": "O autorze",
+      "name": "Kseniya Askerka",
+      "bio": "dyrektor Gentle Piercing Warszawa, 3+ lata doświadczenia, ponad 500 przekłuć, certyfikowane szkolenie Sanico Poland."
+    },
+    "relatedArticles": {
+      "title": "Inne artykuły",
+      "readMore": "Czytaj dalej"
+    }
+  }
+}

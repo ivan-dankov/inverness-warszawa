@@ -1,0 +1,57 @@
+---
+import { t } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import { Gallery as GalleryReact } from './Gallery.tsx';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+// Import all 18 gallery images
+import img0968 from '../assets/gallery/IMG_0968.jpg';
+import img0969 from '../assets/gallery/IMG_0969.jpg';
+import img0970 from '../assets/gallery/IMG_0970.jpg';
+import img0971 from '../assets/gallery/IMG_0971.jpg';
+import img0972 from '../assets/gallery/IMG_0972.jpg';
+import img0973 from '../assets/gallery/IMG_0973.jpg';
+import img0974 from '../assets/gallery/IMG_0974.jpg';
+import img0975 from '../assets/gallery/IMG_0975.jpg';
+import img0976 from '../assets/gallery/IMG_0976.jpg';
+import img0977 from '../assets/gallery/IMG_0977.jpg';
+import img0978 from '../assets/gallery/IMG_0978.jpg';
+import img0979 from '../assets/gallery/IMG_0979.jpg';
+import img0980 from '../assets/gallery/IMG_0980.jpg';
+import img0981 from '../assets/gallery/IMG_0981.jpg';
+import img0982 from '../assets/gallery/IMG_0982.jpg';
+import img0983 from '../assets/gallery/IMG_0983.jpg';
+import img0984 from '../assets/gallery/IMG_0984.jpg';
+import img0985 from '../assets/gallery/IMG_0985.jpg';
+
+// Get image URLs - for thumbnails use smaller size, for full use original
+const getImageUrl = (img: any) => typeof img === 'string' ? img : img.src;
+
+const galleryImages = [
+  { thumb: getImageUrl(img0985), full: getImageUrl(img0985), alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
+  { thumb: getImageUrl(img0984), full: getImageUrl(img0984), alt: "Przekłucie płatka ucha przed i po z kryształowym kolczykiem - medyczne przekłuwanie" },
+  { thumb: getImageUrl(img0983), full: getImageUrl(img0983), alt: "Przekłucie ucha dziecka z perłowym kolczykiem Inverness" },
+  { thumb: getImageUrl(img0982), full: getImageUrl(img0982), alt: "Przekłucie płatka i conch przed i po z wiszącymi kolczykami kryształowymi" },
+  { thumb: getImageUrl(img0981), full: getImageUrl(img0981), alt: "Przekłucie helix i płatka ucha z kolczykami złotymi i kryształami" },
+  { thumb: getImageUrl(img0980), full: getImageUrl(img0980), alt: "Przekłucie ucha dziecka przed i po z różowym kwiatowym kolczykiem" },
+  { thumb: getImageUrl(img0979), full: getImageUrl(img0979), alt: "Profesjonalne przekłucie uszu dziecka z fioletowym kryształowym kolczykiem" },
+  { thumb: getImageUrl(img0978), full: getImageUrl(img0978), alt: "Medyczne przekłucie ucha dziewczynki z holograficznym kolczykiem" },
+  { thumb: getImageUrl(img0977), full: getImageUrl(img0977), alt: "Zadowolone dziecko po przekłuciu uszu - bezbolesny system Inverness MED" },
+  { thumb: getImageUrl(img0976), full: getImageUrl(img0976), alt: "Przekłucie uszu dziecka ze złotymi kolczykami w salonie Inverness MED" },
+  { thumb: getImageUrl(img0975), full: getImageUrl(img0975), alt: "Luksusowe przekłucie ucha z czterema kolczykami - księżyc, krzyżyk i kryształy" },
+  { thumb: getImageUrl(img0974), full: getImageUrl(img0974), alt: "Przekłucie płatka ucha dziecka ze złotym kwiatkiem Inverness" },
+  { thumb: getImageUrl(img0973), full: getImageUrl(img0973), alt: "Przekłucie conch i płatka z trzema złotymi kolczykami z gwiazdką" },
+  { thumb: getImageUrl(img0972), full: getImageUrl(img0972), alt: "Przekłucie rook i helix z kryształowymi kolczykami medycznymi" },
+  { thumb: getImageUrl(img0971), full: getImageUrl(img0971), alt: "Przekłucie rook, daith i płatka ze złotymi wiszącymi kolczykami z kryształami" },
+  { thumb: getImageUrl(img0970), full: getImageUrl(img0970), alt: "Przekłucie tragus i płatka z błyszczącym wiszącym kolczykiem kryształowym" },
+  { thumb: getImageUrl(img0969), full: getImageUrl(img0969), alt: "Przekłucie conch z czerwonym kryształem i płatka z kryształem Inverness MED" },
+  { thumb: getImageUrl(img0968), full: getImageUrl(img0968), alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
+];
+---
+
+<GalleryReact client:visible locale={locale} images={galleryImages} />

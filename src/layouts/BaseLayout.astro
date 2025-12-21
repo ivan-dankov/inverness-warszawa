@@ -1,0 +1,94 @@
+---
+import type { Locale } from '../lib/seo';
+import { getCanonicalUrl, getHreflangUrls, type SEOConfig } from '../lib/seo';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LanguageSwitch from '../components/LanguageSwitch.astro';
+import '../index.css';
+
+interface Props {
+  locale: Locale;
+  seo: SEOConfig;
+  structuredData?: any[];
+  translationSlugs?: Record<Locale, string>;
+}
+
+const { locale, seo, structuredData = [], translationSlugs } = Astro.props;
+const currentPath = Astro.url.pathname;
+const canonical = seo.canonical || getCanonicalUrl(locale, Astro.url.pathname.replace(`/${locale}`, ''));
+const hreflang = seo.hreflang || getHreflangUrls(
+  Astro.url.pathname.replace(`/${locale}`, ''),
+  seo.translationGroup
+);
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{seo.title}</title>
+    <meta name="title" content={seo.title} />
+    <meta name="description" content={seo.description} />
+    {seo.noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="pl" href={hreflang.pl} />
+    <link rel="alternate" hreflang="uk" href={hreflang.uk} />
+    <link rel="alternate" hreflang="ru" href={hreflang.ru} />
+    <link rel="alternate" hreflang="en" href={hreflang.en} />
+    <link rel="alternate" hreflang="x-default" href={hreflang.pl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    {seo.ogImage && <meta property="og:image" content={seo.ogImage} />}
+    <meta property="og:site_name" content="Gentle Piercing" />
+    <meta property="og:locale" content={locale === 'pl' ? 'pl_PL' : locale === 'uk' ? 'uk_UA' : locale === 'ru' ? 'ru_RU' : 'en_US'} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonical} />
+    <meta property="twitter:title" content={seo.title} />
+    <meta property="twitter:description" content={seo.description} />
+    {seo.ogImage && <meta property="twitter:image" content={seo.ogImage} />}
+
+    <!-- Structured Data (JSON-LD) -->
+    {structuredData.map((data, index) => (
+      <script type="application/ld+json" set:html={JSON.stringify(data)} />
+    ))}
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col">
+      <Header locale={locale} currentPath={currentPath}>
+        <LanguageSwitch 
+          slot="language-switch"
+          locale={locale}
+          currentPath={currentPath}
+          translationSlugs={translationSlugs}
+        />
+      </Header>
+      <main class="flex-grow">
+        <slot />
+      </main>
+      <Footer locale={locale}>
+        <LanguageSwitch 
+          slot="language-switch"
+          locale={locale}
+          currentPath={currentPath}
+          translationSlugs={translationSlugs}
+        />
+      </Footer>
+    </div>
+  </body>
+</html>
+

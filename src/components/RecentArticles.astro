@@ -1,0 +1,101 @@
+---
+import { t } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import { getPostsByLocale, urlFor } from '../lib/sanity';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+let posts = [];
+try {
+  const allPosts = await getPostsByLocale(locale);
+  posts = allPosts.slice(0, 3); // Get latest 3
+} catch (error) {
+  // If Sanity dataset doesn't exist, show empty
+  console.warn('Could not fetch recent articles:', error);
+}
+---
+
+<section class="py-12 sm:py-20 bg-gradient-to-b from-muted/20 to-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+    <div class="text-center mb-8 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+        {t(locale, 'recentArticles.title')}
+      </h2>
+      <p class="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
+        {t(locale, 'recentArticles.subtitle')}
+      </p>
+    </div>
+
+    {posts.length > 0 ? (
+      <div class="grid gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <a 
+            key={post._id}
+            href={`/${locale}/blog/${post.slug}`}
+            class="block group overflow-hidden rounded-lg border border-border bg-card hover:shadow-lg transition-shadow flex flex-col h-full"
+          >
+            {post.coverImage && (
+              <div class="w-full h-64 overflow-hidden bg-muted">
+                <img 
+                  src={urlFor(post.coverImage).width(600).height(350).url()}
+                  alt={post.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                  width="600"
+                  height="350"
+                />
+              </div>
+            )}
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                {post.title}
+              </h3>
+              <p class="text-sm text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                {post.excerpt}
+              </p>
+              <div class="flex items-center justify-between mt-auto">
+                <time class="text-xs text-muted-foreground">
+                  {new Date(post.publishedAt).toLocaleDateString(locale)}
+                </time>
+                <span class="text-primary text-sm font-medium flex items-center gap-1">
+                  {t(locale, 'recentArticles.readMore')}
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-12">
+        <p class="text-muted-foreground mb-4">{t(locale, 'recentArticles.subtitle')}</p>
+        <a 
+          href={`/${locale}/blog`}
+          class="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+        >
+          {t(locale, 'recentArticles.viewAll')}
+        </a>
+      </div>
+    )}
+
+    {posts.length > 0 && (
+      <div class="text-center mt-8">
+        <a 
+          href={`/${locale}/blog`}
+          class="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+        >
+          {t(locale, 'recentArticles.viewAll')}
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    )}
+  </div>
+</section>
+

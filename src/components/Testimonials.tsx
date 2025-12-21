@@ -1,91 +1,38 @@
-import { Card } from "@/components/ui/card";
-import { Star } from "@/lib/icons";
+import { Card } from "./ui/card";
+import { Star } from "../lib/icons";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { useTranslation } from 'react-i18next';
+} from "./ui/carousel";
+import { t } from '../lib/translations';
+import type { Locale } from '../lib/seo';
 
-export const Testimonials = () => {
-  const { t } = useTranslation();
-  const testimonials = [
-    {
-      name: "Anna P",
-      date: "paź 18, 2025",
-      rating: 5,
-      text: "Jestem zachwycona usługą:) Pani wszystko wyjaśniła, jak będzie przebiegać przekłucie, jak pielęgnować. Super podejście do dzieci:) wszystko sprawnie poszło, polecamy ❤️",
-      service: "Przekłuwanie uszu z dojazdem do domu"
-    },
-    {
-      name: "Weronika N",
-      date: "paź 15, 2025",
-      rating: 5,
-      text: "Byłam u pani Kseniyi na przekłuciu uszu i jestem bardzo zadowolona z efektu! 💎 Wszystko odbyło się szybko, profesjonalnie i bezboleśnie. Pani Kseniya jest bardzo miła, delikatna i dokładna. Dziękuję serdecznie – polecam z całego serca! ❤️",
-      service: "Przekłuwanie uszu INVERNESS MED"
-    },
-    {
-      name: "Ivan D",
-      date: "paź 15, 2025",
-      rating: 5,
-      text: "Jestem bardzo zadowolony! Przekłucie wykonane szybko i bez stresu. Świetny kontakt i pełen profesjonalizm — polecam!",
-      service: "Przekłuwanie uszu INVERNESS MED"
-    },
-    {
-      name: "Валерія Б",
-      date: "paź 15, 2025",
-      rating: 5,
-      text: "Bardzo miła atmosfera i pełne zaangażowanie. Pani wszystko spokojnie wytłumaczyła, przekłucie przebiegło bez bólu i wygląda przepięknie ✨ Na pewno wrócę i będę polecać dalej!🤍",
-      service: "Przekłuwanie uszu"
-    },
-    {
-      name: "Аня М",
-      date: "paź 15, 2025",
-      rating: 5,
-      text: "Bardzo polecam usługę przekłuwania uszu! Wszystko przebiegło świetnie i zupełnie bez bólu. Ksenia ma bardzo lekką rękę, wszystko zrobiła niezwykle dokładnie i delikatnie. Dodatkowo cieszy czystość i dbałość o higienę w salonie. Jestem bardzo zadowolona!",
-      service: "Przekłuwanie uszu"
-    },
-    {
-      name: "Polina R",
-      date: "paź 16, 2025",
-      rating: 5,
-      text: "Bardzo polecam! Szybko, dokładnie i profesjonalnie. Jestem bardzo zadowolona😊",
-      service: "Przekłucie płatka ucha INVERNESS MED"
-    },
-    {
-      name: "Anastasiia P",
-      date: "paź 16, 2025",
-      rating: 5,
-      text: "Jestem bardzo zadowolona! Przekłucie wykonane delikatnie i bez stresu. Świetny kontakt, wszystko wytłumaczone krok po kroku. Polecam każdemu, kto szuka bezpiecznego i profesjonalnego miejsca!",
-      service: "Przekłucie chrząstki"
-    },
-    {
-      name: "Inesa A",
-      date: "paź 16, 2025",
-      rating: 5,
-      text: "Profesjonalne podejście, czysto, sterylnie i z uśmiechem 😊 Przekłucie wykonane perfekcyjnie, efekt piękny!",
-      service: "Przekłucie chrząstki"
-    },
-    {
-      name: "Myroslava T",
-      date: "paź 16, 2025",
-      rating: 5,
-      text: "Bardzo zadowolona !!! Dokładnie, szybko, profesjonalne. Polecam",
-      service: "Przekłuwanie uszu INVERNESS MED"
-    }
-  ];
+interface Testimonial {
+  name: string;
+  date: string;
+  rating: number;
+  text: string;
+  service: string;
+}
 
+interface TestimonialsProps {
+  locale: Locale;
+  testimonials: Testimonial[];
+}
+
+export function Testimonials({ locale, testimonials }: TestimonialsProps) {
   return (
     <section id="testimonials" className="py-20 bg-gradient-to-b from-primary-light/10 to-background border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            {t('testimonials.title')}
+            {t(locale, 'testimonials.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            {t('testimonials.subtitle')}
+            {t(locale, 'testimonials.subtitle')}
           </p>
           <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
             <div className="flex items-center gap-2">
@@ -96,7 +43,7 @@ export const Testimonials = () => {
               </div>
               <span className="text-lg font-semibold">5.0</span>
               <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                {t('testimonials.onBooksy')}
+                {t(locale, 'testimonials.onBooksy')}
               </a>
             </div>
             <span className="text-muted-foreground">•</span>
@@ -108,7 +55,7 @@ export const Testimonials = () => {
               </div>
               <span className="text-lg font-semibold">5.0</span>
               <a href="https://maps.app.goo.gl/6a87CL7bf8aApZHDA" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                {t('testimonials.onGoogleMaps')}
+                {t(locale, 'testimonials.onGoogleMaps')}
               </a>
             </div>
           </div>
@@ -154,4 +101,4 @@ export const Testimonials = () => {
       </div>
     </section>
   );
-};
+}

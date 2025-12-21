@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPageSEO, type Locale } from '../../lib/seo';
+
+const { locale } = Astro.params;
+
+if (!locale || !['pl', 'uk', 'ru', 'en'].includes(locale)) {
+  return Astro.redirect('/pl/contact', 301);
+}
+
+const currentLocale = locale as Locale;
+const seo = getPageSEO(currentLocale, 'contact');
+---
+
+<BaseLayout locale={currentLocale} seo={seo}>
+  <div class="min-h-screen bg-background">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h1 class="text-4xl font-bold mb-8">Contact - {locale}</h1>
+      <p>Contact page content will be migrated here.</p>
+    </div>
+  </div>
+</BaseLayout>
+
