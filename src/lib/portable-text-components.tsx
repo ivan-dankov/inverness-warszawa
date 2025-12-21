@@ -1,6 +1,37 @@
 import { PortableTextComponents } from '@portabletext/react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import type { Locale } from './seo';
 import { urlFor } from './sanity';
+
+// Helper to check if text looks like a markdown table
+function isMarkdownTable(text: string): boolean {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return false;
+  
+  const firstLine = lines[0].trim();
+  if (!firstLine.includes('|')) return false;
+  
+  const secondLine = lines[1].trim();
+  if (!secondLine.match(/^\|[\s\-:]+(\|[\s\-:]+)*\|$/)) return false;
+  
+  return true;
+}
+
+// Helper to extract plain text from Portable Text children
+function extractText(children: any): string {
+  if (typeof children === 'string') return children;
+  if (Array.isArray(children)) {
+    return children.map(extractText).join('');
+  }
+  if (children?.props?.children) {
+    return extractText(children.props.children);
+  }
+  if (children?.children) {
+    return extractText(children.children);
+  }
+  return '';
+}
 
 export function getPortableTextComponents(locale: Locale): PortableTextComponents {
   return {
@@ -17,9 +48,59 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
       h4: ({ children }) => (
         <h4 class="text-xl sm:text-2xl font-semibold text-foreground mb-4 mt-8">{children}</h4>
       ),
-      normal: ({ children }) => (
-        <p class="text-foreground leading-relaxed mb-6 text-base">{children}</p>
-      ),
+      normal: ({ children }) => {
+        const text = extractText(children);
+        
+        // Check if this is a markdown table
+        if (isMarkdownTable(text)) {
+          return (
+            <div className="my-8 overflow-x-auto">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  table: ({ children }) => (
+                    <table className="min-w-full border-collapse border border-border rounded-lg overflow-hidden bg-card">
+                      {children}
+                    </table>
+                  ),
+                  thead: ({ children }) => (
+                    <thead className="bg-muted/50">
+                      {children}
+                    </thead>
+                  ),
+                  tbody: ({ children }) => (
+                    <tbody className="[&>tr:nth-child(even)]:bg-muted/20">
+                      {children}
+                    </tbody>
+                  ),
+                  tr: ({ children }) => (
+                    <tr className="bg-background">
+                      {children}
+                    </tr>
+                  ),
+                  th: ({ children }) => (
+                    <th className="border border-border px-4 py-3 text-left font-semibold text-foreground">
+                      {children}
+                    </th>
+                  ),
+                  td: ({ children }) => (
+                    <td className="border border-border px-4 py-3 text-foreground">
+                      {children}
+                    </td>
+                  ),
+                }}
+              >
+                {text}
+              </ReactMarkdown>
+            </div>
+          );
+        }
+        
+        // Regular paragraph
+        return (
+          <p className="text-foreground leading-relaxed mb-6 text-base">{children}</p>
+        );
+      },
       blockquote: ({ children }) => (
         <blockquote class="border-l-4 border-primary bg-muted/30 pl-6 pr-4 py-4 italic text-foreground my-8 rounded-r-lg">
           {children}
