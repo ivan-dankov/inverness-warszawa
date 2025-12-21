@@ -6,13 +6,13 @@ A modern, multilingual website for Gentle Piercing - medical ear piercing servic
 
 This project is built with:
 
-- Vite
+- Astro
 - TypeScript
-- React
+- React (for interactive components)
 - shadcn-ui
 - Tailwind CSS
-- React Router DOM
-- i18next (multilingual support)
+- Sanity CMS (for blog content)
+- Static Site Generation (SSG)
 
 ## Getting Started
 
@@ -38,7 +38,7 @@ npm run dev
 
 ### Development
 
-The development server will start on `http://localhost:8080` with hot module replacement.
+The development server will start on `http://localhost:4321` with hot module replacement.
 
 ### Building
 
@@ -52,20 +52,20 @@ npm run preview
 
 ## Project Structure
 
-- `src/pages/` - Page components
-- `src/components/` - Reusable components
+- `src/pages/` - Astro pages (file-based routing)
+- `src/components/` - Reusable components (Astro and React)
 - `src/lib/` - Utility functions and configurations
-- `src/i18n/` - Internationalization configuration
-- `public/locales/` - Translation files
-- `content/blog/` - Blog articles (Markdown files)
+- `src/content/translations/` - Translation JSON files
+- `sanity/` - Sanity CMS configuration and schemas
 
 ## Features
 
 - Multilingual support (Polish, English, Ukrainian, Russian)
 - Static Site Generation (SSG) for SEO
-- Blog content management via Decap CMS
+- Blog content management via Sanity CMS
 - Optimized performance and loading speed
 - Responsive design
+- React islands for interactive components
 
 ## Deployment
 
