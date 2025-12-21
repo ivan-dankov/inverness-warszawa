@@ -56,7 +56,12 @@ export const LocalBusinessSchema = ({ currentLang }: LocalBusinessSchemaProps) =
       "opens": "09:00",
       "closes": "20:00"
     },
-    "priceRange": "150-250 zł"
+    "priceRange": "150-250 zł",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "31"
+    }
   });
 
   const getOrganizationSchema = () => ({

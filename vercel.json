@@ -1,6 +1,13 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/pl",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { 
       "source": "/api/decap-proxy/(.*)", 

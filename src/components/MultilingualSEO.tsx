@@ -26,6 +26,10 @@ export const MultilingualSEO = ({
   const title = customTitle || langConfig.title;
   const description = customDescription || langConfig.description;
   const noIndex = shouldNoIndex();
+  
+  // Default OG image (1200x630 recommended size)
+  const defaultOgImage = 'https://d375139ucebi94.cloudfront.net/region2/pl/319418/biz_photo/fe2fefa17af54b6c919f56d37e7e97-inverness-med-medyczne-przeklu-biz-photo-895cc6a308e44d68bbb7a349741529-booksy.jpeg';
+  const finalOgImage = ogImage || defaultOgImage;
 
   // Keywords for SEO
   const keywords = {
@@ -61,15 +65,11 @@ export const MultilingualSEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:locale" content={currentLang === 'pl' ? 'pl_PL' : currentLang === 'en' ? 'en_US' : currentLang === 'uk' ? 'uk_UA' : 'ru_RU'} />
-      {ogImage && (
-        <>
-          <meta property="og:image" content={ogImage} />
-          <meta property="og:image:secure_url" content={ogImage} />
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="1200" />
-          <meta property="og:image:alt" content={title} />
-        </>
-      )}
+      <meta property="og:image" content={finalOgImage} />
+      <meta property="og:image:secure_url" content={finalOgImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={title} />
       
       {/* Alternate locales */}
       {Object.entries(hrefLangUrls).map(([lang, url]) => {
@@ -79,10 +79,12 @@ export const MultilingualSEO = ({
       })}
       
       {/* Twitter Card */}
-      {ogImage && <meta name="twitter:card" content="summary_large_image" />}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@prokol_ushej_warszawa" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      {ogImage && <meta name="twitter:image" content={ogImage} />}
+      <meta name="twitter:image" content={finalOgImage} />
+      <meta name="twitter:image:alt" content={title} />
       
       {/* Robots - block preview domains */}
       {noIndex && <meta name="robots" content="noindex, nofollow" />}

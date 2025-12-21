@@ -557,7 +557,7 @@ export default function BlogArticle() {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",
-      "reviewCount": "14"
+      "reviewCount": "31"
     },
     "priceRange": "150-250 zł"
   });
