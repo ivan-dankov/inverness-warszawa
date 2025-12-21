@@ -1,5 +1,6 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
+import { table } from '@sanity/table';
 import postSchema from './sanity/schemas/post';
 
 export default defineConfig({
@@ -9,6 +10,7 @@ export default defineConfig({
   dataset: 'production',
   plugins: [
     structureTool(),
+    table(),
   ],
   schema: {
     types: [postSchema],

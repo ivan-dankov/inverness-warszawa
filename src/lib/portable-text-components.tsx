@@ -76,9 +76,56 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
           <img
             src={urlFor(value).width(1200).url()}
             alt={value.alt || ''}
-            class="rounded-xl my-10 max-w-full h-auto shadow-lg border border-border/30"
+            className="rounded-xl my-10 max-w-full h-auto shadow-lg border border-border/30"
             loading="lazy"
           />
+        );
+      },
+      table: ({ value }) => {
+        const { rows } = value;
+        if (!rows || !Array.isArray(rows) || rows.length === 0) return null;
+
+        // Determine if first row should be header (common pattern)
+        const hasHeader = rows.length > 0;
+        const headerRow = hasHeader ? rows[0] : null;
+        const dataRows = hasHeader ? rows.slice(1) : rows;
+
+        return (
+          <div className="overflow-x-auto my-8">
+            <table className="min-w-full border-collapse border border-border rounded-lg overflow-hidden bg-card">
+              {headerRow && (
+                <thead>
+                  <tr className="bg-muted/50">
+                    {headerRow.cells.map((cell: string, index: number) => (
+                      <th
+                        key={index}
+                        className="border border-border px-4 py-3 text-left font-semibold text-foreground"
+                      >
+                        {cell}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+              )}
+              <tbody>
+                {dataRows.map((row: { cells: string[] }, rowIndex: number) => (
+                  <tr
+                    key={rowIndex}
+                    className={rowIndex % 2 === 0 ? "bg-background" : "bg-muted/20"}
+                  >
+                    {row.cells.map((cell: string, cellIndex: number) => (
+                      <td
+                        key={cellIndex}
+                        className="border border-border px-4 py-3 text-foreground"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         );
       },
     },
