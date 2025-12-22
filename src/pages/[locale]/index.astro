@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getPageSEO, type Locale } from '../../lib/seo';
-import { getLocalBusinessSchema } from '../../lib/seo';
+import { getPageSEO, getLocalBusinessSchema, getOrganizationSchema, getFAQSchema, getBreadcrumbSchema, getCanonicalUrl, type Locale } from '../../lib/seo';
+import { getTranslations, t } from '../../lib/translations';
 import Hero from '../../components/Hero.astro';
 import About from '../../components/About.astro';
 import Services from '../../components/Services.astro';
@@ -22,7 +22,20 @@ export async function getStaticPaths() {
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
 const seo = getPageSEO(currentLocale, 'home');
-const structuredData = [getLocalBusinessSchema(currentLocale)];
+
+// Get FAQ data for schema
+const translations = getTranslations(currentLocale);
+const faqs = translations.faq?.items || [];
+
+// Build structured data
+const structuredData = [
+  getLocalBusinessSchema(currentLocale),
+  getOrganizationSchema(),
+  getFAQSchema(currentLocale, faqs),
+  getBreadcrumbSchema([
+    { name: t(currentLocale, 'breadcrumb.home'), url: getCanonicalUrl(currentLocale, '') },
+  ]),
+];
 ---
 
 <BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData}>

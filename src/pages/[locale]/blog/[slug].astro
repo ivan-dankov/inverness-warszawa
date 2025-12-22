@@ -61,13 +61,23 @@ const ogImage = post.ogImage
   ? urlFor(post.ogImage).width(1200).height(630).format('webp').url()
   : urlFor(post.coverImage).width(1200).height(630).format('webp').url();
 
+// Format dates for OG article tags (ISO 8601 format)
+const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString() : undefined;
+const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedTime;
+
 const seo = {
   title: post.metaTitle || post.title,
   description: post.metaDescription || post.excerpt,
   ogImage,
+  ogType: 'article', // Blog posts are articles
   canonical,
   hreflang,
   translationGroup: translationSlugs,
+  // Article-specific metadata
+  articlePublishedTime: publishedTime,
+  articleModifiedTime: modifiedTime,
+  articleAuthor: t(currentLocale, 'blog.author.name'), // Use translated author name
+  articleSection: 'Blog',
 };
 
 const articleSchema = getArticleSchema({
@@ -78,6 +88,7 @@ const articleSchema = getArticleSchema({
   publishedAt: post.publishedAt,
   updatedAt: post.updatedAt,
   locale: currentLocale,
+  author: t(currentLocale, 'blog.author.name'), // Add author to schema
 });
 
 const breadcrumbSchema = getBreadcrumbSchema([
@@ -93,7 +104,7 @@ const structuredData = [articleSchema, breadcrumbSchema];
   <div class="bg-background">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
       <nav class="mb-8" aria-label="Breadcrumb">
-        <ol class="flex items-center space-x-2 text-sm text-muted-foreground">
+        <ol class="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground">
           <li>
             <a href={`/${locale}`} class="hover:text-primary transition-colors">
               {t(currentLocale, 'breadcrumb.home')}
@@ -107,13 +118,13 @@ const structuredData = [articleSchema, breadcrumbSchema];
           </li>
           <li class="flex items-center">
             <span class="mx-2">/</span>
-            <span class="text-foreground font-medium">{post.title}</span>
+            <span class="text-foreground font-medium break-words">{post.title}</span>
           </li>
         </ol>
       </nav>
 
       <article>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8">{post.title}</h1>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 text-center">{post.title}</h1>
         
         <!-- Article Metadata -->
         <div class="flex items-center gap-8 mb-8 text-sm text-muted-foreground justify-center flex-wrap pb-8 border-b border-border/50">

@@ -1,6 +1,7 @@
 ---
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
+import { getImage } from 'astro:assets';
 import logoWide from '../assets/logo-wide.svg';
 import heroStudio from '../assets/hero/hero-studio.jpg';
 import heroClient from '../assets/hero/hero-client.jpg';
@@ -13,6 +14,39 @@ interface Props {
 
 const { locale } = Astro.props;
 const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_main`;
+
+// Optimize hero images (400x400 for grid display)
+const optimizedHeroStudio = await getImage({
+  src: heroStudio,
+  width: 400,
+  height: 400,
+  format: 'webp',
+  quality: 85,
+});
+
+const optimizedHeroClient = await getImage({
+  src: heroClient,
+  width: 400,
+  height: 400,
+  format: 'webp',
+  quality: 85,
+});
+
+const optimizedHero3 = await getImage({
+  src: hero3,
+  width: 400,
+  height: 400,
+  format: 'webp',
+  quality: 85,
+});
+
+const optimizedHero4 = await getImage({
+  src: hero4,
+  width: 400,
+  height: 400,
+  format: 'webp',
+  quality: 85,
+});
 ---
 
 <section id="hero" class="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
@@ -63,7 +97,7 @@ const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=h
       <div class="hidden lg:grid grid-cols-2 gap-4 relative">
         <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
           <img 
-            src={heroStudio.src || heroStudio} 
+            src={optimizedHeroStudio.src} 
             alt="Studio Inverness MED z profesjonalnym sprzętem do przekłuwania uszu" 
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
             loading="eager" 
@@ -76,7 +110,7 @@ const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=h
         </div>
         <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
           <img 
-            src={heroClient.src || heroClient} 
+            src={optimizedHeroClient.src} 
             alt="Zadowolone dziecko z dyplomem Inverness MED po przekłuciu uszu" 
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
             loading="eager" 
@@ -88,7 +122,7 @@ const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=h
         </div>
         <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
           <img 
-            src={hero3.src || hero3} 
+            src={optimizedHero3.src} 
             alt="Kolekcja medycznych kolczyków Inverness" 
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
             loading="lazy" 
@@ -100,7 +134,7 @@ const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=h
         </div>
         <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
           <img 
-            src={hero4.src || hero4} 
+            src={optimizedHero4.src} 
             alt="Eleganckie kolczyki medyczne po przekłuciu" 
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
             loading="lazy" 

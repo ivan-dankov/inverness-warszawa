@@ -4,9 +4,15 @@ export interface SEOConfig {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: string; // 'website' | 'article'
   canonical?: string;
   hreflang?: Record<Locale, string>;
   noindex?: boolean;
+  // Article-specific metadata
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleAuthor?: string;
+  articleSection?: string;
 }
 
 const SITE_URL = 'https://gentlepiercing.pl';
@@ -85,6 +91,7 @@ export function getArticleSchema(
           name: post.author,
         }
       : undefined,
+    articleSection: 'Blog',
     publisher: {
       '@type': 'Organization',
       name: 'Gentle Piercing',
@@ -155,9 +162,67 @@ export function getLocalBusinessSchema(locale: Locale) {
 }
 
 /**
+ * Generate FAQPage JSON-LD schema
+ */
+export function getFAQSchema(locale: Locale, faqs: Array<{ question: string; answer: string }>) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+/**
+ * Generate Organization JSON-LD schema
+ */
+export function getOrganizationSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Gentle Piercing',
+    url: SITE_URL,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE_URL}/logo-wide.svg`,
+      width: 600,
+      height: 60,
+    },
+    sameAs: ['https://instagram.com/prokol_ushej_warszawa'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: '+48573818260',
+      contactType: 'customer service',
+      areaServed: 'PL',
+      availableLanguage: ['Polish', 'English', 'Russian', 'Ukrainian'],
+    },
+  };
+}
+
+/**
+ * Generate AggregateRating JSON-LD schema
+ */
+export function getAggregateRatingSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    reviewCount: '31',
+    bestRating: '5',
+    worstRating: '1',
+  };
+}
+
+/**
  * Get page SEO configuration
  */
-export function getPageSEO(locale: Locale, page: 'home' | 'services' | 'pricing' | 'aftercare' | 'contact' | 'blog') {
+export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog') {
   const configs: Record<Locale, Record<string, { title: string; description: string }>> = {
     pl: {
       home: {
@@ -165,25 +230,10 @@ export function getPageSEO(locale: Locale, page: 'home' | 'services' | 'pricing'
         description:
           'Medyczne przekłuwanie uszu w Warszawie systemem Inverness MED. Sterylne kolczyki tytan/niob. Dla dzieci 0+ i dorosłych, spokojny, bezbolesny zabieg.',
       },
-      services: {
-        title: 'Usługi | Gentle Piercing Warszawa',
-        description:
-          'Oferujemy bezpieczne przekłuwanie uszu systemem Inverness MED w Warszawie. Sterylne kolczyki tytan/niob dla dzieci i dorosłych.',
-      },
-      pricing: {
-        title: 'Cennik | Gentle Piercing Warszawa',
-        description:
-          'Ceny przekłuwania uszu w Warszawie. System Inverness MED - sterylne kolczyki tytan/niob. Ceny od 150 zł.',
-      },
       aftercare: {
         title: 'Pielęgnacja po przekłuciu uszu | Gentle Piercing Warszawa',
         description:
           'Kompletne instrukcje pielęgnacji po przekłuciu uszu systemem Inverness MED w Warszawie. Jak dbać o przekłute uszy, dezynfekcja, zmiana kolczyków.',
-      },
-      contact: {
-        title: 'Kontakt | Gentle Piercing Warszawa',
-        description:
-          'Skontaktuj się z nami. Gentle Piercing Warszawa, Gizów 6. Rezerwacja online lub telefoniczna.',
       },
       blog: {
         title: 'Blog Gentle Piercing | Poradniki przekłuwania uszu',
@@ -197,25 +247,10 @@ export function getPageSEO(locale: Locale, page: 'home' | 'services' | 'pricing'
         description:
           'Медичний прокол вух у Варшаві системою Inverness MED. Стерильні титанові/ніобієві сережки. Для дітей 0+ та дорослих, спокійна безболісна процедура.',
       },
-      services: {
-        title: 'Послуги | Gentle Piercing Варшава',
-        description:
-          'Безпечний прокол вух системою Inverness MED у Варшаві. Стерильні титанові/ніобієві сережки для дітей та дорослих.',
-      },
-      pricing: {
-        title: 'Ціни | Gentle Piercing Варшава',
-        description:
-          'Ціни на прокол вух у Варшаві. Система Inverness MED - стерильні титанові/ніобієві сережки. Від 150 злотих.',
-      },
       aftercare: {
         title: 'Догляд після проколу вух | Gentle Piercing Варшава',
         description:
           'Повні інструкції з догляду після проколу вух системою Inverness MED у Варшаві. Як доглядати за проколотими вухами, дезінфекція, зміна сережок.',
-      },
-      contact: {
-        title: 'Контакти | Gentle Piercing Варшава',
-        description:
-          'Зв\'яжіться з нами. Gentle Piercing Варшава, Gizów 6. Онлайн або телефонна резервація.',
       },
       blog: {
         title: 'Блог Gentle Piercing | Поради проколу вух',
@@ -229,25 +264,10 @@ export function getPageSEO(locale: Locale, page: 'home' | 'services' | 'pricing'
         description:
           'Медицинский прокол ушей в Варшаве системой Inverness MED. Стерильные титановые/ниобиевые серьги. Для детей 0+ и взрослых, спокойная безболезненная процедура.',
       },
-      services: {
-        title: 'Услуги | Gentle Piercing Варшава',
-        description:
-          'Безопасный прокол ушей системой Inverness MED в Варшаве. Стерильные титановые/ниобиевые серьги для детей и взрослых.',
-      },
-      pricing: {
-        title: 'Цены | Gentle Piercing Варшава',
-        description:
-          'Цены на прокол ушей в Варшаве. Система Inverness MED - стерильные титановые/ниобиевые серьги. От 150 злотых.',
-      },
       aftercare: {
         title: 'Уход после прокола ушей | Gentle Piercing Варшава',
         description:
           'Полные инструкции по уходу после прокола ушей системой Inverness MED в Варшаве. Как ухаживать за проколотыми ушами, дезинфекция, смена серег.',
-      },
-      contact: {
-        title: 'Контакты | Gentle Piercing Варшава',
-        description:
-          'Свяжитесь с нами. Gentle Piercing Варшава, Gizów 6. Онлайн или телефонная запись.',
       },
       blog: {
         title: 'Блог Gentle Piercing | Советы по проколу ушей',
@@ -261,25 +281,10 @@ export function getPageSEO(locale: Locale, page: 'home' | 'services' | 'pricing'
         description:
           'Medical ear piercing in Warsaw with the Inverness MED system. Sterile titanium/niobium earrings for children 0+ and adults. Gentle, low-pain service.',
       },
-      services: {
-        title: 'Services | Gentle Piercing Warsaw',
-        description:
-          'Safe ear piercing with Inverness MED system in Warsaw. Sterile titanium/niobium earrings for children and adults.',
-      },
-      pricing: {
-        title: 'Pricing | Gentle Piercing Warsaw',
-        description:
-          'Ear piercing prices in Warsaw. Inverness MED system - sterile titanium/niobium earrings. From 150 PLN.',
-      },
       aftercare: {
         title: 'Ear Piercing Aftercare | Gentle Piercing Warsaw',
         description:
           'Complete aftercare instructions after ear piercing with Inverness MED system in Warsaw. How to care for pierced ears, disinfection, changing earrings.',
-      },
-      contact: {
-        title: 'Contact | Gentle Piercing Warsaw',
-        description:
-          'Contact us. Gentle Piercing Warsaw, Gizów 6. Online or phone booking.',
       },
       blog: {
         title: 'Gentle Piercing blog | Ear piercing guides Warsaw',

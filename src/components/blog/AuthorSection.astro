@@ -1,6 +1,7 @@
 ---
 import { t } from '../../lib/translations';
 import type { Locale } from '../../lib/seo';
+import { getImage } from 'astro:assets';
 
 interface Props {
   locale: Locale;
@@ -8,11 +9,25 @@ interface Props {
 
 const { locale } = Astro.props;
 
-// Try to import author image, fallback if not found
+// Try to import and optimize author image, fallback if not found
 let authorImageSrc: string | null = null;
+let authorImageWidth: number | undefined;
+let authorImageHeight: number | undefined;
 try {
-  const authorImage = await import('../../assets/blog/author.jpg');
-  authorImageSrc = authorImage.default?.src || authorImage.default || null;
+  const authorImageModule = await import('../../assets/blog/author.jpg');
+  const authorImage = authorImageModule.default;
+  if (authorImage) {
+    const optimized = await getImage({
+      src: authorImage,
+      width: 200,
+      height: 200,
+      format: 'webp',
+      quality: 85,
+    });
+    authorImageSrc = optimized.src;
+    authorImageWidth = optimized.width;
+    authorImageHeight = optimized.height;
+  }
 } catch (e) {
   // Author image not found, will show without image
 }
@@ -28,8 +43,8 @@ try {
           alt={t(locale, 'blog.author.name')}
           class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-border shadow-md"
           loading="lazy"
-          width="200"
-          height="200"
+          width={authorImageWidth}
+          height={authorImageHeight}
         />
       </div>
     )}

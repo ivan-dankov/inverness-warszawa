@@ -40,7 +40,7 @@ try {
             {post.coverImage && (
               <div class="w-full h-64 overflow-hidden bg-muted">
                 <img 
-                  src={urlFor(post.coverImage).width(600).height(350).url()}
+                  src={urlFor(post.coverImage).width(600).height(350).format('webp').url()}
                   alt={post.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   loading="lazy"

@@ -28,9 +28,13 @@ const filteredArticles = relatedArticles?.filter(
           <a href={`/${locale}/blog/${article.slug}`} class="block flex flex-col h-full no-underline text-inherit hover:text-inherit">
             {article.coverImage && (
               <img
-                src={urlFor(article.coverImage).width(400).url()}
+                src={urlFor(article.coverImage).width(400).format('webp').url()}
                 alt={article.title}
                 class="w-full h-48 object-cover"
+                loading="lazy"
+                decoding="async"
+                width="400"
+                height="250"
               />
             )}
             <div class="p-4 flex flex-col flex-grow">

@@ -8,10 +8,7 @@ const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
 // Static pages (without blog)
 const staticPages = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
-  { path: '/services', priority: '0.8', changefreq: 'monthly' },
-  { path: '/pricing', priority: '0.8', changefreq: 'monthly' },
   { path: '/aftercare', priority: '0.8', changefreq: 'monthly' },
-  { path: '/contact', priority: '0.8', changefreq: 'monthly' },
   { path: '/blog', priority: '0.9', changefreq: 'weekly' },
 ];
 
@@ -37,6 +34,8 @@ export const GET: APIRoute = async () => {
   }> = [];
 
   // Add static pages
+  // Use build date for static pages (they're regenerated on each build)
+  const buildDate = new Date().toISOString();
   for (const page of staticPages) {
     for (const locale of locales) {
       const url = `${SITE_URL}/${locale}${page.path}`;
@@ -48,7 +47,7 @@ export const GET: APIRoute = async () => {
 
       urls.push({
         loc: url,
-        lastmod: new Date().toISOString(),
+        lastmod: buildDate, // Use consistent build date for all static pages
         changefreq: page.changefreq,
         priority: page.priority,
         'xhtml:link': hreflangLinks,

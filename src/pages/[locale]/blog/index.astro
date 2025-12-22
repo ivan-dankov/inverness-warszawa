@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getPageSEO, type Locale } from '../../../lib/seo';
+import { getPageSEO, getBreadcrumbSchema, getCanonicalUrl, type Locale } from '../../../lib/seo';
 import { getPostsByLocale, urlFor } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
 
@@ -21,9 +21,16 @@ try {
   console.warn('Could not fetch blog posts:', error);
   // Continue with empty posts array
 }
+
+const structuredData = [
+  getBreadcrumbSchema([
+    { name: t(currentLocale, 'breadcrumb.home'), url: getCanonicalUrl(currentLocale, '') },
+    { name: t(currentLocale, 'breadcrumb.blog'), url: getCanonicalUrl(currentLocale, '/blog') },
+  ]),
+];
 ---
 
-<BaseLayout locale={currentLocale} seo={seo}>
+<BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData}>
   <div class="bg-background">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="text-center mb-12">
