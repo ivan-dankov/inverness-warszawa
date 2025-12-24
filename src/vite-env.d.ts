@@ -6,15 +6,6 @@ declare global {
     glob: (pattern: string, options?: { eager?: boolean; as?: string; query?: string; import?: string }) => Record<string, () => Promise<any>>;
   }
   
-  // Google Analytics 4 type declarations
-  interface Window {
-    gtag: (
-      command: 'config' | 'event' | 'js' | 'set',
-      targetId: string | Date,
-      config?: Record<string, any>
-    ) => void;
-    dataLayer: any[];
-  }
 }
 
 // Allow importing images with query parameters

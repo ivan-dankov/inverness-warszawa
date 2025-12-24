@@ -54,6 +54,7 @@ const getPhoneLabel = () => {
       target="_blank"
       rel="noopener noreferrer"
       class="text-primary hover:underline"
+      id="blog-cta-booking-link"
     >
       {locale === 'pl' ? 'Rezerwuj Online' : locale === 'uk' ? 'Забронюйте онлайн' : locale === 'ru' ? 'Забронируйте онлайн' : 'Book Online'}
     </a>
@@ -67,4 +68,18 @@ const getPhoneLabel = () => {
     </a>
   </p>
 </section>
+
+<script define:vars={{ locale }}>
+  // Google Analytics - Track booking link click
+  const blogCtaLink = document.getElementById('blog-cta-booking-link');
+  if (blogCtaLink && window.gtag) {
+    blogCtaLink.addEventListener('click', () => {
+      gtag('event', 'booking_click_code', {
+        button_location: 'blog_cta',
+        locale: locale,
+        booking_platform: 'booksy'
+      });
+    });
+  }
+</script>
 

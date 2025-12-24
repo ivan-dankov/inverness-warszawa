@@ -70,6 +70,7 @@ const optimizedHero4 = await getImage({
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-8 text-base w-full sm:w-auto"
+            id="hero-booking-button"
           >
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -148,4 +149,18 @@ const optimizedHero4 = await getImage({
     </div>
   </div>
 </section>
+
+<script define:vars={{ locale }}>
+  // Google Analytics - Track booking button click
+  const heroBookingButton = document.getElementById('hero-booking-button');
+  if (heroBookingButton && window.gtag) {
+    heroBookingButton.addEventListener('click', () => {
+      gtag('event', 'booking_click_code', {
+        button_location: 'hero',
+        locale: locale,
+        booking_platform: 'booksy'
+      });
+    });
+  }
+</script>
 
