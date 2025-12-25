@@ -1,6 +1,7 @@
 ---
 import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
+import RecentArticles from './RecentArticles.astro';
 
 interface Props {
   locale: Locale;
@@ -67,6 +68,14 @@ const sections = aftercare.sections || [];
             )}
           </div>
         ))}
+      </div>
+
+      <!-- Blog Section -->
+      <div class="mt-16 pt-12 border-t border-border">
+        <RecentArticles 
+          locale={locale} 
+          customTitle={t(locale, 'aftercare.blogSection.title')}
+        />
       </div>
     </div>
   </div>

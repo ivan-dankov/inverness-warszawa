@@ -308,7 +308,12 @@
         "title": "⚕️ W razie problemów",
         "text": "Jeśli pojawi się infekcja lub silny stan zapalny, nie wyjmuj kolczyków — skontaktuj się z lekarzem."
       }
-    ]
+    ],
+    "blogSection": {
+      "title": "Dowiedz się więcej o pielęgnacji i procesie przekłuwania uszu",
+      "subtitle": "Przeczytaj nasze artykuły blogowe o pielęgnacji po przekłuciu, gojeniu i wyborze kolczyków",
+      "viewAll": "Zobacz wszystkie artykuły"
+    }
   },
   "breadcrumb": {
     "home": "Strona główna",
@@ -329,11 +334,18 @@
     "author": {
       "title": "O autorze",
       "name": "Kseniya Askerka",
-      "bio": "dyrektor Gentle Piercing Warszawa, 3+ lata doświadczenia, ponad 500 przekłuć, certyfikowane szkolenie Sanico Poland."
+      "bio": "dyrektorka Gentle Piercing Warsaw. Od lat z troską i uważnością pracuje zarówno z dziećmi, jak i z dorosłymi, dbając o to, aby przekłuwanie uszu było spokojnym i komfortowym doświadczeniem. Ma na swoim koncie ponad 5000 bezpiecznych zabiegów, certyfikowane szkolenie Sanico Poland oraz jedno najważniejsze podejście – delikatność, spokój i poczucie bezpieczeństwa dla każdego klienta."
     },
     "relatedArticles": {
       "title": "Inne artykuły",
       "readMore": "Czytaj dalej"
     }
+  },
+  "cta": {
+    "title": "Gotowy na pierwsze kolczyki?",
+    "subtitle": "Umów wizytę już dziś i doświadcz bezpiecznego, bezbolesnego przekłuwania uszu systemem Inverness MED",
+    "button": "Rezerwuj Online",
+    "phone": "Telefon",
+    "footer": "Dostępne również wizyty mobilne z dojazdem do domu"
   }
 }

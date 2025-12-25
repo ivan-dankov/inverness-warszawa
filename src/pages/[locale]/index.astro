@@ -11,6 +11,7 @@ import Comparison from '../../components/Comparison.astro';
 import FAQ from '../../components/FAQ.astro';
 import RecentArticles from '../../components/RecentArticles.astro';
 import Contact from '../../components/Contact.astro';
+import CTASection from '../../components/CTASection.astro';
 
 export async function getStaticPaths() {
   const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
@@ -48,6 +49,7 @@ const structuredData = [
   <Comparison locale={currentLocale} />
   <FAQ locale={currentLocale} />
   <RecentArticles locale={currentLocale} />
+  <CTASection locale={currentLocale} />
   <Contact locale={currentLocale} />
 </BaseLayout>
 

@@ -308,7 +308,12 @@
         "title": "⚕️ In case of problems",
         "text": "If infection or severe inflammation appears, do not remove the earrings — contact a doctor."
       }
-    ]
+    ],
+    "blogSection": {
+      "title": "Know More About Aftercare and Ear Piercing Process",
+      "subtitle": "Read our blog articles about aftercare, healing, and choosing earrings",
+      "viewAll": "View All Articles"
+    }
   },
   "breadcrumb": {
     "home": "Home",
@@ -370,11 +375,18 @@
     "author": {
       "title": "About the Author",
       "name": "Kseniya Askerka",
-      "bio": "director of Gentle Piercing Warsaw, 3+ years of experience, over 500 piercings, certified training Sanico Poland."
+      "bio": "is the director of Gentle Piercing Warsaw. For many years, she has been providing calm and gentle ear piercing for both children and adults. With over 5,000 safe procedures completed and certified training by Sanico Poland, her focus is on comfort, care, and a sense of safety for every client."
     },
     "relatedArticles": {
       "title": "Other Articles",
       "readMore": "Read more"
     }
+  },
+  "cta": {
+    "title": "Ready for Your First Earrings?",
+    "subtitle": "Book an appointment today and experience safe, painless ear piercing with the Inverness MED system",
+    "button": "Book Online",
+    "phone": "Phone",
+    "footer": "Mobile visits with home service also available"
   }
 }

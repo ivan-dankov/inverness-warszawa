@@ -5,9 +5,11 @@ import { getPostsByLocale, urlFor } from '../lib/sanity';
 
 interface Props {
   locale: Locale;
+  customTitle?: string;
+  customSubtitle?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, customTitle, customSubtitle } = Astro.props;
 let posts = [];
 try {
   const allPosts = await getPostsByLocale(locale);
@@ -22,10 +24,10 @@ try {
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
     <div class="text-center mb-8 sm:mb-12">
       <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
-        {t(locale, 'recentArticles.title')}
+        {customTitle || t(locale, 'recentArticles.title')}
       </h2>
       <p class="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
-        {t(locale, 'recentArticles.subtitle')}
+        {customSubtitle || t(locale, 'recentArticles.subtitle')}
       </p>
     </div>
 
