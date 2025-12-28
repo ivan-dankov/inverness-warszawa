@@ -1,15 +1,30 @@
 import type { APIRoute } from 'astro';
 import { getAllPosts } from '../lib/sanity';
 import type { Locale } from '../lib/seo';
+import { getServicePageUrl, getServicePageHreflang, PAGE_SLUGS, type ServicePageSlug } from '../lib/seo';
 
 const SITE_URL = 'https://gentlepiercing.pl';
 const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
 
-// Static pages (without blog)
+// Static pages with localized slugs
+const staticLocalizedPages = [
+  { key: 'services', priority: '0.9', changefreq: 'monthly' },
+  { key: 'contact', priority: '0.8', changefreq: 'monthly' },
+  { key: 'aftercare', priority: '0.8', changefreq: 'monthly' },
+] as const;
+
+// Static pages without localization
 const staticPages = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
-  { path: '/aftercare', priority: '0.8', changefreq: 'monthly' },
   { path: '/blog', priority: '0.9', changefreq: 'weekly' },
+];
+
+// Service pages
+const servicePages: Array<{ slug: ServicePageSlug; priority: string }> = [
+  { slug: 'uszy-dzieciom-warszawa', priority: '0.8' },
+  { slug: 'przekluwanie-uszu-dorosli-warszawa', priority: '0.8' },
+  { slug: 'przekluwanie-chrzastki-warszawa', priority: '0.8' },
+  { slug: 'przekluwanie-uszu-z-dojazdem-warszawa', priority: '0.8' },
 ];
 
 export const GET: APIRoute = async () => {
@@ -33,7 +48,7 @@ export const GET: APIRoute = async () => {
     'xhtml:link'?: Array<{ rel: string; hreflang: string; href: string }>;
   }> = [];
 
-  // Add static pages
+  // Add static pages (homepage, blog)
   // Use build date for static pages (they're regenerated on each build)
   const buildDate = new Date().toISOString();
   for (const page of staticPages) {
@@ -47,9 +62,51 @@ export const GET: APIRoute = async () => {
 
       urls.push({
         loc: url,
-        lastmod: buildDate, // Use consistent build date for all static pages
+        lastmod: buildDate,
         changefreq: page.changefreq,
         priority: page.priority,
+        'xhtml:link': hreflangLinks,
+      });
+    }
+  }
+
+  // Add static localized pages (services, contact, aftercare)
+  for (const page of staticLocalizedPages) {
+    for (const locale of locales) {
+      const slug = PAGE_SLUGS[page.key][locale];
+      const url = `${SITE_URL}/${locale}/${slug}`;
+      const hreflangLinks = locales.map((l) => ({
+        rel: 'alternate',
+        hreflang: l,
+        href: `${SITE_URL}/${l}/${PAGE_SLUGS[page.key][l]}`,
+      }));
+
+      urls.push({
+        loc: url,
+        lastmod: buildDate,
+        changefreq: page.changefreq,
+        priority: page.priority,
+        'xhtml:link': hreflangLinks,
+      });
+    }
+  }
+
+  // Add service pages
+  for (const servicePage of servicePages) {
+    const hreflang = getServicePageHreflang(servicePage.slug);
+    for (const locale of locales) {
+      const url = getServicePageUrl(servicePage.slug, locale);
+      const hreflangLinks = locales.map((l) => ({
+        rel: 'alternate',
+        hreflang: l,
+        href: getServicePageUrl(servicePage.slug, l),
+      }));
+
+      urls.push({
+        loc: url,
+        lastmod: buildDate,
+        changefreq: 'monthly',
+        priority: servicePage.priority,
         'xhtml:link': hreflangLinks,
       });
     }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { languages } from '../lib/language-routes';
-import type { Locale } from '../lib/seo';
+import { PAGE_SLUGS, SERVICE_SLUGS, type Locale } from '../lib/seo';
 
 interface LanguageSwitchProps {
   currentLocale: Locale;
@@ -18,8 +18,47 @@ function LanguageSwitch({ currentLocale, currentPath, translationSlugs }: Langua
       return `/${langCode}/blog/${translationSlugs[langCode]}`;
     }
 
-    // For other pages, replace the locale in the path
-    const pathWithoutLocale = currentPath.replace(/^\/(pl|uk|ru|en)/, '') || '/';
+    // Get the path without locale
+    const pathWithoutLocale = currentPath.replace(/^\/(pl|uk|ru|en)/, '');
+
+    // Homepage - just return the locale
+    if (!pathWithoutLocale || pathWithoutLocale === '/') {
+      return `/${langCode}`;
+    }
+
+    // Check if this is a localized page (services, contact, aftercare)
+    for (const [pageKey, slugs] of Object.entries(PAGE_SLUGS)) {
+      // Check if current path matches any slug variant
+      if (Object.values(slugs).some(slug => pathWithoutLocale === `/${slug}`)) {
+        // Get the localized slug, fallback to Polish if not available
+        const targetSlug = slugs[langCode] || slugs['pl'];
+        return `/${langCode}/${targetSlug}`;
+      }
+    }
+
+    // Check if this is a service detail page
+    for (const [serviceKey, slugs] of Object.entries(SERVICE_SLUGS)) {
+      // Check if path matches any combination of services list slug + service slug
+      const isMatch = Object.entries(slugs).some(([slugLocale, slug]) => {
+        const servicesSlug = PAGE_SLUGS.services[slugLocale as Locale];
+        return pathWithoutLocale === `/${servicesSlug}/${slug}`;
+      });
+
+      if (isMatch) {
+        const targetServicesSlug = PAGE_SLUGS.services[langCode];
+        const targetSlug = slugs[langCode] || slugs['pl'];
+        return `/${langCode}/${targetServicesSlug}/${targetSlug}`;
+      }
+    }
+
+    // For other pages (blog, etc.), try the same path
+    // If target language is not Polish, fallback by using Polish path
+    if (langCode !== 'pl') {
+      // For non-Polish languages without a specific translation, redirect to Polish version
+      return `/pl${pathWithoutLocale}`;
+    }
+
+    // Default: replace the locale in the path
     return `/${langCode}${pathWithoutLocale}`;
   };
 

@@ -1,6 +1,7 @@
 {
   "header": {
     "nav": {
+      "home": "Home",
       "about": "About Us",
       "services": "Services",
       "gallery": "Gallery",
@@ -63,7 +64,7 @@
         "title": "Cartilage (helix, tragus, conch) and earlobe (lobe) piercing",
         "description": "Professional cartilage or earlobe piercing using certified system",
         "badge": "Standard price",
-        "price": "80 PLN",
+        "price": "from 80 PLN",
         "duration": "30 min",
         "features": [
           "Price does not include earrings"
@@ -85,7 +86,7 @@
         "title": "More Service Options",
         "description": "Discover our full range of services and find the perfect option for you",
         "badge": "Booksy",
-        "price": "Check",
+        "price": "from 40 PLN + service price",
         "duration": "Various options",
         "features": [
           "Mobile service",
@@ -97,7 +98,7 @@
     "pricing": {
       "title": "Pricing Information",
       "earringsInfo": "Price does not include earrings",
-      "earringsPrice": "Additional charge for earrings: from 100 PLN per pair",
+      "earringsPrice": "Additional charge for earrings: from 60 PLN for one, from 100 PLN per pair",
       "mobileVisit": "Mobile service: 40 PLN, may be higher depending on distance"
     },
     "bookButton": "Book Online",
@@ -204,9 +205,9 @@
     ]
   },
   "contact": {
-    "title": "Contact Us",
+    "title": "Contact us",
     "subtitle": "Book an appointment today or ask us a question",
-    "contactInfo": "Contact Information",
+    "contactInfo": "Contact information",
     "location": "Location",
     "address": "Gizów 6/208, 01-249 Warsaw, Wola",
     "phone": "Phone",
@@ -215,7 +216,7 @@
     "emailAddress": "piercinggentle@gmail.com",
     "instagram": "Instagram",
     "instagramHandle": "@prokol_ushej_warszawa",
-    "hours": "Opening Hours",
+    "hours": "Opening hours",
     "days": "Monday - Sunday",
     "hoursTime": "10:00 - 20:00",
     "mobileVisit": "Mobile service: +40 PLN",
@@ -392,5 +393,87 @@
     "button": "Book Online",
     "phone": "Phone",
     "footer": "Mobile visits with home service also available"
+  },
+  "servicePages": {
+    "ear-piercing-warsaw": {
+      "h1": "Ear Piercing in Warsaw",
+      "description": "Professional ear piercing in Warsaw with Inverness MED system. We offer safe, sterile and painless ear piercing for children and adults. Inverness MED system is the only method in Europe approved by doctors for children from 0+. We perform earlobe and cartilage piercing (helix, tragus, conch).",
+      "features": [
+        "Inverness MED system - certified by FDA and ISO",
+        "100% sterility - single-use, closed cassettes",
+        "For children 0+ and adults",
+        "Earlobe and cartilage piercing",
+        "Over 30 models of hypoallergenic earrings",
+        "Quiet and gentle mechanism"
+      ],
+      "pricing": {
+        "basePrice": "From 80 PLN per piercing",
+        "additionalInfo": "Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
+      }
+    },
+    "ear-piercing-children-warsaw": {
+      "h1": "Ear Piercing for Children in Warsaw",
+      "description": "Safe ear piercing for children in Warsaw with Inverness MED system. The only piercing approved by doctors for children from 0+. Quiet, gentle mechanism doesn't scare the youngest, and 100% sterility guarantees safety. Experienced specialist with over 5000 safe procedures.",
+      "features": [
+        "Doctor-approved for children 0+",
+        "Quiet mechanism - doesn't scare children",
+        "Gentle method - minimal discomfort",
+        "Parental support and care during procedure",
+        "Sterile, single-use tools",
+        "Special earrings for children"
+      ],
+      "pricing": {
+        "basePrice": "150 PLN",
+        "additionalInfo": "Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
+      }
+    },
+    "ear-piercing-adults-warsaw": {
+      "h1": "Ear Piercing for Adults in Warsaw",
+      "description": "Professional ear piercing for adults in Warsaw with Inverness MED system. We offer earlobe and cartilage piercing (helix, tragus, conch). Inverness MED system ensures precise, atraumatic piercing with fast healing. Wide selection of earrings for adults.",
+      "features": [
+        "Earlobe and cartilage piercing",
+        "Precise method - fast healing",
+        "Over 30 models of earrings for adults",
+        "Hypoallergenic materials (titanium, niobium, medical steel)",
+        "Professional consultation before procedure",
+        "Sterile procedure conditions"
+      ],
+      "pricing": {
+        "basePrice": "1 piercing: 80 PLN, 2 piercings: 140 PLN, 3 piercings: 180 PLN",
+        "additionalInfo": "Service price. Earring price from 60 PLN."
+      }
+    },
+    "cartilage-piercing-warsaw": {
+      "h1": "Cartilage Piercing in Warsaw",
+      "description": "Professional ear cartilage piercing in Warsaw with Inverness MED system. We specialize in helix, tragus, conch, flat and lobe piercing. Inverness MED system is perfect for cartilage piercing - precise, doesn't tear tissue like traditional gun. Fast and clean healing.",
+      "features": [
+        "Helix, tragus, conch, flat, lobe piercing",
+        "Perfect system for cartilage",
+        "Precise piercing - doesn't tear tissue",
+        "Fast healing (12 weeks)",
+        "Special earrings for cartilage",
+        "Experienced specialist"
+      ],
+      "pricing": {
+        "basePrice": "1 piercing: 80 PLN, 2 piercings: 140 PLN, 3 piercings: 180 PLN",
+        "additionalInfo": "Service price. Earring price from 60 PLN."
+      }
+    },
+    "mobile-ear-piercing-warsaw": {
+      "h1": "Mobile Ear Piercing in Warsaw",
+      "description": "Mobile ear piercing with home visits in Warsaw. We offer professional ear piercing service with Inverness MED system in your home. Perfect solution for families with young children or people who prefer the comfort of their own home. Full sterility and professionalism.",
+      "features": [
+        "Home visits in Warsaw",
+        "Full sterility in home conditions",
+        "Inverness MED system - same as in studio",
+        "Perfect for families with children",
+        "Comfort of your own home",
+        "Flexible visit hours"
+      ],
+      "pricing": {
+        "basePrice": "From 80 PLN per piercing + 40 PLN travel",
+        "additionalInfo": "Travel price may be higher depending on distance. Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
+      }
+    }
   }
 }

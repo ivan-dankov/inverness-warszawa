@@ -41,3 +41,4 @@ The 504 errors are usually temporary Vite optimization issues. They often resolv
 
 The studio should still function even with these console warnings.
 
+

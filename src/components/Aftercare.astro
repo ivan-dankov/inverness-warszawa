@@ -13,71 +13,68 @@ const aftercare = translations.aftercare || {};
 const sections = aftercare.sections || [];
 ---
 
-<section class="py-20 bg-background">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-      <nav class="mb-8" aria-label="Breadcrumb">
-        <ol class="flex items-center space-x-2 text-sm text-muted-foreground">
-          <li>
-            <a 
-              href={`/${locale}`}
-              class="hover:text-primary transition-colors"
-            >
-              {t(locale, 'breadcrumb.home')}
-            </a>
-          </li>
-          <li class="flex items-center">
-            <span class="mx-2">/</span>
-            <span class="text-foreground font-medium">
-              {t(locale, 'header.nav.aftercare')}
-            </span>
-          </li>
-        </ol>
-      </nav>
-      
-      <div class="text-center mb-12">
-        <h1 class="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-          {t(locale, 'aftercare.title')}
-        </h1>
-        <p class="text-lg text-muted-foreground">
-          {t(locale, 'aftercare.subtitle')}
-        </p>
-      </div>
-
-      <div class="space-y-6">
-        {sections.map((section: any, index: number) => (
-          <div key={index} class="bg-card rounded-lg border border-border p-6 hover:shadow-card transition-shadow duration-300">
-            <h2 class="text-2xl font-semibold text-foreground mb-4">
-              {section.title}
-            </h2>
-            {section.text && (
-              <p class="text-foreground mb-3">{section.text}</p>
-            )}
-            {section.points && section.points.length > 0 && (
-              <ul class="list-disc list-inside space-y-3 text-foreground ml-2">
-                {section.points.map((point: string, idx: number) => (
-                  <li key={idx}>{point}</li>
-                ))}
-              </ul>
-            )}
-            {section.afterText && (
-              <p class="text-foreground mt-4">{section.afterText}</p>
-            )}
-            {section.removal && (
-              <p class="text-foreground mt-4">{section.removal}</p>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <!-- Blog Section -->
-      <div class="mt-16 pt-12 border-t border-border">
-        <RecentArticles 
-          locale={locale} 
-          customTitle={t(locale, 'aftercare.blogSection.title')}
-        />
-      </div>
-    </div>
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">
+  <!-- Breadcrumb -->
+  <nav class="mb-8" aria-label="Breadcrumb">
+    <ol class="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground">
+      <li>
+        <a 
+          href={`/${locale}`}
+          class="hover:text-primary transition-colors"
+        >
+          {t(locale, 'breadcrumb.home')}
+        </a>
+      </li>
+      <li class="flex items-center">
+        <span class="mx-2">/</span>
+        <span class="text-foreground font-medium">
+          {t(locale, 'header.nav.aftercare')}
+        </span>
+      </li>
+    </ol>
+  </nav>
+  
+  <div class="text-center mb-12">
+    <h1 class="text-4xl sm:text-5xl font-bold text-foreground mb-4">
+      {t(locale, 'aftercare.title')}
+    </h1>
+    <p class="text-lg text-muted-foreground">
+      {t(locale, 'aftercare.subtitle')}
+    </p>
   </div>
-</section>
+
+  <div class="space-y-6">
+    {sections.map((section: any, index: number) => (
+      <div key={index} class="bg-card rounded-lg border border-border p-6 hover:shadow-card transition-shadow duration-300">
+        <h2 class="text-2xl font-semibold text-foreground mb-4">
+          {section.title}
+        </h2>
+        {section.text && (
+          <p class="text-foreground mb-3">{section.text}</p>
+        )}
+        {section.points && section.points.length > 0 && (
+          <ul class="list-disc list-inside space-y-3 text-foreground ml-2">
+            {section.points.map((point: string, idx: number) => (
+              <li key={idx}>{point}</li>
+            ))}
+          </ul>
+        )}
+        {section.afterText && (
+          <p class="text-foreground mt-4">{section.afterText}</p>
+        )}
+        {section.removal && (
+          <p class="text-foreground mt-4">{section.removal}</p>
+        )}
+      </div>
+    ))}
+  </div>
+
+  <!-- Blog Section -->
+  <div class="mt-16 pt-12 border-t border-border">
+    <RecentArticles 
+      locale={locale} 
+      customTitle={t(locale, 'aftercare.blogSection.title')}
+    />
+  </div>
+</div>
 

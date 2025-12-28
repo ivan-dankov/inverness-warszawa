@@ -63,16 +63,16 @@
         "title": "Cartilage (helix, tragus, conch) and earlobe (lobe) piercing",
         "description": "Professional cartilage or earlobe piercing using certified system",
         "badge": "Standard price",
-        "price": "80 PLN",
+        "price": "from 80 PLN",
         "duration": "30 min",
         "features": [
           "Price does not include earrings"
         ]
       },
       {
-        "title": "Children's Ear Piercing",
+        "title": "Children's ear piercing",
         "description": "Safe piercing approved by doctors for the youngest",
-        "badge": "For Children",
+        "badge": "For children",
         "price": "150 PLN",
         "duration": "30 min",
         "features": [
@@ -82,10 +82,10 @@
         ]
       },
       {
-        "title": "More Service Options",
+        "title": "More service options",
         "description": "Discover our full range of services and find the perfect option for you",
         "badge": "Booksy",
-        "price": "Check",
+        "price": "from 40 PLN + service price",
         "duration": "Various options",
         "features": [
           "Mobile service",
@@ -95,7 +95,7 @@
       }
     ],
     "pricing": {
-      "title": "Pricing Information",
+      "title": "Pricing information",
       "earringsInfo": "Price does not include earrings",
       "earringsPrice": "Additional charge for earrings: from 100 PLN per pair",
       "mobileVisit": "Mobile service: 50 PLN, may be higher depending on distance"
@@ -204,9 +204,9 @@
     ]
   },
   "contact": {
-    "title": "Contact Us",
+    "title": "Contact us",
     "subtitle": "Book an appointment today or ask us a question",
-    "contactInfo": "Contact Information",
+    "contactInfo": "Contact information",
     "location": "Location",
     "address": "Gizów 6/208, 01-249 Warsaw, Wola",
     "phone": "Phone",
@@ -215,7 +215,7 @@
     "emailAddress": "piercinggentle@gmail.com",
     "instagram": "Instagram",
     "instagramHandle": "@prokol_ushej_warszawa",
-    "hours": "Opening Hours",
+    "hours": "Opening hours",
     "days": "Monday - Sunday",
     "hoursTime": "10:00 - 20:00",
     "mobileVisit": "Mobile service: +50 PLN",

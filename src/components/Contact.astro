@@ -10,12 +10,12 @@ interface Props {
 const { locale } = Astro.props;
 ---
 
-<section id="contact" class="py-20 bg-background-alt border-t border-border">
+<section id="contact" class="py-4">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
         {t(locale, 'contact.title')}
-      </h2>
+      </h1>
       <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
         {t(locale, 'contact.subtitle')}
       </p>
@@ -98,13 +98,11 @@ const { locale } = Astro.props;
         </div>
       </div>
 
-      <div class="p-8 bg-card rounded-lg border border-border shadow-card">
-        <h3 class="text-2xl font-bold text-foreground mb-6">
-          {t(locale, 'contact.location')}
-        </h3>
+      <div class="bg-card rounded-lg border border-border shadow-card">
         <Map />
       </div>
     </div>
   </div>
 </section>
+
 

@@ -1,0 +1,368 @@
+---
+import { t, getTranslations } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
+
+interface Props {
+  locale: Locale;
+  serviceSlug: ServicePageSlug;
+  h1: string;
+  content: {
+    description: string;
+    features?: string[];
+    pricing?: {
+      basePrice?: string;
+      additionalInfo?: string;
+    };
+  };
+  relatedServices?: ServicePageSlug[];
+}
+
+const { locale, serviceSlug, h1, content, relatedServices = [] } = Astro.props;
+const translations = getTranslations(locale);
+
+const prices = content.pricing?.basePrice?.includes(',') 
+  ? content.pricing.basePrice.split(',').map(p => {
+      const parts = p.split(':');
+      return {
+        label: parts[0].trim(),
+        value: parts[1]?.trim() || ''
+      };
+    })
+  : null;
+
+function getBooksyUrl(locale: Locale, serviceSlug: ServicePageSlug): string {
+  const baseUrl = 'https://booksy.com/pl-pl/dl/show-business/319418';
+  const utmParams = new URLSearchParams({
+    utm_source: 'service_page',
+    utm_medium: 'cta',
+    utm_campaign: `${serviceSlug}_${locale}`,
+  });
+  return `${baseUrl}?${utmParams.toString()}`;
+}
+
+const booksyUrl = getBooksyUrl(locale, serviceSlug);
+
+// Get related service names and URLs
+const relatedServiceData = relatedServices.map((slug) => {
+  const serviceNames: Record<ServicePageSlug, Record<Locale, string>> = {
+    'przekluwanie-uszu-warszawa': { // Legacy/Removed
+      pl: 'Przekłuwanie uszu',
+      en: 'Ear piercing',
+      uk: 'Прокол вух',
+      ru: 'Прокол ушей',
+    },
+    'uszy-dzieciom-warszawa': {
+      pl: 'Przekłuwanie uszu dzieciom',
+      en: 'Ear piercing for children',
+      uk: 'Прокол вух дітям',
+      ru: 'Прокол ушей детям',
+    },
+    'przekluwanie-uszu-dorosli-warszawa': {
+      pl: 'Przekłuwanie płatka ucha dla dorosłych',
+      en: 'Earlobe piercing for adults',
+      uk: 'Прокол мочки вуха для дорослих',
+      ru: 'Прокол мочки уха для взрослых',
+    },
+    'przekluwanie-chrzastki-warszawa': {
+      pl: 'Przekłuwanie chrząstki',
+      en: 'Cartilage piercing',
+      uk: 'Прокол хряща',
+      ru: 'Прокол хряща',
+    },
+    'przekluwanie-uszu-z-dojazdem-warszawa': {
+      pl: 'Przekłuwanie uszu z dojazdem',
+      en: 'Mobile ear piercing',
+      uk: 'Прокол вух з виїздом',
+      ru: 'Прокол ушей с выездом',
+    },
+  };
+
+  const serviceDescriptions: Record<ServicePageSlug, Record<Locale, string>> = {
+    'uszy-dzieciom-warszawa': {
+      pl: 'Bezpieczne i delikatne przekłuwanie uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
+      en: 'Safe and gentle ear piercing for children from 0+, doctor-approved.',
+      uk: 'Безпечний та делікатний прокол вух для дітей від 0+, схвалений лікарями.',
+      ru: 'Безопасный и деликатный прокол ушей для детей от 0+, одобренный врачами.',
+    },
+    'przekluwanie-uszu-dorosli-warszawa': {
+      pl: 'Przekłuwanie uszu dla dorosłych - płatek ucha i chrząstka w profesjonalnych warunkach.',
+      en: 'Ear piercing for adults - earlobe and cartilage in professional conditions.',
+      uk: 'Прокол вух для дорослих - мочка вуха та хрящ у професійних умовах.',
+      ru: 'Прокол ушей для взрослых - мочка уха и хрящ в профессиональных условиях.',
+    },
+    'przekluwanie-chrzastki-warszawa': {
+      pl: 'Specjalizujemy się w przekłuwaniu chrząstki: helix, tragus, conch systemem Inverness MED.',
+      en: 'We specialize in cartilage piercing: helix, tragus, conch with Inverness MED system.',
+      uk: 'Спеціалізуємося на проколі хряща: helix, tragus, conch системою Inverness MED.',
+      ru: 'Специализируемся на проколе хряща: helix, tragus, conch системой Inverness MED.',
+    },
+    'przekluwanie-uszu-z-dojazdem-warszawa': {
+      pl: 'Usługa mobilna z dojazdem do domu - przekłuwanie uszu w komforcie Twojego domu.',
+      en: 'Mobile service with home visits - ear piercing in the comfort of your home.',
+      uk: 'Мобільна послуга з виїздом додому - прокол вух у комфорті вашого дому.',
+      ru: 'Мобильная услуга с выездом на дом - прокол ушей в комфорте вашего дома.',
+    },
+    'przekluwanie-uszu-warszawa': { pl: '', en: '', uk: '', ru: '' }
+  };
+  
+  return {
+    name: serviceNames[slug]?.[locale] || '',
+    description: serviceDescriptions[slug]?.[locale] || '',
+    url: getServicePagePath(slug, locale),
+  };
+}).filter((service) => service.name);
+---
+
+<div class="min-h-screen bg-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-7xl">
+    <!-- Breadcrumb -->
+    <nav class="mb-8" aria-label="Breadcrumb">
+      <ol class="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground">
+        <li>
+          <a href={`/${locale}`} class="hover:text-primary transition-colors">
+            {t(locale, 'breadcrumb.home')}
+          </a>
+        </li>
+        <li class="flex items-center">
+          <span class="mx-2">/</span>
+          <a href={getLocalizedPagePath('services', locale)} class="hover:text-primary transition-colors">
+            {t(locale, 'header.nav.services')}
+          </a>
+        </li>
+        <li class="flex items-center">
+          <span class="mx-2">/</span>
+          <span class="text-foreground font-medium">{h1}</span>
+        </li>
+      </ol>
+    </nav>
+
+    <div class="grid lg:grid-cols-3 gap-12">
+      <!-- Main Content -->
+      <article class="lg:col-span-2">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-8 text-foreground leading-tight">
+          {h1}
+        </h1>
+
+        <!-- Description -->
+        <div class="prose prose-lg max-w-none mb-12 text-muted-foreground leading-relaxed">
+          <p class="text-lg">
+            {content.description}
+          </p>
+        </div>
+
+        <!-- Features Grid -->
+        {content.features && content.features.length > 0 && (
+          <div class="bg-muted/30 rounded-xl p-8 mb-12 border border-border/50">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 text-foreground">
+              {locale === 'pl' ? 'Kluczowe zalety' : 
+               locale === 'uk' ? 'Ключові переваги' : 
+               locale === 'ru' ? 'Ключевые преимущества' : 'Key benefits'}
+            </h2>
+            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-4">
+              {content.features.map((feature, index) => (
+                <li key={index} class="flex items-start gap-3">
+                  <div class="mt-1 h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="text-base text-muted-foreground font-medium">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {serviceSlug === 'przekluwanie-chrzastki-warszawa' && (
+          <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-foreground">
+              {locale === 'pl' ? 'Rodzaje przekłuć ucha' :
+               locale === 'en' ? 'Ear piercing types' :
+               locale === 'uk' ? 'Види проколів вуха' :
+               'Виды проколов уха'}
+            </h2>
+            <figure class="rounded-xl overflow-hidden border border-border shadow-sm bg-card">
+              <img
+                src="/artilage-piercing-chart.webp"
+                alt={locale === 'pl' ? 'Schemat przekłuwania ucha: Helix, Tragus, Conch, Lobe, Flat' :
+                     locale === 'en' ? 'Ear piercing chart: Helix, Tragus, Conch, Lobe, Flat' :
+                     locale === 'uk' ? 'Схема проколу вуха: Helix, Tragus, Conch, Lobe, Flat' :
+                     'Схема прокола уха: Helix, Tragus, Conch, Lobe, Flat'}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+              <figcaption class="p-4 text-sm text-muted-foreground text-center bg-muted/30 border-t border-border/50">
+                {locale === 'pl' ? 'Miejsca przekłuć, które wykonujemy: Lobe (płatek), Helix, Flat, Conch, Tragus' :
+                 locale === 'en' ? 'Piercing placements we perform: Lobe, Helix, Flat, Conch, Tragus' :
+                 locale === 'uk' ? 'Місця проколів, які ми виконуємо: Lobe (мочка), Helix, Flat, Conch, Tragus' :
+                 'Места проколов, которые мы выполняем: Lobe (мочка), Helix, Flat, Conch, Tragus'}
+              </figcaption>
+            </figure>
+          </div>
+        )}
+
+        {serviceSlug === 'przekluwanie-uszu-z-dojazdem-warszawa' && (
+          <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-foreground">
+              {locale === 'pl' ? 'Obszar obsługi' :
+               locale === 'en' ? 'Service area' :
+               locale === 'uk' ? 'Зона обслуговування' :
+               'Зона обслуживания'}
+            </h2>
+            <figure class="rounded-xl overflow-hidden border border-border shadow-sm bg-card">
+              <img
+                src="/warsaw-map.webp"
+                alt={locale === 'pl' ? 'Mapa Warszawy - obszar obsługi przekłuwania uszu z dojazdem' :
+                     locale === 'en' ? 'Warsaw map - mobile ear piercing service area' :
+                     locale === 'uk' ? 'Карта Варшави - зона обслуговування проколу вух з виїздом' :
+                     'Карта Варшавы - зона обслуживания прокола ушей с выездом'}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+              <figcaption class="p-4 text-sm text-muted-foreground text-center bg-muted/30 border-t border-border/50">
+                {locale === 'pl' ? 'Dojeżdżamy do klientów w całej Warszawie i okolicach' :
+                 locale === 'en' ? 'We travel to clients throughout Warsaw and surrounding areas' :
+                 locale === 'uk' ? 'Ми виїжджаємо до клієнтів по всій Варшаві та околицях' :
+                 'Мы выезжаем к клиентам по всей Варшаве и окрестностям'}
+              </figcaption>
+            </figure>
+          </div>
+        )}
+
+        <!-- Additional Info / Trust Section -->
+        <div class="border-t border-border pt-8 mb-12">
+          <h3 class="text-xl font-bold mb-4 text-foreground">
+            {locale === 'pl' ? 'Dlaczego Inverness MED?' : 'Why Inverness MED?'}
+          </h3>
+          <p class="text-muted-foreground mb-4">
+            {locale === 'pl' 
+              ? 'System Inverness MED to najbezpieczniejsza metoda przekłuwania uszu dostępna na rynku. Gwarantuje 100% sterylność dzięki w pełni zabudowanym kasetom, które uniemożliwiają kontakt dłoni piercera z kolczykiem czy igłą.' 
+              : 'Inverness MED system is the safest ear piercing method available. It guarantees 100% sterility thanks to fully enclosed cassettes.'}
+          </p>
+        </div>
+      </article>
+
+      <!-- Sticky Sidebar -->
+      <aside class="lg:col-span-1">
+        <div class="sticky top-24 bg-card rounded-[36px] border border-border shadow-lg overflow-hidden">
+          <!-- Header -->
+          <div class="p-6 bg-muted/30 border-b border-border">
+            <h3 class="font-semibold text-lg text-foreground">
+              {locale === 'pl' ? 'Zarezerwuj termin' : 
+               locale === 'uk' ? 'Забронювати візит' : 
+               locale === 'ru' ? 'Забронировать визит' : 'Book appointment'}
+            </h3>
+          </div>
+          
+          <div class="p-6 space-y-6">
+            <!-- Pricing -->
+            {content.pricing && (
+              <div class="space-y-4">
+                {prices ? (
+                  <div class="bg-card p-5 rounded-xl border border-border shadow-sm">
+                    <p class="text-base font-semibold text-foreground mb-4 border-b border-border pb-2">
+                      {locale === 'pl' ? 'Cennik' : 
+                       locale === 'uk' ? 'Прайс' : 
+                       locale === 'ru' ? 'Прайс' : 'Pricing'}
+                    </p>
+                    <div class="space-y-3">
+                      {prices.map((price) => (
+                        <div class="flex items-center justify-between">
+                          <span class="text-base text-muted-foreground">{price.label}</span>
+                          <span class="text-xl font-bold text-primary">{price.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : content.pricing.basePrice && (
+                  <div>
+                    <p class="text-sm text-muted-foreground font-medium mb-1">
+                      {locale === 'pl' ? 'Cena usługi' : 'Price'}
+                    </p>
+                    <p class="text-3xl font-bold text-primary">
+                      {content.pricing.basePrice}
+                    </p>
+                  </div>
+                )}
+                {content.pricing.additionalInfo && (
+                  <div class="flex items-start gap-3 p-4 bg-muted/30 rounded-lg text-sm text-muted-foreground">
+                    <span class="mt-0.5 text-primary">ⓘ</span>
+                    <p class="leading-snug">{content.pricing.additionalInfo}</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <!-- CTA Button -->
+            <a 
+              href={booksyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-md hover:shadow-lg group"
+              id={`service-cta-${serviceSlug}`}
+            >
+              {t(locale, 'cta.button')}
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Related Services -->
+    {relatedServiceData.length > 0 && (
+      <section class="mt-24 pt-12 border-t border-border">
+        <h2 class="text-3xl font-bold text-foreground mb-8 text-center">
+          {locale === 'pl' ? 'Mogą Cię zainteresować' :
+           locale === 'uk' ? 'Вас можуть зацікавити' :
+           locale === 'ru' ? 'Вам может быть интересно' :
+           'You might also like'}
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {relatedServiceData.map((service) => (
+            <a
+              href={service.url}
+              class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 hover:border-primary/50 group relative overflow-hidden"
+            >
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              
+              <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground">
+                {service.name}
+              </h3>
+              <p class="text-muted-foreground mb-8 leading-relaxed flex-grow">
+                {service.description}
+              </p>
+              <div class="flex items-center text-primary font-semibold mt-auto">
+                {locale === 'pl' ? 'Zobacz ofertę' :
+                 locale === 'en' ? 'View offer' :
+                 locale === 'uk' ? 'Переглянути пропозицію' :
+                 'Посмотреть предложение'}
+                <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</div>
+
+<script define:vars={{ locale, serviceSlug }}>
+  // Google Analytics - Track service page CTA click
+  const serviceCtaLink = document.getElementById(`service-cta-${serviceSlug}`);
+  if (serviceCtaLink && window.gtag) {
+    serviceCtaLink.addEventListener('click', () => {
+      gtag('event', 'booking_click_code', {
+        button_location: `service_page_${serviceSlug}`,
+        locale: locale,
+        booking_platform: 'booksy'
+      });
+    });
+  }
+</script>
+

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCanonicalUrl, PAGE_SLUGS, type Locale } from '../lib/seo';
+import { t } from '../lib/translations';
+
+// Detect locale from URL path or default to Polish
+const pathname = Astro.url.pathname;
+const localeMatch = pathname.match(/^\/(pl|uk|ru|en)/);
+const locale: Locale = (localeMatch?.[1] as Locale) || 'pl';
+
+// 404 page translations
+const translations: Record<Locale, { title: string; heading: string; message: string; button: string }> = {
+  pl: {
+    title: 'Strona nie znaleziona | Gentle Piercing Warszawa',
+    heading: 'Strona nie znaleziona',
+    message: 'Przepraszamy, strona której szukasz nie istnieje. Możliwe, że została przeniesiona lub usunięta.',
+    button: 'Wróć do strony głównej',
+  },
+  en: {
+    title: 'Page Not Found | Gentle Piercing Warsaw',
+    heading: 'Page Not Found',
+    message: 'Sorry, the page you are looking for does not exist. It may have been moved or removed.',
+    button: 'Return to Homepage',
+  },
+  uk: {
+    title: 'Сторінку не знайдено | Gentle Piercing Варшава',
+    heading: 'Сторінку не знайдено',
+    message: 'Вибачте, сторінку, яку ви шукаєте, не знайдено. Можливо, її було переміщено або видалено.',
+    button: 'Повернутися на головну',
+  },
+  ru: {
+    title: 'Страница не найдена | Gentle Piercing Варшава',
+    heading: 'Страница не найдена',
+    message: 'Извините, страница, которую вы ищете, не существует. Возможно, она была перемещена или удалена.',
+    button: 'Вернуться на главную',
+  },
+};
+
+const pageContent = translations[locale];
+
+const seo = {
+  title: pageContent.title,
+  description: locale === 'pl' 
+    ? 'Strona nie znaleziona - Gentle Piercing Warszawa'
+    : locale === 'en'
+    ? 'Page not found - Gentle Piercing Warsaw'
+    : locale === 'uk'
+    ? 'Сторінку не знайдено - Gentle Piercing Варшава'
+    : 'Страница не найдена - Gentle Piercing Варшава',
+  canonical: getCanonicalUrl(locale, ''),
+  noindex: true, // Don't index 404 pages
+  ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+};
+---
+
+<BaseLayout locale={locale} seo={seo}>
+  <div class="min-h-screen bg-background flex items-center justify-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-2xl text-center">
+      <div class="mb-8">
+        <h1 class="text-6xl sm:text-8xl font-bold text-primary mb-4">404</h1>
+        <h2 class="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+          {pageContent.heading}
+        </h2>
+        <p class="text-lg text-muted-foreground mb-8 leading-relaxed">
+          {pageContent.message}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href={`/${locale}`}
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-6"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+          {pageContent.button}
+        </a>
+        <a
+          href={`/${locale}/blog`}
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors h-12 px-6"
+        >
+          {locale === 'pl' ? 'Przeczytaj blog' :
+           locale === 'en' ? 'Read Blog' :
+           locale === 'uk' ? 'Читати блог' :
+           'Читать блог'}
+        </a>
+      </div>
+
+      <div class="mt-12 pt-8 border-t border-border">
+        <p class="text-sm text-muted-foreground mb-4">
+          {locale === 'pl' ? 'Możesz również:' :
+           locale === 'en' ? 'You can also:' :
+           locale === 'uk' ? 'Ви також можете:' :
+           'Вы также можете:'}
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
+          <a href={`/${locale}/${PAGE_SLUGS.services[locale]}`} class="text-primary hover:underline">
+            {t(locale, 'header.nav.services')}
+          </a>
+          <span class="text-muted-foreground">•</span>
+          <a href={`/${locale}/${PAGE_SLUGS.aftercare[locale]}`} class="text-primary hover:underline">
+            {t(locale, 'header.nav.aftercare')}
+          </a>
+          <span class="text-muted-foreground">•</span>
+          <a href={`/${locale}/${PAGE_SLUGS.contact[locale]}`} class="text-primary hover:underline">
+            {t(locale, 'header.nav.contact')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+

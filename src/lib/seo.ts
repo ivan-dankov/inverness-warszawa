@@ -1,5 +1,66 @@
 export type Locale = 'pl' | 'uk' | 'ru' | 'en';
 
+/**
+ * Localized page slugs mapping
+ */
+export const PAGE_SLUGS = {
+  services: {
+    pl: 'uslugi',
+    en: 'services',
+    uk: 'poslugy',
+    ru: 'uslugi',
+  },
+  contact: {
+    pl: 'kontakt',
+    en: 'contact',
+    uk: 'kontakty',
+    ru: 'kontakty',
+  },
+  aftercare: {
+    pl: 'pielegnacja',
+    en: 'aftercare',
+    uk: 'dogliad',
+    ru: 'ukhod',
+  },
+} as const;
+
+export type PageSlugKey = keyof typeof PAGE_SLUGS;
+
+/**
+ * Get localized page path (relative)
+ */
+export function getLocalizedPagePath(pageKey: PageSlugKey, locale: Locale, fallbackToPolish: boolean = false): string {
+  let slug = PAGE_SLUGS[pageKey][locale];
+  
+  // Fallback to Polish if requested and slug doesn't exist
+  if (fallbackToPolish && !slug) {
+    slug = PAGE_SLUGS[pageKey]['pl'];
+  }
+  
+  return getPagePath(locale, slug);
+}
+
+/**
+ * Get localized page URL (absolute)
+ */
+export function getLocalizedPageUrl(pageKey: PageSlugKey, locale: Locale, fallbackToPolish: boolean = false): string {
+  return `${SITE_URL}${getLocalizedPagePath(pageKey, locale, fallbackToPolish)}`;
+}
+
+/**
+ * Get all locale slugs for a page (for routing)
+ */
+export function getPageSlugVariants(pageKey: PageSlugKey): Record<Locale, string> {
+  return PAGE_SLUGS[pageKey];
+}
+
+/**
+ * Get localized slug with fallback to Polish
+ */
+export function getLocalizedSlug(pageKey: PageSlugKey, locale: Locale): string {
+  return PAGE_SLUGS[pageKey][locale] || PAGE_SLUGS[pageKey]['pl'];
+}
+
 export interface SEOConfig {
   title: string;
   description: string;
@@ -20,9 +81,13 @@ const SITE_URL = 'https://gentlepiercing.pl';
 /**
  * Get canonical URL for a locale and path
  */
-export function getCanonicalUrl(locale: Locale, path: string = ''): string {
+export function getPagePath(locale: Locale, path: string = ''): string {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  return `${SITE_URL}/${locale}${cleanPath}`;
+  return `/${locale}${cleanPath}`;
+}
+
+export function getCanonicalUrl(locale: Locale, path: string = ''): string {
+  return `${SITE_URL}${getPagePath(locale, path)}`;
 }
 
 /**
@@ -220,6 +285,34 @@ export function getAggregateRatingSchema() {
 }
 
 /**
+ * Truncate title to SEO-friendly length (60 characters)
+ */
+export function truncateTitle(title: string, maxLength: number = 60): string {
+  if (title.length <= maxLength) return title;
+  // Truncate at word boundary if possible
+  const truncated = title.substring(0, maxLength - 3);
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace > maxLength * 0.8) {
+    return truncated.substring(0, lastSpace) + '...';
+  }
+  return truncated + '...';
+}
+
+/**
+ * Truncate description to SEO-friendly length (160 characters)
+ */
+export function truncateDescription(description: string, maxLength: number = 160): string {
+  if (description.length <= maxLength) return description;
+  // Truncate at word boundary if possible
+  const truncated = description.substring(0, maxLength - 3);
+  const lastSpace = truncated.lastIndexOf(' ');
+  if (lastSpace > maxLength * 0.8) {
+    return truncated.substring(0, lastSpace) + '...';
+  }
+  return truncated + '...';
+}
+
+/**
  * Get page SEO configuration
  */
 export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog') {
@@ -295,5 +388,209 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog') 
   };
 
   return configs[locale]?.[page] || configs.pl.home;
+}
+
+/**
+ * Service page slug mapping for all locales
+ */
+export type ServicePageSlug = 
+  | 'uszy-dzieciom-warszawa'
+  | 'przekluwanie-uszu-dorosli-warszawa'
+  | 'przekluwanie-chrzastki-warszawa'
+  | 'przekluwanie-uszu-z-dojazdem-warszawa';
+
+export const SERVICE_SLUGS: Record<ServicePageSlug, Record<Locale, string>> = {
+  'uszy-dzieciom-warszawa': {
+    pl: 'uszy-dzieciom-warszawa',
+    en: 'ear-piercing-children-warsaw',
+    uk: 'prokol-vukh-dityam-varshava',
+    ru: 'prokol-ushej-detyam-varshava',
+  },
+  'przekluwanie-uszu-dorosli-warszawa': {
+    pl: 'przekluwanie-uszu-dorosli-warszawa',
+    en: 'ear-piercing-adults-warsaw',
+    uk: 'prokol-vukh-doroslim-varshava',
+    ru: 'prokol-ushej-vzroslym-varshava',
+  },
+  'przekluwanie-chrzastki-warszawa': {
+    pl: 'przekluwanie-chrzastki-warszawa',
+    en: 'cartilage-piercing-warsaw',
+    uk: 'prokol-khryashcha-varshava',
+    ru: 'prokol-khryashcha-varshava',
+  },
+  'przekluwanie-uszu-z-dojazdem-warszawa': {
+    pl: 'przekluwanie-uszu-z-dojazdem-warszawa',
+    en: 'mobile-ear-piercing-warsaw',
+    uk: 'prokol-vukh-z-vyizdom-varshava',
+    ru: 'prokol-ushej-s-vyezdom-varshava',
+  },
+};
+
+/**
+ * Get localized service slug for a locale (for translation key lookup)
+ */
+export function getServiceSlugForLocale(serviceSlug: ServicePageSlug, locale: Locale): string {
+  return SERVICE_SLUGS[serviceSlug][locale] || SERVICE_SLUGS[serviceSlug]['pl'];
+}
+
+/**
+ * Get service page path for a locale (relative)
+ */
+export function getServicePagePath(serviceSlug: ServicePageSlug, locale: Locale): string {
+  const servicesSlug = PAGE_SLUGS.services[locale];
+  const slug = SERVICE_SLUGS[serviceSlug][locale];
+  return getPagePath(locale, `${servicesSlug}/${slug}`);
+}
+
+/**
+ * Get service page URL for a locale (absolute)
+ */
+export function getServicePageUrl(serviceSlug: ServicePageSlug, locale: Locale): string {
+  return `${SITE_URL}${getServicePagePath(serviceSlug, locale)}`;
+}
+
+/**
+ * Get hreflang URLs for a service page
+ */
+export function getServicePageHreflang(serviceSlug: ServicePageSlug): Record<Locale, string> {
+  const hreflang: Record<Locale, string> = {} as Record<Locale, string>;
+  const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
+  
+  locales.forEach((locale) => {
+    hreflang[locale] = getServicePageUrl(serviceSlug, locale);
+  });
+  
+  return hreflang;
+}
+
+/**
+ * Generate Service JSON-LD schema
+ */
+export function getServiceSchema(
+  locale: Locale,
+  serviceName: string,
+  serviceType: string,
+  price: string,
+  url: string
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: serviceName,
+    serviceType: serviceType,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Gentle Piercing',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Gizów 6',
+        addressLocality: 'Warszawa',
+        postalCode: '01-249',
+        addressCountry: 'PL',
+      },
+      telephone: '+48573818260',
+      url: SITE_URL,
+    },
+    areaServed: {
+      '@type': 'City',
+      name: 'Warszawa',
+      addressCountry: 'PL',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: price,
+      priceCurrency: 'PLN',
+      availability: 'https://schema.org/InStock',
+      url: url,
+    },
+    url: url,
+  };
+}
+
+/**
+ * Get service page SEO configuration
+ */
+export function getServicePageSEO(
+  locale: Locale,
+  serviceSlug: ServicePageSlug
+): { title: string; description: string } {
+  // This will be populated from translations
+  // For now, return placeholder - will be updated when translations are added
+  const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
+    'uszy-dzieciom-warszawa': {
+      pl: {
+        title: 'Przekłuwanie Uszu Dzieciom Warszawa | Gentle Piercing',
+        description: 'Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Dla dzieci 0+, zatwierdzone przez lekarzy.',
+      },
+      en: {
+        title: 'Ear Piercing for Children Warsaw | Gentle Piercing',
+        description: 'Safe ear piercing for children in Warsaw with Inverness MED system. For children 0+, doctor-approved.',
+      },
+      uk: {
+        title: 'Прокол Вух Дітям Варшава | Gentle Piercing',
+        description: 'Безпечний прокол вух дітям у Варшаві системою Inverness MED. Для дітей 0+, схвалено лікарями.',
+      },
+      ru: {
+        title: 'Прокол Ушей Детям Варшава | Gentle Piercing',
+        description: 'Безопасный прокол ушей детям в Варшаве системой Inverness MED. Для детей 0+, одобрено врачами.',
+      },
+    },
+    'przekluwanie-uszu-dorosli-warszawa': {
+      pl: {
+        title: 'Przekłuwanie Uszu Dla Dorosłych Warszawa | Gentle Piercing',
+        description: 'Profesjonalne przekłuwanie uszu dla dorosłych w Warszawie systemem Inverness MED. Chrząstka i płatek ucha.',
+      },
+      en: {
+        title: 'Ear Piercing for Adults Warsaw | Gentle Piercing',
+        description: 'Professional ear piercing for adults in Warsaw with Inverness MED system. Cartilage and earlobe.',
+      },
+      uk: {
+        title: 'Прокол Вух Для Дорослих Варшава | Gentle Piercing',
+        description: 'Професійний прокол вух для дорослих у Варшаві системою Inverness MED. Хрящ та мочка вуха.',
+      },
+      ru: {
+        title: 'Прокол Ушей Для Взрослых Варшава | Gentle Piercing',
+        description: 'Профессиональный прокол ушей для взрослых в Варшаве системой Inverness MED. Хрящ и мочка уха.',
+      },
+    },
+    'przekluwanie-chrzastki-warszawa': {
+      pl: {
+        title: 'Przekłuwanie Chrząstki Warszawa | Gentle Piercing',
+        description: 'Profesjonalne przekłuwanie chrząstki ucha w Warszawie. Helix, tragus, conch systemem Inverness MED.',
+      },
+      en: {
+        title: 'Cartilage Piercing Warsaw | Gentle Piercing',
+        description: 'Professional cartilage piercing in Warsaw. Helix, tragus, conch with Inverness MED system.',
+      },
+      uk: {
+        title: 'Прокол Хряща Варшава | Gentle Piercing',
+        description: 'Професійний прокол хряща вуха у Варшаві. Helix, tragus, conch системою Inverness MED.',
+      },
+      ru: {
+        title: 'Прокол Хряща Варшава | Gentle Piercing',
+        description: 'Профессиональный прокол хряща уха в Варшаве. Helix, tragus, conch системой Inverness MED.',
+      },
+    },
+    'przekluwanie-uszu-z-dojazdem-warszawa': {
+      pl: {
+        title: 'Przekłuwanie Uszu Z Dojazdem Warszawa | Gentle Piercing',
+        description: 'Mobilne przekłuwanie uszu z dojazdem do domu w Warszawie. System Inverness MED, wizyty domowe.',
+      },
+      en: {
+        title: 'Mobile Ear Piercing Warsaw | Gentle Piercing',
+        description: 'Mobile ear piercing with home visits in Warsaw. Inverness MED system, home appointments.',
+      },
+      uk: {
+        title: 'Прокол Вух З Виїздом Варшава | Gentle Piercing',
+        description: 'Мобільний прокол вух з виїздом додому у Варшаві. Система Inverness MED, домашні візити.',
+      },
+      ru: {
+        title: 'Прокол Ушей С Выездом Варшава | Gentle Piercing',
+        description: 'Мобильный прокол ушей с выездом на дом в Варшаве. Система Inverness MED, домашние визиты.',
+      },
+    },
+  };
+
+  return configs[serviceSlug]?.[locale] || configs['uszy-dzieciom-warszawa'][locale];
 }
 

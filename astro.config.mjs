@@ -5,6 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
+  trailingSlash: 'never', // Always remove trailing slashes for canonical URLs
   integrations: [
     react(),
     tailwind({

@@ -10,7 +10,7 @@ import Testimonials from '../../components/Testimonials.astro';
 import Comparison from '../../components/Comparison.astro';
 import FAQ from '../../components/FAQ.astro';
 import RecentArticles from '../../components/RecentArticles.astro';
-import Contact from '../../components/Contact.astro';
+import ContactHome from '../../components/ContactHome.astro';
 import CTASection from '../../components/CTASection.astro';
 
 export async function getStaticPaths() {
@@ -22,7 +22,11 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
-const seo = getPageSEO(currentLocale, 'home');
+const baseSeo = getPageSEO(currentLocale, 'home');
+const seo = {
+  ...baseSeo,
+  ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+};
 
 // Get FAQ data for schema
 const translations = getTranslations(currentLocale);
@@ -50,6 +54,6 @@ const structuredData = [
   <FAQ locale={currentLocale} />
   <RecentArticles locale={currentLocale} />
   <CTASection locale={currentLocale} />
-  <Contact locale={currentLocale} />
+  <ContactHome locale={currentLocale} />
 </BaseLayout>
 

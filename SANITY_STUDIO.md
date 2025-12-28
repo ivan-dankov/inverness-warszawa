@@ -50,3 +50,4 @@ The studio will be available at: **http://localhost:3333**
 - The studio auto-saves as you type
 - Images are automatically optimized by Sanity CDN
 
+

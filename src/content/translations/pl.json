@@ -1,6 +1,7 @@
 {
   "header": {
     "nav": {
+      "home": "Strona Główna",
       "about": "O Nas",
       "services": "Usługi",
       "gallery": "Galeria",
@@ -63,7 +64,7 @@
         "title": "Przekłucie chrząstki (helix, tragus, conch) i płatka ucha (lobe)",
         "description": "Profesjonalne przekłucie chrząstki lub płatka ucha z wykorzystaniem certyfikowanego systemu",
         "badge": "Cena standardowa",
-        "price": "80 zł",
+        "price": "od 80 zł",
         "duration": "30 min",
         "features": [
           "Cena nie obejmuje kosztu kolczyków"
@@ -85,7 +86,7 @@
         "title": "Więcej Wariantów Usług",
         "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
         "badge": "Booksy",
-        "price": "Sprawdź",
+        "price": "od 40 zł + cena usługi",
         "duration": "Różne opcje",
         "features": [
           "Dojazd mobilny",
@@ -97,7 +98,7 @@
     "pricing": {
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 100 zł za parę",
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 60 zł za jeden, od 100 zł za parę",
       "mobileVisit": "Dojazd mobilny: 40 zł, może być wyższa w zależności od odległości"
     },
     "bookButton": "Rezerwuj Online",
@@ -204,9 +205,9 @@
     ]
   },
   "contact": {
-    "title": "Skontaktuj Się z Nami",
+    "title": "Skontaktuj się z nami",
     "subtitle": "Zarezerwuj wizytę już dziś lub zadaj nam pytanie",
-    "contactInfo": "Informacje Kontaktowe",
+    "contactInfo": "Informacje kontaktowe",
     "location": "Lokalizacja",
     "address": "Gizów 6/208, 01-249 Warszawa, Wola",
     "phone": "Telefon",
@@ -215,7 +216,7 @@
     "emailAddress": "piercinggentle@gmail.com",
     "instagram": "Instagram",
     "instagramHandle": "@prokol_ushej_warszawa",
-    "hours": "Godziny Otwarcia",
+    "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
     "mobileVisit": "Dojazd mobilny: +40 zł",
@@ -351,5 +352,87 @@
     "button": "Rezerwuj Online",
     "phone": "Telefon",
     "footer": "Dostępne również wizyty mobilne z dojazdem do domu"
+  },
+  "servicePages": {
+    "przekluwanie-uszu-warszawa": {
+      "h1": "Przekłuwanie Uszu w Warszawie",
+      "description": "Profesjonalne przekłuwanie uszu w Warszawie systemem Inverness MED. Oferujemy bezpieczne, sterylne i bezbolesne przekłuwanie uszu dla dzieci i dorosłych. System Inverness MED to jedyna metoda w Europie zatwierdzona przez lekarzy dla dzieci od 0+. Wykonujemy przekłuwanie płatka ucha oraz chrząstki (helix, tragus, conch).",
+      "features": [
+        "System Inverness MED - certyfikowany przez FDA i ISO",
+        "100% sterylność - jednorazowe, zamknięte kasety",
+        "Dla dzieci 0+ i dorosłych",
+        "Przekłuwanie płatka ucha i chrząstki",
+        "Ponad 30 modeli hipoalergicznych kolczyków",
+        "Cichy i delikatny mechanizm"
+      ],
+      "pricing": {
+        "basePrice": "Od 80 zł za przekłucie",
+        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 60 zł za jeden, od 100 zł za parę)"
+      }
+    },
+    "uszy-dzieciom-warszawa": {
+      "h1": "Przekłuwanie Uszu Dzieciom w Warszawie",
+      "description": "Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Jedyne przekłuwanie zatwierdzone przez lekarzy dla dzieci od 0+. Cichy, delikatny mechanizm nie przestrasza najmłodszych, a 100% sterylność gwarantuje bezpieczeństwo. Doświadczona specjalistka z ponad 5000 bezpiecznych zabiegów.",
+      "features": [
+        "Zatwierdzone przez lekarzy dla dzieci 0+",
+        "Cichy mechanizm - nie przestrasza dzieci",
+        "Delikatna metoda - minimalny dyskomfort",
+        "Wsparcie i opieka rodziców podczas zabiegu",
+        "Sterylne, jednorazowe narzędzia",
+        "Specjalne kolczyki dla dzieci"
+      ],
+      "pricing": {
+        "basePrice": "150 zł",
+        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 60 zł za jeden, od 100 zł za parę)"
+      }
+    },
+    "przekluwanie-uszu-dorosli-warszawa": {
+      "h1": "Przekłuwanie Płatka Ucha Dla Dorosłych w Warszawie",
+      "description": "Profesjonalne przekłuwanie uszu dla dorosłych w Warszawie systemem Inverness MED. Oferujemy przekłuwanie płatka ucha oraz chrząstki (helix, tragus, conch). System Inverness MED zapewnia precyzyjne, atraumatyczne przekłucie z szybkim gojeniem. Szeroki wybór kolczyków dla dorosłych.",
+      "features": [
+        "Przekłuwanie płatka ucha i chrząstki",
+        "Precyzyjna metoda - szybkie gojenie",
+        "Ponad 30 modeli kolczyków dla dorosłych",
+        "Hipoalergiczne materiały (tytan, niob, stal medyczna)",
+        "Profesjonalna konsultacja przed zabiegiem",
+        "Sterylne warunki zabiegu"
+      ],
+      "pricing": {
+        "basePrice": "1 przekłucie: 80 zł, 2 przekłucia: 140 zł, 3 przekłucia: 180 zł",
+        "additionalInfo": "Cena usługi. Cena kolczyka od 60 zł."
+      }
+    },
+    "przekluwanie-chrzastki-warszawa": {
+      "h1": "Przekłuwanie Chrząstki w Warszawie",
+      "description": "Profesjonalne przekłuwanie chrząstki ucha w Warszawie systemem Inverness MED. Specjalizujemy się w przekłuwaniu helix, tragus, conch, flat oraz lobe. System Inverness MED jest idealny do przekłuwania chrząstki - precyzyjny, nie rozrywa tkanek jak tradycyjny pistolet. Szybkie i czyste gojenie.",
+      "features": [
+        "Przekłuwanie helix, tragus, conch, flat, lobe",
+        "Idealny system dla chrząstki",
+        "Precyzyjne przekłucie - nie rozrywa tkanek",
+        "Szybkie gojenie (12 tygodni)",
+        "Specjalne kolczyki do chrząstki",
+        "Doświadczona specjalistka"
+      ],
+      "pricing": {
+        "basePrice": "1 przekłucie: 80 zł, 2 przekłucia: 140 zł, 3 przekłucia: 180 zł",
+        "additionalInfo": "Cena usługi. Cena kolczyka od 60 zł."
+      }
+    },
+    "przekluwanie-uszu-z-dojazdem-warszawa": {
+      "h1": "Przekłuwanie Uszu Z Dojazdem w Warszawie",
+      "description": "Mobilne przekłuwanie uszu z dojazdem do domu w Warszawie. Oferujemy profesjonalną usługę przekłuwania uszu systemem Inverness MED w Twoim domu. Idealne rozwiązanie dla rodzin z małymi dziećmi lub osób, które preferują komfort własnego domu. Pełna sterylność i profesjonalizm.",
+      "features": [
+        "Dojazd do domu w Warszawie",
+        "Pełna sterylność w warunkach domowych",
+        "System Inverness MED - ten sam co w gabinecie",
+        "Idealne dla rodzin z dziećmi",
+        "Komfort własnego domu",
+        "Elastyczne godziny wizyt"
+      ],
+      "pricing": {
+        "basePrice": "Od 80 zł za przekłucie + 40 zł dojazd",
+        "additionalInfo": "Cena dojazdu może być wyższa w zależności od odległości. Cena nie obejmuje kosztu kolczyków (od 60 zł za jeden, od 100 zł za parę)"
+      }
+    }
   }
 }

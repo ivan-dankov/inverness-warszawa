@@ -13,7 +13,11 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
-const seo = getPageSEO(currentLocale, 'blog');
+const baseSeo = getPageSEO(currentLocale, 'blog');
+const seo = {
+  ...baseSeo,
+  ogImage: 'https://gentlepiercing.pl/hero/hero-4.jpg',
+};
 let posts = [];
 try {
   posts = await getPostsByLocale(currentLocale);
@@ -33,6 +37,21 @@ const structuredData = [
 <BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData}>
   <div class="bg-background">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Breadcrumb -->
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <ol class="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground">
+          <li>
+            <a href={`/${locale}`} class="hover:text-primary transition-colors">
+              {t(currentLocale, 'breadcrumb.home')}
+            </a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2">/</span>
+            <span class="text-foreground font-medium">{t(currentLocale, 'breadcrumb.blog')}</span>
+          </li>
+        </ol>
+      </nav>
+
       <div class="text-center mb-12">
         <h1 class="text-4xl sm:text-5xl font-bold mb-4">{t(currentLocale, 'blog.title')}</h1>
         <p class="text-lg text-muted-foreground max-w-2xl mx-auto">

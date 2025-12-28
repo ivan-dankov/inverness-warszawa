@@ -1,5 +1,8 @@
 # Redirect www to non-www
 https://www.gentlepiercing.pl/*  https://gentlepiercing.pl/:splat  301!
 
+# Redirect trailing slashes to non-trailing slash (canonical URLs)
+/*/    /:splat  301!
+
 # SPA fallback - redirect all non-asset requests to index.html for client-side routing
 /*    /index.html   200

@@ -1,6 +1,6 @@
 ---
 import { t, getTranslations } from '../lib/translations';
-import type { Locale } from '../lib/seo';
+import { PAGE_SLUGS, type Locale } from '../lib/seo';
 
 interface Props {
   locale: Locale;
@@ -45,7 +45,7 @@ const faqs = translations.faq?.items || [];
               {faq.link && (
                 <>
                   {' '}
-                  <a href={`/${locale}/aftercare`} class="text-primary hover:underline font-medium">
+                  <a href={`/${locale}/${PAGE_SLUGS.aftercare[locale]}`} class="text-primary hover:underline font-medium">
                     {t(locale, 'faq.aftercareLink')}
                   </a>
                 </>

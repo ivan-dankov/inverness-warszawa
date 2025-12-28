@@ -1,7 +1,7 @@
 ---
 import { t } from '../lib/translations';
 import { languages } from '../lib/language-routes';
-import type { Locale } from '../lib/seo';
+import { PAGE_SLUGS, type Locale } from '../lib/seo';
 import logomark from '../assets/logomark.svg';
 
 interface Props {
@@ -11,6 +11,11 @@ interface Props {
 
 const { locale, currentPath = '' } = Astro.props;
 const isHomepage = currentPath === `/${locale}` || currentPath === `/${locale}/`;
+
+// Get localized page slugs
+const servicesSlug = PAGE_SLUGS.services[locale];
+const contactSlug = PAGE_SLUGS.contact[locale];
+const aftercareSlug = PAGE_SLUGS.aftercare[locale];
 ---
 
 <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,73 +34,36 @@ const isHomepage = currentPath === `/${locale}` || currentPath === `/${locale}/`
       </a>
 
       <nav class="hidden lg:flex items-center gap-8">
-        {isHomepage ? (
-          <>
-            <button 
-              data-scroll-to="services"
-              class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
-            >
-              {t(locale, 'header.nav.services')}
-            </button>
-            <button 
-              data-scroll-to="gallery"
-              class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
-            >
-              {t(locale, 'header.nav.gallery')}
-            </button>
-            <button 
-              data-scroll-to="testimonials"
-              class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
-            >
-              {t(locale, 'header.nav.testimonials')}
-            </button>
-            <button 
-              data-scroll-to="comparison"
-              class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
-            >
-              {t(locale, 'header.nav.comparison')}
-            </button>
-          </>
-        ) : (
-          <>
-            <a href={`/${locale}#services`} class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary">
-              {t(locale, 'header.nav.services')}
-            </a>
-            <a href={`/${locale}#gallery`} class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary">
-              {t(locale, 'header.nav.gallery')}
-            </a>
-            <a href={`/${locale}#testimonials`} class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary">
-              {t(locale, 'header.nav.testimonials')}
-            </a>
-            <a href={`/${locale}#comparison`} class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary">
-              {t(locale, 'header.nav.comparison')}
-            </a>
-          </>
-        )}
-                <a
-                  href={`/${locale}/aftercare`}
-                  class={`text-sm font-medium transition-colors ${currentPath.includes('/aftercare') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
-                >
-                  {t(locale, 'header.nav.aftercare')}
-                </a>
+        <a
+          href={`/${locale}`}
+          class={`text-sm font-medium transition-colors ${isHomepage ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+        >
+          {t(locale, 'header.nav.home')}
+        </a>
+        <a
+          href={`/${locale}/${servicesSlug}`}
+          class={`text-sm font-medium transition-colors ${currentPath.includes(`/${servicesSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+        >
+          {t(locale, 'header.nav.services')}
+        </a>
+        <a
+          href={`/${locale}/${aftercareSlug}`}
+          class={`text-sm font-medium transition-colors ${currentPath.includes(`/${aftercareSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+        >
+          {t(locale, 'header.nav.aftercare')}
+        </a>
         <a 
           href={`/${locale}/blog`}
           class={`text-sm font-medium transition-colors ${currentPath.includes('/blog') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
         >
           {t(locale, 'header.nav.blog')}
         </a>
-        {isHomepage ? (
-          <button 
-            data-scroll-to="contact"
-            class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary"
-          >
-            {t(locale, 'header.nav.contact')}
-          </button>
-        ) : (
-          <a href={`/${locale}#contact`} class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.contact')}
-          </a>
-        )}
+        <a
+          href={`/${locale}/${contactSlug}`}
+          class={`text-sm font-medium transition-colors ${currentPath.includes(`/${contactSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+        >
+          {t(locale, 'header.nav.contact')}
+        </a>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -142,52 +110,30 @@ const isHomepage = currentPath === `/${locale}` || currentPath === `/${locale}/`
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden lg:hidden border-t border-border bg-background">
     <div class="container mx-auto px-4 py-4 space-y-4">
-      {isHomepage ? (
-        <>
-          <button data-scroll-to="services" class="block w-full text-left text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.services')}
-          </button>
-          <button data-scroll-to="gallery" class="block w-full text-left text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.gallery')}
-          </button>
-          <button data-scroll-to="testimonials" class="block w-full text-left text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.testimonials')}
-          </button>
-          <button data-scroll-to="comparison" class="block w-full text-left text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.comparison')}
-          </button>
-        </>
-      ) : (
-        <>
-          <a href={`/${locale}#services`} class="block text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.services')}
-          </a>
-          <a href={`/${locale}#gallery`} class="block text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.gallery')}
-          </a>
-          <a href={`/${locale}#testimonials`} class="block text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.testimonials')}
-          </a>
-          <a href={`/${locale}#comparison`} class="block text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-            {t(locale, 'header.nav.comparison')}
-          </a>
-        </>
-      )}
-              <a href={`/${locale}/aftercare`} class={`block text-base font-medium transition-colors ${currentPath.includes('/aftercare') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
-                {t(locale, 'header.nav.aftercare')}
-              </a>
+      <a
+        href={`/${locale}`}
+        class={`block text-base font-medium transition-colors ${isHomepage ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+      >
+        {t(locale, 'header.nav.home')}
+      </a>
+      <a
+        href={`/${locale}/${servicesSlug}`}
+        class={`block text-base font-medium transition-colors ${currentPath.includes(`/${servicesSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+      >
+        {t(locale, 'header.nav.services')}
+      </a>
+      <a href={`/${locale}/${aftercareSlug}`} class={`block text-base font-medium transition-colors ${currentPath.includes(`/${aftercareSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
+        {t(locale, 'header.nav.aftercare')}
+      </a>
       <a href={`/${locale}/blog`} class={`block text-base font-medium transition-colors ${currentPath.includes('/blog') ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}>
         {t(locale, 'header.nav.blog')}
       </a>
-      {isHomepage ? (
-        <button data-scroll-to="contact" class="block w-full text-left text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-          {t(locale, 'header.nav.contact')}
-        </button>
-      ) : (
-        <a href={`/${locale}#contact`} class="block text-base font-medium transition-colors text-muted-foreground hover:text-primary">
-          {t(locale, 'header.nav.contact')}
-        </a>
-      )}
+      <a
+        href={`/${locale}/${contactSlug}`}
+        class={`block text-base font-medium transition-colors ${currentPath.includes(`/${contactSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
+      >
+        {t(locale, 'header.nav.contact')}
+      </a>
       
       <div class="border-t pt-4 mt-4 flex flex-col gap-4">
         <div class="flex items-center gap-2">
@@ -220,22 +166,6 @@ const isHomepage = currentPath === `/${locale}` || currentPath === `/${locale}/`
       mobileMenu.classList.toggle('hidden');
     });
   }
-
-  // Smooth scroll for homepage sections
-  document.querySelectorAll('[data-scroll-to]').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = button.getAttribute('data-scroll-to');
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu if open
-        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-        }
-      }
-    });
-  });
 
   // Google Analytics - Track booking button click
   const headerBookingButton = document.getElementById('header-booking-button');

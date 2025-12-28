@@ -34,9 +34,14 @@ Gentle Piercing (Inverness MED) oferuje bezpieczne i bezbolesne przekłuwanie us
 
 ## Pages
 - / - Strona główna
-- /earrings - Galeria kolczyków
-- /earrings/:id - Szczegóły kolczyka
-- /aftercare - Pielęgnacja po przekłuciu
+- /pl/pielegnacja - Pielęgnacja po przekłuciu (PL)
+- /en/aftercare - Aftercare (EN)
+- /uk/dogliad - Догляд після проколу (UK)
+- /ru/ukhod - Уход после прокола (RU)
+- /pl/uslugi - Usługi (PL)
+- /en/services - Services (EN)
+- /uk/poslugy - Послуги (UK)
+- /ru/uslugi - Услуги (RU)
 
 ## Technology
 - React 18

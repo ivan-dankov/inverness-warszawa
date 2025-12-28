@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getPageSEO, getCanonicalUrl, getHreflangUrls, getArticleSchema, getBreadcrumbSchema, type Locale } from '../../../lib/seo';
+import { getPageSEO, getCanonicalUrl, getHreflangUrls, getArticleSchema, getBreadcrumbSchema, truncateTitle, truncateDescription, type Locale } from '../../../lib/seo';
 import { getPostBySlug, getTranslationGroup, urlFor, getAllPostSlugs } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
 import PortableTextRenderer from '../../../components/PortableTextRenderer';
@@ -66,8 +66,8 @@ const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString(
 const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedTime;
 
 const seo = {
-  title: post.metaTitle || post.title,
-  description: post.metaDescription || post.excerpt,
+  title: truncateTitle(post.metaTitle || post.title),
+  description: truncateDescription(post.metaDescription || post.excerpt),
   ogImage,
   ogType: 'article', // Blog posts are articles
   canonical,
@@ -124,7 +124,9 @@ const structuredData = [articleSchema, breadcrumbSchema];
       </nav>
 
       <article>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 text-center">{post.title}</h1>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 text-center">
+          {post.title}
+        </h1>
         
         <!-- Article Metadata -->
         <div class="flex items-center gap-8 mb-8 text-sm text-muted-foreground justify-center flex-wrap pb-8 border-b border-border/50">

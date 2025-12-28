@@ -20,6 +20,10 @@ const hreflang = seo.hreflang || getHreflangUrls(
   Astro.url.pathname.replace(`/${locale}`, ''),
   seo.translationGroup
 );
+
+// Default OG image for pages that don't specify one
+const defaultOgImage = 'https://gentlepiercing.pl/hero/hero-3.jpg';
+const ogImage = seo.ogImage || defaultOgImage;
 ---
 
 <!doctype html>
@@ -84,16 +88,12 @@ const hreflang = seo.hreflang || getHreflangUrls(
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
-    {seo.ogImage && (
-      <>
-        <meta property="og:image" content={seo.ogImage} />
-        <meta property="og:image:secure_url" content={seo.ogImage} />
-        <meta property="og:image:type" content="image/webp" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content={seo.title} />
-      </>
-    )}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={seo.title} />
     <meta property="og:site_name" content="Gentle Piercing" />
     <meta property="og:locale" content={locale === 'pl' ? 'pl_PL' : locale === 'uk' ? 'uk_UA' : locale === 'ru' ? 'ru_RU' : 'en_US'} />
     
@@ -122,7 +122,7 @@ const hreflang = seo.hreflang || getHreflangUrls(
     <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={seo.title} />
     <meta name="twitter:description" content={seo.description} />
-    {seo.ogImage && <meta name="twitter:image" content={seo.ogImage} />}
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Structured Data (JSON-LD) -->
     {structuredData.map((data, index) => (

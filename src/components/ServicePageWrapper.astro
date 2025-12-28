@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServicePage from './ServicePage.astro';
+import { 
+  getServicePageSEO, 
+  getServicePageHreflang, 
+  getServicePageUrl,
+  getLocalBusinessSchema,
+  getServiceSchema,
+  getBreadcrumbSchema,
+  getCanonicalUrl,
+  getServiceSlugForLocale,
+  getLocalizedPageUrl,
+  SERVICE_SLUGS,
+  type Locale,
+  type ServicePageSlug
+} from '../lib/seo';
+import { getTranslations, t } from '../lib/translations';
+
+interface Props {
+  locale: Locale;
+  serviceSlug: ServicePageSlug;
+  relatedServices?: ServicePageSlug[];
+}
+
+const { locale, serviceSlug, relatedServices = [] } = Astro.props;
+
+const translations = getTranslations(locale);
+
+// Get the localized translation key (e.g., 'ear-piercing-warsaw' for English)
+const translationKey = getServiceSlugForLocale(serviceSlug, locale);
+
+const serviceData = translations.servicePages?.[translationKey] || translations.servicePages?.[serviceSlug];
+
+if (!serviceData) {
+  // Fallback to Polish if translation doesn't exist
+  if (locale !== 'pl') {
+    const polishSlug = SERVICE_SLUGS[serviceSlug]['pl'];
+    return Astro.redirect(`/pl/${polishSlug}`, 302);
+  }
+  return Astro.redirect(`/${locale}`, 301);
+}
+
+const seoConfig = getServicePageSEO(locale, serviceSlug);
+const canonical = getServicePageUrl(serviceSlug, locale);
+const hreflang = getServicePageHreflang(serviceSlug);
+
+const seo = {
+  ...seoConfig,
+  canonical,
+  hreflang,
+  ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+};
+
+// Build structured data
+const localBusinessSchema = getLocalBusinessSchema(locale);
+const serviceSchema = getServiceSchema(
+  locale,
+  serviceData.h1,
+  serviceData.serviceType || 'Ear Piercing',
+  serviceData.pricing?.basePrice || '80 zł',
+  canonical
+);
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
+  { name: t(locale, 'header.nav.services'), url: getLocalizedPageUrl('services', locale) },
+  { name: serviceData.h1, url: canonical },
+]);
+
+const structuredData = [localBusinessSchema, serviceSchema, breadcrumbSchema];
+---
+
+<BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
+  <ServicePage 
+    locale={locale}
+    serviceSlug={serviceSlug}
+    h1={serviceData.h1}
+    content={{
+      description: serviceData.description,
+      features: serviceData.features,
+      pricing: serviceData.pricing,
+    }}
+    relatedServices={relatedServices}
+  />
+</BaseLayout>
+

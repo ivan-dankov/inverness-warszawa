@@ -1,0 +1,388 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { 
+  getBreadcrumbSchema, 
+  getLocalBusinessSchema,
+  getLocalizedPageUrl,
+  getServicePagePath,
+  type Locale,
+  type ServicePageSlug
+} from '../lib/seo';
+import { t, getTranslations } from '../lib/translations';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const translations = getTranslations(locale);
+const servicesCards = translations.services?.cards || [];
+const pricing = translations.services?.pricing || {};
+
+// Service page slugs and their data - only children, adults, and cartilage
+const servicePages: Array<{ slug: ServicePageSlug; nameKey: string; desc: Record<Locale, string> }> = [
+  { 
+    slug: 'uszy-dzieciom-warszawa', 
+    nameKey: 'children',
+    desc: {
+      pl: 'Bezpieczne i delikatne przekłuwanie uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
+      en: 'Safe and gentle ear piercing for children from 0+, doctor-approved.',
+      uk: 'Безпечний та делікатний прокол вух для дітей від 0+, схвалений лікарями.',
+      ru: 'Безопасный и деликатный прокол ушей для детей от 0+, одобренный врачами.',
+    }
+  },
+  { 
+    slug: 'przekluwanie-uszu-dorosli-warszawa', 
+    nameKey: 'adults',
+    desc: {
+      pl: 'Przekłuwanie uszu dla dorosłych - płatek ucha i chrząstka w profesjonalnych warunkach.',
+      en: 'Ear piercing for adults - earlobe and cartilage in professional conditions.',
+      uk: 'Прокол вух для дорослих - мочка вуха та хрящ у професійних умовах.',
+      ru: 'Прокол ушей для взрослых - мочка уха и хрящ в профессиональных условиях.',
+    }
+  },
+  { 
+    slug: 'przekluwanie-chrzastki-warszawa', 
+    nameKey: 'cartilage',
+    desc: {
+      pl: 'Specjalizujemy się w przekłuwaniu chrząstki: helix, tragus, conch systemem Inverness MED.',
+      en: 'We specialize in cartilage piercing: helix, tragus, conch with Inverness MED system.',
+      uk: 'Спеціалізуємося на проколі хряща: helix, tragus, conch системою Inverness MED.',
+      ru: 'Специализируемся на проколе хряща: helix, tragus, conch системой Inverness MED.',
+    }
+  },
+];
+
+const serviceNames: Record<string, Record<Locale, string>> = {
+  children: {
+    pl: 'Przekłuwanie uszu dzieciom',
+    en: 'Ear piercing for children',
+    uk: 'Прокол вух дітям',
+    ru: 'Прокол ушей детям',
+  },
+  adults: {
+    pl: 'Przekłuwanie płatka ucha dla dorosłych',
+    en: 'Earlobe piercing for adults',
+    uk: 'Прокол мочки вуха для дорослих',
+    ru: 'Прокол мочки уха для взрослых',
+  },
+  cartilage: {
+    pl: 'Przekłuwanie chrząstki',
+    en: 'Cartilage piercing',
+    uk: 'Прокол хряща',
+    ru: 'Прокол хряща',
+  },
+  mobile: {
+    pl: 'Przekłuwanie uszu z dojazdem',
+    en: 'Mobile ear piercing',
+    uk: 'Прокол вух з виїздом',
+    ru: 'Прокол ушей с выездом',
+  },
+};
+
+// Map service slugs to their prices from translations
+// Based on Services.astro mapping: index 0 = cartilage, 1 = children, 2 = mobile
+const servicePriceMap: Record<ServicePageSlug, string> = {
+  'przekluwanie-chrzastki-warszawa': servicesCards[0]?.price || '',
+  'uszy-dzieciom-warszawa': servicesCards[1]?.price || '',
+  'przekluwanie-uszu-z-dojazdem-warszawa': servicesCards[2]?.price || '',
+  'przekluwanie-uszu-dorosli-warszawa': servicesCards[0]?.price || '', // Adults use same pricing as cartilage
+  'przekluwanie-uszu-warszawa': servicesCards[0]?.price || '', // Legacy
+};
+
+const seo = {
+  title: locale === 'pl' ? 'Usługi Przekłuwania Uszu Warszawa | Gentle Piercing' :
+         locale === 'en' ? 'Ear Piercing Services Warsaw | Gentle Piercing' :
+         locale === 'uk' ? 'Послуги Проколу Вух Варшава | Gentle Piercing' :
+         'Услуги Прокола Ушей Варшава | Gentle Piercing',
+  description: locale === 'pl' ? 'Pełna oferta usług przekłuwania uszu w Warszawie systemem Inverness MED. Przekłuwanie dla dzieci 0+, dorosłych, chrząstki oraz usługa mobilna z dojazdem do domu.' :
+              locale === 'en' ? 'Full range of ear piercing services in Warsaw with Inverness MED system. Piercing for children 0+, adults, cartilage, and mobile service with home visits.' :
+              locale === 'uk' ? 'Повний спектр послуг проколу вух у Варшаві системою Inverness MED. Прокол для дітей 0+, дорослих, хряща та мобільна послуга з виїздом додому.' :
+              'Полный спектр услуг прокола ушей в Варшаве системой Inverness MED. Прокол для детей 0+, взрослых, хряща и мобильная услуга с выездом на дом.',
+  canonical: getLocalizedPageUrl('services', locale),
+  hreflang: {
+    pl: getLocalizedPageUrl('services', 'pl'),
+    uk: getLocalizedPageUrl('services', 'uk'),
+    ru: getLocalizedPageUrl('services', 'ru'),
+    en: getLocalizedPageUrl('services', 'en'),
+  },
+  ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+};
+
+const structuredData = [
+  getLocalBusinessSchema(locale),
+  getBreadcrumbSchema([
+    { name: t(locale, 'breadcrumb.home'), url: `https://gentlepiercing.pl/${locale}` },
+    { name: t(locale, 'header.nav.services'), url: seo.canonical },
+  ]),
+];
+---
+
+<BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
+  <div class="min-h-screen bg-background">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-6xl">
+      <!-- Breadcrumb -->
+      <nav class="mb-0" aria-label="Breadcrumb">
+        <ol class="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground">
+          <li>
+            <a href={`/${locale}`} class="hover:text-primary transition-colors">
+              {t(locale, 'breadcrumb.home')}
+            </a>
+          </li>
+          <li class="flex items-center">
+            <span class="mx-2">/</span>
+            <span class="text-foreground font-medium">{t(locale, 'header.nav.services')}</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-4 bg-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            {t(locale, 'services.title')}
+          </h1>
+          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {t(locale, 'services.subtitle')}
+          </p>
+        </div>
+
+        <!-- Service Cards Grid -->
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
+          {servicePages.map((service) => {
+            const serviceUrl = getServicePagePath(service.slug, locale);
+            const serviceName = serviceNames[service.nameKey]?.[locale] || '';
+            const serviceDesc = service.desc[locale];
+            const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${service.slug}_${locale}`;
+            return (
+              <div class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                <a href={serviceUrl} class="flex flex-col h-full items-center justify-start">
+                  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                  
+                  <div class="mb-4 aspect-[4/3] overflow-hidden rounded-lg max-w-80">
+                    {service.nameKey === 'cartilage' && (
+                      <img src="/services/cartilage.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                    )}
+                    {service.nameKey === 'children' && (
+                      <img src="/services/children.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                    )}
+                    {service.nameKey === 'adults' && (
+                      <img src="/services/ear.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                    )}
+                  </div>
+                  
+                  <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground text-center">
+                    {serviceName}
+                  </h3>
+                  <p class="text-muted-foreground mb-4 leading-relaxed flex-grow text-center">
+                    {serviceDesc}
+                  </p>
+                  <div class="flex items-center gap-2 mb-4">
+                    <span class="text-3xl font-bold text-primary text-center">{servicePriceMap[service.slug]}</span>
+                  </div>
+                </a>
+                
+                <a 
+                  href={booksyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg transition-all h-12 px-4 w-full mt-auto"
+                  data-booking-button="services"
+                  onclick="event.stopPropagation();"
+                >
+                  <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {t(locale, 'services.bookButton')}
+                </a>
+                <a href={serviceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6">
+                  {locale === 'pl' ? 'Zobacz ofertę' :
+                   locale === 'en' ? 'View offer' :
+                   locale === 'uk' ? 'Переглянути пропозицію' :
+                   'Посмотреть предложение'}
+                  <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Mobile Service Card - Horizontal -->
+        <div class="max-w-6xl mx-auto mb-8">
+          {(() => {
+            const mobileService = {
+              slug: 'przekluwanie-uszu-z-dojazdem-warszawa' as ServicePageSlug,
+              nameKey: 'mobile',
+              desc: {
+                pl: 'Usługa mobilna z dojazdem do domu - przekłuwanie uszu w komforcie Twojego domu.',
+                en: 'Mobile service with home visits - ear piercing in the comfort of your home.',
+                uk: 'Мобільна послуга з виїздом додому - прокол вух у комфорті вашого дому.',
+                ru: 'Мобильная услуга с выездом на дом - прокол ушей в комфорте вашего дома.',
+              }
+            };
+            const mobileServiceUrl = getServicePagePath(mobileService.slug, locale);
+            const mobileServiceName = serviceNames[mobileService.nameKey]?.[locale] || '';
+            const mobileServiceDesc = mobileService.desc[locale];
+            const mobileBooksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${mobileService.slug}_${locale}`;
+            return (
+              <div class="flex flex-col md:flex-row justify-start gap-6 p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                <a href={mobileServiceUrl} class="flex flex-col md:flex-row gap-6 flex-1 justify-start items-center">
+                  <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                  
+                  <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
+                    <img src="/services/mobile.webp" alt={mobileServiceName} class="w-full h-full object-cover" loading="lazy" />
+                  </div>
+                  
+                  <div class="flex flex-col flex-1">
+                    <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground">
+                      {mobileServiceName}
+                    </h3>
+                    <p class="text-muted-foreground mb-4 leading-relaxed">
+                      {mobileServiceDesc}
+                    </p>
+                    <div class="flex items-baseline gap-2 mb-0">
+                      <span class="text-xl font-bold text-primary">{servicePriceMap[mobileService.slug]}</span>
+                    </div>
+                  </div>
+                </a>
+                
+                <div class="md:w-auto md:flex md:flex-col md:items-center md:justify-center gap-0">
+                  <a 
+                    href={mobileBooksyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg transition-all h-12 px-6 w-full md:w-auto"
+                    data-booking-button="services"
+                    onclick="event.stopPropagation();"
+                  >
+                    <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {t(locale, 'services.bookButton')}
+                  </a>
+                  <a href={mobileServiceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6 md:mb-0" style="margin-top: 24px;">
+                    {locale === 'pl' ? 'Zobacz ofertę' :
+                     locale === 'en' ? 'View offer' :
+                     locale === 'uk' ? 'Переглянути пропозицію' :
+                     'Посмотреть предложение'}
+                    <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        <!-- Combined Pricing Info Section -->
+        <div class="mt-8 max-w-6xl mx-auto mb-12">
+          <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-background to-muted border border-primary/20 shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all duration-300 group">
+            <!-- Decorative background element -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+            
+            <div class="flex flex-col sm:flex-row gap-6 items-start relative z-10">
+              <div class="flex-shrink-0 p-3 bg-primary/10 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              
+              <div class="flex-1 space-y-2">
+                <p class="text-base font-medium text-foreground leading-relaxed">
+                  {pricing.earringsInfo}
+                </p>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {pricing.earringsPrice}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Grid -->
+    <section class="py-12 bg-background border-t border-border">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow text-center group">
+            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-xl mb-3 text-foreground">
+              {locale === 'pl' ? '100% Sterylność' :
+               locale === 'uk' ? '100% Стерильність' :
+               locale === 'ru' ? '100% Стерильность' : '100% Sterile'}
+            </h3>
+            <p class="text-muted-foreground">
+              {locale === 'pl' ? 'Jednorazowe, w pełni zabudowane kasety gwarantują brak kontaktu z igłą.' :
+               locale === 'uk' ? 'Одноразові, повністю закриті касети гарантують відсутність контакту з голкою.' :
+               locale === 'ru' ? 'Одноразовые, полностью закрытые кассеты гарантируют отсутствие контакта с иглой.' :
+               'Disposable, fully enclosed cassettes guarantee no contact with the needle.'}
+            </p>
+          </div>
+
+          <div class="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow text-center group">
+            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-xl mb-3 text-foreground">
+              {locale === 'pl' ? 'Bezstresowo' :
+               locale === 'uk' ? 'Без стресу' :
+               locale === 'ru' ? 'Без стресса' : 'Stress-free'}
+            </h3>
+            <p class="text-muted-foreground">
+              {locale === 'pl' ? 'Cichy system bez "wystrzału" pistoletu. Idealny dla małych dzieci.' :
+               locale === 'uk' ? 'Тиха система без "пострілу" пістолета. Ідеально для маленьких дітей.' :
+               locale === 'ru' ? 'Тихая система без "выстрела" пистолета. Идеально для маленьких детей.' :
+               'Quiet system without the "gunshot" sound. Perfect for small children.'}
+            </p>
+          </div>
+
+          <div class="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow text-center group">
+            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
+            </div>
+            <h3 class="font-bold text-xl mb-3 text-foreground">
+              {locale === 'pl' ? 'Doświadczenie' :
+               locale === 'uk' ? 'Досвід' :
+               locale === 'ru' ? 'Опыт' : 'Experience'}
+            </h3>
+            <p class="text-muted-foreground">
+              {locale === 'pl' ? 'Certyfikowani specjaliści z wieloletnim doświadczeniem w pracy z dziećmi.' :
+               locale === 'uk' ? 'Сертифіковані фахівці з багаторічним досвідом роботи з дітьми.' :
+               locale === 'ru' ? 'Сертифицированные специалисты с многолетним опытом работы с детьми.' :
+               'Certified specialists with years of experience working with children.'}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ locale }}>
+  // Google Analytics - Track booking button clicks in services
+  document.querySelectorAll('[data-booking-button="services"]').forEach(button => {
+    if (button && window.gtag) {
+      button.addEventListener('click', () => {
+        gtag('event', 'booking_click_code', {
+          button_location: 'services',
+          locale: locale,
+          booking_platform: 'booksy'
+        });
+      });
+    }
+  });
+</script>

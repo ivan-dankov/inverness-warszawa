@@ -63,16 +63,16 @@
         "title": "Przekłucie chrząstki (helix, tragus, conch) i płatka ucha (lobe)",
         "description": "Profesjonalne przekłucie chrząstki lub płatka ucha z wykorzystaniem certyfikowanego systemu",
         "badge": "Cena standardowa",
-        "price": "80 zł",
+        "price": "od 80 zł",
         "duration": "30 min",
         "features": [
           "Cena nie obejmuje kosztu kolczyków"
         ]
       },
       {
-        "title": "Przekłuwanie Uszu Dzieciom",
+        "title": "Przekłuwanie uszu dzieciom",
         "description": "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
-        "badge": "Dla Dzieci",
+        "badge": "Dla dzieci",
         "price": "150 zł",
         "duration": "30 min",
         "features": [
@@ -82,10 +82,10 @@
         ]
       },
       {
-        "title": "Więcej Wariantów Usług",
+        "title": "Więcej wariantów usług",
         "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
         "badge": "Booksy",
-        "price": "Sprawdź",
+        "price": "od 40 zł + cena usługi",
         "duration": "Różne opcje",
         "features": [
           "Dojazd mobilny",
@@ -95,7 +95,7 @@
       }
     ],
     "pricing": {
-      "title": "Informacje o Cenach",
+      "title": "Informacje o cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
       "earringsPrice": "Dodatkowa opłata za kolczyki: od 100 zł za parę",
       "mobileVisit": "Dojazd mobilny: 50 zł, może być wyższa w zależności od odległości"
@@ -204,9 +204,9 @@
     ]
   },
   "contact": {
-    "title": "Skontaktuj Się z Nami",
+    "title": "Skontaktuj się z nami",
     "subtitle": "Zarezerwuj wizytę już dziś lub zadaj nam pytanie",
-    "contactInfo": "Informacje Kontaktowe",
+    "contactInfo": "Informacje kontaktowe",
     "location": "Lokalizacja",
     "address": "Gizów 6/208, 01-249 Warszawa, Wola",
     "phone": "Telefon",
@@ -215,7 +215,7 @@
     "emailAddress": "piercinggentle@gmail.com",
     "instagram": "Instagram",
     "instagramHandle": "@prokol_ushej_warszawa",
-    "hours": "Godziny Otwarcia",
+    "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
     "mobileVisit": "Dojazd mobilny: +50 zł",

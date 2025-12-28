@@ -1,6 +1,7 @@
 ---
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
+import { PAGE_SLUGS } from '../lib/seo';
 import logoWide from '../assets/logo-wide.svg';
 
 interface Props {
@@ -75,13 +76,18 @@ const currentYear = new Date().getFullYear();
         <h3 class="font-semibold text-foreground mb-4">{t(locale, 'footer.links.title')}</h3>
         <ul class="space-y-2 text-sm text-muted-foreground">
           <li>
-            <a href={`/${locale}/aftercare`} class="hover:text-primary transition-colors">
+            <a href={`/${locale}/${PAGE_SLUGS.aftercare[locale]}`} class="hover:text-primary transition-colors">
               {t(locale, 'footer.links.aftercare')}
             </a>
           </li>
           <li>
             <a href={`/${locale}/blog`} class="hover:text-primary transition-colors">
               {t(locale, 'footer.links.blog')}
+            </a>
+          </li>
+          <li>
+            <a href={`/${locale}/${PAGE_SLUGS.contact[locale]}`} class="hover:text-primary transition-colors">
+              {t(locale, 'footer.links.contact')}
             </a>
           </li>
         </ul>

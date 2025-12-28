@@ -1,123 +1,278 @@
 ---
 import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
+import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
 
 interface Props {
   locale: Locale;
+  useH1?: boolean;
+  hideViewAllButton?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, useH1 = false, hideViewAllButton = false } = Astro.props;
 const translations = getTranslations(locale);
-const servicesData = translations.services?.cards || [];
+const servicesCards = translations.services?.cards || [];
 const pricing = translations.services?.pricing || {};
+
+// Service page slugs and their data - only children, adults, and cartilage
+const servicePages: Array<{ slug: ServicePageSlug; nameKey: string; desc: Record<Locale, string> }> = [
+  { 
+    slug: 'uszy-dzieciom-warszawa', 
+    nameKey: 'children',
+    desc: {
+      pl: 'Bezpieczne i delikatne przekłuwanie uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
+      en: 'Safe and gentle ear piercing for children from 0+, doctor-approved.',
+      uk: 'Безпечний та делікатний прокол вух для дітей від 0+, схвалений лікарями.',
+      ru: 'Безопасный и деликатный прокол ушей для детей от 0+, одобренный врачами.',
+    }
+  },
+  { 
+    slug: 'przekluwanie-uszu-dorosli-warszawa', 
+    nameKey: 'adults',
+    desc: {
+      pl: 'Przekłuwanie uszu dla dorosłych - płatek ucha i chrząstka w profesjonalnych warunkach.',
+      en: 'Ear piercing for adults - earlobe and cartilage in professional conditions.',
+      uk: 'Прокол вух для дорослих - мочка вуха та хрящ у професійних умовах.',
+      ru: 'Прокол ушей для взрослых - мочка уха и хрящ в профессиональных условиях.',
+    }
+  },
+  { 
+    slug: 'przekluwanie-chrzastki-warszawa', 
+    nameKey: 'cartilage',
+    desc: {
+      pl: 'Specjalizujemy się w przekłuwaniu chrząstki: helix, tragus, conch systemem Inverness MED.',
+      en: 'We specialize in cartilage piercing: helix, tragus, conch with Inverness MED system.',
+      uk: 'Спеціалізуємося на проколі хряща: helix, tragus, conch системою Inverness MED.',
+      ru: 'Специализируемся на проколе хряща: helix, tragus, conch системой Inverness MED.',
+    }
+  },
+];
+
+const serviceNames: Record<string, Record<Locale, string>> = {
+  children: {
+    pl: 'Przekłuwanie uszu dzieciom',
+    en: 'Ear piercing for children',
+    uk: 'Прокол вух дітям',
+    ru: 'Прокол ушей детям',
+  },
+  adults: {
+    pl: 'Przekłuwanie płatka ucha dla dorosłych',
+    en: 'Earlobe piercing for adults',
+    uk: 'Прокол мочки вуха для дорослих',
+    ru: 'Прокол мочки уха для взрослых',
+  },
+  cartilage: {
+    pl: 'Przekłuwanie chrząstki',
+    en: 'Cartilage piercing',
+    uk: 'Прокол хряща',
+    ru: 'Прокол хряща',
+  },
+  mobile: {
+    pl: 'Przekłuwanie uszu z dojazdem',
+    en: 'Mobile ear piercing',
+    uk: 'Прокол вух з виїздом',
+    ru: 'Прокол ушей с выездом',
+  },
+};
+
+// Map service slugs to their prices from translations
+// Based on Services.astro mapping: index 0 = cartilage, 1 = children, 2 = mobile
+const servicePriceMap: Record<ServicePageSlug, string> = {
+  'przekluwanie-chrzastki-warszawa': servicesCards[0]?.price || '',
+  'uszy-dzieciom-warszawa': servicesCards[1]?.price || '',
+  'przekluwanie-uszu-z-dojazdem-warszawa': servicesCards[2]?.price || '',
+  'przekluwanie-uszu-dorosli-warszawa': servicesCards[0]?.price || '', // Adults use same pricing as cartilage
+  'przekluwanie-uszu-warszawa': servicesCards[0]?.price || '', // Legacy
+};
 ---
 
 <section id="services" class="py-20 bg-background border-t border-border">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-        {t(locale, 'services.title')}
-      </h2>
+      {useH1 ? (
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          {t(locale, 'services.title')}
+        </h1>
+      ) : (
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          {t(locale, 'services.title')}
+        </h2>
+      )}
       <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
         {t(locale, 'services.subtitle')}
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-      {servicesData.map((service: any, index: number) => {
-        const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_services`;
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
+      {servicePages.map((service) => {
+        const serviceUrl = getServicePagePath(service.slug, locale);
+        const serviceName = serviceNames[service.nameKey]?.[locale] || '';
+        const serviceDesc = service.desc[locale];
+        const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${service.slug}_${locale}`;
         return (
-          <div key={index} class="p-6 sm:p-8 bg-card rounded-lg border border-border hover:shadow-card transition-shadow duration-300 flex flex-col">
-            <div class="h-12 w-12 text-primary mb-4">
-              {index === 0 && (
-                <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              )}
-              {index === 1 && (
-                <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              )}
-              {index === 2 && (
-                <svg class="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              )}
-            </div>
-            <h3 class="text-2xl font-bold text-foreground mb-2">
-              {service.title}
-            </h3>
-            <p class="text-muted-foreground mb-4 text-sm">
-              {service.description}
-            </p>
-            
-            <div class="flex flex-col gap-1 mb-4">
-              <div class="flex items-baseline gap-2">
-                <span class="text-4xl font-bold text-primary">{service.price}</span>
+          <div class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+            <a href={serviceUrl} class="flex flex-col h-full items-center justify-start">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              
+              <div class="mb-4 aspect-[4/3] overflow-hidden rounded-lg max-w-80">
+                {service.nameKey === 'cartilage' && (
+                  <img src="/services/cartilage.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                )}
+                {service.nameKey === 'children' && (
+                  <img src="/services/children.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                )}
+                {service.nameKey === 'adults' && (
+                  <img src="/services/ear.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                )}
               </div>
-            </div>
+              
+              <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground text-center">
+                {serviceName}
+              </h3>
+              <p class="text-muted-foreground mb-4 leading-relaxed flex-grow text-center">
+                {serviceDesc}
+              </p>
+              <div class="flex items-center gap-2 mb-4">
+                <span class="text-3xl font-bold text-primary text-center">{servicePriceMap[service.slug]}</span>
+              </div>
+            </a>
             
-            <div class="text-sm text-muted-foreground mb-6">
-              {t(locale, 'services.durationLabel')} {service.duration}
-            </div>
-
-            <ul class="space-y-2 mb-6 flex-grow">
-              {service.features?.map((feature: string, idx: number) => (
-                <li key={idx} class="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span class="text-primary mt-0.5">✓</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-
             <a 
               href={booksyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-4 w-full mt-auto"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg transition-all h-12 px-4 w-full mt-auto"
               data-booking-button="services"
+              onclick="event.stopPropagation();"
             >
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               {t(locale, 'services.bookButton')}
+            </a>
+            <a href={serviceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6">
+              {locale === 'pl' ? 'Zobacz ofertę' :
+               locale === 'en' ? 'View offer' :
+               locale === 'uk' ? 'Переглянути пропозицію' :
+               'Посмотреть предложение'}
+              <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
             </a>
           </div>
         );
       })}
     </div>
 
-    <div class="mt-12 max-w-6xl mx-auto">
-      <div class="grid sm:grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="flex items-start gap-3 p-6 bg-muted/50 rounded-lg border border-border hover:bg-muted/70 hover:border-primary/30 transition-all shadow-sm">
-          <svg class="h-5 w-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <p class="text-sm text-foreground leading-relaxed">
-            {pricing.earringsInfo}
-          </p>
-        </div>
+    <!-- Mobile Service Card - Horizontal -->
+    <div class="max-w-6xl mx-auto mb-6">
+      {(() => {
+        const mobileService = {
+          slug: 'przekluwanie-uszu-z-dojazdem-warszawa' as ServicePageSlug,
+          nameKey: 'mobile',
+          desc: {
+            pl: 'Usługa mobilna z dojazdem do domu - przekłuwanie uszu w komforcie Twojego domu.',
+            en: 'Mobile service with home visits - ear piercing in the comfort of your home.',
+            uk: 'Мобільна послуга з виїздом додому - прокол вух у комфорті вашого дому.',
+            ru: 'Мобильная услуга с выездом на дом - прокол ушей в комфорте вашего дома.',
+          }
+        };
+        const mobileServiceUrl = getServicePagePath(mobileService.slug, locale);
+        const mobileServiceName = serviceNames[mobileService.nameKey]?.[locale] || '';
+        const mobileServiceDesc = mobileService.desc[locale];
+        const mobileBooksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${mobileService.slug}_${locale}`;
+        return (
+          <div class="flex flex-col md:flex-row justify-start gap-6 p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+            <a href={mobileServiceUrl} class="flex flex-col md:flex-row gap-6 flex-1 justify-start items-center">
+              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              
+              <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
+                <img src="/services/mobile.webp" alt={mobileServiceName} class="w-full h-full object-cover" loading="lazy" />
+              </div>
+              
+              <div class="flex flex-col flex-1">
+                <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground">
+                  {mobileServiceName}
+                </h3>
+                <p class="text-muted-foreground mb-4 leading-relaxed">
+                  {mobileServiceDesc}
+                </p>
+                <div class="flex items-baseline gap-2 mb-0">
+                  <span class="text-xl font-bold text-primary">{servicePriceMap[mobileService.slug]}</span>
+                </div>
+              </div>
+            </a>
+            
+            <div class="md:w-auto md:flex md:flex-col md:items-center md:justify-center gap-0">
+              <a 
+                href={mobileBooksyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg transition-all h-12 px-6 w-full md:w-auto"
+                data-booking-button="services"
+                onclick="event.stopPropagation();"
+              >
+                <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                {t(locale, 'services.bookButton')}
+              </a>
+              <a href={mobileServiceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6 md:mb-0" style="margin-top: 24px;">
+                {locale === 'pl' ? 'Zobacz ofertę' :
+                 locale === 'en' ? 'View offer' :
+                 locale === 'uk' ? 'Переглянути пропозицію' :
+                 'Посмотреть предложение'}
+                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        );
+      })()}
+    </div>
 
-        <div class="flex items-start gap-3 p-6 bg-muted/50 rounded-lg border border-border hover:bg-muted/70 hover:border-primary/30 transition-all shadow-sm">
-          <svg class="h-5 w-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-          </svg>
-          <p class="text-sm text-foreground leading-relaxed">
-            {pricing.earringsPrice}
-          </p>
-        </div>
-
-        <div class="flex items-start gap-3 p-6 bg-muted/50 rounded-lg border border-border hover:bg-muted/70 hover:border-primary/30 transition-all shadow-sm">
-          <svg class="h-5 w-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-          </svg>
-          <p class="text-sm text-foreground leading-relaxed">
-            {pricing.mobileVisit}
-          </p>
+    <!-- Combined Pricing Info Section -->
+    <div class="mt-8 max-w-6xl mx-auto mb-12">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-background to-muted border border-primary/20 shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all duration-300 group">
+        <!-- Decorative background element -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+        
+        <div class="flex flex-col sm:flex-row gap-6 items-start relative z-10">
+          <div class="flex-shrink-0 p-3 bg-primary/10 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          
+          <div class="flex-1 space-y-2">
+            <p class="text-base font-medium text-foreground leading-relaxed">
+              {pricing.earringsInfo}
+            </p>
+            <p class="text-sm text-muted-foreground leading-relaxed">
+              {pricing.earringsPrice}
+            </p>
+          </div>
         </div>
       </div>
     </div>
+
+    {!hideViewAllButton && (
+      <div class="text-center mb-8">
+        <a 
+          href={getLocalizedPagePath('services', locale)}
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold shadow-soft hover:shadow-card transition-all duration-300 h-12 px-8 text-base bg-[#F9D9E5] text-[#68253E] hover:bg-[#F5C9D9] group"
+        >
+          {locale === 'pl' ? 'Zobacz wszystkie usługi' :
+           locale === 'en' ? 'View all services' :
+           locale === 'uk' ? 'Переглянути всі послуги' :
+           'Посмотреть все услуги'}
+          <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    )}
   </div>
 </section>
 
@@ -135,4 +290,3 @@ const pricing = translations.services?.pricing || {};
     }
   });
 </script>
-
