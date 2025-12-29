@@ -190,6 +190,7 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
             alt={value.alt || ''}
             className="rounded-xl my-10 max-w-full h-auto shadow-lg border border-border/30"
             loading="lazy"
+            decoding="async"
           />
         );
       },

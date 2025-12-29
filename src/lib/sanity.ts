@@ -32,6 +32,7 @@ export interface PostTranslationGroup {
 
 /**
  * Get all posts
+ * Optimized: Only fetches necessary fields, images should be sized via urlFor() helper
  */
 export async function getAllPosts(): Promise<Post[]> {
   const query = `*[_type == "post"] | order(publishedAt desc) {
@@ -41,13 +42,46 @@ export async function getAllPosts(): Promise<Post[]> {
     locale,
     translationGroupId,
     excerpt,
-    content,
-    coverImage,
+    content[] {
+      ...,
+      _type == "image" => {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      }
+    },
+    coverImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    },
     publishedAt,
     updatedAt,
     metaTitle,
     metaDescription,
-    ogImage
+    ogImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    }
   }`;
 
   return await sanityClient.fetch(query);
@@ -55,6 +89,7 @@ export async function getAllPosts(): Promise<Post[]> {
 
 /**
  * Get all posts by locale
+ * Optimized: Only fetches necessary fields, images include metadata for sizing
  */
 export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
   const query = `*[_type == "post" && locale == $locale] | order(publishedAt desc) {
@@ -64,13 +99,32 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
     locale,
     translationGroupId,
     excerpt,
-    content,
-    coverImage,
+    coverImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    },
     publishedAt,
     updatedAt,
     metaTitle,
     metaDescription,
-    ogImage
+    ogImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    }
   }`;
 
   return await sanityClient.fetch(query, { locale });
@@ -78,6 +132,7 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
 
 /**
  * Get a single post by slug and locale
+ * Optimized: Includes image metadata, only fetches necessary related article fields
  */
 export async function getPostBySlug(slug: string, locale: Locale): Promise<Post | null> {
   const query = `*[_type == "post" && slug.current == $slug && locale == $locale][0] {
@@ -87,20 +142,63 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
     locale,
     translationGroupId,
     excerpt,
-    content,
-    coverImage,
+    content[] {
+      ...,
+      _type == "image" => {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      }
+    },
+    coverImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    },
     publishedAt,
     updatedAt,
     metaTitle,
     metaDescription,
-    ogImage,
+    ogImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    },
     "relatedArticles": relatedArticles[]-> {
       _id,
       title,
       "slug": slug.current,
       locale,
       excerpt,
-      coverImage,
+      coverImage {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      },
       publishedAt
     }
   }`;
@@ -120,6 +218,7 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
 
 /**
  * Get all posts in a translation group
+ * Optimized: Only fetches slug and locale for hreflang tags
  */
 export async function getTranslationGroup(translationGroupId: string): Promise<PostTranslationGroup> {
   const query = `*[_type == "post" && translationGroupId == $translationGroupId] {
@@ -127,15 +226,7 @@ export async function getTranslationGroup(translationGroupId: string): Promise<P
     title,
     "slug": slug.current,
     locale,
-    translationGroupId,
-    excerpt,
-    content,
-    coverImage,
-    publishedAt,
-    updatedAt,
-    metaTitle,
-    metaDescription,
-    ogImage
+    translationGroupId
   }`;
 
   const posts = await sanityClient.fetch(query, { translationGroupId });

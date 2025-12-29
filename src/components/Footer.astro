@@ -17,7 +17,7 @@ const currentYear = new Date().getFullYear();
     <div class="grid md:grid-cols-3 gap-8">
       <div>
         <div class="mb-4">
-          <img src={logoWide.src || logoWide} alt="Gentle Piercing" class="h-8 w-auto" width="320" height="64" />
+          <img src={logoWide.src || logoWide} alt="Gentle Piercing" class="h-8 w-auto" width="320" height="64" loading="lazy" decoding="async" />
         </div>
         <p class="text-sm text-muted-foreground">
           {t(locale, 'footer.company.description')}

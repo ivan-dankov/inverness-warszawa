@@ -29,13 +29,41 @@ const ogImage = seo.ogImage || defaultOgImage;
 <!doctype html>
 <html lang={locale}>
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN"></script>
+    <!-- Google tag (gtag.js) - Deferred for better performance -->
     <script is:inline>
+      // Defer Google Analytics loading until after page load
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-5XNL50H7LN');
+      
+      // Load GA script after page is interactive
+      if (document.readyState === 'complete') {
+        loadGA();
+      } else {
+        window.addEventListener('load', loadGA);
+      }
+      
+      function loadGA() {
+        // Use requestIdleCallback if available, otherwise setTimeout
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(() => {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN';
+            document.head.appendChild(script);
+            gtag('js', new Date());
+            gtag('config', 'G-5XNL50H7LN');
+          }, { timeout: 2000 });
+        } else {
+          setTimeout(() => {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN';
+            document.head.appendChild(script);
+            gtag('js', new Date());
+            gtag('config', 'G-5XNL50H7LN');
+          }, 1000);
+        }
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -45,6 +73,7 @@ const ogImage = seo.ogImage || defaultOgImage;
     <link rel="dns-prefetch" href="https://cdn.sanity.io" />
     <link rel="preconnect" href="https://booksy.com" crossorigin />
     <link rel="dns-prefetch" href="https://booksy.com" />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
     
     <!-- Font Preloading -->
     <link rel="preload" href="/fonts/poppins/poppins-500-latin.woff2" as="font" type="font/woff2" crossorigin />
