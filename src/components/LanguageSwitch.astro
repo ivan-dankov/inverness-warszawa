@@ -12,7 +12,7 @@ const { locale, currentPath, translationSlugs } = Astro.props;
 ---
 
 <LanguageSwitchReact 
-  client:visible
+  client:load
   currentLocale={locale}
   currentPath={currentPath}
   translationSlugs={translationSlugs}
