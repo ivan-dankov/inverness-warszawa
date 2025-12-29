@@ -52,10 +52,7 @@ export default defineConfig({
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            // React vendor chunk
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'react-vendor';
-            }
+            // Don't manually chunk React - let Astro handle it to ensure proper loading order
             // Radix UI components
             if (id.includes('@radix-ui')) {
               return 'radix-ui';
@@ -76,8 +73,8 @@ export default defineConfig({
             if (id.includes('embla-carousel')) {
               return 'embla-carousel';
             }
-            // Other node_modules
-            if (id.includes('node_modules')) {
+            // Other node_modules (excluding React which Astro handles)
+            if (id.includes('node_modules') && !id.includes('react') && !id.includes('react-dom')) {
               return 'vendor';
             }
           },
