@@ -12,7 +12,7 @@ Updated all locale-specific sitemap files in `public/` directory:
 - ✅ Fixed aftercare URL: `/pl/aftercare` → `/pl/pielegnacja`
 - ✅ Added services list: `/pl/uslugi`
 - ✅ Added all 4 service detail pages:
-  - `/pl/uslugi/uszy-dzieciom-warszawa`
+  - `/pl/uslugi/przekluwanie-uszu-dzieci-warszawa`
   - `/pl/uslugi/przekluwanie-uszu-dorosli-warszawa`
   - `/pl/uslugi/przekluwanie-chrzastki-warszawa`
   - `/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa`

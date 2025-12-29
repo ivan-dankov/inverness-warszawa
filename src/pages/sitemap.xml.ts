@@ -21,7 +21,7 @@ const staticPages = [
 
 // Service pages
 const servicePages: Array<{ slug: ServicePageSlug; priority: string }> = [
-  { slug: 'uszy-dzieciom-warszawa', priority: '0.8' },
+  { slug: 'przekluwanie-uszu-dzieci-warszawa', priority: '0.8' },
   { slug: 'przekluwanie-uszu-dorosli-warszawa', priority: '0.8' },
   { slug: 'przekluwanie-chrzastki-warszawa', priority: '0.8' },
   { slug: 'przekluwanie-uszu-z-dojazdem-warszawa', priority: '0.8' },

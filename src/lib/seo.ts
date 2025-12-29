@@ -394,14 +394,14 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog') 
  * Service page slug mapping for all locales
  */
 export type ServicePageSlug = 
-  | 'uszy-dzieciom-warszawa'
+  | 'przekluwanie-uszu-dzieci-warszawa'
   | 'przekluwanie-uszu-dorosli-warszawa'
   | 'przekluwanie-chrzastki-warszawa'
   | 'przekluwanie-uszu-z-dojazdem-warszawa';
 
 export const SERVICE_SLUGS: Record<ServicePageSlug, Record<Locale, string>> = {
-  'uszy-dzieciom-warszawa': {
-    pl: 'uszy-dzieciom-warszawa',
+  'przekluwanie-uszu-dzieci-warszawa': {
+    pl: 'przekluwanie-uszu-dzieci-warszawa',
     en: 'ear-piercing-children-warsaw',
     uk: 'prokol-vukh-dityam-varshava',
     ru: 'prokol-ushej-detyam-varshava',
@@ -517,7 +517,7 @@ export function getServicePageSEO(
   // This will be populated from translations
   // For now, return placeholder - will be updated when translations are added
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
-    'uszy-dzieciom-warszawa': {
+    'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
         title: 'Przekłuwanie Uszu Dzieciom Warszawa | Gentle Piercing',
         description: 'Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Dla dzieci 0+, zatwierdzone przez lekarzy.',
@@ -591,6 +591,6 @@ export function getServicePageSEO(
     },
   };
 
-  return configs[serviceSlug]?.[locale] || configs['uszy-dzieciom-warszawa'][locale];
+  return configs[serviceSlug]?.[locale] || configs['przekluwanie-uszu-dzieci-warszawa'][locale];
 }
 

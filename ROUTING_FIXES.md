@@ -16,7 +16,7 @@
 - `/pl/przekluwanie-chrzastki-warszawa` → `/pl/uslugi/przekluwanie-chrzastki-warszawa`
 - `/pl/przekluwanie-uszu-dorosli-warszawa` → `/pl/uslugi/przekluwanie-uszu-dorosli-warszawa`
 - `/pl/przekluwanie-uszu-z-dojazdem-warszawa` → `/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa`
-- `/pl/uszy-dzieciom-warszawa` → `/pl/uslugi/uszy-dzieciom-warszawa`
+- `/pl/uszy-dzieciom-warszawa` → `/pl/uslugi/przekluwanie-uszu-dzieci-warszawa`
 
 #### Russian (ru):
 - `/ru/prokol-khryashcha-varshava` → `/ru/uslugi/prokol-khryashcha-varshava`

@@ -22,7 +22,7 @@ const pricing = translations.services?.pricing || {};
 // Service page slugs and their data - only children, adults, and cartilage
 const servicePages: Array<{ slug: ServicePageSlug; nameKey: string; desc: Record<Locale, string> }> = [
   { 
-    slug: 'uszy-dzieciom-warszawa', 
+    slug: 'przekluwanie-uszu-dzieci-warszawa', 
     nameKey: 'children',
     desc: {
       pl: 'Bezpieczne i delikatne przekłuwanie uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
@@ -84,7 +84,7 @@ const serviceNames: Record<string, Record<Locale, string>> = {
 // Based on Services.astro mapping: index 0 = cartilage, 1 = children, 2 = mobile
 const servicePriceMap: Record<ServicePageSlug, string> = {
   'przekluwanie-chrzastki-warszawa': servicesCards[0]?.price || '',
-  'uszy-dzieciom-warszawa': servicesCards[1]?.price || '',
+  'przekluwanie-uszu-dzieci-warszawa': servicesCards[1]?.price || '',
   'przekluwanie-uszu-z-dojazdem-warszawa': servicesCards[2]?.price || '',
   'przekluwanie-uszu-dorosli-warszawa': servicesCards[0]?.price || '', // Adults use same pricing as cartilage
   'przekluwanie-uszu-warszawa': servicesCards[0]?.price || '', // Legacy
