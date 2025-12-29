@@ -31,19 +31,22 @@ export default defineConfig({
           drop_debugger: true,
           pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
           passes: 2,
-          unsafe: true,
-          unsafe_comps: true,
-          unsafe_math: true,
-          unsafe_methods: true,
-          unsafe_proto: true,
-          unsafe_regexp: true,
-          unsafe_undefined: true,
+          // Removed unsafe options that can break React components
+          // unsafe: true,
+          // unsafe_comps: true,
+          // unsafe_math: true,
+          // unsafe_methods: true,
+          // unsafe_proto: true,
+          // unsafe_regexp: true,
+          // unsafe_undefined: true,
         },
         format: {
           comments: false,
         },
         mangle: {
           safari10: true,
+          // Preserve class names for React components (important for React DevTools and error messages)
+          keep_classnames: true,
         },
       },
       rollupOptions: {
