@@ -163,13 +163,43 @@ const structuredData = [
                   
                   <div class="mb-4 aspect-[4/3] overflow-hidden rounded-lg max-w-80">
                     {service.nameKey === 'cartilage' && (
-                      <img src="/services/cartilage.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                      <img 
+                        src="/services/cartilage-320.webp" 
+                        srcset="/services/cartilage-320.webp 320w, /services/cartilage-640.webp 640w"
+                        sizes="(max-width: 768px) 320px, 160px"
+                        alt={serviceName} 
+                        class="w-full h-full object-cover" 
+                        loading="lazy"
+                        decoding="async"
+                        width="320"
+                        height="240"
+                      />
                     )}
                     {service.nameKey === 'children' && (
-                      <img src="/services/children.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                      <img 
+                        src="/services/children-320.webp" 
+                        srcset="/services/children-320.webp 320w, /services/children-640.webp 640w"
+                        sizes="(max-width: 768px) 320px, 160px"
+                        alt={serviceName} 
+                        class="w-full h-full object-cover" 
+                        loading="lazy"
+                        decoding="async"
+                        width="320"
+                        height="240"
+                      />
                     )}
                     {service.nameKey === 'adults' && (
-                      <img src="/services/ear.webp" alt={serviceName} class="w-full h-full object-cover" loading="lazy" />
+                      <img 
+                        src="/services/ear-320.webp" 
+                        srcset="/services/ear-320.webp 320w, /services/ear-640.webp 640w"
+                        sizes="(max-width: 768px) 320px, 160px"
+                        alt={serviceName} 
+                        class="w-full h-full object-cover" 
+                        loading="lazy"
+                        decoding="async"
+                        width="320"
+                        height="240"
+                      />
                     )}
                   </div>
                   
@@ -234,7 +264,17 @@ const structuredData = [
                   <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   
                   <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
-                    <img src="/services/mobile.webp" alt={mobileServiceName} class="w-full h-full object-cover" loading="lazy" />
+                    <img 
+                      src="/services/mobile-320.webp" 
+                      srcset="/services/mobile-320.webp 320w, /services/mobile-640.webp 640w"
+                      sizes="(max-width: 768px) 320px, 160px"
+                      alt={mobileServiceName} 
+                      class="w-full h-full object-cover" 
+                      loading="lazy"
+                      decoding="async"
+                      width="320"
+                      height="240"
+                    />
                   </div>
                   
                   <div class="flex flex-col flex-1">
