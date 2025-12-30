@@ -78,7 +78,7 @@ W systemie Inverness Med każdy element jest sterylny i jednorazowy, co praktycz
 
 Właściwa pielęgnacja po przekłuciu jest kluczem do szybkiego gojenia bez powikłań:
 
-- **Przemywanie**: Oczyszczaj miejsce przekłucia 2-3 razy dziennie specjalnym płynem ([szczegółowa pielęgnacja po przekłuciu](/pl/aftercare))
+- **Przemywanie**: Oczyszczaj miejsce przekłucia 2-3 razy dziennie specjalnym płynem ([szczegółowa pielęgnacja po przekłuciu](/pl/pielegnacja))
 - **Higiena rąk**: Zawsze myj ręce przed dotykaniem miejsca przekłucia
 - **Unikaj drażniących środków**: Nie używaj alkoholu, nadtlenku wodoru ani drażniących kosmetyków
 - **Nie wyjmuj kolczyków**: Pozostaw kolczyki Inverness do pełnego wygojenia (6-8 tygodni dla płatka)

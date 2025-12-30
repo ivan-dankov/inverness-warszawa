@@ -17,6 +17,7 @@
     "update-all-articles": "npx tsx scripts/update-all-articles-formatting.ts",
     "upload-blog-images": "npx tsx scripts/upload-blog-images.ts",
     "setup-related-articles": "npx tsx scripts/setup-related-articles.ts",
+    "export-blog": "npx tsx scripts/export-blog-from-sanity.ts",
     "sanity": "sanity dev",
     "sanity:start": "sanity start"
   },
