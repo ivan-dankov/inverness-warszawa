@@ -157,7 +157,18 @@ export default defineType({
       title: 'Author',
       type: 'reference',
       to: [{ type: 'author' }],
-      description: 'Select the author of this article',
+      description: 'Select the author of this article. Only authors with the same locale will be shown.',
+      options: {
+        filter: ({ document }: { document: any }) => {
+          // Only show authors with the same locale as the post
+          return {
+            filter: 'locale == $locale',
+            params: { 
+              locale: document.locale,
+            },
+          };
+        },
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

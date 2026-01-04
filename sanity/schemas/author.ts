@@ -22,6 +22,27 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'locale',
+      title: 'Locale',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Polish', value: 'pl' },
+          { title: 'Ukrainian', value: 'uk' },
+          { title: 'Russian', value: 'ru' },
+          { title: 'English', value: 'en' },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'translationGroupId',
+      title: 'Translation Group ID',
+      type: 'string',
+      description: 'Links translations of the same author. Use the same ID for all language versions.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'title',
       title: 'Title/Role',
       type: 'string',
@@ -81,8 +102,15 @@ export default defineType({
   preview: {
     select: {
       title: 'name',
-      subtitle: 'title',
+      subtitle: 'locale',
       media: 'image',
+    },
+    prepare({ title, subtitle, media }) {
+      return {
+        title,
+        subtitle: `Locale: ${subtitle}`,
+        media,
+      };
     },
   },
 });

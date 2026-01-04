@@ -63,10 +63,10 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
         <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 mt-8">{children}</h1>
       ),
       h2: ({ children }) => (
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 mt-12 pt-8 border-t border-border/50">{children}</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6 mt-12 pt-8 border-t border-border/50">{children}</h2>
       ),
       h3: ({ children }) => (
-        <h3 className="text-2xl sm:text-3xl font-semibold text-foreground mb-4 mt-12 relative pl-4 border-l-4 border-primary/30">{children}</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-4 mt-12 relative pl-4 border-l-4 border-primary/30">{children}</h3>
       ),
       h4: ({ children }) => (
         <h4 className="text-xl sm:text-2xl font-semibold text-foreground mb-4 mt-8">{children}</h4>

@@ -67,18 +67,19 @@ const authorBio = author?.bio || t(locale, 'blog.author.bio');
 
     <!-- Author Info -->
     <div class="flex-1">
-      <h2 class="text-2xl font-semibold text-foreground mb-3">
-        {authorTitle}
+      <h2 class="text-2xl font-semibold text-foreground mb-2">
+        {authorName}
       </h2>
-      <p class="text-foreground leading-relaxed">
-        <strong class="font-semibold">{authorName}</strong>
-        {authorBio && (
-          <>
-            {' – '}
-            {authorBio}
-          </>
-        )}
-      </p>
+      {authorTitle && (
+        <p class="text-lg text-muted-foreground mb-3">
+          {authorTitle}
+        </p>
+      )}
+      {authorBio && (
+        <p class="text-foreground leading-relaxed">
+          {authorBio}
+        </p>
+      )}
       {author?.social && (
         <div class="flex gap-4 mt-4">
           {author.social.instagram && (
