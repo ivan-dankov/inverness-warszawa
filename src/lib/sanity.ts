@@ -40,7 +40,7 @@ export interface Post {
   metaTitle?: string;
   metaDescription?: string;
   ogImage?: any;
-  author: Author;
+  author?: Author;
   relatedArticles?: Post[];
 }
 
@@ -132,7 +132,7 @@ export async function getAllPosts(): Promise<Post[]> {
  * Optimized: Only fetches necessary fields, images include metadata for sizing
  */
 export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
-  const query = `*[_type == "post" && locale == $locale && (!defined(author->locale) || author->locale == $locale)] | order(publishedAt desc) {
+  const query = `*[_type == "post" && locale == $locale] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -197,7 +197,7 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
  * Optimized: Includes image metadata, only fetches necessary related article fields
  */
 export async function getPostBySlug(slug: string, locale: Locale): Promise<Post | null> {
-  const query = `*[_type == "post" && slug.current == $slug && locale == $locale && (!defined(author->locale) || author->locale == $locale)][0] {
+  const query = `*[_type == "post" && slug.current == $slug && locale == $locale][0] {
     _id,
     title,
     "slug": slug.current,
