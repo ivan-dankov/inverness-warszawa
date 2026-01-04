@@ -9,6 +9,21 @@ export function urlFor(source: any): ImageUrlBuilder {
   return builder.image(source);
 }
 
+export interface Author {
+  _id: string;
+  name: string;
+  slug: string;
+  title?: string;
+  bio?: string;
+  image?: any;
+  email?: string;
+  social?: {
+    instagram?: string;
+    facebook?: string;
+    twitter?: string;
+  };
+}
+
 export interface Post {
   _id: string;
   title: string;
@@ -23,6 +38,7 @@ export interface Post {
   metaTitle?: string;
   metaDescription?: string;
   ogImage?: any;
+  author: Author;
   relatedArticles?: Post[];
 }
 
@@ -42,6 +58,26 @@ export async function getAllPosts(): Promise<Post[]> {
     locale,
     translationGroupId,
     excerpt,
+    "author": author-> {
+      _id,
+      name,
+      "slug": slug.current,
+      title,
+      bio,
+      image {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      },
+      email,
+      social
+    },
     content[] {
       ...,
       _type == "image" => {
@@ -99,6 +135,26 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
     locale,
     translationGroupId,
     excerpt,
+    "author": author-> {
+      _id,
+      name,
+      "slug": slug.current,
+      title,
+      bio,
+      image {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      },
+      email,
+      social
+    },
     coverImage {
       ...,
       asset-> {
@@ -142,6 +198,26 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
     locale,
     translationGroupId,
     excerpt,
+    "author": author-> {
+      _id,
+      name,
+      "slug": slug.current,
+      title,
+      bio,
+      image {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      },
+      email,
+      social
+    },
     content[] {
       ...,
       _type == "image" => {
@@ -285,5 +361,181 @@ export function portableTextToHtml(content: any[]): string {
       return '';
     })
     .join('');
+}
+
+// SEO-related interfaces and queries
+
+export interface PageSEO {
+  _id: string;
+  pageKey: 'home' | 'aftercare' | 'blog';
+  locale: Locale;
+  title: string;
+  description: string;
+  ogImage?: any;
+}
+
+export interface ServicePageSEO {
+  _id: string;
+  serviceSlug: string;
+  locale: Locale;
+  title: string;
+  description: string;
+  ogImage?: any;
+}
+
+export interface FAQ {
+  _id: string;
+  question: string;
+  answer: string;
+  locale: Locale;
+  order: number;
+}
+
+export interface SiteSettings {
+  _id: string;
+  siteName: string;
+  siteUrl: string;
+  organization: {
+    name: string;
+    logo?: any;
+    logoWide?: any;
+    instagram?: string;
+  };
+  business: {
+    address: {
+      street: string;
+      city: string;
+      postalCode: string;
+      country: string;
+    };
+    telephone: string;
+    openingHours: string;
+    priceRange: string;
+  };
+  ratings: {
+    ratingValue: string;
+    reviewCount: string;
+  };
+}
+
+/**
+ * Get page SEO by page key and locale
+ */
+export async function getPageSEO(pageKey: 'home' | 'aftercare' | 'blog', locale: Locale): Promise<PageSEO | null> {
+  const query = `*[_type == "pageSeo" && pageKey == $pageKey && locale == $locale][0] {
+    _id,
+    pageKey,
+    locale,
+    title,
+    description,
+    ogImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    }
+  }`;
+
+  return await sanityClient.fetch(query, { pageKey, locale });
+}
+
+/**
+ * Get service page SEO by service slug and locale
+ */
+export async function getServicePageSEO(serviceSlug: string, locale: Locale): Promise<ServicePageSEO | null> {
+  const query = `*[_type == "servicePageSeo" && serviceSlug == $serviceSlug && locale == $locale][0] {
+    _id,
+    serviceSlug,
+    locale,
+    title,
+    description,
+    ogImage {
+      ...,
+      asset-> {
+        _id,
+        _type,
+        url,
+        metadata {
+          dimensions
+        }
+      }
+    }
+  }`;
+
+  return await sanityClient.fetch(query, { serviceSlug, locale });
+}
+
+/**
+ * Get all FAQs by locale, ordered by display order
+ */
+export async function getFAQsByLocale(locale: Locale): Promise<FAQ[]> {
+  const query = `*[_type == "faq" && locale == $locale] | order(order asc) {
+    _id,
+    question,
+    answer,
+    locale,
+    order
+  }`;
+
+  return await sanityClient.fetch(query, { locale });
+}
+
+/**
+ * Get site settings (singleton document)
+ */
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  const query = `*[_type == "siteSettings"][0] {
+    _id,
+    siteName,
+    siteUrl,
+    organization {
+      name,
+      logo {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      },
+      logoWide {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
+        }
+      },
+      instagram
+    },
+    business {
+      address {
+        street,
+        city,
+        postalCode,
+        country
+      },
+      telephone,
+      openingHours,
+      priceRange
+    },
+    ratings {
+      ratingValue,
+      reviewCount
+    }
+  }`;
+
+  return await sanityClient.fetch(query);
 }
 

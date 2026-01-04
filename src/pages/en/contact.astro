@@ -25,7 +25,7 @@ const seo = {
 };
 
 const structuredData = [
-  getLocalBusinessSchema(locale),
+  await getLocalBusinessSchema(locale),
   getBreadcrumbSchema([
     { name: t(locale, 'breadcrumb.home'), url: `https://gentlepiercing.pl/${locale}` },
     { name: t(locale, 'header.nav.contact'), url: seo.canonical },

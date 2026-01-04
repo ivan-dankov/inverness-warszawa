@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
-const baseSeo = getPageSEO(currentLocale, 'blog');
+const baseSeo = await getPageSEO(currentLocale, 'blog');
 const seo = {
   ...baseSeo,
   ogImage: 'https://gentlepiercing.pl/hero/hero-4.jpg',

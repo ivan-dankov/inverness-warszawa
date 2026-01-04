@@ -76,11 +76,11 @@ const seo = {
   // Article-specific metadata
   articlePublishedTime: publishedTime,
   articleModifiedTime: modifiedTime,
-  articleAuthor: t(currentLocale, 'blog.author.name'), // Use translated author name
+  articleAuthor: post.author?.name || 'Gentle Piercing', // Use author name from Sanity
   articleSection: 'Blog',
 };
 
-const articleSchema = getArticleSchema({
+const articleSchema = await getArticleSchema({
   title: post.title,
   description: post.excerpt,
   url: canonical,
@@ -88,7 +88,7 @@ const articleSchema = getArticleSchema({
   publishedAt: post.publishedAt,
   updatedAt: post.updatedAt,
   locale: currentLocale,
-  author: t(currentLocale, 'blog.author.name'), // Add author to schema
+  author: post.author?.name, // Use author name from Sanity
 });
 
 const breadcrumbSchema = getBreadcrumbSchema([
@@ -135,7 +135,7 @@ const structuredData = [articleSchema, breadcrumbSchema];
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
             <span class="font-medium text-foreground">
-              {t(currentLocale, 'blog.author.name')}
+              {post.author?.name || 'Gentle Piercing'}
             </span>
           </div>
           {post.publishedAt && (
@@ -193,7 +193,7 @@ const structuredData = [articleSchema, breadcrumbSchema];
         <CTASection locale={currentLocale} />
 
         <!-- Author Section -->
-        <AuthorSection locale={currentLocale} />
+        <AuthorSection locale={currentLocale} author={post.author} />
 
         <!-- Related Articles Section -->
         <RelatedArticles locale={currentLocale} relatedArticles={post.relatedArticles} />

@@ -22,25 +22,24 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
-const baseSeo = getPageSEO(currentLocale, 'home');
+const baseSeo = await getPageSEO(currentLocale, 'home');
 const seo = {
   ...baseSeo,
   ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
 };
 
-// Get FAQ data for schema
-const translations = getTranslations(currentLocale);
-const faqs = translations.faq?.items || [];
+// Get FAQ data for schema (now from Sanity, but can fallback to translations)
+const faqSchema = await getFAQSchema(currentLocale);
 
 // Build structured data
 const structuredData = [
-  getLocalBusinessSchema(currentLocale),
-  getOrganizationSchema(),
-  getFAQSchema(currentLocale, faqs),
+  await getLocalBusinessSchema(currentLocale),
+  await getOrganizationSchema(),
+  faqSchema,
   getBreadcrumbSchema([
     { name: t(currentLocale, 'breadcrumb.home'), url: getCanonicalUrl(currentLocale, '') },
   ]),
-];
+].filter(Boolean); // Remove null values
 ---
 
 <BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData}>

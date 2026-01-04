@@ -41,7 +41,7 @@ if (!serviceData) {
   return Astro.redirect(`/${locale}`, 301);
 }
 
-const seoConfig = getServicePageSEO(locale, serviceSlug);
+const seoConfig = await getServicePageSEO(locale, serviceSlug);
 const canonical = getServicePageUrl(serviceSlug, locale);
 const hreflang = getServicePageHreflang(serviceSlug);
 
@@ -53,8 +53,8 @@ const seo = {
 };
 
 // Build structured data
-const localBusinessSchema = getLocalBusinessSchema(locale);
-const serviceSchema = getServiceSchema(
+const localBusinessSchema = await getLocalBusinessSchema(locale);
+const serviceSchema = await getServiceSchema(
   locale,
   serviceData.h1,
   serviceData.serviceType || 'Ear Piercing',

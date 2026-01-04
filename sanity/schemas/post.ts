@@ -153,6 +153,14 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'author',
+      title: 'Author',
+      type: 'reference',
+      to: [{ type: 'author' }],
+      description: 'Select the author of this article',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'relatedArticles',
       title: 'Related Articles',
       type: 'array',

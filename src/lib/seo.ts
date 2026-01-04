@@ -1,3 +1,11 @@
+import { 
+  getPageSEO as getPageSEOFromSanity, 
+  getServicePageSEO as getServicePageSEOFromSanity, 
+  getFAQsByLocale, 
+  getSiteSettings, 
+  urlFor 
+} from './sanity';
+
 export type Locale = 'pl' | 'uk' | 'ru' | 'en';
 
 /**
@@ -119,7 +127,7 @@ export function getHreflangUrls(
 /**
  * Generate Article JSON-LD schema
  */
-export function getArticleSchema(
+export async function getArticleSchema(
   post: {
     title: string;
     description: string;
@@ -131,6 +139,13 @@ export function getArticleSchema(
     locale: Locale;
   }
 ) {
+  const siteSettings = await getSiteSettings();
+  const orgName = siteSettings?.organization?.name || 'Gentle Piercing';
+  const siteUrl = siteSettings?.siteUrl || SITE_URL;
+  const logoUrl = siteSettings?.organization?.logo
+    ? urlFor(siteSettings.organization.logo).width(600).height(60).url()
+    : `${siteUrl}/logo.png`;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -159,11 +174,11 @@ export function getArticleSchema(
     articleSection: 'Blog',
     publisher: {
       '@type': 'Organization',
-      name: 'Gentle Piercing',
-      url: SITE_URL,
+      name: orgName,
+      url: siteUrl,
       logo: {
         '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.png`,
+        url: logoUrl,
         width: 600,
         height: 60,
       },
@@ -194,42 +209,64 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
 /**
  * Generate LocalBusiness JSON-LD schema
  */
-export function getLocalBusinessSchema(locale: Locale) {
-  const businessNames: Record<Locale, string> = {
-    pl: 'Gentle Piercing',
-    uk: 'Gentle Piercing',
-    ru: 'Gentle Piercing',
-    en: 'Gentle Piercing',
+export async function getLocalBusinessSchema(locale: Locale) {
+  const siteSettings = await getSiteSettings();
+  const businessName = siteSettings?.organization?.name || 'Gentle Piercing';
+  const siteUrl = siteSettings?.siteUrl || SITE_URL;
+  const address = siteSettings?.business?.address || {
+    street: 'Gizów 6',
+    city: 'Warszawa',
+    postalCode: '01-249',
+    country: 'PL',
   };
+  const telephone = siteSettings?.business?.telephone || '+48573818260';
+  const openingHours = siteSettings?.business?.openingHours || 'Mo-Su 09:00-20:00';
+  const priceRange = siteSettings?.business?.priceRange || '150-250 zł';
+  const ratings = siteSettings?.ratings || { ratingValue: '5.0', reviewCount: '31' };
+  const instagram = siteSettings?.organization?.instagram || 'https://instagram.com/prokol_ushej_warszawa';
 
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: businessNames[locale],
+    name: businessName,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Gizów 6',
-      addressLocality: 'Warszawa',
-      postalCode: '01-249',
-      addressCountry: 'PL',
+      streetAddress: address.street,
+      addressLocality: address.city,
+      postalCode: address.postalCode,
+      addressCountry: address.country,
     },
-    telephone: '+48573818260',
-    url: SITE_URL,
-    sameAs: ['https://instagram.com/prokol_ushej_warszawa'],
-    openingHours: 'Mo-Su 09:00-20:00',
+    telephone,
+    url: siteUrl,
+    sameAs: instagram ? [instagram] : [],
+    openingHours,
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '5.0',
-      reviewCount: '31',
+      ratingValue: ratings.ratingValue,
+      reviewCount: ratings.reviewCount,
     },
-    priceRange: '150-250 zł',
+    priceRange,
   };
 }
 
 /**
  * Generate FAQPage JSON-LD schema
+ * Can accept FAQs directly or fetch from Sanity if not provided
  */
-export function getFAQSchema(locale: Locale, faqs: Array<{ question: string; answer: string }>) {
+export async function getFAQSchema(locale: Locale, faqs?: Array<{ question: string; answer: string }>) {
+  // If FAQs not provided, fetch from Sanity
+  if (!faqs) {
+    const sanityFAQs = await getFAQsByLocale(locale);
+    faqs = sanityFAQs.map((faq) => ({
+      question: faq.question,
+      answer: faq.answer,
+    }));
+  }
+
+  if (!faqs || faqs.length === 0) {
+    return null;
+  }
+
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -247,22 +284,32 @@ export function getFAQSchema(locale: Locale, faqs: Array<{ question: string; ans
 /**
  * Generate Organization JSON-LD schema
  */
-export function getOrganizationSchema() {
+export async function getOrganizationSchema() {
+  const siteSettings = await getSiteSettings();
+  const orgName = siteSettings?.organization?.name || 'Gentle Piercing';
+  const siteUrl = siteSettings?.siteUrl || SITE_URL;
+  const logoWide = siteSettings?.organization?.logoWide;
+  const logoUrl = logoWide
+    ? urlFor(logoWide).width(600).height(60).url()
+    : `${siteUrl}/logo-wide.svg`;
+  const instagram = siteSettings?.organization?.instagram || 'https://instagram.com/prokol_ushej_warszawa';
+  const telephone = siteSettings?.business?.telephone || '+48573818260';
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Gentle Piercing',
-    url: SITE_URL,
+    name: orgName,
+    url: siteUrl,
     logo: {
       '@type': 'ImageObject',
-      url: `${SITE_URL}/logo-wide.svg`,
+      url: logoUrl,
       width: 600,
       height: 60,
     },
-    sameAs: ['https://instagram.com/prokol_ushej_warszawa'],
+    sameAs: instagram ? [instagram] : [],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+48573818260',
+      telephone,
       contactType: 'customer service',
       areaServed: 'PL',
       availableLanguage: ['Polish', 'English', 'Russian', 'Ukrainian'],
@@ -273,12 +320,15 @@ export function getOrganizationSchema() {
 /**
  * Generate AggregateRating JSON-LD schema
  */
-export function getAggregateRatingSchema() {
+export async function getAggregateRatingSchema() {
+  const siteSettings = await getSiteSettings();
+  const ratings = siteSettings?.ratings || { ratingValue: '5.0', reviewCount: '31' };
+
   return {
     '@context': 'https://schema.org',
     '@type': 'AggregateRating',
-    ratingValue: '5.0',
-    reviewCount: '31',
+    ratingValue: ratings.ratingValue,
+    reviewCount: ratings.reviewCount,
     bestRating: '5',
     worstRating: '1',
   };
@@ -314,8 +364,22 @@ export function truncateDescription(description: string, maxLength: number = 160
 
 /**
  * Get page SEO configuration
+ * Fetches from Sanity, falls back to hardcoded values if not found
  */
-export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog') {
+export async function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog') {
+  try {
+    const pageSeo = await getPageSEOFromSanity(page, locale);
+    if (pageSeo) {
+      return {
+        title: pageSeo.title,
+        description: pageSeo.description,
+      };
+    }
+  } catch (error) {
+    console.warn('Could not fetch page SEO from Sanity, using fallback:', error);
+  }
+
+  // Fallback to hardcoded values
   const configs: Record<Locale, Record<string, { title: string; description: string }>> = {
     pl: {
       home: {
@@ -466,13 +530,24 @@ export function getServicePageHreflang(serviceSlug: ServicePageSlug): Record<Loc
 /**
  * Generate Service JSON-LD schema
  */
-export function getServiceSchema(
+export async function getServiceSchema(
   locale: Locale,
   serviceName: string,
   serviceType: string,
   price: string,
   url: string
 ) {
+  const siteSettings = await getSiteSettings();
+  const businessName = siteSettings?.organization?.name || 'Gentle Piercing';
+  const siteUrl = siteSettings?.siteUrl || SITE_URL;
+  const address = siteSettings?.business?.address || {
+    street: 'Gizów 6',
+    city: 'Warszawa',
+    postalCode: '01-249',
+    country: 'PL',
+  };
+  const telephone = siteSettings?.business?.telephone || '+48573818260';
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -480,21 +555,21 @@ export function getServiceSchema(
     serviceType: serviceType,
     provider: {
       '@type': 'LocalBusiness',
-      name: 'Gentle Piercing',
+      name: businessName,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Gizów 6',
-        addressLocality: 'Warszawa',
-        postalCode: '01-249',
-        addressCountry: 'PL',
+        streetAddress: address.street,
+        addressLocality: address.city,
+        postalCode: address.postalCode,
+        addressCountry: address.country,
       },
-      telephone: '+48573818260',
-      url: SITE_URL,
+      telephone,
+      url: siteUrl,
     },
     areaServed: {
       '@type': 'City',
-      name: 'Warszawa',
-      addressCountry: 'PL',
+      name: address.city,
+      addressCountry: address.country,
     },
     offers: {
       '@type': 'Offer',
@@ -509,13 +584,25 @@ export function getServiceSchema(
 
 /**
  * Get service page SEO configuration
+ * Fetches from Sanity, falls back to hardcoded values if not found
  */
-export function getServicePageSEO(
+export async function getServicePageSEO(
   locale: Locale,
   serviceSlug: ServicePageSlug
-): { title: string; description: string } {
-  // This will be populated from translations
-  // For now, return placeholder - will be updated when translations are added
+): Promise<{ title: string; description: string }> {
+  try {
+    const servicePageSeo = await getServicePageSEOFromSanity(serviceSlug, locale);
+    if (servicePageSeo) {
+      return {
+        title: servicePageSeo.title,
+        description: servicePageSeo.description,
+      };
+    }
+  } catch (error) {
+    console.warn('Could not fetch service page SEO from Sanity, using fallback:', error);
+  }
+
+  // Fallback to hardcoded values
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
