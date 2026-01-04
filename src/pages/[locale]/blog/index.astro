@@ -21,8 +21,11 @@ const seo = {
 let posts = [];
 try {
   posts = await getPostsByLocale(currentLocale);
+  if (posts.length === 0) {
+    console.warn(`No posts found for locale: ${currentLocale}`);
+  }
 } catch (error) {
-  console.warn('Could not fetch blog posts:', error);
+  console.error('Could not fetch blog posts:', error);
   // Continue with empty posts array
 }
 

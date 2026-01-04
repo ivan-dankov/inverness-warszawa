@@ -160,7 +160,7 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
       },
       email,
       social
-    },
+    }[0],
     coverImage {
       ...,
       asset-> {
