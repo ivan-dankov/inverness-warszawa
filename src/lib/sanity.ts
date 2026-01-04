@@ -53,7 +53,7 @@ export interface PostTranslationGroup {
  * Optimized: Only fetches necessary fields, images should be sized via urlFor() helper
  */
 export async function getAllPosts(): Promise<Post[]> {
-  const query = `*[_type == "post" && defined(author->locale)] | order(publishedAt desc) {
+  const query = `*[_type == "post"] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -132,7 +132,7 @@ export async function getAllPosts(): Promise<Post[]> {
  * Optimized: Only fetches necessary fields, images include metadata for sizing
  */
 export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
-  const query = `*[_type == "post" && locale == $locale && author->locale == $locale] | order(publishedAt desc) {
+  const query = `*[_type == "post" && locale == $locale && (!defined(author->locale) || author->locale == $locale)] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -197,7 +197,7 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
  * Optimized: Includes image metadata, only fetches necessary related article fields
  */
 export async function getPostBySlug(slug: string, locale: Locale): Promise<Post | null> {
-  const query = `*[_type == "post" && slug.current == $slug && locale == $locale && author->locale == $locale][0] {
+  const query = `*[_type == "post" && slug.current == $slug && locale == $locale && (!defined(author->locale) || author->locale == $locale)][0] {
     _id,
     title,
     "slug": slug.current,
