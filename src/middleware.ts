@@ -18,11 +18,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
       // Check if path matches any locale's slug for this page
       for (const [locale, slug] of Object.entries(slugs)) {
         if (pathParts.length === 1 && pathParts[0] === slug) {
-          // Single segment matches a page slug, redirect to Polish version
+          // Single segment matches a page slug, redirect to the same locale version
           return new Response(null, {
             status: 301,
             headers: {
-              'Location': `/pl/${PAGE_SLUGS[pageKey as keyof typeof PAGE_SLUGS].pl}`,
+              'Location': `/${locale}/${slug}`,
             },
           });
         }
@@ -35,13 +35,12 @@ export const onRequest = defineMiddleware(async (context, next) => {
       for (const [serviceKey, slugs] of Object.entries(SERVICE_SLUGS)) {
         for (const [locale, slug] of Object.entries(slugs)) {
           if (pathParts[0] === slug) {
-            // Match found, redirect to Polish version
-            const servicesSlug = PAGE_SLUGS.services.pl;
-            const serviceSlug = slugs.pl;
+            // Match found, redirect to the same locale version
+            const servicesSlug = PAGE_SLUGS.services[locale as Locale];
             return new Response(null, {
               status: 301,
               headers: {
-                'Location': `/pl/${servicesSlug}/${serviceSlug}`,
+                'Location': `/${locale}/${servicesSlug}/${slug}`,
               },
             });
           }
@@ -57,12 +56,12 @@ export const onRequest = defineMiddleware(async (context, next) => {
           // First part is services, check second part against service slugs
           for (const [serviceKey, slugs] of Object.entries(SERVICE_SLUGS)) {
             for (const [serviceLocale, serviceSlug] of Object.entries(slugs)) {
-              if (secondPart === serviceSlug) {
-                // Match found, redirect to Polish version
+              if (secondPart === serviceSlug && locale === serviceLocale) {
+                // Match found, redirect to the same locale version
                 return new Response(null, {
                   status: 301,
                   headers: {
-                    'Location': `/pl/${PAGE_SLUGS.services.pl}/${slugs.pl}`,
+                    'Location': `/${locale}/${servicesSlug}/${serviceSlug}`,
                   },
                 });
               }
