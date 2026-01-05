@@ -47,12 +47,14 @@ if (!post) {
 
 // Get translation group for hreflang
 const translationGroup = await getTranslationGroup(post.translationGroupId);
-const translationSlugs: Record<Locale, string> = {
-  pl: translationGroup.pl?.slug || post.slug,
-  uk: translationGroup.uk?.slug || post.slug,
-  ru: translationGroup.ru?.slug || post.slug,
-  en: translationGroup.en?.slug || post.slug,
-};
+// Only include locales that have actual translations (no fallbacks to current slug)
+const translationSlugs: Record<Locale, string> = {} as Record<Locale, string>;
+const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
+locales.forEach((locale) => {
+  if (translationGroup[locale]?.slug) {
+    translationSlugs[locale] = translationGroup[locale].slug;
+  }
+});
 
 const canonical = getCanonicalUrl(currentLocale, `/blog/${post.slug}`);
 const hreflang = getHreflangUrls(`/blog/${post.slug}`, translationSlugs);

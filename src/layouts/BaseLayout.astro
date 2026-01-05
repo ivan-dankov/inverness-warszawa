@@ -107,12 +107,12 @@ const ogImage = seo.ogImage || defaultOgImage;
     <link rel="canonical" href={canonical} />
 
     <!-- Hreflang Tags -->
-    <link rel="alternate" hreflang={locale} href={canonical} />
-    <link rel="alternate" hreflang="pl" href={hreflang.pl} />
-    <link rel="alternate" hreflang="uk" href={hreflang.uk} />
-    <link rel="alternate" hreflang="ru" href={hreflang.ru} />
-    <link rel="alternate" hreflang="en" href={hreflang.en} />
-    <link rel="alternate" hreflang="x-default" href={hreflang.pl} />
+    {Object.entries(hreflang).map(([lang, url]) => (
+      <link key={lang} rel="alternate" hreflang={lang} href={url} />
+    ))}
+    {hreflang.pl && (
+      <link rel="alternate" hreflang="x-default" href={hreflang.pl} />
+    )}
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={seo.ogType || "website"} />

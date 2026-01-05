@@ -102,6 +102,7 @@ export function getCanonicalUrl(locale: Locale, path: string = ''): string {
  * Get hreflang URLs for all locales
  * @param path - The path without locale prefix (e.g., '/blog/my-post')
  * @param translationGroup - Optional mapping of locale to slug for blog posts
+ * Only locales with valid translations will be included in the result
  */
 export function getHreflangUrls(
   path: string = '',
@@ -111,9 +112,11 @@ export function getHreflangUrls(
   const hreflang: Record<Locale, string> = {} as Record<Locale, string>;
 
   locales.forEach((locale) => {
-    if (translationGroup && translationGroup[locale]) {
-      // For blog posts with translation groups, use the translated slug
-      hreflang[locale] = `${SITE_URL}/${locale}/blog/${translationGroup[locale]}`;
+    if (translationGroup) {
+      // For blog posts with translation groups, only include locales that have actual translations
+      if (translationGroup[locale] && translationGroup[locale].trim() !== '') {
+        hreflang[locale] = `${SITE_URL}/${locale}/blog/${translationGroup[locale]}`;
+      }
     } else {
       // For regular pages, use the same path for all locales
       const cleanPath = path.startsWith('/') ? path : `/${path}`;
