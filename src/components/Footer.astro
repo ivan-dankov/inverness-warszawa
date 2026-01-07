@@ -19,9 +19,14 @@ const currentYear = new Date().getFullYear();
         <div class="mb-4">
           <img src={logoWide.src || logoWide} alt="Gentle Piercing" class="h-8 w-auto" width="320" height="64" loading="lazy" decoding="async" />
         </div>
-        <p class="text-sm text-muted-foreground">
+        <p class="text-sm text-muted-foreground mb-4">
           {t(locale, 'footer.company.description')}
         </p>
+        <div class="text-sm text-muted-foreground/70">
+          <p class="font-medium text-muted-foreground">Kseniya Askerka</p>
+          <p>NIP: 5214067116</p>
+          <p>REGON: 528446661</p>
+        </div>
       </div>
 
       <div>
@@ -94,12 +99,11 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-      <div class="flex justify-center mb-4">
+    <div class="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+      <p>{t(locale, 'footer.copyright').replace('{{year}}', currentYear.toString())}</p>
+      <div>
         <slot name="language-switch" />
       </div>
-      <p>{t(locale, 'footer.copyright').replace('{{year}}', currentYear.toString())}</p>
     </div>
   </div>
 </footer>
-
