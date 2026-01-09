@@ -25,6 +25,13 @@ const currentLocale = locale as Locale;
 const baseSeo = await getPageSEO(currentLocale, 'home');
 const seo = {
   ...baseSeo,
+  canonical: getCanonicalUrl(currentLocale, ''),
+  hreflang: {
+    pl: getCanonicalUrl('pl', ''),
+    uk: getCanonicalUrl('uk', ''),
+    ru: getCanonicalUrl('ru', ''),
+    en: getCanonicalUrl('en', ''),
+  },
   ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
 };
 

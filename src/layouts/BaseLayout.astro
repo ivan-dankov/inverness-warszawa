@@ -15,9 +15,14 @@ interface Props {
 
 const { locale, seo, structuredData = [], translationSlugs } = Astro.props;
 const currentPath = Astro.url.pathname;
-const canonical = seo.canonical || getCanonicalUrl(locale, Astro.url.pathname.replace(`/${locale}`, ''));
+// Extract path without locale prefix, handle homepage correctly
+let pathWithoutLocale = Astro.url.pathname.replace(`/${locale}`, '');
+if (pathWithoutLocale === '' || pathWithoutLocale === '/') {
+  pathWithoutLocale = '';
+}
+const canonical = seo.canonical || getCanonicalUrl(locale, pathWithoutLocale);
 const hreflang = seo.hreflang || getHreflangUrls(
-  Astro.url.pathname.replace(`/${locale}`, ''),
+  pathWithoutLocale,
   seo.translationGroup
 );
 

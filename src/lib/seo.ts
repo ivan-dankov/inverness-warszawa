@@ -90,6 +90,10 @@ const SITE_URL = 'https://gentlepiercing.pl';
  * Get canonical URL for a locale and path
  */
 export function getPagePath(locale: Locale, path: string = ''): string {
+  // Handle empty path (homepage) - no trailing slash
+  if (path === '' || path === '/') {
+    return `/${locale}`;
+  }
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `/${locale}${cleanPath}`;
 }
@@ -119,8 +123,13 @@ export function getHreflangUrls(
       }
     } else {
       // For regular pages, use the same path for all locales
-      const cleanPath = path.startsWith('/') ? path : `/${path}`;
-      hreflang[locale] = `${SITE_URL}/${locale}${cleanPath}`;
+      // Handle empty path correctly (homepage) - no trailing slash
+      if (path === '' || path === '/') {
+        hreflang[locale] = `${SITE_URL}/${locale}`;
+      } else {
+        const cleanPath = path.startsWith('/') ? path : `/${path}`;
+        hreflang[locale] = `${SITE_URL}/${locale}${cleanPath}`;
+      }
     }
   });
 
