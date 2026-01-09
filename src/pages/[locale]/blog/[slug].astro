@@ -87,10 +87,12 @@ const articleSchema = await getArticleSchema({
   description: post.excerpt,
   url: canonical,
   image: ogImage,
-  publishedAt: post.publishedAt,
-  updatedAt: post.updatedAt,
+  publishedAt: publishedTime || post.publishedAt, // Use ISO formatted date
+  updatedAt: modifiedTime || post.updatedAt, // Use ISO formatted date
   locale: currentLocale,
   author: post.author?.name, // Use author name from Sanity
+  // Optional: Add author URL if available in Sanity
+  // authorUrl: post.author?.url,
 });
 
 const breadcrumbSchema = getBreadcrumbSchema([

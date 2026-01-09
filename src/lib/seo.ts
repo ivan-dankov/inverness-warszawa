@@ -139,7 +139,9 @@ export async function getArticleSchema(
     publishedAt: string;
     updatedAt?: string;
     author?: string;
+    authorUrl?: string;
     locale: Locale;
+    keywords?: string[];
   }
 ) {
   const siteSettings = await getSiteSettings();
@@ -149,32 +151,42 @@ export async function getArticleSchema(
     ? urlFor(siteSettings.organization.logo).width(600).height(60).url()
     : `${siteUrl}/logo.png`;
 
+  // Ensure dates are in ISO 8601 format
+  const datePublished = post.publishedAt ? new Date(post.publishedAt).toISOString() : new Date().toISOString();
+  const dateModified = post.updatedAt ? new Date(post.updatedAt).toISOString() : datePublished;
+
+  // Build image object - omit hardcoded dimensions as actual image may vary
+  const imageObject = post.image
+    ? {
+        '@type': 'ImageObject',
+        url: post.image,
+        // Only include dimensions if we're certain they're correct (1200x630 is standard OG image size)
+        // Omitting hardcoded dimensions for better accuracy
+      }
+    : undefined;
+
+  // Build author object with optional URL
+  const authorObject = post.author
+    ? {
+        '@type': 'Person',
+        name: post.author,
+        ...(post.authorUrl && { url: post.authorUrl }),
+      }
+    : undefined;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     description: post.description,
     url: post.url,
-    image: post.image
-      ? [
-          {
-            '@type': 'ImageObject',
-            url: post.image,
-            width: 1200,
-            height: 630,
-          },
-        ]
-      : undefined,
-    datePublished: post.publishedAt,
-    dateModified: post.updatedAt || post.publishedAt,
+    ...(imageObject && { image: [imageObject] }),
+    datePublished,
+    dateModified,
     inLanguage: post.locale,
-    author: post.author
-      ? {
-          '@type': 'Person',
-          name: post.author,
-        }
-      : undefined,
+    ...(authorObject && { author: authorObject }),
     articleSection: 'Blog',
+    ...(post.keywords && post.keywords.length > 0 && { keywords: post.keywords.join(', ') }),
     publisher: {
       '@type': 'Organization',
       name: orgName,
@@ -217,21 +229,36 @@ export async function getLocalBusinessSchema(locale: Locale) {
   const businessName = siteSettings?.organization?.name || 'Gentle Piercing';
   const siteUrl = siteSettings?.siteUrl || SITE_URL;
   const address = siteSettings?.business?.address || {
-    street: 'Gizów 6',
+    street: 'Gizów 6/208',
     city: 'Warszawa',
     postalCode: '01-249',
     country: 'PL',
   };
   const telephone = siteSettings?.business?.telephone || '+48573818260';
-  const openingHours = siteSettings?.business?.openingHours || 'Mo-Su 09:00-20:00';
-  const priceRange = siteSettings?.business?.priceRange || '150-250 zł';
+  // openingHours should be an array format for schema.org
+  const openingHoursSetting = siteSettings?.business?.openingHours || 'Mo-Su 10:00-20:00';
+  const openingHours = Array.isArray(openingHoursSetting) 
+    ? openingHoursSetting 
+    : [openingHoursSetting];
+  const priceRange = siteSettings?.business?.priceRange || '80-150 PLN';
   const ratings = siteSettings?.ratings || { ratingValue: '5.0', reviewCount: '31' };
   const instagram = siteSettings?.organization?.instagram || 'https://instagram.com/prokol_ushej_warszawa';
+  const logo = siteSettings?.organization?.logo;
+  const logoUrl = logo ? urlFor(logo).width(600).height(600).url() : `${siteUrl}/logo.png`;
+
+  // GeoCoordinates from known location (Wola, Warszawa)
+  const geoCoordinates = {
+    '@type': 'GeoCoordinates',
+    latitude: 52.22594129500684,
+    longitude: 20.945046328079172,
+  };
 
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
+    '@id': `${siteUrl}#business`,
     name: businessName,
+    image: logoUrl,
     address: {
       '@type': 'PostalAddress',
       streetAddress: address.street,
@@ -239,14 +266,15 @@ export async function getLocalBusinessSchema(locale: Locale) {
       postalCode: address.postalCode,
       addressCountry: address.country,
     },
+    geo: geoCoordinates,
     telephone,
     url: siteUrl,
     sameAs: instagram ? [instagram] : [],
     openingHours,
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: ratings.ratingValue,
-      reviewCount: ratings.reviewCount,
+      ratingValue: typeof ratings.ratingValue === 'string' ? parseFloat(ratings.ratingValue) : (ratings.ratingValue || 5.0),
+      reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 31),
     },
     priceRange,
   };
@@ -330,10 +358,10 @@ export async function getAggregateRatingSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'AggregateRating',
-    ratingValue: ratings.ratingValue,
-    reviewCount: ratings.reviewCount,
-    bestRating: '5',
-    worstRating: '1',
+    ratingValue: typeof ratings.ratingValue === 'string' ? parseFloat(ratings.ratingValue) : (ratings.ratingValue || 5.0),
+    reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 31),
+    bestRating: 5,
+    worstRating: 1,
   };
 }
 
@@ -532,6 +560,8 @@ export function getServicePageHreflang(serviceSlug: ServicePageSlug): Record<Loc
 
 /**
  * Generate Service JSON-LD schema
+ * Note: Provider is kept minimal to avoid duplicating LocalBusiness info
+ * The full LocalBusiness schema should be included separately on service pages
  */
 export async function getServiceSchema(
   locale: Locale,
@@ -544,29 +574,23 @@ export async function getServiceSchema(
   const businessName = siteSettings?.organization?.name || 'Gentle Piercing';
   const siteUrl = siteSettings?.siteUrl || SITE_URL;
   const address = siteSettings?.business?.address || {
-    street: 'Gizów 6',
+    street: 'Gizów 6/208',
     city: 'Warszawa',
     postalCode: '01-249',
     country: 'PL',
   };
-  const telephone = siteSettings?.business?.telephone || '+48573818260';
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: serviceName,
     serviceType: serviceType,
+    // Minimal provider reference to avoid duplicating LocalBusiness schema
+    // The full LocalBusiness schema is included separately on service pages
     provider: {
       '@type': 'LocalBusiness',
+      '@id': `${siteUrl}#business`,
       name: businessName,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: address.street,
-        addressLocality: address.city,
-        postalCode: address.postalCode,
-        addressCountry: address.country,
-      },
-      telephone,
       url: siteUrl,
     },
     areaServed: {

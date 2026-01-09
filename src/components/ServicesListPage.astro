@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { 
   getBreadcrumbSchema, 
+  getCanonicalUrl,
   getLocalBusinessSchema,
   getLocalizedPageUrl,
   getServicePagePath,
@@ -112,7 +113,7 @@ const seo = {
 const structuredData = [
   getLocalBusinessSchema(locale),
   getBreadcrumbSchema([
-    { name: t(locale, 'breadcrumb.home'), url: `https://gentlepiercing.pl/${locale}` },
+    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
     { name: t(locale, 'header.nav.services'), url: seo.canonical },
   ]),
 ];
