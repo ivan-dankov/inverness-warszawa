@@ -172,3 +172,5 @@ To sygnał, że potrzebuje więcej czasu. W takiej sytuacji lepiej zrobić przer
 Dobre przygotowanie dziecka to połączenie spokoju rodzica, jasnej komunikacji dopasowanej do wieku oraz bezpiecznej metody. W takich warunkach przekłuwanie uszu może być spokojnym i dobrze wspominanym doświadczeniem - także dla rodziców.
 
 
+
+
