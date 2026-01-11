@@ -5,16 +5,16 @@ import {
   getCanonicalUrl,
   getLocalBusinessSchema,
   getLocalizedPageUrl,
+  getPageSEO,
   type Locale 
 } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Contact from '../../components/Contact.astro';
 
 const locale: Locale = 'en';
-
+const baseSeo = getPageSEO(locale, 'contact');
 const seo = {
-  title: 'Contact | Gentle Piercing Warsaw',
-  description: 'Contact Gentle Piercing in Warsaw. Address: Gizów 6, phone: +48573818260. Book online or ask a question.',
+  ...baseSeo,
   canonical: getLocalizedPageUrl('contact', locale),
   hreflang: {
     pl: getLocalizedPageUrl('contact', 'pl'),

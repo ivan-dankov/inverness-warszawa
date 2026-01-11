@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
-const baseSeo = await getPageSEO(currentLocale, 'home');
+const baseSeo = getPageSEO(currentLocale, 'home');
 const seo = {
   ...baseSeo,
   canonical: getCanonicalUrl(currentLocale, ''),
@@ -35,8 +35,8 @@ const seo = {
   ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
 };
 
-// Get FAQ data for schema (now from Sanity, but can fallback to translations)
-const faqSchema = await getFAQSchema(currentLocale);
+// Get FAQ data for schema (from translation files)
+const faqSchema = getFAQSchema(currentLocale);
 
 // Build structured data
 const structuredData = [

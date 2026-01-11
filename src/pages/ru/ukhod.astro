@@ -5,7 +5,7 @@ import { t } from '../../lib/translations';
 import Aftercare from '../../components/Aftercare.astro';
 
 const locale: Locale = 'ru';
-const baseSeo = await getPageSEO(locale, 'aftercare');
+const baseSeo = getPageSEO(locale, 'aftercare');
 const seo = {
   ...baseSeo,
   canonical: getLocalizedPageUrl('aftercare', locale),

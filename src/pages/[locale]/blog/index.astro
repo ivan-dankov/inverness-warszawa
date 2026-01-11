@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const { locale } = Astro.params;
 const currentLocale = locale as Locale;
-const baseSeo = await getPageSEO(currentLocale, 'blog');
+const baseSeo = getPageSEO(currentLocale, 'blog');
 const seo = {
   ...baseSeo,
   canonical: getCanonicalUrl(currentLocale, '/blog'),
