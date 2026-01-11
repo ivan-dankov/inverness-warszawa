@@ -441,7 +441,7 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
       },
       contact: {
         title: 'Контакти | Прокол Вух Варшава | Gentle Piercing',
-        description: 'Зв'яжіться з Gentle Piercing у Варшаві. Адреса: Gizów 6, телефон +48 573 818 260. Забронюйте візит онлайн або поставте запитання. Відкрито щодня.',
+        description: 'Зв\'яжіться з Gentle Piercing у Варшаві. Адреса: Gizów 6, телефон +48 573 818 260. Забронюйте візит онлайн або поставте запитання. Відкрито щодня.',
       },
     },
     ru: {
