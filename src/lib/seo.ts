@@ -400,90 +400,90 @@ export function truncateDescription(description: string, maxLength: number = 160
  * Returns hardcoded values (no Sanity queries)
  */
 export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' | 'contact') {
-  // Hardcoded values (will be optimized in separate SEO plan)
+  // Optimized SEO values based on Search Console data (Jan 2026)
   const configs: Record<Locale, Record<string, { title: string; description: string }>> = {
     pl: {
       home: {
-        title: 'Gentle Piercing Warszawa | Bezpieczne przekłuwanie uszu',
+        title: 'Przekłuwanie Uszu Warszawa | Inverness MED | Gentle Piercing',
         description:
-          'Medyczne przekłuwanie uszu w Warszawie systemem Inverness MED. Sterylne kolczyki tytan/niob. Dla dzieci 0+ i dorosłych, spokojny, bezbolesny zabieg.',
+          'Bezpieczne przekłuwanie uszu w Warszawie systemem Inverness MED. Dla dzieci 0+ i dorosłych. Sterylne, bezbolesne. Zarezerwuj online lub przyjdź do studia.',
       },
       aftercare: {
-        title: 'Pielęgnacja po przekłuciu uszu | Gentle Piercing Warszawa',
+        title: 'Pielęgnacja Po Przekłuciu Uszu | Instrukcje | Gentle Piercing',
         description:
           'Kompletne instrukcje pielęgnacji po przekłuciu uszu systemem Inverness MED w Warszawie. Jak dbać o przekłute uszy, dezynfekcja, zmiana kolczyków.',
       },
       blog: {
-        title: 'Blog Gentle Piercing | Poradniki przekłuwania uszu',
+        title: 'Blog Przekłuwania Uszu Warszawa | Poradniki | Gentle Piercing',
         description:
-          'Artykuły o bezpiecznym przekłuwaniu uszu systemem Inverness MED, pielęgnacji po zabiegu i wyborze kolczyków w Warszawie.',
+          'Artykuły o bezpiecznym przekłuwaniu uszu systemem Inverness MED, pielęgnacji po zabiegu i wyborze kolczyków w Warszawie. Eksperckie porady.',
       },
       contact: {
-        title: 'Kontakt | Gentle Piercing Warszawa',
-        description: 'Skontaktuj się z Gentle Piercing w Warszawie. Adres: Gizów 6, telefon: +48573818260. Zarezerwuj wizytę online lub zadaj pytanie.',
+        title: 'Kontakt | Przekłuwanie Uszu Warszawa | Gentle Piercing',
+        description: 'Skontaktuj się z Gentle Piercing w Warszawie. Adres: Gizów 6, telefon +48 573 818 260. Zarezerwuj wizytę online lub zadaj pytanie. Otwarte codziennie.',
       },
     },
     uk: {
       home: {
-        title: 'Gentle Piercing Варшава | Безпечний медичний прокол вух',
+        title: 'Прокол Вух Варшава | Безпечний Inverness MED | Gentle Piercing',
         description:
-          'Медичний прокол вух у Варшаві системою Inverness MED. Стерильні титанові/ніобієві сережки. Для дітей 0+ та дорослих, спокійна безболісна процедура.',
+          'Безпечний прокол вух у Варшаві системою Inverness MED. Для дітей 0+ та дорослих. Стерильні, безболісні. Забронюйте онлайн або прийдіть до студії. Професійний сервіс.',
       },
       aftercare: {
-        title: 'Догляд після проколу вух | Gentle Piercing Варшава',
+        title: 'Догляд Після Проколу Вух | Інструкції | Gentle Piercing',
         description:
           'Повні інструкції з догляду після проколу вух системою Inverness MED у Варшаві. Як доглядати за проколотими вухами, дезінфекція, зміна сережок.',
       },
       blog: {
-        title: 'Блог Gentle Piercing | Поради проколу вух',
+        title: 'Блог Проколу Вух Варшава | Поради та Гіди | Gentle Piercing',
         description:
-          'Статті про безпечний прокол вух системою Inverness MED, догляд після процедури та вибір гіпоалергенних сережок у Варшаві.',
+          'Поради про безпечний прокол вух системою Inverness MED, догляд після процедури та вибір гіпоалергенних сережок у Варшаві. Експертні поради та практичні поради.',
       },
       contact: {
-        title: 'Контакти | Gentle Piercing Варшава',
-        description: 'Зв\'яжіться з Gentle Piercing у Варшаві. Адреса: Gizów 6, телефон: +48573818260. Забронюйте візит онлайн або поставте запитання.',
+        title: 'Контакти | Прокол Вух Варшава | Gentle Piercing',
+        description: 'Зв'яжіться з Gentle Piercing у Варшаві. Адреса: Gizów 6, телефон +48 573 818 260. Забронюйте візит онлайн або поставте запитання. Відкрито щодня.',
       },
     },
     ru: {
       home: {
-        title: 'Gentle Piercing Варшава | Безопасный медпрокол ушей',
+        title: 'Прокол Ушей Варшава | Inverness MED | Gentle Piercing',
         description:
-          'Медицинский прокол ушей в Варшаве системой Inverness MED. Стерильные титановые/ниобиевые серьги. Для детей 0+ и взрослых, спокойная безболезненная процедура.',
+          'Безопасный прокол ушей в Варшаве системой Inverness MED. Для детей 0+ и взрослых. Стерильные, безболезненные. Забронируйте онлайн или придите в студию.',
       },
       aftercare: {
-        title: 'Уход после прокола ушей | Gentle Piercing Варшава',
+        title: 'Уход После Прокола Ушей | Инструкции | Gentle Piercing Варшава',
         description:
           'Полные инструкции по уходу после прокола ушей системой Inverness MED в Варшаве. Как ухаживать за проколотыми ушами, дезинфекция, смена серег.',
       },
       blog: {
-        title: 'Блог Gentle Piercing | Советы по проколу ушей',
+        title: 'Блог Прокола Ушей Варшава | Советы и Гайды | Gentle Piercing',
         description:
-          'Статьи о безопасном проколе ушей системой Inverness MED, уходе после процедуры и выборе гипоаллергенных серег в Варшаве.',
+          'Советы о безопасном проколе ушей системой Inverness MED, уходе после процедуры и выборе гипоаллергенных серег в Варшаве. Экспертные советы.',
       },
       contact: {
-        title: 'Контакты | Gentle Piercing Варшава',
-        description: 'Свяжитесь с Gentle Piercing в Варшаве. Адрес: Gizów 6, телефон: +48573818260. Забронируйте визит онлайн или задайте вопрос.',
+        title: 'Контакты | Прокол Ушей Варшава | Gentle Piercing',
+        description: 'Свяжитесь с Gentle Piercing в Варшаве. Адрес: Gizów 6, телефон +48 573 818 260. Забронируйте визит онлайн или задайте вопрос. Открыто ежедневно.',
       },
     },
     en: {
       home: {
-        title: 'Gentle Piercing Warsaw | Safe medical ear piercing',
+        title: 'Ear Piercing Warsaw | Safe Medical Service | Gentle Piercing',
         description:
-          'Medical ear piercing in Warsaw with the Inverness MED system. Sterile titanium/niobium earrings for children 0+ and adults. Gentle, low-pain service.',
+          'Safe ear piercing in Warsaw using FDA-certified Inverness MED system. Sterile, painless for children 0+ and adults. Book online or walk-in. Expert service.',
       },
       aftercare: {
-        title: 'Ear Piercing Aftercare | Gentle Piercing Warsaw',
+        title: 'Ear Piercing Aftercare | Instructions | Gentle Piercing Warsaw',
         description:
           'Complete aftercare instructions after ear piercing with Inverness MED system in Warsaw. How to care for pierced ears, disinfection, changing earrings.',
       },
       blog: {
-        title: 'Gentle Piercing blog | Ear piercing guides Warsaw',
+        title: 'Ear Piercing Blog Warsaw | Tips & Guides | Gentle Piercing',
         description:
-          'Tips on safe ear piercing with the Inverness MED system, aftercare best practices, and choosing hypoallergenic earrings in Warsaw.',
+          'Tips on safe ear piercing with the Inverness MED system, aftercare best practices, and choosing hypoallergenic earrings in Warsaw. Expert advice.',
       },
       contact: {
-        title: 'Contact | Gentle Piercing Warsaw',
-        description: 'Contact Gentle Piercing in Warsaw. Address: Gizów 6, phone: +48573818260. Book online or ask a question.',
+        title: 'Contact Gentle Piercing Warsaw | Book +48 573 818 260',
+        description: 'Contact Gentle Piercing in Warsaw. Address: Gizów 6, phone +48 573 818 260. Book online or ask questions. Open Mon-Sun 10:00-20:00. Professional service.',
       },
     },
   };
@@ -622,74 +622,74 @@ export function getServicePageSEO(
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dzieciom Warszawa | Gentle Piercing',
-        description: 'Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Dla dzieci 0+, zatwierdzone przez lekarzy.',
+        title: 'Przekłuwanie Uszu Dzieciom Warszawa | 0+ Lat | Gentle Piercing',
+        description: 'Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Dla dzieci od 0+, zatwierdzone przez lekarzy. Sterylne, bezbolesne. Zarezerwuj wizytę online.',
       },
       en: {
-        title: 'Ear Piercing for Children Warsaw | Gentle Piercing',
-        description: 'Safe ear piercing for children in Warsaw with Inverness MED system. For children 0+, doctor-approved.',
+        title: 'Ear Piercing for Children Warsaw | 0+ Years | Gentle Piercing',
+        description: 'Safe ear piercing for children 0+ in Warsaw. FDA-certified Inverness MED system. Doctor-approved, sterile, painless. Book online or visit our studio.',
       },
       uk: {
-        title: 'Прокол Вух Дітям Варшава | Gentle Piercing',
-        description: 'Безпечний прокол вух дітям у Варшаві системою Inverness MED. Для дітей 0+, схвалено лікарями.',
+        title: 'Прокол Вух Дітям Варшава | Від 0+ Років | Gentle Piercing',
+        description: 'Безпечний прокол вух дітям у Варшаві системою Inverness MED. Для дітей від 0+, схвалено лікарями. Стерильні, безболісні. Забронюйте онлайн або прийдіть до студії. Професійний сервіс.',
       },
       ru: {
-        title: 'Прокол Ушей Детям Варшава | Gentle Piercing',
-        description: 'Безопасный прокол ушей детям в Варшаве системой Inverness MED. Для детей 0+, одобрено врачами.',
+        title: 'Прокол Ушей Детям Варшава | От 0+ Лет | Gentle Piercing',
+        description: 'Безопасный прокол ушей детям в Варшаве системой Inverness MED. Для детей от 0+, одобрено врачами. Стерильные, безболезненные. Забронируйте онлайн или придите в студию. Профессиональный сервис.',
       },
     },
     'przekluwanie-uszu-dorosli-warszawa': {
       pl: {
         title: 'Przekłuwanie Uszu Dla Dorosłych Warszawa | Gentle Piercing',
-        description: 'Profesjonalne przekłuwanie uszu dla dorosłych w Warszawie systemem Inverness MED. Chrząstka i płatek ucha.',
+        description: 'Profesjonalne przekłuwanie uszu dla dorosłych w Warszawie systemem Inverness MED. Chrząstka i płatek ucha. Sterylne, precyzyjne. Zarezerwuj wizytę online.',
       },
       en: {
-        title: 'Ear Piercing for Adults Warsaw | Gentle Piercing',
-        description: 'Professional ear piercing for adults in Warsaw with Inverness MED system. Cartilage and earlobe.',
+        title: 'Ear Piercing Adults Warsaw | Professional | Gentle Piercing',
+        description: 'Professional ear piercing for adults in Warsaw with Inverness MED system. Cartilage and earlobe. Sterile, precise. Book online or walk-in.',
       },
       uk: {
-        title: 'Прокол Вух Для Дорослих Варшава | Gentle Piercing',
-        description: 'Професійний прокол вух для дорослих у Варшаві системою Inverness MED. Хрящ та мочка вуха.',
+        title: 'Прокол Вух Для Дорослих Варшава | Професійно | Gentle',
+        description: 'Професійний прокол вух для дорослих у Варшаві системою Inverness MED. Хрящ та мочка вуха. Стерильні, точні. Забронюйте онлайн або прийдіть до студії.',
       },
       ru: {
         title: 'Прокол Ушей Для Взрослых Варшава | Gentle Piercing',
-        description: 'Профессиональный прокол ушей для взрослых в Варшаве системой Inverness MED. Хрящ и мочка уха.',
+        description: 'Профессиональный прокол ушей для взрослых в Варшаве системой Inverness MED. Хрящ и мочка уха. Стерильные, точные. Забронируйте онлайн или придите в студию.',
       },
     },
     'przekluwanie-chrzastki-warszawa': {
       pl: {
-        title: 'Przekłuwanie Chrząstki Warszawa | Gentle Piercing',
-        description: 'Profesjonalne przekłuwanie chrząstki ucha w Warszawie. Helix, tragus, conch systemem Inverness MED.',
+        title: 'Przekłuwanie Chrząstki Warszawa | Helix, Tragus | Gentle',
+        description: 'Profesjonalne przekłuwanie chrząstki ucha w Warszawie. Helix, tragus, conch systemem Inverness MED. Bezpieczne, sterylne. Zarezerwuj online.',
       },
       en: {
-        title: 'Cartilage Piercing Warsaw | Gentle Piercing',
-        description: 'Professional cartilage piercing in Warsaw. Helix, tragus, conch with Inverness MED system.',
+        title: 'Cartilage Piercing Warsaw | Helix, Tragus | Gentle Piercing',
+        description: 'Professional cartilage piercing in Warsaw. Helix, tragus, conch with FDA-certified Inverness MED system. Safe, sterile procedure. Book online or walk-in.',
       },
       uk: {
-        title: 'Прокол Хряща Варшава | Gentle Piercing',
-        description: 'Професійний прокол хряща вуха у Варшаві. Helix, tragus, conch системою Inverness MED.',
+        title: 'Прокол Хряща Варшава | Helix, Tragus, Conch | Gentle Piercing',
+        description: 'Професійний прокол хряща вуха у Варшаві. Helix, tragus, conch системою Inverness MED. Безпечні, стерильні. Забронюйте онлайн або прийдіть до студії. Професійний сервіс.',
       },
       ru: {
-        title: 'Прокол Хряща Варшава | Gentle Piercing',
-        description: 'Профессиональный прокол хряща уха в Варшаве. Helix, tragus, conch системой Inverness MED.',
+        title: 'Прокол Хряща Варшава | Helix, Tragus, Conch | Gentle Piercing',
+        description: 'Профессиональный прокол хряща уха в Варшаве. Helix, tragus, conch системой Inverness MED. Безопасные, стерильные. Забронируйте онлайн или придите в студию.',
       },
     },
     'przekluwanie-uszu-z-dojazdem-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Z Dojazdem Warszawa | Gentle Piercing',
-        description: 'Mobilne przekłuwanie uszu z dojazdem do domu w Warszawie. System Inverness MED, wizyty domowe.',
+        title: 'Przekłuwanie Uszu Z Dojazdem Warszawa | Wizyty Domowe',
+        description: 'Mobilne przekłuwanie uszu z dojazdem do domu w Warszawie. System Inverness MED, wizyty domowe. Wygodnie i bezpiecznie. Zarezerwuj online lub zadzwoń. Profesjonalny serwis.',
       },
       en: {
-        title: 'Mobile Ear Piercing Warsaw | Gentle Piercing',
-        description: 'Mobile ear piercing with home visits in Warsaw. Inverness MED system, home appointments.',
+        title: 'Mobile Ear Piercing Warsaw | Home Visits | Gentle Piercing',
+        description: 'Mobile ear piercing with home visits in Warsaw. Inverness MED system, home appointments. Convenient and safe. Book online or call to schedule. Expert service.',
       },
       uk: {
-        title: 'Прокол Вух З Виїздом Варшава | Gentle Piercing',
-        description: 'Мобільний прокол вух з виїздом додому у Варшаві. Система Inverness MED, домашні візити.',
+        title: 'Прокол Вух З Виїздом Варшава | Домашні Візити | Gentle',
+        description: 'Мобільний прокол вух з виїздом додому у Варшаві. Система Inverness MED, домашні візити. Зручно та безпечно. Забронюйте онлайн або зателефонуйте. Професійний сервіс.',
       },
       ru: {
-        title: 'Прокол Ушей С Выездом Варшава | Gentle Piercing',
-        description: 'Мобильный прокол ушей с выездом на дом в Варшаве. Система Inverness MED, домашние визиты.',
+        title: 'Прокол Ушей С Выездом Варшава | Домашние Визиты | Gentle',
+        description: 'Мобильный прокол ушей с выездом на дом в Варшаве. Система Inverness MED, домашние визиты. Удобно и безопасно. Забронируйте онлайн или позвоните. Профессиональный сервис.',
       },
     },
   };
