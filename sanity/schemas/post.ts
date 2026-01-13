@@ -210,6 +210,23 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: 'structuredDataJson',
+      title: 'Structured Data (JSON-LD)',
+      type: 'text',
+      description: 'Paste JSON-LD structured data here (Article/BlogPosting, FAQ, HowTo, etc.). If Article schema is included, it will override the auto-generated one. Use an array for multiple schemas: [{"@context": "https://schema.org", "@type": "BlogPosting", ...}]',
+      rows: 10,
+      validation: (Rule) =>
+        Rule.custom((value) => {
+          if (!value) return true; // Optional field
+          try {
+            JSON.parse(value);
+            return true;
+          } catch (error) {
+            return 'Must be valid JSON';
+          }
+        }),
+    }),
   ],
   preview: {
     select: {

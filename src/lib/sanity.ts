@@ -44,6 +44,7 @@ export interface Post {
   };
   author?: Author;
   relatedArticles?: Post[];
+  structuredDataJson?: string; // JSON string from Sanity
 }
 
 export interface PostTranslationGroup {
@@ -272,6 +273,7 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
         }
       }
     },
+    structuredDataJson,
     "relatedArticles": relatedArticles[]-> {
       _id,
       title,

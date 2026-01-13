@@ -82,26 +82,55 @@ const seo = {
   articleSection: 'Blog',
 };
 
-const articleSchema = await getArticleSchema({
-  title: post.title,
-  description: post.excerpt,
-  url: canonical,
-  image: ogImage,
-  publishedAt: publishedTime || post.publishedAt, // Use ISO formatted date
-  updatedAt: modifiedTime || post.updatedAt, // Use ISO formatted date
-  locale: currentLocale,
-  author: post.author?.name, // Use author name from Sanity
-  // Optional: Add author URL if available in Sanity
-  // authorUrl: post.author?.url,
-});
-
 const breadcrumbSchema = getBreadcrumbSchema([
   { name: t(currentLocale, 'breadcrumb.home'), url: getCanonicalUrl(currentLocale, '') },
   { name: t(currentLocale, 'breadcrumb.blog'), url: getCanonicalUrl(currentLocale, '/blog') },
   { name: post.title, url: canonical },
 ]);
 
-const structuredData = [articleSchema, breadcrumbSchema];
+// Parse JSON structured data from Sanity
+let customStructuredData: any[] = [];
+let hasArticleSchema = false;
+if (post.structuredDataJson) {
+  try {
+    const parsed = JSON.parse(post.structuredDataJson);
+    // Handle both array and single object
+    const parsedArray = Array.isArray(parsed) ? parsed : [parsed];
+    
+    // Check if Article/BlogPosting schema is in the JSON
+    hasArticleSchema = parsedArray.some(
+      (schema: any) => schema['@type'] === 'BlogPosting' || schema['@type'] === 'Article'
+    );
+    
+    customStructuredData = parsedArray;
+  } catch (error) {
+    console.error('Error parsing structured data JSON:', error);
+  }
+}
+
+// Generate Article schema only if not provided in JSON
+let articleSchema: any = null;
+if (!hasArticleSchema) {
+  articleSchema = await getArticleSchema({
+    title: post.title,
+    description: post.excerpt,
+    url: canonical,
+    image: ogImage,
+    publishedAt: publishedTime || post.publishedAt, // Use ISO formatted date
+    updatedAt: modifiedTime || post.updatedAt, // Use ISO formatted date
+    locale: currentLocale,
+    author: post.author?.name, // Use author name from Sanity
+    // Optional: Add author URL if available in Sanity
+    // authorUrl: post.author?.url,
+  });
+}
+
+// Combine all schemas
+const structuredData = [
+  articleSchema,
+  breadcrumbSchema,
+  ...customStructuredData,
+].filter(Boolean);
 ---
 
 <BaseLayout locale={currentLocale} seo={seo} structuredData={structuredData} translationSlugs={translationSlugs}>
