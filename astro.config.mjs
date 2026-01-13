@@ -11,6 +11,7 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false, // We'll import our own CSS
     }),
+    // Note: Using custom sitemap endpoint instead of @astrojs/sitemap due to compatibility issues
   ],
   site: 'https://gentlepiercing.pl',
   i18n: {

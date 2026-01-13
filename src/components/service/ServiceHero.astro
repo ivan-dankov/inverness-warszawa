@@ -1,0 +1,83 @@
+---
+import type { Locale } from '../../lib/seo';
+import { t } from '../../lib/translations';
+
+interface Props {
+  locale: Locale;
+  h1: string;
+  subtitle: string;
+  iconFeatures: Array<{ icon: string; text: string }>;
+  price: string;
+  booksyUrl: string;
+}
+
+const { locale, h1, subtitle, iconFeatures, price, booksyUrl } = Astro.props;
+---
+
+<section class="relative mb-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+      <!-- Hero Content -->
+      <div class="lg:col-span-2">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight">
+          {h1}
+        </h1>
+        
+        <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl">
+          {subtitle}
+        </p>
+
+        <!-- Icon Features -->
+        <div class="flex flex-wrap gap-6 mb-8">
+          {iconFeatures.map((feature) => (
+            <div class="flex items-center gap-2">
+              <div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+                {feature.icon === '0+' ? '0+' : feature.icon === '100%' ? '100%' : 'MED'}
+              </div>
+              <span class="text-base font-medium text-foreground">{feature.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Sticky Booking Box -->
+      <aside class="lg:col-span-1">
+        <div class="sticky top-24 bg-card rounded-[36px] border border-border shadow-lg overflow-hidden">
+          <div class="p-6 bg-muted/30 border-b border-border">
+            <h3 class="font-semibold text-lg text-foreground">
+              {locale === 'pl' ? 'Zarezerwuj termin' : 
+               locale === 'uk' ? 'Забронювати візит' : 
+               locale === 'ru' ? 'Забронировать визит' : 'Book appointment'}
+            </h3>
+          </div>
+          
+          <div class="p-6 space-y-6">
+            <div>
+              <p class="text-sm text-muted-foreground font-medium mb-1">
+                {locale === 'pl' ? 'Cena usługi' : 
+                 locale === 'uk' ? 'Ціна послуги' : 
+                 locale === 'ru' ? 'Цена услуги' : 'Service price'}
+              </p>
+              <p class="text-3xl font-bold text-primary">
+                {price}
+              </p>
+            </div>
+
+            <a 
+              href={booksyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-md hover:shadow-lg group"
+            >
+              {t(locale, 'cta.button')}
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+

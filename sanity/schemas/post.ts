@@ -131,26 +131,41 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
-      name: 'metaTitle',
-      title: 'Meta Title (SEO)',
-      type: 'string',
-      description: 'Optional override for SEO title. Defaults to title if empty.',
-    }),
-    defineField({
-      name: 'metaDescription',
-      title: 'Meta Description (SEO)',
-      type: 'text',
-      rows: 2,
-      description: 'Optional override for SEO description. Defaults to excerpt if empty.',
-    }),
-    defineField({
-      name: 'ogImage',
-      title: 'Open Graph Image (SEO)',
-      type: 'image',
-      description: 'Optional override for social sharing image. Defaults to cover image if empty.',
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'object',
+      description: 'Override default SEO values',
       options: {
-        hotspot: true,
+        collapsible: true,
+        collapsed: true,
       },
+      fields: [
+        defineField({
+          name: 'metaTitle',
+          title: 'Meta Title',
+          type: 'string',
+          description: 'SEO title (max 60 chars). If empty, uses post title.',
+          validation: (Rule) => Rule.max(60).warning('Keep under 60 characters for best display'),
+        }),
+        defineField({
+          name: 'metaDescription',
+          title: 'Meta Description',
+          type: 'text',
+          rows: 3,
+          description: 'SEO description (120-160 chars). This appears in search results.',
+          validation: (Rule) => Rule.min(120).max(160)
+            .warning('Should be 120-160 characters for optimal display in search results'),
+        }),
+        defineField({
+          name: 'ogImage',
+          title: 'OG Image (Social Media)',
+          type: 'image',
+          description: 'Custom image for social sharing (1200x630px). If empty, uses main image.',
+          options: {
+            hotspot: true,
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'author',

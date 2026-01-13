@@ -59,8 +59,8 @@ locales.forEach((locale) => {
 const canonical = getCanonicalUrl(currentLocale, `/blog/${post.slug}`);
 const hreflang = getHreflangUrls(`/blog/${post.slug}`, translationSlugs);
 
-const ogImage = post.ogImage
-  ? urlFor(post.ogImage).width(1200).height(630).format('webp').url()
+const ogImage = post.seo?.ogImage
+  ? urlFor(post.seo.ogImage).width(1200).height(630).format('webp').url()
   : urlFor(post.coverImage).width(1200).height(630).format('webp').url();
 
 // Format dates for OG article tags (ISO 8601 format)
@@ -68,8 +68,8 @@ const publishedTime = post.publishedAt ? new Date(post.publishedAt).toISOString(
 const modifiedTime = post.updatedAt ? new Date(post.updatedAt).toISOString() : publishedTime;
 
 const seo = {
-  title: truncateTitle(post.metaTitle || post.title),
-  description: truncateDescription(post.metaDescription || post.excerpt),
+  title: truncateTitle(post.seo?.metaTitle || post.title),
+  description: truncateDescription(post.seo?.metaDescription || post.excerpt),
   ogImage,
   ogType: 'article', // Blog posts are articles
   canonical,

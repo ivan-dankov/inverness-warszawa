@@ -1,28 +1,25 @@
 import type { APIRoute } from 'astro';
-import { SITE_URL, locales } from '../lib/sitemap';
+
+const SITE_URL = 'https://gentlepiercing.pl';
 
 export const GET: APIRoute = () => {
-  const buildDate = new Date().toISOString().split('T')[0];
-  
-  // Main sitemap index
-  const sitemapLines = [`Sitemap: ${SITE_URL}/sitemap.xml`];
-  
-  // Language-specific sitemaps
-  locales.forEach((locale) => {
-    sitemapLines.push(`Sitemap: ${SITE_URL}/${locale}/sitemap.xml`);
-  });
-
-  const robotsTxt = `# Production domain - allow all crawlers
-User-agent: *
+  const robotsTxt = `User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_astro/
 
-# Language-specific sitemaps
-${sitemapLines.slice(1).join('\n')}
+# Allow specific important paths
+Allow: /pl/
+Allow: /en/
+Allow: /uk/
+Allow: /ru/
+Allow: /pl/blog/
+Allow: /en/blog/
+Allow: /uk/blog/
+Allow: /ru/blog/
 
-# Main sitemap index
-${sitemapLines[0]}
-
-# Last updated: ${buildDate}
+# Sitemap
+Sitemap: ${SITE_URL}/sitemap-index.xml
 `;
 
   return new Response(robotsTxt, {

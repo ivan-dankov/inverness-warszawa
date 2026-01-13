@@ -181,7 +181,7 @@ export async function getArticleSchema(
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     url: post.url,
@@ -235,11 +235,6 @@ export async function getLocalBusinessSchema(locale: Locale) {
   const siteUrl = siteConfig.siteUrl;
   const address = siteConfig.business.address;
   const telephone = siteConfig.business.telephone;
-  // openingHours should be an array format for schema.org
-  const openingHoursSetting = siteConfig.business.openingHours;
-  const openingHours = Array.isArray(openingHoursSetting) 
-    ? openingHoursSetting 
-    : [openingHoursSetting];
   const priceRange = siteConfig.business.priceRange;
   const ratings = siteConfig.ratings;
   const instagram = siteConfig.organization.instagram || 'https://instagram.com/prokol_ushej_warszawa';
@@ -247,16 +242,35 @@ export async function getLocalBusinessSchema(locale: Locale) {
     ? `${siteUrl}${siteConfig.organization.logo}`
     : `${siteUrl}/logo.png`;
 
-  // GeoCoordinates from known location (Wola, Warszawa)
+  // GeoCoordinates from known location (Gizów 6, Warszawa)
   const geoCoordinates = {
     '@type': 'GeoCoordinates',
-    latitude: 52.22594129500684,
-    longitude: 20.945046328079172,
+    latitude: 52.2473,
+    longitude: 20.9636,
   };
+
+  // Convert opening hours string to OpeningHoursSpecification format
+  // Format: "Mo-Su 10:00-20:00" -> OpeningHoursSpecification array
+  const openingHoursSpecification = [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ],
+      opens: '10:00',
+      closes: '20:00',
+    },
+  ];
 
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': ['MedicalBusiness', 'HealthAndBeautyBusiness', 'LocalBusiness'],
     '@id': `${siteUrl}#business`,
     name: businessName,
     image: logoUrl,
@@ -271,13 +285,18 @@ export async function getLocalBusinessSchema(locale: Locale) {
     telephone,
     url: siteUrl,
     sameAs: instagram ? [instagram] : [],
-    openingHours,
+    openingHoursSpecification,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: typeof ratings.ratingValue === 'string' ? parseFloat(ratings.ratingValue) : (ratings.ratingValue || 5.0),
       reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 31),
     },
     priceRange,
+    availableLanguage: ['Polish', 'English', 'Ukrainian', 'Russian'],
+    areaServed: {
+      '@type': 'City',
+      name: 'Warszawa',
+    },
   };
 }
 
@@ -404,9 +423,9 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
   const configs: Record<Locale, Record<string, { title: string; description: string }>> = {
     pl: {
       home: {
-        title: 'Przekłuwanie Uszu Warszawa | Inverness MED | Gentle Piercing',
+        title: 'Gentle Piercing – Przekłuwanie Uszu Dzieci 0+ | Inverness Med Warszawa Wola',
         description:
-          'Bezpieczne przekłuwanie uszu w Warszawie systemem Inverness MED. Dla dzieci 0+ i dorosłych. Sterylne, bezbolesne. Zarezerwuj online lub przyjdź do studia.',
+          'Bezpieczne przekłuwanie uszu Inverness Med dla dzieci 0+ w Warszawie Wola. ✓ Bezbolesne ✓ Sterylne ✓ Dojazd. Tel: 573-818-260',
       },
       aftercare: {
         title: 'Pielęgnacja Po Przekłuciu Uszu | Instrukcje | Gentle Piercing',
@@ -425,9 +444,9 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
     },
     uk: {
       home: {
-        title: 'Прокол Вух Варшава | Безпечний Inverness MED | Gentle Piercing',
+        title: 'Gentle Piercing – Прокол Вух Дітям 0+ | Inverness Med Варшава Воля',
         description:
-          'Безпечний прокол вух у Варшаві системою Inverness MED. Для дітей 0+ та дорослих. Стерильні, безболісні. Забронюйте онлайн або прийдіть до студії. Професійний сервіс.',
+          'Безпечний прокол вух Inverness Med для дітей 0+ у Варшаві Воля. ✓ Безболісний ✓ Стерильний ✓ Виїзд. Тел: 573-818-260',
       },
       aftercare: {
         title: 'Догляд Після Проколу Вух | Інструкції | Gentle Piercing',
@@ -446,9 +465,9 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
     },
     ru: {
       home: {
-        title: 'Прокол Ушей Варшава | Inverness MED | Gentle Piercing',
+        title: 'Gentle Piercing – Прокол Ушей Детям 0+ | Inverness Med Варшава Воля',
         description:
-          'Безопасный прокол ушей в Варшаве системой Inverness MED. Для детей 0+ и взрослых. Стерильные, безболезненные. Забронируйте онлайн или придите в студию.',
+          'Безопасный прокол ушей Inverness Med для детей 0+ в Варшаве Воля. ✓ Безболезненно ✓ Стерильно ✓ Выезд. Тел: 573-818-260',
       },
       aftercare: {
         title: 'Уход После Прокола Ушей | Инструкции | Gentle Piercing Варшава',
@@ -467,9 +486,9 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
     },
     en: {
       home: {
-        title: 'Ear Piercing Warsaw | Safe Medical Service | Gentle Piercing',
+        title: 'Gentle Piercing – Ear Piercing Children 0+ | Inverness Med Warsaw Wola',
         description:
-          'Safe ear piercing in Warsaw using FDA-certified Inverness MED system. Sterile, painless for children 0+ and adults. Book online or walk-in. Expert service.',
+          'Safe ear piercing Inverness Med for children 0+ in Warsaw Wola. ✓ Painless ✓ Sterile ✓ Home visits. Tel: 573-818-260',
       },
       aftercare: {
         title: 'Ear Piercing Aftercare | Instructions | Gentle Piercing Warsaw',
@@ -622,74 +641,74 @@ export function getServicePageSEO(
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dzieciom Warszawa | 0+ Lat | Gentle Piercing',
-        description: 'Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Dla dzieci od 0+, zatwierdzone przez lekarzy. Sterylne, bezbolesne. Zarezerwuj wizytę online.',
+        title: 'Przekłuwanie Uszu Dzieci 0+ Warszawa | Inverness Med | Gentle Piercing',
+        description: 'Przekłuwanie uszu dzieci 0+ w Warszawie. System Inverness Med - bezbolesny, sterylny, certyfikowany. Od 80 zł. Rezerwuj: 573-818-260',
       },
       en: {
-        title: 'Ear Piercing for Children Warsaw | 0+ Years | Gentle Piercing',
-        description: 'Safe ear piercing for children 0+ in Warsaw. FDA-certified Inverness MED system. Doctor-approved, sterile, painless. Book online or visit our studio.',
+        title: 'Ear Piercing Children 0+ Warsaw | Inverness Med | Gentle Piercing',
+        description: 'Ear piercing for children 0+ in Warsaw. Inverness Med system - painless, sterile, certified. From 80 PLN. Book: 573-818-260',
       },
       uk: {
-        title: 'Прокол Вух Дітям Варшава | Від 0+ Років | Gentle Piercing',
-        description: 'Безпечний прокол вух дітям у Варшаві системою Inverness MED. Для дітей від 0+, схвалено лікарями. Стерильні, безболісні. Забронюйте онлайн або прийдіть до студії. Професійний сервіс.',
+        title: 'Прокол Вух Дітям 0+ Варшава | Inverness Med | Gentle Piercing',
+        description: 'Прокол вух дітям 0+ у Варшаві. Система Inverness Med - безболісна, стерильна, сертифікована. Від 80 злотих. Бронювання: 573-818-260',
       },
       ru: {
-        title: 'Прокол Ушей Детям Варшава | От 0+ Лет | Gentle Piercing',
-        description: 'Безопасный прокол ушей детям в Варшаве системой Inverness MED. Для детей от 0+, одобрено врачами. Стерильные, безболезненные. Забронируйте онлайн или придите в студию. Профессиональный сервис.',
+        title: 'Прокол Ушей Детям 0+ Варшава | Inverness Med | Gentle Piercing',
+        description: 'Прокол ушей детям 0+ в Варшаве. Система Inverness Med - безболезненно, стерильно, сертифицировано. От 80 злотых. Бронирование: 573-818-260',
       },
     },
     'przekluwanie-uszu-dorosli-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dla Dorosłych Warszawa | Gentle Piercing',
-        description: 'Profesjonalne przekłuwanie uszu dla dorosłych w Warszawie systemem Inverness MED. Chrząstka i płatek ucha. Sterylne, precyzyjne. Zarezerwuj wizytę online.',
+        title: 'Przekłuwanie Uszu Dorosłych Warszawa | Inverness Med | Gentle Piercing',
+        description: 'Profesjonalne przekłuwanie uszu dorosłych Inverness Med w Warszawie. Szybko, bezpiecznie, bez bólu. Od 80 zł. ☎ 573-818-260',
       },
       en: {
-        title: 'Ear Piercing Adults Warsaw | Professional | Gentle Piercing',
-        description: 'Professional ear piercing for adults in Warsaw with Inverness MED system. Cartilage and earlobe. Sterile, precise. Book online or walk-in.',
+        title: 'Ear Piercing Adults Warsaw | Inverness Med | Gentle Piercing',
+        description: 'Professional ear piercing for adults Inverness Med in Warsaw. Fast, safe, painless. From 80 PLN. ☎ 573-818-260',
       },
       uk: {
-        title: 'Прокол Вух Для Дорослих Варшава | Професійно | Gentle',
-        description: 'Професійний прокол вух для дорослих у Варшаві системою Inverness MED. Хрящ та мочка вуха. Стерильні, точні. Забронюйте онлайн або прийдіть до студії.',
+        title: 'Прокол Вух Дорослим Варшава | Inverness Med | Gentle Piercing',
+        description: 'Професійний прокол вух дорослим Inverness Med у Варшаві. Швидко, безпечно, без болю. Від 80 злотих. ☎ 573-818-260',
       },
       ru: {
-        title: 'Прокол Ушей Для Взрослых Варшава | Gentle Piercing',
-        description: 'Профессиональный прокол ушей для взрослых в Варшаве системой Inverness MED. Хрящ и мочка уха. Стерильные, точные. Забронируйте онлайн или придите в студию.',
+        title: 'Прокол Ушей Взрослым Варшава | Inverness Med | Gentle Piercing',
+        description: 'Профессиональный прокол ушей взрослым Inverness Med в Варшаве. Быстро, безопасно, без боли. От 80 злотых. ☎ 573-818-260',
       },
     },
     'przekluwanie-chrzastki-warszawa': {
       pl: {
-        title: 'Przekłuwanie Chrząstki Warszawa | Helix, Tragus | Gentle',
-        description: 'Profesjonalne przekłuwanie chrząstki ucha w Warszawie. Helix, tragus, conch systemem Inverness MED. Bezpieczne, sterylne. Zarezerwuj online.',
+        title: 'Przekłuwanie Chrząstki Ucha Warszawa | Helix, Tragus | Inverness Med',
+        description: 'Bezpieczne przekłuwanie chrząstki ucha w Warszawie. Helix, tragus, conch - system Inverness Med. Od 90 zł. Rezerwuj: 573-818-260',
       },
       en: {
-        title: 'Cartilage Piercing Warsaw | Helix, Tragus | Gentle Piercing',
-        description: 'Professional cartilage piercing in Warsaw. Helix, tragus, conch with FDA-certified Inverness MED system. Safe, sterile procedure. Book online or walk-in.',
+        title: 'Cartilage Piercing Warsaw | Helix, Tragus | Inverness Med',
+        description: 'Safe cartilage piercing in Warsaw. Helix, tragus, conch - Inverness Med system. From 90 PLN. Book: 573-818-260',
       },
       uk: {
-        title: 'Прокол Хряща Варшава | Helix, Tragus, Conch | Gentle Piercing',
-        description: 'Професійний прокол хряща вуха у Варшаві. Helix, tragus, conch системою Inverness MED. Безпечні, стерильні. Забронюйте онлайн або прийдіть до студії. Професійний сервіс.',
+        title: 'Прокол Хряща Вуха Варшава | Helix, Tragus | Inverness Med',
+        description: 'Безпечний прокол хряща вуха у Варшаві. Helix, tragus, conch - система Inverness Med. Від 90 злотих. Бронювання: 573-818-260',
       },
       ru: {
-        title: 'Прокол Хряща Варшава | Helix, Tragus, Conch | Gentle Piercing',
-        description: 'Профессиональный прокол хряща уха в Варшаве. Helix, tragus, conch системой Inverness MED. Безопасные, стерильные. Забронируйте онлайн или придите в студию.',
+        title: 'Прокол Хряща Уха Варшава | Helix, Tragus | Inverness Med',
+        description: 'Безопасный прокол хряща уха в Варшаве. Helix, tragus, conch - система Inverness Med. От 90 злотых. Бронирование: 573-818-260',
       },
     },
     'przekluwanie-uszu-z-dojazdem-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Z Dojazdem Warszawa | Wizyty Domowe',
-        description: 'Mobilne przekłuwanie uszu z dojazdem do domu w Warszawie. System Inverness MED, wizyty domowe. Wygodnie i bezpiecznie. Zarezerwuj online lub zadzwoń. Profesjonalny serwis.',
+        title: 'Przekłuwanie Uszu z Dojazdem Warszawa | Inverness Med w Domu',
+        description: 'Przekłuwanie uszu z dojazdem do domu w Warszawie. Wygodnie, bezpiecznie, system Inverness Med. Od 150 zł. ☎ 573-818-260',
       },
       en: {
-        title: 'Mobile Ear Piercing Warsaw | Home Visits | Gentle Piercing',
-        description: 'Mobile ear piercing with home visits in Warsaw. Inverness MED system, home appointments. Convenient and safe. Book online or call to schedule. Expert service.',
+        title: 'Ear Piercing with Home Visit Warsaw | Inverness Med at Home',
+        description: 'Ear piercing with home visit in Warsaw. Convenient, safe, Inverness Med system. From 150 PLN. ☎ 573-818-260',
       },
       uk: {
-        title: 'Прокол Вух З Виїздом Варшава | Домашні Візити | Gentle',
-        description: 'Мобільний прокол вух з виїздом додому у Варшаві. Система Inverness MED, домашні візити. Зручно та безпечно. Забронюйте онлайн або зателефонуйте. Професійний сервіс.',
+        title: 'Прокол Вух з Виїздом Варшава | Inverness Med вдома',
+        description: 'Прокол вух з виїздом додому у Варшаві. Зручно, безпечно, система Inverness Med. Від 150 злотих. ☎ 573-818-260',
       },
       ru: {
-        title: 'Прокол Ушей С Выездом Варшава | Домашние Визиты | Gentle',
-        description: 'Мобильный прокол ушей с выездом на дом в Варшаве. Система Inverness MED, домашние визиты. Удобно и безопасно. Забронируйте онлайн или позвоните. Профессиональный сервис.',
+        title: 'Прокол Ушей с Выездом Варшава | Inverness Med на дому',
+        description: 'Прокол ушей с выездом на дом в Варшаве. Удобно, безопасно, система Inverness Med. От 150 злотых. ☎ 573-818-260',
       },
     },
   };

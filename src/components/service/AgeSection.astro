@@ -1,0 +1,60 @@
+---
+import type { Locale } from '../../lib/seo';
+import { getBlogPostUrl } from '../../lib/seo';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  content: string;
+  ageGroups: Array<{ icon: string; label: string; text: string }>;
+  blogLink: { text: string; slug: string };
+}
+
+const { locale, title, content, ageGroups, blogLink } = Astro.props;
+const blogUrl = getBlogPostUrl(locale, 'children-age', blogLink.slug);
+---
+
+<section class="mb-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+    <h2 class="text-3xl font-bold mb-8 text-foreground text-center">
+      {title}
+    </h2>
+    
+    <p class="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 text-center max-w-3xl mx-auto">
+      {content}
+    </p>
+
+    <!-- Age Icons -->
+    <div class="grid sm:grid-cols-3 gap-6 mb-8">
+      {ageGroups.map((group, index) => (
+        <div 
+          key={index}
+          class="bg-card border border-border rounded-xl p-6 text-center hover:shadow-lg transition-shadow duration-300"
+        >
+          <div class="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center text-2xl font-bold text-primary mx-auto mb-4">
+            {group.icon === 'baby' ? '👶' : group.icon === 'toddler' ? '🧒' : '👧'}
+          </div>
+          <div class="text-2xl font-bold text-foreground mb-2">
+            {group.label}
+          </div>
+          <p class="text-sm text-muted-foreground">
+            {group.text}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <a 
+        href={blogUrl}
+        class="inline-flex items-center gap-2 text-primary font-semibold hover:underline group"
+      >
+        {blogLink.text}
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+

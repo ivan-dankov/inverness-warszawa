@@ -37,9 +37,11 @@ export interface Post {
   coverImage: any;
   publishedAt: string;
   updatedAt?: string;
-  metaTitle?: string;
-  metaDescription?: string;
-  ogImage?: any;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    ogImage?: any;
+  };
   author?: Author;
   relatedArticles?: Post[];
 }
@@ -109,16 +111,18 @@ export async function getAllPosts(): Promise<Post[]> {
     },
     publishedAt,
     updatedAt,
-    metaTitle,
-    metaDescription,
-    ogImage {
-      ...,
-      asset-> {
-        _id,
-        _type,
-        url,
-        metadata {
-          dimensions
+    "seo": {
+      metaTitle,
+      metaDescription,
+      ogImage {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
         }
       }
     }
@@ -253,16 +257,18 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
     },
     publishedAt,
     updatedAt,
-    metaTitle,
-    metaDescription,
-    ogImage {
-      ...,
-      asset-> {
-        _id,
-        _type,
-        url,
-        metadata {
-          dimensions
+    "seo": {
+      metaTitle,
+      metaDescription,
+      ogImage {
+        ...,
+        asset-> {
+          _id,
+          _type,
+          url,
+          metadata {
+            dimensions
+          }
         }
       }
     },

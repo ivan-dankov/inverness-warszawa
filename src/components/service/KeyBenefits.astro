@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  items: Array<{ icon: string; text: string }>;
+}
+
+const { title, items } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  check: '✓',
+  quiet: '🔇',
+  'single-use': '📦',
+  comfort: '💚',
+  parent: '👨‍👩‍👧',
+  earrings: '💎',
+};
+---
+
+<section class="mb-16">
+  <h2 class="text-3xl font-bold mb-8 text-foreground text-center">
+    {title}
+  </h2>
+  
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {items.map((item, index) => (
+      <div 
+        key={index}
+        class="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow"
+      >
+        <div class="flex items-start gap-4">
+          <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xl flex-shrink-0">
+            {iconMap[item.icon] || '✓'}
+          </div>
+          <p class="text-base font-medium text-foreground pt-2">
+            {item.text}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+

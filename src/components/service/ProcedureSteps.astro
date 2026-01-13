@@ -1,0 +1,54 @@
+---
+interface Props {
+  title: string;
+  sections: Array<{ title: string; steps: string[] }>;
+}
+
+const { title, sections } = Astro.props;
+---
+
+<section class="mb-16">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+    <h2 class="text-3xl font-bold mb-12 text-foreground text-center">
+      {title}
+    </h2>
+    
+    <div class="space-y-12">
+      {sections.map((section, sectionIndex) => (
+        <div key={sectionIndex} class="relative">
+          {/* Timeline connector (hidden on last item) */}
+          {sectionIndex < sections.length - 1 && (
+            <div class="hidden md:block absolute left-8 top-16 bottom-0 w-0.5 bg-border"></div>
+          )}
+          
+          <div class="flex gap-6">
+            <!-- Step Number -->
+            <div class="flex-shrink-0">
+              <div class="h-16 w-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold">
+                {sectionIndex + 1}
+              </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="flex-1 pb-8">
+              <h3 class="text-xl font-semibold text-foreground mb-4">
+                {section.title}
+              </h3>
+              <ul class="space-y-3">
+                {section.steps.map((step, stepIndex) => (
+                  <li key={stepIndex} class="flex items-start gap-3">
+                    <div class="mt-1.5 h-2 w-2 rounded-full bg-primary flex-shrink-0"></div>
+                    <span class="text-base text-muted-foreground">
+                      {step}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

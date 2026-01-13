@@ -26,13 +26,29 @@ const hreflang = seo.hreflang || getHreflangUrls(
   seo.translationGroup
 );
 
+// Map locale codes to proper hreflang format
+const hreflangMap: Record<Locale, string> = {
+  pl: 'pl-PL',
+  en: 'en-GB',
+  uk: 'uk-UA',
+  ru: 'ru-RU',
+};
+
+// Map locale to HTML lang attribute format
+const htmlLangMap: Record<Locale, string> = {
+  pl: 'pl-PL',
+  en: 'en-GB',
+  uk: 'uk-UA',
+  ru: 'ru-RU',
+};
+
 // Default OG image for pages that don't specify one
 const defaultOgImage = 'https://gentlepiercing.pl/hero/hero-3.jpg';
 const ogImage = seo.ogImage || defaultOgImage;
 ---
 
 <!doctype html>
-<html lang={locale}>
+<html lang={htmlLangMap[locale]}>
   <head>
     <!-- Google tag (gtag.js) - Deferred for better performance -->
     <script is:inline>
@@ -112,9 +128,10 @@ const ogImage = seo.ogImage || defaultOgImage;
     <link rel="canonical" href={canonical} />
 
     <!-- Hreflang Tags -->
-    {Object.entries(hreflang).map(([lang, url]) => (
-      <link key={lang} rel="alternate" hreflang={lang} href={url} />
-    ))}
+    {Object.entries(hreflang).map(([lang, url]) => {
+      const hreflangCode = hreflangMap[lang as Locale] || lang;
+      return <link key={lang} rel="alternate" hreflang={hreflangCode} href={url} />;
+    })}
     {hreflang.pl && (
       <link rel="alternate" hreflang="x-default" href={hreflang.pl} />
     )}
@@ -131,7 +148,7 @@ const ogImage = seo.ogImage || defaultOgImage;
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={seo.title} />
     <meta property="og:site_name" content="Gentle Piercing" />
-    <meta property="og:locale" content={locale === 'pl' ? 'pl_PL' : locale === 'uk' ? 'uk_UA' : locale === 'ru' ? 'ru_RU' : 'en_US'} />
+    <meta property="og:locale" content={locale === 'pl' ? 'pl_PL' : locale === 'uk' ? 'uk_UA' : locale === 'ru' ? 'ru_RU' : 'en_GB'} />
     
     {/* Article-specific OG tags */}
     {seo.ogType === 'article' && (
