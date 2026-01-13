@@ -19,7 +19,7 @@ Allow: /uk/blog/
 Allow: /ru/blog/
 
 # Sitemap
-Sitemap: ${SITE_URL}/sitemap-index.xml
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
 
   return new Response(robotsTxt, {
