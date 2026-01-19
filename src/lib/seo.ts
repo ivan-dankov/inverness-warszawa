@@ -242,11 +242,11 @@ export async function getLocalBusinessSchema(locale: Locale) {
     ? `${siteUrl}${siteConfig.organization.logo}`
     : `${siteUrl}/logo.png`;
 
-  // GeoCoordinates from known location (Gizów 6, Warszawa)
+  // GeoCoordinates from known location (Ursynowska 10/1, Warszawa, Mokotów)
   const geoCoordinates = {
     '@type': 'GeoCoordinates',
-    latitude: 52.2473,
-    longitude: 20.9636,
+    latitude: 52.1946,
+    longitude: 21.0146,
   };
 
   // Convert opening hours string to OpeningHoursSpecification format
@@ -423,9 +423,9 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
   const configs: Record<Locale, Record<string, { title: string; description: string }>> = {
     pl: {
       home: {
-        title: 'Gentle Piercing – Przekłuwanie Uszu Dzieci 0+ | Inverness Med Warszawa Wola',
+        title: 'Gentle Piercing – Przekłuwanie Uszu Dzieci 0+ | Inverness Med Warszawa Mokotów',
         description:
-          'Bezpieczne przekłuwanie uszu Inverness Med dla dzieci 0+ w Warszawie Wola. ✓ Bezbolesne ✓ Sterylne ✓ Dojazd. Tel: 573-818-260',
+          'Bezpieczne przekłuwanie uszu Inverness Med dla dzieci 0+ w Warszawie Mokotów. ✓ Bezbolesne ✓ Sterylne ✓ Dojazd. Tel: 573-818-260',
       },
       aftercare: {
         title: 'Pielęgnacja Po Przekłuciu Uszu | Instrukcje | Gentle Piercing',
@@ -439,14 +439,14 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
       },
       contact: {
         title: 'Kontakt | Przekłuwanie Uszu Warszawa | Gentle Piercing',
-        description: 'Skontaktuj się z Gentle Piercing w Warszawie. Adres: Gizów 6, telefon +48 573 818 260. Zarezerwuj wizytę online lub zadaj pytanie. Otwarte codziennie.',
+        description: 'Skontaktuj się z Gentle Piercing w Warszawie. Adres: Ursynowska 10/1, telefon +48 573 818 260. Zarezerwuj wizytę online lub zadaj pytanie. Otwarte codziennie.',
       },
     },
     uk: {
       home: {
-        title: 'Gentle Piercing – Прокол Вух Дітям 0+ | Inverness Med Варшава Воля',
+        title: 'Gentle Piercing – Прокол Вух Дітям 0+ | Inverness Med Варшава Мокотув',
         description:
-          'Безпечний прокол вух Inverness Med для дітей 0+ у Варшаві Воля. ✓ Безболісний ✓ Стерильний ✓ Виїзд. Тел: 573-818-260',
+          'Безпечний прокол вух Inverness Med для дітей 0+ у Варшаві Мокотув. ✓ Безболісний ✓ Стерильний ✓ Виїзд. Тел: 573-818-260',
       },
       aftercare: {
         title: 'Догляд Після Проколу Вух | Інструкції | Gentle Piercing',
@@ -460,14 +460,14 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
       },
       contact: {
         title: 'Контакти | Прокол Вух Варшава | Gentle Piercing',
-        description: 'Зв\'яжіться з Gentle Piercing у Варшаві. Адреса: Gizów 6, телефон +48 573 818 260. Забронюйте візит онлайн або поставте запитання. Відкрито щодня.',
+        description: 'Зв\'яжіться з Gentle Piercing у Варшаві. Адреса: Ursynowska 10/1, телефон +48 573 818 260. Забронюйте візит онлайн або поставте запитання. Відкрито щодня.',
       },
     },
     ru: {
       home: {
-        title: 'Gentle Piercing – Прокол Ушей Детям 0+ | Inverness Med Варшава Воля',
+        title: 'Gentle Piercing – Прокол Ушей Детям 0+ | Inverness Med Варшава Мокотув',
         description:
-          'Безопасный прокол ушей Inverness Med для детей 0+ в Варшаве Воля. ✓ Безболезненно ✓ Стерильно ✓ Выезд. Тел: 573-818-260',
+          'Безопасный прокол ушей Inverness Med для детей 0+ в Варшаве Мокотув. ✓ Безболезненно ✓ Стерильно ✓ Выезд. Тел: 573-818-260',
       },
       aftercare: {
         title: 'Уход После Прокола Ушей | Инструкции | Gentle Piercing Варшава',
@@ -481,14 +481,14 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
       },
       contact: {
         title: 'Контакты | Прокол Ушей Варшава | Gentle Piercing',
-        description: 'Свяжитесь с Gentle Piercing в Варшаве. Адрес: Gizów 6, телефон +48 573 818 260. Забронируйте визит онлайн или задайте вопрос. Открыто ежедневно.',
+        description: 'Свяжитесь с Gentle Piercing в Варшаве. Адрес: Ursynowska 10/1, телефон +48 573 818 260. Забронируйте визит онлайн или задайте вопрос. Открыто ежедневно.',
       },
     },
     en: {
       home: {
-        title: 'Gentle Piercing – Ear Piercing Children 0+ | Inverness Med Warsaw Wola',
+        title: 'Gentle Piercing – Ear Piercing Children 0+ | Inverness Med Warsaw Mokotów',
         description:
-          'Safe ear piercing Inverness Med for children 0+ in Warsaw Wola. ✓ Painless ✓ Sterile ✓ Home visits. Tel: 573-818-260',
+          'Safe ear piercing Inverness Med for children 0+ in Warsaw Mokotów. ✓ Painless ✓ Sterile ✓ Home visits. Tel: 573-818-260',
       },
       aftercare: {
         title: 'Ear Piercing Aftercare | Instructions | Gentle Piercing Warsaw',
@@ -502,7 +502,7 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
       },
       contact: {
         title: 'Contact Gentle Piercing Warsaw | Book +48 573 818 260',
-        description: 'Contact Gentle Piercing in Warsaw. Address: Gizów 6, phone +48 573 818 260. Book online or ask questions. Open Mon-Sun 10:00-20:00. Professional service.',
+        description: 'Contact Gentle Piercing in Warsaw. Address: Ursynowska 10/1, phone +48 573 818 260. Book online or ask questions. Open Mon-Sun 10:00-20:00. Professional service.',
       },
     },
   };

@@ -1,6 +1,7 @@
 ---
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
+import { PAGE_SLUGS } from '../lib/seo';
 import { getImage } from 'astro:assets';
 import logoWide from '../assets/logo-wide.svg';
 import heroStudio from '../assets/hero/hero-studio.jpg';
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+const contactSlug = PAGE_SLUGS.contact[locale];
 const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_main`;
 
 // Optimize hero images (400x400 for grid display)
@@ -78,7 +80,7 @@ const optimizedHero4 = await getImage({
             {t(locale, 'hero.buttons.book')}
           </a>
           <a 
-            href="#contact"
+            href={`/${locale}/${contactSlug}`}
             class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold shadow-soft hover:shadow-card transition-all duration-300 h-12 px-8 text-base w-full sm:w-auto bg-[#F9D9E5] text-[#68253E] hover:bg-[#F5C9D9]"
           >
             <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,14 +90,10 @@ const optimizedHero4 = await getImage({
             {t(locale, 'hero.buttons.contact')}
           </a>
         </div>
-        <div class="text-sm sm:text-base text-muted-foreground space-y-1">
-          <p>{t(locale, 'hero.locationNotice.studio')}</p>
-          <p>{t(locale, 'hero.locationNotice.mobile')}</p>
-        </div>
       </div>
 
       <!-- Images Grid -->
-      <div class="hidden lg:grid grid-cols-2 gap-4 relative">
+      <div class="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4 relative mt-8 lg:mt-0">
         <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
           <img 
             src={optimizedHeroStudio.src} 

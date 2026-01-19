@@ -317,9 +317,9 @@ async function createSiteSettings() {
       },
       business: {
         address: {
-          street: 'Gizów 6',
+          street: 'Ursynowska 10/1',
           city: 'Warszawa',
-          postalCode: '01-249',
+          postalCode: '02-605',
           country: 'PL',
         },
         telephone: '+48573818260',
