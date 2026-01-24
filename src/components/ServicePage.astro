@@ -3,6 +3,7 @@ import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
 import ServiceFAQ from './ServiceFAQ';
+import { BadgeCheck, Baby, Feather, Gem, HandHeart, ShieldCheck, VolumeX } from '../lib/icons';
 
 interface Props {
   locale: Locale;
@@ -114,6 +115,84 @@ const relatedServiceData = relatedServices.map((slug) => {
     url: getServicePagePath(slug, locale),
   };
 }).filter((service) => service.name);
+
+function getFeatureIcon(feature: string) {
+  const f = feature.toLowerCase();
+
+  // Doctor approved / verified
+  if (
+    f.includes('zatwierdz') ||
+    f.includes('lekarz') ||
+    f.includes('doctor') ||
+    f.includes('approved') ||
+    f.includes('лікар') ||
+    f.includes('схвал') ||
+    f.includes('врач') ||
+    f.includes('одобрен')
+  ) return BadgeCheck;
+
+  // Children / age 0+
+  if (
+    f.includes('dziec') ||
+    f.includes('children') ||
+    f.includes('child') ||
+    f.includes('діт') ||
+    f.includes('дит') ||
+    f.includes('дет')
+  ) return Baby;
+
+  // Quiet / not scary
+  if (
+    f.includes('cichy') ||
+    f.includes('quiet') ||
+    f.includes('silent') ||
+    f.includes('тих') ||
+    f.includes('не') && (f.includes('страш') || f.includes('ляка'))
+  ) return VolumeX;
+
+  // Gentle / minimal discomfort
+  if (
+    f.includes('delikat') ||
+    f.includes('gentle') ||
+    f.includes('minimal') ||
+    f.includes('dyskomfort') ||
+    f.includes('диском') ||
+    f.includes('деликат') ||
+    f.includes('ніжн')
+  ) return Feather;
+
+  // Parent support / care
+  if (
+    f.includes('rodzic') ||
+    f.includes('parents') ||
+    f.includes('parent') ||
+    f.includes('opieka') ||
+    f.includes('підтрим') ||
+    f.includes('батьк') ||
+    f.includes('родител') ||
+    f.includes('поддерж')
+  ) return HandHeart;
+
+  // Sterile / single-use tools
+  if (
+    f.includes('stery') ||
+    f.includes('sterile') ||
+    f.includes('jednoraz') ||
+    f.includes('однораз') ||
+    f.includes('стерил')
+  ) return ShieldCheck;
+
+  // Earrings / jewelry
+  if (
+    f.includes('kolczy') ||
+    f.includes('earring') ||
+    f.includes('сереж') ||
+    f.includes('серьг')
+  ) return Gem;
+
+  // Fallback
+  return ShieldCheck;
+}
 ---
 
 <div class="min-h-screen bg-background">
@@ -139,7 +218,7 @@ const relatedServiceData = relatedServices.map((slug) => {
       </ol>
     </nav>
 
-    <div class="grid lg:grid-cols-3 gap-12">
+    <div class="grid lg:grid-cols-2 gap-12">
       <!-- Main Content -->
       <article class="lg:col-span-2">
         <h1 class="text-4xl sm:text-5xl font-bold mb-8 text-foreground leading-tight">
@@ -147,33 +226,87 @@ const relatedServiceData = relatedServices.map((slug) => {
         </h1>
 
         <!-- Description -->
-        <div class="prose prose-lg max-w-none mb-12 text-muted-foreground leading-relaxed">
+        <div class="prose prose-lg max-w-none mb-8 text-muted-foreground leading-relaxed">
           <p class="text-lg">
             {content.description}
           </p>
         </div>
 
+        <!-- Booking Card -->
+        <div class="mb-12 bg-muted/30 rounded-xl border border-border p-6 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div class="flex-1">
+              <h3 class="font-semibold text-lg text-foreground mb-2">
+                {locale === 'pl' ? 'Zarezerwuj termin' : 
+                 locale === 'uk' ? 'Забронювати візит' : 
+                 locale === 'ru' ? 'Забронировать визит' : 'Book appointment'}
+              </h3>
+              {content.pricing && (
+                <div class="flex items-baseline gap-2">
+                  {prices ? (
+                    <div class="flex items-center gap-3 flex-wrap">
+                      {prices.map((price, idx) => (
+                        <div key={idx} class="flex items-center gap-2">
+                          <span class="text-sm text-muted-foreground">{price.label}</span>
+                          <span class="text-xl font-bold text-primary">{price.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : content.pricing.basePrice && (
+                    <p class="text-2xl font-bold text-primary">
+                      {content.pricing.basePrice}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+            <a 
+              href={booksyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-primary-foreground font-semibold hover:bg-primary/90 transition-colors whitespace-nowrap"
+              id={`service-cta-${serviceSlug}`}
+            >
+              {t(locale, 'cta.button')}
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+          {content.pricing?.additionalInfo && (
+            <div class="mt-4 pt-4 border-t border-border">
+              <p class="text-sm text-muted-foreground">{content.pricing.additionalInfo}</p>
+            </div>
+          )}
+        </div>
+
         <!-- Features Grid -->
         {content.features && content.features.length > 0 && (
-          <div class="bg-muted/30 rounded-xl p-8 mb-12 border border-border/50">
-            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3 text-foreground">
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-foreground mb-6">
               {locale === 'pl' ? 'Kluczowe zalety' : 
                locale === 'uk' ? 'Ключові переваги' : 
                locale === 'ru' ? 'Ключевые преимущества' : 'Key benefits'}
             </h2>
-            <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-4">
-              {content.features.map((feature, index) => (
-                <li key={index} class="flex items-start gap-3">
-                  <div class="mt-1 h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary">
-                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span class="text-base text-muted-foreground font-medium">{feature}</span>
-                </li>
-              ))}
+
+            <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {content.features.slice(0, 6).map((feature, index) => {
+                const Icon = getFeatureIcon(feature);
+                return (
+                  <li key={index} class="h-full rounded-xl border border-border bg-card p-5 shadow-sm">
+                    <div class="flex items-start gap-4">
+                      <div class="mt-0.5 h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                        <Icon className="h-5 w-5" aria-hidden="true" />
+                      </div>
+                      <p class="text-sm sm:text-base font-medium leading-snug text-foreground">
+                        {feature}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
-          </div>
+          </section>
         )}
 
         {serviceSlug === 'przekluwanie-chrzastki-warszawa' && (
@@ -234,91 +367,11 @@ const relatedServiceData = relatedServices.map((slug) => {
           </div>
         )}
 
-        <!-- Additional Info / Trust Section -->
-        <div class="border-t border-border pt-8 mb-12">
-          <h3 class="text-xl font-bold mb-4 text-foreground">
-            {locale === 'pl' ? 'Dlaczego Inverness MED?' : 'Why Inverness MED?'}
-          </h3>
-          <p class="text-muted-foreground mb-4">
-            {locale === 'pl' 
-              ? 'System Inverness MED to najbezpieczniejsza metoda przekłuwania uszu dostępna na rynku. Gwarantuje 100% sterylność dzięki w pełni zabudowanym kasetom, które uniemożliwiają kontakt dłoni piercera z kolczykiem czy igłą.' 
-              : 'Inverness MED system is the safest ear piercing method available. It guarantees 100% sterility thanks to fully enclosed cassettes.'}
-          </p>
-        </div>
-
         <!-- FAQ Section -->
         {content.faq && content.faq.length > 0 && (
           <ServiceFAQ client:load faqs={content.faq} locale={locale} />
         )}
       </article>
-
-      <!-- Sticky Sidebar -->
-      <aside class="lg:col-span-1">
-        <div class="sticky top-24 bg-card rounded-[36px] border border-border shadow-lg overflow-hidden">
-          <!-- Header -->
-          <div class="p-6 bg-muted/30 border-b border-border">
-            <h3 class="font-semibold text-lg text-foreground">
-              {locale === 'pl' ? 'Zarezerwuj termin' : 
-               locale === 'uk' ? 'Забронювати візит' : 
-               locale === 'ru' ? 'Забронировать визит' : 'Book appointment'}
-            </h3>
-          </div>
-          
-          <div class="p-6 space-y-6">
-            <!-- Pricing -->
-            {content.pricing && (
-              <div class="space-y-4">
-                {prices ? (
-                  <div class="bg-card p-5 rounded-xl border border-border shadow-sm">
-                    <p class="text-base font-semibold text-foreground mb-4 border-b border-border pb-2">
-                      {locale === 'pl' ? 'Cennik' : 
-                       locale === 'uk' ? 'Прайс' : 
-                       locale === 'ru' ? 'Прайс' : 'Pricing'}
-                    </p>
-                    <div class="space-y-3">
-                      {prices.map((price) => (
-                        <div class="flex items-center justify-between">
-                          <span class="text-base text-muted-foreground">{price.label}</span>
-                          <span class="text-xl font-bold text-primary">{price.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : content.pricing.basePrice && (
-                  <div>
-                    <p class="text-sm text-muted-foreground font-medium mb-1">
-                      {locale === 'pl' ? 'Cena usługi' : 'Price'}
-                    </p>
-                    <p class="text-3xl font-bold text-primary">
-                      {content.pricing.basePrice}
-                    </p>
-                  </div>
-                )}
-                {content.pricing.additionalInfo && (
-                  <div class="flex items-start gap-3 p-4 bg-muted/30 rounded-lg text-sm text-muted-foreground">
-                    <span class="mt-0.5 text-primary">ⓘ</span>
-                    <p class="leading-snug">{content.pricing.additionalInfo}</p>
-                  </div>
-                )}
-              </div>
-            )}
-
-            <!-- CTA Button -->
-            <a 
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-primary-foreground font-bold hover:bg-primary/90 transition-all shadow-md hover:shadow-lg group"
-              id={`service-cta-${serviceSlug}`}
-            >
-              {t(locale, 'cta.button')}
-              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </aside>
     </div>
 
     <!-- Related Services -->

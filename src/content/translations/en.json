@@ -64,7 +64,7 @@
         "title": "Cartilage (helix, tragus, conch) and earlobe (lobe) piercing",
         "description": "Professional cartilage or earlobe piercing using certified system",
         "badge": "Standard price",
-        "price": "from 80 PLN",
+        "price": "from 90 PLN",
         "duration": "30 min",
         "features": [
           "Price does not include earrings"
@@ -191,7 +191,7 @@
       },
       {
         "question": "How much does ear piercing cost?",
-        "answer": "The procedure price is 150 PLN for piercing two earlobes (children's piercing) or 80 PLN for one earlobe. The cost of earrings must be added to the price — from 100 PLN per pair. We also offer mobile service with home visit (+50 PLN). You'll find the current price list in the 'Our services' section."
+        "answer": "The procedure price is 150 PLN for piercing two earlobes (children's piercing) or 90 PLN for one earlobe. The cost of earrings must be added to the price — from 100 PLN per pair. We also offer mobile service with home visit (+50 PLN). You'll find the current price list in the 'Our services' section."
       },
       {
         "question": "Can I pierce cartilage (helix, tragus)?",
@@ -407,7 +407,7 @@
         "Quiet and gentle mechanism"
       ],
       "pricing": {
-        "basePrice": "From 80 PLN per piercing",
+        "basePrice": "From 90 PLN per piercing",
         "additionalInfo": "Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
       }
     },
@@ -439,7 +439,7 @@
         "Sterile procedure conditions"
       ],
       "pricing": {
-        "basePrice": "1 piercing: 80 PLN, 2 piercings: 140 PLN, 3 piercings: 180 PLN",
+        "basePrice": "1 piercing: 90 PLN, 2 piercings: 150 PLN, 3 piercings: 210 PLN",
         "additionalInfo": "Service price. Earring price from 60 PLN."
       }
     },
@@ -455,7 +455,7 @@
         "Experienced specialist"
       ],
       "pricing": {
-        "basePrice": "1 piercing: 80 PLN, 2 piercings: 140 PLN, 3 piercings: 180 PLN",
+        "basePrice": "1 piercing: 90 PLN, 2 piercings: 150 PLN, 3 piercings: 210 PLN",
         "additionalInfo": "Service price. Earring price from 60 PLN."
       }
     },
@@ -471,7 +471,7 @@
         "Flexible visit hours"
       ],
       "pricing": {
-        "basePrice": "From 80 PLN per piercing + 40 PLN travel",
+        "basePrice": "From 90 PLN per piercing + 40 PLN travel",
         "additionalInfo": "Travel price may be higher depending on distance. Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
       }
     }
