@@ -155,26 +155,21 @@ const relatedServiceData = relatedServices.map((slug) => {
 
         <!-- Features Grid -->
         {content.features && content.features.length > 0 && (
-          <div class="relative overflow-hidden rounded-2xl p-8 mb-12 bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 border border-primary/20 shadow-lg">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
-            <div class="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full blur-3xl -ml-24 -mb-24"></div>
-
-            <h2 class="relative text-3xl font-bold mb-8 text-foreground">
-              <span class="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-                {locale === 'pl' ? 'Kluczowe zalety' :
-                 locale === 'uk' ? 'Ключові переваги' :
-                 locale === 'ru' ? 'Ключевые преимущества' : 'Key benefits'}
-              </span>
+          <div class="mb-16">
+            <h2 class="text-3xl font-bold mb-8 text-foreground">
+              {locale === 'pl' ? 'Kluczowe zalety' :
+               locale === 'uk' ? 'Ключові переваги' :
+               locale === 'ru' ? 'Ключевые преимущества' : 'Key benefits'}
             </h2>
-            <ul class="relative grid sm:grid-cols-2 gap-6">
+            <ul class="grid sm:grid-cols-2 gap-4">
               {content.features.map((feature, index) => (
-                <li key={index} class="group flex items-start gap-4 p-5 rounded-xl bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/50 hover:shadow-md transition-all duration-300 hover:-translate-y-1">
-                  <div class="mt-0.5 h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300">
-                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <li key={index} class="flex items-start gap-3 p-6 rounded-lg bg-muted/30 border border-border">
+                  <div class="mt-0.5 h-6 w-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span class="text-base text-foreground font-medium leading-relaxed">{feature}</span>
+                  <span class="text-base text-foreground leading-relaxed">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -240,71 +235,59 @@ const relatedServiceData = relatedServices.map((slug) => {
         )}
 
         <!-- Additional Info / Trust Section -->
-        <div class="relative overflow-hidden rounded-2xl mb-12 bg-gradient-to-br from-primary/10 via-card to-primary/5 border-2 border-primary/30 shadow-xl">
-          <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-          <div class="absolute top-0 left-1/2 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="mb-16">
+          <div class="bg-muted/30 rounded-lg border border-border p-8 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-foreground">
+              {locale === 'pl' ? 'Dlaczego Inverness MED?' : 'Why Inverness MED?'}
+            </h3>
+            <p class="text-muted-foreground text-base leading-relaxed">
+              {locale === 'pl'
+                ? 'System Inverness MED to najbezpieczniejsza metoda przekłuwania uszu dostępna na rynku. Gwarantuje 100% sterylność dzięki w pełni zabudowanym kasetom, które uniemożliwiają kontakt dłoni piercera z kolczykiem czy igłą.'
+                : 'Inverness MED system is the safest ear piercing method available. It guarantees 100% sterility thanks to fully enclosed cassettes.'}
+            </p>
+          </div>
 
-          <div class="relative p-10">
-            <div class="flex items-start gap-4 mb-6">
-              <div class="p-4 rounded-2xl bg-gradient-to-br from-primary to-primary/70 shadow-lg">
-                <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="flex flex-col p-6 rounded-lg bg-card border border-border">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <div class="flex-1">
-                <h3 class="text-3xl font-bold mb-4 text-foreground">
-                  {locale === 'pl' ? 'Dlaczego Inverness MED?' : 'Why Inverness MED?'}
-                </h3>
-                <p class="text-foreground/80 text-lg leading-relaxed">
-                  {locale === 'pl'
-                    ? 'System Inverness MED to najbezpieczniejsza metoda przekłuwania uszu dostępna na rynku. Gwarantuje 100% sterylność dzięki w pełni zabudowanym kasetom, które uniemożliwiają kontakt dłoni piercera z kolczykiem czy igłą.'
-                    : 'Inverness MED system is the safest ear piercing method available. It guarantees 100% sterility thanks to fully enclosed cassettes.'}
-                </p>
-              </div>
+              <h4 class="font-semibold text-foreground mb-2">
+                {locale === 'pl' ? '100% sterylne' : '100% sterile'}
+              </h4>
+              <p class="text-sm text-muted-foreground">
+                {locale === 'pl' ? 'Brak kontaktu z kolczykiem' : 'No contact with earring'}
+              </p>
             </div>
 
-            <div class="grid sm:grid-cols-3 gap-6 mt-8">
-              <div class="flex flex-col items-center text-center p-6 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div class="p-3 rounded-full bg-primary/10 mb-4">
-                  <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <h4 class="font-bold text-foreground mb-2">
-                  {locale === 'pl' ? '100% sterylne' : '100% sterile'}
-                </h4>
-                <p class="text-sm text-muted-foreground">
-                  {locale === 'pl' ? 'Brak kontaktu z kolczykiem' : 'No contact with earring'}
-                </p>
+            <div class="flex flex-col p-6 rounded-lg bg-card border border-border">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
+              <h4 class="font-semibold text-foreground mb-2">
+                {locale === 'pl' ? 'Szybko i precyzyjnie' : 'Fast & precise'}
+              </h4>
+              <p class="text-sm text-muted-foreground">
+                {locale === 'pl' ? 'Sprawdzona technologia' : 'Proven technology'}
+              </p>
+            </div>
 
-              <div class="flex flex-col items-center text-center p-6 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div class="p-3 rounded-full bg-primary/10 mb-4">
-                  <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h4 class="font-bold text-foreground mb-2">
-                  {locale === 'pl' ? 'Szybko i precyzyjnie' : 'Fast & precise'}
-                </h4>
-                <p class="text-sm text-muted-foreground">
-                  {locale === 'pl' ? 'Sprawdzona technologia' : 'Proven technology'}
-                </p>
+            <div class="flex flex-col p-6 rounded-lg bg-card border border-border">
+              <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
               </div>
-
-              <div class="flex flex-col items-center text-center p-6 rounded-xl bg-card/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                <div class="p-3 rounded-full bg-primary/10 mb-4">
-                  <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                </div>
-                <h4 class="font-bold text-foreground mb-2">
-                  {locale === 'pl' ? 'Certyfikowane' : 'Certified'}
-                </h4>
-                <p class="text-sm text-muted-foreground">
-                  {locale === 'pl' ? 'Zatwierdzony medycznie' : 'Medically approved'}
-                </p>
-              </div>
+              <h4 class="font-semibold text-foreground mb-2">
+                {locale === 'pl' ? 'Certyfikowane' : 'Certified'}
+              </h4>
+              <p class="text-sm text-muted-foreground">
+                {locale === 'pl' ? 'Zatwierdzony medycznie' : 'Medically approved'}
+              </p>
             </div>
           </div>
         </div>
