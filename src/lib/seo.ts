@@ -584,8 +584,19 @@ export function getServicePageHreflang(serviceSlug: ServicePageSlug): Record<Loc
 }
 
 /**
+ * Extract numeric price from price string (e.g., "150 zł" -> "150", "90-150 zł" -> "90")
+ */
+function extractPrice(priceString: string): string {
+  // Remove currency symbols and text
+  const cleaned = priceString.replace(/[^\d-]/g, '');
+  // Extract first number or range start
+  const match = cleaned.match(/^(\d+)/);
+  return match ? match[1] : cleaned.split('-')[0] || '0';
+}
+
+/**
  * Generate Service JSON-LD schema
- * Note: Provider is kept minimal to avoid duplicating LocalBusiness info
+ * Note: Provider uses Organization type with name "Gentle Piercing"
  * The full LocalBusiness schema should be included separately on service pages
  */
 export async function getServiceSchema(
@@ -600,27 +611,26 @@ export async function getServiceSchema(
   const siteUrl = siteConfig.siteUrl;
   const address = siteConfig.business.address;
 
+  // Extract numeric price value
+  const numericPrice = extractPrice(price);
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: serviceName,
     serviceType: serviceType,
-    // Minimal provider reference to avoid duplicating LocalBusiness schema
-    // The full LocalBusiness schema is included separately on service pages
     provider: {
-      '@type': 'LocalBusiness',
-      '@id': `${siteUrl}#business`,
-      name: businessName,
+      '@type': 'Organization',
+      name: 'Gentle Piercing',
       url: siteUrl,
     },
     areaServed: {
       '@type': 'City',
-      name: address.city,
-      addressCountry: address.country,
+      name: 'Warszawa',
     },
     offers: {
       '@type': 'Offer',
-      price: price,
+      price: numericPrice,
       priceCurrency: 'PLN',
       availability: 'https://schema.org/InStock',
       url: url,
@@ -641,8 +651,8 @@ export function getServicePageSEO(
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dzieci 0+ Warszawa | Inverness Med | Gentle Piercing',
-        description: 'Przekłuwanie uszu dzieci 0+ w Warszawie. System Inverness Med - bezbolesny, sterylny, certyfikowany. Od 80 zł. Rezerwuj: 573-818-260',
+        title: 'Przekłuwanie Uszu Dzieci Warszawa – Inverness Med Od 0+ | 150 zł',
+        description: 'Bezpieczne przekłuwanie uszu dzieci od 0+ ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Bez bólu ✓ 150 zł + kolczyki → Rezerwuj online!',
       },
       en: {
         title: 'Ear Piercing Children 0+ Warsaw | Inverness Med | Gentle Piercing',
@@ -659,8 +669,8 @@ export function getServicePageSEO(
     },
     'przekluwanie-uszu-dorosli-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dorosłych Warszawa | Inverness Med | Gentle Piercing',
-        description: 'Profesjonalne przekłuwanie uszu dorosłych Inverness Med w Warszawie. Szybko, bezpiecznie, bez bólu. Od 80 zł. ☎ 573-818-260',
+        title: 'Przekłuwanie Uszu Dorosłych Warszawa – Inverness Med | 90-150 zł',
+        description: 'Profesjonalne przekłuwanie uszu dla dorosłych ✓ Sterylny system Inverness Med ✓ Bez igły ✓ 90-150 zł ✓ Wiele lokalizacji w Warszawie → Umów się!',
       },
       en: {
         title: 'Ear Piercing Adults Warsaw | Inverness Med | Gentle Piercing',
@@ -677,8 +687,8 @@ export function getServicePageSEO(
     },
     'przekluwanie-chrzastki-warszawa': {
       pl: {
-        title: 'Przekłuwanie Chrząstki Ucha Warszawa | Helix, Tragus | Inverness Med',
-        description: 'Bezpieczne przekłuwanie chrząstki ucha w Warszawie. Helix, tragus, conch - system Inverness Med. Od 90 zł. Rezerwuj: 573-818-260',
+        title: 'Przekłuwanie Chrząstki Warszawa – Inverness Med Hélix | Od 120 zł',
+        description: 'Bezpieczne przekłuwanie chrząstki (hélix) ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Bez igły ✓ Od 120 zł ✓ Doświadczony specjalista → Zarezerwuj!',
       },
       en: {
         title: 'Cartilage Piercing Warsaw | Helix, Tragus | Inverness Med',
@@ -695,8 +705,8 @@ export function getServicePageSEO(
     },
     'przekluwanie-uszu-z-dojazdem-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu z Dojazdem Warszawa | Inverness Med w Domu',
-        description: 'Przekłuwanie uszu z dojazdem do domu w Warszawie. Wygodnie, bezpiecznie, system Inverness Med. Od 150 zł. ☎ 573-818-260',
+        title: 'Przekłuwanie Uszu z Dojazdem Warszawa – Inverness Med | +70 zł',
+        description: 'Przyjedziemy do Ciebie! ✓ Przekłuwanie uszu dzieci w domu ✓ System Inverness Med ✓ Cała Warszawa + okolice ✓ +70 zł do ceny → Umów wizytę domową!',
       },
       en: {
         title: 'Ear Piercing with Home Visit Warsaw | Inverness Med at Home',

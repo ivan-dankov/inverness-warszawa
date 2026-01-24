@@ -64,7 +64,7 @@
         "title": "Przekłucie chrząstki (helix, tragus, conch) i płatka ucha (lobe)",
         "description": "Profesjonalne przekłucie chrząstki lub płatka ucha z wykorzystaniem certyfikowanego systemu",
         "badge": "Cena standardowa",
-        "price": "od 80 zł",
+        "price": "od 90 zł",
         "duration": "30 min",
         "features": [
           "Cena nie obejmuje kosztu kolczyków"
@@ -98,7 +98,7 @@
     "pricing": {
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 60 zł za jeden, od 100 zł za parę",
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 70 zł za jeden, od 110 zł za parę",
       "mobileVisit": "Dojazd mobilny: 40 zł, może być wyższa w zależności od odległości"
     },
     "bookButton": "Rezerwuj Online",
@@ -191,7 +191,7 @@
       },
       {
         "question": "Ile kosztuje przekłuwanie uszu?",
-        "answer": "Cena zabiegu wynosi 150 zł za przekłucie dwóch płatków uszu (przekłuwanie dzieci) lub 80 zł za jeden płatek ucha. Do ceny należy doliczyć koszt kolczyków — od 100 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
+        "answer": "Cena zabiegu wynosi 150 zł za przekłucie dwóch płatków uszu (przekłuwanie dzieci) lub 90 zł za jeden płatek ucha. Do ceny należy doliczyć koszt kolczyków — od 110 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
       },
       {
         "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
@@ -366,8 +366,8 @@
         "Cichy i delikatny mechanizm"
       ],
       "pricing": {
-        "basePrice": "Od 80 zł za przekłucie",
-        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 60 zł za jeden, od 100 zł za parę)"
+        "basePrice": "Od 90 zł za przekłucie",
+        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 110 zł za parę)"
       }
     },
     "przekluwanie-uszu-dzieci-warszawa": {
@@ -383,8 +383,38 @@
       ],
       "pricing": {
         "basePrice": "150 zł",
-        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 60 zł za jeden, od 100 zł za parę)"
-      }
+        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 110 zł za parę)"
+      },
+      "faq": [
+        {
+          "question": "Od jakiego wieku?",
+          "answer": "System Inverness Med jest zatwierdzony przez lekarzy dla dzieci od 0+. To jedyny system w Europie z taką certyfikacją, co oznacza, że możemy bezpiecznie przekłuwać uszy już niemowlętom."
+        },
+        {
+          "question": "Czy to boli?",
+          "answer": "System Inverness Med jest wyjątkowo delikatny i znacznie mniej bolesny niż tradycyjny pistolet. Kolczyk delikatnie rozsuwa tkankę zamiast ją przebijać, co sprawia, że dyskomfort jest minimalny. Większość dzieci nawet nie płacze podczas zabiegu."
+        },
+        {
+          "question": "Jak długo się goi?",
+          "answer": "Gojenie płatka ucha u dzieci trwa około 6-8 tygodni. System Inverness Med przyspiesza gojenie dzięki precyzyjnemu, atraumatycznemu przekłuciu. Po tym czasie można bezpiecznie zmienić kolczyki."
+        },
+        {
+          "question": "Co zabrać na wizytę?",
+          "answer": "Nie trzeba nic specjalnego zabierać. Zalecamy przyjście z czystymi uszami i włosami związanymi lub z możliwością ich związania. Dla dzieci warto wyjaśnić wcześniej, jak będzie wyglądać procedura, aby czuły się spokojnie."
+        },
+        {
+          "question": "Czy można na basen?",
+          "answer": "Przez pierwsze 2 tygodnie po przekłuciu należy unikać basenów, saun i solariów. Woda w basenie może zawierać bakterie, które mogą spowodować infekcję. Po 2 tygodniach można wrócić do normalnych aktywności, ale nadal należy zachować ostrożność."
+        },
+        {
+          "question": "Jaki system używacie?",
+          "answer": "Używamy systemu Inverness Med - jedynego systemu w Europie zatwierdzonego przez lekarzy dla dzieci od 0+. System posiada międzynarodowe certyfikaty FDA oraz ISO, potwierdzające najwyższe standardy jakości i bezpieczeństwa. Używamy jednorazowych, zamkniętych kaset sterylnych, co gwarantuje 100% sterylność."
+        },
+        {
+          "question": "Czy rodzic może być obecny?",
+          "answer": "Tak, oczywiście! Wsparcie i obecność rodzica podczas zabiegu jest bardzo ważne dla dziecka. Rodzic może być obecny przez cały czas trwania procedury, co pomaga dziecku czuć się bezpiecznie i spokojnie."
+        }
+      ]
     },
     "przekluwanie-uszu-dorosli-warszawa": {
       "h1": "Przekłuwanie Uszu Dla Dorosłych w Warszawie",
@@ -398,9 +428,31 @@
         "Sterylne warunki zabiegu"
       ],
       "pricing": {
-        "basePrice": "1 przekłucie: 80 zł, 2 przekłucia: 140 zł, 3 przekłucia: 180 zł",
-        "additionalInfo": "Cena usługi. Cena kolczyka od 60 zł."
-      }
+        "basePrice": "1 przekłucie: 90 zł, 2 przekłucia: 150 zł, 3 przekłucia: 210 zł",
+        "additionalInfo": "Cena usługi. Cena kolczyka od 70 zł."
+      },
+      "faq": [
+        {
+          "question": "Czy to boli?",
+          "answer": "System Inverness Med jest wyjątkowo delikatny i znacznie mniej bolesny niż tradycyjny pistolet. Kolczyk delikatnie rozsuwa tkankę zamiast ją przebijać, co sprawia, że dyskomfort jest minimalny. Większość naszych klientów zgadza się, że procedura jest praktycznie bezbolesna."
+        },
+        {
+          "question": "Ile trwa gojenie?",
+          "answer": "Dla płatka ucha gojenie trwa około 6-8 tygodni. Dla przekłucia chrząstki (helix, tragus, conch) proces gojenia może potrwać 3-6 miesięcy. System Inverness Med przyspiesza gojenie dzięki precyzyjnemu, atraumatycznemu przekłuciu."
+        },
+        {
+          "question": "Czy mogę zmienić kolczyki?",
+          "answer": "Nie wyjmuj kolczyków przed upływem 6 tygodni przy przekłuciu płatka ucha lub 12 tygodni przy przekłuciu chrząstki. Po tym czasie możesz bezpiecznie wymienić kolczyki na inne. Po zdjęciu kolczyków Inverness wybieraj lekkie, hipoalergiczne kolczyki, np. z linii BIOJOUX (bez niklu)."
+        },
+        {
+          "question": "Czy można przy alergii na nikiel?",
+          "answer": "Tak! Wszystkie nasze kolczyki są hipoalergiczne i wykonane z tytanu, niobu lub stali medycznej. Wszystkie posiadają certyfikat REACH i nie zawierają niklu, co oznacza, że są bezpieczne dla osób z alergią na nikiel."
+        },
+        {
+          "question": "Jakie materiały kolczyków?",
+          "answer": "W naszej ofercie znajduje się ponad 30 modeli kolczyków wykonanych z tytanu, niobu lub stali medycznej. Wszystkie są hipoalergiczne i posiadają certyfikat REACH. Mamy kolczyki w różnych stylach i kolorach, odpowiednie zarówno dla kobiet, jak i mężczyzn."
+        }
+      ]
     },
     "przekluwanie-chrzastki-warszawa": {
       "h1": "Przekłuwanie Chrząstki w Warszawie",
@@ -414,9 +466,31 @@
         "Doświadczona specjalistka"
       ],
       "pricing": {
-        "basePrice": "1 przekłucie: 80 zł, 2 przekłucia: 140 zł, 3 przekłucia: 180 zł",
-        "additionalInfo": "Cena usługi. Cena kolczyka od 60 zł."
-      }
+        "basePrice": "1 przekłucie: 90 zł, 2 przekłucia: 150 zł, 3 przekłucia: 210 zł",
+        "additionalInfo": "Cena usługi. Cena kolczyka od 70 zł."
+      },
+      "faq": [
+        {
+          "question": "Czy boli bardziej niż płatek?",
+          "answer": "Przekłuwanie chrząstki może być nieco bardziej odczuwalne niż przekłuwanie płatka ucha, ale system Inverness Med jest nadal bardzo delikatny. Większość klientów opisuje to jako krótkie, lekkie ukłucie. Dyskomfort jest minimalny i szybko mija."
+        },
+        {
+          "question": "Ile się goi?",
+          "answer": "Gojenie chrząstki trwa dłużej niż płatka ucha - około 3-6 miesięcy. System Inverness Med przyspiesza gojenie dzięki precyzyjnemu, atraumatycznemu przekłuciu, które nie rozrywa tkanek jak tradycyjny pistolet. Pełne gojenie może potrwać do roku."
+        },
+        {
+          "question": "Czy mogę spać na uchu?",
+          "answer": "Przez pierwsze 2-3 tygodnie po przekłuciu chrząstki zalecamy spanie na drugim boku lub na plecach, aby uniknąć ucisku na przekłute ucho. Po tym czasie można stopniowo wracać do normalnego spania, ale nadal należy zachować ostrożność."
+        },
+        {
+          "question": "Kiedy zmienić kolczyk?",
+          "answer": "Nie wyjmuj kolczyków przed upływem 12 tygodni przy przekłuciu chrząstki. Po tym czasie możesz bezpiecznie wymienić kolczyki na inne. Ważne jest, aby wybierać lekkie, hipoalergiczne kolczyki, które nie będą obciążać chrząstki."
+        },
+        {
+          "question": "Co jeśli się zainfekuje?",
+          "answer": "Jeśli pojawi się infekcja lub silny stan zapalny, nie wyjmuj kolczyków - skontaktuj się z lekarzem. W większości przypadków odpowiednia pielęgnacja (3× dziennie dezynfekcja specjalnym płynem) zapobiega infekcjom. Po przekłuciu otrzymasz szczegółowe instrukcje pielęgnacji."
+        }
+      ]
     },
     "przekluwanie-uszu-z-dojazdem-warszawa": {
       "h1": "Przekłuwanie Uszu Z Dojazdem w Warszawie",
@@ -430,9 +504,35 @@
         "Elastyczne godziny wizyt"
       ],
       "pricing": {
-        "basePrice": "Od 80 zł za przekłucie + 40 zł dojazd",
-        "additionalInfo": "Cena dojazdu może być wyższa w zależności od odległości. Cena nie obejmuje kosztu kolczyków (od 60 zł za jeden, od 100 zł za parę)"
-      }
+        "basePrice": "Od 90 zł za przekłucie + 70 zł dojazd",
+        "additionalInfo": "Cena dojazdu może być wyższa w zależności od odległości. Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 110 zł za parę)"
+      },
+      "faq": [
+        {
+          "question": "Jaki zasięg?",
+          "answer": "Dojeżdżamy do klientów w całej Warszawie i okolicach. Obsługujemy wszystkie dzielnice Warszawy oraz miejscowości w promieniu do 30 km od centrum. W przypadku większych odległości cena dojazdu może być wyższa - skontaktuj się z nami, aby uzyskać dokładną wycenę."
+        },
+        {
+          "question": "Ile kosztuje dojazd?",
+          "answer": "Standardowa cena dojazdu to 70 zł. W przypadku większych odległości (powyżej 30 km od centrum Warszawy) cena może być wyższa. Dokładną wycenę otrzymasz podczas rezerwacji wizyty."
+        },
+        {
+          "question": "Czy przyjedziecie na 1 dziecko?",
+          "answer": "Tak, oczywiście! Przyjeżdżamy zarówno na pojedyncze przekłucie, jak i na większe grupy. Nie ma minimalnej liczby osób - możemy przyjechać nawet na jedno dziecko. Cena dojazdu jest stała niezależnie od liczby przekłuć."
+        },
+        {
+          "question": "Co musicie mieć w domu?",
+          "answer": "Nie potrzebujesz niczego specjalnego. Przywozimy cały niezbędny sprzęt, w tym sterylne narzędzia, kolczyki i materiały do dezynfekcji. Wystarczy czyste, dobrze oświetlone miejsce (np. przy stole), gdzie możemy przeprowadzić zabieg w sterylnych warunkach."
+        },
+        {
+          "question": "Jak umówić wizytę?",
+          "answer": "Możesz umówić wizytę domową przez naszą stronę Booksy lub telefonicznie pod numerem +48 573 818 260. Podczas rezerwacji podaj adres i preferowane godziny wizyty. Elastyczne godziny wizyt - jesteśmy dostępni od poniedziałku do niedzieli w godzinach 10:00-20:00."
+        },
+        {
+          "question": "Ile trwa dojazd + przekłucie?",
+          "answer": "Czas dojazdu zależy od lokalizacji, ale zazwyczaj jest to 20-40 minut. Sam zabieg przekłuwania trwa około 15-30 minut. W sumie wizyta domowa zajmuje około 1-1,5 godziny (wliczając dojazd, przygotowanie, zabieg i instrukcje pielęgnacji)."
+        }
+      ]
     }
   }
 }

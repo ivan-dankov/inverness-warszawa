@@ -8,6 +8,7 @@ import {
   getLocalBusinessSchema,
   getServiceSchema,
   getBreadcrumbSchema,
+  getFAQSchema,
   getCanonicalUrl,
   getServiceSlugForLocale,
   getLocalizedPageUrl,
@@ -68,7 +69,17 @@ const breadcrumbSchema = getBreadcrumbSchema([
   { name: serviceData.h1, url: canonical },
 ]);
 
-const structuredData = [localBusinessSchema, serviceSchema, breadcrumbSchema];
+// Add FAQPage schema if FAQs exist
+const faqSchema = serviceData.faq && serviceData.faq.length > 0
+  ? getFAQSchema(locale, serviceData.faq)
+  : null;
+
+const structuredData = [
+  localBusinessSchema,
+  serviceSchema,
+  breadcrumbSchema,
+  ...(faqSchema ? [faqSchema] : []),
+];
 ---
 
 <BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
@@ -80,6 +91,7 @@ const structuredData = [localBusinessSchema, serviceSchema, breadcrumbSchema];
       description: serviceData.description,
       features: serviceData.features,
       pricing: serviceData.pricing,
+      faq: serviceData.faq,
     }}
     relatedServices={relatedServices}
   />

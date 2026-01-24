@@ -2,6 +2,7 @@
 import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
+import ServiceFAQ from './ServiceFAQ';
 
 interface Props {
   locale: Locale;
@@ -14,6 +15,7 @@ interface Props {
       basePrice?: string;
       additionalInfo?: string;
     };
+    faq?: Array<{ question: string; answer: string }>;
   };
   relatedServices?: ServicePageSlug[];
 }
@@ -243,6 +245,11 @@ const relatedServiceData = relatedServices.map((slug) => {
               : 'Inverness MED system is the safest ear piercing method available. It guarantees 100% sterility thanks to fully enclosed cassettes.'}
           </p>
         </div>
+
+        <!-- FAQ Section -->
+        {content.faq && content.faq.length > 0 && (
+          <ServiceFAQ client:load faqs={content.faq} locale={locale} />
+        )}
       </article>
 
       <!-- Sticky Sidebar -->

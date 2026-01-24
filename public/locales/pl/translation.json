@@ -63,7 +63,7 @@
         "title": "Przekłucie chrząstki (helix, tragus, conch) i płatka ucha (lobe)",
         "description": "Profesjonalne przekłucie chrząstki lub płatka ucha z wykorzystaniem certyfikowanego systemu",
         "badge": "Cena standardowa",
-        "price": "od 80 zł",
+        "price": "od 90 zł",
         "duration": "30 min",
         "features": [
           "Cena nie obejmuje kosztu kolczyków"
@@ -97,8 +97,8 @@
     "pricing": {
       "title": "Informacje o cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 100 zł za parę",
-      "mobileVisit": "Dojazd mobilny: 50 zł, może być wyższa w zależności od odległości"
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 110 zł za parę",
+      "mobileVisit": "Dojazd mobilny: 70 zł, może być wyższa w zależności od odległości"
     },
     "bookButton": "Rezerwuj Online",
     "durationLabel": "Czas trwania:"
@@ -190,7 +190,7 @@
       },
       {
         "question": "Ile kosztuje przekłuwanie uszu?",
-        "answer": "Cena zabiegu wynosi 150 zł za przekłucie dwóch płatków uszu (przekłuwanie dzieci) lub 80 zł za jeden płatek ucha. Do ceny należy doliczyć koszt kolczyków — od 100 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
+        "answer": "Cena zabiegu wynosi 150 zł za przekłucie dwóch płatków uszu (przekłuwanie dzieci) lub 90 zł za jeden płatek ucha. Do ceny należy doliczyć koszt kolczyków — od 110 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
       },
       {
         "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
@@ -218,7 +218,7 @@
     "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Dojazd mobilny: +50 zł",
+    "mobileVisit": "Dojazd mobilny: +70 zł",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {
