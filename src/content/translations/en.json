@@ -99,7 +99,7 @@
       "title": "Pricing Information",
       "earringsInfo": "Price does not include earrings",
       "earringsPrice": "Additional charge for earrings: from 60 PLN for one, from 100 PLN per pair",
-      "mobileVisit": "Mobile service: 40 PLN, may be higher depending on distance"
+      "mobileVisit": "Mobile service: 70 PLN, may be higher depending on distance"
     },
     "bookButton": "Book Online",
     "durationLabel": "Duration:"
@@ -219,7 +219,7 @@
     "hours": "Opening hours",
     "days": "Monday - Sunday",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Mobile service: +40 PLN",
+    "mobileVisit": "Mobile service: +70 PLN",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {
@@ -471,7 +471,7 @@
         "Flexible visit hours"
       ],
       "pricing": {
-        "basePrice": "From 90 PLN per piercing + 40 PLN travel",
+        "basePrice": "From 90 PLN per piercing + 70 PLN travel",
         "additionalInfo": "Travel price may be higher depending on distance. Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
       }
     }
