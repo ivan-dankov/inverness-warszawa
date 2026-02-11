@@ -2,6 +2,9 @@
 import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
+import { Image } from 'astro:assets';
+import ear1 from '../assets/ear-1.jpg';
+import ear2 from '../assets/ear-2.jpg';
 
 interface Props {
   locale: Locale;
@@ -112,20 +115,15 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
         return (
           <div class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
             <a href={serviceUrl} class="flex flex-col h-full items-center justify-start">
-              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               
               <div class="mb-4 aspect-[4/3] overflow-hidden rounded-lg max-w-80">
                 {service.nameKey === 'cartilage' && (
-                  <img 
-                    src="/services/cartilage-320.webp" 
-                    srcset="/services/cartilage-320.webp 320w, /services/cartilage-640.webp 640w"
-                    sizes="(max-width: 768px) 320px, 160px"
+                  <Image 
+                    src={ear2} 
                     alt={serviceName} 
-                    class="w-full h-full object-cover" 
-                    loading="lazy"
-                    decoding="async"
-                    width="320"
-                    height="240"
+                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                    widths={[320, 640]}
+                    sizes="(max-width: 768px) 320px, 160px"
                   />
                 )}
                 {service.nameKey === 'children' && (
@@ -134,7 +132,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
                     srcset="/services/children-320.webp 320w, /services/children-640.webp 640w"
                     sizes="(max-width: 768px) 320px, 160px"
                     alt={serviceName} 
-                    class="w-full h-full object-cover" 
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                     loading="lazy"
                     decoding="async"
                     width="320"
@@ -142,16 +140,12 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
                   />
                 )}
                 {service.nameKey === 'adults' && (
-                  <img 
-                    src="/services/ear-320.webp" 
-                    srcset="/services/ear-320.webp 320w, /services/ear-640.webp 640w"
-                    sizes="(max-width: 768px) 320px, 160px"
+                  <Image 
+                    src={ear1} 
                     alt={serviceName} 
-                    class="w-full h-full object-cover" 
-                    loading="lazy"
-                    decoding="async"
-                    width="320"
-                    height="240"
+                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                    widths={[320, 640]}
+                    sizes="(max-width: 768px) 320px, 160px"
                   />
                 )}
               </div>
@@ -171,7 +165,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
               href={booksyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg transition-all h-12 px-4 w-full mt-auto"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-12 px-4 w-full mt-auto"
               data-booking-button="services"
               onclick="event.stopPropagation();"
             >
@@ -180,7 +174,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
               </svg>
               {t(locale, 'services.bookButton')}
             </a>
-            <a href={serviceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6">
+            <a href={serviceUrl} class="flex items-center justify-center text-primary font-semibold text-sm hover:text-primary/80 transition-colors mt-6">
               {locale === 'pl' ? 'Zobacz ofertę' :
                locale === 'en' ? 'View offer' :
                locale === 'uk' ? 'Переглянути пропозицію' :
@@ -212,9 +206,8 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
         const mobileServiceDesc = mobileService.desc[locale];
         const mobileBooksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${mobileService.slug}_${locale}`;
         return (
-          <div class="flex flex-col md:flex-row justify-start gap-6 p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+          <div class="flex flex-col md:flex-row justify-start gap-6 p-8 bg-card border border-border rounded-2xl hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
             <a href={mobileServiceUrl} class="flex flex-col md:flex-row gap-6 flex-1 justify-start items-center">
-              <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/50 to-primary/10 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               
               <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
                 <img 
@@ -222,7 +215,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
                   srcset="/services/mobile-320.webp 320w, /services/mobile-640.webp 640w"
                   sizes="(max-width: 768px) 320px, 160px"
                   alt={mobileServiceName} 
-                  class="w-full h-full object-cover" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   loading="lazy"
                   decoding="async"
                   width="320"
@@ -248,7 +241,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
                 href={mobileBooksyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-lg transition-all h-12 px-6 w-full md:w-auto"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-12 px-6 w-full md:w-auto"
                 data-booking-button="services"
                 onclick="event.stopPropagation();"
               >
@@ -274,22 +267,19 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
 
     <!-- Combined Pricing Info Section -->
     <div class="mt-8 max-w-6xl mx-auto mb-12">
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-background to-muted border border-primary/20 shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all duration-300 group">
-        <!-- Decorative background element -->
-        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-        
-        <div class="flex flex-col sm:flex-row gap-6 items-start relative z-10">
-          <div class="flex-shrink-0 p-3 bg-primary/10 rounded-xl text-primary group-hover:scale-110 transition-transform duration-300">
+      <div class="rounded-2xl bg-blue-50 border border-blue-100 p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
+          <div class="flex-shrink-0 p-3 bg-white rounded-xl text-blue-600 shadow-sm">
             <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           
-          <div class="flex-1 space-y-2">
-            <p class="text-base font-medium text-foreground leading-relaxed">
+          <div class="space-y-2 text-center sm:text-left">
+            <p class="text-lg font-medium text-foreground leading-relaxed">
               {pricing.earringsInfo}
             </p>
-            <p class="text-sm text-muted-foreground leading-relaxed">
+            <p class="text-base text-muted-foreground leading-relaxed">
               {pricing.earringsPrice}
             </p>
           </div>
@@ -301,7 +291,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
       <div class="text-center mb-8">
         <a 
           href={getLocalizedPagePath('services', locale)}
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold shadow-soft hover:shadow-card transition-all duration-300 h-12 px-8 text-base bg-[#F9D9E5] text-[#68253E] hover:bg-[#F5C9D9] group"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors h-12 px-8 text-base group"
         >
           {locale === 'pl' ? 'Zobacz wszystkie usługi' :
            locale === 'en' ? 'View all services' :

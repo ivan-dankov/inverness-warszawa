@@ -28,6 +28,20 @@ const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'c
       </p>
     </div>
 
+    <!-- Video Section -->
+    <div class="mb-16 flex justify-center">
+      <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-xl border border-border bg-card">
+        <iframe 
+          class="absolute top-0 left-0 w-full h-full"
+          src="https://www.youtube.com/embed/tFyv2XZhlhk" 
+          title="Inverness Piercing System" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
     <div class="max-w-6xl mx-auto mb-8">
       <h3 class="text-2xl font-semibold text-center text-foreground mb-8">
         {t(locale, 'comparison.tableTitle')}
@@ -125,8 +139,13 @@ const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'c
         ))}
       </div>
     </div>
+
+
+
   </div>
 </section>
+
+
 
 
 
