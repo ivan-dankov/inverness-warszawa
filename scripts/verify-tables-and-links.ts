@@ -14,32 +14,35 @@ interface Article {
   locale: string;
   slug: { current: string };
   content: any[];
+  structuredDataJson?: string;
 }
 
 async function verifyArticle(locale: string, slug: string) {
   console.log(`\n🔍 Verifying ${locale.toUpperCase()} article: ${slug}`);
-  
+
   const query = `*[_type == "post" && locale == $locale && slug.current == $slug][0]{
     _id,
     title,
     locale,
     slug,
-    content
+    slug,
+    content,
+    structuredDataJson
   }`;
-  
+
   const article: Article = await client.fetch(query, { locale, slug });
-  
+
   if (!article) {
     console.log(`   ❌ Article not found`);
     return;
   }
-  
+
   console.log(`   ✓ Found: ${article.title}`);
-  
+
   // Check for tables
   const tables = article.content.filter((block: any) => block._type === 'table');
   console.log(`   📊 Tables found: ${tables.length}`);
-  
+
   if (tables.length > 0) {
     tables.forEach((table: any, index: number) => {
       const rows = table.rows?.length || 0;
@@ -47,12 +50,12 @@ async function verifyArticle(locale: string, slug: string) {
       console.log(`      Table ${index + 1}: ${rows} rows × ${cols} columns`);
     });
   }
-  
+
   // Check for links
   const blocks = article.content.filter((block: any) => block._type === 'block');
   let linkCount = 0;
   const links: string[] = [];
-  
+
   blocks.forEach((block: any) => {
     if (block.markDefs) {
       block.markDefs.forEach((mark: any) => {
@@ -63,22 +66,22 @@ async function verifyArticle(locale: string, slug: string) {
       });
     }
   });
-  
+
   console.log(`   🔗 Links found: ${linkCount}`);
-  
+
   if (links.length > 0) {
     // Check if links have proper format
-    const properLinks = links.filter(href => href.startsWith('/'));
-    const improperLinks = links.filter(href => !href.startsWith('/'));
-    
-    console.log(`      ✓ Proper format (starts with /): ${properLinks.length}`);
+    const properLinks = links.filter(href => href.startsWith('/') || href.startsWith('https://gentlepiercing.pl'));
+    const improperLinks = links.filter(href => !href.startsWith('/') && !href.startsWith('https://gentlepiercing.pl'));
+
+    console.log(`      ✓ Proper format: ${properLinks.length}`);
     if (improperLinks.length > 0) {
       console.log(`      ❌ Improper format: ${improperLinks.length}`);
       improperLinks.slice(0, 3).forEach(href => {
         console.log(`         - ${href}`);
       });
     }
-    
+
     // Show sample of proper links
     if (properLinks.length > 0) {
       console.log(`      Sample links:`);
@@ -87,62 +90,85 @@ async function verifyArticle(locale: string, slug: string) {
       });
     }
   }
-  
+
   // Check content blocks
   console.log(`   📝 Total content blocks: ${article.content.length}`);
-  
+
+  // Check structured data
+  let hasJsonLd = false;
+  if (article.structuredDataJson) {
+    try {
+      JSON.parse(article.structuredDataJson);
+      hasJsonLd = true;
+      console.log(`   ✅ JSON-LD Schema found (${article.structuredDataJson.length} chars)`);
+    } catch (e) {
+      console.log(`   ❌ JSON-LD Schema invalid JSON`);
+    }
+  } else {
+    console.log(`   ❌ JSON-LD Schema missing`);
+  }
+
   return {
     hasTable: tables.length > 0,
     tableCount: tables.length,
     linkCount,
-    properLinkCount: links.filter(href => href.startsWith('/')).length,
+    properLinkCount: links.filter(href => href.startsWith('/') || href.startsWith('https://gentlepiercing.pl')).length,
+    hasJsonLd
   };
 }
 
 async function main() {
   console.log('🚀 Verifying article tables and links in Sanity...\n');
-  
+
   const articles = [
     { locale: 'pl', slug: 'ile-kosztuje-przeklucie-uszu-warszawa-cennik-2026' },
     { locale: 'en', slug: 'ear-piercing-cost-warsaw-price-guide-2026' },
     { locale: 'uk', slug: 'skilky-koshtuye-prokolyuvannya-vuh-varshava-2026' },
     { locale: 'ru', slug: 'skolko-stoit-prokol-ushey-varshava-2026' },
   ];
-  
+
   const results = [];
-  
+
   for (const article of articles) {
     const result = await verifyArticle(article.locale, article.slug);
     if (result) {
       results.push({ ...article, ...result });
     }
   }
-  
+
   console.log('\n\n📊 SUMMARY');
   console.log('═══════════════════════════════════════════════════════');
-  
+
   results.forEach(result => {
     console.log(`\n${result.locale.toUpperCase()}:`);
     console.log(`  Tables: ${result.tableCount > 0 ? '✅' : '❌'} (${result.tableCount} found)`);
     console.log(`  Links: ${result.properLinkCount > 0 ? '✅' : '❌'} (${result.properLinkCount} proper format)`);
+    console.log(`  JSON-LD: ${result.hasJsonLd ? '✅' : '❌'}`);
   });
-  
+
   const allHaveTables = results.every(r => r.tableCount > 0);
   const allHaveProperLinks = results.every(r => r.properLinkCount > 0);
-  
+  const allHaveJsonLd = results.every(r => r.hasJsonLd);
+
   console.log('\n═══════════════════════════════════════════════════════');
-  console.log(`\n${allHaveTables && allHaveProperLinks ? '✅ ALL CHECKS PASSED!' : '⚠️  Some issues found'}`);
-  
+  console.log(`\n${allHaveTables && allHaveProperLinks && allHaveJsonLd ? '✅ ALL CHECKS PASSED!' : '⚠️  Some issues found'}`);
+
   if (allHaveTables) {
     console.log('✅ All articles have tables in proper format');
   } else {
     console.log('❌ Some articles missing tables');
   }
-  
+
   if (allHaveProperLinks) {
     console.log('✅ All articles have links in proper format');
   } else {
     console.log('❌ Some articles have improperly formatted links');
+  }
+
+  if (allHaveJsonLd) {
+    console.log('✅ All articles have valid JSON-LD');
+  } else {
+    console.log('❌ Some articles missing JSON-LD');
   }
 }
 
