@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
+import { siteMetadata } from '../config/seo';
 
-const SITE_URL = 'https://gentlepiercing.pl';
+const SITE_URL = siteMetadata.urls.base;
 
 export const GET: APIRoute = () => {
   const robotsTxt = `User-agent: *

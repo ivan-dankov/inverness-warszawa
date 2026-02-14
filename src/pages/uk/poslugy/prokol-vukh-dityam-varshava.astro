@@ -1,5 +1,61 @@
 ---
-import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+
+const seoData = {
+  title: "Прокол Вух Дітям 0+ | Inverness Med 270zł | Варшава Мокотув",
+  description: "✓ Сертифікат 0+ з перших днів життя ✓ Inverness Med (НЕ пістолет!) ✓ 270-330zł з сережками ✓ Метро Wilanowska 12хв ✓ Запис онлайн | Gentle Piercing",
+  language: 'uk',
+  canonical: siteMetadata.urls.services.children.uk,
+  alternates: generateAlternates('services.children'),
+  ogImage: 'https://gentlepiercing.pl/hero/hero-kids.jpg',
+};
+
+const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Ear Piercing for Children",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Gentle Piercing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "270-330",
+      "priceCurrency": "PLN"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "З якого віку можна проколювати вуха дитині?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Система Inverness Med має сертифікат 0+, що означає можливість проколювати вуха вже з перших днів життя."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Чи боляче проколювати вуха дитині?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Система Inverness Med значно менш болісна за традиційний пістолет. Процедура триває лише 1-2 секунди на кожне вухо."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Скільки коштує прокол вух дитині у Варшаві?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ціна становить 270-330 злотих і включає: процедуру, стерильні сережки Inverness у закритій касеті та інструкцію по догляду."
+        }
+      }
+    ]
+  }
+];
 ---
 
 <ServicePageWrapper 
@@ -10,4 +66,6 @@ import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
     'przekluwanie-chrzastki-warszawa',
     'przekluwanie-uszu-z-dojazdem-warszawa',
   ]}
+  seo={seoData}
+  schema={schemaData}
 />

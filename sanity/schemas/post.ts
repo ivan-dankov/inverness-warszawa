@@ -165,6 +165,19 @@ export default defineType({
             hotspot: true,
           },
         }),
+        defineField({
+          name: 'focusKeyword',
+          title: 'Focus Keyword',
+          type: 'string',
+          description: 'Main keyword for this article (for internal use/reference).',
+        }),
+        defineField({
+          name: 'secondaryKeywords',
+          title: 'Secondary Keywords',
+          type: 'array',
+          of: [{ type: 'string' }],
+          description: 'Other relevant keywords (for internal use/reference).',
+        }),
       ],
     }),
     defineField({
@@ -178,7 +191,7 @@ export default defineType({
           // Only show authors with the same locale as the post
           return {
             filter: 'locale == $locale',
-            params: { 
+            params: {
               locale: document.locale,
             },
           };
@@ -200,7 +213,7 @@ export default defineType({
               // Only show posts with the same locale, excluding the current post
               return {
                 filter: 'locale == $locale && _id != $currentId',
-                params: { 
+                params: {
                   locale: document.locale,
                   currentId: document._id,
                 },

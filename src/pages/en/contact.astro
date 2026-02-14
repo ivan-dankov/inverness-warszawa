@@ -1,35 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { 
-  getBreadcrumbSchema, 
-  getCanonicalUrl,
-  getLocalBusinessSchema,
-  getLocalizedPageUrl,
-  getPageSEO,
-  type Locale 
-} from '../../lib/seo';
+import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
+import { getBreadcrumbSchema } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Contact from '../../components/Contact.astro';
 
-const locale: Locale = 'en';
-const baseSeo = getPageSEO(locale, 'contact');
+const locale = 'en';
 const seo = {
-  ...baseSeo,
-  canonical: getLocalizedPageUrl('contact', locale),
-  hreflang: {
-    pl: getLocalizedPageUrl('contact', 'pl'),
-    uk: getLocalizedPageUrl('contact', 'uk'),
-    ru: getLocalizedPageUrl('contact', 'ru'),
-    en: getLocalizedPageUrl('contact', 'en'),
-  },
+  title: "Book Online | Gentle Piercing | ☎️ +48 573-818-260 | Mokotów Warsaw",
+  description: "📍 Ursynowska 10/1, Mokotów, Warsaw ☎️ +48 573-818-260 🕐 Mon-Sun 10am-8pm 🚇 Metro Wilanowska 12min walk | Book Inverness Med ear piercing online via Booksy ✓",
+  language: 'en',
+  canonical: siteMetadata.urls.contact.en,
+  alternates: generateAlternates('contact'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-studio.jpg',
 };
 
 const structuredData = [
-  await getLocalBusinessSchema(locale),
+  generateLocalBusinessSchema(locale),
   getBreadcrumbSchema([
-    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
-    { name: t(locale, 'header.nav.contact'), url: seo.canonical },
+    { name: 'Home', url: siteMetadata.urls.base + '/en' },
+    { name: 'Contact', url: seo.canonical },
   ]),
 ];
 ---

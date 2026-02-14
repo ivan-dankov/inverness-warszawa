@@ -1,5 +1,37 @@
 ---
-import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+
+const seoData = {
+  title: "Mobile Ear Piercing Warsaw | Home Visit | +90 PLN",
+  description: "✓ Ear piercing at your home ✓ All Warsaw districts ✓ Children and adults ✓ Inverness Med System ✓ +90 PLN travel fee ✓ Book appointment",
+  language: 'en',
+  canonical: 'https://gentlepiercing.pl/en/services/mobile-ear-piercing-warsaw',
+  alternates: generateAlternates('services.mobile', {
+    pl: '/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa',
+    en: '/en/services/mobile-ear-piercing-warsaw',
+    ru: '/ru/uslugi/prokol-ushej-s-vyezdom-varshava',
+    uk: '/uk/poslugy/prokol-vukh-z-vyizdom-varshava'
+  }),
+  ogImage: 'https://gentlepiercing.pl/hero/hero-kids.jpg',
+};
+
+const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Mobile Ear Piercing",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Gentle Piercing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "360+",
+      "priceCurrency": "PLN",
+      "description": "Base price + 90 PLN travel fee"
+    }
+  }
+];
 ---
 
 <ServicePageWrapper 
@@ -10,4 +42,6 @@ import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
     'przekluwanie-uszu-dorosli-warszawa',
     'przekluwanie-chrzastki-warszawa',
   ]}
+  seo={seoData}
+  schema={schemaData}
 />

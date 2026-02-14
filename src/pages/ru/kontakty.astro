@@ -1,35 +1,25 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { 
-  getBreadcrumbSchema, 
-  getCanonicalUrl,
-  getLocalBusinessSchema,
-  getLocalizedPageUrl,
-  getPageSEO,
-  type Locale 
-} from '../../lib/seo';
+import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
+import { getBreadcrumbSchema } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Contact from '../../components/Contact.astro';
 
-const locale: Locale = 'ru';
-const baseSeo = getPageSEO(locale, 'contact');
+const locale = 'ru';
 const seo = {
-  ...baseSeo,
-  canonical: getLocalizedPageUrl('contact', locale),
-  hreflang: {
-    pl: getLocalizedPageUrl('contact', 'pl'),
-    uk: getLocalizedPageUrl('contact', 'uk'),
-    ru: getLocalizedPageUrl('contact', 'ru'),
-    en: getLocalizedPageUrl('contact', 'en'),
-  },
+  title: "Запись Онлайн | Gentle Piercing | ☎️ +48 573-818-260 | Мокотув Варшава",
+  description: "📍 Ursynowska 10/1, Мокотув, Варшава ☎️ +48 573-818-260 🕐 Пн-Вс 10:00-20:00 🚇 Метро Wilanowska 12мин | Запись на прокол ушей Inverness Med онлайн через Booksy ✓",
+  language: 'ru',
+  canonical: siteMetadata.urls.contact.ru,
+  alternates: generateAlternates('contact'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-studio.jpg',
 };
 
 const structuredData = [
-  await getLocalBusinessSchema(locale),
+  generateLocalBusinessSchema(locale),
   getBreadcrumbSchema([
-    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
-    { name: t(locale, 'header.nav.contact'), url: seo.canonical },
+    { name: 'Главная', url: siteMetadata.urls.base + '/ru' },
+    { name: 'Контакти', url: seo.canonical },
   ]),
 ];
 ---

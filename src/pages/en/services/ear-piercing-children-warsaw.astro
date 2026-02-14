@@ -1,5 +1,61 @@
 ---
-import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+
+const seoData = {
+  title: "Ear Piercing Children 0+ Warsaw | Inverness Med 270 PLN | Mokotów",
+  description: "✓ Certificate 0+ from first days ✓ Inverness Med (NOT a gun!) ✓ 270-330 PLN with earrings ✓ Metro Wilanowska 12min ✓ Book online | Gentle Piercing",
+  language: 'en',
+  canonical: siteMetadata.urls.services.children.en,
+  alternates: generateAlternates('services.children'),
+  ogImage: 'https://gentlepiercing.pl/hero/hero-kids.jpg',
+};
+
+const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Ear Piercing for Children",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Gentle Piercing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "270-330",
+      "priceCurrency": "PLN"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "At what age can you pierce a child's ears?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Inverness Med system is certified 0+, meaning it is safe to pierce ears from the first days of life."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does ear piercing hurt for children?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Inverness Med is significantly less painful than a traditional gun. The procedure takes only 1-2 seconds per ear."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does child ear piercing cost in Warsaw?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The price is 270-330 PLN and includes: the procedure, sterile Inverness earrings in a sealed cassette, and aftercare instructions."
+        }
+      }
+    ]
+  }
+];
 ---
 
 <ServicePageWrapper 
@@ -10,4 +66,6 @@ import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
     'przekluwanie-chrzastki-warszawa',
     'przekluwanie-uszu-z-dojazdem-warszawa',
   ]}
+  seo={seoData}
+  schema={schemaData}
 />

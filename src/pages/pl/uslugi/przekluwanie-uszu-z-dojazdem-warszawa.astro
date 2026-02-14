@@ -1,5 +1,37 @@
 ---
-import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+
+const seoData = {
+  title: "Przekłuwanie Uszu z Dojazdem Warszawa | Domowe | +90zł",
+  description: "✓ Przekłuwanie uszu z dojazdem do domu ✓ Cała Warszawa i okolice ✓ Dzieci i dorośli ✓ System Inverness Med ✓ +90zł za dojazd ✓ Rezerwuj termin",
+  language: 'pl',
+  canonical: 'https://gentlepiercing.pl/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa',
+  alternates: generateAlternates('services.mobile', {
+    pl: '/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa',
+    en: '/en/services/mobile-ear-piercing-warsaw',
+    ru: '/ru/uslugi/prokol-ushej-s-vyezdom-varshava',
+    uk: '/uk/poslugy/prokol-vukh-z-vyizdom-varshava'
+  }),
+  ogImage: 'https://gentlepiercing.pl/hero/hero-kids.jpg',
+};
+
+const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Mobile Ear Piercing",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Gentle Piercing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "360+",
+      "priceCurrency": "PLN",
+      "description": "Base price + 90 PLN travel fee"
+    }
+  }
+];
 ---
 
 <ServicePageWrapper 
@@ -10,4 +42,6 @@ import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
     'przekluwanie-uszu-dorosli-warszawa',
     'przekluwanie-chrzastki-warszawa',
   ]}
+  seo={seoData}
+  schema={schemaData}
 />

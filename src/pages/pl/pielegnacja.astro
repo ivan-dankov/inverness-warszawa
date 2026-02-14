@@ -1,27 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getBreadcrumbSchema, getCanonicalUrl, getLocalizedPageUrl, getPageSEO, type Locale } from '../../lib/seo';
+import { siteMetadata, generateAlternates } from '../../config/seo';
+import { getBreadcrumbSchema } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Aftercare from '../../components/Aftercare.astro';
 
-const locale: Locale = 'pl';
-const baseSeo = getPageSEO(locale, 'aftercare');
+const locale = 'pl';
 const seo = {
-  ...baseSeo,
-  canonical: getLocalizedPageUrl('aftercare', locale),
-  hreflang: {
-    pl: getLocalizedPageUrl('aftercare', 'pl'),
-    uk: getLocalizedPageUrl('aftercare', 'uk'),
-    ru: getLocalizedPageUrl('aftercare', 'ru'),
-    en: getLocalizedPageUrl('aftercare', 'en'),
-  },
+  title: "Jak Pielęgnować Uszy Po Przekłuciu? Instrukcja Inverness Med 2026",
+  description: "✓ Kompletna instrukcja krok po kroku ✓ Płyn ear care solution ✓ Co robić i czego unikać ✓ Czas gojenia ✓ FAQ | Oficjalne zalecenia Inverness Med | Gentle Piercing Warszawa",
+  language: 'pl',
+  canonical: siteMetadata.urls.aftercare.pl,
+  alternates: generateAlternates('aftercare'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
 };
 
 const structuredData = [
   getBreadcrumbSchema([
-    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
-    { name: t(locale, 'header.nav.aftercare'), url: seo.canonical },
+    { name: 'Strona Główna', url: siteMetadata.urls.base + '/pl' },
+    { name: 'Pielęgnacja', url: seo.canonical },
   ]),
 ];
 ---

@@ -1,5 +1,36 @@
 ---
-import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+
+const seoData = {
+  title: "Przekłuwanie Chrząstki Warszawa | Helix, Tragus | 120zł+ | Mokotów",
+  description: "✓ Bezpieczne przekłuwanie chrząstki (Helix, Tragus) ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Od 120zł ✓ Metro Wilanowska 12min ✓ Rezerwuj online",
+  language: 'pl',
+  canonical: 'https://gentlepiercing.pl/pl/uslugi/przekluwanie-chrzastki-warszawa', // Defined manually as it might not be in base config yet or I can use generateAlternates logic if I add to config.
+  alternates: generateAlternates('services.cartilage', {
+    pl: '/pl/uslugi/przekluwanie-chrzastki-warszawa',
+    en: '/en/services/cartilage-piercing-warsaw',
+    ru: '/ru/uslugi/prokol-khryashcha-varshava',
+    uk: '/uk/poslugy/prokol-khryashcha-varshava'
+  }),
+  ogImage: 'https://gentlepiercing.pl/hero/hero-adults.jpg',
+};
+
+const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Cartilage Piercing",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Gentle Piercing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "120-200",
+      "priceCurrency": "PLN"
+    }
+  }
+];
 ---
 
 <ServicePageWrapper 
@@ -10,4 +41,6 @@ import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
     'przekluwanie-uszu-dorosli-warszawa',
     'przekluwanie-uszu-z-dojazdem-warszawa',
   ]}
+  seo={seoData}
+  schema={schemaData}
 />

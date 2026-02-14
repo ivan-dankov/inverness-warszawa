@@ -1,5 +1,31 @@
 ---
-import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+
+const seoData = {
+  title: "Прокол Ушей Взрослым Варшава | Inverness Med 160-480zł | Мокотув",
+  description: "✓ Inverness Med (безопаснее пистолета) ✓ 1 прокол 160zł, 2 прокола 290zł ✓ Helix, lobe, tragus ✓ Метро Wilanowska 12мин ✓ Запись онлайн | Gentle Piercing",
+  language: 'ru',
+  canonical: siteMetadata.urls.services.adults.ru,
+  alternates: generateAlternates('services.adults'),
+  ogImage: 'https://gentlepiercing.pl/hero/hero-adults.jpg',
+};
+
+const schemaData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Ear Piercing for Adults",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Gentle Piercing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "160-480",
+      "priceCurrency": "PLN"
+    }
+  }
+];
 ---
 
 <ServicePageWrapper 
@@ -10,4 +36,6 @@ import ServicePageWrapper from '../../../components/ServicePageWrapper.astro';
     'przekluwanie-chrzastki-warszawa',
     'przekluwanie-uszu-z-dojazdem-warszawa',
   ]}
+  seo={seoData}
+  schema={schemaData}
 />

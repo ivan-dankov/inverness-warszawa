@@ -22,9 +22,11 @@ interface Props {
   locale: Locale;
   serviceSlug: ServicePageSlug;
   relatedServices?: ServicePageSlug[];
+  seo?: any;
+  schema?: any[];
 }
 
-const { locale, serviceSlug, relatedServices = [] } = Astro.props;
+const { locale, serviceSlug, relatedServices = [], seo: customSeo, schema: customSchema } = Astro.props;
 
 const translations = getTranslations(locale);
 
@@ -42,44 +44,54 @@ if (!serviceData) {
   return Astro.redirect(`/${locale}`, 301);
 }
 
-const seoConfig = getServicePageSEO(locale, serviceSlug);
-const canonical = getServicePageUrl(serviceSlug, locale);
-const hreflang = getServicePageHreflang(serviceSlug);
+// SEO Configuration
+let seo = customSeo;
+let structuredData = customSchema;
 
-const seo = {
-  ...seoConfig,
-  canonical,
-  hreflang,
-  ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
-};
+if (!seo || !structuredData) {
+  const seoConfig = getServicePageSEO(locale, serviceSlug);
+  const canonical = getServicePageUrl(serviceSlug, locale);
+  const hreflang = getServicePageHreflang(serviceSlug);
 
-// Build structured data
-const localBusinessSchema = await getLocalBusinessSchema(locale);
-const serviceSchema = await getServiceSchema(
-  locale,
-  serviceData.h1,
-  serviceData.serviceType || 'Ear Piercing',
-  serviceData.pricing?.basePrice || '80 zł',
-  canonical
-);
+  if (!seo) {
+    seo = {
+      ...seoConfig,
+      canonical,
+      hreflang,
+      ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+    };
+  }
 
-const breadcrumbSchema = getBreadcrumbSchema([
-  { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
-  { name: t(locale, 'header.nav.services'), url: getLocalizedPageUrl('services', locale) },
-  { name: serviceData.h1, url: canonical },
-]);
+  if (!structuredData) {
+    // Build structured data
+    const localBusinessSchema = await getLocalBusinessSchema(locale);
+    const serviceSchema = await getServiceSchema(
+      locale,
+      serviceData.h1,
+      serviceData.serviceType || 'Ear Piercing',
+      serviceData.pricing?.basePrice || '80 zł',
+      canonical
+    );
 
-// Add FAQPage schema if FAQs exist
-const faqSchema = serviceData.faq && serviceData.faq.length > 0
-  ? getFAQSchema(locale, serviceData.faq)
-  : null;
+    const breadcrumbSchema = getBreadcrumbSchema([
+      { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
+      { name: t(locale, 'header.nav.services'), url: getLocalizedPageUrl('services', locale) },
+      { name: serviceData.h1, url: canonical },
+    ]);
 
-const structuredData = [
-  localBusinessSchema,
-  serviceSchema,
-  breadcrumbSchema,
-  ...(faqSchema ? [faqSchema] : []),
-];
+    // Add FAQPage schema if FAQs exist
+    const faqSchema = serviceData.faq && serviceData.faq.length > 0
+      ? getFAQSchema(locale, serviceData.faq)
+      : null;
+
+    structuredData = [
+      localBusinessSchema,
+      serviceSchema,
+      breadcrumbSchema,
+      ...(faqSchema ? [faqSchema] : []),
+    ];
+  }
+}
 ---
 
 <BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
