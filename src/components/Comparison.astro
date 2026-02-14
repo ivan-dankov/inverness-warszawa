@@ -4,9 +4,12 @@ import type { Locale } from '../lib/seo';
 
 interface Props {
   locale: Locale;
+  compact?: boolean;
+  split?: boolean;
+  width?: string;
 }
 
-const { locale } = Astro.props;
+const { locale, compact = false, split = false, width = 'max-w-6xl' } = Astro.props;
 const translations = getTranslations(locale);
 const comparison = translations.comparison || {};
 
@@ -14,136 +17,259 @@ const methods = ['gun', 'needle', 'inverness'];
 const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'cartilageSuitability', 'features'];
 ---
 
-<section id="comparison" class="py-20 bg-background-alt border-t border-border">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-        {t(locale, 'comparison.title')}
-      </h2>
-      <p class="text-lg text-muted-foreground mb-2">
-        {t(locale, 'comparison.subtitle')}
-      </p>
-      <p class="text-base text-muted-foreground max-w-3xl mx-auto">
-        {t(locale, 'comparison.description')}
-      </p>
-    </div>
-
-    <!-- Video Section -->
-    <div class="mb-16 flex justify-center">
-      <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-xl border border-border bg-card">
-        <iframe 
-          class="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/tFyv2XZhlhk" 
-          title="Inverness Piercing System" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
+{!split ? (
+  <section id="comparison" class={`${compact ? 'py-12' : 'py-20'} bg-background-alt border-t border-border`}>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class={`text-center ${compact ? 'mb-10' : 'mb-16'}`}>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          {t(locale, 'comparison.title')}
+        </h2>
+        {!compact && (
+          <>
+            <p class="text-lg text-muted-foreground mb-2">
+              {t(locale, 'comparison.subtitle')}
+            </p>
+            <p class="text-base text-muted-foreground max-w-3xl mx-auto">
+              {t(locale, 'comparison.description')}
+            </p>
+          </>
+        )}
       </div>
-    </div>
 
-    <div class="max-w-6xl mx-auto mb-8">
-      <h3 class="text-2xl font-semibold text-center text-foreground mb-8">
-        {t(locale, 'comparison.tableTitle')}
-      </h3>
-
-      <!-- Desktop Table -->
-      <div class="hidden lg:block overflow-x-auto">
-        <div class="min-w-full border border-border rounded-lg overflow-hidden bg-card">
-          <table class="w-full border-collapse">
-            <thead>
-              <tr class="bg-muted/50">
-                <th class="w-1/4 p-4 text-left font-semibold text-foreground border-b border-border">
-                  {t(locale, 'comparison.attributes.method')}
-                </th>
-                <th class="p-4 text-center font-semibold text-foreground border-b border-border">
-                  {t(locale, 'comparison.methods.gun.name')}
-                </th>
-                <th class="p-4 text-center font-semibold text-foreground border-b border-border">
-                  {t(locale, 'comparison.methods.needle.name')}
-                </th>
-                <th class="p-4 text-center font-semibold text-foreground border-b border-border bg-primary/5 border-l-4 border-primary">
-                  <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                  </svg>
-                  {t(locale, 'comparison.methods.inverness.name')}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {attributes.map((attr) => (
-                <tr key={attr} class="hover:bg-muted/30 border-b border-border last:border-b-0">
-                  <td class="p-4 font-medium text-foreground">
-                    {t(locale, `comparison.attributes.${attr}`)}
-                  </td>
-                  {methods.map((method) => (
-                    <td 
-                      key={method} 
-                      class={`p-4 text-sm ${method === 'inverness' ? 'bg-primary/5 border-l-4 border-primary font-medium' : ''}`}
-                    >
-                      {method === 'inverness' ? (
-                        <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                      ) : method === 'gun' && ['sterility', 'comfort', 'healing', 'childrenSuitability', 'cartilageSuitability'].includes(attr) ? (
-                        <svg class="h-5 w-5 text-destructive inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      ) : method === 'needle' && attr === 'cartilageSuitability' ? (
-                        <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                      ) : (
-                        <svg class="h-5 w-5 text-muted-foreground inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                      )}
-                      {t(locale, `comparison.methods.${method}.${attr}`)}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <!-- Video Section -->
+      <div class="mb-16 flex justify-center">
+        <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-xl border border-border bg-card">
+          <iframe 
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/tFyv2XZhlhk" 
+            title="Inverness Piercing System" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
 
-      <!-- Mobile Cards -->
-      <div class="lg:hidden space-y-6">
-        {methods.map((method) => (
-          <div 
-            key={method} 
-            class={`p-6 bg-card rounded-lg border ${method === 'inverness' ? 'border-2 border-primary bg-primary/5' : 'border-border'}`}
-          >
-            <h4 class={`text-xl font-bold mb-4 flex items-center ${method === 'inverness' ? 'text-primary' : 'text-foreground'}`}>
-              {method === 'inverness' && (
-                <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              )}
-              {t(locale, `comparison.methods.${method}.name`)}
-            </h4>
-            <div class="space-y-4">
-              {attributes.map((attr) => (
-                <div key={attr}>
-                  <p class="font-medium text-foreground mb-1">
-                    {t(locale, `comparison.attributes.${attr}`)}
-                  </p>
-                  <p class="text-sm text-muted-foreground">
-                    {t(locale, `comparison.methods.${method}.${attr}`)}
-                  </p>
-                </div>
-              ))}
-            </div>
+      <div class={`${width} mx-auto mb-8`}>
+        <h3 class="text-2xl font-semibold text-center text-foreground mb-8">
+          {t(locale, 'comparison.tableTitle')}
+        </h3>
+
+        {/* Desktop Table */}
+        <div class="hidden lg:block overflow-x-auto">
+          <div class="min-w-full border border-border rounded-lg overflow-hidden bg-card">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="bg-muted/50">
+                  <th class="w-1/4 p-4 text-left font-semibold text-foreground border-b border-border">
+                    {t(locale, 'comparison.attributes.method')}
+                  </th>
+                  <th class="p-4 text-center font-semibold text-foreground border-b border-border">
+                    {t(locale, 'comparison.methods.gun.name')}
+                  </th>
+                  <th class="p-4 text-center font-semibold text-foreground border-b border-border">
+                    {t(locale, 'comparison.methods.needle.name')}
+                  </th>
+                  <th class="p-4 text-center font-semibold text-foreground border-b border-border bg-primary/5 border-l-4 border-primary">
+                    <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    {t(locale, 'comparison.methods.inverness.name')}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {attributes.map((attr) => (
+                  <tr key={attr} class="hover:bg-muted/30 border-b border-border last:border-b-0">
+                    <td class="p-4 font-medium text-foreground">
+                      {t(locale, `comparison.attributes.${attr}`)}
+                    </td>
+                    {methods.map((method) => (
+                      <td 
+                        key={method} 
+                        class={`p-4 text-sm ${method === 'inverness' ? 'bg-primary/5 border-l-4 border-primary font-medium' : ''}`}
+                      >
+                        {method === 'inverness' ? (
+                          <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : method === 'gun' && ['sterility', 'comfort', 'healing', 'childrenSuitability', 'cartilageSuitability'].includes(attr) ? (
+                          <svg class="h-5 w-5 text-destructive inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        ) : method === 'needle' && attr === 'cartilageSuitability' ? (
+                          <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          <svg class="h-5 w-5 text-muted-foreground inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                        )}
+                        {t(locale, `comparison.methods.${method}.${attr}`)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        ))}
+        </div>
+
+        {/* Mobile Cards */}
+        <div class="lg:hidden space-y-6">
+          {methods.map((method) => (
+            <div 
+              key={method} 
+              class={`p-6 bg-card rounded-lg border ${method === 'inverness' ? 'border-2 border-primary bg-primary/5' : 'border-border'}`}
+            >
+              <h4 class={`text-xl font-bold mb-4 flex items-center ${method === 'inverness' ? 'text-primary' : 'text-foreground'}`}>
+                {method === 'inverness' && (
+                  <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                )}
+                {t(locale, `comparison.methods.${method}.name`)}
+              </h4>
+              <div class="space-y-4">
+                {attributes.map((attr) => (
+                  <div key={attr}>
+                    <p class="font-medium text-foreground mb-1">
+                      {t(locale, `comparison.attributes.${attr}`)}
+                    </p>
+                    <p class="text-sm text-muted-foreground">
+                      {t(locale, `comparison.methods.${method}.${attr}`)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
+  </section>
+) : (
+  <>
+    <section id="video" class="mb-24">
+      <div class="w-full">
+        <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
+          {t(locale, 'comparison.title')}
+        </h2>
+        <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-xl border border-border bg-card">
+          <iframe 
+            class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/tFyv2XZhlhk" 
+            title="Inverness Piercing System" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
 
+    <section id="comparison-table" class="mb-24">
+      <div class="w-full">
+        <h3 class="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
+          {t(locale, 'comparison.tableTitle')}
+        </h3>
+        
+        {/* Desktop Table */}
+        <div class="hidden lg:block overflow-x-auto">
+          <div class="min-w-full border border-border rounded-lg overflow-hidden bg-card">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="bg-muted/50">
+                  <th class="w-1/4 p-4 text-left font-semibold text-foreground border-b border-border">
+                    {t(locale, 'comparison.attributes.method')}
+                  </th>
+                  <th class="p-4 text-center font-semibold text-foreground border-b border-border">
+                    {t(locale, 'comparison.methods.gun.name')}
+                  </th>
+                  <th class="p-4 text-center font-semibold text-foreground border-b border-border">
+                    {t(locale, 'comparison.methods.needle.name')}
+                  </th>
+                  <th class="p-4 text-center font-semibold text-foreground border-b border-border bg-primary/5 border-l-4 border-primary">
+                    <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    {t(locale, 'comparison.methods.inverness.name')}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {attributes.map((attr) => (
+                  <tr key={attr} class="hover:bg-muted/30 border-b border-border last:border-b-0">
+                    <td class="p-4 font-medium text-foreground">
+                      {t(locale, `comparison.attributes.${attr}`)}
+                    </td>
+                    {methods.map((method) => (
+                      <td 
+                        key={method} 
+                        class={`p-4 text-sm ${method === 'inverness' ? 'bg-primary/5 border-l-4 border-primary font-medium' : ''}`}
+                      >
+                        {method === 'inverness' ? (
+                          <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : method === 'gun' && ['sterility', 'comfort', 'healing', 'childrenSuitability', 'cartilageSuitability'].includes(attr) ? (
+                          <svg class="h-5 w-5 text-destructive inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        ) : method === 'needle' && attr === 'cartilageSuitability' ? (
+                          <svg class="h-5 w-5 text-primary inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                          </svg>
+                        ) : (
+                          <svg class="h-5 w-5 text-muted-foreground inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                        )}
+                        {t(locale, `comparison.methods.${method}.${attr}`)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-
-  </div>
-</section>
+        {/* Mobile Cards */}
+        <div class="lg:hidden space-y-6">
+          {methods.map((method) => (
+            <div 
+              key={method} 
+              class={`p-6 bg-card rounded-lg border ${method === 'inverness' ? 'border-2 border-primary bg-primary/5' : 'border-border'}`}
+            >
+              <h4 class={`text-xl font-bold mb-4 flex items-center ${method === 'inverness' ? 'text-primary' : 'text-foreground'}`}>
+                {method === 'inverness' && (
+                  <svg class="h-6 w-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                )}
+                {t(locale, `comparison.methods.${method}.name`)}
+              </h4>
+              <div class="space-y-4">
+                {attributes.map((attr) => (
+                  <div key={attr}>
+                    <p class="font-medium text-foreground mb-1">
+                      {t(locale, `comparison.attributes.${attr}`)}
+                    </p>
+                    <p class="text-sm text-muted-foreground">
+                      {t(locale, `comparison.methods.${method}.${attr}`)}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </>
+)}
 
 
 

@@ -4,31 +4,80 @@ import type { Locale } from '../lib/seo';
 import { Gallery as GalleryReact } from './Gallery.tsx';
 import { getImage } from 'astro:assets';
 
+// Import images dynamically based on folder structure
+const allImages = import.meta.glob('../assets/gallery/**/*.{jpeg,jpg,png,webp}', { eager: true });
+
+// Hard-coded random order for Home Page (all 30 images)
+const homePageOrder = [
+  '../assets/gallery/children/image-05.jpeg',
+  '../assets/gallery/adults/image-15.jpeg',
+  '../assets/gallery/cartilage/image-25.jpeg',
+  '../assets/gallery/children/image-01.jpeg',
+  '../assets/gallery/adults/image-11.jpeg',
+  '../assets/gallery/cartilage/image-21.jpeg',
+  '../assets/gallery/children/image-09.jpeg',
+  '../assets/gallery/adults/image-19.jpeg',
+  '../assets/gallery/cartilage/image-29.jpeg',
+  '../assets/gallery/children/image-03.jpeg',
+  '../assets/gallery/adults/image-13.jpeg',
+  '../assets/gallery/cartilage/image-23.jpeg',
+  '../assets/gallery/children/image-07.jpeg',
+  '../assets/gallery/adults/image-17.jpeg',
+  '../assets/gallery/cartilage/image-27.jpeg',
+  '../assets/gallery/children/image-02.jpeg',
+  '../assets/gallery/adults/image-12.jpeg',
+  '../assets/gallery/cartilage/image-22.jpeg',
+  '../assets/gallery/children/image-08.jpeg',
+  '../assets/gallery/adults/image-18.jpeg',
+  '../assets/gallery/cartilage/image-28.jpeg',
+  '../assets/gallery/children/image-04.jpeg',
+  '../assets/gallery/adults/image-14.jpeg',
+  '../assets/gallery/cartilage/image-24.jpeg',
+  '../assets/gallery/children/image-06.jpeg',
+  '../assets/gallery/adults/image-16.jpeg',
+  '../assets/gallery/cartilage/image-26.jpeg',
+  '../assets/gallery/children/image-10.jpeg',
+  '../assets/gallery/adults/image-20.jpeg',
+  '../assets/gallery/cartilage/image-30.jpeg',
+];
+
 interface Props {
   locale: Locale;
+  folder?: 'children' | 'adults' | 'cartilage' | string;
+  count?: number;
 }
 
-const { locale } = Astro.props;
+const { locale, folder, count = 18 } = Astro.props;
 
-// Import all 18 gallery images
-import img0968 from '../assets/gallery/IMG_0968.jpg';
-import img0969 from '../assets/gallery/IMG_0969.jpg';
-import img0970 from '../assets/gallery/IMG_0970.jpg';
-import img0971 from '../assets/gallery/IMG_0971.jpg';
-import img0972 from '../assets/gallery/IMG_0972.jpg';
-import img0973 from '../assets/gallery/IMG_0973.jpg';
-import img0974 from '../assets/gallery/IMG_0974.jpg';
-import img0975 from '../assets/gallery/IMG_0975.jpg';
-import img0976 from '../assets/gallery/IMG_0976.jpg';
-import img0977 from '../assets/gallery/IMG_0977.jpg';
-import img0978 from '../assets/gallery/IMG_0978.jpg';
-import img0979 from '../assets/gallery/IMG_0979.jpg';
-import img0980 from '../assets/gallery/IMG_0980.jpg';
-import img0981 from '../assets/gallery/IMG_0981.jpg';
-import img0982 from '../assets/gallery/IMG_0982.jpg';
-import img0983 from '../assets/gallery/IMG_0983.jpg';
-import img0984 from '../assets/gallery/IMG_0984.jpg';
-import img0985 from '../assets/gallery/IMG_0985.jpg';
+let rawImages = [];
+
+if (folder) {
+  // Filter by folder
+  rawImages = Object.entries(allImages).filter(([path]) => path.includes(`/${folder}/`));
+} else {
+  // Use hard-coded order for Home Page
+  rawImages = homePageOrder.map(path => {
+    const entry = Object.entries(allImages).find(([p]) => p === path);
+    return entry ? entry : null;
+  }).filter(Boolean) as [string, any][];
+}
+
+const filteredImages = rawImages.map(([path, img]: any) => {
+  // Generate alt text based on folder or default
+  let alt = "Przekłuwanie uszu Warszawa - Gentle Piercing";
+  if (path.includes('/children/')) alt = "Przekłuwanie uszu dzieciom Warszawa - Gentle Piercing";
+  if (path.includes('/adults/')) alt = "Przekłuwanie uszu dla dorosłych - Gentle Piercing";
+  if (path.includes('/cartilage/')) alt = "Przekłuwanie chrząstki (Helix, Conch, Tragus) - Gentle Piercing";
+  
+  return {
+    img: img.default,
+    alt
+  };
+});
+
+// If folder is specified, limit by count (default 18).
+// If NO folder (Home Page), show ALL images (ignore count or set high).
+const imagesToDisplay = folder ? filteredImages.slice(0, count) : filteredImages;
 
 // Optimize images: thumbnails (400x400) and full-size (1200px width, WebP format)
 const optimizeImage = async (img: any) => {
@@ -53,27 +102,8 @@ const optimizeImage = async (img: any) => {
   };
 };
 
-// Optimize all gallery images
-const galleryImages = await Promise.all([
-  { img: img0985, alt: "Przekłucie uszu dziecka przed i po z niebieskim kolczykiem - Inverness MED" },
-  { img: img0984, alt: "Przekłucie płatka ucha przed i po z kryształowym kolczykiem - medyczne przekłuwanie" },
-  { img: img0983, alt: "Przekłucie ucha dziecka z perłowym kolczykiem Inverness" },
-  { img: img0982, alt: "Przekłucie płatka i conch przed i po z wiszącymi kolczykami kryształowymi" },
-  { img: img0981, alt: "Przekłucie helix i płatka ucha z kolczykami złotymi i kryształami" },
-  { img: img0980, alt: "Przekłucie ucha dziecka przed i po z różowym kwiatowym kolczykiem" },
-  { img: img0979, alt: "Profesjonalne przekłucie uszu dziecka z fioletowym kryształowym kolczykiem" },
-  { img: img0978, alt: "Medyczne przekłucie ucha dziewczynki z holograficznym kolczykiem" },
-  { img: img0977, alt: "Zadowolone dziecko po przekłuciu uszu - bezbolesny system Inverness MED" },
-  { img: img0976, alt: "Przekłucie uszu dziecka ze złotymi kolczykami w salonie Inverness MED" },
-  { img: img0975, alt: "Luksusowe przekłucie ucha z czterema kolczykami - księżyc, krzyżyk i kryształy" },
-  { img: img0974, alt: "Przekłucie płatka ucha dziecka ze złotym kwiatkiem Inverness" },
-  { img: img0973, alt: "Przekłucie conch i płatka z trzema złotymi kolczykami z gwiazdką" },
-  { img: img0972, alt: "Przekłucie rook i helix z kryształowymi kolczykami medycznymi" },
-  { img: img0971, alt: "Przekłucie rook, daith i płatka ze złotymi wiszącymi kolczykami z kryształami" },
-  { img: img0970, alt: "Przekłucie tragus i płatka z błyszczącym wiszącym kolczykiem kryształowym" },
-  { img: img0969, alt: "Przekłucie conch z czerwonym kryształem i płatka z kryształem Inverness MED" },
-  { img: img0968, alt: "Przekłucie płatka ucha ze złotą gwiazdką - minimalistyczny kolczyk medyczny" },
-].map(async ({ img, alt }) => {
+// Optimize all selected images
+const galleryImages = await Promise.all(imagesToDisplay.map(async ({ img, alt }) => {
   const optimized = await optimizeImage(img);
   return {
     thumb: optimized.thumb,
