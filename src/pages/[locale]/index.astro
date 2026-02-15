@@ -27,7 +27,7 @@ const currentLocale = locale as Locale;
 const seo = {
   title: siteMetadata.homepage[currentLocale].title,
   description: siteMetadata.homepage[currentLocale].description,
-  canonical: siteMetadata.urls.base + (currentLocale === 'pl' ? '' : `/${currentLocale}`),
+  canonical: siteMetadata.urls.base + `/${currentLocale}`,
   language: currentLocale,
   alternates: generateAlternates('home'),
   ogImage: siteMetadata.defaultOgImage,

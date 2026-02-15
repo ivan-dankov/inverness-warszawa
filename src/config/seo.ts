@@ -59,6 +59,10 @@ export const siteMetadata = {
             uk: '/uk/kontakty'
         },
         services: {
+            pl: '/pl/uslugi',
+            en: '/en/services',
+            ru: '/ru/uslugi',
+            uk: '/uk/poslugy',
             children: {
                 pl: '/pl/uslugi/przekluwanie-uszu-dzieci-warszawa',
                 en: '/en/services/ear-piercing-children-warsaw',
@@ -93,7 +97,20 @@ export function generateAlternates(
         }, {} as Record<string, string>);
     }
 
-    // Default behavior for simple paths
+    // Check if the pagePath is a key in siteMetadata.urls with localized paths
+    if (pagePath in siteMetadata.urls) {
+        const urls = siteMetadata.urls[pagePath as keyof typeof siteMetadata.urls];
+        if (typeof urls === 'object' && urls !== null && 'pl' in urls) {
+            return {
+                pl: `${siteMetadata.urls.base}${urls.pl}`,
+                en: `${siteMetadata.urls.base}${urls.en}`,
+                ru: `${siteMetadata.urls.base}${urls.ru}`,
+                uk: `${siteMetadata.urls.base}${urls.uk}`
+            };
+        }
+    }
+
+    // Default behavior for simple paths (fallback)
     return {
         pl: `${siteMetadata.urls.base}/pl/${pagePath}`,
         en: `${siteMetadata.urls.base}/en/${pagePath}`,

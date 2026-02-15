@@ -15,15 +15,16 @@ const servicePages: ServicePageSlug[] = [
 
 export const GET: APIRoute = async () => {
   const buildDate = new Date().toISOString().split('T')[0];
-  
+
   // Generate sitemap URLs for all pages
   const urls: string[] = [];
-  
+
   // Homepages for each locale
   locales.forEach((locale) => {
+    // Ensure Polish homepage is listed as /pl, not /
     urls.push(`${SITE_URL}/${locale}`);
   });
-  
+
   // Static pages (services, contact, aftercare)
   const staticPages = ['services', 'contact', 'aftercare'] as const;
   staticPages.forEach((pageKey) => {
@@ -34,14 +35,14 @@ export const GET: APIRoute = async () => {
       }
     });
   });
-  
+
   // Service pages
   servicePages.forEach((serviceSlug) => {
     locales.forEach((locale) => {
       urls.push(getServicePageUrl(serviceSlug, locale));
     });
   });
-  
+
   // Blog posts
   try {
     const posts = await getAllPosts();
@@ -51,7 +52,7 @@ export const GET: APIRoute = async () => {
   } catch (error) {
     console.warn('Could not fetch blog posts for sitemap:', error);
   }
-  
+
   // Generate sitemap XML
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -60,7 +61,7 @@ ${urls.map((url) => {
     // Determine priority and changefreq based on URL
     let priority = '0.8';
     let changefreq = 'monthly';
-    
+
     if (url.match(/\/(pl|en|uk|ru)\/?$/)) {
       priority = '1.0';
       changefreq = 'daily';
@@ -71,7 +72,7 @@ ${urls.map((url) => {
       priority = '0.9';
       changefreq = 'monthly';
     }
-    
+
     return `  <url>
     <loc>${url}</loc>
     <lastmod>${buildDate}</lastmod>
