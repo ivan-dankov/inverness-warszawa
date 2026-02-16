@@ -47,7 +47,10 @@ export const GET: APIRoute = async () => {
   try {
     const posts = await getAllPosts();
     posts.forEach((post) => {
-      urls.push(`${SITE_URL}/${post.locale}/blog/${post.slug}`);
+      // Only include posts with valid valid locales
+      if (locales.includes(post.locale)) {
+        urls.push(`${SITE_URL}/${post.locale}/blog/${post.slug}`);
+      }
     });
   } catch (error) {
     console.warn('Could not fetch blog posts for sitemap:', error);

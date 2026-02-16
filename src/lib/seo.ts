@@ -35,12 +35,12 @@ export type PageSlugKey = keyof typeof PAGE_SLUGS;
  */
 export function getLocalizedPagePath(pageKey: PageSlugKey, locale: Locale, fallbackToPolish: boolean = false): string {
   let slug = PAGE_SLUGS[pageKey][locale];
-  
+
   // Fallback to Polish if requested and slug doesn't exist
   if (fallbackToPolish && !slug) {
     slug = PAGE_SLUGS[pageKey]['pl'];
   }
-  
+
   return getPagePath(locale, slug);
 }
 
@@ -118,11 +118,15 @@ export function getHreflangUrls(
         hreflang[locale] = `${SITE_URL}/${locale}/blog/${translationGroup[locale]}`;
       }
     } else {
-      // For regular pages, use the same path for all locales
+      // For regular pages without explicit translation mapping
       // Handle empty path correctly (homepage) - no trailing slash
       if (path === '' || path === '/') {
         hreflang[locale] = `${SITE_URL}/${locale}`;
       } else {
+        // If path contains localized content (like 'uslugi' or 'services'), we should probably NOT
+        // generate blind hreflangs unless we are sure they exist.
+        // But for BaseLayout usage, we often rely on this default.
+        // Let's at least ensure we don't double-slash.
         const cleanPath = path.startsWith('/') ? path : `/${path}`;
         hreflang[locale] = `${SITE_URL}/${locale}${cleanPath}`;
       }
@@ -163,20 +167,20 @@ export async function getArticleSchema(
   // Build image object - omit hardcoded dimensions as actual image may vary
   const imageObject = post.image
     ? {
-        '@type': 'ImageObject',
-        url: post.image,
-        // Only include dimensions if we're certain they're correct (1200x630 is standard OG image size)
-        // Omitting hardcoded dimensions for better accuracy
-      }
+      '@type': 'ImageObject',
+      url: post.image,
+      // Only include dimensions if we're certain they're correct (1200x630 is standard OG image size)
+      // Omitting hardcoded dimensions for better accuracy
+    }
     : undefined;
 
   // Build author object with optional URL
   const authorObject = post.author
     ? {
-        '@type': 'Person',
-        name: post.author,
-        ...(post.authorUrl && { url: post.authorUrl }),
-      }
+      '@type': 'Person',
+      name: post.author,
+      ...(post.authorUrl && { url: post.authorUrl }),
+    }
     : undefined;
 
   return {
@@ -513,7 +517,7 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
 /**
  * Service page slug mapping for all locales
  */
-export type ServicePageSlug = 
+export type ServicePageSlug =
   | 'przekluwanie-uszu-dzieci-warszawa'
   | 'przekluwanie-uszu-dorosli-warszawa'
   | 'przekluwanie-chrzastki-warszawa'
@@ -575,11 +579,11 @@ export function getServicePageUrl(serviceSlug: ServicePageSlug, locale: Locale):
 export function getServicePageHreflang(serviceSlug: ServicePageSlug): Record<Locale, string> {
   const hreflang: Record<Locale, string> = {} as Record<Locale, string>;
   const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
-  
+
   locales.forEach((locale) => {
     hreflang[locale] = getServicePageUrl(serviceSlug, locale);
   });
-  
+
   return hreflang;
 }
 

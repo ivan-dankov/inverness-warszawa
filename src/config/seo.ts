@@ -74,6 +74,18 @@ export const siteMetadata = {
                 en: '/en/services/ear-piercing-adults-warsaw',
                 ru: '/ru/uslugi/prokol-ushej-vzroslym-varshava',
                 uk: '/uk/poslugy/prokol-vukh-doroslim-varshava'
+            },
+            cartilage: {
+                pl: '/pl/uslugi/przekluwanie-chrzastki-warszawa',
+                en: '/en/services/cartilage-piercing-warsaw',
+                ru: '/ru/uslugi/prokol-khryashcha-varshava',
+                uk: '/uk/poslugy/prokol-khryashcha-varshava'
+            },
+            mobile: {
+                pl: '/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa',
+                en: '/en/services/mobile-ear-piercing-warsaw',
+                ru: '/ru/uslugi/prokol-ushej-s-vyezdom-varshava',
+                uk: '/uk/poslugy/prokol-vukh-z-vyizdom-varshava'
             }
         },
         aftercare: {
@@ -87,7 +99,7 @@ export const siteMetadata = {
 
 // Helper function to generate alternates
 export function generateAlternates(
-    pagePath: keyof typeof siteMetadata.urls | string,
+    pagePath: string,
     customUrls?: Record<string, string>
 ) {
     if (customUrls) {
@@ -97,25 +109,38 @@ export function generateAlternates(
         }, {} as Record<string, string>);
     }
 
-    // Check if the pagePath is a key in siteMetadata.urls with localized paths
-    if (pagePath in siteMetadata.urls) {
-        const urls = siteMetadata.urls[pagePath as keyof typeof siteMetadata.urls];
-        if (typeof urls === 'object' && urls !== null && 'pl' in urls) {
-            return {
-                pl: `${siteMetadata.urls.base}${urls.pl}`,
-                en: `${siteMetadata.urls.base}${urls.en}`,
-                ru: `${siteMetadata.urls.base}${urls.ru}`,
-                uk: `${siteMetadata.urls.base}${urls.uk}`
-            };
+    // Traverse siteMetadata.urls using dot notation (e.g. 'services.children')
+    const keys = pagePath.split('.');
+    let current: any = siteMetadata.urls;
+
+    for (const key of keys) {
+        if (current && typeof current === 'object' && key in current) {
+            current = current[key];
+        } else {
+            current = undefined;
+            break;
         }
     }
 
+    // Check if we found a localized object
+    if (current && typeof current === 'object' && 'pl' in current) {
+        return {
+            pl: `${siteMetadata.urls.base}${current.pl}`,
+            en: `${siteMetadata.urls.base}${current.en}`,
+            ru: `${siteMetadata.urls.base}${current.ru}`,
+            uk: `${siteMetadata.urls.base}${current.uk}`
+        };
+    }
+
     // Default behavior for simple paths (fallback)
+    // Avoid generating double slashes or invalid paths if pagePath is dot notation but not found
+    const path = pagePath.includes('.') ? pagePath.replace(/\./g, '/') : pagePath;
+
     return {
-        pl: `${siteMetadata.urls.base}/pl/${pagePath}`,
-        en: `${siteMetadata.urls.base}/en/${pagePath}`,
-        ru: `${siteMetadata.urls.base}/ru/${pagePath}`,
-        uk: `${siteMetadata.urls.base}/uk/${pagePath}`
+        pl: `${siteMetadata.urls.base}/pl/${path}`,
+        en: `${siteMetadata.urls.base}/en/${path}`,
+        ru: `${siteMetadata.urls.base}/ru/${path}`,
+        uk: `${siteMetadata.urls.base}/uk/${path}`
     };
 }
 
