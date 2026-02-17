@@ -22,7 +22,7 @@ if (pathWithoutLocale === '' || pathWithoutLocale === '/') {
   pathWithoutLocale = '';
 }
 const canonical = seo.canonical || getCanonicalUrl(locale, pathWithoutLocale);
-const hreflang = seo.hreflang || getHreflangUrls(
+const hreflang = seo.hreflang || (seo as any).alternates || getHreflangUrls(
   pathWithoutLocale,
   seo.translationGroup
 );

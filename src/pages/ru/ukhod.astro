@@ -9,12 +9,7 @@ const baseSeo = getPageSEO(locale, 'aftercare');
 const seo = {
   ...baseSeo,
   canonical: getLocalizedPageUrl('aftercare', locale),
-  hreflang: {
-    pl: getLocalizedPageUrl('aftercare', 'pl'),
-    uk: getLocalizedPageUrl('aftercare', 'uk'),
-    ru: getLocalizedPageUrl('aftercare', 'ru'),
-    en: getLocalizedPageUrl('aftercare', 'en'),
-  },
+  hreflang: generateAlternates('aftercare'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
 };
 

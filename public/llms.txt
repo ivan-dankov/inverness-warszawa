@@ -33,24 +33,27 @@ Gentle Piercing (Inverness MED) oferuje bezpieczne i bezbolesne przekłuwanie us
 - Українська (UK)
 
 ## Pages
-- / - Strona główna
-- /pl/pielegnacja - Pielęgnacja po przekłuciu (PL)
-- /en/aftercare - Aftercare (EN)
-- /uk/dogliad - Догляд після проколу (UK)
-- /ru/ukhod - Уход после прокола (RU)
+
+- /pl - Strona główna (PL)
+- /en - Homepage (EN)
+- /ru - Главная (RU)
+- /uk - Головна (UK)
 - /pl/uslugi - Usługi (PL)
-- /en/services - Services (EN)
-- /uk/poslugy - Послуги (UK)
-- /ru/uslugi - Услуги (RU)
+- /pl/uslugi/przekluwanie-uszu-dzieci-warszawa - Dzieci (PL)
+- /pl/uslugi/przekluwanie-uszu-dorosli-warszawa - Dorośli (PL)
+- /pl/uslugi/przekluwanie-chrzastki-warszawa - Chrząstka (PL)
+- /pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa - Dojazd (PL)
+- /pl/kontakt - Kontakt
+- /pl/pielegnacja - Pielęgnacja
 
 ## Technology
+- Astro 4.0
 - React 18
 - TypeScript
 - Tailwind CSS
-- Vite
-- React Router
-- i18next (internationalization)
-- Supabase (backend)
+- Vercel (Deployment)
+- Sanity (CMS for Blog)
+- Booksy (Booking System)
 
 ## Keywords
 przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha, gentle piercing

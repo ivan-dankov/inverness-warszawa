@@ -109,6 +109,16 @@ export function generateAlternates(
         }, {} as Record<string, string>);
     }
 
+    // Handle homepage
+    if (pagePath === 'home') {
+        return {
+            pl: `${siteMetadata.urls.base}/pl`,
+            en: `${siteMetadata.urls.base}/en`,
+            ru: `${siteMetadata.urls.base}/ru`,
+            uk: `${siteMetadata.urls.base}/uk`
+        };
+    }
+
     // Traverse siteMetadata.urls using dot notation (e.g. 'services.children')
     const keys = pagePath.split('.');
     let current: any = siteMetadata.urls;
@@ -124,23 +134,25 @@ export function generateAlternates(
 
     // Check if we found a localized object
     if (current && typeof current === 'object' && 'pl' in current) {
+        const toAbsolute = (path: string) => path.startsWith('http') ? path : `${siteMetadata.urls.base}${path}`;
         return {
-            pl: `${siteMetadata.urls.base}${current.pl}`,
-            en: `${siteMetadata.urls.base}${current.en}`,
-            ru: `${siteMetadata.urls.base}${current.ru}`,
-            uk: `${siteMetadata.urls.base}${current.uk}`
+            pl: toAbsolute(current.pl),
+            en: toAbsolute(current.en),
+            ru: toAbsolute(current.ru),
+            uk: toAbsolute(current.uk)
         };
     }
 
     // Default behavior for simple paths (fallback)
     // Avoid generating double slashes or invalid paths if pagePath is dot notation but not found
     const path = pagePath.includes('.') ? pagePath.replace(/\./g, '/') : pagePath;
+    const cleanPath = path.startsWith('/') ? path.substring(1) : path;
 
     return {
-        pl: `${siteMetadata.urls.base}/pl/${path}`,
-        en: `${siteMetadata.urls.base}/en/${path}`,
-        ru: `${siteMetadata.urls.base}/ru/${path}`,
-        uk: `${siteMetadata.urls.base}/uk/${path}`
+        pl: `${siteMetadata.urls.base}/pl/${cleanPath}`,
+        en: `${siteMetadata.urls.base}/en/${cleanPath}`,
+        ru: `${siteMetadata.urls.base}/ru/${cleanPath}`,
+        uk: `${siteMetadata.urls.base}/uk/${cleanPath}`
     };
 }
 

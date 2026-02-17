@@ -1,17 +1,13 @@
 import type { APIRoute } from 'astro';
 import { getAllPosts } from '../lib/sanity';
-import { getServicePageUrl, PAGE_SLUGS, type Locale, type ServicePageSlug } from '../lib/seo';
+import { siteMetadata } from '../config/seo';
+import { getServicePageUrl, PAGE_SLUGS, SERVICE_SLUGS, type Locale, type ServicePageSlug } from '../lib/seo';
 
-const SITE_URL = 'https://gentlepiercing.pl';
+const SITE_URL = siteMetadata.urls.base;
 const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
 
-// Service pages
-const servicePages: ServicePageSlug[] = [
-  'przekluwanie-uszu-dzieci-warszawa',
-  'przekluwanie-uszu-dorosli-warszawa',
-  'przekluwanie-chrzastki-warszawa',
-  'przekluwanie-uszu-z-dojazdem-warszawa',
-];
+// Service pages derived from configuration
+const servicePages = Object.keys(SERVICE_SLUGS) as ServicePageSlug[];
 
 export const GET: APIRoute = async () => {
   const buildDate = new Date().toISOString().split('T')[0];

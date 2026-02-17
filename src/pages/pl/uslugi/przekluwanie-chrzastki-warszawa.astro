@@ -6,12 +6,7 @@ const seoData = {
   description: "✓ Bezpieczne przekłuwanie chrząstki (Helix, Tragus) ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Od 120zł ✓ Metro Wilanowska 12min ✓ Rezerwuj online",
   language: 'pl',
   canonical: 'https://gentlepiercing.pl/pl/uslugi/przekluwanie-chrzastki-warszawa', // Defined manually as it might not be in base config yet or I can use generateAlternates logic if I add to config.
-  alternates: generateAlternates('services.cartilage', {
-    pl: '/pl/uslugi/przekluwanie-chrzastki-warszawa',
-    en: '/en/services/cartilage-piercing-warsaw',
-    ru: '/ru/uslugi/prokol-khryashcha-varshava',
-    uk: '/uk/poslugy/prokol-khryashcha-varshava'
-  }),
+  hreflang: generateAlternates('services.cartilage'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-adults.jpg',
 };
 
