@@ -18,8 +18,11 @@ function LanguageSwitch({ currentLocale, currentPath, translationSlugs }: Langua
       return `/${langCode}/blog/${translationSlugs[langCode]}`;
     }
 
-    // Get the path without locale
-    const pathWithoutLocale = currentPath.replace(/^\/(pl|uk|ru|en)/, '');
+    // Get the path without locale and remove trailing slash
+    let pathWithoutLocale = currentPath.replace(/^\/(pl|uk|ru|en)/, '');
+    if (pathWithoutLocale.endsWith('/') && pathWithoutLocale.length > 1) {
+      pathWithoutLocale = pathWithoutLocale.slice(0, -1);
+    }
 
     // Homepage - just return the locale
     if (!pathWithoutLocale || pathWithoutLocale === '/') {

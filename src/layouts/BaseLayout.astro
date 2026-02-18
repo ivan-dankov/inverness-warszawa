@@ -21,7 +21,9 @@ let pathWithoutLocale = Astro.url.pathname.replace(`/${locale}`, '');
 if (pathWithoutLocale === '' || pathWithoutLocale === '/') {
   pathWithoutLocale = '';
 }
-const canonical = seo.canonical || getCanonicalUrl(locale, pathWithoutLocale);
+const canonical = (seo.canonical && seo.canonical.startsWith('http')) 
+  ? seo.canonical 
+  : getCanonicalUrl(locale, seo.canonical ? (seo.canonical.replace(`/${locale}`, '') || '/') : pathWithoutLocale);
 const hreflang = seo.hreflang || (seo as any).alternates || getHreflangUrls(
   pathWithoutLocale,
   seo.translationGroup

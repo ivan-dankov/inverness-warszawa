@@ -5,6 +5,8 @@ import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '
 import { Image } from 'astro:assets';
 import ear1 from '../assets/ear-1.jpg';
 import ear2 from '../assets/ear-2.jpg';
+import childrenImg from '../assets/services/children.webp';
+import mobileImg from '../assets/services/mobile.webp';
 
 interface Props {
   locale: Locale;
@@ -127,16 +129,12 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
                   />
                 )}
                 {service.nameKey === 'children' && (
-                  <img 
-                    src="/services/children-320.webp" 
-                    srcset="/services/children-320.webp 320w, /services/children-640.webp 640w"
-                    sizes="(max-width: 768px) 320px, 160px"
+                  <Image 
+                    src={childrenImg} 
                     alt={serviceName} 
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                    loading="lazy"
-                    decoding="async"
-                    width="320"
-                    height="240"
+                    widths={[320, 640]}
+                    sizes="(max-width: 768px) 320px, 160px"
                   />
                 )}
                 {service.nameKey === 'adults' && (
@@ -210,16 +208,12 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
             <a href={mobileServiceUrl} class="flex flex-col md:flex-row gap-6 flex-1 justify-start items-center">
               
               <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
-                <img 
-                  src="/services/mobile-320.webp" 
-                  srcset="/services/mobile-320.webp 320w, /services/mobile-640.webp 640w"
-                  sizes="(max-width: 768px) 320px, 160px"
+                <Image 
+                  src={mobileImg} 
                   alt={mobileServiceName} 
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                  loading="lazy"
-                  decoding="async"
-                  width="320"
-                  height="240"
+                  widths={[320, 640]}
+                  sizes="(max-width: 768px) 320px, 160px"
                 />
               </div>
               

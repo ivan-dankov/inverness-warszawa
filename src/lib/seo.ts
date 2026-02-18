@@ -87,10 +87,16 @@ const SITE_URL = 'https://gentlepiercing.pl';
  */
 export function getPagePath(locale: Locale, path: string = ''): string {
   // Handle empty path (homepage) - no trailing slash
-  if (path === '' || path === '/') {
+  if (!path || path === '' || path === '/') {
     return `/${locale}`;
   }
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+
+  // Ensure path starts with / and remove trailing slash
+  let cleanPath = path.startsWith('/') ? path : `/${path}`;
+  if (cleanPath.endsWith('/') && cleanPath.length > 1) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+
   return `/${locale}${cleanPath}`;
 }
 
@@ -127,7 +133,11 @@ export function getHreflangUrls(
         // generate blind hreflangs unless we are sure they exist.
         // But for BaseLayout usage, we often rely on this default.
         // Let's at least ensure we don't double-slash.
-        const cleanPath = path.startsWith('/') ? path : `/${path}`;
+        // Ensure path starts with / and remove trailing slash
+        let cleanPath = path.startsWith('/') ? path : `/${path}`;
+        if (cleanPath.endsWith('/') && cleanPath.length > 1) {
+          cleanPath = cleanPath.slice(0, -1);
+        }
         hreflang[locale] = `${SITE_URL}/${locale}${cleanPath}`;
       }
     }
