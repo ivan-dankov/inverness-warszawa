@@ -7,7 +7,6 @@ export const GET: APIRoute = () => {
   const robotsTxt = `User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_astro/
 
 # Allow specific important paths
 Allow: /pl/

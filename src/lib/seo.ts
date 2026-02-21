@@ -128,18 +128,8 @@ export function getHreflangUrls(
       // Handle empty path correctly (homepage) - no trailing slash
       if (path === '' || path === '/') {
         hreflang[locale] = `${SITE_URL}/${locale}`;
-      } else {
-        // If path contains localized content (like 'uslugi' or 'services'), we should probably NOT
-        // generate blind hreflangs unless we are sure they exist.
-        // But for BaseLayout usage, we often rely on this default.
-        // Let's at least ensure we don't double-slash.
-        // Ensure path starts with / and remove trailing slash
-        let cleanPath = path.startsWith('/') ? path : `/${path}`;
-        if (cleanPath.endsWith('/') && cleanPath.length > 1) {
-          cleanPath = cleanPath.slice(0, -1);
-        }
-        hreflang[locale] = `${SITE_URL}/${locale}${cleanPath}`;
       }
+      // Omit generating blind hreflang tags for unknown paths to avoid 404s and invalid tags
     }
   });
 
