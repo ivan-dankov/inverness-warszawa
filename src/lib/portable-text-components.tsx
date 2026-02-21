@@ -8,20 +8,20 @@ import { urlFor } from './sanity';
 function isMarkdownTable(text: string): boolean {
   const lines = text.trim().split('\n').filter(line => line.trim().length > 0);
   if (lines.length < 2) return false;
-  
+
   // Check if at least 2 lines contain pipe characters
   const linesWithPipes = lines.filter(line => line.trim().includes('|'));
   if (linesWithPipes.length < 2) return false;
-  
+
   // Check if we have a separator line (with dashes/colons)
   const hasSeparator = lines.some(line => {
     const trimmed = line.trim();
     return trimmed.match(/^\|[\s\-:]+(\|[\s\-:]+)*\|?$/) || trimmed.match(/^[\s\-:]+(\|[\s\-:]+)*\|?$/);
   });
-  
+
   // If we have separator, it's definitely a table
   if (hasSeparator) return true;
-  
+
   // If we have multiple lines with pipes and similar structure, likely a table
   if (linesWithPipes.length >= 2) {
     const firstLinePipes = (linesWithPipes[0].match(/\|/g) || []).length;
@@ -32,7 +32,7 @@ function isMarkdownTable(text: string): boolean {
     });
     return similarPipeCount;
   }
-  
+
   return false;
 }
 
@@ -60,7 +60,7 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
   return {
     block: {
       h1: ({ children }) => (
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 mt-8">{children}</h1>
+        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 mt-8">{children}</h2>
       ),
       h2: ({ children }) => (
         <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6 mt-12 pt-8 border-t border-border/50">{children}</h2>
@@ -74,7 +74,7 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
       normal: ({ children, value }) => {
         // Try to extract text with newlines preserved for table detection
         const text = extractText(children, true);
-        
+
         // Check if this is a markdown table
         if (isMarkdownTable(text)) {
           // Clean up the text - remove extra whitespace but preserve structure
@@ -83,7 +83,7 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
             .map(line => line.trim())
             .filter(line => line.length > 0)
             .join('\n');
-          
+
           return (
             <div className="my-8 overflow-x-auto">
               <ReactMarkdown
@@ -126,7 +126,7 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
             </div>
           );
         }
-        
+
         // Regular paragraph
         return (
           <p className="text-foreground leading-relaxed mb-6 text-base">{children}</p>

@@ -39,7 +39,10 @@ const {
 } = Astro.props;
 
 // Logic here
-const fullTitle = title.includes('|') ? title : `${title} | Gentle Piercing`;
+const brand = ' | Gentle Piercing';
+const fullTitle = title.includes('|') 
+  ? title 
+  : (title.length + brand.length <= 60 ? `${title}${brand}` : title);
 
 const localeMap = {
   pl: 'pl_PL',

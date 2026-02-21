@@ -32,20 +32,20 @@ export const siteMetadata = {
     // Homepage metadata by language
     homepage: {
         pl: {
-            title: 'Przekłucie Uszu Warszawa | Inverness Med 0+ | Mokotów | Gentle Piercing',
-            description: '✓ Certyfikat 0+ od pierwszych dni życia ✓ System Inverness Med (bezpieczniejszy niż pistolet) ✓ Dzieci 270zł, Dorośli 160zł ✓ Metro Wilanowska 12min | Rezerwuj online Booksy'
+            title: 'Przekłucie Uszu Warszawa | Inverness Med 0+ | Mokotów',
+            description: '✓ Certyfikat 0+ ✓ Bezpieczny System Inverness Med ✓ Dzieci 270zł, Dorośli 160zł ✓ Metro Wilanowska 12min. Zarezerwuj wizytę wygodnie online przez Booksy.'
         },
         en: {
-            title: 'Ear Piercing Warsaw | Inverness Med 0+ | Mokotów | Gentle Piercing',
-            description: '✓ Certificate 0+ from first days of life ✓ Inverness Med system (safer than gun) ✓ Children 270zł, Adults 160zł ✓ Metro Wilanowska 12min | Book online via Booksy'
+            title: 'Ear Piercing Warsaw | Inverness Med 0+ | Mokotów',
+            description: '✓ 0+ Certificate ✓ Safe Inverness Med System ✓ Children 270zł, Adults 160zł ✓ Metro Wilanowska 12min. Book your appointment conveniently online via Booksy.'
         },
         ru: {
-            title: 'Прокол Ушей Варшава | Inverness Med 0+ | Мокотув | Gentle Piercing',
-            description: '✓ Сертификат 0+ с первых дней жизни ✓ Система Inverness Med (безопаснее пистолета) ✓ Дети 270zł, Взрослые 160zł ✓ Метро Wilanowska 12мин | Запись онлайн Booksy'
+            title: 'Прокол Ушей Варшава | Inverness Med 0+ | Мокотув',
+            description: '✓ Сертификат 0+ ✓ Безопасная система Inverness Med ✓ Дети 270zł, Взрослые 160zł ✓ Метро Wilanowska 12мин. Запишитесь на прием удобно онлайн через Booksy.'
         },
         uk: {
-            title: 'Прокол Вух Варшава | Inverness Med 0+ | Мокотув | Gentle Piercing',
-            description: '✓ Сертифікат 0+ з перших днів життя ✓ Система Inverness Med (безпечніше ніж пістолет) ✓ Діти 270zł, Дорослі 160zł ✓ Метро Wilanowska 12хв | Запис онлайн Booksy'
+            title: 'Прокол Вух Варшава | Inverness Med 0+ | Мокотув',
+            description: '✓ Сертифікат 0+ ✓ Безпечна система Inverness Med ✓ Діти 270zł, Дорослі 160zł ✓ Метро Wilanowska 12хв. Запишіться на прийом зручно онлайн через Booksy.'
         }
     },
 

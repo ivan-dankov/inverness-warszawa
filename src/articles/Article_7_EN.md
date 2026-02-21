@@ -184,13 +184,13 @@ Gun for small children is senseless risk. Inverness Med has FDA certification fo
 
 Gun? Theoretically cheaper, practically risky. 20% chance of complications, loud (traumatic for children), healing 10-12 weeks. Consider only if child is minimum 5 years and you understand the risks.
 
-More: [Does ear piercing hurt](https://gentlepiercing.pl/en/blog/does-ear-piercing-hurt) | [At what age can you pierce a child's ears](https://gentlepiercing.pl/en/blog/what-age-can-you-pierce-child-ears)
+More: Does ear piercing hurt | At what age can you pierce a child's ears
 
 ### For Adults
 
 **Inverness Med (160-480 PLN) - best price/quality ratio**
 
-Cheaper than professional needle for 2-3 piercings, quick healing (6-8 weeks), works for lobe, helix, tragus, conch. [Comparison with needle](https://gentlepiercing.pl/en/blog/inverness-med-vs-gun-whats-safer)
+Cheaper than professional needle for 2-3 piercings, quick healing (6-8 weeks), works for lobe, helix, tragus, conch. Comparison with needle
 
 **Professional needle (340-600 PLN)** - if you want very complex piercings (industrial, rook, daith) or a specific piercer with portfolio you like.
 
@@ -393,11 +393,11 @@ ear-piercing-cost-warsaw-price-guide-2026
    - **Context:** In "For Children 0-8 Years" section
    
 2. **Anchor:** "Comparison with needle"
-   - **URL:** `/en/blog/inverness-med-vs-gun-whats-safer`
+   - **URL:** `/en/blog/inverness-vs-gun`
    - **Context:** In "For Adults" section
    
 3. **Anchor:** "At what age can you pierce a child's ears"
-   - **URL:** `/en/blog/what-age-can-you-pierce-child-ears`
+   - **URL:** `/en/blog/at-what-age-to-pierce-child-ears`
    - **Context:** In "For Children" section
    
 4. **Anchor:** "Children ear piercing Warsaw" (service page)

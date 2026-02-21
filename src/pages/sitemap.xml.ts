@@ -39,6 +39,11 @@ export const GET: APIRoute = async () => {
     });
   });
 
+  // Blog listing pages
+  locales.forEach((locale) => {
+    urls.push(`${SITE_URL}/${locale}/blog`);
+  });
+
   // Blog posts
   try {
     const posts = await getAllPosts();

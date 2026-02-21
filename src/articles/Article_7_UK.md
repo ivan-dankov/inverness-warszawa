@@ -186,13 +186,13 @@
 
 Пістолет? Теоретично дешевше, практично ризиковано. 20% шансів ускладнень, гучний (травматичний для дітей), загоєння 10-12 тижнів. Розглядайте лише якщо дитині мінімум 5 років і ви розумієте ризики.
 
-Більше: [Чи болить проколювання вух](https://gentlepiercing.pl/uk/blog/chy-bolyt-prokolyuvannya-vuh) | [З якого віку можна проколювати вуха дитині](https://gentlepiercing.pl/uk/blog/z-yakoho-viku-mozhna-prokolyuvaty-vuha)
+Більше: Чи болить проколювання вух | З якого віку можна проколювати вуха дитині
 
 ### Для Дорослих
 
 **Inverness Med (160-480 злотих) - найкраще співвідношення ціна/якість**
 
-Дешевше за професійну голку при 2-3 проколах, швидке загоєння (6-8 тижнів), підходить для мочки, helix, tragus, conch. [Порівняння з голкою](https://gentlepiercing.pl/uk/blog/inverness-med-vs-pistolet-shcho-bezpechnishe)
+Дешевше за професійну голку при 2-3 проколах, швидке загоєння (6-8 тижнів), підходить для мочки, helix, tragus, conch. Порівняння з голкою
 
 **Професійна голка (340-600 злотих)** - якщо хочете дуже складні проколи (industrial, rook, daith) або конкретного майстра з портфоліо, яке вам подобається.
 
@@ -391,15 +391,15 @@ skilky-koshtuye-prokolyuvannya-vuh-varshava-2026
 **Посилання для додавання в статтю:**
 
 1. **Анкор:** "Чи болить проколювання вух"
-   - **URL:** `/uk/blog/chy-bolyt-prokolyuvannya-vuh`
+   - **URL:** `/uk/blog/chy-bolyt-prokol-vukh`
    - **Контекст:** У розділі "Для Дітей 0-8 Років"
    
 2. **Анкор:** "Порівняння з голкою"
-   - **URL:** `/uk/blog/inverness-med-vs-pistolet-shcho-bezpechnishe`
+   - **URL:** `/uk/blog/inverness-med-vs-pistolet-yakii-metod-prokolu-vukh-bezpechnishii`
    - **Контекст:** У розділі "Для Дорослих"
    
 3. **Анкор:** "З якого віку можна проколювати вуха"
-   - **URL:** `/uk/blog/z-yakoho-viku-mozhna-prokolyuvaty-vuha`
+   - **URL:** `/uk/blog/z-yakoho-viku-prokoluvaty-vukha-dytyni`
    - **Контекст:** У розділі "Для Дітей"
    
 4. **Анкор:** "Проколювання вух дітям Варшава" (сторінка послуг)

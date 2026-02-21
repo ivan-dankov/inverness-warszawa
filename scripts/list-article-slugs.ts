@@ -10,7 +10,7 @@ const client = createClient({
 
 async function listSlugs() {
   const articles = await client.fetch(
-    `*[_type == "post" && translationGroupId == "ear-piercing-cost-warsaw-2026"] { 
+    `*[_type == "post"] { 
       _id, 
       "slug": slug.current, 
       locale 
