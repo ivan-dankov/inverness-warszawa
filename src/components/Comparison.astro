@@ -37,11 +37,14 @@ const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'c
       </div>
 
       <!-- Video Section -->
-      <div class="mb-16 flex justify-center">
+      <div class="mb-16 flex flex-col items-center">
+        <h3 class="text-2xl font-semibold text-foreground mb-6 text-center">
+          {t(locale, 'comparison.videoSubtitle')}
+        </h3>
         <div class="relative w-full max-w-3xl aspect-video rounded-xl overflow-hidden shadow-xl border border-border bg-card">
           <iframe 
             class="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/tFyv2XZhlhk" 
+            src="https://www.youtube.com/embed/BgMvG5Lr1Tw?si=Vv2MvcUXRi7ABFOS" 
             title="Inverness Piercing System" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen
@@ -153,13 +156,16 @@ const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'c
   <>
     <section id="video" class="mb-24">
       <div class="w-full">
-        <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-2 text-center">
           {t(locale, 'comparison.title')}
         </h2>
+        <h3 class="text-xl sm:text-2xl font-medium text-muted-foreground mb-8 text-center">
+          {t(locale, 'comparison.videoSubtitle')}
+        </h3>
         <div class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-xl border border-border bg-card">
           <iframe 
             class="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/tFyv2XZhlhk" 
+            src="https://www.youtube.com/embed/BgMvG5Lr1Tw?si=Vv2MvcUXRi7ABFOS" 
             title="Inverness Piercing System" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowfullscreen
