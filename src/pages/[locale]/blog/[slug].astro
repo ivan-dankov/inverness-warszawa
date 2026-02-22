@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getPageSEO, getCanonicalUrl, getHreflangUrls, getArticleSchema, getBreadcrumbSchema, truncateTitle, truncateDescription, type Locale } from '../../../lib/seo';
-import { getPostBySlug, getTranslationGroup, urlFor, getAllPostSlugs } from '../../../lib/sanity';
+import { getPostBySlug, getTranslationGroup, urlFor, getAllPostSlugs, getAllPostTranslationMappings } from '../../../lib/sanity';
+import type { TranslationMappings } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
 import PortableTextRenderer from '../../../components/PortableTextRenderer';
 import AuthorSection from '../../../components/blog/AuthorSection.astro';
@@ -44,6 +45,8 @@ const post = await getPostBySlug(slug!, currentLocale);
 if (!post) {
   return Astro.redirect(`/${locale}/blog`, 301);
 }
+
+const translationMappings = await getAllPostTranslationMappings();
 
 // Get translation group for hreflang
 const translationGroup = await getTranslationGroup(post.translationGroupId);
@@ -219,7 +222,7 @@ const structuredData = [
         )}
 
         <div class="prose max-w-none">
-          <PortableTextRenderer client:idle content={post.content} locale={currentLocale} />
+          <PortableTextRenderer client:idle content={post.content} locale={currentLocale} translationMappings={translationMappings} />
         </div>
 
         <!-- CTA Section -->

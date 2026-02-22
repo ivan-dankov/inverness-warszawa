@@ -2,7 +2,7 @@ import { PortableTextComponents } from '@portabletext/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { Locale } from './seo';
-import { urlFor } from './sanity';
+import { urlFor, type TranslationMappings } from './sanity';
 
 // Helper to check if text looks like a markdown table
 function isMarkdownTable(text: string): boolean {
@@ -56,7 +56,7 @@ function extractText(children: any, preserveNewlines: boolean = true): string {
   return '';
 }
 
-export function getPortableTextComponents(locale: Locale): PortableTextComponents {
+export function getPortableTextComponents(locale: Locale, translationMappings?: TranslationMappings): PortableTextComponents {
   return {
     block: {
       h1: ({ children }) => (
@@ -167,8 +167,31 @@ export function getPortableTextComponents(locale: Locale): PortableTextComponent
       ),
       em: ({ children }) => <em className="italic">{children}</em>,
       link: ({ value, children }) => {
-        const href = value?.href || '#';
+        let href = value?.href || '#';
         const isExternal = href.startsWith('http');
+
+        // Dynamic Link Resolution for internal blog links
+        if (!isExternal && translationMappings) {
+          // Check if it's an internal blog link (e.g. /pl/blog/jakies-id or /blog/some-slug)
+          const blogMatch = href.match(/(?:\/[a-z]{2})?\/blog\/([^/?#]+)/);
+
+          if (blogMatch && blogMatch[1]) {
+            const originalSlug = blogMatch[1];
+            const groupId = translationMappings.slugToGroupId[originalSlug];
+
+            if (groupId) {
+              const localizedSlug = translationMappings.groupIdToSlugs[groupId]?.[locale];
+              if (localizedSlug) {
+                // Rewrite the URL to guarantee the correct slug for the current locale
+                // Maintain any hash or query parameters from the original href
+                const urlParts = href.split(originalSlug);
+                const suffix = urlParts[1] || '';
+                href = `/${locale}/blog/${localizedSlug}${suffix}`;
+              }
+            }
+          }
+        }
+
         return (
           <a
             href={href}

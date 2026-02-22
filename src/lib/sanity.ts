@@ -297,14 +297,14 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
 
   const post = await sanityClient.fetch(query, { slug, locale });
   if (!post) return null;
-  
+
   // Filter related articles to only show those in the same locale
   if (post.relatedArticles) {
     post.relatedArticles = post.relatedArticles.filter(
       (article: Post) => article.locale === locale && article.slug !== slug
     );
   }
-  
+
   return post;
 }
 
@@ -345,6 +345,44 @@ export async function getAllPostSlugs(): Promise<Array<{ locale: Locale; slug: s
     locale: post.locale as Locale,
     slug: post.slug,
   }));
+}
+
+export interface TranslationMappings {
+  slugToGroupId: Record<string, string>; // e.g. "piercing-uszu" -> "group-123"
+  groupIdToSlugs: Record<string, Record<Locale, string>>; // e.g. "group-123" -> { pl: "piercing-uszu", en: "ear-piercing" }
+}
+
+/**
+ * Fetch a mapping of all posts to resolve internal links dynamically.
+ */
+export async function getAllPostTranslationMappings(): Promise<TranslationMappings> {
+  const query = `*[_type == "post"] {
+    "slug": slug.current,
+    locale,
+    translationGroupId
+  }`;
+
+  const posts = await sanityClient.fetch(query);
+
+  const mappings: TranslationMappings = {
+    slugToGroupId: {},
+    groupIdToSlugs: {}
+  };
+
+  posts.forEach((post: { slug: string; locale: Locale; translationGroupId: string }) => {
+    if (!post.slug || !post.translationGroupId || !post.locale) return;
+
+    // Map the slug to its group ID
+    mappings.slugToGroupId[post.slug] = post.translationGroupId;
+
+    // Map the group ID to its localized slugs
+    if (!mappings.groupIdToSlugs[post.translationGroupId]) {
+      mappings.groupIdToSlugs[post.translationGroupId] = {} as Record<Locale, string>;
+    }
+    mappings.groupIdToSlugs[post.translationGroupId][post.locale] = post.slug;
+  });
+
+  return mappings;
 }
 
 /**
