@@ -6,10 +6,11 @@ interface Props {
   locale: Locale;
   compact?: boolean;
   split?: boolean;
+  showTable?: boolean;
   width?: string;
 }
 
-const { locale, compact = false, split = false, width = 'max-w-6xl' } = Astro.props;
+const { locale, compact = false, split = false, showTable = true, width = 'max-w-6xl' } = Astro.props;
 const translations = getTranslations(locale);
 const comparison = translations.comparison || {};
 
@@ -175,7 +176,7 @@ const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'c
       </div>
     </section>
 
-    <section id="comparison-table" class="mb-24">
+    {showTable && <section id="comparison-table" class="mb-24">
       <div class="w-full">
         <h3 class="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
           {t(locale, 'comparison.tableTitle')}
@@ -273,7 +274,7 @@ const attributes = ['sterility', 'comfort', 'healing', 'childrenSuitability', 'c
           ))}
         </div>
       </div>
-    </section>
+    </section>}
   </>
 )}
 
