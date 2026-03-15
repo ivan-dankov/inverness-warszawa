@@ -56,7 +56,7 @@ export interface PostTranslationGroup {
  * Optimized: Only fetches necessary fields, images should be sized via urlFor() helper
  */
 export async function getAllPosts(): Promise<Post[]> {
-  const query = `*[_type == "post"] | order(publishedAt desc) {
+  const query = `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -137,7 +137,7 @@ export async function getAllPosts(): Promise<Post[]> {
  * Optimized: Only fetches necessary fields, images include metadata for sizing
  */
 export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
-  const query = `*[_type == "post" && locale == $locale] | order(publishedAt desc) {
+  const query = `*[_type == "post" && !(_id in path("drafts.**")) && locale == $locale] | order(publishedAt desc) {
     _id,
     title,
     "slug": slug.current,
@@ -202,7 +202,7 @@ export async function getPostsByLocale(locale: Locale): Promise<Post[]> {
  * Optimized: Includes image metadata, only fetches necessary related article fields
  */
 export async function getPostBySlug(slug: string, locale: Locale): Promise<Post | null> {
-  const query = `*[_type == "post" && slug.current == $slug && locale == $locale][0] {
+  const query = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug && locale == $locale][0] {
     _id,
     title,
     "slug": slug.current,
@@ -313,7 +313,7 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
  * Optimized: Only fetches slug and locale for hreflang tags
  */
 export async function getTranslationGroup(translationGroupId: string): Promise<PostTranslationGroup> {
-  const query = `*[_type == "post" && translationGroupId == $translationGroupId] {
+  const query = `*[_type == "post" && !(_id in path("drafts.**")) && translationGroupId == $translationGroupId] {
     _id,
     title,
     "slug": slug.current,
@@ -335,7 +335,7 @@ export async function getTranslationGroup(translationGroupId: string): Promise<P
  * Get all post slugs for static path generation
  */
 export async function getAllPostSlugs(): Promise<Array<{ locale: Locale; slug: string }>> {
-  const query = `*[_type == "post"] {
+  const query = `*[_type == "post" && !(_id in path("drafts.**"))] {
     locale,
     "slug": slug.current
   }`;
@@ -356,7 +356,7 @@ export interface TranslationMappings {
  * Fetch a mapping of all posts to resolve internal links dynamically.
  */
 export async function getAllPostTranslationMappings(): Promise<TranslationMappings> {
-  const query = `*[_type == "post"] {
+  const query = `*[_type == "post" && !(_id in path("drafts.**"))] {
     "slug": slug.current,
     locale,
     translationGroupId
