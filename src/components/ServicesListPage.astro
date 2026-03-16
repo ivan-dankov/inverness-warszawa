@@ -144,100 +144,100 @@ const structuredData = [
     <!-- Services Section -->
     <section id="services" class="py-4 bg-background">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+        <div class="mb-16">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight tracking-tight">
             {t(locale, 'services.title')}
           </h1>
-          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p class="text-lg sm:text-xl text-muted-foreground max-w-2xl">
             {t(locale, 'services.subtitle')}
           </p>
         </div>
 
         <!-- Service Cards Grid -->
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
-          {servicePages.map((service) => {
+        <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+          {servicePages.map((service, idx) => {
             const serviceUrl = getServicePagePath(service.slug, locale);
             const serviceName = serviceNames[service.nameKey]?.[locale] || '';
             const serviceDesc = service.desc[locale];
             const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${service.slug}_${locale}`;
             return (
-              <div class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-                <a href={serviceUrl} class="flex flex-col h-full items-center justify-start">
-                  
-                  <div class="mb-4 aspect-[4/3] overflow-hidden rounded-lg max-w-80">
+              <div
+                class="flex flex-col h-full bg-card border border-border rounded-2xl overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300"
+                data-reveal
+                data-reveal-delay={String(idx + 1)}
+              >
+                <a href={serviceUrl} class="flex flex-col flex-1">
+                  <!-- Full-width image -->
+                  <div class="overflow-hidden aspect-video flex-shrink-0 bg-white">
                     {service.nameKey === 'cartilage' && (
-                      <Image 
-                        src={ear2} 
-                        alt={serviceName} 
-                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                      <Image
+                        src={ear2}
+                        alt={serviceName}
+                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                         widths={[320, 640]}
-                        sizes="(max-width: 768px) 320px, 160px"
+                        sizes="(max-width: 768px) 90vw, 360px"
                       />
                     )}
                     {service.nameKey === 'children' && (
-                      <img 
-                        src="/services/children-320.webp" 
+                      <img
+                        src="/services/children-320.webp"
                         srcset="/services/children-320.webp 320w, /services/children-640.webp 640w"
-                        sizes="(max-width: 768px) 320px, 160px"
-                        alt={serviceName} 
-                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                        sizes="(max-width: 768px) 90vw, 360px"
+                        alt={serviceName}
+                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
                         decoding="async"
                         width="320"
-                        height="240"
+                        height="180"
                       />
                     )}
                     {service.nameKey === 'adults' && (
-                      <Image 
-                        src={ear1} 
-                        alt={serviceName} 
-                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                      <Image
+                        src={ear1}
+                        alt={serviceName}
+                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                         widths={[320, 640]}
-                        sizes="(max-width: 768px) 320px, 160px"
+                        sizes="(max-width: 768px) 90vw, 360px"
                       />
                     )}
                   </div>
-                  
-                  <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground text-center">
-                    {serviceName}
-                  </h3>
-                  <p class="text-muted-foreground mb-4 leading-relaxed flex-grow text-center">
-                    {serviceDesc}
-                  </p>
-                  <div class="flex items-center gap-2 mb-4">
-                    <span class="text-3xl font-bold text-primary text-center">{servicePriceMap[service.slug]}</span>
+
+                  <!-- Left-aligned content -->
+                  <div class="flex flex-col flex-1 p-6 pb-4">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                      <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                        {serviceName}
+                      </h3>
+                      <span class="flex-shrink-0 text-sm font-bold text-primary bg-primary/10 rounded-lg px-2.5 py-1 leading-tight">
+                        {servicePriceMap[service.slug]}
+                      </span>
+                    </div>
+                    <p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+                      {serviceDesc}
+                    </p>
                   </div>
                 </a>
-                
-                <a 
-                  href={booksyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-12 px-4 w-full mt-auto"
-                  data-booking-button="services"
-                  onclick="event.stopPropagation();"
-                >
-                  <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  {t(locale, 'services.bookButton')}
-                </a>
-                <a href={serviceUrl} class="flex items-center justify-center text-primary font-semibold text-sm hover:text-primary/80 transition-colors mt-6">
-                  {locale === 'pl' ? 'Zobacz ofertę' :
-                   locale === 'en' ? 'View offer' :
-                   locale === 'uk' ? 'Переглянути пропозицію' :
-                   'Посмотреть предложение'}
-                  <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
+
+                <!-- Booking button — separate from the service-page link -->
+                <div class="px-6 pb-6 pt-2">
+                  <a
+                    href={booksyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 w-full rounded-lg bg-primary text-primary-foreground font-semibold text-sm h-11 px-4 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    data-booking-button="services"
+                    onclick="event.stopPropagation();"
+                  >
+                    {t(locale, 'services.bookButton')}
+                  </a>
+                </div>
               </div>
             );
           })}
         </div>
 
         <!-- Mobile Service Card - Horizontal -->
-        <div class="max-w-6xl mx-auto mb-8">
+        <div class="max-w-6xl mx-auto mb-8" data-reveal>
           {(() => {
             const mobileService = {
               slug: 'przekluwanie-uszu-z-dojazdem-warszawa' as ServicePageSlug,
@@ -254,58 +254,50 @@ const structuredData = [
             const mobileServiceDesc = mobileService.desc[locale];
             const mobileBooksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${mobileService.slug}_${locale}`;
             return (
-              <div class="flex flex-col md:flex-row justify-start gap-6 p-8 bg-card border border-border rounded-2xl hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
-                <a href={mobileServiceUrl} class="flex flex-col md:flex-row gap-6 flex-1 justify-start items-center">
-                  
-                  <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
-                    <img 
-                      src="/services/mobile-320.webp" 
+              <div class="flex flex-col md:flex-row bg-card border border-border rounded-2xl overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300">
+                <a href={mobileServiceUrl} class="flex flex-col md:flex-row flex-1 gap-0">
+                  <!-- Image -->
+                  <div class="md:w-52 flex-shrink-0 aspect-video md:aspect-auto overflow-hidden">
+                    <img
+                      src="/services/mobile-320.webp"
                       srcset="/services/mobile-320.webp 320w, /services/mobile-640.webp 640w"
-                      sizes="(max-width: 768px) 320px, 160px"
-                      alt={mobileServiceName} 
-                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      sizes="(max-width: 768px) 100vw, 208px"
+                      alt={mobileServiceName}
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
                       width="320"
                       height="240"
                     />
                   </div>
-                  
-                  <div class="flex flex-col flex-1">
-                    <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground">
-                      {mobileServiceName}
-                    </h3>
-                    <p class="text-muted-foreground mb-4 leading-relaxed">
+
+                  <!-- Content -->
+                  <div class="flex flex-col flex-1 p-6">
+                    <div class="flex items-start justify-between gap-3 mb-3">
+                      <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+                        {mobileServiceName}
+                      </h3>
+                      <span class="flex-shrink-0 text-sm font-bold text-primary bg-primary/10 rounded-lg px-2.5 py-1 leading-tight">
+                        {servicePriceMap[mobileService.slug]}
+                      </span>
+                    </div>
+                    <p class="text-sm text-muted-foreground leading-relaxed">
                       {mobileServiceDesc}
                     </p>
-                    <div class="flex items-baseline gap-2 mb-0">
-                      <span class="text-xl font-bold text-primary">{servicePriceMap[mobileService.slug]}</span>
-                    </div>
                   </div>
                 </a>
-                
-                <div class="md:w-auto md:flex md:flex-col md:items-center md:justify-center gap-0">
-                  <a 
+
+                <!-- Booking button -->
+                <div class="flex items-center px-6 pb-6 md:pb-0 md:pr-6">
+                  <a
                     href={mobileBooksyUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-12 px-6 w-full md:w-auto"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all h-11 px-6 w-full md:w-auto"
                     data-booking-button="services"
                     onclick="event.stopPropagation();"
                   >
-                    <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
                     {t(locale, 'services.bookButton')}
-                  </a>
-                  <a href={mobileServiceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6 md:mb-0">
-                    {locale === 'pl' ? 'Zobacz ofertę' :
-                     locale === 'en' ? 'View offer' :
-                     locale === 'uk' ? 'Переглянути пропозицію' :
-                     'Посмотреть предложение'}
-                    <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
                   </a>
                 </div>
               </div>
@@ -313,91 +305,75 @@ const structuredData = [
           })()}
         </div>
 
-        <!-- Combined Pricing Info Section -->
+        <!-- Pricing Info -->
         <div class="mt-8 max-w-6xl mx-auto mb-12">
-          <div class="rounded-2xl bg-blue-50 border border-blue-100 p-6 sm:p-8">
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
-              <div class="flex-shrink-0 p-3 bg-white rounded-xl text-blue-600 shadow-sm">
-                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              
-              <div class="space-y-2 text-center sm:text-left">
-                <p class="text-lg font-medium text-foreground leading-relaxed">
-                  {pricing.earringsInfo}
-                </p>
-                <p class="text-base text-muted-foreground leading-relaxed">
-                  {pricing.earringsPrice}
-                </p>
-              </div>
-            </div>
+          <div class="rounded-2xl bg-primary/5 border border-primary/15 p-6 sm:p-8">
+            <p class="text-base sm:text-lg font-medium text-foreground leading-relaxed mb-1">
+              {pricing.earringsInfo}
+            </p>
+            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              {pricing.earringsPrice}
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Benefits Grid -->
-    <section class="py-12 bg-background border-t border-border">
+    <!-- Why Choose Us -->
+    <section class="py-16 bg-background border-t border-border">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow text-center group">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+        <ul class="divide-y divide-border/50">
+          <li class="flex items-start gap-6 sm:gap-10 py-8 group" data-reveal data-reveal-delay="1">
+            <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">01</span>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-foreground mb-2">
+                {locale === 'pl' ? '100% Sterylność' :
+                 locale === 'uk' ? '100% Стерильність' :
+                 locale === 'ru' ? '100% Стерильность' : '100% Sterile'}
+              </h3>
+              <p class="text-base text-muted-foreground leading-relaxed">
+                {locale === 'pl' ? 'Jednorazowe, w pełni zabudowane kasety gwarantują brak kontaktu z igłą.' :
+                 locale === 'uk' ? 'Одноразові, повністю закриті касети гарантують відсутність контакту з голкою.' :
+                 locale === 'ru' ? 'Одноразовые, полностью закрытые кассеты гарантируют отсутствие контакта с иглой.' :
+                 'Disposable, fully enclosed cassettes guarantee no contact with the needle.'}
+              </p>
             </div>
-            <h3 class="font-bold text-xl mb-3 text-foreground">
-              {locale === 'pl' ? '100% Sterylność' :
-               locale === 'uk' ? '100% Стерильність' :
-               locale === 'ru' ? '100% Стерильность' : '100% Sterile'}
-            </h3>
-            <p class="text-muted-foreground">
-              {locale === 'pl' ? 'Jednorazowe, w pełni zabudowane kasety gwarantują brak kontaktu z igłą.' :
-               locale === 'uk' ? 'Одноразові, повністю закриті касети гарантують відсутність контакту з голкою.' :
-               locale === 'ru' ? 'Одноразовые, полностью закрытые кассеты гарантируют отсутствие контакта с иглой.' :
-               'Disposable, fully enclosed cassettes guarantee no contact with the needle.'}
-            </p>
-          </div>
+          </li>
 
-          <div class="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow text-center group">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+          <li class="flex items-start gap-6 sm:gap-10 py-8 group" data-reveal data-reveal-delay="2">
+            <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">02</span>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-foreground mb-2">
+                {locale === 'pl' ? 'Bezstresowo' :
+                 locale === 'uk' ? 'Без стресу' :
+                 locale === 'ru' ? 'Без стресса' : 'Stress-free'}
+              </h3>
+              <p class="text-base text-muted-foreground leading-relaxed">
+                {locale === 'pl' ? 'Cichy system bez "wystrzału" pistoletu. Idealny dla małych dzieci.' :
+                 locale === 'uk' ? 'Тиха система без "пострілу" пістолета. Ідеально для маленьких дітей.' :
+                 locale === 'ru' ? 'Тихая система без "выстрела" пистолета. Идеально для маленьких детей.' :
+                 'Quiet system without the "gunshot" sound. Perfect for small children.'}
+              </p>
             </div>
-            <h3 class="font-bold text-xl mb-3 text-foreground">
-              {locale === 'pl' ? 'Bezstresowo' :
-               locale === 'uk' ? 'Без стресу' :
-               locale === 'ru' ? 'Без стресса' : 'Stress-free'}
-            </h3>
-            <p class="text-muted-foreground">
-              {locale === 'pl' ? 'Cichy system bez "wystrzału" pistoletu. Idealny dla małych dzieci.' :
-               locale === 'uk' ? 'Тиха система без "пострілу" пістолета. Ідеально для маленьких дітей.' :
-               locale === 'ru' ? 'Тихая система без "выстрела" пистолета. Идеально для маленьких детей.' :
-               'Quiet system without the "gunshot" sound. Perfect for small children.'}
-            </p>
-          </div>
+          </li>
 
-          <div class="p-8 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-shadow text-center group">
-            <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-              </svg>
+          <li class="flex items-start gap-6 sm:gap-10 py-8 group" data-reveal data-reveal-delay="3">
+            <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">03</span>
+            <div class="flex-1">
+              <h3 class="text-xl font-bold text-foreground mb-2">
+                {locale === 'pl' ? 'Doświadczenie' :
+                 locale === 'uk' ? 'Досвід' :
+                 locale === 'ru' ? 'Опыт' : 'Experience'}
+              </h3>
+              <p class="text-base text-muted-foreground leading-relaxed">
+                {locale === 'pl' ? 'Certyfikowani specjaliści z wieloletnim doświadczeniem w pracy z dziećmi.' :
+                 locale === 'uk' ? 'Сертифіковані фахівці з багаторічним досвідом роботи з дітьми.' :
+                 locale === 'ru' ? 'Сертифицированные специалисты с многолетним опытом работы с детьми.' :
+                 'Certified specialists with years of experience working with children.'}
+              </p>
             </div>
-            <h3 class="font-bold text-xl mb-3 text-foreground">
-              {locale === 'pl' ? 'Doświadczenie' :
-               locale === 'uk' ? 'Досвід' :
-               locale === 'ru' ? 'Опыт' : 'Experience'}
-            </h3>
-            <p class="text-muted-foreground">
-              {locale === 'pl' ? 'Certyfikowani specjaliści z wieloletnim doświadczeniem w pracy z dziećmi.' :
-               locale === 'uk' ? 'Сертифіковані фахівці з багаторічним досвідом роботи з дітьми.' :
-               locale === 'ru' ? 'Сертифицированные специалисты с многолетним опытом работы с детьми.' :
-               'Certified specialists with years of experience working with children.'}
-            </p>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
   </div>
@@ -416,4 +392,23 @@ const structuredData = [
       });
     }
   });
+</script>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reveals.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
 </script>

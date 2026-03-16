@@ -7,7 +7,6 @@ import Gallery from './Gallery.astro';
 import Testimonials from './Testimonials.astro';
 import Comparison from './Comparison.astro';
 import CTASection from './CTASection.astro';
-import { BadgeCheck, Baby, Feather, Gem, HandHeart, ShieldCheck, VolumeX } from '../lib/icons';
 import { Image } from 'astro:assets';
 
 // Hero Images
@@ -182,83 +181,6 @@ const relatedServiceData = relatedServices.map((slug) => {
   };
 }).filter((service) => service.name);
 
-function getFeatureIcon(feature: string) {
-  const f = feature.toLowerCase();
-
-  // Doctor approved / verified
-  if (
-    f.includes('zatwierdz') ||
-    f.includes('lekarz') ||
-    f.includes('doctor') ||
-    f.includes('approved') ||
-    f.includes('лікар') ||
-    f.includes('схвал') ||
-    f.includes('врач') ||
-    f.includes('одобрен')
-  ) return BadgeCheck;
-
-  // Children / age 0+
-  if (
-    f.includes('dziec') ||
-    f.includes('children') ||
-    f.includes('child') ||
-    f.includes('діт') ||
-    f.includes('дит') ||
-    f.includes('дет')
-  ) return Baby;
-
-  // Quiet / not scary
-  if (
-    f.includes('cichy') ||
-    f.includes('quiet') ||
-    f.includes('silent') ||
-    f.includes('тих') ||
-    f.includes('не') && (f.includes('страш') || f.includes('ляка'))
-  ) return VolumeX;
-
-  // Gentle / minimal discomfort
-  if (
-    f.includes('delikat') ||
-    f.includes('gentle') ||
-    f.includes('minimal') ||
-    f.includes('dyskomfort') ||
-    f.includes('диском') ||
-    f.includes('деликат') ||
-    f.includes('ніжн')
-  ) return Feather;
-
-  // Parent support / care
-  if (
-    f.includes('rodzic') ||
-    f.includes('parents') ||
-    f.includes('parent') ||
-    f.includes('opieka') ||
-    f.includes('підтрим') ||
-    f.includes('батьк') ||
-    f.includes('родител') ||
-    f.includes('поддерж')
-  ) return HandHeart;
-
-  // Sterile / single-use tools
-  if (
-    f.includes('stery') ||
-    f.includes('sterile') ||
-    f.includes('jednoraz') ||
-    f.includes('однораз') ||
-    f.includes('стерил')
-  ) return ShieldCheck;
-
-  // Earrings / jewelry
-  if (
-    f.includes('kolczy') ||
-    f.includes('earring') ||
-    f.includes('сереж') ||
-    f.includes('серьг')
-  ) return Gem;
-
-  // Fallback
-  return ShieldCheck;
-}
 ---
 
 <div class="min-h-screen bg-background">
@@ -287,17 +209,29 @@ function getFeatureIcon(feature: string) {
     <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 mb-24">
       <!-- Main Content / Hero Left -->
       <article>
-        <h1 class="text-4xl sm:text-5xl font-bold mb-6 text-foreground leading-tight">
+        <!-- Full-bleed mobile hero image — desktop image is in the right column -->
+        <div class="block lg:hidden mb-8 -mx-4 sm:-mx-6">
+          <figure class="overflow-hidden rounded-b-2xl">
+            <Image
+              src={hero.image}
+              alt={h1}
+              class="w-full h-[50vw] object-cover"
+              width={800}
+              height={400}
+              quality={80}
+              loading="eager"
+            />
+          </figure>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight tracking-tight">
           {hero.title}
         </h1>
         
-        <div class="flex flex-wrap gap-x-2 gap-y-1 text-md sm:text-lg text-muted-foreground mb-8 font-medium">
-          {hero.subtitle.split('|').map((part, index, arr) => (
-            <span class="flex items-center">
+        <div class="flex flex-wrap gap-2 mb-8">
+          {hero.subtitle.split('|').map((part) => (
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-primary/10 text-primary border border-primary/20">
               {part.trim()}
-              {index < arr.length - 1 && (
-                <span class="mx-2 text-primary/40">•</span>
-              )}
             </span>
           ))}
         </div>
@@ -320,7 +254,7 @@ function getFeatureIcon(feature: string) {
         </div>
 
         <!-- Booking Card / CTA -->
-        <div class="mb-8 p-6 bg-card rounded-xl border border-border shadow-sm">
+        <div class="mb-8 p-6 bg-primary/5 rounded-2xl border border-primary/15">
           <div class="flex flex-col gap-6">
             <div>
               <h3 class="font-semibold text-lg text-foreground mb-2">
@@ -348,28 +282,27 @@ function getFeatureIcon(feature: string) {
               )}
             </div>
             
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex flex-col gap-3">
               <a 
                 href={booksyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-primary-foreground font-bold text-lg hover:bg-primary/90 transition-colors whitespace-nowrap shadow-md"
+                class="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-4 text-primary-foreground font-bold text-lg hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-md"
                 id={`service-cta-${serviceSlug}`}
               >
                 {t(locale, 'cta.button')}
               </a>
               <a 
                 href="tel:+48573818260"
-                class="flex-1 inline-flex items-center justify-center gap-2 rounded-lg border-2 border-primary/20 px-6 py-4 text-foreground font-semibold hover:border-primary/50 hover:bg-primary/5 transition-colors whitespace-nowrap"
+                class="inline-flex items-center justify-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1"
               >
-                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                {locale === 'pl' ? 'Zadzwoń' : 
-                 locale === 'en' ? 'Call' : 
-                 locale === 'uk' ? 'Подзвонити' : 
-                 'Позвонить'} 
-                <span class="hidden sm:inline">573-818-260</span>
+                {locale === 'pl' ? 'Zadzwoń do nas' : 
+                 locale === 'en' ? 'Call us' : 
+                 locale === 'uk' ? 'Подзвонити нам' : 
+                 'Позвонить нам'}
               </a>
             </div>
           </div>
@@ -403,27 +336,28 @@ function getFeatureIcon(feature: string) {
     <div class="max-w-6xl mx-auto space-y-0">
         <!-- Features Grid (Moved Up) -->
         {content.features && content.features.length > 0 && (
-          <section class="mb-24 py-12 px-8 sm:px-12 bg-muted/30 rounded-3xl border border-border/50">
-            <h2 class="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
+          <section class="mb-24">
+            <h2 class="text-3xl sm:text-4xl font-bold text-foreground mb-12">
               {locale === 'pl' ? 'Kluczowe zalety' : 
                locale === 'uk' ? 'Ключові переваги' : 
                locale === 'ru' ? 'Ключевые преимущества' : 'Key benefits'}
             </h2>
 
-            <ul class="grid gap-6 sm:grid-cols-2">
-              {content.features.slice(0, 6).map((feature, index) => {
-                const Icon = getFeatureIcon(feature);
-                return (
-                  <li key={index} class="flex items-start gap-4 p-4 rounded-xl bg-background border border-border/50 shadow-sm">
-                    <div class="mt-1 h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </div>
-                    <p class="text-base font-medium leading-relaxed text-foreground">
-                      {feature}
-                    </p>
-                  </li>
-                );
-              })}
+            <ul class="divide-y divide-border/50">
+              {content.features.slice(0, 6).map((feature, index) => (
+                <li
+                  class="flex items-start gap-6 sm:gap-10 py-6 group"
+                  data-reveal
+                  data-reveal-delay={String(index + 1)}
+                >
+                  <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <p class="text-base sm:text-xl font-medium leading-relaxed text-foreground">
+                    {feature}
+                  </p>
+                </li>
+              ))}
             </ul>
           </section>
         )}
@@ -529,31 +463,35 @@ function getFeatureIcon(feature: string) {
     <!-- Related Services -->
     {relatedServiceData.length > 0 && (
       <section class="mt-32 pt-16 border-t border-border">
-        <h2 class="text-3xl font-bold text-foreground mb-8 text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold text-foreground mb-10">
           {locale === 'pl' ? 'Mogą Cię zainteresować' :
            locale === 'uk' ? 'Вас можуть зацікавити' :
            locale === 'ru' ? 'Вам может быть интересно' :
            'You might also like'}
         </h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {relatedServiceData.map((service) => (
+          {relatedServiceData.map((service, idx) => (
             <a
               href={service.url}
-              class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
+              class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:border-primary/40 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
+              data-reveal
+              data-reveal-delay={String(idx + 1)}
             >
-              
-              <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground">
+              <span class="text-7xl font-bold text-foreground/[0.04] group-hover:text-primary/10 transition-colors leading-none select-none mb-2 -ml-1">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">
                 {service.name}
               </h3>
-              <p class="text-muted-foreground mb-8 leading-relaxed flex-grow">
+              <p class="text-sm text-muted-foreground mb-8 leading-relaxed flex-grow">
                 {service.description}
               </p>
-              <div class="flex items-center text-primary font-semibold mt-auto">
+              <div class="flex items-center text-primary font-semibold mt-auto text-sm">
                 {locale === 'pl' ? 'Zobacz ofertę' :
                  locale === 'en' ? 'View offer' :
                  locale === 'uk' ? 'Переглянути пропозицію' :
                  'Посмотреть предложение'}
-                <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>
@@ -591,13 +529,32 @@ function getFeatureIcon(feature: string) {
   }
 </script>
 
+<script>
+  // Reveal elements as they enter the viewport
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reveals.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
+
 {/* Sticky Mobile CTA */}
 <div class="fixed bottom-0 left-0 right-0 p-3 bg-background/95 backdrop-blur-md border-t border-border md:hidden z-50 safe-area-bottom shadow-[0_-4px_20px_rgba(0,0,0,0.06)]">
   <div class="flex gap-3">
     <a 
       href="tel:+48573818260"
       class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90 transition-colors"
-      aria-label="Call"
+      aria-label={locale === 'pl' ? 'Zadzwoń do nas' : locale === 'uk' ? 'Подзвонити нам' : locale === 'ru' ? 'Позвонить нам' : 'Call us'}
     >
       <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />

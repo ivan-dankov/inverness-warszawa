@@ -54,7 +54,7 @@ export function Testimonials({ locale, testimonials }: TestimonialsProps) {
                 ))}
               </div>
               <span className="text-lg font-semibold">5.0</span>
-              <a href="https://maps.app.goo.gl/6a87CL7bf8aApZHDA" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              <a href="https://maps.app.goo.gl/Y9kJLqzLdUhRzp3J9" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                 {t(locale, 'testimonials.onGoogleMaps')}
               </a>
             </div>
