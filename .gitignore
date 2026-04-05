@@ -25,3 +25,12 @@ dist-ssr
 .vite-react-ssg-temp
 .vercel
 .env*.local
+
+# Sanity build runtime
+.sanity/
+
+# Astro generated cache
+.astro/
+
+# Empty local skills mirror
+skills-main/
