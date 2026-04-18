@@ -18,7 +18,7 @@
     "phone": "Telefon"
   },
   "hero": {
-    "title": "Przekłuwanie Uszu w Warszawie",
+    "title": "Bezpieczne przekłuwanie uszu w Warszawie",
     "subtitle": "Bezpieczne i delikatne przekłuwanie uszu dla dzieci i dorosłych. W Gentle Piercing korzystamy z medycznego systemu Inverness Med (USA), który zapewnia pełną sterylność, precyzję i komfort zabiegu.",
     "features": [
       "Sterylne, jednorazowe narzędzia",
@@ -32,6 +32,20 @@
     "locationNotice": {
       "studio": "📍 W gabinecie na Woli",
       "mobile": "🚗 Z dojazdem do domu"
+    },
+    "trust": {
+      "reviews": {
+        "value": "5.0 ★",
+        "label": "200+ opinii Booksy / Google"
+      },
+      "experience": {
+        "value": "3+ lata",
+        "label": "doświadczenia"
+      },
+      "system": {
+        "value": "Inverness MED",
+        "label": "system z USA"
+      }
     }
   },
   "about": {
@@ -112,10 +126,17 @@
   },
   "comparison": {
     "title": "Dlaczego Inverness Med",
-    "subtitle": "Bezpiecznie. Cicho. Sterylnie.",
+    "subtitle": "Jak Inverness Med wypada na tle pistoletu i igły",
     "videoSubtitle": "Jak to działa",
     "description": "System Inverness to nowoczesna metoda przekłuwania uszu – delikatna, jednorazowa i w pełni higieniczna. Idealna dla dzieci i dorosłych.",
-    "tableTitle": "🔍 Porównaj metody przekłuwania uszu",
+    "tableTitle": "Porównaj metody przekłuwania uszu",
+    "recommended": "Polecane",
+    "alternatives": "Alternatywy",
+    "legend": {
+      "good": "Zalecane",
+      "ok": "Akceptowalne",
+      "bad": "Niezalecane"
+    },
     "attributes": {
       "method": "Metoda",
       "sterility": "Sterylność",
@@ -128,30 +149,30 @@
     "methods": {
       "gun": {
         "name": "Pistolet",
-        "sterility": "Częściowo sterylny",
-        "comfort": "Głośny, może być bolesny",
-        "healing": "Dłuższe, czasem z powikłaniami",
-        "childrenSuitability": "Nie, nieodpowiedni dla dzieci",
-        "cartilageSuitability": "Nie, tylko płatek ucha",
-        "features": "Szybki, ale mniej delikatny"
+        "sterility": "Nie może być wysterylizowany między użyciami",
+        "comfort": "Głośny trzask, często bolesny",
+        "healing": "Dłuższe gojenie, wyższe ryzyko powikłań",
+        "childrenSuitability": "Niezalecany dla dzieci",
+        "cartilageSuitability": "Nadaje się wyłącznie do płatka ucha",
+        "features": "Szybki, ale siłowe działanie rozrywa tkankę"
       },
       "needle": {
         "name": "Igła (profesjonalna)",
-        "sterility": "Wysoka, jeśli zachowana sterylność",
-        "comfort": "Umiarkowany komfort",
-        "healing": "Dobre przy właściwej pielęgnacji",
-        "childrenSuitability": "Tak, ale przekłucie igłą zalecane jest od 9 roku życia — nieodpowiednie dla maluchów 0–5 lat.",
-        "cartilageSuitability": "Tak, odpowiedni dla chrząstki",
-        "features": "Precyzyjna metoda, zależna od doświadczenia specjalisty"
+        "sterility": "Sterylna przy użyciu jednorazowych igieł",
+        "comfort": "Komfort zależy od specjalisty — zwykle bardziej odczuwalny niż Inverness Med",
+        "healing": "Dobre efekty przy właściwej pielęgnacji",
+        "childrenSuitability": "Odpowiednia od 9 roku życia, nie dla małych dzieci",
+        "cartilageSuitability": "Sprawdza się na chrząstce",
+        "features": "Precyzyjna, ale zależna od umiejętności"
       },
       "inverness": {
-        "name": "Inverness",
-        "sterility": "W 100% sterylny, jednorazowy system",
-        "comfort": "Cicho i delikatnie",
-        "healing": "Szybkie, czyste gojenie",
-        "childrenSuitability": "Tak, zatwierdzony dla dzieci 0+",
-        "cartilageSuitability": "Tak, idealny dla chrząstki",
-        "features": "Pewność, komfort i bezpieczeństwo w jednym"
+        "name": "Inverness Med",
+        "sterility": "W 100% sterylny — zapieczętowana jednorazowa kaseta",
+        "comfort": "Cichy mechanizm, praktycznie bezbolesny",
+        "healing": "Szybkie i czyste — tkanka jest rozdzielana, nie rozrywana",
+        "childrenSuitability": "Zatwierdzony dla dzieci od urodzenia (0+)",
+        "cartilageSuitability": "Idealny zarówno do płatka, jak i chrząstki",
+        "features": "System medyczny z certyfikatami FDA i ISO"
       }
     }
   },
@@ -352,7 +373,10 @@
     "subtitle": "Umów wizytę już dziś i doświadcz bezpiecznego, bezbolesnego przekłuwania uszu systemem Inverness MED",
     "button": "Rezerwuj Online",
     "phone": "Telefon",
-    "footer": "Dostępne również wizyty mobilne z dojazdem do domu"
+    "footer": "Bezpłatna konsultacja · Wizyty mobilne · Dzieci od 0+",
+    "callPrefix": "lub zadzwoń:",
+    "studioLabel": "Studio",
+    "fullContact": "Pełne dane kontaktowe"
   },
   "servicePages": {
     "przekluwanie-uszu-warszawa": {

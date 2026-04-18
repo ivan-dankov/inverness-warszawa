@@ -34,7 +34,7 @@ export function Gallery({ locale, images }: GalleryProps) {
   };
 
   return (
-    <section id="gallery" className="py-20 bg-gradient-to-b from-primary-light/10 to-background border-t border-border">
+    <section id="gallery" className="py-20 bg-background-alt border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">

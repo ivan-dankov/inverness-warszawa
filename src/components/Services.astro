@@ -3,9 +3,9 @@ import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
 import { Image } from 'astro:assets';
-import ear1 from '../assets/ear-1.jpg';
-import ear2 from '../assets/ear-2.jpg';
 import childrenImg from '../assets/services/children.webp';
+import adultsImg from '../assets/ear-1.jpg';
+import cartilageImg from '../assets/ear-2.jpg';
 import mobileImg from '../assets/services/mobile.webp';
 
 interface Props {
@@ -91,7 +91,7 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
 };
 ---
 
-<section id="services" class="py-20 bg-background border-t border-border">
+<section id="services" class="py-24 sm:py-32 bg-background border-t border-border">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       {useH1 ? (
@@ -108,182 +108,90 @@ const servicePriceMap: Record<ServicePageSlug, string> = {
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-8">
-      {servicePages.map((service) => {
-        const serviceUrl = getServicePagePath(service.slug, locale);
-        const serviceName = serviceNames[service.nameKey]?.[locale] || '';
-        const serviceDesc = service.desc[locale];
-        const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${service.slug}_${locale}`;
-        return (
-          <div class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
-            <a href={serviceUrl} class="flex flex-col h-full items-center justify-start">
-              
-              <div class="mb-4 aspect-[4/3] overflow-hidden rounded-lg max-w-80">
-                {service.nameKey === 'cartilage' && (
-                  <Image 
-                    src={ear2} 
-                    alt={serviceName} 
-                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
-                    widths={[320, 640]}
-                    sizes="(max-width: 768px) 320px, 160px"
-                  />
-                )}
-                {service.nameKey === 'children' && (
-                  <Image 
-                    src={childrenImg} 
-                    alt={serviceName} 
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                    widths={[320, 640]}
-                    sizes="(max-width: 768px) 320px, 160px"
-                  />
-                )}
-                {service.nameKey === 'adults' && (
-                  <Image 
-                    src={ear1} 
-                    alt={serviceName} 
-                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
-                    widths={[320, 640]}
-                    sizes="(max-width: 768px) 320px, 160px"
-                  />
-                )}
-              </div>
-              
-              <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground text-center">
-                {serviceName}
-              </h3>
-              <p class="text-muted-foreground mb-4 leading-relaxed flex-grow text-center">
-                {serviceDesc}
-              </p>
-              <div class="flex items-center gap-2 mb-4">
-                <span class="text-3xl font-bold text-primary text-center">{servicePriceMap[service.slug]}</span>
-              </div>
-            </a>
-            
-            <a 
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-12 px-4 w-full mt-auto"
-              data-booking-button="services"
-              onclick="event.stopPropagation();"
-            >
-              <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              {t(locale, 'services.bookButton')}
-            </a>
-            <a href={serviceUrl} class="flex items-center justify-center text-primary font-semibold text-sm hover:text-primary/80 transition-colors mt-6">
-              {locale === 'pl' ? 'Zobacz ofertę' :
-               locale === 'en' ? 'View offer' :
-               locale === 'uk' ? 'Переглянути пропозицію' :
-               'Посмотреть предложение'}
-              <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        );
-      })}
-    </div>
-
-    <!-- Mobile Service Card - Horizontal -->
-    <div class="max-w-6xl mx-auto mb-6">
-      {(() => {
-        const mobileService = {
+    {/* All 4 services as uniform horizontal cards */}
+    {(() => {
+      const allServices = [
+        ...servicePages.map(s => ({
+          slug: s.slug,
+          nameKey: s.nameKey,
+          desc: s.desc[locale],
+          img: s.nameKey === 'children' ? childrenImg : s.nameKey === 'adults' ? adultsImg : cartilageImg,
+        })),
+        {
           slug: 'przekluwanie-uszu-z-dojazdem-warszawa' as ServicePageSlug,
           nameKey: 'mobile',
-          desc: {
-            pl: 'Usługa mobilna z dojazdem do domu - przekłuwanie uszu w komforcie Twojego domu.',
-            en: 'Mobile service with home visits - ear piercing in the comfort of your home.',
-            uk: 'Мобільна послуга з виїздом додому - прокол вух у комфорті вашого дому.',
-            ru: 'Мобильная услуга с выездом на дом - прокол ушей в комфорте вашего дома.',
-          }
-        };
-        const mobileServiceUrl = getServicePagePath(mobileService.slug, locale);
-        const mobileServiceName = serviceNames[mobileService.nameKey]?.[locale] || '';
-        const mobileServiceDesc = mobileService.desc[locale];
-        const mobileBooksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${mobileService.slug}_${locale}`;
-        return (
-          <div class="flex flex-col md:flex-row justify-start gap-6 p-8 bg-card border border-border rounded-2xl hover:shadow-lg transition-all duration-300 group relative overflow-hidden">
-            <a href={mobileServiceUrl} class="flex flex-col md:flex-row gap-6 flex-1 justify-start items-center">
-              
-              <div class="mb-4 md:mb-0 md:w-40 flex-shrink-0 aspect-[4/3] md:aspect-auto md:h-auto overflow-hidden rounded-lg max-w-xs">
-                <Image 
-                  src={mobileImg} 
-                  alt={mobileServiceName} 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                  widths={[320, 640]}
-                  sizes="(max-width: 768px) 320px, 160px"
-                />
-              </div>
-              
-              <div class="flex flex-col flex-1">
-                <h3 class="text-2xl font-bold mb-4 group-hover:text-primary transition-colors text-foreground">
-                  {mobileServiceName}
-                </h3>
-                <p class="text-muted-foreground mb-4 leading-relaxed">
-                  {mobileServiceDesc}
-                </p>
-                <div class="flex items-baseline gap-2 mb-0">
-                  <span class="text-xl font-bold text-primary">{servicePriceMap[mobileService.slug]}</span>
+          desc: locale === 'pl' ? 'Usługa mobilna z dojazdem do domu — przekłuwanie uszu w komforcie Twojego domu.'
+              : locale === 'en' ? 'Mobile service with home visits — ear piercing in the comfort of your home.'
+              : locale === 'uk' ? 'Мобільна послуга з виїздом додому — прокол вух у комфорті вашого дому.'
+              : 'Мобильная услуга с выездом на дом — прокол ушей в комфорте вашего дома.',
+          img: mobileImg,
+        },
+      ];
+
+      return (
+        <div class="max-w-6xl mx-auto space-y-5 mb-10">
+          {allServices.map((s) => {
+            const url = getServicePagePath(s.slug, locale);
+            const name = serviceNames[s.nameKey]?.[locale] || '';
+            const price = servicePriceMap[s.slug];
+            const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${s.slug}_${locale}`;
+            return (
+              <div class="group flex flex-row bg-card border border-border rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300">
+                {/* Illustration */}
+                <a href={url} class="block w-32 sm:w-44 flex-shrink-0 bg-white dark:bg-zinc-100">
+                  <Image
+                    src={s.img}
+                    alt={name}
+                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    widths={[176, 352]}
+                    sizes="176px"
+                  />
+                </a>
+                {/* Content */}
+                <div class="flex flex-col sm:flex-row flex-1 items-start sm:items-center gap-4 sm:gap-8 p-5 sm:p-7">
+                  <div class="flex-1 min-w-0">
+                    <a href={url}>
+                      <h3 class="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">{name}</h3>
+                      <p class="text-base text-muted-foreground leading-relaxed line-clamp-2">{s.desc}</p>
+                    </a>
+                  </div>
+                  <div class="flex flex-col items-start sm:items-end gap-3 flex-shrink-0 w-full sm:w-auto">
+                    <span class="text-xl font-bold text-primary whitespace-nowrap">{price}</span>
+                    <a
+                      href={booksyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-10 px-5 whitespace-nowrap"
+                      data-booking-button="services"
+                      onclick="event.stopPropagation();"
+                    >
+                      <svg class="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      {t(locale, 'services.bookButton')}
+                    </a>
+                  </div>
                 </div>
               </div>
-            </a>
-            
-            <div class="md:w-auto md:flex md:flex-col md:items-center md:justify-center gap-0">
-              <a 
-                href={mobileBooksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-12 px-6 w-full md:w-auto"
-                data-booking-button="services"
-                onclick="event.stopPropagation();"
-              >
-                <svg class="h-5 w-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {t(locale, 'services.bookButton')}
-              </a>
-              <a href={mobileServiceUrl} class="flex items-center justify-center text-primary font-semibold text-sm group-hover:text-primary/80 transition-colors mt-6 md:mb-0">
-                {locale === 'pl' ? 'Zobacz ofertę' :
-                 locale === 'en' ? 'View offer' :
-                 locale === 'uk' ? 'Переглянути пропозицію' :
-                 'Посмотреть предложение'}
-                <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        );
-      })()}
-    </div>
-
-    <!-- Combined Pricing Info Section -->
-    <div class="mt-8 max-w-6xl mx-auto mb-12">
-      <div class="rounded-2xl bg-blue-50 border border-blue-100 p-6 sm:p-8">
-        <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center justify-center">
-          <div class="flex-shrink-0 p-3 bg-white rounded-xl text-blue-600 shadow-sm">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          
-          <div class="space-y-2 text-center sm:text-left">
-            <p class="text-lg font-medium text-foreground leading-relaxed">
-              {pricing.earringsInfo}
-            </p>
-            <p class="text-base text-muted-foreground leading-relaxed">
-              {pricing.earringsPrice}
-            </p>
-          </div>
+            );
+          })}
         </div>
-      </div>
+      );
+    })()}
+
+    {/* Pricing footnote */}
+    <div class="max-w-6xl mx-auto mb-10 flex items-start gap-2 px-1">
+      <svg class="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p class="text-sm text-muted-foreground leading-relaxed">
+        {pricing.earringsInfo} — {pricing.earringsPrice}
+      </p>
     </div>
 
     {!hideViewAllButton && (
       <div class="text-center mb-8">
-        <a 
+        <a
           href={getLocalizedPagePath('services', locale)}
           class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors h-12 px-8 text-base group"
         >

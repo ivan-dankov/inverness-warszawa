@@ -18,7 +18,7 @@
     "phone": "Phone"
   },
   "hero": {
-    "title": "Ear Piercing in Warsaw",
+    "title": "Safe ear piercing in Warsaw",
     "subtitle": "Safe and gentle ear piercing for children and adults. At Gentle Piercing, we use the Inverness Med (USA) medical system, which ensures complete sterility, precision and comfort of the procedure.",
     "features": [
       "Sterile, single-use tools",
@@ -32,6 +32,20 @@
     "locationNotice": {
       "studio": "📍 At our Mokotów studio",
       "mobile": "🚗 With a home visit"
+    },
+    "trust": {
+      "reviews": {
+        "value": "5.0 ★",
+        "label": "200+ Booksy / Google reviews"
+      },
+      "experience": {
+        "value": "3+ years",
+        "label": "of experience"
+      },
+      "system": {
+        "value": "Inverness MED",
+        "label": "USA-certified system"
+      }
     }
   },
   "about": {
@@ -112,10 +126,17 @@
   },
   "comparison": {
     "title": "Why Inverness Med",
-    "subtitle": "Safe. Quiet. Sterile.",
+    "subtitle": "How Inverness Med compares to a gun and a needle",
     "videoSubtitle": "How it works",
     "description": "The Inverness system is a modern ear piercing method – gentle, single-use and fully hygienic. Perfect for children and adults.",
-    "tableTitle": "🔍 Compare ear piercing methods",
+    "tableTitle": "Compare ear piercing methods",
+    "recommended": "Recommended",
+    "alternatives": "Alternatives",
+    "legend": {
+      "good": "Recommended",
+      "ok": "Acceptable",
+      "bad": "Not recommended"
+    },
     "attributes": {
       "method": "Method",
       "sterility": "Sterility",
@@ -128,30 +149,30 @@
     "methods": {
       "gun": {
         "name": "Gun",
-        "sterility": "Partially sterile",
-        "comfort": "Loud, may be painful",
-        "healing": "Longer, sometimes with complications",
-        "childrenSuitability": "No, not suitable for children",
-        "cartilageSuitability": "No, only earlobe",
-        "features": "Fast, but less gentle"
+        "sterility": "Cannot be sterilized between uses",
+        "comfort": "Loud snap, often painful",
+        "healing": "Longer healing, higher risk of complications",
+        "childrenSuitability": "Not recommended for children",
+        "cartilageSuitability": "Only suitable for the earlobe",
+        "features": "Fast, but blunt force tears tissue"
       },
       "needle": {
         "name": "Needle (professional)",
-        "sterility": "High, if sterility maintained",
-        "comfort": "Moderate comfort",
-        "healing": "Good with proper care",
-        "childrenSuitability": "Yes, but needle piercing is recommended from age 9 — not suitable for toddlers 0–5 years.",
-        "cartilageSuitability": "Yes, suitable for cartilage",
-        "features": "Precise method, depends on specialist experience"
+        "sterility": "Sterile when single-use needles are used",
+        "comfort": "Comfort varies by practitioner — usually more noticeable than Inverness Med",
+        "healing": "Good results with proper aftercare",
+        "childrenSuitability": "Suitable from age 9, not for young children",
+        "cartilageSuitability": "Works well on cartilage",
+        "features": "Precise, but skill-dependent"
       },
       "inverness": {
-        "name": "Inverness",
-        "sterility": "100% sterile, single-use system",
-        "comfort": "Quiet and gentle",
-        "healing": "Fast, clean healing",
-        "childrenSuitability": "Yes, approved for children 0+",
-        "cartilageSuitability": "Yes, perfect for cartilage",
-        "features": "Certainty, comfort and safety in one"
+        "name": "Inverness Med",
+        "sterility": "100% sterile — sealed single-use cassette",
+        "comfort": "Silent mechanism, virtually painless",
+        "healing": "Fast and clean — tissue is separated, not torn",
+        "childrenSuitability": "Approved for children from birth (0+)",
+        "cartilageSuitability": "Ideal for both lobe and cartilage",
+        "features": "Medical-grade system certified by FDA and ISO"
       }
     }
   },
@@ -393,7 +414,10 @@
     "subtitle": "Book an appointment today and experience safe, painless ear piercing with the Inverness MED system",
     "button": "Book Online",
     "phone": "Phone",
-    "footer": "Mobile visits with home service also available"
+    "footer": "Free consultation · Mobile visits · Children from 0+",
+    "callPrefix": "or call:",
+    "studioLabel": "Studio",
+    "fullContact": "Full contact details"
   },
   "servicePages": {
     "ear-piercing-warsaw": {

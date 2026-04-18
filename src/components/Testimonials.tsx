@@ -1,12 +1,4 @@
-import { Card } from "./ui/card";
 import { Star } from "../lib/icons";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "./ui/carousel";
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 
@@ -43,79 +35,103 @@ function formatTestimonialDate(isoDate: string, locale: Locale): string {
 }
 
 export function Testimonials({ locale, testimonials }: TestimonialsProps) {
+  const doubled = [...testimonials, ...testimonials];
+
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-primary-light/10 to-background border-t border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+    <section
+      id="testimonials"
+      className="py-20 border-t border-white/10 overflow-hidden"
+      style={{ background: 'hsl(221,43%,18%)' }}
+    >
+      <style>{`
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee 40s linear infinite;
+        }
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             {t(locale, 'testimonials.title')}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
             {t(locale, 'testimonials.subtitle')}
           </p>
           <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
             <div className="flex items-center gap-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-lg font-semibold">5.0</span>
-              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              <span className="text-lg font-semibold text-white">5.0</span>
+              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white underline underline-offset-2 transition-colors">
                 {t(locale, 'testimonials.onBooksy')}
               </a>
             </div>
-            <span className="text-muted-foreground">•</span>
+            <span className="text-white/30">•</span>
             <div className="flex items-center gap-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-yellow-500 text-yellow-500" />
+                  <Star key={i} className="h-5 w-5 fill-yellow-400 text-yellow-400" />
                 ))}
               </div>
-              <span className="text-lg font-semibold">5.0</span>
-              <a href="https://maps.app.goo.gl/Y9kJLqzLdUhRzp3J9" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              <span className="text-lg font-semibold text-white">5.0</span>
+              <a href="https://maps.app.goo.gl/Y9kJLqzLdUhRzp3J9" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white underline underline-offset-2 transition-colors">
                 {t(locale, 'testimonials.onGoogleMaps')}
               </a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="max-w-6xl mx-auto px-12">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <Card className="p-6 h-full flex flex-col hover:shadow-card transition-shadow duration-300">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                        <p className="text-xs text-muted-foreground">{formatTestimonialDate(testimonial.date, locale)}</p>
-                      </div>
-                      <div className="flex">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-sm text-muted-foreground mb-4 flex-grow">
-                      {testimonial.text}
-                    </p>
-                    <p className="text-xs text-muted-foreground/70 italic">
-                      {testimonial.service}
-                    </p>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+      {/* Track with edge fade masks */}
+      <div
+        className="relative"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        }}
+      >
+        <div className="marquee-track">
+          {doubled.map((testimonial, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-80 mx-3"
+            >
+              <div
+                className="p-5 h-full flex flex-col rounded-2xl border border-white/10"
+                style={{ background: 'rgba(255,255,255,0.07)' }}
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <h4 className="font-semibold text-white text-sm">{testimonial.name}</h4>
+                    <p className="text-xs text-white/40 mt-0.5">{formatTestimonialDate(testimonial.date, locale)}</p>
+                  </div>
+                  <div className="flex flex-shrink-0">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-sm text-white/70 mb-3 flex-grow leading-relaxed">
+                  {testimonial.text}
+                </p>
+                <p className="text-xs text-white/35 italic">
+                  {testimonial.service}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

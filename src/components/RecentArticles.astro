@@ -20,19 +20,19 @@ try {
 }
 ---
 
-<section class="py-12 sm:py-20 bg-gradient-to-b from-muted/20 to-background">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-    <div class="text-center mb-8 sm:mb-12">
+<section class="py-12 sm:py-20 bg-background-alt border-t border-border">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
       <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
         {customTitle || t(locale, 'recentArticles.title')}
       </h2>
-      <p class="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto">
+      <p class="text-base sm:text-lg text-muted-foreground">
         {customSubtitle || t(locale, 'recentArticles.subtitle')}
       </p>
     </div>
 
     {posts.length > 0 ? (
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
         {posts.map((post) => (
           <a 
             key={post._id}

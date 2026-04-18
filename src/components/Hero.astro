@@ -1,13 +1,10 @@
 ---
-import { t } from '../lib/translations';
+import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { PAGE_SLUGS } from '../lib/seo';
 import { getImage } from 'astro:assets';
 import logoWide from '../assets/logo-wide.svg';
-import heroStudio from '../assets/hero/hero-studio.jpg';
-import heroClient from '../assets/hero/hero-client.jpg';
-import hero3 from '../assets/hero/hero-3.jpg';
-import hero4 from '../assets/hero/hero-4.jpg';
+import heroMain from '../assets/hero/hero-girl.png';
 
 interface Props {
   locale: Locale;
@@ -15,135 +12,107 @@ interface Props {
 
 const { locale } = Astro.props;
 const contactSlug = PAGE_SLUGS.contact[locale];
+const features: string[] = getTranslations(locale).hero?.features || [];
 const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_main`;
 
-// Optimize hero images (400x400 for grid display)
-const optimizedHeroStudio = await getImage({
-  src: heroStudio,
-  width: 400,
-  height: 400,
+const optimizedHeroMain = await getImage({
+  src: heroMain,
+  width: 900,
+  height: 900,
   format: 'webp',
-  quality: 85,
-});
-
-const optimizedHeroClient = await getImage({
-  src: heroClient,
-  width: 400,
-  height: 400,
-  format: 'webp',
-  quality: 85,
-});
-
-const optimizedHero3 = await getImage({
-  src: hero3,
-  width: 400,
-  height: 400,
-  format: 'webp',
-  quality: 85,
-});
-
-const optimizedHero4 = await getImage({
-  src: hero4,
-  width: 400,
-  height: 400,
-  format: 'webp',
-  quality: 85,
+  quality: 88,
 });
 ---
 
-<section id="hero" class="relative min-h-[80vh] sm:min-h-[90vh] flex items-center bg-gradient-to-br from-rose-50 via-rose-100 to-pink-50 overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-r from-background-alt/95 to-background-alt/70 z-0" />
-  
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-8 sm:py-0">
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      <!-- Content -->
-      <div class="max-w-2xl">
-        <img src={logoWide.src || logoWide} alt="Inverness Logo" class="h-6 sm:h-8 lg:h-10 w-auto mb-6 sm:mb-8" width="320" height="64" loading="eager" fetchpriority="high" />
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 leading-tight">
+<section id="hero" class="relative overflow-x-hidden bg-[hsl(221,43%,18%)]">
+  <!-- Decorative blobs -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-24 -left-16 w-[28rem] h-[28rem] bg-primary opacity-40 rounded-full blur-3xl" />
+    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary opacity-30 rounded-full blur-3xl" />
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-12 items-end min-h-[80vh] sm:min-h-[90vh]">
+
+      <!-- Content — vertically centered on its side -->
+      <div class="flex items-center py-12 sm:py-16 lg:py-20">
+        <div class="max-w-xl w-full">
+          <img src={logoWide.src || logoWide} alt="Inverness Logo" class="h-6 sm:h-8 lg:h-10 w-auto mb-6 sm:mb-8" width="320" height="64" loading="eager" fetchpriority="high" />
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight">
           {t(locale, 'hero.title')}
         </h1>
         
-        <p class="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed">
+        <p class="text-base sm:text-lg lg:text-xl text-white/70 mb-6 sm:mb-8 leading-relaxed">
           {t(locale, 'hero.subtitle')}
         </p>
-        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-          <a 
-            href={booksyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-8 text-base w-full sm:w-auto"
-            id="hero-booking-button"
-          >
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            {t(locale, 'hero.buttons.book')}
-          </a>
-          <a 
-            href={`/${locale}/${contactSlug}`}
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold shadow-soft hover:shadow-card transition-all duration-300 h-12 px-8 text-base w-full sm:w-auto bg-[#F9D9E5] text-[#68253E] hover:bg-[#F5C9D9]"
-          >
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {t(locale, 'hero.buttons.contact')}
-          </a>
+
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-7">
+            <a 
+              href={booksyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-8 text-base w-full sm:w-auto"
+              id="hero-booking-button"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              {t(locale, 'hero.buttons.book')}
+            </a>
+            <a 
+              href={`/${locale}/${contactSlug}`}
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-12 px-8 text-base w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300"
+            >
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              {t(locale, 'hero.buttons.contact')}
+            </a>
+          </div>
+
+          <!-- 3-cell trust strip -->
+          <div class="flex items-stretch gap-4 sm:gap-6">
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1">
+                {[...Array(5)].map(() => (
+                  <svg class="h-3.5 w-3.5 fill-yellow-400 text-yellow-400 flex-shrink-0" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              <span class="ml-1 text-sm font-semibold text-white">5.0</span>
+            </div>
+            <span class="text-xs text-white/60 mt-0.5">{t(locale, 'hero.trust.reviews.label')}</span>
+          </div>
+          <div class="self-stretch w-px bg-white/20" aria-hidden="true" />
+          <div class="flex flex-col justify-center">
+            <span class="text-sm font-semibold text-white">{t(locale, 'hero.trust.experience.value')}</span>
+            <span class="text-xs text-white/60 mt-0.5">{t(locale, 'hero.trust.experience.label')}</span>
+          </div>
+          <div class="self-stretch w-px bg-white/20" aria-hidden="true" />
+          <div class="flex flex-col justify-center">
+            <span class="text-sm font-semibold text-white">{t(locale, 'hero.trust.system.value')}</span>
+            <span class="text-xs text-white/60 mt-0.5">{t(locale, 'hero.trust.system.label')}</span>
+          </div>
+          </div>
         </div>
       </div>
 
-      <!-- Images Grid -->
-      <div class="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4 relative mt-8 lg:mt-0">
-        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
-          <img 
-            src={optimizedHeroStudio.src} 
-            alt="Studio Inverness MED z profesjonalnym sprzętem do przekłuwania uszu" 
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-            loading="eager" 
-            fetchpriority="high" 
-            decoding="async" 
-            width="400" 
-            height="400" 
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
-          <img 
-            src={optimizedHeroClient.src} 
-            alt="Zadowolone dziecko z dyplomem Inverness MED po przekłuciu uszu" 
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-            loading="eager" 
-            decoding="async" 
-            width="400" 
-            height="400" 
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
-          <img 
-            src={optimizedHero3.src} 
-            alt="Kolekcja medycznych kolczyków Inverness" 
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-            loading="lazy" 
-            decoding="async" 
-            width="400" 
-            height="400" 
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-        <div class="relative aspect-square overflow-hidden rounded-lg shadow-card hover:shadow-elegant transition-all duration-300 group">
-          <img 
-            src={optimizedHero4.src} 
-            alt="Eleganckie kolczyki medyczne po przekłuciu" 
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-            loading="lazy" 
-            decoding="async" 
-            width="400" 
-            height="400" 
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
+      <!-- Image column — sits at the bottom, overflows upward -->
+      <div class="flex items-end justify-center lg:justify-end overflow-visible">
+        <img
+          src={optimizedHeroMain.src}
+          alt="Zadowolone dziecko z kolczykami po przekłuciu uszu metodą Inverness MED"
+          class="w-auto max-w-[280px] sm:max-w-[360px] lg:max-w-none lg:w-[56vw] xl:w-[48vw] object-contain object-bottom block"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="900"
+          height="900"
+        />
       </div>
+
     </div>
   </div>
 </section>
@@ -161,4 +130,3 @@ const optimizedHero4 = await getImage({
     });
   }
 </script>
-
