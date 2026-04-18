@@ -1,18 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
-import { getBreadcrumbSchema } from '../../lib/seo';
+import { getBreadcrumbSchema, getPageSEO } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Contact from '../../components/Contact.astro';
 
 const locale = 'pl';
+const baseSeo = getPageSEO(locale, 'contact');
 const seo = {
-  title: "Rezerwacja Online | Gentle Piercing | ☎️ 573-818-260 | Mokotów",
-  description: "📍 Ursynowska 10/1, Mokotów ☎️ 573-818-260 🕐 Pn-Nd 10-20 🚇 Metro Wilanowska 12min | Rezerwuj przekłucie uszu Inverness Med online przez Booksy ✓",
-  language: 'pl',
+  ...baseSeo,
   canonical: siteMetadata.urls.contact.pl,
   alternates: generateAlternates('contact'),
-  ogImage: 'https://gentlepiercing.pl/hero/hero-studio.jpg', // Keeping existing image or update to default
+  ogImage: 'https://gentlepiercing.pl/hero/hero-studio.jpg',
 };
 
 const structuredData = [

@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
-import { getBreadcrumbSchema } from '../../lib/seo';
+import { getBreadcrumbSchema, getPageSEO } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Contact from '../../components/Contact.astro';
 
 const locale = 'en';
+const baseSeo = getPageSEO(locale, 'contact');
 const seo = {
-  title: "Book Online | Gentle Piercing | ☎️ +48 573-818-260 | Mokotów Warsaw",
-  description: "📍 Ursynowska 10/1, Mokotów, Warsaw ☎️ +48 573-818-260 🕐 Mon-Sun 10am-8pm 🚇 Metro Wilanowska 12min walk | Book Inverness Med ear piercing online via Booksy ✓",
-  language: 'en',
+  ...baseSeo,
   canonical: siteMetadata.urls.contact.en,
   hreflang: generateAlternates('contact'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-studio.jpg',

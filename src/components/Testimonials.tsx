@@ -23,6 +23,25 @@ interface TestimonialsProps {
   testimonials: Testimonial[];
 }
 
+const localeBcp47: Record<Locale, string> = {
+  pl: 'pl-PL',
+  uk: 'uk-UA',
+  ru: 'ru-RU',
+  en: 'en-GB',
+};
+
+function formatTestimonialDate(isoDate: string, locale: Locale): string {
+  try {
+    return new Intl.DateTimeFormat(localeBcp47[locale], {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    }).format(new Date(isoDate));
+  } catch {
+    return isoDate;
+  }
+}
+
 export function Testimonials({ locale, testimonials }: TestimonialsProps) {
   return (
     <section id="testimonials" className="py-20 bg-gradient-to-b from-primary-light/10 to-background border-t border-border">
@@ -76,7 +95,7 @@ export function Testimonials({ locale, testimonials }: TestimonialsProps) {
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                        <p className="text-xs text-muted-foreground">{testimonial.date}</p>
+                        <p className="text-xs text-muted-foreground">{formatTestimonialDate(testimonial.date, locale)}</p>
                       </div>
                       <div className="flex">
                         {[...Array(testimonial.rating)].map((_, i) => (

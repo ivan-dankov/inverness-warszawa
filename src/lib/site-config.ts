@@ -14,6 +14,10 @@ export interface SiteConfig {
       postalCode: string;
       country: string;
     };
+    geo: {
+      latitude: number;
+      longitude: number;
+    };
     telephone: string;
     openingHours: string;
     priceRange: string;
@@ -39,6 +43,10 @@ export const siteConfig: SiteConfig = {
       city: 'Warszawa',
       postalCode: '02-605',
       country: 'PL',
+    },
+    geo: {
+      latitude: 52.1946,
+      longitude: 21.0146,
     },
     telephone: '+48573818260',
     openingHours: 'Mo-Su 10:00-20:00',

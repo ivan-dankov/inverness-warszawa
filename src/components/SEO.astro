@@ -10,12 +10,7 @@ interface Props {
   noindex?: boolean;
   schema?: object | object[];
   language?: 'pl' | 'en' | 'ru' | 'uk';
-  alternates?: {
-    pl?: string;
-    en?: string;
-    ru?: string;
-    uk?: string;
-  };
+  alternates?: Record<string, string>;
   articlePublishedTime?: string;
   articleModifiedTime?: string;
   articleAuthor?: string;
@@ -87,7 +82,7 @@ const localeMap = {
 {alternates && Object.entries(alternates).map(([lang, url]) => (
   <link rel="alternate" hreflang={lang} href={url} />
 ))}
-{alternates && <link rel="alternate" hreflang="x-default" href={alternates.pl || canonical} />}
+{alternates && <link rel="alternate" hreflang="x-default" href={alternates['pl-PL'] || alternates['pl'] || canonical} />}
 
 <!-- Structured Data -->
 {schema && (

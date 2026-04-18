@@ -347,6 +347,37 @@ export async function getAllPostSlugs(): Promise<Array<{ locale: Locale; slug: s
   }));
 }
 
+export interface SitemapPost {
+  slug: string;
+  locale: Locale;
+  translationGroupId: string;
+  publishedAt: string;
+  updatedAt?: string;
+}
+
+/**
+ * Get minimal post data for sitemap generation.
+ * Lighter than getAllPosts() — only fetches fields needed for the sitemap.
+ */
+export async function getAllPostsForSitemap(): Promise<SitemapPost[]> {
+  const query = `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+    "slug": slug.current,
+    locale,
+    translationGroupId,
+    publishedAt,
+    updatedAt
+  }`;
+
+  const results = await sanityClient.fetch(query);
+  return results.map((post: { slug: string; locale: string; translationGroupId: string; publishedAt: string; updatedAt?: string }) => ({
+    slug: post.slug,
+    locale: post.locale as Locale,
+    translationGroupId: post.translationGroupId,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+  }));
+}
+
 export interface TranslationMappings {
   slugToGroupId: Record<string, string>; // e.g. "piercing-uszu" -> "group-123"
   groupIdToSlugs: Record<string, Record<Locale, string>>; // e.g. "group-123" -> { pl: "piercing-uszu", en: "ear-piercing" }

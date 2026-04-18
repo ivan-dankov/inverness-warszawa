@@ -1,5 +1,5 @@
 import { urlFor } from './sanity';
-import { getSiteConfig } from './site-config';
+import { getSiteConfig, siteConfig } from './site-config';
 import { getTranslations } from './translations';
 
 export type Locale = 'pl' | 'uk' | 'ru' | 'en';
@@ -246,11 +246,10 @@ export async function getLocalBusinessSchema(locale: Locale) {
     ? `${siteUrl}${siteConfig.organization.logo}`
     : `${siteUrl}/logo.png`;
 
-  // GeoCoordinates from known location (Ursynowska 10/1, Warszawa, Mokotów)
   const geoCoordinates = {
     '@type': 'GeoCoordinates',
-    latitude: 52.1946,
-    longitude: 21.0146,
+    latitude: siteConfig.business.geo.latitude,
+    longitude: siteConfig.business.geo.longitude,
   };
 
   // Convert opening hours string to OpeningHoursSpecification format
@@ -655,74 +654,74 @@ export function getServicePageSEO(
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dzieci Warszawa', // 33 + 18 = 51
-        description: 'Bezpieczne przekłuwanie uszu dzieci od 0+ ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Bez bólu ✓ Od 80 zł → Rezerwuj online!', // 124
+        title: 'Przekłuwanie Uszu Dzieci Warszawa',
+        description: 'Bezpieczne przekłuwanie uszu dzieci od 0+ ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Bez bólu ✓ 150 zł / 270 zł z kolczykami → Rezerwuj online!',
       },
       en: {
-        title: 'Ear Piercing Children 0+ Warsaw', // 31 + 18 = 49
-        description: 'Ear piercing for children 0+ in Warsaw. Inverness Med system - painless, sterile, certified. From 80 PLN. Book: 573-818-260', // 125
+        title: 'Ear Piercing Children 0+ Warsaw',
+        description: 'Ear piercing for children 0+ in Warsaw. Inverness Med system - painless, sterile, certified. From 270 PLN incl. earrings. Book: 573-818-260',
       },
       uk: {
-        title: 'Прокол Вух Дітям 0+ Варшава', // 27 + 18 = 45
-        description: 'Прокол вух дітям 0+ у Варшаві. Система Inverness Med - безболісна та стерильна. Від 80 злотих. Бронювання: 573-818-260', // 120
+        title: 'Прокол Вух Дітям 0+ Варшава',
+        description: 'Прокол вух дітям 0+ у Варшаві. Система Inverness Med - безболісна та стерильна. 150 злотих / 270 злотих з сережками. Бронювання: 573-818-260',
       },
       ru: {
-        title: 'Прокол Ушей Детям 0+ Варшава', // 28 + 18 = 46
-        description: 'Прокол ушей детям 0+ в Варшаве. Система Inverness Med - безболезненно и стерильно. От 80 злотых. Бронирование: 573-818-260', // 125
+        title: 'Прокол Ушей Детям 0+ Варшава',
+        description: 'Прокол ушей детям 0+ в Варшаве. Система Inverness Med - безболезненно и стерильно. 150 злотых / 270 злотых с серьгами. Бронирование: 573-818-260',
       },
     },
     'przekluwanie-uszu-dorosli-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dorosłych Warszawa', // 36 + 18 = 54
-        description: 'Profesjonalne przekłuwanie uszu dla dorosłych ✓ Sterylny system ✓ Bez igły ✓ Od 80 zł ✓ Wiele lokalizacji w Warszawie → Umów się!', // 131
+        title: 'Przekłuwanie Uszu Dorosłych Warszawa',
+        description: 'Profesjonalne przekłuwanie uszu dla dorosłych ✓ Sterylny system Inverness Med ✓ Bez igły ✓ 90 zł / 160 zł z kolczykami ✓ Warszawa Mokotów → Umów się!',
       },
       en: {
-        title: 'Ear Piercing Adults Warsaw', // 26 + 18 = 44
-        description: 'Professional ear piercing for adults in Warsaw. Fast, safe, painless. From 80 PLN. ☎ 573-818-260', // 100
+        title: 'Ear Piercing Adults Warsaw',
+        description: 'Professional ear piercing for adults in Warsaw. Inverness Med system - fast, safe, painless. From 160 PLN incl. earrings. ☎ 573-818-260',
       },
       uk: {
-        title: 'Прокол Вух Дорослим Варшава', // 27 + 18 = 45
-        description: 'Професійний прокол вух дорослим у Варшаві. Швидко, безпечно, без болю. Від 80 злотих. ☎ 573-818-260', // 102
+        title: 'Прокол Вух Дорослим Варшава',
+        description: 'Професійний прокол вух дорослим у Варшаві. Система Inverness Med. 90 злотих / 160 злотих з сережками. ☎ 573-818-260',
       },
       ru: {
-        title: 'Прокол Ушей Взрослым Варшава', // 28 + 18 = 46
-        description: 'Профессиональный прокол ушей взрослым в Варшаве. Быстро, безопасно, без боли. От 80 злотых. ☎ 573-818-260', // 108
+        title: 'Прокол Ушей Взрослым Варшава',
+        description: 'Профессиональный прокол ушей взрослым в Варшаве. Система Inverness Med. 90 злотых / 160 злотых с серьгами. ☎ 573-818-260',
       },
     },
     'przekluwanie-chrzastki-warszawa': {
       pl: {
-        title: 'Przekłuwanie Chrząstki Ucha Warszawa', // 36 + 18 = 54
-        description: 'Bezpieczne przekłuwanie chrząstki (hélix) ✓ System sterylnych kapsułek ✓ Bez igły ✓ Od 80 zł ✓ Doświadczony specjalista → Zarezerwuj!', // 132
+        title: 'Przekłuwanie Chrząstki Ucha Warszawa',
+        description: 'Bezpieczne przekłuwanie chrząstki (helix, tragus, conch) ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Od 90 zł ✓ Doświadczony specjalista → Zarezerwuj!',
       },
       en: {
-        title: 'Cartilage Piercing Warsaw | Helix, Tragus', // 41
-        description: 'Safe cartilage piercing in Warsaw. Helix, tragus, conch - professional system. From 80 PLN. Book: 573-818-260', // 109
+        title: 'Cartilage Piercing Warsaw | Helix, Tragus',
+        description: 'Safe cartilage piercing in Warsaw. Helix, tragus, conch - Inverness Med system. From 120 PLN. Professional specialist. Book: 573-818-260',
       },
       uk: {
-        title: 'Прокол Хряща Вуха Варшава | Helix, Tragus', // 41
-        description: 'Безпечний прокол хряща вуха у Варшаві. Helix, tragus, conch - комфортна система. Від 80 злотих. Бронювання: 573-818-260', // 122
+        title: 'Прокол Хряща Вуха Варшава | Helix, Tragus',
+        description: 'Безпечний прокол хряща вуха у Варшаві. Helix, tragus, conch - система Inverness Med. Від 90 злотих. Бронювання: 573-818-260',
       },
       ru: {
-        title: 'Прокол Хряща Уха Варшава | Helix, Tragus', // 40
-        description: 'Безопасный прокол хряща уха в Варшаве. Helix, tragus, conch - современная система. От 80 злотых. Бронирование: 573-818-260', // 125
+        title: 'Прокол Хряща Уха Варшава | Helix, Tragus',
+        description: 'Безопасный прокол хряща уха в Варшаве. Helix, tragus, conch - система Inverness Med. От 90 злотых. Бронирование: 573-818-260',
       },
     },
     'przekluwanie-uszu-z-dojazdem-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu z Dojazdem Warszawa', // 38 + 18 = 56
-        description: 'Przyjedziemy do Ciebie! ✓ Przekłuwanie uszu dzieci w domu ✓ Cała Warszawa + okolice ✓ Dojazd +70 zł do ceny → Umów wizytę domową!', // 132
+        title: 'Przekłuwanie Uszu z Dojazdem Warszawa',
+        description: 'Przyjedziemy do Ciebie! ✓ Przekłuwanie uszu dzieci i dorosłych w domu ✓ Cała Warszawa + okolice ✓ Dopłata za dojazd +90 zł → Umów wizytę domową!',
       },
       en: {
-        title: 'Ear Piercing with Home Visit Warsaw', // 35 + 18 = 53
-        description: 'Ear piercing with home visit in Warsaw. Convenient and safe. Base price from 80 PLN + 70 PLN travel fee. ☎ 573-818-260', // 121
+        title: 'Ear Piercing with Home Visit Warsaw',
+        description: 'Ear piercing with home visit in Warsaw. Convenient and safe. Service price + 90 PLN travel fee. Children and adults. ☎ 573-818-260',
       },
       uk: {
-        title: 'Прокол Вух з Виїздом Варшава', // 28 + 18 = 46
-        description: 'Прокол вух з виїздом додому у Варшаві. Зручно та безпечно. Від 80 злотих + 70 злотих за виїзд. ☎ 573-818-260', // 110
+        title: 'Прокол Вух з Виїздом Варшава',
+        description: 'Прокол вух з виїздом додому у Варшаві. Зручно та безпечно. Ціна послуги + 90 злотих за виїзд. ☎ 573-818-260',
       },
       ru: {
-        title: 'Прокол Ушей с Выездом Варшава', // 29 + 18 = 47
-        description: 'Прокол ушей с выездом на дом в Варшаве. Удобно и безопасно. От 80 злотых + 70 злотых за выезд. ☎ 573-818-260', // 111
+        title: 'Прокол Ушей с Выездом Варшава',
+        description: 'Прокол ушей с выездом на дом в Варшаве. Удобно и безопасно. Цена услуги + 90 злотых за выезд. ☎ 573-818-260',
       },
     },
   };

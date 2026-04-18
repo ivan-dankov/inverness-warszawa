@@ -24,18 +24,28 @@ if (pathWithoutLocale === '' || pathWithoutLocale === '/') {
 const canonical = (seo.canonical && seo.canonical.startsWith('http')) 
   ? seo.canonical 
   : getCanonicalUrl(locale, seo.canonical ? (seo.canonical.replace(`/${locale}`, '') || '/') : pathWithoutLocale);
-const hreflang = seo.hreflang || (seo as any).alternates || getHreflangUrls(
+const hreflangRaw = seo.hreflang || (seo as any).alternates || getHreflangUrls(
   pathWithoutLocale,
   seo.translationGroup
 );
 
-// Map locale codes to proper hreflang format
+// Map locale codes to proper BCP-47 hreflang format
 const hreflangMap: Record<Locale, string> = {
   pl: 'pl-PL',
   en: 'en-GB',
   uk: 'uk-UA',
   ru: 'ru-RU',
 };
+
+// Remap alternates keys from 2-letter locale codes to BCP-47 codes
+const hreflang = hreflangRaw
+  ? Object.fromEntries(
+      Object.entries(hreflangRaw).map(([lang, url]) => [
+        hreflangMap[lang as Locale] ?? lang,
+        url,
+      ])
+    )
+  : undefined;
 
 // Map locale to HTML lang attribute format
 const htmlLangMap: Record<Locale, string> = {

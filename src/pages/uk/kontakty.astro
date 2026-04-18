@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
-import { getBreadcrumbSchema } from '../../lib/seo';
+import { getBreadcrumbSchema, getPageSEO } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Contact from '../../components/Contact.astro';
 
 const locale = 'uk';
+const baseSeo = getPageSEO(locale, 'contact');
 const seo = {
-  title: "Запис Онлайн | Gentle Piercing | ☎️ +48 573-818-260 | Мокотув Варшава",
-  description: "📍 Ursynowska 10/1, Мокотув, Варшава ☎️ +48 573-818-260 🕐 Пн-Нд 10:00-20:00 🚇 Метро Wilanowska 12хв | Запис на прокол вух Inverness Med онлайн через Booksy ✓",
-  language: 'uk',
+  ...baseSeo,
   canonical: siteMetadata.urls.contact.uk,
   hreflang: generateAlternates('contact'),
   ogImage: 'https://gentlepiercing.pl/hero/hero-studio.jpg',

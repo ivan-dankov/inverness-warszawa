@@ -1,3 +1,4 @@
+import { siteConfig } from '../lib/site-config';
 
 export const siteMetadata = {
     siteName: 'Gentle Piercing',
@@ -18,8 +19,8 @@ export const siteMetadata = {
             countryCode: 'PL'
         },
         geo: {
-            latitude: '52.1775',
-            longitude: '21.0426'
+            latitude: '52.1946',
+            longitude: '21.0146'
         },
         hours: {
             opens: '10:00',
@@ -205,8 +206,8 @@ export function generateLocalBusinessSchema(language: 'pl' | 'en' | 'ru' | 'uk' 
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": siteMetadata.business.geo.latitude,
-            "longitude": siteMetadata.business.geo.longitude
+            "latitude": siteConfig.business.geo.latitude,
+            "longitude": siteConfig.business.geo.longitude
         },
         "url": siteMetadata.urls.base,
         "priceRange": siteMetadata.business.priceRange,
