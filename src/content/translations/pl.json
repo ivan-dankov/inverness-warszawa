@@ -125,7 +125,7 @@
     "photoCount": "{{count}} zdjęć"
   },
   "comparison": {
-    "title": "Dlaczego Inverness Med",
+    "title": "Inverness Med — najnowocześniejszy i najbezpieczniejszy system",
     "subtitle": "Jak Inverness Med wypada na tle pistoletu i igły",
     "videoSubtitle": "Jak to działa",
     "description": "System Inverness to nowoczesna metoda przekłuwania uszu – delikatna, jednorazowa i w pełni higieniczna. Idealna dla dzieci i dorosłych.",
@@ -249,6 +249,13 @@
       "title": "Gentle Piercing",
       "description": "Profesjonalne przekłuwanie uszu systemem medycznym"
     },
+    "services": {
+      "title": "Usługi",
+      "children": "Przekłuwanie uszu dzieciom",
+      "adults": "Przekłuwanie uszu dla dorosłych",
+      "cartilage": "Przekłuwanie chrząstki",
+      "mobile": "Przekłuwanie uszu z dojazdem"
+    },
     "links": {
       "title": "Przydatne Linki",
       "aftercare": "Pielęgnacja",
@@ -369,7 +376,7 @@
     }
   },
   "cta": {
-    "title": "Gotowy na pierwsze kolczyki?",
+    "title": "Gotowa na pierwsze kolczyki?",
     "subtitle": "Umów wizytę już dziś i doświadcz bezpiecznego, bezbolesnego przekłuwania uszu systemem Inverness MED",
     "button": "Rezerwuj Online",
     "phone": "Telefon",

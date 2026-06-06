@@ -1,8 +1,8 @@
 ---
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
-import { PAGE_SLUGS } from '../lib/seo';
-import logoWide from '../assets/logo-wide.svg';
+import { PAGE_SLUGS, getServicePagePath, type ServicePageSlug } from '../lib/seo';
+import logoWideDark from '../assets/logo-wide-dark.svg';
 
 interface Props {
   locale: Locale;
@@ -10,14 +10,21 @@ interface Props {
 
 const { locale } = Astro.props;
 const currentYear = new Date().getFullYear();
+
+const serviceLinks: Array<{ slug: ServicePageSlug; labelKey: string }> = [
+  { slug: 'przekluwanie-uszu-dzieci-warszawa', labelKey: 'footer.services.children' },
+  { slug: 'przekluwanie-uszu-dorosli-warszawa', labelKey: 'footer.services.adults' },
+  { slug: 'przekluwanie-chrzastki-warszawa', labelKey: 'footer.services.cartilage' },
+  { slug: 'przekluwanie-uszu-z-dojazdem-warszawa', labelKey: 'footer.services.mobile' },
+];
 ---
 
 <footer class="bg-muted/50 border-t border-border">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
       <div>
         <div class="mb-4">
-          <img src={logoWide.src || logoWide} alt="Gentle Piercing" class="h-8 w-auto" width="320" height="64" loading="lazy" decoding="async" />
+          <img src={logoWideDark.src || logoWideDark} alt="Gentle Piercing" class="h-8 w-auto" width="320" height="64" loading="lazy" decoding="async" />
         </div>
         <p class="text-sm text-muted-foreground mb-4">
           {t(locale, 'footer.company.description')}
@@ -75,6 +82,19 @@ const currentYear = new Date().getFullYear();
             </a>
           </div>
         </div>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-foreground mb-4">{t(locale, 'footer.services.title')}</h3>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          {serviceLinks.map(({ slug, labelKey }) => (
+            <li>
+              <a href={getServicePagePath(slug, locale)} class="hover:text-primary transition-colors">
+                {t(locale, labelKey)}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div>

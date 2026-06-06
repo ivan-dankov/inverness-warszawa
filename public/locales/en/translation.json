@@ -110,7 +110,7 @@
     "photoCount": "{{count}} photos"
   },
   "comparison": {
-    "title": "Why Inverness Med",
+    "title": "Inverness Med — the most modern and safe system",
     "subtitle": "Safe. Quiet. Sterile.",
     "description": "The Inverness system is a modern ear piercing method – gentle, single-use and fully hygienic. Perfect for children and adults.",
     "tableTitle": "🔍 Compare ear piercing methods",
@@ -225,6 +225,13 @@
     "company": {
       "title": "Gentle Piercing",
       "description": "Professional ear piercing with medical system"
+    },
+    "services": {
+      "title": "Services",
+      "children": "Ear piercing for children",
+      "adults": "Ear piercing for adults",
+      "cartilage": "Cartilage piercing",
+      "mobile": "Mobile ear piercing"
     },
     "links": {
       "title": "Useful Links",
