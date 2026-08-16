@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { languages } from '../lib/language-routes';
 import { PAGE_SLUGS, SERVICE_SLUGS, type Locale } from '../lib/seo';
+import { LOCATIONS_BASE_SLUG } from '../data/locations';
 
 interface LanguageSwitchProps {
   currentLocale: Locale;
@@ -37,6 +38,16 @@ function LanguageSwitch({ currentLocale, currentPath, translationSlugs }: Langua
         const targetSlug = slugs[langCode] || slugs['pl'];
         return `/${langCode}/${targetSlug}`;
       }
+    }
+
+    // Check if this is a location page (cluster hub or a district under it)
+    const locationBase = Object.entries(LOCATIONS_BASE_SLUG).find(([, slug]) =>
+      pathWithoutLocale === `/${slug}` || pathWithoutLocale.startsWith(`/${slug}/`)
+    );
+    if (locationBase) {
+      const [, matchedSlug] = locationBase;
+      const rest = pathWithoutLocale.slice(`/${matchedSlug}`.length);
+      return `/${langCode}/${LOCATIONS_BASE_SLUG[langCode]}${rest}`;
     }
 
     // Check if this is a service detail page

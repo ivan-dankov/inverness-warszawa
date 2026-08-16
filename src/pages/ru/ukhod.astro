@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { generateAlternates } from '../../config/seo';
+import { siteMetadata, generateAlternates } from '../../config/seo';
 import { getBreadcrumbSchema, getCanonicalUrl, getLocalizedPageUrl, getPageSEO, type Locale } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Aftercare from '../../components/Aftercare.astro';
@@ -11,7 +11,7 @@ const seo = {
   ...baseSeo,
   canonical: getLocalizedPageUrl('aftercare', locale),
   hreflang: generateAlternates('aftercare'),
-  ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+  ogImage: siteMetadata.defaultOgImage,
 };
 
 const structuredData = [

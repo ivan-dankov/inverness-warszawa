@@ -319,4 +319,9 @@ All colors MUST be HSL.
     margin: 2rem 0;
     -webkit-overflow-scrolling: touch;
   }
+
+  /* Primary booking button — one style site-wide */
+  .btn-cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary text-primary-foreground font-bold text-base h-14 px-10 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 w-full sm:w-auto;
+  }
 }

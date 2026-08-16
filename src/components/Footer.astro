@@ -2,6 +2,7 @@
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { PAGE_SLUGS, getServicePagePath, type ServicePageSlug } from '../lib/seo';
+import { getLocationPath, getLocationsBasePath, locations } from '../data/locations';
 import logoWideDark from '../assets/logo-wide-dark.svg';
 
 interface Props {
@@ -46,8 +47,8 @@ const serviceLinks: Array<{ slug: ServicePageSlug; labelKey: string }> = [
             </a>
           </p>
           <p>
-            <a href="mailto:piercinggentle@gmail.com" class="hover:text-primary transition-colors">
-              piercinggentle@gmail.com
+            <a href={`mailto:${t(locale, 'contact.emailAddress')}`} class="hover:text-primary transition-colors">
+              {t(locale, 'contact.emailAddress')}
             </a>
           </p>
           <div class="flex gap-4 mt-4">
@@ -72,7 +73,7 @@ const serviceLinks: Array<{ slug: ServicePageSlug; labelKey: string }> = [
               </svg>
             </a>
             <a 
-              href="mailto:piercinggentle@gmail.com" 
+              href={`mailto:${t(locale, 'contact.emailAddress')}`} 
               class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 transition-colors"
               aria-label={t(locale, 'contact.email')}
             >
@@ -117,6 +118,26 @@ const serviceLinks: Array<{ slug: ServicePageSlug; labelKey: string }> = [
           </li>
         </ul>
       </div>
+    </div>
+
+    <div class="mt-10 pt-8 border-t border-border">
+      <h3 class="text-xs uppercase tracking-[0.16em] text-muted-foreground font-semibold mb-4">
+        {t(locale, 'locations.footerHeading')}
+      </h3>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+        {locations.map((location) => (
+          <li>
+            <a href={getLocationPath(location.slug, locale)} class="hover:text-primary transition-colors">
+              {location.content[locale].name}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href={getLocationsBasePath(locale)} class="text-foreground font-medium hover:text-primary transition-colors">
+            {t(locale, 'locations.nearby.all')}
+          </a>
+        </li>
+      </ul>
     </div>
 
     <div class="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">

@@ -100,7 +100,7 @@
         "title": "More Service Options",
         "description": "Discover our full range of services and find the perfect option for you",
         "badge": "Booksy",
-        "price": "from 70 PLN + service price",
+        "price": "+90 PLN travel",
         "duration": "Various options",
         "features": [
           "Mobile service",
@@ -112,8 +112,8 @@
     "pricing": {
       "title": "Pricing Information",
       "earringsInfo": "Price does not include earrings",
-      "earringsPrice": "Additional charge for earrings: from 60 PLN for one, from 100 PLN per pair",
-      "mobileVisit": "Mobile service: 70 PLN, may be higher depending on distance"
+      "earringsPrice": "Additional charge for earrings: from 70 PLN each, from 120 PLN a pair",
+      "mobileVisit": "Home visit: +90 PLN on top of the procedure"
     },
     "bookButton": "Book Online",
     "durationLabel": "Duration:"
@@ -128,6 +128,7 @@
     "title": "Inverness Med — the most modern and safe system",
     "subtitle": "How Inverness Med compares to a gun and a needle",
     "videoSubtitle": "How it works",
+    "playVideo": "Play video: Inverness Med system",
     "description": "The Inverness system is a modern ear piercing method – gentle, single-use and fully hygienic. Perfect for children and adults.",
     "tableTitle": "Compare ear piercing methods",
     "recommended": "Recommended",
@@ -213,7 +214,7 @@
       },
       {
         "question": "How much does ear piercing cost?",
-        "answer": "The procedure price is 150 PLN for piercing two earlobes (children's piercing) or 90 PLN for one earlobe. The cost of earrings must be added to the price — from 100 PLN per pair. We also offer mobile service with home visit (+50 PLN). You'll find the current price list in the 'Our services' section."
+        "answer": "Children usually get a pair of lobes: 150 PLN for the procedure, from 270 PLN with earrings. Adults book 1, 2 or 3 piercings in one visit: 90 / 150 / 210 PLN, earring from 70 PLN. A home visit is a flat +90 PLN on top of the procedure."
       },
       {
         "question": "Can I pierce cartilage (helix, tragus)?",
@@ -241,7 +242,7 @@
     "hours": "Opening hours",
     "days": "Monday - Sunday",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Mobile service: +70 PLN",
+    "mobileVisit": "Home visit: +90 PLN",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {
@@ -440,7 +441,7 @@
       ],
       "pricing": {
         "basePrice": "From 90 PLN per piercing",
-        "additionalInfo": "Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
+        "additionalInfo": "Price does not include earrings (from 70 PLN each, from 120 PLN a pair)"
       }
     },
     "ear-piercing-children-warsaw": {
@@ -460,7 +461,7 @@
       ],
       "pricing": {
         "basePrice": "150 PLN",
-        "additionalInfo": "Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
+        "additionalInfo": "Price does not include earrings (from 70 PLN each, from 120 PLN a pair)"
       }
     },
     "ear-piercing-adults-warsaw": {
@@ -476,7 +477,7 @@
       ],
       "pricing": {
         "basePrice": "1 piercing: 90 PLN, 2 piercings: 150 PLN, 3 piercings: 210 PLN",
-        "additionalInfo": "Service price. Earring price from 60 PLN."
+        "additionalInfo": "Service price. Earring from 70 PLN."
       }
     },
     "cartilage-piercing-warsaw": {
@@ -492,7 +493,7 @@
       ],
       "pricing": {
         "basePrice": "1 piercing: 90 PLN, 2 piercings: 150 PLN, 3 piercings: 210 PLN",
-        "additionalInfo": "Service price. Earring price from 60 PLN."
+        "additionalInfo": "Service price. Earring from 70 PLN."
       }
     },
     "mobile-ear-piercing-warsaw": {
@@ -507,9 +508,73 @@
         "Flexible visit hours"
       ],
       "pricing": {
-        "basePrice": "From 90 PLN per piercing + 70 PLN travel",
-        "additionalInfo": "Travel price may be higher depending on distance. Price does not include earrings (from 60 PLN for one, from 100 PLN per pair)"
+        "basePrice": "From 90 PLN per piercing + 90 PLN travel",
+        "additionalInfo": "Travel is a flat +90 PLN on top of the procedure. Price does not include earrings (from 70 PLN each, from 120 PLN a pair)"
       }
     }
-  }
+  },
+    "locations": {
+      "breadcrumbDistricts": "Districts",
+      "eyebrow": {
+        "district": "Warsaw",
+        "suburb": "Near Warsaw"
+      },
+      "minutesCaption": "to the studio in Mokotów",
+      "minutesCaptionLocal": "to the studio",
+      "visit": {
+        "heading": "Studio or home visit",
+        "subheading": "Same procedure. Only the place changes.",
+        "primaryBadge": "Most often",
+        "secondaryBadge": "Or",
+        "studioTitle": "You come to the studio",
+        "homeTitle": "We come to you",
+        "mapLink": "Directions",
+        "homeLink": "How a home visit works",
+        "surchargeBefore": "Surcharge",
+        "surchargeAfter": "on top of the procedure",
+        "mapTitle": "Map of the Gentle Piercing studio, Ursynowska 10/1",
+        "coverageAlt": "Home visit area"
+      },
+      "pricing": {
+        "heading": "Prices",
+        "note": "Same prices at the studio and at your home. Earrings are separate,",
+        "travelRow": "Home visit"
+      },
+      "services": {
+        "heading": "Services",
+        "children": "Children 0+",
+        "childrenNote": "Usually a pair of lobes",
+        "adults": "Adults",
+        "adultsNote": "1, 2 or 3 piercings",
+        "cartilage": "Cartilage",
+        "cartilageNote": "Helix, tragus, conch",
+        "mobile": "Home visit",
+        "mobileNote": "Surcharge"
+      },
+      "photosLabel": "Photos from the studio",
+      "nearby": {
+        "heading": "Nearby areas",
+        "all": "All areas"
+      },
+      "hub": {
+        "seoTitle": "Ear Piercing Warsaw | Districts and Nearby Areas",
+        "seoDescription": "Studio at Ursynowska 10/1 in Mokotów and home visits. Check Wilanów, Ursynów, Mokotów and Piaseczno.",
+        "breadcrumb": "Ear piercing by district",
+        "eyebrow": "Warsaw and nearby",
+        "h1": "Where you travel to us from",
+        "lede": "One studio in Mokotów and home visits. Pick your area.",
+        "listHeading": "List of areas",
+        "recommendStudio": "Usually the studio",
+        "recommendMobile": "Usually a home visit",
+        "toStudio": "to the studio",
+        "otherAreaBefore": "Another district? We travel across Warsaw and about 30 km from the centre, surcharge",
+        "otherAreaLink": "Home visit service"
+      },
+      "linksBlock": {
+        "heading": "Where you travel to us from",
+        "intro": "Studio in Mokotów, home visits across Warsaw and nearby."
+      },
+      "footerHeading": "Districts and areas",
+      "serviceCrossLink": "We describe travel times and coverage separately for"
+    }
 }

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { siteMetadata } from '../../../config/seo';
 import { getPageSEO, getBreadcrumbSchema, getCanonicalUrl, type Locale } from '../../../lib/seo';
 import { getPostsByLocale, urlFor } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
@@ -23,7 +24,7 @@ const seo = {
     ru: getCanonicalUrl('ru', '/blog'),
     en: getCanonicalUrl('en', '/blog'),
   },
-  ogImage: 'https://gentlepiercing.pl/hero/hero-4.jpg',
+  ogImage: siteMetadata.defaultOgImage,
 };
 let posts = [];
 try {

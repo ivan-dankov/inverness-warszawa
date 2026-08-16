@@ -1,0 +1,19 @@
+---
+import LocationSpoke from '../../../components/LocationSpoke.astro';
+import { locations, type LocationData } from '../../../data/locations';
+
+export function getStaticPaths() {
+  return locations.map((location) => ({
+    params: { slug: location.slug },
+    props: { location },
+  }));
+}
+
+interface Props {
+  location: LocationData;
+}
+
+const { location } = Astro.props;
+---
+
+<LocationSpoke locale="en" location={location} />

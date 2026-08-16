@@ -85,7 +85,7 @@
         "title": "More service options",
         "description": "Discover our full range of services and find the perfect option for you",
         "badge": "Booksy",
-        "price": "from 40 PLN + service price",
+        "price": "+90 PLN travel",
         "duration": "Various options",
         "features": [
           "Mobile service",
@@ -97,8 +97,8 @@
     "pricing": {
       "title": "Pricing information",
       "earringsInfo": "Price does not include earrings",
-      "earringsPrice": "Additional charge for earrings: from 100 PLN per pair",
-      "mobileVisit": "Mobile service: 50 PLN, may be higher depending on distance"
+      "earringsPrice": "Additional charge for earrings: from 70 PLN each, from 120 PLN a pair",
+      "mobileVisit": "Home visit: +90 PLN on top of the procedure"
     },
     "bookButton": "Book Online",
     "durationLabel": "Duration:"
@@ -190,7 +190,7 @@
       },
       {
         "question": "How much does ear piercing cost?",
-        "answer": "The procedure price is 150 PLN for piercing two earlobes (children's piercing) or 90 PLN for one earlobe. The cost of earrings must be added to the price — from 100 PLN per pair. We also offer mobile service with home visit (+50 PLN). You'll find the current price list in the 'Our services' section."
+        "answer": "Children usually get a pair of lobes: 150 PLN for the procedure, from 270 PLN with earrings. Adults book 1, 2 or 3 piercings in one visit: 90 / 150 / 210 PLN, earring from 70 PLN. A home visit is a flat +90 PLN on top of the procedure."
       },
       {
         "question": "Can I pierce cartilage (helix, tragus)?",
@@ -218,7 +218,7 @@
     "hours": "Opening hours",
     "days": "Monday - Sunday",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Mobile service: +50 PLN",
+    "mobileVisit": "Home visit: +90 PLN",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {

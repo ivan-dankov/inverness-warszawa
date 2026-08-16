@@ -50,7 +50,7 @@ export const siteConfig: SiteConfig = {
     },
     telephone: '+48573818260',
     openingHours: 'Mo-Su 10:00-20:00',
-    priceRange: '80-150 PLN',
+    priceRange: '90-360 PLN',
   },
   ratings: {
     ratingValue: '5.0',

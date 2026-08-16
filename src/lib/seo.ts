@@ -659,7 +659,7 @@ export function getServicePageSEO(
       },
       en: {
         title: 'Ear Piercing Children 0+ Warsaw',
-        description: 'Ear piercing for children 0+ in Warsaw. Inverness Med system - painless, sterile, certified. From 270 PLN incl. earrings. Book: 573-818-260',
+        description: 'Ear piercing for children 0+ in Warsaw. Inverness Med system - painless, sterile, certified. 150 PLN / from 270 PLN with earrings. Book: 573-818-260',
       },
       uk: {
         title: 'Прокол Вух Дітям 0+ Варшава',
@@ -673,19 +673,19 @@ export function getServicePageSEO(
     'przekluwanie-uszu-dorosli-warszawa': {
       pl: {
         title: 'Przekłuwanie Uszu Dorosłych Warszawa',
-        description: 'Profesjonalne przekłuwanie uszu dla dorosłych ✓ Sterylny system Inverness Med ✓ Bez igły ✓ 90 zł / 160 zł z kolczykami ✓ Warszawa Mokotów → Umów się!',
+        description: 'Profesjonalne przekłuwanie uszu dla dorosłych ✓ Sterylny system Inverness Med ✓ Bez igły ✓ 90 / 150 / 210 zł ✓ Kolczyk od 70 zł → Umów się!',
       },
       en: {
         title: 'Ear Piercing Adults Warsaw',
-        description: 'Professional ear piercing for adults in Warsaw. Inverness Med system - fast, safe, painless. From 160 PLN incl. earrings. ☎ 573-818-260',
+        description: 'Professional ear piercing for adults in Warsaw. Inverness Med system - fast, safe, painless. From 90 PLN, earring from 70 PLN. ☎ 573-818-260',
       },
       uk: {
         title: 'Прокол Вух Дорослим Варшава',
-        description: 'Професійний прокол вух дорослим у Варшаві. Система Inverness Med. 90 злотих / 160 злотих з сережками. ☎ 573-818-260',
+        description: 'Професійний прокол вух дорослим у Варшаві. Система Inverness Med. 90 / 150 / 210 злотих, сережка від 70 злотих. ☎ 573-818-260',
       },
       ru: {
         title: 'Прокол Ушей Взрослым Варшава',
-        description: 'Профессиональный прокол ушей взрослым в Варшаве. Система Inverness Med. 90 злотых / 160 злотых с серьгами. ☎ 573-818-260',
+        description: 'Профессиональный прокол ушей взрослым в Варшаве. Система Inverness Med. 90 / 150 / 210 злотых, серьга от 70 злотых. ☎ 573-818-260',
       },
     },
     'przekluwanie-chrzastki-warszawa': {
@@ -695,7 +695,7 @@ export function getServicePageSEO(
       },
       en: {
         title: 'Cartilage Piercing Warsaw | Helix, Tragus',
-        description: 'Safe cartilage piercing in Warsaw. Helix, tragus, conch - Inverness Med system. From 120 PLN. Professional specialist. Book: 573-818-260',
+        description: 'Safe cartilage piercing in Warsaw. Helix, tragus, conch - Inverness Med system. From 90 PLN. Professional specialist. Book: 573-818-260',
       },
       uk: {
         title: 'Прокол Хряща Вуха Варшава | Helix, Tragus',

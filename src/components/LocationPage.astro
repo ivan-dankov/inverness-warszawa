@@ -1,0 +1,435 @@
+---
+import { Image } from 'astro:assets';
+import ServiceFAQ from './ServiceFAQ';
+import CTASection from './CTASection.astro';
+import { getServicePagePath, type Locale } from '../lib/seo';
+import { t } from '../lib/translations';
+import {
+  LOCATION_PRICING,
+  STUDIO_ADDRESS,
+  getLocationPath,
+  getLocationsBasePath,
+  locationsBySlug,
+  type LocationData,
+} from '../data/locations';
+import heroMain from '../assets/hero/hero-girl.png';
+import childrenImg from '../assets/services/children.webp';
+import adultsImg from '../assets/ear-1.jpg';
+import cartilageImg from '../assets/ear-2.jpg';
+import mobileImg from '../assets/services/mobile.webp';
+import photoA from '../assets/gallery/children/image-01.jpeg';
+import photoB from '../assets/gallery/adults/image-12.jpeg';
+import photoC from '../assets/gallery/cartilage/image-24.jpeg';
+
+interface Props {
+  locale: Locale;
+  location: LocationData;
+}
+
+const { locale, location } = Astro.props;
+const content = location.content[locale];
+const pricing = LOCATION_PRICING[locale];
+
+const booksyUrl = (() => {
+  const base = 'https://booksy.com/pl-pl/dl/show-business/319418';
+  const params = new URLSearchParams({
+    utm_source: 'location_page',
+    utm_medium: 'cta',
+    utm_campaign: `${location.slug}_${locale}`,
+  });
+  return `${base}?${params.toString()}`;
+})();
+
+const studioLeads = location.recommend === 'studio';
+const visitOrder: Array<'studio' | 'home'> = studioLeads ? ['studio', 'home'] : ['home', 'studio'];
+
+const primaryClass = 'lg:col-span-3 bg-card border border-border rounded-2xl shadow-card overflow-hidden';
+const secondaryClass = 'lg:col-span-2 border-l-2 border-primary/20 pl-6 sm:pl-7 py-1 lg:mt-2';
+
+const services = [
+  {
+    href: getServicePagePath('przekluwanie-uszu-dzieci-warszawa', locale),
+    name: t(locale, 'locations.services.children'),
+    note: t(locale, 'locations.services.childrenNote'),
+    img: childrenImg,
+  },
+  {
+    href: getServicePagePath('przekluwanie-uszu-dorosli-warszawa', locale),
+    name: t(locale, 'locations.services.adults'),
+    note: t(locale, 'locations.services.adultsNote'),
+    img: adultsImg,
+  },
+  {
+    href: getServicePagePath('przekluwanie-chrzastki-warszawa', locale),
+    name: t(locale, 'locations.services.cartilage'),
+    note: t(locale, 'locations.services.cartilageNote'),
+    img: cartilageImg,
+  },
+  {
+    href: getServicePagePath('przekluwanie-uszu-z-dojazdem-warszawa', locale),
+    name: t(locale, 'locations.services.mobile'),
+    note: `${t(locale, 'locations.services.mobileNote')} ${pricing.travelFee}`,
+    img: mobileImg,
+  },
+];
+
+const nearby = location.nearby
+  .map((slug) => locationsBySlug.get(slug))
+  .filter((entry): entry is LocationData => Boolean(entry));
+
+const mapsEmbed =
+  'https://maps.google.com/maps?q=Gentle+Piercing,+Ursynowska+10/1,+Warszawa&output=embed';
+
+// Mokotów is where the studio already is, so the "to the studio in Mokotów" caption would be odd.
+const minutesCaption =
+  location.slug === 'mokotow'
+    ? t(locale, 'locations.minutesCaptionLocal')
+    : t(locale, 'locations.minutesCaption');
+---
+
+<section class="relative overflow-x-hidden bg-[hsl(221,43%,18%)]">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-24 -left-16 w-[28rem] h-[28rem] bg-primary opacity-40 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary opacity-30 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
+    <nav aria-label={t(locale, 'locations.breadcrumbDistricts')} class="pt-8 text-sm text-white/50">
+      <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <li><a href={`/${locale}`} class="hover:text-white transition-colors">Gentle Piercing</a></li>
+        <li aria-hidden="true" class="text-white/25">/</li>
+        <li>
+          <a href={getLocationsBasePath(locale)} class="hover:text-white transition-colors">
+            {t(locale, 'locations.breadcrumbDistricts')}
+          </a>
+        </li>
+        <li aria-hidden="true" class="text-white/25">/</li>
+        <li aria-current="page" class="text-white font-medium">{content.name}</li>
+      </ol>
+    </nav>
+
+    <header class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end pt-10">
+      <div class="lg:col-span-7 py-8 sm:py-12 lg:py-16">
+        <p class="text-xs uppercase tracking-[0.2em] text-white/50 font-semibold mb-5">
+          {location.type === 'district'
+            ? t(locale, 'locations.eyebrow.district')
+            : t(locale, 'locations.eyebrow.suburb')}
+        </p>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.05]">
+          {content.h1}
+        </h1>
+
+        <p class="mt-5 text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl">
+          {content.lede}
+        </p>
+
+        <p class="mt-6 text-5xl sm:text-6xl font-bold text-white tracking-tight leading-none">
+          {content.studio.minutes}
+        </p>
+        <p class="mt-2 text-sm text-white/50">{minutesCaption}</p>
+
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+          <a
+            href={booksyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-cta"
+            data-booksy-cta="hero"
+          >
+            {t(locale, 'cta.button')}
+          </a>
+          <span class="text-sm text-white/60">
+            {t(locale, 'cta.callPrefix')}
+            <a href="tel:+48573818260" class="text-white font-semibold hover:underline ml-1">+48 573 818 260</a>
+          </span>
+        </div>
+      </div>
+
+      <figure class="lg:col-span-5 flex items-end justify-center lg:justify-end">
+        <Image
+          src={heroMain}
+          alt={content.h1}
+          class="w-auto max-w-[280px] sm:max-w-[360px] lg:max-w-full h-auto object-contain object-bottom"
+          widths={[400, 600, 900]}
+          sizes="(min-width: 1024px) 420px, 70vw"
+          loading="eager"
+          format="webp"
+          quality={88}
+        />
+      </figure>
+    </header>
+  </div>
+</section>
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+
+  <section class="pt-14 sm:pt-16 pb-14 sm:pb-16">
+    <p class="text-lg leading-relaxed text-foreground max-w-[60ch]">
+      {content.intro}
+    </p>
+  </section>
+
+  <section class="pb-16 sm:pb-20" aria-labelledby="wizyta">
+    <h2 id="wizyta" class="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+      {t(locale, 'locations.visit.heading')}
+    </h2>
+    <p class="text-muted-foreground mb-8 max-w-xl">
+      {t(locale, 'locations.visit.subheading')}
+    </p>
+
+    <div class="grid lg:grid-cols-5 gap-6 lg:gap-8 items-start">
+      {visitOrder.map((kind, index) => {
+        const isPrimary = index === 0;
+        const headingClass = isPrimary
+          ? 'text-2xl sm:text-3xl font-bold text-foreground mb-3'
+          : 'text-xl font-bold text-foreground mb-2';
+        const bodyClass = isPrimary
+          ? 'text-base text-muted-foreground leading-relaxed'
+          : 'text-sm text-muted-foreground leading-relaxed';
+        const badge = isPrimary
+          ? t(locale, 'locations.visit.primaryBadge')
+          : t(locale, 'locations.visit.secondaryBadge');
+
+        return kind === 'studio' ? (
+          <article
+            class={isPrimary ? primaryClass : secondaryClass}
+            data-reveal
+            data-reveal-delay={String(index + 1)}
+          >
+            {isPrimary && (
+              <iframe
+                title={t(locale, 'locations.visit.mapTitle')}
+                src={mapsEmbed}
+                class="w-full h-52 sm:h-64 border-0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            )}
+            <div class={isPrimary ? 'p-7 sm:p-9' : ''}>
+              <p class="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-2">
+                {badge}
+              </p>
+              <h3 class={headingClass}>{t(locale, 'locations.visit.studioTitle')}</h3>
+              <p class={`${bodyClass} mb-4`}>{STUDIO_ADDRESS[locale]}</p>
+              <p class={bodyClass}>{content.studio.transit}</p>
+              <p class={`${bodyClass} mt-2`}>{content.studio.car}</p>
+              {content.studio.parking && (
+                <p class={`${bodyClass} mt-2`}>{content.studio.parking}</p>
+              )}
+              {!isPrimary && (
+                <a
+                  href="https://maps.google.com/?q=Gentle+Piercing,+Ursynowska+10/1,+Warszawa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 inline-flex text-sm font-semibold text-primary hover:underline underline-offset-4"
+                >
+                  {t(locale, 'locations.visit.mapLink')}
+                </a>
+              )}
+            </div>
+          </article>
+        ) : (
+          <article
+            class={isPrimary ? primaryClass : secondaryClass}
+            data-reveal
+            data-reveal-delay={String(index + 1)}
+          >
+            {isPrimary && (
+              <img
+                src="/warsaw-map.webp"
+                alt={`${t(locale, 'locations.visit.coverageAlt')} ${content.inName}`}
+                class="w-full h-52 sm:h-64 object-cover object-center"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div class={isPrimary ? 'p-7 sm:p-9' : ''}>
+              <p class="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-2">
+                {badge}
+              </p>
+              <h3 class={headingClass}>{t(locale, 'locations.visit.homeTitle')}</h3>
+              <p class={`${bodyClass} mb-4`}>{content.homeVisit.summary}</p>
+              <p class={bodyClass}>{content.homeVisit.coverage}</p>
+              <p class={`${bodyClass} mt-3`}>
+                {t(locale, 'locations.visit.surchargeBefore')}
+                <span class="font-bold text-primary mx-1">{pricing.travelFee}</span>
+                {t(locale, 'locations.visit.surchargeAfter')}
+              </p>
+              <a
+                href={getServicePagePath('przekluwanie-uszu-z-dojazdem-warszawa', locale)}
+                class="mt-4 inline-flex text-sm font-semibold text-primary hover:underline underline-offset-4"
+              >
+                {t(locale, 'locations.visit.homeLink')}
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+
+  <section class="pb-16 sm:pb-20" aria-labelledby="cennik">
+    <h2 id="cennik" class="text-3xl sm:text-4xl font-bold text-foreground mb-2">
+      {t(locale, 'locations.pricing.heading')}
+    </h2>
+    <p class="text-muted-foreground mb-8 max-w-xl">
+      {t(locale, 'locations.pricing.note')} {pricing.earrings.one}.
+    </p>
+
+    <ul class="divide-y divide-border border-y border-border max-w-3xl">
+      <li class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 py-5">
+        <div>
+          <p class="text-base sm:text-lg font-medium text-foreground">{pricing.children.label}</p>
+          <p class="text-sm text-muted-foreground">{pricing.children.unit}</p>
+        </div>
+        <p class="text-right">
+          <span class="text-xl font-bold text-primary">{pricing.children.service}</span>
+          <span class="block text-sm text-muted-foreground">{pricing.children.withEarrings}</span>
+        </p>
+      </li>
+      <li class="py-5">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 mb-4">
+          <div>
+            <p class="text-base sm:text-lg font-medium text-foreground">{pricing.adults.label}</p>
+            <p class="text-sm text-muted-foreground">{pricing.adults.unit}</p>
+          </div>
+          <p class="text-sm text-muted-foreground">{pricing.adults.earringFrom}</p>
+        </div>
+        <dl class="grid grid-cols-3 gap-4 max-w-lg">
+          {pricing.adults.tiers.map((tier) => (
+            <div>
+              <dt class="text-xs text-muted-foreground mb-1">{tier.n}</dt>
+              <dd class="text-lg sm:text-xl font-bold text-primary">{tier.price}</dd>
+            </div>
+          ))}
+        </dl>
+      </li>
+      <li class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-5">
+        <span class="text-base sm:text-lg font-medium text-foreground">
+          {t(locale, 'locations.pricing.travelRow')}
+        </span>
+        <span class="text-xl font-bold text-primary">{pricing.travelFee}</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="pb-16 sm:pb-20" aria-labelledby="uslugi">
+    <h2 id="uslugi" class="text-3xl sm:text-4xl font-bold text-foreground mb-8">
+      {t(locale, 'locations.services.heading')}
+    </h2>
+
+    <ul class="grid sm:grid-cols-2 gap-4">
+      {services.map((service, index) => (
+        <li>
+          <a
+            href={service.href}
+            class="group flex items-center gap-4 p-3 pr-5 rounded-2xl border border-border bg-card hover:border-primary/40 hover:shadow-card transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            data-reveal
+            data-reveal-delay={String(index + 1)}
+          >
+            <Image
+              src={service.img}
+              alt=""
+              class="w-20 h-20 sm:w-24 sm:h-24 object-contain rounded-xl bg-muted/40 flex-shrink-0"
+              widths={[96, 192]}
+              sizes="96px"
+            />
+            <span>
+              <span class="block text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                {service.name}
+              </span>
+              <span class="block text-sm text-muted-foreground mt-0.5">{service.note}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    {content.landmarks.length > 0 && (
+      <p class="mt-6 text-sm text-muted-foreground">
+        {content.name}: {content.landmarks.join(', ')}
+      </p>
+    )}
+  </section>
+</div>
+
+<section class="pb-4" aria-label={t(locale, 'locations.photosLabel')}>
+  <div class="grid grid-cols-3 gap-1 sm:gap-2">
+    <Image src={photoA} alt={t(locale, 'locations.services.children')} class="w-full h-36 sm:h-56 lg:h-72 object-cover" widths={[400, 700]} sizes="33vw" />
+    <Image src={photoB} alt={t(locale, 'locations.services.adults')} class="w-full h-36 sm:h-56 lg:h-72 object-cover" widths={[400, 700]} sizes="33vw" />
+    <Image src={photoC} alt={t(locale, 'locations.services.cartilage')} class="w-full h-36 sm:h-56 lg:h-72 object-cover" widths={[400, 700]} sizes="33vw" />
+  </div>
+</section>
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+  <section class="pt-14 sm:pt-16 pb-4">
+    <ServiceFAQ client:visible faqs={content.faq} locale={locale} />
+  </section>
+</div>
+
+<CTASection
+  locale={locale}
+  utmSource="location_page"
+  utmCampaign={`${location.slug}_${locale}`}
+  buttonLocation={`location_${location.slug}_footer`}
+/>
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+  {nearby.length > 0 && (
+    <section class="pb-16 border-t border-border pt-10">
+      <h2 class="text-sm uppercase tracking-[0.18em] text-muted-foreground font-semibold mb-5">
+        {t(locale, 'locations.nearby.heading')}
+      </h2>
+      <ul class="flex flex-wrap gap-x-8 gap-y-3">
+        {nearby.map((entry) => (
+          <li>
+            <a
+              href={getLocationPath(entry.slug, locale)}
+              class="text-lg font-semibold text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
+            >
+              {entry.content[locale].name}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href={getLocationsBasePath(locale)} class="text-lg font-semibold text-primary hover:underline underline-offset-4">
+            {t(locale, 'locations.nearby.all')}
+          </a>
+        </li>
+      </ul>
+    </section>
+  )}
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reveals.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
+
+<script define:vars={{ slug: location.slug, locale }}>
+  document.querySelectorAll('[data-booksy-cta]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'booking_click_code', {
+          button_location: `location_${slug}_${link.dataset.booksyCta}`,
+          locale,
+          booking_platform: 'booksy',
+        });
+      }
+    });
+  });
+</script>

@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { getAllPostsForSitemap } from '../lib/sanity';
 import { siteMetadata } from '../config/seo';
 import { PAGE_SLUGS, SERVICE_SLUGS, type Locale, type ServicePageSlug } from '../lib/seo';
+import { getLocationHreflang, getLocationsHubHreflang, locations } from '../data/locations';
 
 const SITE_URL = siteMetadata.urls.base;
 const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
@@ -36,11 +37,11 @@ function buildUrlEntry(
 ): string {
   const hreflangLinks = buildHreflangLinks(group);
   const lastmodLine = options.lastmod ? `\n    <lastmod>${options.lastmod}</lastmod>` : '';
+  const hreflangBlock = hreflangLinks ? `\n${hreflangLinks}` : '';
   return `  <url>
     <loc>${loc}</loc>${lastmodLine}
     <changefreq>${options.changefreq}</changefreq>
-    <priority>${options.priority}</priority>
-${hreflangLinks}
+    <priority>${options.priority}</priority>${hreflangBlock}
   </url>`;
 }
 
@@ -96,6 +97,28 @@ export const GET: APIRoute = async () => {
       entries.push(
         buildUrlEntry(group[locale]!, group, {
           priority: '0.9',
+          changefreq: 'monthly',
+        })
+      );
+    });
+  });
+
+  // --- Location pages (hub + spokes), all four locales ---
+  const hubGroup: UrlGroup = getLocationsHubHreflang();
+  locales.forEach((locale) => {
+    entries.push(
+      buildUrlEntry(hubGroup[locale]!, hubGroup, {
+        priority: '0.7',
+        changefreq: 'monthly',
+      })
+    );
+  });
+  locations.forEach((location) => {
+    const group: UrlGroup = getLocationHreflang(location.slug);
+    locales.forEach((locale) => {
+      entries.push(
+        buildUrlEntry(group[locale]!, group, {
+          priority: '0.7',
           changefreq: 'monthly',
         })
       );

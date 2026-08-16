@@ -2,12 +2,12 @@
 import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
 
 const seoData = {
-  title: "Прокол Вух Дорослим Варшава | Inverness Med 160-480zł | Мокотув",
-  description: "✓ Inverness Med (безпечніше ніж пістолет) ✓ 1 прокол 160zł, 2 проколи 290zł ✓ Helix, lobe, tragus ✓ Метро Wilanowska 12хв ✓ Запис онлайн | Gentle Piercing",
+  title: "Прокол Вух Дорослим Варшава | Inverness Med від 90zł",
+  description: "✓ Inverness Med (безпечніше ніж пістолет) ✓ 1/2/3 проколи: 90/150/210zł ✓ Сережка від 70zł ✓ Запис онлайн | Gentle Piercing",
   language: 'uk',
   canonical: siteMetadata.urls.services.adults.uk,
   hreflang: generateAlternates('services.adults'),
-  ogImage: 'https://gentlepiercing.pl/hero/hero-adults.jpg',
+  ogImage: siteMetadata.defaultOgImage,
 };
 
 const schemaData = [
@@ -19,7 +19,7 @@ const schemaData = [
     "provider": {
       "@type": "LocalBusiness",
       "name": "Gentle Piercing",
-      "image": "https://gentlepiercing.pl/preview.png",
+      "image": siteMetadata.defaultOgImage,
       "telephone": "+48573818260",
       "address": {
         "@type": "PostalAddress",
@@ -31,7 +31,7 @@ const schemaData = [
     },
     "offers": {
       "@type": "Offer",
-      "price": "160",
+      "price": "90",
       "priceCurrency": "PLN"
     }
   }

@@ -324,7 +324,7 @@ async function createSiteSettings() {
         },
         telephone: '+48573818260',
         openingHours: 'Mo-Su 09:00-20:00',
-        priceRange: '150-250 zł',
+        priceRange: '90-360 zł',
       },
       ratings: {
         ratingValue: '5.0',

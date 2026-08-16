@@ -1,0 +1,196 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTASection from './CTASection.astro';
+import {
+  getBreadcrumbSchema,
+  getCanonicalUrl,
+  getLocalBusinessSchema,
+  getServicePagePath,
+  type Locale,
+} from '../lib/seo';
+import { t } from '../lib/translations';
+import { siteMetadata } from '../config/seo';
+import {
+  LOCATION_PRICING,
+  getLocationPath,
+  getLocationUrl,
+  getLocationsBasePath,
+  getLocationsHubHreflang,
+  getLocationsHubUrl,
+  locations,
+} from '../data/locations';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const canonical = getLocationsHubUrl(locale);
+const pricing = LOCATION_PRICING[locale];
+
+const seo = {
+  title: t(locale, 'locations.hub.seoTitle'),
+  description: t(locale, 'locations.hub.seoDescription'),
+  canonical,
+  hreflang: getLocationsHubHreflang(),
+  ogImage: siteMetadata.defaultOgImage,
+};
+
+const localBusiness = await getLocalBusinessSchema(locale);
+
+const structuredData = [
+  localBusiness,
+  getBreadcrumbSchema([
+    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
+    { name: t(locale, 'locations.hub.breadcrumb'), url: canonical },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: t(locale, 'locations.hub.seoTitle'),
+    itemListElement: locations.map((location, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: location.content[locale].h1,
+      url: getLocationUrl(location.slug, locale),
+    })),
+  },
+];
+
+const booksyUrl = (() => {
+  const params = new URLSearchParams({
+    utm_source: 'location_page',
+    utm_medium: 'cta',
+    utm_campaign: `locations_hub_${locale}`,
+  });
+  return `https://booksy.com/pl-pl/dl/show-business/319418?${params.toString()}`;
+})();
+---
+
+<BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <nav aria-label={t(locale, 'locations.hub.breadcrumb')} class="pt-8 text-sm text-muted-foreground">
+      <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <li><a href={`/${locale}`} class="hover:text-foreground transition-colors">Gentle Piercing</a></li>
+        <li aria-hidden="true" class="text-border">/</li>
+        <li aria-current="page" class="text-foreground font-medium">
+          {t(locale, 'locations.hub.breadcrumb')}
+        </li>
+      </ol>
+    </nav>
+
+    <header class="pt-10 pb-12 sm:pt-14 sm:pb-14">
+      <p class="text-xs uppercase tracking-[0.2em] text-primary font-semibold mb-5">
+        {t(locale, 'locations.hub.eyebrow')}
+      </p>
+      <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-foreground leading-[1.05] max-w-3xl">
+        {t(locale, 'locations.hub.h1')}
+      </h1>
+      <p class="mt-5 text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
+        {t(locale, 'locations.hub.lede')}
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+        <a
+          href={booksyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-cta"
+          id="locations-hub-cta"
+        >
+          {t(locale, 'cta.button')}
+        </a>
+        <span class="text-sm text-muted-foreground">
+          {t(locale, 'cta.callPrefix')}
+          <a href="tel:+48573818260" class="text-foreground font-semibold hover:underline ml-1">+48 573 818 260</a>
+        </span>
+      </div>
+    </header>
+
+    <section class="pb-16" aria-labelledby="okolice">
+      <h2 id="okolice" class="sr-only">{t(locale, 'locations.hub.listHeading')}</h2>
+
+      <ul class="divide-y divide-border border-y border-border">
+        {locations.map((location, index) => (
+          <li>
+            <a
+              href={getLocationPath(location.slug, locale)}
+              class="group grid grid-cols-[1fr_auto] sm:grid-cols-[minmax(0,1fr)_auto] items-center gap-4 sm:gap-10 py-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+              data-reveal
+              data-reveal-delay={String(index + 1)}
+            >
+              <span>
+                <span class="block text-2xl sm:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  {location.content[locale].name}
+                </span>
+                <span class="block text-sm sm:text-base text-muted-foreground mt-1">
+                  {location.recommend === 'studio'
+                    ? t(locale, 'locations.hub.recommendStudio')
+                    : t(locale, 'locations.hub.recommendMobile')}
+                </span>
+              </span>
+
+              <span class="text-right">
+                <span class="block text-2xl sm:text-3xl font-bold text-primary leading-none">
+                  {location.content[locale].studio.minutes}
+                </span>
+                <span class="block text-xs text-muted-foreground mt-1">
+                  {t(locale, 'locations.hub.toStudio')}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-8 text-base text-muted-foreground max-w-xl">
+        {t(locale, 'locations.hub.otherAreaBefore')} {pricing.travelFee}.
+        <a
+          href={getServicePagePath('przekluwanie-uszu-z-dojazdem-warszawa', locale)}
+          class="text-primary font-semibold hover:underline underline-offset-4 ml-1"
+        >{t(locale, 'locations.hub.otherAreaLink')}</a>
+      </p>
+    </section>
+  </div>
+
+  <CTASection
+    locale={locale}
+    utmSource="location_page"
+    utmCampaign={`locations_hub_${locale}`}
+    buttonLocation="locations_hub_footer"
+  />
+</BaseLayout>
+
+<script>
+  // Reveal elements as they enter the viewport (see [data-reveal] in index.css).
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reveals.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
+
+<script define:vars={{ locale }}>
+  const hubCta = document.getElementById('locations-hub-cta');
+  if (hubCta) {
+    hubCta.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'booking_click_code', {
+          button_location: 'locations_hub',
+          locale,
+          booking_platform: 'booksy',
+        });
+      }
+    });
+  }
+</script>

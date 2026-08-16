@@ -3,11 +3,11 @@ import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";im
 
 const seoData = {
   title: "Прокол Ушей Детям от 0+ | Inverness Med 270zł | Варшава Мокотув",
-  description: "✓ Сертификат 0+ с первых дней жизни ✓ Inverness Med (НЕ пистолет!) ✓ 270-330zł с серёжками ✓ Метро Wilanowska 12мин ✓ Запись онлайн | Gentle Piercing Мокотув",
+  description: "✓ Сертификат 0+ с первых дней жизни ✓ Inverness Med (НЕ пистолет!) ✓ От 270zł с серёжками ✓ Метро Wilanowska 12мин ✓ Запись онлайн | Gentle Piercing",
   language: 'ru',
   canonical: 'https://gentlepiercing.pl/ru/uslugi/prokol-ushej-detyam-varshava',
   hreflang: generateAlternates('services.children'),
-  ogImage: 'https://gentlepiercing.pl/hero/hero-kids.jpg',
+  ogImage: siteMetadata.defaultOgImage,
 };
 
 const schemaData = [
@@ -19,7 +19,7 @@ const schemaData = [
     "provider": {
       "@type": "LocalBusiness",
       "name": "Gentle Piercing",
-      "image": "https://gentlepiercing.pl/preview.png",
+      "image": siteMetadata.defaultOgImage,
       "telephone": "+48573818260",
       "address": {
         "@type": "PostalAddress",
@@ -66,7 +66,7 @@ const schemaData = [
         "name": "Сколько стоит прокол ушей ребёнку в Варшаве?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Цена составляет 270-330 злотых и включает: процедуру, стерильные серёжки Inverness в закрытой кассете и инструкцию по уходу."
+          "text": "Процедура — 150 зл за пару мочек, с серьгами от 270 зл. В цене серёг: стерильные серьги Inverness в закрытой кассете и инструкция по уходу."
         }
       }
     ]

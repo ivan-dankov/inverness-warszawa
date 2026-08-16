@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LocationPage from './LocationPage.astro';
+import {
+  getBreadcrumbSchema,
+  getFAQSchema,
+  getLocalBusinessSchema,
+  getCanonicalUrl,
+  type Locale,
+} from '../lib/seo';
+import { t } from '../lib/translations';
+import { siteMetadata } from '../config/seo';
+import {
+  getLocationHreflang,
+  getLocationUrl,
+  getLocationsHubUrl,
+  type LocationData,
+} from '../data/locations';
+
+interface Props {
+  locale: Locale;
+  location: LocationData;
+}
+
+const { locale, location } = Astro.props;
+const content = location.content[locale];
+const canonical = getLocationUrl(location.slug, locale);
+
+const seo = {
+  title: content.seoTitle,
+  description: content.seoDescription,
+  canonical,
+  // Every one of these four URLs is a real page, so the group is legitimate.
+  hreflang: getLocationHreflang(location.slug),
+  ogImage: siteMetadata.defaultOgImage,
+};
+
+const localBusiness = await getLocalBusinessSchema(locale);
+
+const structuredData = [
+  localBusiness,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: content.h1,
+    serviceType: 'Ear piercing',
+    provider: {
+      '@type': 'Organization',
+      name: 'Gentle Piercing',
+      url: siteMetadata.urls.base,
+    },
+    areaServed: {
+      '@type': location.type === 'district' ? 'AdministrativeArea' : 'City',
+      name: content.name,
+      ...(location.type === 'district'
+        ? { containedInPlace: { '@type': 'City', name: 'Warszawa' } }
+        : {}),
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '90',
+      priceCurrency: 'PLN',
+      availability: 'https://schema.org/InStock',
+      url: canonical,
+    },
+    url: canonical,
+  },
+  getBreadcrumbSchema([
+    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
+    { name: t(locale, 'locations.hub.breadcrumb'), url: getLocationsHubUrl(locale) },
+    { name: content.name, url: canonical },
+  ]),
+  getFAQSchema(locale, content.faq),
+].filter(Boolean);
+---
+
+<BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
+  <LocationPage locale={locale} location={location} />
+</BaseLayout>

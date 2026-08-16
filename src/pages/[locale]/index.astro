@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
-import { getBreadcrumbSchema, type Locale } from '../../lib/seo';
-import { getTranslations, t } from '../../lib/translations';
+import { getBreadcrumbSchema, getFAQSchema, type Locale } from '../../lib/seo';
+import { t } from '../../lib/translations';
 import Hero from '../../components/Hero.astro';
 import Services from '../../components/Services.astro';
 import Gallery from '../../components/Gallery.astro';
@@ -13,6 +13,7 @@ import FAQ from '../../components/FAQ.astro';
 import RecentArticles from '../../components/RecentArticles.astro';
 import ContactHome from '../../components/ContactHome.astro';
 import CTASection from '../../components/CTASection.astro';
+import LocationLinks from '../../components/LocationLinks.astro';
 
 export async function getStaticPaths() {
   const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
@@ -35,6 +36,8 @@ const seo = {
 };
 
 // Build structured data
+const faqSchema = getFAQSchema(currentLocale);
+
 const structuredData = [
   generateLocalBusinessSchema(currentLocale),
   {
@@ -42,7 +45,7 @@ const structuredData = [
     "@type": "Organization",
     "name": "Gentle Piercing",
     "url": "https://gentlepiercing.pl",
-    "logo": "https://gentlepiercing.pl/logo.png",
+    "logo": `${siteMetadata.urls.base}/logo.png`,
     "sameAs": [
       "https://www.instagram.com/prokol_ushej_warszawa/",
       "https://www.facebook.com/gentlepiercingwarszawa"
@@ -50,7 +53,8 @@ const structuredData = [
   },
   getBreadcrumbSchema([
     { name: t(currentLocale, 'breadcrumb.home'), url: seo.canonical },
-  ])
+  ]),
+  ...(faqSchema ? [faqSchema] : []),
 ];
 ---
 
@@ -64,6 +68,7 @@ const structuredData = [
   <Gallery locale={currentLocale} />
   <FAQ locale={currentLocale} />
   <RecentArticles locale={currentLocale} />
+  <LocationLinks locale={currentLocale} />
   <CTASection locale={currentLocale} />
   <ContactHome locale={currentLocale} />
 </BaseLayout>

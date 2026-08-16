@@ -34,3 +34,6 @@ dist-ssr
 
 # Empty local skills mirror
 skills-main/
+
+# Local MCP server config — contains the DeepL API key
+.cursor/mcp.json

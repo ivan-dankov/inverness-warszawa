@@ -85,7 +85,7 @@
         "title": "Więcej wariantów usług",
         "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
         "badge": "Booksy",
-        "price": "od 40 zł + cena usługi",
+        "price": "+90 zł dojazd",
         "duration": "Różne opcje",
         "features": [
           "Dojazd mobilny",
@@ -97,8 +97,8 @@
     "pricing": {
       "title": "Informacje o cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 120 zł za parę",
-      "mobileVisit": "Dojazd mobilny: 70 zł, może być wyższa w zależności od odległości"
+      "earringsPrice": "Dodatkowa opłata za kolczyki: od 70 zł za jeden, od 120 zł za parę",
+      "mobileVisit": "Dojazd mobilny: +90 zł do ceny zabiegu"
     },
     "bookButton": "Rezerwuj Online",
     "durationLabel": "Czas trwania:"
@@ -190,7 +190,7 @@
       },
       {
         "question": "Ile kosztuje przekłuwanie uszu?",
-        "answer": "Cena zabiegu wynosi 150 zł za przekłucie dwóch płatków uszu (przekłuwanie dzieci) lub 90 zł za jeden płatek ucha. Do ceny należy doliczyć koszt kolczyków — od 120 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
+        "answer": "Dzieci najczęściej przekłuwamy parę płatków: 150 zł za zabieg, z kolczykami od 270 zł. Dorośli biorą 1, 2 albo 3 przekłucia na jednej wizycie: 90 / 150 / 210 zł, kolczyk od 70 zł. Dojazd do domu to stałe +90 zł do ceny zabiegu."
       },
       {
         "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
@@ -218,7 +218,7 @@
     "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Dojazd mobilny: +70 zł",
+    "mobileVisit": "Dojazd mobilny: +90 zł",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {

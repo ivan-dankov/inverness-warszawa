@@ -332,7 +332,7 @@ Czas czytania: X min
 ```markdown
 // NIE DODAWAJ - automatyczne
 📞 Telefon: 573-818-260
-📧 Email: kontakt@gentlepiercing.pl
+📧 Email: piercinggentle@gmail.com
 📍 Adres: Ursynowska 10/1, Mokotów
 🕐 Godziny: Pn-Nd 10:00-20:00
 [Przycisk rezerwacji Booksy]
@@ -414,7 +414,7 @@ Czas czytania: X min
   - 🚌 Autobus: 116, 131, 164, 167, 193, 519 - przystanek "Ursynowska"
   - 🚗 Parking: przy ulicy (płatny w dni robocze), osiedlowy dla mieszkańców
 - Telefon: +48 573 818 260
-- Email: kontakt@gentlepiercing.pl
+- Email: piercinggentle@gmail.com
 - Właścicielka: Kseniya Askerka
 - Języki: PL, EN, RU, UA
 - USP: bezpieczeństwo, sterylność, dla dzieci 0+

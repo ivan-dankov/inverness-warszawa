@@ -2,6 +2,7 @@
 import type { Locale } from '../lib/seo';
 import SEO from '../components/SEO.astro';
 import { getCanonicalUrl, getHreflangUrls, type SEOConfig } from '../lib/seo';
+import { siteMetadata } from '../config/seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import LanguageSwitch from '../components/LanguageSwitch.astro';
@@ -37,15 +38,18 @@ const hreflangMap: Record<Locale, string> = {
   ru: 'ru-RU',
 };
 
-// Remap alternates keys from 2-letter locale codes to BCP-47 codes
-const hreflang = hreflangRaw
-  ? Object.fromEntries(
-      Object.entries(hreflangRaw).map(([lang, url]) => [
-        hreflangMap[lang as Locale] ?? lang,
-        url,
-      ])
-    )
-  : undefined;
+// Remap alternates keys from 2-letter locale codes to BCP-47 codes.
+// Pages that exist in a single locale (e.g. the Polish location cluster) resolve to an empty
+// object — emit no hreflang at all rather than a self-referencing x-default.
+const hreflang =
+  hreflangRaw && Object.keys(hreflangRaw).length > 0
+    ? Object.fromEntries(
+        Object.entries(hreflangRaw).map(([lang, url]) => [
+          hreflangMap[lang as Locale] ?? lang,
+          url,
+        ])
+      )
+    : undefined;
 
 // Map locale to HTML lang attribute format
 const htmlLangMap: Record<Locale, string> = {
@@ -55,9 +59,7 @@ const htmlLangMap: Record<Locale, string> = {
   ru: 'ru-RU',
 };
 
-// Default OG image for pages that don't specify one
-const defaultOgImage = 'https://gentlepiercing.pl/hero/hero-3.jpg';
-const ogImage = seo.ogImage || defaultOgImage;
+const ogImage = seo.ogImage || siteMetadata.defaultOgImage;
 ---
 
 <!doctype html>

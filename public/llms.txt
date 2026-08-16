@@ -17,7 +17,7 @@ Gentle Piercing (Inverness MED) oferuje bezpieczne i bezbolesne przekłuwanie us
 - Nazwa: Inverness MED - Medyczne Przekłuwanie Uszu
 - Adres: Ursynowska 10/1, 02-605 Warszawa, Mokotów
 - Telefon: +48 573 818 260
-- Email: medinverness@gmail.com
+- Email: piercinggentle@gmail.com
 - Instagram: @prokol_ushej_warszawa
 - Strona: https://gentlepiercing.pl
 
@@ -46,6 +46,13 @@ Gentle Piercing (Inverness MED) oferuje bezpieczne i bezbolesne przekłuwanie us
 - /pl/kontakt - Kontakt
 - /pl/pielegnacja - Pielęgnacja
 
+## Location pages (district + nearby areas)
+Same four districts in every language: mokotow, ursynow, wilanow, piaseczno.
+- /pl/przekluwanie-uszu/{district} - Przekłuwanie uszu w dzielnicach (PL)
+- /en/ear-piercing/{district} - Ear piercing by district (EN)
+- /ru/prokol-ushej/{district} - Прокол ушей по районам (RU)
+- /uk/prokol-vukh/{district} - Прокол вух за районами (UK)
+
 ## Technology
 - Astro 4.0
 - React 18
@@ -59,7 +66,7 @@ Gentle Piercing (Inverness MED) oferuje bezpieczne i bezbolesne przekłuwanie us
 przekłuwanie uszu, piercing, Warszawa, Inverness MED, medyczne przekłuwanie, dzieci, bezpieczne, sterylne, FDA, ISO, helix, tragus, conch, płatek ucha, gentle piercing
 
 ## Pricing
-150-250 zł za przekłucie
+90-270 zł za zabieg (dzieci z kolczykami od 270 zł; dorośli 90 / 150 / 210 zł; dojazd +90 zł)
 
 ## Rating
 5.0/5 (14 opinii)

@@ -1,0 +1,44 @@
+---
+import type { Locale } from '../lib/seo';
+import { t } from '../lib/translations';
+import { getLocationPath, getLocationsBasePath, locations } from '../data/locations';
+
+interface Props {
+  locale: Locale;
+  /** Optional lead-in sentence; falls back to the localized default. */
+  intro?: string;
+}
+
+const { locale, intro } = Astro.props;
+---
+
+<section class="py-14 border-t border-border">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <h2 class="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-4">
+      {t(locale, 'locations.linksBlock.heading')}
+    </h2>
+    <p class="text-base sm:text-lg text-foreground leading-relaxed max-w-2xl mb-6">
+      {intro ?? t(locale, 'locations.linksBlock.intro')}
+    </p>
+    <ul class="flex flex-wrap gap-x-7 gap-y-3">
+      {locations.map((location) => (
+        <li>
+          <a
+            href={getLocationPath(location.slug, locale)}
+            class="text-base sm:text-lg font-semibold text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
+          >
+            {location.content[locale].name}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href={getLocationsBasePath(locale)}
+          class="text-base sm:text-lg font-semibold text-primary hover:underline underline-offset-4"
+        >
+          {t(locale, 'locations.nearby.all')}
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

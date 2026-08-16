@@ -2,12 +2,12 @@
 import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
 
 const seoData = {
-  title: "Ear Piercing Adults Warsaw | Inverness Med 160-480 PLN | Mokotów",
-  description: "✓ Inverness Med (safer than gun) ✓ 1 piercing 160zł, 2 piercings 290zł ✓ Helix, lobe, tragus ✓ Metro Wilanowska 12min ✓ Book online | Gentle Piercing",
+  title: "Ear Piercing Adults Warsaw | Inverness Med from 90 PLN",
+  description: "✓ Inverness Med (safer than gun) ✓ 1/2/3 piercings: 90/150/210 PLN ✓ Earring from 70 PLN ✓ Book online | Gentle Piercing",
   language: 'en',
   canonical: siteMetadata.urls.services.adults.en,
   hreflang: generateAlternates('services.adults'),
-  ogImage: 'https://gentlepiercing.pl/hero/hero-adults.jpg',
+  ogImage: siteMetadata.defaultOgImage,
 };
 
 const schemaData = [
@@ -19,7 +19,7 @@ const schemaData = [
     "provider": {
       "@type": "LocalBusiness",
       "name": "Gentle Piercing",
-      "image": "https://gentlepiercing.pl/preview.png",
+      "image": siteMetadata.defaultOgImage,
       "telephone": "+48573818260",
       "address": {
         "@type": "PostalAddress",
@@ -31,7 +31,7 @@ const schemaData = [
     },
     "offers": {
       "@type": "Offer",
-      "price": "160",
+      "price": "90",
       "priceCurrency": "PLN"
     }
   }

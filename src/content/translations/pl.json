@@ -88,7 +88,7 @@
         "title": "Przekłuwanie Uszu Dzieciom",
         "description": "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
         "badge": "Dla Dzieci",
-        "price": "150 zł",
+        "price": "150 zł / para",
         "duration": "30 min",
         "features": [
           "Dla dzieci 0+",
@@ -100,7 +100,7 @@
         "title": "Więcej Wariantów Usług",
         "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
         "badge": "Booksy",
-        "price": "od 70 zł + cena usługi",
+        "price": "+90 zł dojazd",
         "duration": "Różne opcje",
         "features": [
           "Dojazd mobilny",
@@ -113,7 +113,7 @@
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
       "earringsPrice": "Dodatkowa opłata za kolczyki: od 70 zł za jeden, od 120 zł za parę",
-      "mobileVisit": "Dojazd mobilny: 70 zł, może być wyższa w zależności od odległości"
+      "mobileVisit": "Dojazd mobilny: +90 zł do ceny zabiegu"
     },
     "bookButton": "Rezerwuj Online",
     "durationLabel": "Czas trwania:"
@@ -128,6 +128,7 @@
     "title": "Inverness Med — najnowocześniejszy i najbezpieczniejszy system",
     "subtitle": "Jak Inverness Med wypada na tle pistoletu i igły",
     "videoSubtitle": "Jak to działa",
+    "playVideo": "Odtwórz film: system Inverness Med",
     "description": "System Inverness to nowoczesna metoda przekłuwania uszu – delikatna, jednorazowa i w pełni higieniczna. Idealna dla dzieci i dorosłych.",
     "tableTitle": "Porównaj metody przekłuwania uszu",
     "recommended": "Polecane",
@@ -213,7 +214,7 @@
       },
       {
         "question": "Ile kosztuje przekłuwanie uszu?",
-        "answer": "Cena zabiegu wynosi 150 zł za przekłucie dwóch płatków uszu (przekłuwanie dzieci) lub 90 zł za jeden płatek ucha. Do ceny należy doliczyć koszt kolczyków — od 120 zł za parę. Oferujemy również usługę mobilną z dojazdem do domu (+50 zł). Aktualny cennik znajdziesz w sekcji 'Nasze usługi'."
+        "answer": "Dzieci najczęściej przekłuwamy parę płatków: 150 zł za zabieg, z kolczykami od 270 zł. Dorośli biorą 1, 2 albo 3 przekłucia na jednej wizycie: 90 / 150 / 210 zł, kolczyk od 70 zł. Dojazd do domu to stałe +90 zł do ceny zabiegu."
       },
       {
         "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
@@ -241,7 +242,7 @@
     "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Dojazd mobilny: +70 zł",
+    "mobileVisit": "Dojazd mobilny: +90 zł",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {
@@ -380,7 +381,7 @@
     "subtitle": "Umów wizytę już dziś i doświadcz bezpiecznego, bezbolesnego przekłuwania uszu systemem Inverness MED",
     "button": "Rezerwuj Online",
     "phone": "Telefon",
-    "footer": "Bezpłatna konsultacja · Wizyty mobilne · Dzieci od 0+",
+    "footer": "Bezpłatna konsultacja, wizyty mobilne, dzieci od 0+",
     "callPrefix": "lub zadzwoń:",
     "studioLabel": "Studio",
     "fullContact": "Pełne dane kontaktowe"
@@ -418,7 +419,7 @@
         "Specjalne kolczyki dla dzieci"
       ],
       "pricing": {
-        "basePrice": "150 zł",
+        "basePrice": "150 zł za parę płatków",
         "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 120 zł za parę)"
       },
       "faq": [
@@ -540,8 +541,8 @@
         "Elastyczne godziny wizyt"
       ],
       "pricing": {
-        "basePrice": "Od 90 zł za przekłucie + 70 zł dojazd",
-        "additionalInfo": "Cena dojazdu może być wyższa w zależności od odległości. Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 120 zł za parę)"
+        "basePrice": "Od 90 zł za przekłucie + 90 zł dojazd",
+        "additionalInfo": "Dojazd to stałe +90 zł do ceny zabiegu. Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 120 zł za parę)"
       },
       "faq": [
         {
@@ -550,7 +551,7 @@
         },
         {
           "question": "Ile kosztuje dojazd?",
-          "answer": "Standardowa cena dojazdu to 70 zł. W przypadku większych odległości (powyżej 30 km od centrum Warszawy) cena może być wyższa. Dokładną wycenę otrzymasz podczas rezerwacji wizyty."
+          "answer": "Standardowa cena dojazdu to 90 zł, doliczana do ceny zabiegu. W obrębie Warszawy i najbliższych okolic (Piaseczno, Józefosław) stawka jest stała."
         },
         {
           "question": "Czy przyjedziecie na 1 dziecko?",
@@ -570,5 +571,69 @@
         }
       ]
     }
-  }
+  },
+    "locations": {
+      "breadcrumbDistricts": "Dzielnice",
+      "eyebrow": {
+        "district": "Warszawa",
+        "suburb": "Okolice Warszawy"
+      },
+      "minutesCaption": "do gabinetu na Mokotowie",
+      "minutesCaptionLocal": "do gabinetu",
+      "visit": {
+        "heading": "Gabinet albo dojazd",
+        "subheading": "Zabieg ten sam. Różni się tylko miejsce.",
+        "primaryBadge": "Najczęściej",
+        "secondaryBadge": "Albo",
+        "studioTitle": "Przyjeżdżacie do gabinetu",
+        "homeTitle": "Przyjeżdżamy do Was",
+        "mapLink": "Mapa dojazdu",
+        "homeLink": "Jak wygląda wizyta domowa",
+        "surchargeBefore": "Dopłata",
+        "surchargeAfter": "do ceny zabiegu",
+        "mapTitle": "Mapa gabinetu Gentle Piercing, Ursynowska 10/1",
+        "coverageAlt": "Obszar dojazdu"
+      },
+      "pricing": {
+        "heading": "Cennik",
+        "note": "Te same ceny w gabinecie i w domu. Kolczyki osobno,",
+        "travelRow": "Dojazd do Was"
+      },
+      "services": {
+        "heading": "Usługi",
+        "children": "Dzieci 0+",
+        "childrenNote": "Zwykle para płatków",
+        "adults": "Dorośli",
+        "adultsNote": "1, 2 albo 3 przekłucia",
+        "cartilage": "Chrząstka",
+        "cartilageNote": "Helix, tragus, conch",
+        "mobile": "Dojazd do domu",
+        "mobileNote": "Dopłata"
+      },
+      "photosLabel": "Zdjęcia z gabinetu",
+      "nearby": {
+        "heading": "Sąsiednie okolice",
+        "all": "Wszystkie okolice"
+      },
+      "hub": {
+        "seoTitle": "Przekłuwanie uszu — dzielnice Warszawy i okolice",
+        "seoDescription": "Gabinet przy Ursynowskiej 10/1 na Mokotowie i dojazd do domu. Sprawdź Wilanów, Ursynów, Mokotów i Piaseczno.",
+        "breadcrumb": "Przekłuwanie uszu w dzielnicach",
+        "eyebrow": "Warszawa i okolice",
+        "h1": "Skąd do nas przyjeżdżacie",
+        "lede": "Jeden gabinet na Mokotowie i dojazd do domu. Wybierzcie swoją okolicę.",
+        "listHeading": "Lista okolic",
+        "recommendStudio": "Najczęściej gabinet",
+        "recommendMobile": "Najczęściej dojazd",
+        "toStudio": "do gabinetu",
+        "otherAreaBefore": "Inna dzielnica? Dojeżdżamy po Warszawie i ok. 30 km od centrum, dopłata",
+        "otherAreaLink": "Wizyta z dojazdem"
+      },
+      "linksBlock": {
+        "heading": "Skąd do nas przyjeżdżacie",
+        "intro": "Gabinet na Mokotowie, dojazd po Warszawie i okolicach."
+      },
+      "footerHeading": "Dzielnice i okolice",
+      "serviceCrossLink": "Zasięg i czas dojazdu opisaliśmy osobno dla"
+    }
 }

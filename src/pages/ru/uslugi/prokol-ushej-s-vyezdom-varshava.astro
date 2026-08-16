@@ -7,7 +7,7 @@ const seoData = {
   language: 'ru',
   canonical: 'https://gentlepiercing.pl/ru/uslugi/prokol-ushej-s-vyezdom-varshava',
   hreflang: generateAlternates('services.mobile'),
-  ogImage: 'https://gentlepiercing.pl/hero/hero-kids.jpg',
+  ogImage: siteMetadata.defaultOgImage,
 };
 
 const schemaData = [
@@ -19,7 +19,7 @@ const schemaData = [
     "provider": {
       "@type": "LocalBusiness",
       "name": "Gentle Piercing",
-      "image": "https://gentlepiercing.pl/preview.png",
+      "image": siteMetadata.defaultOgImage,
       "telephone": "+48573818260",
       "address": {
         "@type": "PostalAddress",
@@ -31,9 +31,9 @@ const schemaData = [
     },
     "offers": {
       "@type": "Offer",
-      "price": "360",
+      "price": "180",
       "priceCurrency": "PLN",
-      "description": "Base price + 90 PLN travel fee"
+      "description": "From 90 PLN piercing + 90 PLN travel fee"
     }
   }
 ];

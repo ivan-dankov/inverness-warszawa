@@ -151,7 +151,7 @@ Artykul_[Tytuł]_RU.md
 
 **Ceny:**
 - Zostaw w PLN (nie konwertuj na USD/EUR)
-- Format: "270-330 PLN" lub "PLN 270-330"
+- Format: "from 270 PLN with earrings" lub "90 / 150 / 210 PLN"
 - Wyjaśnij: "approximately €60-75 EUR" (w nawiasie, jeśli pomocne)
 
 **Miary:**
@@ -208,7 +208,7 @@ en/blog/ear-piercing-cost-warsaw-price-guide-2026
 
 **PL:**
 ```
-Przekłuwanie uszu w Warszawie kosztuje od 80 zł do 600 zł – w zależności od metody...
+Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd +90 zł...
 ```
 
 **EN:**
@@ -223,7 +223,7 @@ Ear piercing in Warsaw costs from 80 to 600 PLN – depending on the method...
 #### Adaptacje Kulturowe
 
 **Ceny:**
-- Format: "270-330 злотих" lub "270-330 zł"
+- Format: "від 270 злотих із сережками" lub "90 / 150 / 210 зл"
 - Można dodać: "приблизно 1800-2200 грн" (kurs informacyjny)
 
 **Daty:**
@@ -285,7 +285,7 @@ uk/blog/skilky-koshtuye-prokolyuvannya-vuh-varshava-2026
 
 **PL:**
 ```
-Przekłuwanie uszu w Warszawie kosztuje od 80 zł do 600 zł – w zależności od metody...
+Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd +90 zł...
 ```
 
 **UK:**
@@ -300,7 +300,7 @@ Przekłuwanie uszu w Warszawie kosztuje od 80 zł do 600 zł – w zależności 
 #### Adaptacje Kulturowe
 
 **Ceny:**
-- Format: "270-330 злотых" lub "270-330 zł"
+- Format: "от 270 злотых с серьгами" lub "90 / 150 / 210 зл"
 - Można dodać: "примерно 60-75 EUR" (dla kontekstu)
 
 **Daty:**
@@ -363,7 +363,7 @@ ru/blog/skolko-stoit-prokol-ushey-varshava-2026
 
 **PL:**
 ```
-Przekłuwanie uszu w Warszawie kosztuje od 80 zł do 600 zł – w zależności od metody...
+Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd +90 zł...
 ```
 
 **RU:**
@@ -603,7 +603,7 @@ Artykul_Ile_Kosztuje_Przeklucie_Uszu_Warszawa_RU.md
 
 2. **Niezlokalizowane ceny**
    - ✗ "$60-75" (USA)
-   - ✓ "270-330 PLN (approximately €60-75)"
+   - ✓ "from 270 PLN with earrings (approximately €60)"
 
 3. **Niepoprawna transliteracja**
    - ✗ "Мокотов" (fonetycznie niepoprawne)

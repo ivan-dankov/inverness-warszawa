@@ -17,6 +17,7 @@ import {
   type ServicePageSlug
 } from '../lib/seo';
 import { getTranslations, t } from '../lib/translations';
+import { siteMetadata } from '../config/seo';
 
 interface Props {
   locale: Locale;
@@ -58,7 +59,7 @@ if (!seo || !structuredData) {
       ...seoConfig,
       canonical,
       hreflang,
-      ogImage: 'https://gentlepiercing.pl/hero/hero-3.jpg',
+      ogImage: siteMetadata.defaultOgImage,
     };
   }
 
@@ -69,7 +70,7 @@ if (!seo || !structuredData) {
       locale,
       serviceData.h1,
       serviceData.serviceType || 'Ear Piercing',
-      serviceData.pricing?.basePrice || '80 zł',
+      serviceData.pricing?.basePrice || '90 zł',
       canonical
     );
 
