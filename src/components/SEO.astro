@@ -45,6 +45,13 @@ const localeMap = {
   ru: 'ru_RU',
   uk: 'uk_UA'
 };
+
+const schemaGraph = (Array.isArray(schema) ? schema : schema ? [schema] : [])
+  .filter((node): node is Record<string, unknown> => Boolean(node) && typeof node === 'object')
+  .map((node) => {
+    const { '@context': _ctx, ...rest } = node;
+    return rest;
+  });
 ---
 
 <!-- HTML output here -->
@@ -84,7 +91,10 @@ const localeMap = {
 ))}
 {alternates && <link rel="alternate" hreflang="x-default" href={alternates['pl-PL'] || alternates['pl'] || canonical} />}
 
-<!-- Structured Data -->
-{schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(Array.isArray(schema) ? schema : [schema])} />
+<!-- Structured Data: one object with @graph. A raw JSON array fails schema.org validation. -->
+{schemaGraph.length > 0 && (
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph })}
+  />
 )}

@@ -34,19 +34,19 @@ export const siteMetadata = {
     homepage: {
         pl: {
             title: 'Przekłucie Uszu Warszawa | Inverness Med 0+ | Cennik',
-            description: '✓ Certyfikat 0+ ✓ Bezpieczny System Inverness Med ✓ Dzieci od 270zł, Dorośli od 90zł ✓ Metro Wilanowska 12min. Zarezerwuj wizytę wygodnie online przez Booksy.'
+            description: '✓ Certyfikat 0+ ✓ System Inverness Med ✓ Dzieci od 270zł, Dorośli od 90zł ✓ Metro Wilanowska 12min. Zarezerwuj wizytę online przez Booksy.'
         },
         en: {
             title: 'Ear Piercing Warsaw | Inverness Med 0+ | Mokotów',
-            description: '✓ 0+ Certificate ✓ Safe Inverness Med System ✓ Children from 270zł, Adults from 90zł ✓ Metro Wilanowska 12min. Book your appointment conveniently online via Booksy.'
+            description: '✓ 0+ Certificate ✓ Safe Inverness Med ✓ Children from 270zł, Adults from 90zł ✓ Metro Wilanowska 12min. Book online via Booksy.'
         },
         ru: {
             title: 'Прокол Ушей Варшава | Inverness Med 0+ | Мокотув',
-            description: '✓ Сертификат 0+ ✓ Безопасная система Inverness Med ✓ Дети от 270zł, Взрослые от 90zł ✓ Метро Wilanowska 12мин. Запишитесь на прием удобно онлайн через Booksy.'
+            description: '✓ Сертификат 0+ ✓ Система Inverness Med ✓ Дети от 270zł, Взрослые от 90zł ✓ Метро Wilanowska 12мин. Запись онлайн через Booksy.'
         },
         uk: {
             title: 'Прокол Вух Варшава | Inverness Med 0+ | Мокотув',
-            description: '✓ Сертифікат 0+ ✓ Безпечна система Inverness Med ✓ Діти від 270zł, Дорослі від 90zł ✓ Метро Wilanowska 12хв. Запишіться на прийом зручно онлайн через Booksy.'
+            description: '✓ Сертифікат 0+ ✓ Система Inverness Med ✓ Діти від 270zł, Дорослі від 90zł ✓ Метро Wilanowska 12хв. Запис онлайн через Booksy.'
         }
     },
 

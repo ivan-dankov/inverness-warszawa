@@ -100,7 +100,7 @@ const seo = {
          locale === 'en' ? 'Ear Piercing Services Warsaw | Gentle Piercing' :
          locale === 'uk' ? 'Послуги Проколу Вух Варшава | Gentle Piercing' :
          'Услуги Прокола Ушей Варшава | Gentle Piercing',
-  description: locale === 'pl' ? 'Pełna oferta usług przekłuwania uszu w Warszawie systemem Inverness MED. Przekłuwanie dla dzieci 0+, dorosłych, chrząstki oraz usługa mobilna z dojazdem do domu.' :
+  description: locale === 'pl' ? 'Pełna oferta przekłuwania uszu w Warszawie systemem Inverness MED. Dzieci 0+, dorośli, chrząstka oraz usługa mobilna z dojazdem do domu.' :
               locale === 'en' ? 'Full range of ear piercing services in Warsaw with Inverness MED system. Piercing for children 0+, adults, cartilage, and mobile service with home visits.' :
               locale === 'uk' ? 'Повний спектр послуг проколу вух у Варшаві системою Inverness MED. Прокол для дітей 0+, дорослих, хряща та мобільна послуга з виїздом додому.' :
               'Полный спектр услуг прокола ушей в Варшаве системой Inverness MED. Прокол для детей 0+, взрослых, хряща и мобильная услуга с выездом на дом.',
@@ -114,8 +114,9 @@ const seo = {
   ogImage: siteMetadata.defaultOgImage,
 };
 
+const localBusiness = await getLocalBusinessSchema(locale);
 const structuredData = [
-  getLocalBusinessSchema(locale),
+  localBusiness,
   getBreadcrumbSchema([
     { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
     { name: t(locale, 'header.nav.services'), url: seo.canonical },

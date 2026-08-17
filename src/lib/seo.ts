@@ -273,7 +273,7 @@ export async function getLocalBusinessSchema(locale: Locale) {
 
   return {
     '@context': 'https://schema.org',
-    '@type': ['MedicalBusiness', 'HealthAndBeautyBusiness', 'LocalBusiness'],
+    '@type': 'LocalBusiness',
     '@id': `${siteUrl}#business`,
     name: businessName,
     image: logoUrl,
@@ -295,7 +295,12 @@ export async function getLocalBusinessSchema(locale: Locale) {
       reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 31),
     },
     priceRange,
-    availableLanguage: ['Polish', 'English', 'Ukrainian', 'Russian'],
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone,
+      contactType: 'customer service',
+      availableLanguage: ['Polish', 'English', 'Ukrainian', 'Russian'],
+    },
     areaServed: {
       '@type': 'City',
       name: 'Warszawa',
