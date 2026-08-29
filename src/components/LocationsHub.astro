@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTASection from './CTASection.astro';
+import Booking from './Booking.astro';
 import {
   getBreadcrumbSchema,
   getCanonicalUrl,
@@ -57,14 +57,6 @@ const structuredData = [
   },
 ];
 
-const booksyUrl = (() => {
-  const params = new URLSearchParams({
-    utm_source: 'location_page',
-    utm_medium: 'cta',
-    utm_campaign: `locations_hub_${locale}`,
-  });
-  return `https://booksy.com/pl-pl/dl/show-business/319418?${params.toString()}`;
-})();
 ---
 
 <BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
@@ -90,21 +82,14 @@ const booksyUrl = (() => {
         {t(locale, 'locations.hub.lede')}
       </p>
 
-      <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-        <a
-          href={booksyUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-cta"
-          id="locations-hub-cta"
-        >
-          {t(locale, 'cta.button')}
-        </a>
-        <span class="text-sm text-muted-foreground">
-          {t(locale, 'cta.callPrefix')}
-          <a href="tel:+48573818260" class="text-foreground font-semibold hover:underline ml-1">+48 573 818 260</a>
-        </span>
-      </div>
+      <Booking
+        variant="inline"
+        locale={locale}
+        utmSource="location_page"
+        utmCampaign={`locations_hub_${locale}`}
+        buttonLocation="locations_hub"
+        class="mt-8"
+      />
     </header>
 
     <section class="pb-16" aria-labelledby="okolice">
@@ -153,7 +138,7 @@ const booksyUrl = (() => {
     </section>
   </div>
 
-  <CTASection
+  <Booking
     locale={locale}
     utmSource="location_page"
     utmCampaign={`locations_hub_${locale}`}
@@ -177,20 +162,5 @@ const booksyUrl = (() => {
       { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
     );
     reveals.forEach((el) => observer.observe(el));
-  }
-</script>
-
-<script define:vars={{ locale }}>
-  const hubCta = document.getElementById('locations-hub-cta');
-  if (hubCta) {
-    hubCta.addEventListener('click', () => {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'booking_click_code', {
-          button_location: 'locations_hub',
-          locale,
-          booking_platform: 'booksy',
-        });
-      }
-    });
   }
 </script>

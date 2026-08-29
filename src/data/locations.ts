@@ -103,7 +103,7 @@ export const LOCATION_PRICING: Record<
       earringFrom: 'kolczyk od 70 zł',
     },
     earrings: { one: 'od 70 zł za jeden', pair: 'od 120 zł za parę' },
-    travelFee: '+90 zł',
+    travelFee: 'wg lokalizacji',
   },
   en: {
     children: {
@@ -123,7 +123,7 @@ export const LOCATION_PRICING: Record<
       earringFrom: 'earring from 70 PLN',
     },
     earrings: { one: 'from 70 PLN each', pair: 'from 120 PLN a pair' },
-    travelFee: '+90 PLN',
+    travelFee: 'by location',
   },
   ru: {
     children: {
@@ -143,7 +143,7 @@ export const LOCATION_PRICING: Record<
       earringFrom: 'серьга от 70 зл',
     },
     earrings: { one: 'от 70 зл за одну', pair: 'от 120 зл за пару' },
-    travelFee: '+90 зл',
+    travelFee: 'по локации',
   },
   uk: {
     children: {
@@ -163,7 +163,7 @@ export const LOCATION_PRICING: Record<
       earringFrom: 'сережка від 70 зл',
     },
     earrings: { one: 'від 70 зл за одну', pair: 'від 120 зл за пару' },
-    travelFee: '+90 зл',
+    travelFee: 'за локацією',
   },
 };
 
@@ -519,7 +519,7 @@ export const locations: LocationData[] = [
         genitive: 'Wilanowa',
         seoTitle: 'Przekłuwanie uszu Wilanów | Gabinet i dojazd do domu',
         seoDescription:
-          'Przekłuwanie uszu dla Wilanowa i Miasteczka Wilanów. Gabinet na Mokotowie lub dojazd do domu (+90 zł). Inverness Med, dzieci 0+ i dorośli.',
+          'Przekłuwanie uszu dla Wilanowa i Miasteczka Wilanów. Gabinet na Mokotowie lub dojazd do domu (cena wg lokalizacji). Inverness Med, dzieci 0+ i dorośli.',
         h1: 'Przekłuwanie uszu Wilanów',
         lede: 'Bez metra w dzielnicy dojazd bywa loterią, więc równie często przyjeżdżamy do Was.',
         intro:
@@ -540,7 +540,7 @@ export const locations: LocationData[] = [
           {
             question: 'Macie gabinet w Wilanowie?',
             answer:
-              'Nie. Gabinet jest jeden, przy Ursynowskiej 10/1 na Mokotowie, ok. 20 min poza szczytem. Do Wilanowa regularnie dojeżdżamy za 90 zł.',
+              'Nie. Gabinet jest jeden, przy Ursynowskiej 10/1 na Mokotowie, ok. 20 min poza szczytem. Do Wilanowa regularnie dojeżdżamy — cenę dojazdu podajemy po adresie.',
           },
           {
             question: 'Gabinet czy wizyta domowa?',
@@ -549,7 +549,7 @@ export const locations: LocationData[] = [
           },
           {
             question: 'Czy przyjeżdżacie do Powsina i Zawad?',
-            answer: 'Tak, cała dzielnica. Dopłata za dojazd jest stała: 90 zł.',
+            answer: 'Tak, cała dzielnica. Cena dojazdu zależy od lokalizacji.',
           },
         ],
       },
@@ -559,7 +559,7 @@ export const locations: LocationData[] = [
         genitive: 'Wilanów',
         seoTitle: 'Ear Piercing Wilanów | Studio or Home Visit',
         seoDescription:
-          'Ear piercing for Wilanów and Miasteczko Wilanów. Studio in Mokotów or a home visit (+90 PLN). Inverness Med, children 0+ and adults.',
+          'Ear piercing for Wilanów and Miasteczko Wilanów. Studio in Mokotów or a home visit (priced by location). Inverness Med, children 0+ and adults.',
         h1: 'Ear piercing in Wilanów',
         lede: 'With no metro in the district the drive is a lottery, so just as often we come to you.',
         intro:
@@ -579,7 +579,7 @@ export const locations: LocationData[] = [
           {
             question: 'Do you have a studio in Wilanów?',
             answer:
-              'No. There is one studio, at Ursynowska 10/1 in Mokotów, about 20 minutes outside rush hour. We drive to Wilanów regularly for 90 PLN.',
+              'No. There is one studio, at Ursynowska 10/1 in Mokotów, about 20 minutes outside rush hour. We drive to Wilanów regularly — travel is priced after we have the address.',
           },
           {
             question: 'Studio or home visit?',
@@ -588,7 +588,7 @@ export const locations: LocationData[] = [
           },
           {
             question: 'Do you drive to Powsin and Zawady?',
-            answer: 'Yes, the whole district. The travel fee is flat: 90 PLN.',
+            answer: 'Yes, the whole district. Travel is priced by location.',
           },
         ],
       },
@@ -598,7 +598,7 @@ export const locations: LocationData[] = [
         genitive: 'Вилянува',
         seoTitle: 'Прокол ушей Вилянув | Кабинет или выезд',
         seoDescription:
-          'Прокол ушей для Вилянува и Miasteczko Wilanów. Кабинет в Мокотуве или выезд на дом (+90 зл). Inverness Med, дети 0+ и взрослые.',
+          'Прокол ушей для Вилянува и Miasteczko Wilanów. Кабинет в Мокотуве или выезд на дом (цена по локации). Inverness Med, дети 0+ и взрослые.',
         h1: 'Прокол ушей в Вилянуве',
         lede: 'Метро в районе нет, дорога бывает лотереей, поэтому не реже мы приезжаем к вам.',
         intro:
@@ -618,7 +618,7 @@ export const locations: LocationData[] = [
           {
             question: 'У вас есть кабинет в Вилянуве?',
             answer:
-              'Нет. Кабинет один, на Ursynowska 10/1 в Мокотуве, ок. 20 минут вне часа пик. В Вилянув регулярно выезжаем за 90 зл.',
+              'Нет. Кабинет один, на Ursynowska 10/1 в Мокотуве, ок. 20 минут вне часа пик. В Вилянув регулярно выезжаем — цену выезда говорим после адреса.',
           },
           {
             question: 'Кабинет или выезд на дом?',
@@ -627,7 +627,7 @@ export const locations: LocationData[] = [
           },
           {
             question: 'Вы выезжаете в Повсин и Завады?',
-            answer: 'Да, весь район. Доплата за выезд фиксированная: 90 зл.',
+            answer: 'Да, весь район. Цена выезда зависит от локации.',
           },
         ],
       },
@@ -637,7 +637,7 @@ export const locations: LocationData[] = [
         genitive: 'Вілянува',
         seoTitle: 'Прокол вух Вілянув | Кабінет або виїзд',
         seoDescription:
-          'Прокол вух для Вілянува і Miasteczko Wilanów. Кабінет у Мокотуві або виїзд додому (+90 зл). Inverness Med, діти 0+ і дорослі.',
+          'Прокол вух для Вілянува і Miasteczko Wilanów. Кабінет у Мокотуві або виїзд додому (ціна за локацією). Inverness Med, діти 0+ і дорослі.',
         h1: 'Прокол вух у Вілянуві',
         lede: 'Метро в районі немає, дорога буває лотереєю, тому не рідше ми приїжджаємо до вас.',
         intro:
@@ -657,7 +657,7 @@ export const locations: LocationData[] = [
           {
             question: 'У вас є кабінет у Вілянуві?',
             answer:
-              'Ні. Кабінет один, на Ursynowska 10/1 у Мокотуві, бл. 20 хвилин поза годиною пік. До Вілянува регулярно виїжджаємо за 90 зл.',
+              'Ні. Кабінет один, на Ursynowska 10/1 у Мокотуві, бл. 20 хвилин поза годиною пік. До Вілянува регулярно виїжджаємо — ціну виїзду кажемо після адреси.',
           },
           {
             question: 'Кабінет чи виїзд додому?',
@@ -666,7 +666,7 @@ export const locations: LocationData[] = [
           },
           {
             question: 'Чи виїжджаєте ви в Повсін і Завади?',
-            answer: 'Так, весь район. Доплата за виїзд фіксована: 90 зл.',
+            answer: 'Так, весь район. Ціна виїзду залежить від локації.',
           },
         ],
       },
@@ -684,11 +684,11 @@ export const locations: LocationData[] = [
         genitive: 'Piaseczna',
         seoTitle: 'Przekłuwanie uszu Piaseczno | Dojazd do domu',
         seoDescription:
-          'Przekłuwanie uszu w Piasecznie z dojazdem do domu (+90 zł) lub w gabinecie na Mokotowie. Inverness Med, dzieci od 0+ i dorośli. Rezerwacja online.',
+          'Przekłuwanie uszu w Piasecznie z dojazdem do domu (cena wg lokalizacji) lub w gabinecie na Mokotowie. Inverness Med, dzieci od 0+ i dorośli. Rezerwacja online.',
         h1: 'Przekłuwanie uszu Piaseczno',
         lede: 'Piaseczno leży poza Warszawą, więc najczęściej to my pakujemy sprzęt i przyjeżdżamy.',
         intro:
-          'Puławską z Piaseczna bywa 40 minut z dzieckiem w foteliku. Najczęściej przyjeżdżamy do Was z tym samym sterylnym zestawem. Dopłata 90 zł. Jeśli jesteście w Warszawie, zapraszamy na Mokotów.',
+          'Puławską z Piaseczna bywa 40 minut z dzieckiem w foteliku. Najczęściej przyjeżdżamy do Was z tym samym sterylnym zestawem. Cena dojazdu zależy od adresu. Jeśli jesteście w Warszawie, zapraszamy na Mokotów.',
         studio: {
           minutes: 'ok. 30–40 min',
           transit:
@@ -704,7 +704,7 @@ export const locations: LocationData[] = [
           {
             question: 'Ile kosztuje dojazd do Piaseczna?',
             answer:
-              'Stałe 90 zł do ceny zabiegu. Para uszu u dziecka z kolczykami to zwykle 270 zł plus 90 zł dojazdu.',
+              'Cena dojazdu zależy od lokalizacji i jest doliczana do zabiegu. Para uszu u dziecka z kolczykami to zwykle 270 zł plus dojazd.',
           },
           {
             question: 'Czego potrzebujecie w domu?',
@@ -724,11 +724,11 @@ export const locations: LocationData[] = [
         genitive: 'Piaseczno',
         seoTitle: 'Ear Piercing Piaseczno | Home Visits',
         seoDescription:
-          'Ear piercing in Piaseczno with a home visit (+90 PLN), or at our studio in Mokotów. Inverness Med, children from 0+ and adults. Book online.',
+          'Ear piercing in Piaseczno with a home visit (priced by location), or at our studio in Mokotów. Inverness Med, children from 0+ and adults. Book online.',
         h1: 'Ear piercing in Piaseczno',
         lede: 'Piaseczno sits outside Warsaw, so usually we are the ones who pack the kit and drive over.',
         intro:
-          'Puławska from Piaseczno can take 40 minutes with a child in a car seat. Most often we come to you with the same sterile kit. The fee is 90 PLN. If you are already in Warsaw, come to us in Mokotów.',
+          'Puławska from Piaseczno can take 40 minutes with a child in a car seat. Most often we come to you with the same sterile kit. Travel is priced by address. If you are already in Warsaw, come to us in Mokotów.',
         studio: {
           minutes: 'approx. 30–40 min',
           transit: 'Bus or train to Wilanowska metro, then one stop on M1 and a short walk.',
@@ -743,7 +743,7 @@ export const locations: LocationData[] = [
           {
             question: 'How much is the trip to Piaseczno?',
             answer:
-              'A flat 90 PLN on top of the procedure. A pair of lobes for a child, with earrings, is usually 270 PLN plus the 90 PLN travel fee.',
+              'Travel is priced by location and added to the procedure. A pair of lobes for a child, with earrings, is usually 270 PLN plus travel.',
           },
           {
             question: 'What do you need at home?',
@@ -763,11 +763,11 @@ export const locations: LocationData[] = [
         genitive: 'Пясечна',
         seoTitle: 'Прокол ушей Пясечно | Выезд на дом',
         seoDescription:
-          'Прокол ушей в Пясечно с выездом на дом (+90 зл) или в кабинете в Мокотуве. Inverness Med, дети от 0+ и взрослые. Онлайн-запись.',
+          'Прокол ушей в Пясечно с выездом на дом (цена по локации) или в кабинете в Мокотуве. Inverness Med, дети от 0+ и взрослые. Онлайн-запись.',
         h1: 'Прокол ушей в Пясечно',
         lede: 'Пясечно — за границей Варшавы, поэтому чаще всего оборудование собираем и приезжаем мы.',
         intro:
-          'По Puławska из Пясечна бывает 40 минут с ребёнком в кресле. Чаще всего мы приезжаем к вам с тем же стерильным набором. Доплата 90 зл. Если вы в Варшаве, ждём в Мокотуве.',
+          'По Puławska из Пясечна бывает 40 минут с ребёнком в кресле. Чаще всего мы приезжаем к вам с тем же стерильным набором. Цена выезда зависит от адреса. Если вы в Варшаве, ждём в Мокотуве.',
         studio: {
           minutes: 'ок. 30–40 мин',
           transit:
@@ -783,7 +783,7 @@ export const locations: LocationData[] = [
           {
             question: 'Сколько стоит выезд в Пясечно?',
             answer:
-              'Фиксированные 90 зл к цене процедуры. Пара мочек у ребёнка с серьгами — обычно 270 зл плюс 90 зл за выезд.',
+              'Цена выезда зависит от локации и добавляется к процедуре. Пара мочек у ребёнка с серьгами — обычно 270 зл плюс выезд.',
           },
           {
             question: 'Что нужно подготовить дома?',
@@ -803,11 +803,11 @@ export const locations: LocationData[] = [
         genitive: 'Пясечна',
         seoTitle: 'Прокол вух Пясечно | Виїзд додому',
         seoDescription:
-          'Прокол вух у Пясечні з виїздом додому (+90 зл) або в кабінеті у Мокотуві. Inverness Med, діти від 0+ і дорослі. Онлайн-запис.',
+          'Прокол вух у Пясечні з виїздом додому (ціна за локацією) або в кабінеті у Мокотуві. Inverness Med, діти від 0+ і дорослі. Онлайн-запис.',
         h1: 'Прокол вух у Пясечні',
         lede: 'Пясечно — за межами Варшави, тому найчастіше обладнання пакуємо і приїжджаємо ми.',
         intro:
-          'По Puławska з Пясечна буває 40 хвилин із дитиною в кріслі. Найчастіше ми приїжджаємо до вас із тим самим стерильним набором. Доплата 90 зл. Якщо ви у Варшаві, чекаємо в Мокотуві.',
+          'По Puławska з Пясечна буває 40 хвилин із дитиною в кріслі. Найчастіше ми приїжджаємо до вас із тим самим стерильним набором. Ціна виїзду залежить від адреси. Якщо ви у Варшаві, чекаємо в Мокотуві.',
         studio: {
           minutes: 'бл. 30–40 хв',
           transit:
@@ -823,7 +823,7 @@ export const locations: LocationData[] = [
           {
             question: 'Скільки коштує виїзд у Пясечно?',
             answer:
-              'Фіксовані 90 зл до ціни процедури. Пара мочок у дитини із сережками — зазвичай 270 зл плюс 90 зл за виїзд.',
+              'Ціна виїзду залежить від локації і додається до процедури. Пара мочок у дитини із сережками — зазвичай 270 зл плюс виїзд.',
           },
           {
             question: 'Що потрібно підготувати вдома?',

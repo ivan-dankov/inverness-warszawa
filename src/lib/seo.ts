@@ -714,19 +714,19 @@ export function getServicePageSEO(
     'przekluwanie-uszu-z-dojazdem-warszawa': {
       pl: {
         title: 'Przekłuwanie Uszu z Dojazdem Warszawa',
-        description: 'Przyjedziemy do Ciebie! ✓ Przekłuwanie uszu dzieci i dorosłych w domu ✓ Cała Warszawa + okolice ✓ Dopłata za dojazd +90 zł → Umów wizytę domową!',
+        description: 'Przyjedziemy do Ciebie! ✓ Przekłuwanie uszu dzieci i dorosłych w domu ✓ Cała Warszawa + okolice ✓ Cena dojazdu wg lokalizacji → Umów wizytę domową!',
       },
       en: {
         title: 'Ear Piercing with Home Visit Warsaw',
-        description: 'Ear piercing with home visit in Warsaw. Convenient and safe. Service price + 90 PLN travel fee. Children and adults. ☎ 573-818-260',
+        description: 'Ear piercing with home visit in Warsaw. Convenient and safe. Travel priced by location. Children and adults. ☎ 573-818-260',
       },
       uk: {
         title: 'Прокол Вух з Виїздом Варшава',
-        description: 'Прокол вух з виїздом додому у Варшаві. Зручно та безпечно. Ціна послуги + 90 злотих за виїзд. ☎ 573-818-260',
+        description: 'Прокол вух з виїздом додому у Варшаві. Зручно та безпечно. Ціна виїзду залежить від локації. ☎ 573-818-260',
       },
       ru: {
         title: 'Прокол Ушей с Выездом Варшава',
-        description: 'Прокол ушей с выездом на дом в Варшаве. Удобно и безопасно. Цена услуги + 90 злотых за выезд. ☎ 573-818-260',
+        description: 'Прокол ушей с выездом на дом в Варшаве. Удобно и безопасно. Цена выезда зависит от локации. ☎ 573-818-260',
       },
     },
   };

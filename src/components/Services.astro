@@ -1,224 +1,225 @@
 ---
-import { t, getTranslations } from '../lib/translations';
-import type { Locale } from '../lib/seo';
-import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
 import { Image } from 'astro:assets';
+import { t, getTranslations } from '../lib/translations';
+import { getLocalizedPagePath, type Locale, type ServicePageSlug } from '../lib/seo';
+import { getServiceItems, type ServiceId } from '../lib/services';
 import childrenImg from '../assets/services/children.webp';
 import adultsImg from '../assets/ear-1.jpg';
 import cartilageImg from '../assets/ear-2.jpg';
 import mobileImg from '../assets/services/mobile.webp';
+import earringOneImg from '../assets/services/earring-one.webp';
+import earringPairImg from '../assets/services/earring-pair.webp';
 
 interface Props {
   locale: Locale;
-  useH1?: boolean;
-  hideViewAllButton?: boolean;
+  headingLevel?: 1 | 2;
+  title?: string;
+  subtitle?: string | null;
+  exclude?: ServicePageSlug[];
+  include?: ServiceId[];
+  showViewAll?: boolean;
+  showPricingNote?: boolean;
+  featuredFirst?: boolean;
+  spaced?: boolean;
+  contained?: boolean;
+  headingId?: string;
+  id?: string;
+  class?: string;
 }
 
-const { locale, useH1 = false, hideViewAllButton = false } = Astro.props;
-const translations = getTranslations(locale);
-const servicesCards = translations.services?.cards || [];
-const pricing = translations.services?.pricing || {};
+const {
+  locale,
+  headingLevel = 2,
+  title = t(locale, 'services.title'),
+  subtitle = t(locale, 'services.subtitle'),
+  exclude,
+  include,
+  showViewAll = false,
+  showPricingNote = true,
+  featuredFirst = true,
+  spaced = true,
+  contained = true,
+  headingId = 'services-heading',
+  id = 'services',
+  class: className = '',
+} = Astro.props;
 
-// Service page slugs and their data - only children, adults, and cartilage
-const servicePages: Array<{ slug: ServicePageSlug; nameKey: string; desc: Record<Locale, string> }> = [
-  { 
-    slug: 'przekluwanie-uszu-dzieci-warszawa', 
-    nameKey: 'children',
-    desc: {
-      pl: 'Bezpieczne przekłuwanie pary uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
-      en: 'Safe and gentle ear piercing for children from 0+, doctor-approved.',
-      uk: 'Безпечний та делікатний прокол вух для дітей від 0+, схвалений лікарями.',
-      ru: 'Безопасный и деликатный прокол ушей для детей от 0+, одобренный врачами.',
-    }
-  },
-  { 
-    slug: 'przekluwanie-uszu-dorosli-warszawa', 
-    nameKey: 'adults',
-    desc: {
-      pl: 'Przekłuwanie uszu dla dorosłych — 1, 2 albo 3 przekłucia na wizycie, płatek lub chrząstka.',
-      en: 'Ear piercing for adults - earlobe and cartilage in professional conditions.',
-      uk: 'Прокол вух для дорослих - мочка вуха та хрящ у професійних умовах.',
-      ru: 'Прокол ушей для взрослых - мочка уха и хрящ в профессиональных условиях.',
-    }
-  },
-  { 
-    slug: 'przekluwanie-chrzastki-warszawa', 
-    nameKey: 'cartilage',
-    desc: {
-      pl: 'Specjalizujemy się w przekłuwaniu chrząstki: helix, tragus, conch systemem Inverness MED.',
-      en: 'We specialize in cartilage piercing: helix, tragus, conch with Inverness MED system.',
-      uk: 'Спеціалізуємося на проколі хряща: helix, tragus, conch системою Inverness MED.',
-      ru: 'Специализируемся на проколе хряща: helix, tragus, conch системой Inverness MED.',
-    }
-  },
-];
+const pricing = getTranslations(locale).services?.pricing || {};
+const items = getServiceItems(locale, { exclude, include });
+const images = {
+  children: childrenImg,
+  adults: adultsImg,
+  cartilage: cartilageImg,
+  mobile: mobileImg,
+} as const;
 
-const serviceNames: Record<string, Record<Locale, string>> = {
-  children: {
-    pl: 'Przekłuwanie uszu dzieciom',
-    en: 'Ear piercing for children',
-    uk: 'Прокол вух дітям',
-    ru: 'Прокол ушей детям',
-  },
-  adults: {
-    pl: 'Przekłuwanie uszu dla dorosłych',
-    en: 'Earlobe piercing for adults',
-    uk: 'Прокол мочки вуха для дорослих',
-    ru: 'Прокол мочки уха для взрослых',
-  },
-  cartilage: {
-    pl: 'Przekłuwanie chrząstki',
-    en: 'Cartilage piercing',
-    uk: 'Прокол хряща',
-    ru: 'Прокол хряща',
-  },
-  mobile: {
-    pl: 'Przekłuwanie uszu z dojazdem',
-    en: 'Mobile ear piercing',
-    uk: 'Прокол вух з виїздом',
-    ru: 'Прокол ушей с выездом',
-  },
-};
-
-// Map service slugs to their prices from translations
-// Based on Services.astro mapping: index 0 = cartilage, 1 = children, 2 = mobile
-const servicePriceMap: Record<ServicePageSlug, string> = {
-  'przekluwanie-chrzastki-warszawa': servicesCards[0]?.price || '',
-  'przekluwanie-uszu-dzieci-warszawa': servicesCards[1]?.price || '',
-  'przekluwanie-uszu-z-dojazdem-warszawa': servicesCards[2]?.price || '',
-  'przekluwanie-uszu-dorosli-warszawa': servicesCards[0]?.price || '', // Adults use same pricing as cartilage
-  'przekluwanie-uszu-warszawa': servicesCards[0]?.price || '', // Legacy
-};
+const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
 ---
 
-<section id="services" class="py-24 sm:py-32 bg-background border-t border-border">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      {useH1 ? (
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-          {t(locale, 'services.title')}
-        </h1>
-      ) : (
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-          {t(locale, 'services.title')}
-        </h2>
-      )}
-      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-        {t(locale, 'services.subtitle')}
-      </p>
-    </div>
+{items.length > 0 && (
+  <section
+    id={id}
+    class:list={[
+      'bg-background',
+      spaced && 'py-24 sm:py-32 border-t border-border',
+      className,
+    ]}
+    aria-labelledby={headingId}
+  >
+    <div class:list={[contained && 'container mx-auto px-4 sm:px-6 lg:px-8']}>
+      <div class:list={[contained && 'max-w-6xl mx-auto']}>
+        <header class="mb-10 sm:mb-14 max-w-2xl">
+          <HeadingTag
+            id={headingId}
+            class:list={[
+              'font-bold text-foreground leading-tight tracking-tight',
+              headingLevel === 1
+                ? 'text-4xl sm:text-5xl lg:text-6xl mb-6'
+                : 'text-3xl sm:text-4xl lg:text-5xl mb-4',
+            ]}
+          >
+            {title}
+          </HeadingTag>
+          {subtitle && (
+            <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed">
+              {subtitle}
+            </p>
+          )}
+        </header>
 
-    {/* All 4 services as uniform horizontal cards */}
-    {(() => {
-      const allServices = [
-        ...servicePages.map(s => ({
-          slug: s.slug,
-          nameKey: s.nameKey,
-          desc: s.desc[locale],
-          img: s.nameKey === 'children' ? childrenImg : s.nameKey === 'adults' ? adultsImg : cartilageImg,
-        })),
-        {
-          slug: 'przekluwanie-uszu-z-dojazdem-warszawa' as ServicePageSlug,
-          nameKey: 'mobile',
-          desc: locale === 'pl' ? 'Usługa mobilna z dojazdem do domu — przekłuwanie uszu w komforcie Twojego domu.'
-              : locale === 'en' ? 'Mobile service with home visits — ear piercing in the comfort of your home.'
-              : locale === 'uk' ? 'Мобільна послуга з виїздом додому — прокол вух у комфорті вашого дому.'
-              : 'Мобильная услуга с выездом на дом — прокол ушей в комфорте вашего дома.',
-          img: mobileImg,
-        },
-      ];
-
-      return (
-        <div class="max-w-6xl mx-auto space-y-5 mb-10">
-          {allServices.map((s) => {
-            const url = getServicePagePath(s.slug, locale);
-            const name = serviceNames[s.nameKey]?.[locale] || '';
-            const price = servicePriceMap[s.slug];
-            const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${s.slug}_${locale}`;
+        <ul class="divide-y divide-border border-y border-border">
+          {items.map((item, index) => {
+            const featured = featuredFirst && index === 0;
             return (
-              <div class="group flex flex-row bg-card border border-border rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300">
-                {/* Illustration */}
-                <a href={url} class="block w-32 sm:w-44 flex-shrink-0 bg-white dark:bg-zinc-100">
+              <li data-reveal data-reveal-delay={String(index + 1)}>
+                <a
+                  href={item.href}
+                  class:list={[
+                    'group grid items-center gap-5 sm:gap-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                    featured
+                      ? 'py-8 sm:py-10 md:grid-cols-[minmax(0,17rem)_1fr]'
+                      : 'py-6 sm:py-7 grid-cols-[auto_1fr]',
+                  ]}
+                >
                   <Image
-                    src={s.img}
-                    alt={name}
-                    class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                    widths={[176, 352]}
-                    sizes="176px"
+                    src={images[item.id]}
+                    alt={item.name}
+                    class:list={[
+                      'rounded-lg bg-muted/40 object-contain w-full',
+                      featured
+                        ? 'aspect-[4/3] max-h-56 sm:max-h-none'
+                        : 'w-24 h-24 sm:w-28 sm:h-28',
+                    ]}
+                    widths={featured ? [280, 560] : [112, 224]}
+                    sizes={featured ? '(max-width: 768px) 90vw, 272px' : '112px'}
                   />
-                </a>
-                {/* Content */}
-                <div class="flex flex-col sm:flex-row flex-1 items-start sm:items-center gap-4 sm:gap-8 p-5 sm:p-7">
-                  <div class="flex-1 min-w-0">
-                    <a href={url}>
-                      <h3 class="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug">{name}</h3>
-                      <p class="text-base text-muted-foreground leading-relaxed line-clamp-2">{s.desc}</p>
-                    </a>
+                  <div class="min-w-0 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-8">
+                    <div class="min-w-0">
+                      <h3
+                        class:list={[
+                          'font-bold text-foreground group-hover:text-primary transition-colors leading-snug',
+                          featured ? 'text-xl sm:text-2xl' : 'text-lg',
+                        ]}
+                      >
+                        {item.name}
+                      </h3>
+                      <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mt-1">
+                        {item.description}
+                      </p>
+                    </div>
+                    {item.price && (
+                      <span class="text-base sm:text-lg font-bold text-primary whitespace-nowrap flex-shrink-0">
+                        {item.price}
+                      </span>
+                    )}
                   </div>
-                  <div class="flex flex-col items-start sm:items-end gap-3 flex-shrink-0 w-full sm:w-auto">
-                    <span class="text-xl font-bold text-primary whitespace-nowrap">{price}</span>
-                    <a
-                      href={booksyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 transition-all h-10 px-5 whitespace-nowrap"
-                      data-booking-button="services"
-                      onclick="event.stopPropagation();"
-                    >
-                      <svg class="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      {t(locale, 'services.bookButton')}
-                    </a>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        {showPricingNote && (pricing.earringsInfo || pricing.earringsOneValue) && (
+          <aside
+            class="relative overflow-hidden rounded-lg bg-[hsl(221,43%,18%)] px-5 py-6 sm:px-8 sm:py-7 mt-6 text-white"
+            data-reveal
+            data-reveal-delay={String(items.length + 1)}
+          >
+            <div class="absolute -top-10 right-0 w-48 h-48 bg-primary opacity-40 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+            <div class="absolute bottom-0 left-1/3 w-40 h-40 bg-secondary opacity-25 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+              <div class="min-w-0 max-w-xl">
+                <p class="text-xs uppercase tracking-[0.16em] text-secondary font-semibold mb-2">
+                  {pricing.earringsLabel}
+                </p>
+                <p class="text-lg sm:text-xl font-bold leading-snug">
+                  {pricing.earringsInfo}
+                </p>
+              </div>
+              <div class="grid grid-cols-2 gap-3 w-full lg:w-auto lg:min-w-[22rem]">
+                <div class="flex items-center gap-3 rounded-lg bg-white/10 ring-1 ring-white/15 px-3 py-3 min-w-0">
+                  <Image
+                    src={earringOneImg}
+                    alt=""
+                    class="w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] rounded-lg bg-white object-contain flex-shrink-0"
+                    widths={[72, 144]}
+                    sizes="72px"
+                  />
+                  <div class="min-w-0">
+                    <p class="text-xs text-white/60 mb-0.5">{pricing.earringsOneUnit}</p>
+                    <p class="text-xl font-bold tabular-nums">{pricing.earringsOneValue}</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3 rounded-lg bg-white/10 ring-1 ring-white/15 px-3 py-3 min-w-0">
+                  <Image
+                    src={earringPairImg}
+                    alt=""
+                    class="w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] rounded-lg bg-white object-contain flex-shrink-0"
+                    widths={[72, 144]}
+                    sizes="72px"
+                  />
+                  <div class="min-w-0">
+                    <p class="text-xs text-white/60 mb-0.5">{pricing.earringsPairUnit}</p>
+                    <p class="text-xl font-bold tabular-nums">{pricing.earringsPairValue}</p>
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      );
-    })()}
+            </div>
+          </aside>
+        )}
 
-    {/* Pricing footnote */}
-    <div class="max-w-6xl mx-auto mb-10 flex items-start gap-2 px-1">
-      <svg class="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-      <p class="text-sm text-muted-foreground leading-relaxed">
-        {pricing.earringsInfo} — {pricing.earringsPrice}
-      </p>
-    </div>
-
-    {!hideViewAllButton && (
-      <div class="text-center mb-8">
-        <a
-          href={getLocalizedPagePath('services', locale)}
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold border border-border bg-background hover:bg-accent hover:text-accent-foreground transition-colors h-12 px-8 text-base group"
-        >
-          {locale === 'pl' ? 'Zobacz wszystkie usługi' :
-           locale === 'en' ? 'View all services' :
-           locale === 'uk' ? 'Переглянути всі послуги' :
-           'Посмотреть все услуги'}
-          <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
+        {showViewAll && (
+          <p class="mt-8">
+            <a
+              href={getLocalizedPagePath('services', locale)}
+              class="inline-flex items-center gap-2 text-primary font-semibold hover:underline underline-offset-4"
+            >
+              {t(locale, 'services.viewAll')}
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </p>
+        )}
       </div>
-    )}
-  </div>
-</section>
+    </div>
+  </section>
+)}
 
-<script define:vars={{ locale }}>
-  // Google Analytics - Track booking button clicks in services
-  document.querySelectorAll('[data-booking-button="services"]').forEach(button => {
-    if (button && window.gtag) {
-      button.addEventListener('click', () => {
-        gtag('event', 'booking_click_code', {
-          button_location: 'services',
-          locale: locale,
-          booking_platform: 'booksy'
+<script>
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reveals.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
         });
-      });
-    }
-  });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
+    );
+    reveals.forEach((el) => observer.observe(el));
+  }
 </script>

@@ -3,6 +3,7 @@ import { t } from '../lib/translations';
 import { languages } from '../lib/language-routes';
 import { PAGE_SLUGS, type Locale } from '../lib/seo';
 import logomark from '../assets/logomark.svg';
+import Booking from './Booking.astro';
 
 interface Props {
   locale: Locale;
@@ -82,18 +83,12 @@ const aftercareSlug = PAGE_SLUGS.aftercare[locale];
           </a>
         </div>
         
-        <a 
-          href={`https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_header`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 min-h-[44px] px-4"
-          id="header-booking-button"
-        >
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <span>{t(locale, 'header.buttons.book')}</span>
-        </a>
+        <Booking
+          variant="nav"
+          locale={locale}
+          utmCampaign={`${locale}_header`}
+          buttonLocation="header"
+        />
 
         <button 
           id="mobile-menu-button"
@@ -157,26 +152,14 @@ const aftercareSlug = PAGE_SLUGS.aftercare[locale];
   </div>
 </header>
 
-<script define:vars={{ locale }}>
+<script>
   // Mobile menu toggle
   const menuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-  
+
   if (menuButton && mobileMenu) {
     menuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
-    });
-  }
-
-  // Google Analytics - Track booking button click
-  const headerBookingButton = document.getElementById('header-booking-button');
-  if (headerBookingButton && window.gtag) {
-    headerBookingButton.addEventListener('click', () => {
-      gtag('event', 'booking_click_code', {
-        button_location: 'header',
-        locale: locale,
-        booking_platform: 'booksy'
-      });
     });
   }
 </script>

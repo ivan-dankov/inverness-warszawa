@@ -2,8 +2,8 @@
 import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
 
 const seoData = {
-  title: "Прокол Ушей с Выездом Варшава | На Дому | +90zł",
-  description: "✓ Прокол ушей с выездом на дом ✓ Вся Варшава и окрестности ✓ Дети и взрослые ✓ Система Inverness Med ✓ +90zł за выезд ✓ Забронировать",
+  title: "Прокол Ушей с Выездом Варшава | На Дому",
+  description: "✓ Прокол ушей с выездом на дом ✓ Вся Варшава и окрестности ✓ Дети и взрослые ✓ Система Inverness Med ✓ Цена выезда по локации ✓ Забронировать",
   language: 'ru',
   canonical: 'https://gentlepiercing.pl/ru/uslugi/prokol-ushej-s-vyezdom-varshava',
   hreflang: generateAlternates('services.mobile'),
@@ -31,9 +31,8 @@ const schemaData = [
     },
     "offers": {
       "@type": "Offer",
-      "price": "180",
       "priceCurrency": "PLN",
-      "description": "From 90 PLN piercing + 90 PLN travel fee"
+      "description": "Procedure from 90 PLN. Travel priced by location."
     }
   }
 ];

@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Ear Piercing in Warsaw",
-    "subtitle": "Safe and gentle ear piercing for children and adults. At Gentle Piercing, we use the Inverness Med (USA) medical system, which ensures complete sterility, precision and comfort of the procedure.",
+    "subtitle": "Ear piercing for your child from 0+, or for you. Inverness Med, not a piercing gun.",
     "features": [
       "Sterile, single-use tools",
       "Painless and safe",
@@ -85,7 +85,7 @@
         "title": "More service options",
         "description": "Discover our full range of services and find the perfect option for you",
         "badge": "Booksy",
-        "price": "+90 PLN travel",
+        "price": "depends on location",
         "duration": "Various options",
         "features": [
           "Mobile service",
@@ -98,7 +98,7 @@
       "title": "Pricing information",
       "earringsInfo": "Price does not include earrings",
       "earringsPrice": "Additional charge for earrings: from 70 PLN each, from 120 PLN a pair",
-      "mobileVisit": "Home visit: +90 PLN on top of the procedure"
+      "mobileVisit": "Home visit: price depends on location"
     },
     "bookButton": "Book Online",
     "durationLabel": "Duration:"
@@ -190,7 +190,7 @@
       },
       {
         "question": "How much does ear piercing cost?",
-        "answer": "Children usually get a pair of lobes: 150 PLN for the procedure, from 270 PLN with earrings. Adults book 1, 2 or 3 piercings in one visit: 90 / 150 / 210 PLN, earring from 70 PLN. A home visit is a flat +90 PLN on top of the procedure."
+        "answer": "Children usually get a pair of lobes: 150 PLN for the procedure, from 270 PLN with earrings. Adults book 1, 2 or 3 piercings in one visit: 90 / 150 / 210 PLN, earring from 70 PLN. A home visit is priced by location, on top of the procedure."
       },
       {
         "question": "Can I pierce cartilage (helix, tragus)?",
@@ -218,7 +218,7 @@
     "hours": "Opening hours",
     "days": "Monday - Sunday",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Home visit: +90 PLN",
+    "mobileVisit": "Home visit: by location",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {

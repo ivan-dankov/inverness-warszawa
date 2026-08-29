@@ -6,7 +6,7 @@ import type { TranslationMappings } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
 import PortableTextRenderer from '../../../components/PortableTextRenderer';
 import AuthorSection from '../../../components/blog/AuthorSection.astro';
-import CTASection from '../../../components/blog/CTASection.astro';
+import Booking from '../../../components/Booking.astro';
 import RelatedArticles from '../../../components/blog/RelatedArticles.astro';
 
 export async function getStaticPaths() {
@@ -224,16 +224,19 @@ const structuredData = [
         <div class="prose max-w-none">
           <PortableTextRenderer client:idle content={post.content} locale={currentLocale} translationMappings={translationMappings} />
         </div>
-
-        <!-- CTA Section -->
-        <CTASection locale={currentLocale} />
-
-        <!-- Author Section -->
-        <AuthorSection locale={currentLocale} author={post.author} />
-
-        <!-- Related Articles Section -->
-        <RelatedArticles locale={currentLocale} relatedArticles={post.relatedArticles} />
       </article>
+    </div>
+
+    <Booking
+      locale={currentLocale}
+      utmSource="blog"
+      utmCampaign={`ear_piercing_${currentLocale}`}
+      buttonLocation="blog_cta"
+    />
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
+      <AuthorSection locale={currentLocale} author={post.author} />
+      <RelatedArticles locale={currentLocale} relatedArticles={post.relatedArticles} />
     </div>
   </div>
 </BaseLayout>

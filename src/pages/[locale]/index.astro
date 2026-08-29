@@ -7,12 +7,11 @@ import Hero from '../../components/Hero.astro';
 import Services from '../../components/Services.astro';
 import Gallery from '../../components/Gallery.astro';
 import Testimonials from '../../components/Testimonials.astro';
-import ComparisonVideo from '../../components/ComparisonVideo.astro';
-import ComparisonTable from '../../components/ComparisonTable.astro';
+import Inverness from '../../components/Inverness.astro';
 import FAQ from '../../components/FAQ.astro';
 import RecentArticles from '../../components/RecentArticles.astro';
 import ContactHome from '../../components/ContactHome.astro';
-import CTASection from '../../components/CTASection.astro';
+import Booking from '../../components/Booking.astro';
 import LocationLinks from '../../components/LocationLinks.astro';
 
 export async function getStaticPaths() {
@@ -63,13 +62,12 @@ const structuredData = [
   <div class="border-t border-border"></div>
   <Services locale={currentLocale} />
   <Testimonials locale={currentLocale} />
-  <ComparisonVideo locale={currentLocale} />
-  <ComparisonTable locale={currentLocale} />
+  <Inverness locale={currentLocale} />
   <Gallery locale={currentLocale} />
   <FAQ locale={currentLocale} />
   <RecentArticles locale={currentLocale} />
   <LocationLinks locale={currentLocale} />
-  <CTASection locale={currentLocale} />
+  <Booking locale={currentLocale} buttonLocation="homepage_cta" />
   <ContactHome locale={currentLocale} />
 </BaseLayout>
 

@@ -1,7 +1,7 @@
-# Impeccable
+# Gentle Piercing (gentlepiercing.pl)
 
-Design context for Gentle Piercing (gentlepiercing.pl) — a multilingual Astro site for a
-medical ear-piercing studio at Ursynowska 10/1, Warsaw Mokotów.
+Multilingual Astro site for a medical ear-piercing studio at Ursynowska 10/1, Warsaw Mokotów.
+Stack: Astro, React islands, Tailwind, Sanity, SSG. Locales: PL, EN, UK, RU.
 
 ## Design Context
 
@@ -10,7 +10,7 @@ medical ear-piercing studio at Ursynowska 10/1, Warsaw Mokotów.
 Parents deciding where to pierce a young child's ears, and adults booking lobe or cartilage
 piercings for themselves. Most arrive from Google on a phone, mid-research, comparing this
 studio against mall kiosks and tattoo shops. The parent is anxious: they are handing a child
-to a stranger with a needle. They are scanning for proof of safety (0+ certification, sterile
+to a stranger with a needle. They are scanning for proof of safety (0+ certificate, sterile
 single-use cassettes, Inverness Med rather than a piercing gun), price clarity, and how hard
 it is to get there.
 

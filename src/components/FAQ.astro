@@ -2,40 +2,58 @@
 import { t, getTranslations } from '../lib/translations';
 import { PAGE_SLUGS, type Locale } from '../lib/seo';
 
-interface Props {
-  locale: Locale;
+export interface FaqItem {
+  question: string;
+  answer: string;
+  link?: boolean;
 }
 
-const { locale } = Astro.props;
-const translations = getTranslations(locale);
-const faqs = translations.faq?.items || [];
+interface Props {
+  locale: Locale;
+  items?: FaqItem[];
+  title?: string;
+  subtitle?: string | null;
+  id?: string;
+  class?: string;
+}
+
+const {
+  locale,
+  items,
+  title = t(locale, 'faq.title'),
+  subtitle = t(locale, 'faq.subtitle'),
+  id = 'faq',
+  class: className = '',
+} = Astro.props;
+
+const faqs: FaqItem[] = items ?? (getTranslations(locale).faq?.items || []);
 ---
 
-<section id="faq" class="py-20 bg-background border-t border-border">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-        {t(locale, 'faq.title')}
-      </h2>
-      <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-        {t(locale, 'faq.subtitle')}
-      </p>
-    </div>
+{faqs.length > 0 && (
+  <section id={id} class:list={['py-20 bg-background border-t border-border', className]}>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          {title}
+        </h2>
+        {subtitle && (
+          <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {subtitle}
+          </p>
+        )}
+      </div>
 
-    <div class="max-w-3xl mx-auto">
-      <div class="space-y-4">
-        {faqs.map((faq: { question: string; answer: string; link?: boolean }, index: number) => (
-          <details 
-            key={index}
-            class="group bg-card rounded-lg border border-border p-6 hover:shadow-card transition-shadow duration-300"
-          >
+      <div class="max-w-3xl mx-auto space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-card rounded-lg border border-border p-6 hover:shadow-card transition-shadow duration-300">
             <summary class="cursor-pointer font-semibold text-foreground text-base sm:text-lg list-none flex items-center justify-between">
               <span>{faq.question}</span>
-              <svg 
-                class="h-5 w-5 text-muted-foreground transition-transform duration-300 group-open:rotate-180" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                class="h-5 w-5 text-muted-foreground transition-transform duration-300 group-open:rotate-180"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
@@ -55,6 +73,5 @@ const faqs = translations.faq?.items || [];
         ))}
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
+)}

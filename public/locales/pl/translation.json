@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "Przekłuwanie Uszu w Warszawie",
-    "subtitle": "Bezpieczne i delikatne przekłuwanie uszu dla dzieci i dorosłych. W Gentle Piercing korzystamy z medycznego systemu Inverness Med (USA), który zapewnia pełną sterylność, precyzję i komfort zabiegu.",
+    "subtitle": "Przekłucie uszu dziecka od 0+ albo Twoje własne. Inverness Med, nie pistolet.",
     "features": [
       "Sterylne, jednorazowe narzędzia",
       "Bezbolesne i bezpieczne",
@@ -85,7 +85,7 @@
         "title": "Więcej wariantów usług",
         "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
         "badge": "Booksy",
-        "price": "+90 zł dojazd",
+        "price": "zależy od lokalizacji",
         "duration": "Różne opcje",
         "features": [
           "Dojazd mobilny",
@@ -98,7 +98,7 @@
       "title": "Informacje o cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
       "earringsPrice": "Dodatkowa opłata za kolczyki: od 70 zł za jeden, od 120 zł za parę",
-      "mobileVisit": "Dojazd mobilny: +90 zł do ceny zabiegu"
+      "mobileVisit": "Dojazd: cena zależy od lokalizacji"
     },
     "bookButton": "Rezerwuj Online",
     "durationLabel": "Czas trwania:"
@@ -190,7 +190,7 @@
       },
       {
         "question": "Ile kosztuje przekłuwanie uszu?",
-        "answer": "Dzieci najczęściej przekłuwamy parę płatków: 150 zł za zabieg, z kolczykami od 270 zł. Dorośli biorą 1, 2 albo 3 przekłucia na jednej wizycie: 90 / 150 / 210 zł, kolczyk od 70 zł. Dojazd do domu to stałe +90 zł do ceny zabiegu."
+        "answer": "Dzieci najczęściej przekłuwamy parę płatków: 150 zł za zabieg, z kolczykami od 270 zł. Dorośli biorą 1, 2 albo 3 przekłucia na jednej wizycie: 90 / 150 / 210 zł, kolczyk od 70 zł. Dojazd do domu — cena zależy od lokalizacji."
       },
       {
         "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
@@ -218,7 +218,7 @@
     "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Dojazd mobilny: +90 zł",
+    "mobileVisit": "Dojazd: wg lokalizacji",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {
@@ -349,7 +349,7 @@
     }
   },
   "cta": {
-    "title": "Gotowa na pierwsze kolczyki?",
+    "title": "Gotowi na pierwsze kolczyki?",
     "subtitle": "Umów wizytę już dziś i doświadcz bezpiecznego, bezbolesnego przekłuwania uszu systemem Inverness MED",
     "button": "Rezerwuj Online",
     "phone": "Telefon",

@@ -1,0 +1,104 @@
+---
+import { t, getTranslations } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import { Image } from 'astro:assets';
+import invernessSystem from '../assets/inverness-system.png';
+
+interface Props {
+  locale: Locale;
+  features?: string[];
+  class?: string;
+}
+
+const { locale, features, class: className = '' } = Astro.props;
+const translations = getTranslations(locale);
+const items: string[] = (features && features.length > 0
+  ? features
+  : translations.inverness?.features || []
+).slice(0, 6);
+
+const youtubeId = 'BgMvG5Lr1Tw';
+const playLabel = t(locale, 'comparison.playVideo');
+---
+
+<section id="inverness" class={`py-16 sm:py-20 bg-background-alt border-t border-border ${className}`}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="max-w-2xl">
+        <h2 class="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
+          {t(locale, 'inverness.title')}
+        </h2>
+        <p class="mt-4 text-lg text-muted-foreground leading-relaxed">
+          {t(locale, 'inverness.lede')}
+        </p>
+      </div>
+
+      <div class="mt-10 sm:mt-12 grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <div class="lg:col-span-7">
+          <div class="relative w-full aspect-video rounded-lg overflow-hidden shadow-soft border border-border bg-card">
+            <button
+              type="button"
+              class="absolute inset-0 group"
+              data-youtube-id={youtubeId}
+              aria-label={playLabel}
+            >
+              <Image
+                src={invernessSystem}
+                alt={t(locale, 'inverness.title')}
+                widths={[640, 960, 1280]}
+                sizes="(min-width: 1024px) 640px, 100vw"
+                class="absolute inset-0 w-full h-full object-contain p-4 sm:p-6"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors" aria-hidden="true"></span>
+              <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground group-hover:scale-105 transition-transform" aria-hidden="true">
+                <svg class="h-7 w-7 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {items.length > 0 && (
+          <ul class="lg:col-span-5 divide-y divide-border/50">
+            {items.map((item, index) => (
+              <li
+                class="flex items-start gap-5 sm:gap-6 py-4 first:pt-0 group"
+                data-reveal
+                data-reveal-delay={String(index + 1)}
+              >
+                <span class="text-2xl sm:text-3xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-8 sm:w-10 text-right group-hover:text-primary/50 transition-colors duration-300">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <p class="text-base sm:text-lg font-medium leading-relaxed text-foreground">
+                  {item}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-youtube-id]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const id = el.getAttribute('data-youtube-id');
+      if (!id) return;
+
+      const iframe = document.createElement('iframe');
+      iframe.className = 'absolute top-0 left-0 w-full h-full';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+      iframe.title = el.getAttribute('aria-label') || 'YouTube';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.setAttribute('allowfullscreen', '');
+      el.replaceWith(iframe);
+    });
+  });
+</script>

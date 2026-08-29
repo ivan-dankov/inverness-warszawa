@@ -1,99 +1,28 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { 
-  getBreadcrumbSchema, 
+import {
+  getBreadcrumbSchema,
   getCanonicalUrl,
   getLocalBusinessSchema,
   getLocalizedPageUrl,
-  getServicePagePath,
   type Locale,
-  type ServicePageSlug
 } from '../lib/seo';
-import { Image } from 'astro:assets';
-import ear1 from '../assets/ear-1.jpg';
-import ear2 from '../assets/ear-2.jpg';
 import { t, getTranslations } from '../lib/translations';
 import { siteMetadata } from '../config/seo';
+import Services from './Services.astro';
+import Inverness from './Inverness.astro';
+import Booking from './Booking.astro';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const translations = getTranslations(locale);
-const servicesCards = translations.services?.cards || [];
-const pricing = translations.services?.pricing || {};
 
-// Service page slugs and their data - only children, adults, and cartilage
-const servicePages: Array<{ slug: ServicePageSlug; nameKey: string; desc: Record<Locale, string> }> = [
-  { 
-    slug: 'przekluwanie-uszu-dzieci-warszawa', 
-    nameKey: 'children',
-    desc: {
-      pl: 'Bezpieczne przekłuwanie pary uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
-      en: 'Safe and gentle ear piercing for children from 0+, doctor-approved.',
-      uk: 'Безпечний та делікатний прокол вух для дітей від 0+, схвалений лікарями.',
-      ru: 'Безопасный и деликатный прокол ушей для детей от 0+, одобренный врачами.',
-    }
-  },
-  { 
-    slug: 'przekluwanie-uszu-dorosli-warszawa', 
-    nameKey: 'adults',
-    desc: {
-      pl: 'Przekłuwanie uszu dla dorosłych — 1, 2 albo 3 przekłucia na wizycie, płatek lub chrząstka.',
-      en: 'Ear piercing for adults - earlobe and cartilage in professional conditions.',
-      uk: 'Прокол вух для дорослих - мочка вуха та хрящ у професійних умовах.',
-      ru: 'Прокол ушей для взрослых - мочка уха и хрящ в профессиональных условиях.',
-    }
-  },
-  { 
-    slug: 'przekluwanie-chrzastki-warszawa', 
-    nameKey: 'cartilage',
-    desc: {
-      pl: 'Specjalizujemy się w przekłuwaniu chrząstki: helix, tragus, conch systemem Inverness MED.',
-      en: 'We specialize in cartilage piercing: helix, tragus, conch with Inverness MED system.',
-      uk: 'Спеціалізуємося на проколі хряща: helix, tragus, conch системою Inverness MED.',
-      ru: 'Специализируемся на проколе хряща: helix, tragus, conch системой Inverness MED.',
-    }
-  },
+const invernessFeatures = [
+  ...(getTranslations(locale).inverness?.features || []),
+  t(locale, 'inverness.experience'),
 ];
-
-const serviceNames: Record<string, Record<Locale, string>> = {
-  children: {
-    pl: 'Przekłuwanie uszu dzieciom',
-    en: 'Ear piercing for children',
-    uk: 'Прокол вух дітям',
-    ru: 'Прокол ушей детям',
-  },
-  adults: {
-    pl: 'Przekłuwanie uszu dla dorosłych',
-    en: 'Earlobe piercing for adults',
-    uk: 'Прокол мочки вуха для дорослих',
-    ru: 'Прокол мочки уха для взрослых',
-  },
-  cartilage: {
-    pl: 'Przekłuwanie chrząstki',
-    en: 'Cartilage piercing',
-    uk: 'Прокол хряща',
-    ru: 'Прокол хряща',
-  },
-  mobile: {
-    pl: 'Przekłuwanie uszu z dojazdem',
-    en: 'Mobile ear piercing',
-    uk: 'Прокол вух з виїздом',
-    ru: 'Прокол ушей с выездом',
-  },
-};
-
-// Map service slugs to their prices from translations
-// Based on Services.astro mapping: index 0 = cartilage, 1 = children, 2 = mobile
-const servicePriceMap: Record<ServicePageSlug, string> = {
-  'przekluwanie-chrzastki-warszawa': servicesCards[0]?.price || '',
-  'przekluwanie-uszu-dzieci-warszawa': servicesCards[1]?.price || '',
-  'przekluwanie-uszu-z-dojazdem-warszawa': servicesCards[2]?.price || '',
-  'przekluwanie-uszu-dorosli-warszawa': servicesCards[0]?.price || '', // Adults use same pricing as cartilage
-  'przekluwanie-uszu-warszawa': servicesCards[0]?.price || '', // Legacy
-};
 
 const seo = {
   title: locale === 'pl' ? 'Usługi Przekłuwania Uszu Warszawa | Gentle Piercing' :
@@ -143,258 +72,18 @@ const structuredData = [
       </nav>
     </div>
 
-    <!-- Services Section -->
-    <section id="services" class="py-4 bg-background">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-16">
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight tracking-tight">
-            {t(locale, 'services.title')}
-          </h1>
-          <p class="text-lg sm:text-xl text-muted-foreground max-w-2xl">
-            {t(locale, 'services.subtitle')}
-          </p>
-        </div>
+    <Services locale={locale} headingLevel={1} spaced={false} class="pb-12" />
 
-        <!-- Service Cards Grid -->
-        <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
-          {servicePages.map((service, idx) => {
-            const serviceUrl = getServicePagePath(service.slug, locale);
-            const serviceName = serviceNames[service.nameKey]?.[locale] || '';
-            const serviceDesc = service.desc[locale];
-            const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${service.slug}_${locale}`;
-            return (
-              <div
-                class="flex flex-col h-full bg-card border border-border rounded-2xl overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300"
-                data-reveal
-                data-reveal-delay={String(idx + 1)}
-              >
-                <a href={serviceUrl} class="flex flex-col flex-1">
-                  <!-- Full-width image -->
-                  <div class="overflow-hidden aspect-video flex-shrink-0 bg-white">
-                    {service.nameKey === 'cartilage' && (
-                      <Image
-                        src={ear2}
-                        alt={serviceName}
-                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                        widths={[320, 640]}
-                        sizes="(max-width: 768px) 90vw, 360px"
-                      />
-                    )}
-                    {service.nameKey === 'children' && (
-                      <img
-                        src="/services/children-320.webp"
-                        srcset="/services/children-320.webp 320w, /services/children-640.webp 640w"
-                        sizes="(max-width: 768px) 90vw, 360px"
-                        alt={serviceName}
-                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                        decoding="async"
-                        width="320"
-                        height="180"
-                      />
-                    )}
-                    {service.nameKey === 'adults' && (
-                      <Image
-                        src={ear1}
-                        alt={serviceName}
-                        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                        widths={[320, 640]}
-                        sizes="(max-width: 768px) 90vw, 360px"
-                      />
-                    )}
-                  </div>
-
-                  <!-- Left-aligned content -->
-                  <div class="flex flex-col flex-1 p-6 pb-4">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                      <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
-                        {serviceName}
-                      </h3>
-                      <span class="flex-shrink-0 text-sm font-bold text-primary bg-primary/10 rounded-lg px-2.5 py-1 leading-tight">
-                        {servicePriceMap[service.slug]}
-                      </span>
-                    </div>
-                    <p class="text-sm text-muted-foreground leading-relaxed flex-grow">
-                      {serviceDesc}
-                    </p>
-                  </div>
-                </a>
-
-                <!-- Booking button — separate from the service-page link -->
-                <div class="px-6 pb-6 pt-2">
-                  <a
-                    href={booksyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 w-full rounded-lg bg-primary text-primary-foreground font-semibold text-sm h-11 px-4 hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all"
-                    data-booking-button="services"
-                    onclick="event.stopPropagation();"
-                  >
-                    {t(locale, 'services.bookButton')}
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <!-- Mobile Service Card - Horizontal -->
-        <div class="max-w-6xl mx-auto mb-8" data-reveal>
-          {(() => {
-            const mobileService = {
-              slug: 'przekluwanie-uszu-z-dojazdem-warszawa' as ServicePageSlug,
-              nameKey: 'mobile',
-              desc: {
-                pl: 'Usługa mobilna z dojazdem do domu - przekłuwanie uszu w komforcie Twojego domu.',
-                en: 'Mobile service with home visits - ear piercing in the comfort of your home.',
-                uk: 'Мобільна послуга з виїздом додому - прокол вух у комфорті вашого дому.',
-                ru: 'Мобильная услуга с выездом на дом - прокол ушей в комфорте вашего дома.',
-              }
-            };
-            const mobileServiceUrl = getServicePagePath(mobileService.slug, locale);
-            const mobileServiceName = serviceNames[mobileService.nameKey]?.[locale] || '';
-            const mobileServiceDesc = mobileService.desc[locale];
-            const mobileBooksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${mobileService.slug}_${locale}`;
-            return (
-              <div class="flex flex-col md:flex-row bg-card border border-border rounded-2xl overflow-hidden group hover:border-primary/30 hover:shadow-xl transition-all duration-300">
-                <a href={mobileServiceUrl} class="flex flex-col md:flex-row flex-1 gap-0">
-                  <!-- Image -->
-                  <div class="md:w-52 flex-shrink-0 aspect-video md:aspect-auto overflow-hidden">
-                    <img
-                      src="/services/mobile-320.webp"
-                      srcset="/services/mobile-320.webp 320w, /services/mobile-640.webp 640w"
-                      sizes="(max-width: 768px) 100vw, 208px"
-                      alt={mobileServiceName}
-                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                      decoding="async"
-                      width="320"
-                      height="240"
-                    />
-                  </div>
-
-                  <!-- Content -->
-                  <div class="flex flex-col flex-1 p-6">
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                      <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
-                        {mobileServiceName}
-                      </h3>
-                      <span class="flex-shrink-0 text-sm font-bold text-primary bg-primary/10 rounded-lg px-2.5 py-1 leading-tight">
-                        {servicePriceMap[mobileService.slug]}
-                      </span>
-                    </div>
-                    <p class="text-sm text-muted-foreground leading-relaxed">
-                      {mobileServiceDesc}
-                    </p>
-                  </div>
-                </a>
-
-                <!-- Booking button -->
-                <div class="flex items-center px-6 pb-6 md:pb-0 md:pr-6">
-                  <a
-                    href={mobileBooksyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-[1.02] active:scale-[0.98] transition-all h-11 px-6 w-full md:w-auto"
-                    data-booking-button="services"
-                    onclick="event.stopPropagation();"
-                  >
-                    {t(locale, 'services.bookButton')}
-                  </a>
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-
-        <!-- Pricing Info -->
-        <div class="mt-8 max-w-6xl mx-auto mb-12">
-          <div class="rounded-2xl bg-primary/5 border border-primary/15 p-6 sm:p-8">
-            <p class="text-base sm:text-lg font-medium text-foreground leading-relaxed mb-1">
-              {pricing.earringsInfo}
-            </p>
-            <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
-              {pricing.earringsPrice}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="py-16 bg-background border-t border-border">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <ul class="divide-y divide-border/50">
-          <li class="flex items-start gap-6 sm:gap-10 py-8 group" data-reveal data-reveal-delay="1">
-            <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">01</span>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-foreground mb-2">
-                {locale === 'pl' ? '100% Sterylność' :
-                 locale === 'uk' ? '100% Стерильність' :
-                 locale === 'ru' ? '100% Стерильность' : '100% Sterile'}
-              </h3>
-              <p class="text-base text-muted-foreground leading-relaxed">
-                {locale === 'pl' ? 'Jednorazowe, w pełni zabudowane kasety gwarantują brak kontaktu z igłą.' :
-                 locale === 'uk' ? 'Одноразові, повністю закриті касети гарантують відсутність контакту з голкою.' :
-                 locale === 'ru' ? 'Одноразовые, полностью закрытые кассеты гарантируют отсутствие контакта с иглой.' :
-                 'Disposable, fully enclosed cassettes guarantee no contact with the needle.'}
-              </p>
-            </div>
-          </li>
-
-          <li class="flex items-start gap-6 sm:gap-10 py-8 group" data-reveal data-reveal-delay="2">
-            <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">02</span>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-foreground mb-2">
-                {locale === 'pl' ? 'Bezstresowo' :
-                 locale === 'uk' ? 'Без стресу' :
-                 locale === 'ru' ? 'Без стресса' : 'Stress-free'}
-              </h3>
-              <p class="text-base text-muted-foreground leading-relaxed">
-                {locale === 'pl' ? 'Cichy system bez "wystrzału" pistoletu. Idealny dla małych dzieci.' :
-                 locale === 'uk' ? 'Тиха система без "пострілу" пістолета. Ідеально для маленьких дітей.' :
-                 locale === 'ru' ? 'Тихая система без "выстрела" пистолета. Идеально для маленьких детей.' :
-                 'Quiet system without the "gunshot" sound. Perfect for small children.'}
-              </p>
-            </div>
-          </li>
-
-          <li class="flex items-start gap-6 sm:gap-10 py-8 group" data-reveal data-reveal-delay="3">
-            <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">03</span>
-            <div class="flex-1">
-              <h3 class="text-xl font-bold text-foreground mb-2">
-                {locale === 'pl' ? 'Doświadczenie' :
-                 locale === 'uk' ? 'Досвід' :
-                 locale === 'ru' ? 'Опыт' : 'Experience'}
-              </h3>
-              <p class="text-base text-muted-foreground leading-relaxed">
-                {locale === 'pl' ? 'Certyfikowani specjaliści z wieloletnim doświadczeniem w pracy z dziećmi.' :
-                 locale === 'uk' ? 'Сертифіковані фахівці з багаторічним досвідом роботи з дітьми.' :
-                 locale === 'ru' ? 'Сертифицированные специалисты с многолетним опытом работы с детьми.' :
-                 'Certified specialists with years of experience working with children.'}
-              </p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <Inverness locale={locale} features={invernessFeatures} />
   </div>
-</BaseLayout>
 
-<script define:vars={{ locale }}>
-  // Google Analytics - Track booking button clicks in services
-  document.querySelectorAll('[data-booking-button="services"]').forEach(button => {
-    if (button && window.gtag) {
-      button.addEventListener('click', () => {
-        gtag('event', 'booking_click_code', {
-          button_location: 'services',
-          locale: locale,
-          booking_platform: 'booksy'
-        });
-      });
-    }
-  });
-</script>
+  <Booking
+    locale={locale}
+    utmSource="services_page"
+    utmCampaign={`services_list_${locale}`}
+    buttonLocation="services_list_footer"
+  />
+</BaseLayout>
 
 <script>
   // Scroll reveal

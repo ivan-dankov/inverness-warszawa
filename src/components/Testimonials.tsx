@@ -1,6 +1,7 @@
 import { Star } from "../lib/icons";
 import { t } from '../lib/translations';
 import type { Locale } from '../lib/seo';
+import { BOOKSY_BUSINESS_URL } from '../lib/booksy';
 
 interface Testimonial {
   name: string;
@@ -74,7 +75,7 @@ export function Testimonials({ locale, testimonials }: TestimonialsProps) {
                 ))}
               </div>
               <span className="text-lg font-semibold text-white">5.0</span>
-              <a href="https://booksy.com/pl-pl/dl/show-business/319418" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white underline underline-offset-2 transition-colors">
+              <a href={BOOKSY_BUSINESS_URL} target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white underline underline-offset-2 transition-colors">
                 {t(locale, 'testimonials.onBooksy')}
               </a>
             </div>

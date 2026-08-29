@@ -208,7 +208,7 @@ en/blog/ear-piercing-cost-warsaw-price-guide-2026
 
 **PL:**
 ```
-Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd +90 zł...
+Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd — cena zależy od lokalizacji...
 ```
 
 **EN:**
@@ -285,7 +285,7 @@ uk/blog/skilky-koshtuye-prokolyuvannya-vuh-varshava-2026
 
 **PL:**
 ```
-Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd +90 zł...
+Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd — cena zależy od lokalizacji...
 ```
 
 **UK:**
@@ -363,7 +363,7 @@ ru/blog/skolko-stoit-prokol-ushey-varshava-2026
 
 **PL:**
 ```
-Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd +90 zł...
+Przekłuwanie uszu w Warszawie: dzieci 150 zł za parę płatków (z kolczykami od 270 zł), dorośli 90 / 150 / 210 zł, dojazd — cena zależy od lokalizacji...
 ```
 
 **RU:**

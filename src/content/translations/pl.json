@@ -19,7 +19,7 @@
   },
   "hero": {
     "title": "Bezpieczne przekłuwanie uszu w Warszawie",
-    "subtitle": "Bezpieczne i delikatne przekłuwanie uszu dla dzieci i dorosłych. W Gentle Piercing korzystamy z medycznego systemu Inverness Med (USA), który zapewnia pełną sterylność, precyzję i komfort zabiegu.",
+    "subtitle": "Przekłucie uszu dziecka od 0+ albo Twoje własne. Inverness Med, nie pistolet.",
     "features": [
       "Sterylne, jednorazowe narzędzia",
       "Bezbolesne i bezpieczne",
@@ -88,7 +88,7 @@
         "title": "Przekłuwanie Uszu Dzieciom",
         "description": "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
         "badge": "Dla Dzieci",
-        "price": "150 zł / para",
+        "price": "150 zł za parę",
         "duration": "30 min",
         "features": [
           "Dla dzieci 0+",
@@ -100,7 +100,7 @@
         "title": "Więcej Wariantów Usług",
         "description": "Odkryj pełną ofertę naszych usług i znajdź idealną opcję dla siebie",
         "badge": "Booksy",
-        "price": "+90 zł dojazd",
+        "price": "zależy od lokalizacji",
         "duration": "Różne opcje",
         "features": [
           "Dojazd mobilny",
@@ -113,16 +113,54 @@
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
       "earringsPrice": "Dodatkowa opłata za kolczyki: od 70 zł za jeden, od 120 zł za parę",
-      "mobileVisit": "Dojazd mobilny: +90 zł do ceny zabiegu"
+      "earringsOne": "od 70 zł za jeden",
+      "earringsPair": "od 120 zł za parę",
+      "earringsLabel": "Kolczyki oddzielnie",
+      "earringsOneValue": "od 70 zł",
+      "earringsOneUnit": "za jeden",
+      "earringsPairValue": "od 120 zł",
+      "earringsPairUnit": "za parę",
+      "mobileVisit": "Dojazd: cena zależy od lokalizacji"
     },
     "bookButton": "Rezerwuj Online",
-    "durationLabel": "Czas trwania:"
+    "durationLabel": "Czas trwania:",
+    "viewAll": "Zobacz wszystkie usługi",
+    "relatedTitle": "Mogą Cię zainteresować",
+    "catalog": {
+      "children": {
+        "name": "Przekłuwanie uszu dzieciom",
+        "description": "Para uszu od 0+, zatwierdzone przez lekarzy."
+      },
+      "adults": {
+        "name": "Przekłuwanie uszu dla dorosłych",
+        "description": "1, 2 albo 3 przekłucia na wizycie — płatek lub chrząstka."
+      },
+      "cartilage": {
+        "name": "Przekłuwanie chrząstki",
+        "description": "Helix, tragus, conch systemem Inverness MED."
+      },
+      "mobile": {
+        "name": "Przekłuwanie uszu z dojazdem",
+        "description": "W domu. Dojazd doliczany do zabiegu."
+      }
+    }
   },
   "gallery": {
     "title": "Galeria",
     "subtitle": "Zobacz nasz profesjonalny sprzęt i efekty naszej pracy",
     "seeAll": "Zobacz Wszystkie",
     "photoCount": "{{count}} zdjęć"
+  },
+  "inverness": {
+    "title": "Jak działa Inverness Med",
+    "lede": "Jednorazowa kaseta. Tkanka jest rozdzielana, nie rozrywana.",
+    "experience": "Certyfikowani specjaliści z doświadczeniem w pracy z dziećmi",
+    "features": [
+      "Jednorazowa, zamknięta kaseta — brak kontaktu z igłą",
+      "Cichy mechanizm, bez trzasku pistoletu",
+      "Zatwierdzony przez lekarzy dla dzieci od 0+",
+      "Płatek ucha i chrząstka (helix, tragus, conch)"
+    ]
   },
   "comparison": {
     "title": "Inverness Med — najnowocześniejszy i najbezpieczniejszy system",
@@ -214,7 +252,7 @@
       },
       {
         "question": "Ile kosztuje przekłuwanie uszu?",
-        "answer": "Dzieci najczęściej przekłuwamy parę płatków: 150 zł za zabieg, z kolczykami od 270 zł. Dorośli biorą 1, 2 albo 3 przekłucia na jednej wizycie: 90 / 150 / 210 zł, kolczyk od 70 zł. Dojazd do domu to stałe +90 zł do ceny zabiegu."
+        "answer": "Dzieci najczęściej przekłuwamy parę płatków: 150 zł za zabieg, z kolczykami od 270 zł. Dorośli biorą 1, 2 albo 3 przekłucia na jednej wizycie: 90 / 150 / 210 zł, kolczyk od 70 zł. Dojazd do domu — cena zależy od lokalizacji."
       },
       {
         "question": "Czy mogę przekłuć chrząstkę (helix, tragus)?",
@@ -242,7 +280,7 @@
     "hours": "Godziny otwarcia",
     "days": "Poniedziałek - Niedziela",
     "hoursTime": "10:00 - 20:00",
-    "mobileVisit": "Dojazd mobilny: +90 zł",
+    "mobileVisit": "Dojazd: wg lokalizacji",
     "messengers": "WhatsApp / Telegram"
   },
   "footer": {
@@ -377,9 +415,10 @@
     }
   },
   "cta": {
-    "title": "Gotowa na pierwsze kolczyki?",
+    "title": "Gotowi na pierwsze kolczyki?",
     "subtitle": "Umów wizytę już dziś i doświadcz bezpiecznego, bezbolesnego przekłuwania uszu systemem Inverness MED",
     "button": "Rezerwuj Online",
+    "priceLabel": "Cena usługi",
     "phone": "Telefon",
     "footer": "Bezpłatna konsultacja, wizyty mobilne, dzieci od 0+",
     "callPrefix": "lub zadzwoń:",
@@ -389,7 +428,7 @@
   "servicePages": {
     "przekluwanie-uszu-warszawa": {
       "h1": "Przekłuwanie Uszu w Warszawie",
-      "description": "Profesjonalne przekłuwanie uszu w Warszawie systemem Inverness MED. Oferujemy bezpieczne, sterylne i bezbolesne przekłuwanie uszu dla dzieci i dorosłych. System Inverness MED to jedyna metoda w Europie zatwierdzona przez lekarzy dla dzieci od 0+. Wykonujemy przekłuwanie płatka ucha oraz chrząstki (helix, tragus, conch).",
+      "description": "Płatek i chrząstka. Dzieci od 0+ i dorośli.",
       "features": [
         "System Inverness MED - certyfikowany przez FDA i ISO",
         "100% sterylność - jednorazowe, zamknięte kasety",
@@ -405,10 +444,10 @@
     },
     "przekluwanie-uszu-dzieci-warszawa": {
       "h1": "Przekłuwanie Uszu Dzieciom w Warszawie",
-      "description": "Bezpieczne przekłuwanie uszu dzieciom w Warszawie systemem Inverness MED. Jedyne przekłuwanie zatwierdzone przez lekarzy dla dzieci od 0+. Cichy, delikatny mechanizm nie przestrasza najmłodszych, a 100% sterylność gwarantuje bezpieczeństwo. Doświadczona specjalistka z ponad 5000 bezpiecznych zabiegów.",
+      "description": "Jedyny system w Europie zatwierdzony przez lekarzy od 0+.",
       "blogLink": {
         "url": "/pl/blog/jak-przygotowac-dziecko-do-przekluwania-uszu",
-        "text": "Dowiedz się więcej: Jak przygotować dziecko do pierwszego przekłucia uszu?"
+        "text": "Jak przygotować dziecko do przekłucia"
       },
       "features": [
         "Zatwierdzone przez lekarzy dla dzieci 0+",
@@ -455,7 +494,7 @@
     },
     "przekluwanie-uszu-dorosli-warszawa": {
       "h1": "Przekłuwanie Uszu Dla Dorosłych w Warszawie",
-      "description": "Profesjonalne przekłuwanie uszu dla dorosłych w Warszawie systemem Inverness MED. Oferujemy przekłuwanie płatka ucha oraz chrząstki (helix, tragus, conch). System Inverness MED zapewnia precyzyjne, atraumatyczne przekłucie z szybkim gojeniem. Szeroki wybór kolczyków dla dorosłych.",
+      "description": "Płatek albo chrząstka. 1, 2 albo 3 przekłucia na jednej wizycie.",
       "features": [
         "Przekłuwanie płatka ucha i chrząstki",
         "Precyzyjna metoda - szybkie gojenie",
@@ -493,7 +532,7 @@
     },
     "przekluwanie-chrzastki-warszawa": {
       "h1": "Przekłuwanie Chrząstki w Warszawie",
-      "description": "Profesjonalne przekłuwanie chrząstki ucha w Warszawie systemem Inverness MED. Specjalizujemy się w przekłuwaniu helix, tragus, conch, flat oraz lobe. System Inverness MED jest idealny do przekłuwania chrząstki - precyzyjny, nie rozrywa tkanek jak tradycyjny pistolet. Szybkie i czyste gojenie.",
+      "description": "Helix, tragus, conch. Bez rozrywania tkanek.",
       "features": [
         "Przekłuwanie helix, tragus, conch, flat, lobe",
         "Idealny system dla chrząstki",
@@ -531,7 +570,7 @@
     },
     "przekluwanie-uszu-z-dojazdem-warszawa": {
       "h1": "Przekłuwanie Uszu Z Dojazdem w Warszawie",
-      "description": "Mobilne przekłuwanie uszu z dojazdem do domu w Warszawie. Oferujemy profesjonalną usługę przekłuwania uszu systemem Inverness MED w Twoim domu. Idealne rozwiązanie dla rodzin z małymi dziećmi lub osób, które preferują komfort własnego domu. Pełna sterylność i profesjonalizm.",
+      "description": "Ten sam zabieg w domu. Dojazd zależy od adresu.",
       "features": [
         "Dojazd do domu w Warszawie",
         "Pełna sterylność w warunkach domowych",
@@ -541,8 +580,8 @@
         "Elastyczne godziny wizyt"
       ],
       "pricing": {
-        "basePrice": "Od 90 zł za przekłucie + 90 zł dojazd",
-        "additionalInfo": "Dojazd to stałe +90 zł do ceny zabiegu. Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 120 zł za parę)"
+        "basePrice": "Od 90 zł za przekłucie. Dojazd — wg lokalizacji",
+        "additionalInfo": "Cena dojazdu zależy od adresu. Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 120 zł za parę)"
       },
       "faq": [
         {
@@ -551,11 +590,11 @@
         },
         {
           "question": "Ile kosztuje dojazd?",
-          "answer": "Standardowa cena dojazdu to 90 zł, doliczana do ceny zabiegu. W obrębie Warszawy i najbliższych okolic (Piaseczno, Józefosław) stawka jest stała."
+          "answer": "Cena dojazdu zależy od lokalizacji i jest doliczana do zabiegu. Przy rezerwacji podaj adres — podamy dokładną kwotę."
         },
         {
           "question": "Czy przyjedziecie na 1 dziecko?",
-          "answer": "Tak, oczywiście! Przyjeżdżamy zarówno na pojedyncze przekłucie, jak i na większe grupy. Nie ma minimalnej liczby osób - możemy przyjechać nawet na jedno dziecko. Cena dojazdu jest stała niezależnie od liczby przekłuć."
+          "answer": "Tak, oczywiście! Przyjeżdżamy zarówno na pojedyncze przekłucie, jak i na większe grupy. Nie ma minimalnej liczby osób - możemy przyjechać nawet na jedno dziecko. Cena dojazdu zależy od adresu, nie od liczby przekłuć."
         },
         {
           "question": "Co musicie mieć w domu?",

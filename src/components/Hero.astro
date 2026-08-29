@@ -5,6 +5,7 @@ import { PAGE_SLUGS } from '../lib/seo';
 import { getImage } from 'astro:assets';
 import logoWide from '../assets/logo-wide.svg';
 import heroMain from '../assets/hero/hero-girl.png';
+import Booking from './Booking.astro';
 
 interface Props {
   locale: Locale;
@@ -13,7 +14,6 @@ interface Props {
 const { locale } = Astro.props;
 const contactSlug = PAGE_SLUGS.contact[locale];
 const features: string[] = getTranslations(locale).hero?.features || [];
-const booksyUrl = `https://booksy.com/pl-pl/dl/show-business/319418?utm_source=homepage&utm_medium=cta&utm_campaign=${locale}_main`;
 
 const optimizedHeroMain = await getImage({
   src: heroMain,
@@ -48,21 +48,17 @@ const optimizedHeroMain = await getImage({
         </p>
 
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-7">
-            <a 
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:shadow-card transition-shadow duration-300 h-12 px-8 text-base w-full sm:w-auto"
-              id="hero-booking-button"
-            >
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              {t(locale, 'hero.buttons.book')}
-            </a>
+            <Booking
+              variant="inline"
+              tone="onDark"
+              locale={locale}
+              utmCampaign={`${locale}_main`}
+              buttonLocation="hero"
+              showPhone={false}
+            />
             <a 
               href={`/${locale}/${contactSlug}`}
-              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-semibold h-12 px-8 text-base w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300"
+              class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-base font-semibold h-14 px-10 w-full sm:w-auto bg-transparent border border-white/25 text-white hover:bg-white/10 hover:border-white/40 transition-all duration-300"
             >
               <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -72,8 +68,8 @@ const optimizedHeroMain = await getImage({
             </a>
           </div>
 
-          <!-- 3-cell trust strip -->
-          <div class="flex items-stretch gap-4 sm:gap-6">
+          <!-- 2-cell trust strip -->
+          <div class="flex w-full items-stretch justify-start gap-4 sm:gap-6">
             <div class="flex flex-col">
               <div class="flex items-center gap-1">
                 {[...Array(5)].map(() => (
@@ -84,11 +80,6 @@ const optimizedHeroMain = await getImage({
               <span class="ml-1 text-sm font-semibold text-white">5.0</span>
             </div>
             <span class="text-xs text-white/60 mt-0.5">{t(locale, 'hero.trust.reviews.label')}</span>
-          </div>
-          <div class="self-stretch w-px bg-white/20" aria-hidden="true" />
-          <div class="flex flex-col justify-center">
-            <span class="text-sm font-semibold text-white">{t(locale, 'hero.trust.experience.value')}</span>
-            <span class="text-xs text-white/60 mt-0.5">{t(locale, 'hero.trust.experience.label')}</span>
           </div>
           <div class="self-stretch w-px bg-white/20" aria-hidden="true" />
           <div class="flex flex-col justify-center">
@@ -116,17 +107,3 @@ const optimizedHeroMain = await getImage({
     </div>
   </div>
 </section>
-
-<script define:vars={{ locale }}>
-  // Google Analytics - Track booking button click
-  const heroBookingButton = document.getElementById('hero-booking-button');
-  if (heroBookingButton && window.gtag) {
-    heroBookingButton.addEventListener('click', () => {
-      gtag('event', 'booking_click_code', {
-        button_location: 'hero',
-        locale: locale,
-        booking_platform: 'booksy'
-      });
-    });
-  }
-</script>

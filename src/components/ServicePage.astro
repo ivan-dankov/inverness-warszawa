@@ -1,12 +1,14 @@
 ---
 import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
-import { getServicePagePath, getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
-import ServiceFAQ from './ServiceFAQ';
+import { getLocalizedPagePath, type ServicePageSlug } from '../lib/seo';
+import Services from './Services.astro';
+import FAQ from './FAQ.astro';
+import { slugToServiceId } from '../lib/services';
 import Gallery from './Gallery.astro';
 import Testimonials from './Testimonials.astro';
-import Comparison from './Comparison.astro';
-import CTASection from './CTASection.astro';
+import Inverness from './Inverness.astro';
+import Booking from './Booking.astro';
 import { getLocationPath, locations } from '../data/locations';
 import { Image } from 'astro:assets';
 
@@ -34,28 +36,6 @@ interface Props {
 
 const { locale, serviceSlug, h1, content, relatedServices = [] } = Astro.props;
 const translations = getTranslations(locale);
-
-const prices = content.pricing?.basePrice?.includes(',') 
-  ? content.pricing.basePrice.split(',').map(p => {
-      const parts = p.split(':');
-      return {
-        label: parts[0].trim(),
-        value: parts[1]?.trim() || ''
-      };
-    })
-  : null;
-
-function getBooksyUrl(locale: Locale, serviceSlug: ServicePageSlug): string {
-  const baseUrl = 'https://booksy.com/pl-pl/dl/show-business/319418';
-  const utmParams = new URLSearchParams({
-    utm_source: 'service_page',
-    utm_medium: 'cta',
-    utm_campaign: `${serviceSlug}_${locale}`,
-  });
-  return `${baseUrl}?${utmParams.toString()}`;
-}
-
-const booksyUrl = getBooksyUrl(locale, serviceSlug);
 
 // Helper to get hero content based on service slug
 function getHeroContent(slug: ServicePageSlug, locale: Locale) {
@@ -112,250 +92,103 @@ function getHeroContent(slug: ServicePageSlug, locale: Locale) {
 
 const hero = getHeroContent(serviceSlug, locale);
 
-// Get related service names and URLs
-const relatedServiceData = relatedServices.map((slug) => {
-  const serviceNames: Record<ServicePageSlug, Record<Locale, string>> = {
-    'przekluwanie-uszu-warszawa': { // Legacy/Removed
-      pl: 'Przekłuwanie uszu',
-      en: 'Ear piercing',
-      uk: 'Прокол вух',
-      ru: 'Прокол ушей',
-    },
-    'przekluwanie-uszu-dzieci-warszawa': {
-      pl: 'Przekłuwanie uszu dzieciom',
-      en: 'Ear piercing for children',
-      uk: 'Прокол вух дітям',
-      ru: 'Прокол ушей детям',
-    },
-    'przekluwanie-uszu-dorosli-warszawa': {
-      pl: 'Przekłuwanie uszu dla dorosłych',
-      en: 'Earlobe piercing for adults',
-      uk: 'Прокол мочки вуха для дорослих',
-      ru: 'Прокол мочки уха для взрослых',
-    },
-    'przekluwanie-chrzastki-warszawa': {
-      pl: 'Przekłuwanie chrząstki',
-      en: 'Cartilage piercing',
-      uk: 'Прокол хряща',
-      ru: 'Прокол хряща',
-    },
-    'przekluwanie-uszu-z-dojazdem-warszawa': {
-      pl: 'Przekłuwanie uszu z dojazdem',
-      en: 'Mobile ear piercing',
-      uk: 'Прокол вух з виїздом',
-      ru: 'Прокол ушей с выездом',
-    },
-  };
-
-  const serviceDescriptions: Record<ServicePageSlug, Record<Locale, string>> = {
-    'przekluwanie-uszu-dzieci-warszawa': {
-      pl: 'Bezpieczne i delikatne przekłuwanie uszu dla dzieci od 0+, zatwierdzone przez lekarzy.',
-      en: 'Safe and gentle ear piercing for children from 0+, doctor-approved.',
-      uk: 'Безпечний та делікатний прокол вух для дітей від 0+, схвалений лікарями.',
-      ru: 'Безопасный и деликатный прокол ушей для детей от 0+, одобренный врачами.',
-    },
-    'przekluwanie-uszu-dorosli-warszawa': {
-      pl: 'Przekłuwanie uszu dla dorosłych - płatek ucha i chrząstka w profesjonalnych warunkach.',
-      en: 'Ear piercing for adults - earlobe and cartilage in professional conditions.',
-      uk: 'Прокол вух для дорослих - мочка вуха та хрящ у професійних умовах.',
-      ru: 'Прокол ушей для взрослых - мочка уха и хрящ в профессиональных условиях.',
-    },
-    'przekluwanie-chrzastki-warszawa': {
-      pl: 'Specjalizujemy się w przekłuwaniu chrząstki: helix, tragus, conch systemem Inverness MED.',
-      en: 'We specialize in cartilage piercing: helix, tragus, conch with Inverness MED system.',
-      uk: 'Спеціалізуємося на проколі хряща: helix, tragus, conch системою Inverness MED.',
-      ru: 'Специализируемся на проколе хряща: helix, tragus, conch системой Inverness MED.',
-    },
-    'przekluwanie-uszu-z-dojazdem-warszawa': {
-      pl: 'Usługa mobilna z dojazdem do domu - przekłuwanie uszu w komforcie Twojego domu.',
-      en: 'Mobile service with home visits - ear piercing in the comfort of your home.',
-      uk: 'Мобільна послуга з виїздом додому - прокол вух у комфорті вашого дому.',
-      ru: 'Мобильная услуга с выездом на дом - прокол ушей в комфорте вашего дома.',
-    },
-    'przekluwanie-uszu-warszawa': { pl: '', en: '', uk: '', ru: '' }
-  };
-  
-  return {
-    name: serviceNames[slug]?.[locale] || '',
-    description: serviceDescriptions[slug]?.[locale] || '',
-    url: getServicePagePath(slug, locale),
-  };
-}).filter((service) => service.name);
+const relatedIds = relatedServices
+  .map(slugToServiceId)
+  .filter((id): id is NonNullable<typeof id> => Boolean(id));
 
 ---
 
 <div class="min-h-screen bg-background">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20 max-w-7xl">
-    <!-- Breadcrumb -->
-    <nav class="mb-12" aria-label="Breadcrumb">
-      <ol class="flex items-center flex-wrap gap-x-2 gap-y-1 text-sm text-muted-foreground">
-        <li>
-          <a href={`/${locale}`} class="hover:text-primary transition-colors">
-            {t(locale, 'breadcrumb.home')}
-          </a>
-        </li>
-        <li class="flex items-center">
-          <span class="mx-2">/</span>
-          <a href={getLocalizedPagePath('services', locale)} class="hover:text-primary transition-colors">
-            {t(locale, 'header.nav.services')}
-          </a>
-        </li>
-        <li class="flex items-center">
-          <span class="mx-2">/</span>
-          <span class="text-foreground font-medium">{h1}</span>
-        </li>
-      </ol>
-    </nav>
+  <section class="relative overflow-x-hidden bg-[hsl(221,43%,18%)]">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-24 -left-16 w-[28rem] h-[28rem] bg-primary opacity-40 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary opacity-30 rounded-full blur-3xl"></div>
+    </div>
 
-    <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 mb-24">
-      <!-- Main Content / Hero Left -->
-      <article>
-        <!-- Full-bleed mobile hero image — desktop image is in the right column -->
-        <div class="block lg:hidden mb-8 -mx-4 sm:-mx-6">
-          <figure class="overflow-hidden rounded-b-2xl">
-            <Image
-              src={hero.image}
-              alt={h1}
-              class="w-full h-[50vw] object-cover"
-              width={800}
-              height={400}
-              quality={80}
-              loading="eager"
-            />
-          </figure>
-        </div>
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
+      <nav class="pt-8 text-sm text-white/50" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+          <li>
+            <a href={`/${locale}`} class="hover:text-white transition-colors">
+              {t(locale, 'breadcrumb.home')}
+            </a>
+          </li>
+          <li aria-hidden="true" class="text-white/25">/</li>
+          <li>
+            <a href={getLocalizedPagePath('services', locale)} class="hover:text-white transition-colors">
+              {t(locale, 'header.nav.services')}
+            </a>
+          </li>
+          <li aria-hidden="true" class="text-white/25">/</li>
+          <li aria-current="page" class="text-white font-medium">{h1}</li>
+        </ol>
+      </nav>
 
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground leading-tight tracking-tight">
-          {hero.title}
-        </h1>
-        
-        <div class="flex flex-wrap gap-2 mb-8">
-          {hero.subtitle.split('|').map((part) => (
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-primary/10 text-primary border border-primary/20">
-              {part.trim()}
-            </span>
-          ))}
-        </div>
+      <header class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end pt-10">
+        <div class="lg:col-span-7 py-8 sm:py-12 lg:py-16">
+          <div class="flex flex-wrap gap-2 mb-5">
+            {hero.subtitle.split('|').map((part) => (
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/80 border border-white/15">
+                {part.trim()}
+              </span>
+            ))}
+          </div>
 
-        <!-- Description -->
-        <div class="prose prose-lg max-w-none mb-8 text-muted-foreground leading-relaxed">
-          <p class="text-lg">
+          <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.05]">
+            {hero.title}
+          </h1>
+
+          <p class="mt-5 text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl">
             {content.description}
           </p>
+
           {content.blogLink && (
             <p class="mt-4">
-              <a href={content.blogLink.url} class="text-primary hover:underline font-medium inline-flex items-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <a
+                href={content.blogLink.url}
+                class="inline-flex items-center gap-2 text-sm font-semibold text-white hover:underline underline-offset-4"
+              >
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 {content.blogLink.text}
               </a>
             </p>
           )}
+
+          <Booking
+            variant="inline"
+            tone="onDark"
+            locale={locale}
+            utmSource="service_page"
+            utmCampaign={`${serviceSlug}_${locale}`}
+            buttonLocation={`service_page_${serviceSlug}`}
+            prices={content.pricing?.basePrice}
+            priceNote={content.pricing?.additionalInfo}
+            align="center"
+            class="mt-8"
+          />
         </div>
 
-        <!-- Booking Card / CTA -->
-        <div class="mb-8 p-6 bg-primary/5 rounded-2xl border border-primary/15">
-          <div class="flex flex-col gap-6">
-            <div>
-              <h3 class="font-semibold text-lg text-foreground mb-2">
-                {locale === 'pl' ? 'Zarezerwuj termin' : 
-                 locale === 'uk' ? 'Забронювати візит' : 
-                 locale === 'ru' ? 'Забронировать визит' : 'Book appointment'}
-              </h3>
-              {content.pricing && (
-                <div class="flex items-baseline gap-2">
-                  {prices ? (
-                    <div class="flex items-center gap-3 flex-wrap">
-                      {prices.map((price, idx) => (
-                        <div key={idx} class="flex items-center gap-2">
-                          <span class="text-sm text-muted-foreground">{price.label}</span>
-                          <span class="text-xl font-bold text-primary">{price.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : content.pricing.basePrice && (
-                    <p class="text-2xl font-bold text-primary">
-                      {content.pricing.basePrice}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-            
-            <div class="flex flex-col gap-3">
-              <a 
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-cta"
-                id={`service-cta-${serviceSlug}`}
-              >
-                {t(locale, 'cta.button')}
-              </a>
-              <span class="text-sm text-muted-foreground text-center">
-                {t(locale, 'cta.callPrefix')}
-                <a href="tel:+48573818260" class="text-foreground font-semibold hover:underline ml-1">+48 573 818 260</a>
-              </span>
-            </div>
-          </div>
-          {content.pricing?.additionalInfo && (
-            <div class="mt-4 pt-4 border-t border-border">
-              <p class="text-sm text-muted-foreground">{content.pricing.additionalInfo}</p>
-            </div>
-          )}
-        </div>
-      </article>
-
-      <!-- Hero Image Right -->
-      <div class="hidden lg:block relative">
-        <div class="sticky top-24">
-           <figure class="rounded-2xl overflow-hidden shadow-2xl border border-border">
-             <Image 
-               src={hero.image} 
-               alt={h1}
-               class="w-full h-auto object-cover aspect-[4/5]"
-               width={600}
-               height={750}
-               quality={90}
-               loading="eager"
-             />
-           </figure>
-        </div>
-      </div>
+        <figure class="lg:col-span-5 flex items-end justify-center lg:justify-end">
+          <Image
+            src={hero.image}
+            alt={h1}
+            class="w-full max-w-[320px] sm:max-w-[400px] lg:max-w-full h-auto object-cover aspect-[4/5] rounded-t-2xl"
+            widths={[400, 600, 900]}
+            sizes="(min-width: 1024px) 420px, 70vw"
+            quality={90}
+            format="webp"
+            loading="eager"
+          />
+        </figure>
+      </header>
     </div>
+  </section>
 
-    <!-- Main Content Flow -->
-    <div class="max-w-6xl mx-auto">
-        <!-- Features Grid (Moved Up) -->
-        {content.features && content.features.length > 0 && (
-          <section class="mb-24">
-            <h2 class="text-3xl sm:text-4xl font-bold text-foreground mb-12">
-              {locale === 'pl' ? 'Kluczowe zalety' : 
-               locale === 'uk' ? 'Ключові переваги' : 
-               locale === 'ru' ? 'Ключевые преимущества' : 'Key benefits'}
-            </h2>
+  <Inverness locale={locale} features={content.features} />
 
-            <ul class="divide-y divide-border/50">
-              {content.features.slice(0, 6).map((feature, index) => (
-                <li
-                  class="flex items-start gap-6 sm:gap-10 py-6 group"
-                  data-reveal
-                  data-reveal-delay={String(index + 1)}
-                >
-                  <span class="text-3xl sm:text-4xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-10 sm:w-12 text-right group-hover:text-primary/50 transition-colors duration-300">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <p class="text-base sm:text-xl font-medium leading-relaxed text-foreground">
-                    {feature}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
-    </div>
-
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-20 max-w-7xl">
     <!-- Testimonials — full container width -->
     <div class="-mx-4 sm:-mx-6 lg:-mx-8">
       <Testimonials locale={locale} />
@@ -364,11 +197,6 @@ const relatedServiceData = relatedServices.map((slug) => {
     <div class="h-24 bg-background" aria-hidden="true"></div>
 
     <div class="max-w-6xl mx-auto">
-        <!-- Video -->
-        <div class="mb-24">
-          <Comparison locale={locale} split={true} showTable={false} width="w-full" />
-        </div>
-        
         {/* Specific Content: Cartilage Types */}
         {serviceSlug === 'przekluwanie-chrzastki-warszawa' && (
           <div class="mb-24">
@@ -455,17 +283,12 @@ const relatedServiceData = relatedServices.map((slug) => {
             }
           />
         </div>
-
-        <!-- FAQ Section -->
-        {content.faq && content.faq.length > 0 && (
-          <div class="mb-24">
-            <ServiceFAQ client:load faqs={content.faq} locale={locale} />
-          </div>
-        )}
     </div>
 </div>
 
-<CTASection
+<FAQ locale={locale} items={content.faq} />
+
+<Booking
   locale={locale}
   utmSource="service_page"
   utmCampaign={`${serviceSlug}_${locale}`}
@@ -476,64 +299,23 @@ const relatedServiceData = relatedServices.map((slug) => {
     <div class="max-w-6xl mx-auto">
 
 
-    <!-- Related Services -->
-    {relatedServiceData.length > 0 && (
-      <section class="mt-16 pt-16 pb-20 border-t border-border">
-        <h2 class="text-3xl sm:text-4xl font-bold text-foreground mb-10">
-          {locale === 'pl' ? 'Mogą Cię zainteresować' :
-           locale === 'uk' ? 'Вас можуть зацікавити' :
-           locale === 'ru' ? 'Вам может быть интересно' :
-           'You might also like'}
-        </h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {relatedServiceData.map((service, idx) => (
-            <a
-              href={service.url}
-              class="flex flex-col h-full p-8 bg-card border border-border rounded-2xl hover:border-primary/40 hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
-              data-reveal
-              data-reveal-delay={String(idx + 1)}
-            >
-              <span class="text-7xl font-bold text-foreground/[0.04] group-hover:text-primary/10 transition-colors leading-none select-none mb-2 -ml-1">
-                {String(idx + 1).padStart(2, '0')}
-              </span>
-              <h3 class="text-xl font-bold mb-3 group-hover:text-primary transition-colors text-foreground">
-                {service.name}
-              </h3>
-              <p class="text-sm text-muted-foreground mb-8 leading-relaxed flex-grow">
-                {service.description}
-              </p>
-              <div class="flex items-center text-primary font-semibold mt-auto text-sm">
-                {locale === 'pl' ? 'Zobacz ofertę' :
-                 locale === 'en' ? 'View offer' :
-                 locale === 'uk' ? 'Переглянути пропозицію' :
-                 'Посмотреть предложение'}
-                <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+    {relatedIds.length > 0 && (
+      <Services
+        locale={locale}
+        title={t(locale, 'services.relatedTitle')}
+        subtitle={null}
+        include={relatedIds}
+        featuredFirst={false}
+        spaced={false}
+        id="related-services"
+        headingId="related-services-heading"
+        contained={false}
+        class="mt-16 pt-16 pb-20 border-t border-border"
+      />
     )}
   </div>
 </div>
 </div>
-
-<script define:vars={{ locale, serviceSlug }}>
-  // Google Analytics - Track service page CTA click
-  const serviceCtaLink = document.getElementById(`service-cta-${serviceSlug}`);
-  if (serviceCtaLink && window.gtag) {
-    serviceCtaLink.addEventListener('click', () => {
-      gtag('event', 'booking_click_code', {
-        button_location: `service_page_${serviceSlug}`,
-        locale: locale,
-        booking_platform: 'booksy'
-      });
-    });
-  }
-
-</script>
 
 <script>
   // Reveal elements as they enter the viewport
