@@ -1,0 +1,162 @@
+---
+import { t } from '../lib/translations';
+import type { Locale } from '../lib/seo';
+import { getPostsByLocale, urlFor, type Post } from '../lib/sanity';
+
+interface Props {
+  locale: Locale;
+  posts?: Post[];
+  limit?: number;
+  title?: string | null;
+  subtitle?: string | null;
+  viewAll?: boolean;
+  banded?: boolean;
+  class?: string;
+}
+
+const {
+  locale,
+  posts: postsProp,
+  limit = 3,
+  title,
+  subtitle,
+  viewAll,
+  banded,
+  class: className = '',
+} = Astro.props;
+
+const fetched = postsProp === undefined;
+let items: Post[] = postsProp ?? [];
+
+if (fetched) {
+  try {
+    items = (await getPostsByLocale(locale)).slice(0, limit);
+  } catch (error) {
+    console.warn('Could not fetch articles:', error);
+    items = [];
+  }
+}
+
+items = items.filter((post) => !post.locale || post.locale === locale);
+
+const heading = title === undefined ? t(locale, 'recentArticles.title') : title;
+const lede = subtitle === undefined ? t(locale, 'recentArticles.subtitle') : subtitle;
+const showViewAll = viewAll ?? fetched;
+const useBand = banded ?? fetched;
+const cardHeading = heading ? 'h3' : 'h2';
+
+const dateLocale =
+  locale === 'pl' ? 'pl-PL' :
+  locale === 'uk' ? 'uk-UA' :
+  locale === 'ru' ? 'ru-RU' : 'en-GB';
+
+function formatDate(iso?: string) {
+  if (!iso) return '';
+  return new Date(iso).toLocaleDateString(dateLocale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+const hideEmpty = !fetched && items.length === 0;
+---
+
+{!hideEmpty && (
+  <section
+    class:list={[
+      useBand
+        ? 'py-16 sm:py-20 bg-background-alt border-t border-border'
+        : '',
+      className,
+    ]}
+  >
+    <div class:list={[useBand && 'container mx-auto px-4 sm:px-6 lg:px-8']}>
+      {(heading || lede) && (
+        <div class="text-center mb-8 sm:mb-12 max-w-2xl mx-auto">
+          {heading && (
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+              {heading}
+            </h2>
+          )}
+          {lede && (
+            <p class="text-base sm:text-lg text-muted-foreground">
+              {lede}
+            </p>
+          )}
+        </div>
+      )}
+
+      {items.length > 0 ? (
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+          {items.map((post) => (
+            <a
+              href={`/${locale}/blog/${post.slug}`}
+              class="group flex flex-col h-full overflow-hidden rounded-lg border border-border bg-card hover:shadow-card transition-shadow"
+            >
+              {post.coverImage && (
+                <div class="aspect-[16/10] overflow-hidden bg-muted">
+                  <img
+                    src={urlFor(post.coverImage).width(600).height(375).format('webp').url()}
+                    srcset={`${urlFor(post.coverImage).width(400).height(250).format('webp').url()} 400w, ${urlFor(post.coverImage).width(600).height(375).format('webp').url()} 600w`}
+                    sizes="(min-width: 1024px) 360px, (min-width: 768px) 50vw, 100vw"
+                    alt={post.title}
+                    class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="375"
+                  />
+                </div>
+              )}
+              <div class="p-6 flex flex-col flex-grow">
+                {cardHeading === 'h3' ? (
+                  <h3 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                ) : (
+                  <h2 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </h2>
+                )}
+                {post.excerpt && (
+                  <p class="text-sm text-muted-foreground mb-4 line-clamp-3 flex-grow">
+                    {post.excerpt}
+                  </p>
+                )}
+                <div class="flex items-center justify-between mt-auto gap-3">
+                  {post.publishedAt && (
+                    <time class="text-xs text-muted-foreground" datetime={post.publishedAt}>
+                      {formatDate(post.publishedAt)}
+                    </time>
+                  )}
+                  <span class="text-primary text-sm font-medium">
+                    {t(locale, 'recentArticles.readMore')}
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-muted-foreground mb-4">{t(locale, 'blog.noPosts')}</p>
+        </div>
+      )}
+
+      {showViewAll && (
+        <div class="text-center mt-8">
+          <a
+            href={`/${locale}/blog`}
+            class="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+          >
+            {t(locale, 'recentArticles.viewAll')}
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+)}

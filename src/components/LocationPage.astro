@@ -28,8 +28,28 @@ const pricing = LOCATION_PRICING[locale];
 const studioLeads = location.recommend === 'studio';
 const visitOrder: Array<'studio' | 'home'> = studioLeads ? ['studio', 'home'] : ['home', 'studio'];
 
-const primaryClass = 'lg:col-span-3 bg-card border border-border rounded-2xl shadow-card overflow-hidden';
-const secondaryClass = 'lg:col-span-2 border-l-2 border-primary/20 pl-6 sm:pl-7 py-1 lg:mt-2';
+type VisitFact = { label: string; value: string; accent?: boolean; after?: string };
+
+const studioFacts: VisitFact[] = [
+  { label: t(locale, 'locations.visit.labelTransit'), value: content.studio.transit },
+  { label: t(locale, 'locations.visit.labelCar'), value: content.studio.car },
+  ...(content.studio.parking
+    ? [{ label: t(locale, 'locations.visit.labelParking'), value: content.studio.parking }]
+    : []),
+];
+
+const homeFacts: VisitFact[] = [
+  { label: t(locale, 'locations.visit.labelCoverage'), value: content.homeVisit.coverage },
+  {
+    label: t(locale, 'locations.visit.surchargeBefore'),
+    value: pricing.travelFee,
+    accent: true,
+    after: t(locale, 'locations.visit.surchargeAfter'),
+  },
+];
+
+const primaryClass = 'lg:col-span-3 bg-card border border-border rounded-lg shadow-card overflow-hidden';
+const secondaryClass = 'lg:col-span-2 pt-8 mt-2 border-t border-border lg:border-t-0 lg:pt-8 lg:mt-0';
 
 const nearby = location.nearby
   .map((slug) => locationsBySlug.get(slug))
@@ -130,90 +150,103 @@ const minutesCaption =
       {t(locale, 'locations.visit.subheading')}
     </p>
 
-    <div class="grid lg:grid-cols-5 gap-6 lg:gap-8 items-start">
+    <div class="grid lg:grid-cols-5 gap-6 lg:gap-10 items-start">
       {visitOrder.map((kind, index) => {
         const isPrimary = index === 0;
         const headingClass = isPrimary
-          ? 'text-2xl sm:text-3xl font-bold text-foreground mb-3'
-          : 'text-xl font-bold text-foreground mb-2';
-        const bodyClass = isPrimary
-          ? 'text-base text-muted-foreground leading-relaxed'
-          : 'text-sm text-muted-foreground leading-relaxed';
+          ? 'text-2xl sm:text-3xl font-bold text-foreground leading-tight'
+          : 'text-xl font-bold text-foreground leading-tight';
+        const leadClass = isPrimary
+          ? 'mt-3 text-base text-foreground leading-relaxed'
+          : 'mt-2 text-sm text-foreground leading-relaxed';
         const badge = isPrimary
           ? t(locale, 'locations.visit.primaryBadge')
           : t(locale, 'locations.visit.secondaryBadge');
+        const facts = kind === 'studio' ? studioFacts : homeFacts;
+        const pad = isPrimary ? 'px-6 pt-6 sm:px-8 sm:pt-8' : '';
 
-        return kind === 'studio' ? (
+        return (
           <article
             class={isPrimary ? primaryClass : secondaryClass}
             data-reveal
             data-reveal-delay={String(index + 1)}
           >
-            {isPrimary && (
-              <iframe
-                title={t(locale, 'locations.visit.mapTitle')}
-                src={mapsEmbed}
-                class="w-full h-52 sm:h-64 border-0"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            )}
-            <div class={isPrimary ? 'p-7 sm:p-9' : ''}>
+            <div class={pad}>
               <p class="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-2">
                 {badge}
               </p>
-              <h3 class={headingClass}>{t(locale, 'locations.visit.studioTitle')}</h3>
-              <p class={`${bodyClass} mb-4`}>{STUDIO_ADDRESS[locale]}</p>
-              <p class={bodyClass}>{content.studio.transit}</p>
-              <p class={`${bodyClass} mt-2`}>{content.studio.car}</p>
-              {content.studio.parking && (
-                <p class={`${bodyClass} mt-2`}>{content.studio.parking}</p>
-              )}
-              {!isPrimary && (
+              <h3 class={headingClass}>
+                {kind === 'studio'
+                  ? t(locale, 'locations.visit.studioTitle')
+                  : t(locale, 'locations.visit.homeTitle')}
+              </h3>
+              <p class={leadClass}>
+                {kind === 'studio' ? STUDIO_ADDRESS[locale] : content.homeVisit.summary}
+              </p>
+            </div>
+
+            {isPrimary && kind === 'studio' && (
+              <div class="px-6 sm:px-8 mt-5 rounded-lg overflow-hidden">
+                <iframe
+                  title={t(locale, 'locations.visit.mapTitle')}
+                  src={mapsEmbed}
+                  class="w-full h-40 sm:h-52 lg:h-56 border-0"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            )}
+            {isPrimary && kind === 'home' && (
+              <div class="px-6 sm:px-8 mt-5 rounded-lg overflow-hidden">
+                <img
+                  src="/warsaw-map.webp"
+                  alt={`${t(locale, 'locations.visit.coverageAlt')} ${content.inName}`}
+                  class="w-full h-40 sm:h-52 lg:h-56 object-cover object-center"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+
+            <div class={isPrimary ? 'px-6 pb-6 sm:px-8 sm:pb-8' : ''}>
+              <dl class="mt-5 divide-y divide-border/60">
+                {facts.map((fact) => (
+                  <div class="grid grid-cols-[6.75rem_1fr] gap-x-4 py-3 first:pt-0 last:pb-0 items-baseline">
+                    <dt class="text-[0.7rem] uppercase tracking-[0.12em] text-primary font-semibold">
+                      {fact.label}
+                    </dt>
+                    <dd class={isPrimary ? 'text-sm sm:text-base text-muted-foreground leading-snug sm:leading-relaxed' : 'text-sm text-muted-foreground leading-snug'}>
+                      {fact.accent ? (
+                        <>
+                          <span class="font-bold text-primary">{fact.value}</span>
+                          {fact.after && <span> {fact.after}</span>}
+                        </>
+                      ) : (
+                        fact.value
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              {kind === 'studio' && !isPrimary && (
                 <a
                   href="https://maps.google.com/?q=Gentle+Piercing,+Ursynowska+10/1,+Warszawa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-4 inline-flex text-sm font-semibold text-primary hover:underline underline-offset-4"
+                  class="mt-5 inline-flex text-sm font-semibold text-primary hover:underline underline-offset-4"
                 >
                   {t(locale, 'locations.visit.mapLink')}
                 </a>
               )}
-            </div>
-          </article>
-        ) : (
-          <article
-            class={isPrimary ? primaryClass : secondaryClass}
-            data-reveal
-            data-reveal-delay={String(index + 1)}
-          >
-            {isPrimary && (
-              <img
-                src="/warsaw-map.webp"
-                alt={`${t(locale, 'locations.visit.coverageAlt')} ${content.inName}`}
-                class="w-full h-52 sm:h-64 object-cover object-center"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-            <div class={isPrimary ? 'p-7 sm:p-9' : ''}>
-              <p class="text-xs uppercase tracking-[0.18em] text-primary font-semibold mb-2">
-                {badge}
-              </p>
-              <h3 class={headingClass}>{t(locale, 'locations.visit.homeTitle')}</h3>
-              <p class={`${bodyClass} mb-4`}>{content.homeVisit.summary}</p>
-              <p class={bodyClass}>{content.homeVisit.coverage}</p>
-              <p class={`${bodyClass} mt-3`}>
-                {t(locale, 'locations.visit.surchargeBefore')}
-                <span class="font-bold text-primary mx-1">{pricing.travelFee}</span>
-                {t(locale, 'locations.visit.surchargeAfter')}
-              </p>
-              <a
-                href={getServicePagePath('przekluwanie-uszu-z-dojazdem-warszawa', locale)}
-                class="mt-4 inline-flex text-sm font-semibold text-primary hover:underline underline-offset-4"
-              >
-                {t(locale, 'locations.visit.homeLink')}
-              </a>
+              {kind === 'home' && (
+                <a
+                  href={getServicePagePath('przekluwanie-uszu-z-dojazdem-warszawa', locale)}
+                  class="mt-5 inline-flex text-sm font-semibold text-primary hover:underline underline-offset-4"
+                >
+                  {t(locale, 'locations.visit.homeLink')}
+                </a>
+              )}
             </div>
           </article>
         );

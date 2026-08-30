@@ -7,11 +7,12 @@ import {
   getLocalizedPageUrl,
   type Locale,
 } from '../lib/seo';
-import { t, getTranslations } from '../lib/translations';
+import { t } from '../lib/translations';
 import { siteMetadata } from '../config/seo';
 import Services from './Services.astro';
 import Inverness from './Inverness.astro';
 import Booking from './Booking.astro';
+import { SERVICES_LIST_FEATURE_IDS } from '../lib/inverness-features';
 
 interface Props {
   locale: Locale;
@@ -19,10 +20,7 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const invernessFeatures = [
-  ...(getTranslations(locale).inverness?.features || []),
-  t(locale, 'inverness.experience'),
-];
+const invernessFeatures = [...SERVICES_LIST_FEATURE_IDS];
 
 const seo = {
   title: locale === 'pl' ? 'Usługi Przekłuwania Uszu Warszawa | Gentle Piercing' :

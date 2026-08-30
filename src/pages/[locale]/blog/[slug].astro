@@ -7,7 +7,7 @@ import { t } from '../../../lib/translations';
 import PortableTextRenderer from '../../../components/PortableTextRenderer';
 import AuthorSection from '../../../components/blog/AuthorSection.astro';
 import Booking from '../../../components/Booking.astro';
-import RelatedArticles from '../../../components/blog/RelatedArticles.astro';
+import Articles from '../../../components/Articles.astro';
 
 export async function getStaticPaths() {
   try {
@@ -236,7 +236,15 @@ const structuredData = [
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
       <AuthorSection locale={currentLocale} author={post.author} />
-      <RelatedArticles locale={currentLocale} relatedArticles={post.relatedArticles} />
+      <Articles
+        locale={currentLocale}
+        posts={post.relatedArticles ?? []}
+        title={t(currentLocale, 'blog.relatedArticles.title')}
+        subtitle={null}
+        viewAll={false}
+        banded={false}
+        class="mt-16 pt-8 border-t border-border"
+      />
     </div>
   </div>
 </BaseLayout>

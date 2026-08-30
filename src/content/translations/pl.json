@@ -156,11 +156,47 @@
     "lede": "Jednorazowa kaseta. Tkanka jest rozdzielana, nie rozrywana.",
     "experience": "Certyfikowani specjaliści z doświadczeniem w pracy z dziećmi",
     "features": [
-      "Jednorazowa, zamknięta kaseta — brak kontaktu z igłą",
-      "Cichy mechanizm, bez trzasku pistoletu",
-      "Zatwierdzony przez lekarzy dla dzieci od 0+",
-      "Płatek ucha i chrząstka (helix, tragus, conch)"
-    ]
+      "cassette",
+      "quiet",
+      "children0plus",
+      "lobeCartilage"
+    ],
+    "items": {
+      "cassette": "Jednorazowa, zamknięta kaseta — brak kontaktu z igłą",
+      "quiet": "Cichy mechanizm, bez trzasku pistoletu",
+      "children0plus": "Zatwierdzony przez lekarzy dla dzieci od 0+",
+      "lobeCartilage": "Płatek ucha i chrząstka (helix, tragus, conch)",
+      "specialists": "Certyfikowani specjaliści z doświadczeniem w pracy z dziećmi",
+      "fdaIso": "System Inverness MED - certyfikowany przez FDA i ISO",
+      "sterileCassettes": "100% sterylność - jednorazowe, zamknięte kasety",
+      "childrenAndAdults": "Dla dzieci 0+ i dorosłych",
+      "lobeCartilagePiercing": "Przekłuwanie płatka ucha i chrząstki",
+      "earringRange": "Ponad 30 modeli hipoalergicznych kolczyków",
+      "quietGentle": "Cichy i delikatny mechanizm",
+      "children0plusApproved": "Zatwierdzone przez lekarzy dla dzieci 0+",
+      "quietKids": "Cichy mechanizm - nie przestrasza dzieci",
+      "gentle": "Delikatna metoda - minimalny dyskomfort",
+      "parentalSupport": "Wsparcie i opieka rodziców podczas zabiegu",
+      "sterileTools": "Sterylne, jednorazowe narzędzia",
+      "kidsEarrings": "Specjalne kolczyki dla dzieci",
+      "preciseHealing": "Precyzyjna metoda - szybkie gojenie",
+      "adultEarrings": "Ponad 30 modeli kolczyków dla dorosłych",
+      "hypoallergenic": "Hipoalergiczne materiały (tytan, niob, stal medyczna)",
+      "consultation": "Profesjonalna konsultacja przed zabiegiem",
+      "sterileConditions": "Sterylne warunki zabiegu",
+      "cartilagePlacements": "Przekłuwanie helix, tragus, conch, flat, lobe",
+      "cartilageSystem": "Idealny system dla chrząstki",
+      "noTear": "Precyzyjne przekłucie - nie rozrywa tkanek",
+      "healing12weeks": "Szybkie gojenie (12 tygodni)",
+      "cartilageEarrings": "Specjalne kolczyki do chrząstki",
+      "experiencedSpecialist": "Doświadczona specjalistka",
+      "homeVisit": "Dojazd do domu w Warszawie",
+      "sterileHome": "Pełna sterylność w warunkach domowych",
+      "sameSystem": "System Inverness MED - ten sam co w gabinecie",
+      "families": "Idealne dla rodzin z dziećmi",
+      "homeComfort": "Komfort własnego domu",
+      "flexibleHours": "Elastyczne godziny wizyt"
+    }
   },
   "comparison": {
     "title": "Inverness Med — najnowocześniejszy i najbezpieczniejszy system",
@@ -430,12 +466,12 @@
       "h1": "Przekłuwanie Uszu w Warszawie",
       "description": "Płatek i chrząstka. Dzieci od 0+ i dorośli.",
       "features": [
-        "System Inverness MED - certyfikowany przez FDA i ISO",
-        "100% sterylność - jednorazowe, zamknięte kasety",
-        "Dla dzieci 0+ i dorosłych",
-        "Przekłuwanie płatka ucha i chrząstki",
-        "Ponad 30 modeli hipoalergicznych kolczyków",
-        "Cichy i delikatny mechanizm"
+        "fdaIso",
+        "sterileCassettes",
+        "childrenAndAdults",
+        "lobeCartilagePiercing",
+        "earringRange",
+        "quietGentle"
       ],
       "pricing": {
         "basePrice": "Od 90 zł za przekłucie",
@@ -450,12 +486,12 @@
         "text": "Jak przygotować dziecko do przekłucia"
       },
       "features": [
-        "Zatwierdzone przez lekarzy dla dzieci 0+",
-        "Cichy mechanizm - nie przestrasza dzieci",
-        "Delikatna metoda - minimalny dyskomfort",
-        "Wsparcie i opieka rodziców podczas zabiegu",
-        "Sterylne, jednorazowe narzędzia",
-        "Specjalne kolczyki dla dzieci"
+        "children0plusApproved",
+        "quietKids",
+        "gentle",
+        "parentalSupport",
+        "sterileTools",
+        "kidsEarrings"
       ],
       "pricing": {
         "basePrice": "150 zł za parę płatków",
@@ -496,12 +532,12 @@
       "h1": "Przekłuwanie Uszu Dla Dorosłych w Warszawie",
       "description": "Płatek albo chrząstka. 1, 2 albo 3 przekłucia na jednej wizycie.",
       "features": [
-        "Przekłuwanie płatka ucha i chrząstki",
-        "Precyzyjna metoda - szybkie gojenie",
-        "Ponad 30 modeli kolczyków dla dorosłych",
-        "Hipoalergiczne materiały (tytan, niob, stal medyczna)",
-        "Profesjonalna konsultacja przed zabiegiem",
-        "Sterylne warunki zabiegu"
+        "lobeCartilagePiercing",
+        "preciseHealing",
+        "adultEarrings",
+        "hypoallergenic",
+        "consultation",
+        "sterileConditions"
       ],
       "pricing": {
         "basePrice": "1 przekłucie: 90 zł, 2 przekłucia: 150 zł, 3 przekłucia: 210 zł",
@@ -534,12 +570,12 @@
       "h1": "Przekłuwanie Chrząstki w Warszawie",
       "description": "Helix, tragus, conch. Bez rozrywania tkanek.",
       "features": [
-        "Przekłuwanie helix, tragus, conch, flat, lobe",
-        "Idealny system dla chrząstki",
-        "Precyzyjne przekłucie - nie rozrywa tkanek",
-        "Szybkie gojenie (12 tygodni)",
-        "Specjalne kolczyki do chrząstki",
-        "Doświadczona specjalistka"
+        "cartilagePlacements",
+        "cartilageSystem",
+        "noTear",
+        "healing12weeks",
+        "cartilageEarrings",
+        "experiencedSpecialist"
       ],
       "pricing": {
         "basePrice": "1 przekłucie: 90 zł, 2 przekłucia: 150 zł, 3 przekłucia: 210 zł",
@@ -572,12 +608,12 @@
       "h1": "Przekłuwanie Uszu Z Dojazdem w Warszawie",
       "description": "Ten sam zabieg w domu. Dojazd zależy od adresu.",
       "features": [
-        "Dojazd do domu w Warszawie",
-        "Pełna sterylność w warunkach domowych",
-        "System Inverness MED - ten sam co w gabinecie",
-        "Idealne dla rodzin z dziećmi",
-        "Komfort własnego domu",
-        "Elastyczne godziny wizyt"
+        "homeVisit",
+        "sterileHome",
+        "sameSystem",
+        "families",
+        "homeComfort",
+        "flexibleHours"
       ],
       "pricing": {
         "basePrice": "Od 90 zł za przekłucie. Dojazd — wg lokalizacji",
@@ -611,68 +647,72 @@
       ]
     }
   },
-    "locations": {
-      "breadcrumbDistricts": "Dzielnice",
-      "eyebrow": {
-        "district": "Warszawa",
-        "suburb": "Okolice Warszawy"
-      },
-      "minutesCaption": "do gabinetu na Mokotowie",
-      "minutesCaptionLocal": "do gabinetu",
-      "visit": {
-        "heading": "Gabinet albo dojazd",
-        "subheading": "Zabieg ten sam. Różni się tylko miejsce.",
-        "primaryBadge": "Najczęściej",
-        "secondaryBadge": "Albo",
-        "studioTitle": "Przyjeżdżacie do gabinetu",
-        "homeTitle": "Przyjeżdżamy do Was",
-        "mapLink": "Mapa dojazdu",
-        "homeLink": "Jak wygląda wizyta domowa",
-        "surchargeBefore": "Dopłata",
-        "surchargeAfter": "do ceny zabiegu",
-        "mapTitle": "Mapa gabinetu Gentle Piercing, Ursynowska 10/1",
-        "coverageAlt": "Obszar dojazdu"
-      },
-      "pricing": {
-        "heading": "Cennik",
-        "note": "Te same ceny w gabinecie i w domu. Kolczyki osobno,",
-        "travelRow": "Dojazd do Was"
-      },
-      "services": {
-        "heading": "Usługi",
-        "children": "Dzieci 0+",
-        "childrenNote": "Zwykle para płatków",
-        "adults": "Dorośli",
-        "adultsNote": "1, 2 albo 3 przekłucia",
-        "cartilage": "Chrząstka",
-        "cartilageNote": "Helix, tragus, conch",
-        "mobile": "Dojazd do domu",
-        "mobileNote": "Dopłata"
-      },
-      "photosLabel": "Zdjęcia z gabinetu",
-      "nearby": {
-        "heading": "Sąsiednie okolice",
-        "all": "Wszystkie okolice"
-      },
-      "hub": {
-        "seoTitle": "Przekłuwanie uszu — dzielnice Warszawy i okolice",
-        "seoDescription": "Gabinet przy Ursynowskiej 10/1 na Mokotowie i dojazd do domu. Sprawdź Wilanów, Ursynów, Mokotów i Piaseczno. Inverness Med, dzieci 0+.",
-        "breadcrumb": "Przekłuwanie uszu w dzielnicach",
-        "eyebrow": "Warszawa i okolice",
-        "h1": "Skąd do nas przyjeżdżacie",
-        "lede": "Jeden gabinet na Mokotowie i dojazd do domu. Wybierzcie swoją okolicę.",
-        "listHeading": "Lista okolic",
-        "recommendStudio": "Najczęściej gabinet",
-        "recommendMobile": "Najczęściej dojazd",
-        "toStudio": "do gabinetu",
-        "otherAreaBefore": "Inna dzielnica? Dojeżdżamy po Warszawie i ok. 30 km od centrum, dopłata",
-        "otherAreaLink": "Wizyta z dojazdem"
-      },
-      "linksBlock": {
-        "heading": "Skąd do nas przyjeżdżacie",
-        "intro": "Gabinet na Mokotowie, dojazd po Warszawie i okolicach."
-      },
-      "footerHeading": "Dzielnice i okolice",
-      "serviceCrossLink": "Zasięg i czas dojazdu opisaliśmy osobno dla"
-    }
+  "locations": {
+    "breadcrumbDistricts": "Dzielnice",
+    "eyebrow": {
+      "district": "Warszawa",
+      "suburb": "Okolice Warszawy"
+    },
+    "minutesCaption": "do gabinetu na Mokotowie",
+    "minutesCaptionLocal": "do gabinetu",
+    "visit": {
+      "heading": "Gabinet albo dojazd",
+      "subheading": "Zabieg ten sam. Różni się tylko miejsce.",
+      "primaryBadge": "Najczęściej",
+      "secondaryBadge": "Albo",
+      "studioTitle": "Przyjeżdżacie do gabinetu",
+      "homeTitle": "Przyjeżdżamy do Was",
+      "mapLink": "Mapa dojazdu",
+      "homeLink": "Jak wygląda wizyta domowa",
+      "surchargeBefore": "Dopłata",
+      "surchargeAfter": "do ceny zabiegu",
+      "labelTransit": "Komunikacja",
+      "labelCar": "Auto",
+      "labelParking": "Parking",
+      "labelCoverage": "Zasięg",
+      "mapTitle": "Mapa gabinetu Gentle Piercing, Ursynowska 10/1",
+      "coverageAlt": "Obszar dojazdu"
+    },
+    "pricing": {
+      "heading": "Cennik",
+      "note": "Te same ceny w gabinecie i w domu. Kolczyki osobno,",
+      "travelRow": "Dojazd do Was"
+    },
+    "services": {
+      "heading": "Usługi",
+      "children": "Dzieci 0+",
+      "childrenNote": "Zwykle para płatków",
+      "adults": "Dorośli",
+      "adultsNote": "1, 2 albo 3 przekłucia",
+      "cartilage": "Chrząstka",
+      "cartilageNote": "Helix, tragus, conch",
+      "mobile": "Dojazd do domu",
+      "mobileNote": "Dopłata"
+    },
+    "photosLabel": "Zdjęcia z gabinetu",
+    "nearby": {
+      "heading": "Sąsiednie okolice",
+      "all": "Wszystkie okolice"
+    },
+    "hub": {
+      "seoTitle": "Przekłuwanie uszu — dzielnice Warszawy i okolice",
+      "seoDescription": "Gabinet przy Ursynowskiej 10/1 na Mokotowie i dojazd do domu. Sprawdź Wilanów, Ursynów, Mokotów i Piaseczno. Inverness Med, dzieci 0+.",
+      "breadcrumb": "Przekłuwanie uszu w dzielnicach",
+      "eyebrow": "Warszawa i okolice",
+      "h1": "Skąd do nas przyjeżdżacie",
+      "lede": "Jeden gabinet na Mokotowie i dojazd do domu. Wybierzcie swoją okolicę.",
+      "listHeading": "Lista okolic",
+      "recommendStudio": "Najczęściej gabinet",
+      "recommendMobile": "Najczęściej dojazd",
+      "toStudio": "do gabinetu",
+      "otherAreaBefore": "Inna dzielnica? Dojeżdżamy po Warszawie i ok. 30 km od centrum, dopłata",
+      "otherAreaLink": "Wizyta z dojazdem"
+    },
+    "linksBlock": {
+      "heading": "Skąd do nas przyjeżdżacie",
+      "intro": "Gabinet na Mokotowie, dojazd po Warszawie i okolicach."
+    },
+    "footerHeading": "Dzielnice i okolice",
+    "serviceCrossLink": "Zasięg i czas dojazdu opisaliśmy osobno dla"
+  }
 }

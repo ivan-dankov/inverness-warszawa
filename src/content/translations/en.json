@@ -156,11 +156,47 @@
     "lede": "A single-use cassette. Tissue is parted, not torn.",
     "experience": "Certified specialists experienced with children",
     "features": [
-      "Single-use, sealed cassette — no contact with the needle",
-      "Quiet mechanism, without the gun's snap",
-      "Doctor-approved for children from 0+",
-      "Earlobe and cartilage (helix, tragus, conch)"
-    ]
+      "cassette",
+      "quiet",
+      "children0plus",
+      "lobeCartilage"
+    ],
+    "items": {
+      "cassette": "Single-use, sealed cassette — no contact with the needle",
+      "quiet": "Quiet mechanism, without the gun's snap",
+      "children0plus": "Doctor-approved for children from 0+",
+      "lobeCartilage": "Earlobe and cartilage (helix, tragus, conch)",
+      "specialists": "Certified specialists experienced with children",
+      "fdaIso": "Inverness MED system - certified by FDA and ISO",
+      "sterileCassettes": "100% sterility - single-use, closed cassettes",
+      "childrenAndAdults": "For children 0+ and adults",
+      "lobeCartilagePiercing": "Earlobe and cartilage piercing",
+      "earringRange": "Over 30 models of hypoallergenic earrings",
+      "quietGentle": "Quiet and gentle mechanism",
+      "children0plusApproved": "Doctor-approved for children 0+",
+      "quietKids": "Quiet mechanism - doesn't scare children",
+      "gentle": "Gentle method - minimal discomfort",
+      "parentalSupport": "Parental support and care during procedure",
+      "sterileTools": "Sterile, single-use tools",
+      "kidsEarrings": "Special earrings for children",
+      "preciseHealing": "Precise method - fast healing",
+      "adultEarrings": "Over 30 models of earrings for adults",
+      "hypoallergenic": "Hypoallergenic materials (titanium, niobium, medical steel)",
+      "consultation": "Professional consultation before procedure",
+      "sterileConditions": "Sterile procedure conditions",
+      "cartilagePlacements": "Helix, tragus, conch, flat, lobe piercing",
+      "cartilageSystem": "Perfect system for cartilage",
+      "noTear": "Precise piercing - doesn't tear tissue",
+      "healing12weeks": "Fast healing (12 weeks)",
+      "cartilageEarrings": "Special earrings for cartilage",
+      "experiencedSpecialist": "Experienced specialist",
+      "homeVisit": "Home visits in Warsaw",
+      "sterileHome": "Full sterility in home conditions",
+      "sameSystem": "Inverness MED system - same as in studio",
+      "families": "Perfect for families with children",
+      "homeComfort": "Comfort of your own home",
+      "flexibleHours": "Flexible visit hours"
+    }
   },
   "comparison": {
     "title": "Inverness Med — the most modern and safe system",
@@ -471,12 +507,12 @@
       "h1": "Ear Piercing in Warsaw",
       "description": "Lobe and cartilage. Children from 0+ and adults.",
       "features": [
-        "Inverness MED system - certified by FDA and ISO",
-        "100% sterility - single-use, closed cassettes",
-        "For children 0+ and adults",
-        "Earlobe and cartilage piercing",
-        "Over 30 models of hypoallergenic earrings",
-        "Quiet and gentle mechanism"
+        "fdaIso",
+        "sterileCassettes",
+        "childrenAndAdults",
+        "lobeCartilagePiercing",
+        "earringRange",
+        "quietGentle"
       ],
       "pricing": {
         "basePrice": "From 90 PLN per piercing",
@@ -491,12 +527,12 @@
         "text": "How to prepare a child for piercing"
       },
       "features": [
-        "Doctor-approved for children 0+",
-        "Quiet mechanism - doesn't scare children",
-        "Gentle method - minimal discomfort",
-        "Parental support and care during procedure",
-        "Sterile, single-use tools",
-        "Special earrings for children"
+        "children0plusApproved",
+        "quietKids",
+        "gentle",
+        "parentalSupport",
+        "sterileTools",
+        "kidsEarrings"
       ],
       "pricing": {
         "basePrice": "150 PLN",
@@ -507,12 +543,12 @@
       "h1": "Ear Piercing for Adults in Warsaw",
       "description": "Lobe or cartilage. 1, 2 or 3 piercings in one visit.",
       "features": [
-        "Earlobe and cartilage piercing",
-        "Precise method - fast healing",
-        "Over 30 models of earrings for adults",
-        "Hypoallergenic materials (titanium, niobium, medical steel)",
-        "Professional consultation before procedure",
-        "Sterile procedure conditions"
+        "lobeCartilagePiercing",
+        "preciseHealing",
+        "adultEarrings",
+        "hypoallergenic",
+        "consultation",
+        "sterileConditions"
       ],
       "pricing": {
         "basePrice": "1 piercing: 90 PLN, 2 piercings: 150 PLN, 3 piercings: 210 PLN",
@@ -523,12 +559,12 @@
       "h1": "Cartilage Piercing in Warsaw",
       "description": "Helix, tragus, conch. No torn tissue.",
       "features": [
-        "Helix, tragus, conch, flat, lobe piercing",
-        "Perfect system for cartilage",
-        "Precise piercing - doesn't tear tissue",
-        "Fast healing (12 weeks)",
-        "Special earrings for cartilage",
-        "Experienced specialist"
+        "cartilagePlacements",
+        "cartilageSystem",
+        "noTear",
+        "healing12weeks",
+        "cartilageEarrings",
+        "experiencedSpecialist"
       ],
       "pricing": {
         "basePrice": "1 piercing: 90 PLN, 2 piercings: 150 PLN, 3 piercings: 210 PLN",
@@ -539,12 +575,12 @@
       "h1": "Mobile Ear Piercing in Warsaw",
       "description": "The same procedure at home. Travel depends on the address.",
       "features": [
-        "Home visits in Warsaw",
-        "Full sterility in home conditions",
-        "Inverness MED system - same as in studio",
-        "Perfect for families with children",
-        "Comfort of your own home",
-        "Flexible visit hours"
+        "homeVisit",
+        "sterileHome",
+        "sameSystem",
+        "families",
+        "homeComfort",
+        "flexibleHours"
       ],
       "pricing": {
         "basePrice": "From 90 PLN per piercing. Travel depends on location",
@@ -552,68 +588,72 @@
       }
     }
   },
-    "locations": {
-      "breadcrumbDistricts": "Districts",
-      "eyebrow": {
-        "district": "Warsaw",
-        "suburb": "Near Warsaw"
-      },
-      "minutesCaption": "to the studio in Mokotów",
-      "minutesCaptionLocal": "to the studio",
-      "visit": {
-        "heading": "Studio or home visit",
-        "subheading": "Same procedure. Only the place changes.",
-        "primaryBadge": "Most often",
-        "secondaryBadge": "Or",
-        "studioTitle": "You come to the studio",
-        "homeTitle": "We come to you",
-        "mapLink": "Directions",
-        "homeLink": "How a home visit works",
-        "surchargeBefore": "Surcharge",
-        "surchargeAfter": "on top of the procedure",
-        "mapTitle": "Map of the Gentle Piercing studio, Ursynowska 10/1",
-        "coverageAlt": "Home visit area"
-      },
-      "pricing": {
-        "heading": "Prices",
-        "note": "Same prices at the studio and at your home. Earrings are separate,",
-        "travelRow": "Home visit"
-      },
-      "services": {
-        "heading": "Services",
-        "children": "Children 0+",
-        "childrenNote": "Usually a pair of lobes",
-        "adults": "Adults",
-        "adultsNote": "1, 2 or 3 piercings",
-        "cartilage": "Cartilage",
-        "cartilageNote": "Helix, tragus, conch",
-        "mobile": "Home visit",
-        "mobileNote": "Surcharge"
-      },
-      "photosLabel": "Photos from the studio",
-      "nearby": {
-        "heading": "Nearby areas",
-        "all": "All areas"
-      },
-      "hub": {
-        "seoTitle": "Ear Piercing Warsaw | Districts and Nearby Areas",
-        "seoDescription": "Studio at Ursynowska 10/1 in Mokotów and home visits across Warsaw. Check Wilanów, Ursynów, Mokotów and Piaseczno. Inverness Med, children 0+.",
-        "breadcrumb": "Ear piercing by district",
-        "eyebrow": "Warsaw and nearby",
-        "h1": "Where you travel to us from",
-        "lede": "One studio in Mokotów and home visits. Pick your area.",
-        "listHeading": "List of areas",
-        "recommendStudio": "Usually the studio",
-        "recommendMobile": "Usually a home visit",
-        "toStudio": "to the studio",
-        "otherAreaBefore": "Another district? We travel across Warsaw and about 30 km from the centre, surcharge",
-        "otherAreaLink": "Home visit service"
-      },
-      "linksBlock": {
-        "heading": "Where you travel to us from",
-        "intro": "Studio in Mokotów, home visits across Warsaw and nearby."
-      },
-      "footerHeading": "Districts and areas",
-      "serviceCrossLink": "We describe travel times and coverage separately for"
-    }
+  "locations": {
+    "breadcrumbDistricts": "Districts",
+    "eyebrow": {
+      "district": "Warsaw",
+      "suburb": "Near Warsaw"
+    },
+    "minutesCaption": "to the studio in Mokotów",
+    "minutesCaptionLocal": "to the studio",
+    "visit": {
+      "heading": "Studio or home visit",
+      "subheading": "Same procedure. Only the place changes.",
+      "primaryBadge": "Most often",
+      "secondaryBadge": "Or",
+      "studioTitle": "You come to the studio",
+      "homeTitle": "We come to you",
+      "mapLink": "Directions",
+      "homeLink": "How a home visit works",
+      "surchargeBefore": "Surcharge",
+      "surchargeAfter": "on top of the procedure",
+      "labelTransit": "Transit",
+      "labelCar": "By car",
+      "labelParking": "Parking",
+      "labelCoverage": "Coverage",
+      "mapTitle": "Map of the Gentle Piercing studio, Ursynowska 10/1",
+      "coverageAlt": "Home visit area"
+    },
+    "pricing": {
+      "heading": "Prices",
+      "note": "Same prices at the studio and at your home. Earrings are separate,",
+      "travelRow": "Home visit"
+    },
+    "services": {
+      "heading": "Services",
+      "children": "Children 0+",
+      "childrenNote": "Usually a pair of lobes",
+      "adults": "Adults",
+      "adultsNote": "1, 2 or 3 piercings",
+      "cartilage": "Cartilage",
+      "cartilageNote": "Helix, tragus, conch",
+      "mobile": "Home visit",
+      "mobileNote": "Surcharge"
+    },
+    "photosLabel": "Photos from the studio",
+    "nearby": {
+      "heading": "Nearby areas",
+      "all": "All areas"
+    },
+    "hub": {
+      "seoTitle": "Ear Piercing Warsaw | Districts and Nearby Areas",
+      "seoDescription": "Studio at Ursynowska 10/1 in Mokotów and home visits across Warsaw. Check Wilanów, Ursynów, Mokotów and Piaseczno. Inverness Med, children 0+.",
+      "breadcrumb": "Ear piercing by district",
+      "eyebrow": "Warsaw and nearby",
+      "h1": "Where you travel to us from",
+      "lede": "One studio in Mokotów and home visits. Pick your area.",
+      "listHeading": "List of areas",
+      "recommendStudio": "Usually the studio",
+      "recommendMobile": "Usually a home visit",
+      "toStudio": "to the studio",
+      "otherAreaBefore": "Another district? We travel across Warsaw and about 30 km from the centre, surcharge",
+      "otherAreaLink": "Home visit service"
+    },
+    "linksBlock": {
+      "heading": "Where you travel to us from",
+      "intro": "Studio in Mokotów, home visits across Warsaw and nearby."
+    },
+    "footerHeading": "Districts and areas",
+    "serviceCrossLink": "We describe travel times and coverage separately for"
+  }
 }

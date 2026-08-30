@@ -2,8 +2,9 @@
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { siteMetadata } from '../../../config/seo';
 import { getPageSEO, getBreadcrumbSchema, getCanonicalUrl, type Locale } from '../../../lib/seo';
-import { getPostsByLocale, urlFor } from '../../../lib/sanity';
+import { getPostsByLocale } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
+import Articles from '../../../components/Articles.astro';
 
 export async function getStaticPaths() {
   const locales: Locale[] = ['pl', 'uk', 'ru', 'en'];
@@ -75,46 +76,14 @@ const structuredData = [
           <p class="text-muted-foreground mb-4">{t(currentLocale, 'blog.noPosts')}</p>
         </div>
       ) : (
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-          {posts.map((post) => (
-            <article class="border border-border rounded-lg p-6 hover:shadow-card transition-shadow duration-300 flex flex-col group">
-              <a href={`/${locale}/blog/${post.slug}`} class="block flex flex-col h-full no-underline text-inherit hover:text-inherit">
-                {post.coverImage && (
-                  <img
-                    src={urlFor(post.coverImage).width(400).format('webp').url()}
-                    srcset={`
-                      ${urlFor(post.coverImage).width(400).format('webp').url()} 400w,
-                      ${urlFor(post.coverImage).width(600).format('webp').url()} 600w
-                    `}
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    alt={post.title}
-                    class="w-full h-48 object-cover rounded-lg mb-4"
-                    loading="lazy"
-                    decoding="async"
-                    width="400"
-                    height="250"
-                  />
-                )}
-                <h2 class="text-2xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {post.title}
-                </h2>
-                <p class="text-muted-foreground mb-4 flex-grow">{post.excerpt}</p>
-                <div class="flex items-center justify-between text-sm text-muted-foreground">
-                  <time>
-                    {new Date(post.publishedAt).toLocaleDateString(locale, { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
-                    })}
-                  </time>
-                  <span class="text-primary group-hover:underline">
-                    {t(currentLocale, 'blog.readMore')} →
-                  </span>
-                </div>
-              </a>
-            </article>
-          ))}
-        </div>
+        <Articles
+          locale={currentLocale}
+          posts={posts}
+          title={null}
+          subtitle={null}
+          viewAll={false}
+          banded={false}
+        />
       )}
     </div>
   </div>

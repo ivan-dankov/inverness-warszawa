@@ -3,6 +3,7 @@ import { t, getTranslations } from '../lib/translations';
 import type { Locale } from '../lib/seo';
 import { Image } from 'astro:assets';
 import invernessSystem from '../assets/inverness-system.png';
+import { resolveInvernessFeatures } from '../lib/inverness-features';
 
 interface Props {
   locale: Locale;
@@ -12,10 +13,10 @@ interface Props {
 
 const { locale, features, class: className = '' } = Astro.props;
 const translations = getTranslations(locale);
-const items: string[] = (features && features.length > 0
-  ? features
-  : translations.inverness?.features || []
-).slice(0, 6);
+const items = resolveInvernessFeatures(
+  features ?? translations.inverness?.features,
+  translations.inverness?.items,
+);
 
 const youtubeId = 'BgMvG5Lr1Tw';
 const playLabel = t(locale, 'comparison.playVideo');
@@ -66,15 +67,19 @@ const playLabel = t(locale, 'comparison.playVideo');
           <ul class="lg:col-span-5 divide-y divide-border/50">
             {items.map((item, index) => (
               <li
-                class="flex items-start gap-5 sm:gap-6 py-4 first:pt-0 group"
+                class="flex items-center gap-4 sm:gap-5 py-4 first:pt-0"
                 data-reveal
                 data-reveal-delay={String(index + 1)}
               >
-                <span class="text-2xl sm:text-3xl font-bold text-primary/20 leading-none tabular-nums select-none flex-shrink-0 pt-1 w-8 sm:w-10 text-right group-hover:text-primary/50 transition-colors duration-300">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+                <Image
+                  src={item.image}
+                  alt=""
+                  class="w-16 h-16 sm:w-[4.5rem] sm:h-[4.5rem] object-contain flex-shrink-0"
+                  widths={[72, 144]}
+                  sizes="72px"
+                />
                 <p class="text-base sm:text-lg font-medium leading-relaxed text-foreground">
-                  {item}
+                  {item.text}
                 </p>
               </li>
             ))}
