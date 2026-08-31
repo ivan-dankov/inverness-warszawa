@@ -76,17 +76,32 @@ export interface InvernessFeature {
   id: string;
   text: string;
   image: ImageMetadata;
+  alt: string;
+}
+
+function altFor(
+  id: string,
+  image: ImageMetadata,
+  alts: Record<string, string> | undefined,
+): string {
+  if (!alts) return '';
+  if (alts[id]) return alts[id];
+  for (const [key, img] of Object.entries(FEATURE_ILLUSTRATIONS)) {
+    if (img === image && alts[key]) return alts[key];
+  }
+  return '';
 }
 
 export function resolveInvernessFeatures(
   ids: string[] | undefined,
   copy: Record<string, string> | undefined,
+  alts?: Record<string, string>,
 ): InvernessFeature[] {
   const list = (ids && ids.length > 0 ? ids : [...DEFAULT_FEATURE_IDS]).slice(0, 6);
   return list.flatMap((id) => {
     const text = copy?.[id];
     const image = FEATURE_ILLUSTRATIONS[id];
     if (!text || !image) return [];
-    return [{ id, text, image }];
+    return [{ id, text, image, alt: altFor(id, image, alts) }];
   });
 }
