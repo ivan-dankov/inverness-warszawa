@@ -1,77 +1,18 @@
 ---
-import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";
+import { siteMetadata, generateAlternates } from '../../../config/seo';
+import { getServicePageSEO } from '../../../lib/seo';
+
+const seoConfig = getServicePageSEO('pl', 'przekluwanie-uszu-dzieci-warszawa');
 
 const seoData = {
-  title: "Przekłucie Uszu Dziecka od 0+ Warszawa | Inverness Med 270zł",
-  description: "✓ Certyfikat 0+ od pierwszych dni ✓ Inverness Med (NIE pistolet!) ✓ Para uszu od 270zł z kolczykami ✓ Metro Wilanowska 12min ✓ Rezerwuj online",
+  title: seoConfig.title,
+  description: seoConfig.description,
   language: 'pl',
   canonical: 'https://gentlepiercing.pl/pl/uslugi/przekluwanie-uszu-dzieci-warszawa',
   hreflang: generateAlternates('services.children'),
   ogImage: siteMetadata.defaultOgImage,
 };
-
-const schemaData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Ear Piercing for Children",
-    "serviceType": "Ear Piercing for Children",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Gentle Piercing",
-      "image": siteMetadata.defaultOgImage,
-      "telephone": "+48573818260",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ursynowska 10/1",
-        "addressLocality": "Warszawa",
-        "postalCode": "02-605",
-        "addressCountry": "PL"
-      }
-    },
-    "areaServed": "Warszawa",
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "https://gentlepiercing.pl/pl/uslugi/przekluwanie-uszu-dzieci-warszawa"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "270",
-      "priceCurrency": "PLN",
-      "description": "Przekłucie uszu dzieci 0+ systemem Inverness Med z kolczykami"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Od jakiego wieku można przekłuwać uszy dziecku?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "System Inverness Med posiada certyfikat 0+, co oznacza że można przekłuwać uszy już od pierwszych dni życia dziecka."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Czy przekłuwanie uszu dziecku boli?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "System Inverness Med jest znacznie mniej bolesny niż tradycyjny pistolet. Zabieg trwa tylko 1-2 sekundy na każde ucho."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Ile kosztuje przekłucie uszu dziecku w Warszawie?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Zabieg to 150 zł za parę płatków, z kolczykami od 270 zł. W cenie kolczyków: sterylne kolczyki Inverness w zamkniętej kasecie oraz instrukcja pielęgnacji."
-        }
-      }
-    ]
-  }
-];
 ---
 
 <ServicePageWrapper 
@@ -83,5 +24,4 @@ const schemaData = [
     'przekluwanie-uszu-z-dojazdem-warszawa',
   ]}
   seo={seoData}
-  schema={schemaData}
 />

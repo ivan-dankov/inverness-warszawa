@@ -508,7 +508,8 @@
     },
     "przekluwanie-uszu-dzieci-warszawa": {
       "h1": "Przekłuwanie Uszu Dzieciom w Warszawie",
-      "description": "Jedyny system w Europie zatwierdzony przez lekarzy od 0+.",
+      "serviceType": "Przekłuwanie uszu dzieciom",
+      "description": "Certyfikat 0+ pozwala przekłuć uszy już niemowlęciu. Pracujemy systemem Inverness Med, nie pistoletem: sterylne kolczyki w jednorazowej, zamkniętej kasecie. Rodzic jest przy dziecku przez cały zabieg. Gabinet przy Ursynowskiej 10/1 na Mokotowie, 12 minut od metra Wilanowska.",
       "blogLink": {
         "url": "/pl/blog/jak-przygotowac-dziecko-do-przekluwania-uszu",
         "text": "Jak przygotować dziecko do przekłucia"
@@ -522,36 +523,61 @@
         "kidsEarrings"
       ],
       "pricing": {
-        "basePrice": "150 zł za parę płatków",
-        "additionalInfo": "Cena nie obejmuje kosztu kolczyków (od 70 zł za jeden, od 120 zł za parę)"
+        "basePrice": "Para płatków: 150 zł, Kolczyki: od 120 zł za parę",
+        "additionalInfo": "Kolczyki są osobno — cena zależy od modelu (od 70 zł za jeden, od 120 zł za parę). Razem od 270 zł."
+      },
+      "visit": {
+        "title": "Jak wygląda wizyta z dzieckiem",
+        "items": [
+          {
+            "label": "Ile to trwa?",
+            "value": "Samo przekłucie to 1–2 sekundy na ucho. Cała wizyta z konsultacją i instrukcją pielęgnacji zajmuje około 30 minut."
+          },
+          {
+            "label": "Co zabrać?",
+            "value": "Nic specjalnego: umyte uszy i włosy, które da się związać. Przy niemowlaku warto mieć butelkę lub ulubioną zabawkę."
+          },
+          {
+            "label": "Rodzic zostaje przy dziecku",
+            "value": "Jesteś w gabinecie przez cały zabieg. Młodsze dzieci siedzą na kolanach rodzica. Nikt nie zabiera dziecka za drzwi."
+          },
+          {
+            "label": "Jak tu dojechać?",
+            "value": "Ursynowska 10/1, Mokotów. 12 minut od metra Wilanowska, przystanek autobusowy przy budynku, miejsca parkingowe na ulicy."
+          }
+        ]
       },
       "faq": [
         {
-          "question": "Od jakiego wieku?",
+          "question": "Od jakiego wieku można przekłuć uszy dziecku?",
           "answer": "System Inverness Med jest zatwierdzony przez lekarzy dla dzieci od 0+. To jedyny system w Europie z taką certyfikacją, co oznacza, że możemy bezpiecznie przekłuwać uszy już niemowlętom."
         },
         {
-          "question": "Czy to boli?",
+          "question": "Ile kosztuje przekłucie uszu dziecka w Warszawie?",
+          "answer": "Zabieg pary płatków to 150 zł. Kolczyki są osobno: od 70 zł za jeden, od 120 zł za parę. Razem od 270 zł, w zależności od modelu."
+        },
+        {
+          "question": "Czy przekłuwanie uszu dziecku boli?",
           "answer": "System Inverness Med jest wyjątkowo delikatny i znacznie mniej bolesny niż tradycyjny pistolet. Kolczyk delikatnie rozsuwa tkankę zamiast ją przebijać, co sprawia, że dyskomfort jest minimalny. Większość dzieci nawet nie płacze podczas zabiegu."
         },
         {
-          "question": "Jak długo się goi?",
+          "question": "Jak długo goi się przekłucie u dziecka?",
           "answer": "Gojenie płatka ucha u dzieci trwa około 6-8 tygodni. System Inverness Med przyspiesza gojenie dzięki precyzyjnemu, atraumatycznemu przekłuciu. Po tym czasie można bezpiecznie zmienić kolczyki."
         },
         {
-          "question": "Co zabrać na wizytę?",
+          "question": "Co zabrać na wizytę z dzieckiem?",
           "answer": "Nie trzeba nic specjalnego zabierać. Zalecamy przyjście z czystymi uszami i włosami związanymi lub z możliwością ich związania. Dla dzieci warto wyjaśnić wcześniej, jak będzie wyglądać procedura, aby czuły się spokojnie."
         },
         {
-          "question": "Czy można na basen?",
+          "question": "Czy dziecko może iść na basen po przekłuciu?",
           "answer": "Przez pierwsze 2 tygodnie po przekłuciu należy unikać basenów, saun i solariów. Woda w basenie może zawierać bakterie, które mogą spowodować infekcję. Po 2 tygodniach można wrócić do normalnych aktywności, ale nadal należy zachować ostrożność."
         },
         {
-          "question": "Jaki system używacie?",
+          "question": "Jakiego systemu używacie do przekłuwania uszu dzieciom?",
           "answer": "Używamy systemu Inverness Med - jedynego systemu w Europie zatwierdzonego przez lekarzy dla dzieci od 0+. System posiada międzynarodowe certyfikaty FDA oraz ISO, potwierdzające najwyższe standardy jakości i bezpieczeństwa. Używamy jednorazowych, zamkniętych kaset sterylnych, co gwarantuje 100% sterylność."
         },
         {
-          "question": "Czy rodzic może być obecny?",
+          "question": "Czy rodzic może być obecny przy zabiegu?",
           "answer": "Tak, oczywiście! Wsparcie i obecność rodzica podczas zabiegu jest bardzo ważne dla dziecka. Rodzic może być obecny przez cały czas trwania procedury, co pomaga dziecku czuć się bezpiecznie i spokojnie."
         }
       ]

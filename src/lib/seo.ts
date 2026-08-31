@@ -592,15 +592,29 @@ export function getServicePageHreflang(serviceSlug: ServicePageSlug): Record<Loc
 }
 
 /**
- * Extract numeric price from price string (e.g., "150 zł" -> "150", "90-150 zł" -> "90")
+ * Extract the service price from a display string.
+ * Uses the first amount next to a currency so "Para płatków: 150 zł, Kolczyki: od 120 zł"
+ * becomes "150", not a concatenation like "150120".
  */
-function extractPrice(priceString: string): string {
-  // Remove currency symbols and text
-  const cleaned = priceString.replace(/[^\d-]/g, '');
-  // Extract first number or range start
-  const match = cleaned.match(/^(\d+)/);
-  return match ? match[1] : cleaned.split('-')[0] || '0';
+export function extractPrice(priceString: string): string {
+  if (!priceString) return '0';
+
+  const range = priceString.match(/(\d+)\s*[-–]\s*\d+\s*(?:zł|PLN|зл)/i);
+  if (range) return range[1];
+
+  const withCurrency = priceString.match(/(\d+)\s*(?:zł|PLN|зл)/i);
+  if (withCurrency) return withCurrency[1];
+
+  const anyNumber = priceString.match(/(\d{2,})/);
+  return anyNumber ? anyNumber[1] : '0';
 }
+
+const SERVICE_IN_LANGUAGE: Record<Locale, string> = {
+  pl: 'pl-PL',
+  en: 'en-GB',
+  uk: 'uk-UA',
+  ru: 'ru-RU',
+};
 
 /**
  * Generate Service JSON-LD schema
@@ -612,14 +626,11 @@ export async function getServiceSchema(
   serviceName: string,
   serviceType: string,
   price: string,
-  url: string
+  url: string,
+  priceNote?: string
 ) {
   const siteConfig = getSiteConfig();
-  const businessName = siteConfig.organization.name;
   const siteUrl = siteConfig.siteUrl;
-  const address = siteConfig.business.address;
-
-  // Extract numeric price value
   const numericPrice = extractPrice(price);
 
   return {
@@ -627,6 +638,7 @@ export async function getServiceSchema(
     '@type': 'Service',
     name: serviceName,
     serviceType: serviceType,
+    inLanguage: SERVICE_IN_LANGUAGE[locale],
     provider: {
       '@type': 'Organization',
       name: 'Gentle Piercing',
@@ -641,9 +653,10 @@ export async function getServiceSchema(
       price: numericPrice,
       priceCurrency: 'PLN',
       availability: 'https://schema.org/InStock',
-      url: url,
+      url,
+      ...(priceNote ? { description: priceNote } : {}),
     },
-    url: url,
+    url,
   };
 }
 
@@ -659,20 +672,20 @@ export function getServicePageSEO(
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
-        title: 'Przekłuwanie Uszu Dzieci Warszawa',
-        description: 'Bezpieczne przekłuwanie uszu dzieci od 0+ ✓ System Inverness Med ✓ Sterylne kapsułki ✓ Bez bólu ✓ 150 zł / 270 zł z kolczykami → Rezerwuj online!',
+        title: 'Przekłucie Uszu Dziecka 0+ Warszawa | 150 zł + kolczyki',
+        description: '✓ Certyfikat 0+ ✓ Inverness Med, nie pistolet ✓ Zabieg 150 zł, kolczyki osobno od 120 zł (razem od 270 zł) ✓ Rodzic przy dziecku ✓ Mokotów, metro Wilanowska 12 min',
       },
       en: {
-        title: 'Ear Piercing Children 0+ Warsaw',
-        description: 'Ear piercing for children 0+ in Warsaw. Inverness Med system - painless, sterile, certified. 150 PLN / from 270 PLN with earrings. Book: 573-818-260',
+        title: 'Ear Piercing Children 0+ Warsaw | 150 PLN + earrings',
+        description: '✓ Certificate 0+ ✓ Inverness Med, not a gun ✓ Procedure 150 PLN, earrings separately from 120 PLN (from 270 PLN total) ✓ Parent stays with the child ✓ Mokotów, metro Wilanowska 12 min',
       },
       uk: {
-        title: 'Прокол Вух Дітям 0+ Варшава',
-        description: 'Прокол вух дітям 0+ у Варшаві. Система Inverness Med - безболісна та стерильна. 150 злотих / 270 злотих з сережками. Бронювання: 573-818-260',
+        title: 'Прокол Вух Дітям 0+ Варшава | 150 зл + сережки',
+        description: '✓ Сертифікат 0+ ✓ Inverness Med, не пістолет ✓ Процедура 150 зл, сережки окремо від 120 зл (разом від 270 зл) ✓ Батьки з дитиною ✓ Мокотув, метро Wilanowska 12 хв',
       },
       ru: {
-        title: 'Прокол Ушей Детям 0+ Варшава',
-        description: 'Прокол ушей детям 0+ в Варшаве. Система Inverness Med - безболезненно и стерильно. 150 злотых / 270 злотых с серьгами. Бронирование: 573-818-260',
+        title: 'Прокол Ушей Детям 0+ Варшава | 150 зл + серьги',
+        description: '✓ Сертификат 0+ ✓ Inverness Med, не пистолет ✓ Процедура 150 зл, серьги отдельно от 120 зл (вместе от 270 зл) ✓ Родитель с ребёнком ✓ Мокотув, метро Wilanowska 12 мин',
       },
     },
     'przekluwanie-uszu-dorosli-warszawa': {

@@ -45,54 +45,50 @@ if (!serviceData) {
   return Astro.redirect(`/${locale}`, 301);
 }
 
-// SEO Configuration
-let seo = customSeo;
-let structuredData = customSchema;
+const canonical = getServicePageUrl(serviceSlug, locale);
+const hreflang = getServicePageHreflang(serviceSlug);
 
-if (!seo || !structuredData) {
-  const seoConfig = getServicePageSEO(locale, serviceSlug);
-  const canonical = getServicePageUrl(serviceSlug, locale);
-  const hreflang = getServicePageHreflang(serviceSlug);
+const seo = customSeo || {
+  ...getServicePageSEO(locale, serviceSlug),
+  canonical,
+  hreflang,
+  ogImage: siteMetadata.defaultOgImage,
+};
 
-  if (!seo) {
-    seo = {
-      ...seoConfig,
-      canonical,
-      hreflang,
-      ogImage: siteMetadata.defaultOgImage,
-    };
-  }
+const localBusinessSchema = await getLocalBusinessSchema(locale);
+const serviceSchema = await getServiceSchema(
+  locale,
+  serviceData.h1,
+  serviceData.serviceType || serviceData.h1,
+  serviceData.pricing?.basePrice || '90 zł',
+  canonical,
+  serviceData.pricing?.additionalInfo
+);
 
-  if (!structuredData) {
-    // Build structured data
-    const localBusinessSchema = await getLocalBusinessSchema(locale);
-    const serviceSchema = await getServiceSchema(
-      locale,
-      serviceData.h1,
-      serviceData.serviceType || 'Ear Piercing',
-      serviceData.pricing?.basePrice || '90 zł',
-      canonical
-    );
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
+  { name: t(locale, 'header.nav.services'), url: getLocalizedPageUrl('services', locale) },
+  { name: serviceData.h1, url: canonical },
+]);
 
-    const breadcrumbSchema = getBreadcrumbSchema([
-      { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
-      { name: t(locale, 'header.nav.services'), url: getLocalizedPageUrl('services', locale) },
-      { name: serviceData.h1, url: canonical },
-    ]);
+// FAQ schema uses the same array ServicePage renders — never a shorter hardcoded set
+const faqSchema = serviceData.faq && serviceData.faq.length > 0
+  ? getFAQSchema(locale, serviceData.faq)
+  : null;
 
-    // Add FAQPage schema if FAQs exist
-    const faqSchema = serviceData.faq && serviceData.faq.length > 0
-      ? getFAQSchema(locale, serviceData.faq)
-      : null;
+const generatedTypes = new Set(['LocalBusiness', 'Service', 'BreadcrumbList', 'FAQPage']);
+const extraSchema = (customSchema || []).filter((node: { '@type'?: string }) => {
+  const type = node?.['@type'];
+  return Boolean(type) && !generatedTypes.has(type);
+});
 
-    structuredData = [
-      localBusinessSchema,
-      serviceSchema,
-      breadcrumbSchema,
-      ...(faqSchema ? [faqSchema] : []),
-    ];
-  }
-}
+const structuredData = [
+  localBusinessSchema,
+  serviceSchema,
+  breadcrumbSchema,
+  ...(faqSchema ? [faqSchema] : []),
+  ...extraSchema,
+];
 ---
 
 <BaseLayout locale={locale} seo={seo} structuredData={structuredData}>
@@ -106,8 +102,8 @@ if (!seo || !structuredData) {
       features: serviceData.features,
       pricing: serviceData.pricing,
       faq: serviceData.faq,
+      visit: serviceData.visit,
     }}
     relatedServices={relatedServices}
   />
 </BaseLayout>
-

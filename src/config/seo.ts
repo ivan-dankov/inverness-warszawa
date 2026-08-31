@@ -34,7 +34,7 @@ export const siteMetadata = {
     homepage: {
         pl: {
             title: 'Przekłucie Uszu Warszawa | Inverness Med 0+ | Cennik',
-            description: '✓ Certyfikat 0+ ✓ System Inverness Med ✓ Dzieci od 270zł, Dorośli od 90zł ✓ Metro Wilanowska 12min. Zarezerwuj wizytę online przez Booksy.'
+            description: '✓ Certyfikat 0+ ✓ System Inverness Med, nie pistolet ✓ Płatek i chrząstka od 90zł ✓ Mokotów, metro Wilanowska 12min. Zarezerwuj wizytę online przez Booksy.'
         },
         en: {
             title: 'Ear Piercing Warsaw | Inverness Med 0+ | Mokotów',

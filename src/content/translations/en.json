@@ -549,6 +549,7 @@
     },
     "ear-piercing-children-warsaw": {
       "h1": "Ear Piercing for Children in Warsaw",
+      "serviceType": "Ear piercing for children",
       "description": "The only system in Europe doctor-approved from 0+.",
       "blogLink": {
         "url": "/en/blog/how-to-prepare-a-child-for-ear-piercing",
@@ -563,9 +564,64 @@
         "kidsEarrings"
       ],
       "pricing": {
-        "basePrice": "150 PLN",
-        "additionalInfo": "Price does not include earrings (from 70 PLN each, from 120 PLN a pair)"
-      }
+        "basePrice": "Pair of lobes: 150 PLN, Earrings: from 120 PLN a pair",
+        "additionalInfo": "Earrings are separate — the price depends on the model (from 70 PLN each, from 120 PLN a pair). Together from 270 PLN."
+      },
+      "visit": {
+        "title": "What a visit with your child looks like",
+        "items": [
+          {
+            "label": "How long it takes",
+            "value": "The piercing itself is 1–2 seconds per ear. The whole visit, with consultation and aftercare instructions, takes about 30 minutes."
+          },
+          {
+            "label": "What to bring",
+            "value": "Nothing special: clean ears and hair that can be tied back. For a baby, a bottle or a favorite toy helps."
+          },
+          {
+            "label": "You stay with your child",
+            "value": "You are in the room for the whole procedure. Younger children sit on a parent's lap. Nobody takes the child out of the room."
+          },
+          {
+            "label": "How to get here",
+            "value": "Ursynowska 10/1, Mokotów. 12 minutes from Metro Wilanowska, bus stop at the building, street parking."
+          }
+        ]
+      },
+      "faq": [
+        {
+          "question": "At what age can you pierce a child's ears?",
+          "answer": "The Inverness Med system is doctor-approved for children from 0+. It is the only system in Europe with that certification, so we can safely pierce even infants."
+        },
+        {
+          "question": "How much does child ear piercing cost in Warsaw?",
+          "answer": "A pair of lobes is 150 PLN. Earrings are separate: from 70 PLN each, from 120 PLN a pair. Together from 270 PLN, depending on the model."
+        },
+        {
+          "question": "Does ear piercing hurt for children?",
+          "answer": "Inverness Med is much gentler than a traditional gun. The earring parts the tissue instead of tearing it, so discomfort is minimal. Most children do not even cry."
+        },
+        {
+          "question": "How long does a child's piercing take to heal?",
+          "answer": "A child's earlobe usually heals in about 6–8 weeks. Inverness Med helps healing with a precise, atraumatic pierce. After that, earrings can be changed safely."
+        },
+        {
+          "question": "What should we bring to a visit with a child?",
+          "answer": "Nothing special. Come with clean ears and hair that can be tied back. For children, it helps to explain beforehand what the procedure will look like so they feel calm."
+        },
+        {
+          "question": "Can a child go to the pool after piercing?",
+          "answer": "For the first 2 weeks avoid pools, saunas and tanning beds. Pool water can carry bacteria that cause infection. After 2 weeks you can return to normal activities, still with care."
+        },
+        {
+          "question": "Which system do you use for children's ear piercing?",
+          "answer": "We use Inverness Med — the only system in Europe doctor-approved for children from 0+. It has FDA and ISO certificates. We use sterile, sealed, single-use cassettes."
+        },
+        {
+          "question": "Can a parent stay during the procedure?",
+          "answer": "Yes. You stay in the room for the whole procedure. That helps the child feel safe. Nobody takes the child out of the room."
+        }
+      ]
     },
     "ear-piercing-adults-warsaw": {
       "h1": "Ear Piercing for Adults in Warsaw",

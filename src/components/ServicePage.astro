@@ -30,6 +30,10 @@ interface Props {
       additionalInfo?: string;
     };
     faq?: Array<{ question: string; answer: string }>;
+    visit?: {
+      title: string;
+      items: Array<{ label: string; value: string }>;
+    };
   };
   relatedServices?: ServicePageSlug[];
 }
@@ -135,10 +139,14 @@ const relatedIds = relatedServices
           </div>
 
           <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-bold text-white leading-[1.05]">
-            {hero.title}
+            {h1}
           </h1>
 
-          <p class="mt-5 text-lg sm:text-xl text-white/70 leading-relaxed max-w-xl">
+          <p class="mt-4 text-xl sm:text-2xl text-white/80 font-medium leading-snug max-w-xl">
+            {hero.title}
+          </p>
+
+          <p class="mt-5 text-lg text-white/70 leading-relaxed max-w-xl">
             {content.description}
           </p>
 
@@ -197,6 +205,22 @@ const relatedIds = relatedServices
     <div class="h-24 bg-background" aria-hidden="true"></div>
 
     <div class="max-w-6xl mx-auto">
+        {content.visit && content.visit.items.length > 0 && (
+          <section class="mb-24 max-w-4xl" aria-labelledby="visit-heading" data-reveal>
+            <h2 id="visit-heading" class="text-2xl sm:text-3xl font-bold text-foreground">
+              {content.visit.title}
+            </h2>
+            <dl class="mt-8 grid gap-x-12 gap-y-8 sm:grid-cols-2">
+              {content.visit.items.map((item, index) => (
+                <div data-reveal data-reveal-delay={String(index + 1)}>
+                  <dt class="text-base font-semibold text-foreground">{item.label}</dt>
+                  <dd class="mt-2 text-base text-muted-foreground leading-relaxed">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
         {/* Specific Content: Cartilage Types */}
         {serviceSlug === 'przekluwanie-chrzastki-warszawa' && (
           <div class="mb-24">
@@ -286,7 +310,9 @@ const relatedIds = relatedServices
     </div>
 </div>
 
-<FAQ locale={locale} items={content.faq} />
+{content.faq && content.faq.length > 0 && (
+  <FAQ locale={locale} items={content.faq} />
+)}
 
 <Booking
   locale={locale}

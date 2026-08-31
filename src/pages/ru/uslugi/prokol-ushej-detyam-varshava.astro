@@ -1,77 +1,18 @@
 ---
-import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";import { siteMetadata, generateAlternates } from '../../../config/seo';
+import ServicePageWrapper from "../../../components/ServicePageWrapper.astro";
+import { siteMetadata, generateAlternates } from '../../../config/seo';
+import { getServicePageSEO } from '../../../lib/seo';
+
+const seoConfig = getServicePageSEO('ru', 'przekluwanie-uszu-dzieci-warszawa');
 
 const seoData = {
-  title: "Прокол Ушей Детям от 0+ | Inverness Med 270zł | Варшава Мокотув",
-  description: "✓ Сертификат 0+ с первых дней жизни ✓ Inverness Med (НЕ пистолет!) ✓ От 270zł с серёжками ✓ Метро Wilanowska 12мин ✓ Запись онлайн | Gentle Piercing",
+  title: seoConfig.title,
+  description: seoConfig.description,
   language: 'ru',
   canonical: 'https://gentlepiercing.pl/ru/uslugi/prokol-ushej-detyam-varshava',
   hreflang: generateAlternates('services.children'),
   ogImage: siteMetadata.defaultOgImage,
 };
-
-const schemaData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Ear Piercing for Children",
-    "serviceType": "Ear Piercing for Children",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Gentle Piercing",
-      "image": siteMetadata.defaultOgImage,
-      "telephone": "+48573818260",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ursynowska 10/1",
-        "addressLocality": "Варшава",
-        "postalCode": "02-605",
-        "addressCountry": "PL"
-      }
-    },
-    "areaServed": "Варшава",
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "https://gentlepiercing.pl/ru/uslugi/prokol-ushej-detyam-varshava"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "270",
-      "priceCurrency": "PLN",
-      "description": "Прокол ушей детям 0+ системой Inverness Med с серёжками"
-    }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "С какого возраста можно прокалывать уши ребёнку?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Система Inverness Med имеет сертификат 0+, что означает что можно прокалывать уши уже с первых дней жизни ребёнка."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Больно ли прокалывать уши ребёнку?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Система Inverness Med значительно менее болезненна чем традиционный пистолет. Процедура длится всего 1-2 секунды на каждое ухо."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Сколько стоит прокол ушей ребёнку в Варшаве?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Процедура — 150 зл за пару мочек, с серьгами от 270 зл. В цене серёг: стерильные серьги Inverness в закрытой кассете и инструкция по уходу."
-        }
-      }
-    ]
-  }
-];
 ---
 
 <ServicePageWrapper 
@@ -83,5 +24,4 @@ const schemaData = [
     'przekluwanie-uszu-z-dojazdem-warszawa',
   ]}
   seo={seoData}
-  schema={schemaData}
 />
