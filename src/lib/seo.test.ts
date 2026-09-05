@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { extractPrice, getServiceSchema } from './seo';
+import { extractPrice, getServicePageSEO, getServiceSchema } from './seo';
+import { siteMetadata } from '../config/seo';
 
 describe('extractPrice', () => {
   it('reads the first currency amount, not concatenated digits', () => {
@@ -31,9 +32,30 @@ describe('getServiceSchema', () => {
 
     expect(schema.name).toBe('Przekłuwanie Uszu Dzieciom w Warszawie');
     expect(schema.serviceType).toBe('Przekłuwanie uszu dzieciom');
-    expect(schema.inLanguage).toBe('pl-PL');
-    expect(schema.offers.price).toBe('150');
-    expect(schema.offers.priceCurrency).toBe('PLN');
-    expect(schema.offers.description).toContain('od 270');
+    expect(schema).not.toHaveProperty('inLanguage');
+    expect(schema).not.toHaveProperty('offers');
+    const offer = schema.hasOfferCatalog.itemListElement[0];
+    expect(schema.hasOfferCatalog['@type']).toBe('OfferCatalog');
+    expect(offer.price).toBe('150');
+    expect(offer.priceCurrency).toBe('PLN');
+    expect(offer.description).toContain('od 270');
+  });
+});
+
+describe('service and homepage SEO length', () => {
+  const locales = ['pl', 'en', 'uk', 'ru'] as const;
+
+  it('keeps children meta descriptions at or under 160 characters', () => {
+    for (const locale of locales) {
+      const { description } = getServicePageSEO(locale, 'przekluwanie-uszu-dzieci-warszawa');
+      expect(description.length, `${locale} children description`).toBeLessThanOrEqual(160);
+    }
+  });
+
+  it('aligns homepage titles with the H1 wording', () => {
+    expect(siteMetadata.homepage.pl.title).toMatch(/^Bezpieczne przekłuwanie uszu w Warszawie/);
+    expect(siteMetadata.homepage.en.title).toMatch(/^Safe ear piercing in Warsaw/);
+    expect(siteMetadata.homepage.ru.title).toMatch(/^Безопасный прокол ушей в Варшаве/);
+    expect(siteMetadata.homepage.uk.title).toMatch(/^Безпечний прокол вух у Варшаві/);
   });
 });

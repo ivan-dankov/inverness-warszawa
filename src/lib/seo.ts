@@ -436,7 +436,7 @@ export function getPageSEO(locale: Locale, page: 'home' | 'aftercare' | 'blog' |
           'Bezpieczne przekłuwanie uszu Inverness Med dla dzieci 0+ w Warszawie Mokotów. ✓ Bezbolesne ✓ Sterylne ✓ Dojazd. Tel: 573-818-260',
       },
       aftercare: {
-        title: 'Pielęgnacja Po Przekłuciu Uszu', // 30 + 18 = 48
+        title: 'Pielęgnacja po przekłuciu uszu',
         description:
           'Kompletne instrukcje pielęgnacji po przekłuciu uszu systemem Inverness MED w Warszawie. Jak dbać o uszy, dezynfekcja i zmiana kolczyków.', // 138
       },
@@ -609,20 +609,16 @@ export function extractPrice(priceString: string): string {
   return anyNumber ? anyNumber[1] : '0';
 }
 
-const SERVICE_IN_LANGUAGE: Record<Locale, string> = {
-  pl: 'pl-PL',
-  en: 'en-GB',
-  uk: 'uk-UA',
-  ru: 'ru-RU',
-};
-
 /**
  * Generate Service JSON-LD schema
  * Note: Provider uses Organization type with name "Gentle Piercing"
  * The full LocalBusiness schema should be included separately on service pages
+ *
+ * Price lives on OfferCatalog, not Service.offers — schema.org Service does
+ * not accept `offers` or `inLanguage`, which is what the validator flags.
  */
 export async function getServiceSchema(
-  locale: Locale,
+  _locale: Locale,
   serviceName: string,
   serviceType: string,
   price: string,
@@ -638,7 +634,6 @@ export async function getServiceSchema(
     '@type': 'Service',
     name: serviceName,
     serviceType: serviceType,
-    inLanguage: SERVICE_IN_LANGUAGE[locale],
     provider: {
       '@type': 'Organization',
       name: 'Gentle Piercing',
@@ -648,13 +643,23 @@ export async function getServiceSchema(
       '@type': 'City',
       name: 'Warszawa',
     },
-    offers: {
-      '@type': 'Offer',
-      price: numericPrice,
-      priceCurrency: 'PLN',
-      availability: 'https://schema.org/InStock',
-      url,
-      ...(priceNote ? { description: priceNote } : {}),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: serviceName,
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: serviceName,
+          },
+          price: numericPrice,
+          priceCurrency: 'PLN',
+          availability: 'https://schema.org/InStock',
+          url,
+          ...(priceNote ? { description: priceNote } : {}),
+        },
+      ],
     },
     url,
   };
@@ -672,20 +677,20 @@ export function getServicePageSEO(
   const configs: Record<ServicePageSlug, Record<Locale, { title: string; description: string }>> = {
     'przekluwanie-uszu-dzieci-warszawa': {
       pl: {
-        title: 'Przekłucie Uszu Dziecka 0+ Warszawa | 150 zł + kolczyki',
-        description: '✓ Certyfikat 0+ ✓ Inverness Med, nie pistolet ✓ Zabieg 150 zł, kolczyki osobno od 120 zł (razem od 270 zł) ✓ Rodzic przy dziecku ✓ Mokotów, metro Wilanowska 12 min',
+        title: 'Przekłuwanie Uszu Dzieciom w Warszawie | 0+',
+        description: 'Inverness Med zamiast pistoletu, certyfikat 0+. Zabieg 150 zł, kolczyki od 120 zł. Mokotów, 12 min od metro Wilanowska.',
       },
       en: {
-        title: 'Ear Piercing Children 0+ Warsaw | 150 PLN + earrings',
-        description: '✓ Certificate 0+ ✓ Inverness Med, not a gun ✓ Procedure 150 PLN, earrings separately from 120 PLN (from 270 PLN total) ✓ Parent stays with the child ✓ Mokotów, metro Wilanowska 12 min',
+        title: 'Ear Piercing for Children in Warsaw | 0+',
+        description: 'Inverness Med, not a gun. 0+ certified. Procedure 150 PLN, earrings from 120 PLN. Mokotów, 12 min from metro Wilanowska.',
       },
       uk: {
-        title: 'Прокол Вух Дітям 0+ Варшава | 150 зл + сережки',
-        description: '✓ Сертифікат 0+ ✓ Inverness Med, не пістолет ✓ Процедура 150 зл, сережки окремо від 120 зл (разом від 270 зл) ✓ Батьки з дитиною ✓ Мокотув, метро Wilanowska 12 хв',
+        title: 'Прокол Вух Дітям у Варшаві | 0+',
+        description: 'Inverness Med, не пістолет. Сертифікат 0+. Процедура 150 зл, сережки від 120 зл. Мокотув, 12 хв від метро Wilanowska.',
       },
       ru: {
-        title: 'Прокол Ушей Детям 0+ Варшава | 150 зл + серьги',
-        description: '✓ Сертификат 0+ ✓ Inverness Med, не пистолет ✓ Процедура 150 зл, серьги отдельно от 120 зл (вместе от 270 зл) ✓ Родитель с ребёнком ✓ Мокотув, метро Wilanowska 12 мин',
+        title: 'Прокол Ушей Детям в Варшаве | 0+',
+        description: 'Inverness Med, не пистолет. Сертификат 0+. Процедура 150 зл, серьги от 120 зл. Мокотув, 12 мин от метро Wilanowska.',
       },
     },
     'przekluwanie-uszu-dorosli-warszawa': {

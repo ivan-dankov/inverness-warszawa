@@ -1,24 +1,23 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMetadata, generateAlternates } from '../../config/seo';
-import { getBreadcrumbSchema } from '../../lib/seo';
+import { getBreadcrumbSchema, getCanonicalUrl, getLocalizedPageUrl, getPageSEO, type Locale } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Aftercare from '../../components/Aftercare.astro';
 
-const locale = 'pl';
+const locale: Locale = 'pl';
+const baseSeo = getPageSEO(locale, 'aftercare');
 const seo = {
-  title: "Jak Pielęgnować Uszy Po Przekłuciu? Instrukcja Inverness Med 2026",
-  description: "✓ Instrukcja krok po kroku ✓ Płyn ear care solution ✓ Co robić i czego unikać ✓ Czas gojenia i FAQ | Oficjalne zalecenia Inverness Med",
-  language: 'pl',
-  canonical: siteMetadata.urls.aftercare.pl,
+  ...baseSeo,
+  canonical: getLocalizedPageUrl('aftercare', locale),
   hreflang: generateAlternates('aftercare'),
   ogImage: siteMetadata.defaultOgImage,
 };
 
 const structuredData = [
   getBreadcrumbSchema([
-    { name: 'Strona Główna', url: siteMetadata.urls.base + '/pl' },
-    { name: 'Pielęgnacja', url: seo.canonical },
+    { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
+    { name: t(locale, 'header.nav.aftercare'), url: seo.canonical },
   ]),
 ];
 ---

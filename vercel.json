@@ -4,6 +4,18 @@
   "redirects": [
     {
       "source": "/",
+      "has": [{ "type": "host", "value": "www.gentlepiercing.pl" }],
+      "destination": "https://gentlepiercing.pl/pl",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gentlepiercing.pl" }],
+      "destination": "https://gentlepiercing.pl/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
       "destination": "/pl",
       "permanent": true
     },
@@ -42,6 +54,10 @@
         {
           "key": "Permissions-Policy",
           "value": "geolocation=(), microphone=(), camera=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
         }
       ]
     },

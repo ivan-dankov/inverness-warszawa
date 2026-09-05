@@ -5,6 +5,7 @@ import {
   getBreadcrumbSchema,
   getFAQSchema,
   getLocalBusinessSchema,
+  getServiceSchema,
   getCanonicalUrl,
   type Locale,
 } from '../lib/seo';
@@ -36,35 +37,30 @@ const seo = {
 };
 
 const localBusiness = await getLocalBusinessSchema(locale);
+const serviceSchema = await getServiceSchema(
+  locale,
+  content.h1,
+  content.h1,
+  '90 zł',
+  canonical
+);
+
+if (location.type === 'district') {
+  serviceSchema.areaServed = {
+    '@type': 'AdministrativeArea',
+    name: content.name,
+    containedInPlace: { '@type': 'City', name: 'Warszawa' },
+  };
+} else {
+  serviceSchema.areaServed = {
+    '@type': 'City',
+    name: content.name,
+  };
+}
 
 const structuredData = [
   localBusiness,
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: content.h1,
-    serviceType: 'Ear piercing',
-    provider: {
-      '@type': 'Organization',
-      name: 'Gentle Piercing',
-      url: siteMetadata.urls.base,
-    },
-    areaServed: {
-      '@type': location.type === 'district' ? 'AdministrativeArea' : 'City',
-      name: content.name,
-      ...(location.type === 'district'
-        ? { containedInPlace: { '@type': 'City', name: 'Warszawa' } }
-        : {}),
-    },
-    offers: {
-      '@type': 'Offer',
-      price: '90',
-      priceCurrency: 'PLN',
-      availability: 'https://schema.org/InStock',
-      url: canonical,
-    },
-    url: canonical,
-  },
+  serviceSchema,
   getBreadcrumbSchema([
     { name: t(locale, 'breadcrumb.home'), url: getCanonicalUrl(locale, '') },
     { name: t(locale, 'locations.hub.breadcrumb'), url: getLocationsHubUrl(locale) },
