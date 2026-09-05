@@ -180,10 +180,20 @@ const priceClass = onDark ? 'text-white' : 'text-primary';
 
 <script>
   document.addEventListener('click', (event) => {
-    const target = event.target;
-    if (!(target instanceof Element)) return;
+    const path = typeof event.composedPath === 'function' ? event.composedPath() : [];
+    const fromPath = path.find(
+      (node) => node instanceof HTMLElement && node.hasAttribute('data-booking-cta'),
+    );
 
-    const link = target.closest('[data-booking-cta]');
+    const raw = event.target;
+    const fromTarget =
+      raw instanceof Element
+        ? raw.closest('[data-booking-cta]')
+        : raw instanceof Node
+          ? raw.parentElement?.closest('[data-booking-cta]')
+          : null;
+
+    const link = fromPath instanceof HTMLElement ? fromPath : fromTarget;
     if (!(link instanceof HTMLElement) || typeof window.gtag !== 'function') return;
 
     window.gtag('event', 'booking_click_code', {

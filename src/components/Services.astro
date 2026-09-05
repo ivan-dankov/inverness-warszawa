@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { t, getTranslations } from '../lib/translations';
 import { getLocalizedPagePath, type Locale, type ServicePageSlug } from '../lib/seo';
 import { getServiceItems, type ServiceId } from '../lib/services';
+import { getBooksyUrl } from '../lib/booksy';
 import childrenImg from '../assets/services/children.webp';
 import adultsImg from '../assets/ear-1.jpg';
 import cartilageImg from '../assets/ear-2.jpg';
@@ -90,31 +91,42 @@ const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
         <ul class="divide-y divide-border border-y border-border">
           {items.map((item, index) => {
             const featured = featuredFirst && index === 0;
+            const booksyUrl = getBooksyUrl({
+              source: 'services',
+              campaign: `${item.slug}_${locale}`,
+            });
             return (
               <li data-reveal data-reveal-delay={String(index + 1)}>
-                <a
-                  href={item.href}
+                <div
                   class:list={[
-                    'group grid items-center gap-5 sm:gap-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                    'grid items-center gap-5 sm:gap-8',
                     featured
                       ? 'py-8 sm:py-10 md:grid-cols-[minmax(0,17rem)_1fr]'
                       : 'py-6 sm:py-7 grid-cols-[auto_1fr]',
                   ]}
                 >
-                  <Image
-                    src={images[item.id]}
-                    alt={item.name}
-                    class:list={[
-                      'rounded-lg bg-muted/40 object-contain w-full',
-                      featured
-                        ? 'aspect-[4/3] max-h-56 sm:max-h-none'
-                        : 'w-24 h-24 sm:w-28 sm:h-28',
-                    ]}
-                    widths={featured ? [280, 560] : [112, 224]}
-                    sizes={featured ? '(max-width: 768px) 90vw, 272px' : '112px'}
-                  />
-                  <div class="min-w-0 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 sm:gap-8">
-                    <div class="min-w-0">
+                  <a
+                    href={item.href}
+                    class="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                  >
+                    <Image
+                      src={images[item.id]}
+                      alt={item.name}
+                      class:list={[
+                        'rounded-lg bg-muted/40 object-contain w-full',
+                        featured
+                          ? 'aspect-[4/3] max-h-56 sm:max-h-none'
+                          : 'w-24 h-24 sm:w-28 sm:h-28',
+                      ]}
+                      widths={featured ? [280, 560] : [112, 224]}
+                      sizes={featured ? '(max-width: 768px) 90vw, 272px' : '112px'}
+                    />
+                  </a>
+                  <div class="min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-8">
+                    <a
+                      href={item.href}
+                      class="min-w-0 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    >
                       <h3
                         class:list={[
                           'font-bold text-foreground group-hover:text-primary transition-colors leading-snug',
@@ -126,14 +138,29 @@ const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
                       <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mt-1">
                         {item.description}
                       </p>
+                    </a>
+                    <div class="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
+                      {item.price && (
+                        <span class="text-base sm:text-lg font-bold text-primary whitespace-nowrap">
+                          {item.price}
+                        </span>
+                      )}
+                      <a
+                        href={booksyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-base sm:text-lg font-bold text-primary hover:underline underline-offset-4 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                        data-booking-cta="services"
+                        data-booking-locale={locale}
+                      >
+                        {t(locale, 'services.bookButton')}
+                        <svg class="w-[1em] h-[1em]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </a>
                     </div>
-                    {item.price && (
-                      <span class="text-base sm:text-lg font-bold text-primary whitespace-nowrap flex-shrink-0">
-                        {item.price}
-                      </span>
-                    )}
                   </div>
-                </a>
+                </div>
               </li>
             );
           })}

@@ -75,7 +75,14 @@ export function Testimonials({ locale, testimonials }: TestimonialsProps) {
                 ))}
               </div>
               <span className="text-lg font-semibold text-white">5.0</span>
-              <a href={BOOKSY_BUSINESS_URL} target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white underline underline-offset-2 transition-colors">
+              <a
+                href={BOOKSY_BUSINESS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/70 hover:text-white underline underline-offset-2 transition-colors"
+                data-booking-cta="testimonials_booksy"
+                data-booking-locale={locale}
+              >
                 {t(locale, 'testimonials.onBooksy')}
               </a>
             </div>
