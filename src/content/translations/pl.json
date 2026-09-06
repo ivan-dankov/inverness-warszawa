@@ -62,7 +62,7 @@
       },
       {
         "title": "Inverness Med",
-        "description": "Certyfikowany przez FDA i ISO, gwarantuje najwyższą jakość."
+        "description": "Zapieczętowana kaseta. System wpisany do bazy FDA."
       },
       {
         "title": "💖 Delikatność i spokój",
@@ -86,7 +86,7 @@
       },
       {
         "title": "Przekłuwanie Uszu Dzieciom",
-        "description": "Bezpieczne przekłuwanie zatwierdzone przez lekarzy dla najmłodszych",
+        "description": "Bezpieczne przekłuwanie dla najmłodszych, ze wskazaniem Inverness od 0+",
         "badge": "Dla Dzieci",
         "price": "150 zł za parę",
         "duration": "30 min",
@@ -129,7 +129,7 @@
     "catalog": {
       "children": {
         "name": "Przekłuwanie uszu dzieciom",
-        "description": "Para uszu od 0+, zatwierdzone przez lekarzy."
+        "description": "Para uszu od 0+, według wskazania Inverness."
       },
       "adults": {
         "name": "Przekłuwanie uszu dla dorosłych",
@@ -164,16 +164,16 @@
     "items": {
       "cassette": "Jednorazowa, zamknięta kaseta — brak kontaktu z igłą",
       "quiet": "Cichy mechanizm, bez trzasku pistoletu",
-      "children0plus": "Zatwierdzony przez lekarzy dla dzieci od 0+",
+      "children0plus": "Wskazanie Inverness dla dzieci od 0+",
       "lobeCartilage": "Płatek ucha i chrząstka (helix, tragus, conch)",
       "specialists": "Certyfikowani specjaliści z doświadczeniem w pracy z dziećmi",
-      "fdaIso": "System Inverness MED - certyfikowany przez FDA i ISO",
-      "sterileCassettes": "100% sterylność - jednorazowe, zamknięte kasety",
+      "fdaIso": "System Inverness MED wpisany do bazy FDA",
+      "sterileCassettes": "Zapieczętowane jednorazowe kasety",
       "childrenAndAdults": "Dla dzieci 0+ i dorosłych",
       "lobeCartilagePiercing": "Przekłuwanie płatka ucha i chrząstki",
       "earringRange": "Ponad 30 modeli hipoalergicznych kolczyków",
       "quietGentle": "Cichy i delikatny mechanizm",
-      "children0plusApproved": "Zatwierdzone przez lekarzy dla dzieci 0+",
+      "children0plusApproved": "Wskazanie Inverness dla dzieci 0+",
       "quietKids": "Cichy mechanizm - nie przestrasza dzieci",
       "gentle": "Delikatna metoda - minimalny dyskomfort",
       "parentalSupport": "Wsparcie i opieka rodziców podczas zabiegu",
@@ -270,12 +270,12 @@
       },
       "inverness": {
         "name": "Inverness Med",
-        "sterility": "W 100% sterylny — zapieczętowana jednorazowa kaseta",
+        "sterility": "Zapieczętowana jednorazowa kaseta",
         "comfort": "Cichy mechanizm, praktycznie bezbolesny",
         "healing": "Szybkie i czyste — tkanka jest rozdzielana, nie rozrywana",
-        "childrenSuitability": "Zatwierdzony dla dzieci od urodzenia (0+)",
+        "childrenSuitability": "Wskazanie Inverness od urodzenia (0+)",
         "cartilageSuitability": "Idealny zarówno do płatka, jak i chrząstki",
-        "features": "System medyczny z certyfikatami FDA i ISO"
+        "features": "System medyczny wpisany do bazy FDA"
       }
     }
   },
@@ -296,7 +296,7 @@
       },
       {
         "question": "Od jakiego wieku można przekłuwać uszy dzieciom?",
-        "answer": "System Inverness MED jest zatwierdzony przez lekarzy do przekłuwania uszu u dzieci od 0+. Jest to jedyny system w Europie z taką certyfikacją. Cichy, precyzyjny mechanizm nie przestrasza najmłodszych, a 100% sterylność gwarantuje bezpieczeństwo."
+        "answer": "Inverness Med ma wskazanie producenta do przekłuwania płatka od urodzenia. U niemowląt warto najpierw zapytać pediatrę, wielu lekarzy czeka do pierwszej szczepionki DTP, zwykle około ósmego tygodnia. Mechanizm jest cichy, a kolczyk siedzi w zapieczętowanej kasecie aż do przekłucia."
       },
       {
         "question": "Jak długo trwa gojenie po przekłuciu?",
@@ -304,7 +304,7 @@
       },
       {
         "question": "Czy system Inverness MED jest bezpieczny?",
-        "answer": "Tak! System Inverness MED posiada międzynarodowe certyfikaty FDA oraz ISO, potwierdzające najwyższe standardy jakości i bezpieczeństwa. Używamy jednorazowych, zamkniętych kaset sterylnych, co gwarantuje 100% sterylność."
+        "answer": "Tak. Kolczyk siedzi w jednorazowej, zapieczętowanej kasecie i otwieramy ją dopiero przy uchu. System Inverness 2000 jest wpisany do bazy urządzeń FDA. Żeby rana goiła się spokojnie, myjemy ucho trzy razy dziennie według instrukcji."
       },
       {
         "question": "Jakie kolczyki są dostępne?",
@@ -509,7 +509,7 @@
     "przekluwanie-uszu-dzieci-warszawa": {
       "h1": "Przekłuwanie Uszu Dzieciom w Warszawie",
       "serviceType": "Przekłuwanie uszu dzieciom",
-      "description": "Certyfikat 0+ pozwala przekłuć uszy już niemowlęciu. Pracujemy systemem Inverness Med, nie pistoletem: sterylne kolczyki w jednorazowej, zamkniętej kasecie. Rodzic jest przy dziecku przez cały zabieg. Gabinet przy Ursynowskiej 10/1 na Mokotowie, 12 minut od metra Wilanowska.",
+      "description": "Certyfikat 0+ pozwala przekłuć uszy już niemowlęciu. Pracujemy systemem Inverness Med, nie pistoletem. Kolczyki siedzą w jednorazowej, zamkniętej kasecie. Rodzic jest przy dziecku przez cały zabieg. Gabinet przy Ursynowskiej 10/1 na Mokotowie, 12 minut od metra Wilanowska.",
       "blogLink": {
         "url": "/pl/blog/jak-przygotowac-dziecko-do-przekluwania-uszu",
         "text": "Jak przygotować dziecko do przekłucia"
@@ -550,7 +550,7 @@
       "faq": [
         {
           "question": "Od jakiego wieku można przekłuć uszy dziecku?",
-          "answer": "System Inverness Med jest zatwierdzony przez lekarzy dla dzieci od 0+. To jedyny system w Europie z taką certyfikacją, co oznacza, że możemy bezpiecznie przekłuwać uszy już niemowlętom."
+          "answer": "Płatek możemy przekłuć już niemowlęciu, bo Inverness podaje wskazanie od urodzenia. U najmłodszych i tak prosimy o rozmowę z pediatrą. Wielu lekarzy czeka do pierwszej DTP."
         },
         {
           "question": "Ile kosztuje przekłucie uszu dziecka w Warszawie?",
@@ -558,7 +558,7 @@
         },
         {
           "question": "Czy przekłuwanie uszu dziecku boli?",
-          "answer": "System Inverness Med jest wyjątkowo delikatny i znacznie mniej bolesny niż tradycyjny pistolet. Kolczyk delikatnie rozsuwa tkankę zamiast ją przebijać, co sprawia, że dyskomfort jest minimalny. Większość dzieci nawet nie płacze podczas zabiegu."
+          "answer": "Inverness Med jest dużo delikatniejszy niż pistolet. Kolczyk rozsuwa tkankę zamiast ją przebijać, a mechanizm nie trzaska. W gabinecie wiele dzieci nie płacze, choć każde reaguje inaczej."
         },
         {
           "question": "Jak długo goi się przekłucie u dziecka?",
@@ -574,7 +574,7 @@
         },
         {
           "question": "Jakiego systemu używacie do przekłuwania uszu dzieciom?",
-          "answer": "Używamy systemu Inverness Med - jedynego systemu w Europie zatwierdzonego przez lekarzy dla dzieci od 0+. System posiada międzynarodowe certyfikaty FDA oraz ISO, potwierdzające najwyższe standardy jakości i bezpieczeństwa. Używamy jednorazowych, zamkniętych kaset sterylnych, co gwarantuje 100% sterylność."
+          "answer": "Pracujemy systemem Inverness Med. Kolczyk siedzi w zapieczętowanej kasecie, a nacisk jest ręczny, bez sprężyny pistoletu. System jest wpisany do bazy urządzeń FDA."
         },
         {
           "question": "Czy rodzic może być obecny przy zabiegu?",

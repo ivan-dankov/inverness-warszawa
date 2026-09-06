@@ -62,7 +62,7 @@
       },
       {
         "title": "Inverness Med",
-        "description": "Certified by FDA and ISO, guarantees the highest quality."
+        "description": "Sealed cassette. System listed in the FDA device database."
       },
       {
         "title": "💖 Gentleness and calm",
@@ -86,7 +86,7 @@
       },
       {
         "title": "Children's Ear Piercing",
-        "description": "Safe piercing approved by doctors for the youngest",
+        "description": "Safe piercing for the youngest, with an Inverness indication from 0+",
         "badge": "For Children",
         "price": "150 PLN",
         "duration": "30 min",
@@ -129,7 +129,7 @@
     "catalog": {
       "children": {
         "name": "Ear piercing for children",
-        "description": "A pair of ears from 0+, doctor-approved."
+        "description": "A pair of ears from 0+, by Inverness indication."
       },
       "adults": {
         "name": "Ear piercing for adults",
@@ -164,16 +164,16 @@
     "items": {
       "cassette": "Single-use, sealed cassette — no contact with the needle",
       "quiet": "Quiet mechanism, without the gun's snap",
-      "children0plus": "Doctor-approved for children from 0+",
+      "children0plus": "Inverness indication for children from 0+",
       "lobeCartilage": "Earlobe and cartilage (helix, tragus, conch)",
       "specialists": "Certified specialists experienced with children",
-      "fdaIso": "Inverness MED system - certified by FDA and ISO",
-      "sterileCassettes": "100% sterility - single-use, closed cassettes",
+      "fdaIso": "Inverness MED system listed in the FDA device database",
+      "sterileCassettes": "Sealed single-use cassettes",
       "childrenAndAdults": "For children 0+ and adults",
       "lobeCartilagePiercing": "Earlobe and cartilage piercing",
       "earringRange": "Over 30 models of hypoallergenic earrings",
       "quietGentle": "Quiet and gentle mechanism",
-      "children0plusApproved": "Doctor-approved for children 0+",
+      "children0plusApproved": "Inverness indication for children 0+",
       "quietKids": "Quiet mechanism - doesn't scare children",
       "gentle": "Gentle method - minimal discomfort",
       "parentalSupport": "Parental support and care during procedure",
@@ -270,12 +270,12 @@
       },
       "inverness": {
         "name": "Inverness Med",
-        "sterility": "100% sterile — sealed single-use cassette",
+        "sterility": "Sealed single-use cassette",
         "comfort": "Silent mechanism, virtually painless",
         "healing": "Fast and clean — tissue is separated, not torn",
-        "childrenSuitability": "Approved for children from birth (0+)",
+        "childrenSuitability": "Inverness indication from birth (0+)",
         "cartilageSuitability": "Ideal for both lobe and cartilage",
-        "features": "Medical-grade system certified by FDA and ISO"
+        "features": "Medical system listed in the FDA device database"
       }
     }
   },
@@ -296,7 +296,7 @@
       },
       {
         "question": "From what age can children's ears be pierced?",
-        "answer": "The Inverness MED system is doctor-approved for ear piercing in children from 0+. It is the only system in Europe with such certification. The quiet, precise mechanism doesn't scare the youngest, and 100% sterility guarantees safety."
+        "answer": "Inverness Med lists lobe piercing from birth. For infants it is worth asking the pediatrician first, many doctors wait until the first DTP vaccine, usually around week eight. The mechanism is quiet, and the stud stays in a sealed cassette until the pierce."
       },
       {
         "question": "How long does healing take after piercing?",
@@ -304,7 +304,7 @@
       },
       {
         "question": "Is the Inverness MED system safe?",
-        "answer": "Yes! The Inverness MED system has international FDA and ISO certificates, confirming the highest quality and safety standards. We use single-use, closed sterile cassettes, which guarantees 100% sterility."
+        "answer": "Yes. The stud sits in a single-use sealed cassette and we open it only at the ear. The Inverness 2000 system is listed in the FDA device database. To help the piercing heal calmly, we clean the ear three times a day as the instructions say."
       },
       {
         "question": "What earrings are available?",
@@ -550,7 +550,7 @@
     "ear-piercing-children-warsaw": {
       "h1": "Ear Piercing for Children in Warsaw",
       "serviceType": "Ear piercing for children",
-      "description": "The only system in Europe doctor-approved from 0+.",
+      "description": "Inverness lists lobe piercing from birth. We work with Inverness Med, not a gun. Studs stay in a sealed single-use cassette. A parent stays for the whole visit. Studio at Ursynowska 10/1 in Mokotów, 12 minutes from Metro Wilanowska.",
       "blogLink": {
         "url": "/en/blog/how-to-prepare-a-child-for-ear-piercing",
         "text": "How to prepare a child for piercing"
@@ -591,7 +591,7 @@
       "faq": [
         {
           "question": "At what age can you pierce a child's ears?",
-          "answer": "The Inverness Med system is doctor-approved for children from 0+. It is the only system in Europe with that certification, so we can safely pierce even infants."
+          "answer": "We can pierce a lobe even in an infant, because Inverness lists it from birth. For the youngest we still ask you to speak with a pediatrician. Many doctors wait until the first DTP."
         },
         {
           "question": "How much does child ear piercing cost in Warsaw?",
@@ -599,7 +599,7 @@
         },
         {
           "question": "Does ear piercing hurt for children?",
-          "answer": "Inverness Med is much gentler than a traditional gun. The earring parts the tissue instead of tearing it, so discomfort is minimal. Most children do not even cry."
+          "answer": "Inverness Med is much gentler than a gun. The stud parts the tissue instead of punching through it, and the mechanism does not snap. In the studio many children do not cry, though every child reacts differently."
         },
         {
           "question": "How long does a child's piercing take to heal?",
@@ -615,7 +615,7 @@
         },
         {
           "question": "Which system do you use for children's ear piercing?",
-          "answer": "We use Inverness Med — the only system in Europe doctor-approved for children from 0+. It has FDA and ISO certificates. We use sterile, sealed, single-use cassettes."
+          "answer": "We work with Inverness Med. The stud sits in a sealed cassette, and the pressure is manual, with no gun spring. The system is listed in the FDA device database."
         },
         {
           "question": "Can a parent stay during the procedure?",
