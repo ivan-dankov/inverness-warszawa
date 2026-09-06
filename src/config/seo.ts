@@ -1,4 +1,4 @@
-import { siteConfig } from '../lib/site-config';
+import { buildLocalBusinessSchema } from '../lib/seo';
 
 export const siteMetadata = {
     siteName: 'Gentle Piercing',
@@ -157,68 +157,6 @@ export function generateAlternates(
     };
 }
 
-// Helper function to generate LocalBusiness schema
 export function generateLocalBusinessSchema(language: 'pl' | 'en' | 'ru' | 'uk' = 'pl') {
-    const cityNames = {
-        pl: 'Warszawa',
-        en: 'Warsaw',
-        ru: 'Варшава',
-        uk: 'Варшава'
-    };
-
-    const regionNames = {
-        pl: 'Mazowieckie',
-        en: 'Mazowieckie',
-        ru: 'Мазовецкое',
-        uk: 'Мазовецьке'
-    };
-
-    const paymentAccepted = {
-        pl: 'Gotówka, Karta płatnicza, BLIK, Apple Pay, Google Pay',
-        en: 'Cash, Credit Card, BLIK, Apple Pay, Google Pay',
-        ru: 'Наличные, Кредитная карта, BLIK, Apple Pay, Google Pay',
-        uk: 'Готівка, Кредитна картка, BLIK, Apple Pay, Google Pay'
-    };
-
-    // availableLanguage should be on ContactPoint usually, but for simple LocalBusiness often people omit it or put it in contactPoint.
-    // We will include it in a contactPoint to be schema compliant.
-    const contactPoint = {
-        "@type": "ContactPoint",
-        "telephone": siteMetadata.business.phone,
-        "contactType": "customer service",
-        "availableLanguage": ["Polish", "English", "Russian", "Ukrainian"]
-    };
-
-    return {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": siteMetadata.business.name,
-        "image": siteMetadata.defaultOgImage,
-        "telephone": siteMetadata.business.phone,
-        "email": siteMetadata.business.email,
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": siteMetadata.business.address.street,
-            "addressLocality": cityNames[language],
-            "addressRegion": regionNames[language],
-            "postalCode": siteMetadata.business.address.postalCode,
-            "addressCountry": siteMetadata.business.address.countryCode
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": siteConfig.business.geo.latitude,
-            "longitude": siteConfig.business.geo.longitude
-        },
-        "url": siteMetadata.urls.base,
-        "priceRange": siteMetadata.business.priceRange,
-        "openingHoursSpecification": [{
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": siteMetadata.business.hours.days,
-            "opens": siteMetadata.business.hours.opens,
-            "closes": siteMetadata.business.hours.closes
-        }],
-        "paymentAccepted": paymentAccepted[language],
-        "currenciesAccepted": "PLN",
-        "contactPoint": contactPoint
-    };
+    return buildLocalBusinessSchema(language);
 }

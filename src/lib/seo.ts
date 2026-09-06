@@ -1,5 +1,5 @@
 import { urlFor } from './sanity';
-import { getSiteConfig, siteConfig } from './site-config';
+import { getSiteConfig, SITE_SAME_AS } from './site-config';
 import { getTranslations } from './translations';
 
 export type Locale = 'pl' | 'uk' | 'ru' | 'en';
@@ -230,82 +230,105 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
   };
 }
 
+const PAYMENT_ACCEPTED: Record<Locale, string> = {
+  pl: 'Gotówka, Karta płatnicza, BLIK, Apple Pay, Google Pay',
+  en: 'Cash, Credit Card, BLIK, Apple Pay, Google Pay',
+  ru: 'Наличные, Кредитная карта, BLIK, Apple Pay, Google Pay',
+  uk: 'Готівка, Кредитна картка, BLIK, Apple Pay, Google Pay',
+};
+
+const CITY_NAMES: Record<Locale, string> = {
+  pl: 'Warszawa',
+  en: 'Warsaw',
+  ru: 'Варшава',
+  uk: 'Варшава',
+};
+
+const REGION_NAMES: Record<Locale, string> = {
+  pl: 'Mazowieckie',
+  en: 'Mazowieckie',
+  ru: 'Мазовецкое',
+  uk: 'Мазовецьке',
+};
+
 /**
- * Generate LocalBusiness JSON-LD schema
+ * Single LocalBusiness graph used on home, contact, services, and location pages.
  */
-export async function getLocalBusinessSchema(locale: Locale) {
-  const siteConfig = getSiteConfig();
-  const businessName = siteConfig.organization.name;
-  const siteUrl = siteConfig.siteUrl;
-  const address = siteConfig.business.address;
-  const telephone = siteConfig.business.telephone;
-  const priceRange = siteConfig.business.priceRange;
-  const ratings = siteConfig.ratings;
-  const instagram = siteConfig.organization.instagram || 'https://instagram.com/prokol_ushej_warszawa';
-  const logoUrl = siteConfig.organization.logo
-    ? `${siteUrl}${siteConfig.organization.logo}`
-    : `${siteUrl}/logo.png`;
-
-  const geoCoordinates = {
-    '@type': 'GeoCoordinates',
-    latitude: siteConfig.business.geo.latitude,
-    longitude: siteConfig.business.geo.longitude,
-  };
-
-  // Convert opening hours string to OpeningHoursSpecification format
-  // Format: "Mo-Su 10:00-20:00" -> OpeningHoursSpecification array
-  const openingHoursSpecification = [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday',
-      ],
-      opens: '10:00',
-      closes: '20:00',
-    },
-  ];
+export function buildLocalBusinessSchema(locale: Locale) {
+  const config = getSiteConfig();
+  const siteUrl = config.siteUrl;
+  const address = config.business.address;
+  const telephone = config.business.telephone;
+  const ratings = config.ratings;
+  const logoUrl = `${siteUrl}${config.organization.logo || '/logo.png'}`;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': `${siteUrl}#business`,
-    name: businessName,
-    image: logoUrl,
+    '@id': `${siteUrl}/#localbusiness`,
+    name: config.organization.name,
+    image: `${siteUrl}/images/og-default.jpg`,
+    logo: logoUrl,
+    telephone,
+    email: config.business.email || 'piercinggentle@gmail.com',
+    url: siteUrl,
+    priceRange: config.business.priceRange,
+    currenciesAccepted: 'PLN',
+    paymentAccepted: PAYMENT_ACCEPTED[locale],
     address: {
       '@type': 'PostalAddress',
       streetAddress: address.street,
-      addressLocality: address.city,
+      addressLocality: CITY_NAMES[locale],
+      addressRegion: REGION_NAMES[locale],
       postalCode: address.postalCode,
-      addressCountry: address.country,
+      addressCountry: address.country === 'PL' ? 'PL' : address.country,
     },
-    geo: geoCoordinates,
-    telephone,
-    url: siteUrl,
-    sameAs: instagram ? [instagram] : [],
-    openingHoursSpecification,
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: config.business.geo.latitude,
+      longitude: config.business.geo.longitude,
+    },
+    hasMap: config.business.hasMap,
+    sameAs: [...SITE_SAME_AS],
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        opens: '10:00',
+        closes: '20:00',
+      },
+    ],
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: typeof ratings.ratingValue === 'string' ? parseFloat(ratings.ratingValue) : (ratings.ratingValue || 5.0),
-      reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 31),
+      ratingValue: parseFloat(ratings.ratingValue),
+      reviewCount: parseInt(ratings.reviewCount, 10),
+      bestRating: 5,
+      worstRating: 1,
     },
-    priceRange,
     contactPoint: {
       '@type': 'ContactPoint',
       telephone,
       contactType: 'customer service',
+      areaServed: 'PL',
       availableLanguage: ['Polish', 'English', 'Ukrainian', 'Russian'],
     },
     areaServed: {
       '@type': 'City',
-      name: 'Warszawa',
+      name: CITY_NAMES[locale],
     },
   };
+}
+
+export async function getLocalBusinessSchema(locale: Locale) {
+  return buildLocalBusinessSchema(locale);
 }
 
 /**
@@ -344,21 +367,18 @@ export function getFAQSchema(locale: Locale, faqs?: Array<{ question: string; an
 /**
  * Generate Organization JSON-LD schema
  */
-export async function getOrganizationSchema() {
-  const siteConfig = getSiteConfig();
-  const orgName = siteConfig.organization.name;
-  const siteUrl = siteConfig.siteUrl;
-  const logoWide = siteConfig.organization.logoWide;
-  const logoUrl = logoWide
-    ? `${siteUrl}${logoWide}`
+export function buildOrganizationSchema() {
+  const config = getSiteConfig();
+  const siteUrl = config.siteUrl;
+  const logoUrl = config.organization.logoWide
+    ? `${siteUrl}${config.organization.logoWide}`
     : `${siteUrl}/logo-wide.svg`;
-  const instagram = siteConfig.organization.instagram || 'https://instagram.com/prokol_ushej_warszawa';
-  const telephone = siteConfig.business.telephone;
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: orgName,
+    '@id': `${siteUrl}/#organization`,
+    name: config.organization.name,
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
@@ -366,15 +386,19 @@ export async function getOrganizationSchema() {
       width: 600,
       height: 60,
     },
-    sameAs: instagram ? [instagram] : [],
+    sameAs: [...SITE_SAME_AS],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone,
+      telephone: config.business.telephone,
       contactType: 'customer service',
       areaServed: 'PL',
       availableLanguage: ['Polish', 'English', 'Russian', 'Ukrainian'],
     },
   };
+}
+
+export async function getOrganizationSchema() {
+  return buildOrganizationSchema();
 }
 
 /**
@@ -388,7 +412,7 @@ export async function getAggregateRatingSchema() {
     '@context': 'https://schema.org',
     '@type': 'AggregateRating',
     ratingValue: typeof ratings.ratingValue === 'string' ? parseFloat(ratings.ratingValue) : (ratings.ratingValue || 5.0),
-    reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 31),
+    reviewCount: typeof ratings.reviewCount === 'string' ? parseInt(ratings.reviewCount, 10) : (ratings.reviewCount || 254),
     bestRating: 5,
     worstRating: 1,
   };

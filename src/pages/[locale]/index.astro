@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { siteMetadata, generateLocalBusinessSchema, generateAlternates } from '../../config/seo';
-import { getBreadcrumbSchema, getFAQSchema, type Locale } from '../../lib/seo';
+import { buildOrganizationSchema, getBreadcrumbSchema, getFAQSchema, type Locale } from '../../lib/seo';
 import { t } from '../../lib/translations';
 import Hero from '../../components/Hero.astro';
 import Services from '../../components/Services.astro';
@@ -38,17 +38,7 @@ const faqSchema = getFAQSchema(currentLocale);
 
 const structuredData = [
   generateLocalBusinessSchema(currentLocale),
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Gentle Piercing",
-    "url": "https://gentlepiercing.pl",
-    "logo": `${siteMetadata.urls.base}/logo.png`,
-    "sameAs": [
-      "https://www.instagram.com/prokol_ushej_warszawa/",
-      "https://www.facebook.com/gentlepiercingwarszawa"
-    ]
-  },
+  buildOrganizationSchema(),
   getBreadcrumbSchema([
     { name: t(currentLocale, 'breadcrumb.home'), url: seo.canonical },
   ]),
