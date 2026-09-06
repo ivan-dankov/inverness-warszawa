@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getPageSEO, getCanonicalUrl, getHreflangUrls, getArticleSchema, getBreadcrumbSchema, truncateTitle, truncateDescription, type Locale } from '../../../lib/seo';
+import { getPageSEO, getCanonicalUrl, getHreflangUrls, getArticleSchema, getBreadcrumbSchema, sanitizeCmsStructuredData, truncateTitle, truncateDescription, type Locale } from '../../../lib/seo';
 import { getPostBySlug, getTranslationGroup, urlFor, getAllPostSlugs, getAllPostTranslationMappings } from '../../../lib/sanity';
 import type { TranslationMappings } from '../../../lib/sanity';
 import { t } from '../../../lib/translations';
@@ -91,42 +91,29 @@ const breadcrumbSchema = getBreadcrumbSchema([
   { name: post.title, url: canonical },
 ]);
 
-// Parse JSON structured data from Sanity
+// CMS JSON often ships a stale Article (404 /images/*.jpg and truncated mainEntityOfPage @id).
+// Keep FAQ/HowTo from Sanity; always generate Article from the live cover + canonical.
 let customStructuredData: any[] = [];
-let hasArticleSchema = false;
 if (post.structuredDataJson) {
   try {
     const parsed = JSON.parse(post.structuredDataJson);
-    // Handle both array and single object
     const parsedArray = Array.isArray(parsed) ? parsed : [parsed];
-    
-    // Check if Article/BlogPosting schema is in the JSON
-    hasArticleSchema = parsedArray.some(
-      (schema: any) => schema['@type'] === 'BlogPosting' || schema['@type'] === 'Article'
-    );
-    
-    customStructuredData = parsedArray;
+    customStructuredData = sanitizeCmsStructuredData(parsedArray, canonical);
   } catch (error) {
     console.error('Error parsing structured data JSON:', error);
   }
 }
 
-// Generate Article schema only if not provided in JSON
-let articleSchema: any = null;
-if (!hasArticleSchema) {
-  articleSchema = await getArticleSchema({
-    title: post.title,
-    description: post.excerpt,
-    url: canonical,
-    image: ogImage,
-    publishedAt: publishedTime || post.publishedAt, // Use ISO formatted date
-    updatedAt: modifiedTime || post.updatedAt, // Use ISO formatted date
-    locale: currentLocale,
-    author: post.author?.name, // Use author name from Sanity
-    // Optional: Add author URL if available in Sanity
-    // authorUrl: post.author?.url,
-  });
-}
+const articleSchema = await getArticleSchema({
+  title: post.title.trim(),
+  description: post.excerpt,
+  url: canonical,
+  image: ogImage,
+  publishedAt: publishedTime || post.publishedAt,
+  updatedAt: modifiedTime || post.updatedAt,
+  locale: currentLocale,
+  author: post.author?.name,
+});
 
 // Combine all schemas
 const structuredData = [

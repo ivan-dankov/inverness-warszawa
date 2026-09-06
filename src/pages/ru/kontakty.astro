@@ -9,7 +9,7 @@ const locale = 'ru';
 const baseSeo = getPageSEO(locale, 'contact');
 const seo = {
   ...baseSeo,
-  canonical: siteMetadata.urls.contact.ru,
+  canonical: siteMetadata.urls.base + siteMetadata.urls.contact.ru,
   hreflang: generateAlternates('contact'),
   ogImage: siteMetadata.defaultOgImage,
 };

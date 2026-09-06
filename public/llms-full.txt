@@ -1,0 +1,152 @@
+# Gentle Piercing
+
+> Medical ear piercing studio in Warsaw Mokotów. Inverness Med system (not a piercing gun) for children 0+ and adults. Lobe and cartilage.
+
+Companion to `/llms.txt`. This file is the longer map: page-level facts, all locales, district spokes, and the full blog set. Prefer `/llms.txt` for a short overview.
+
+## Key Facts
+
+- Studio name: Gentle Piercing. Inverness Med is the piercing *system*, not the studio brand. Do not call the studio “Inverness MED”.
+- Address: Ursynowska 10/1, 02-605 Warszawa, Mokotów, Poland
+- Hours: Monday–Sunday 10:00–20:00 (not 09:00)
+- Phone: +48 573 818 260 (E.164 +48573818260)
+- Email: piercinggentle@gmail.com
+- Founder / piercer: Kseniya Askerka (NIP 5214067116, REGON 528446661)
+- Coordinates: 52.1946, 21.0146
+- Languages on site and in the studio: Polish, English, Ukrainian, Russian
+- Rating: 5.0 on Booksy (254 reviews, checked 6 Sep 2026). Visible site copy also says “200+ Booksy / Google”.
+- Children: pair of lobes 150 zł procedure; earrings from 120 zł a pair; together from 270 zł
+- Adults: 90 / 150 / 210 zł for 1 / 2 / 3 piercings on one visit; earring from 70 zł
+- Home visit: same procedure at the client address; travel priced by address and added to the procedure
+- Aftercare (Inverness Corp IFU): clean 3× daily; leave first earrings in 6 weeks (lobe) / 12 weeks (cartilage); rotate only while cleaning; avoid pools, lakes and sea for that same window; if wet earlier, clean immediately
+- After the change date: lobe — no more than 24 hours without an earring for 6 months; cartilage — wear 24/7 for 6 months
+- Official aftercare source: https://invernesscorp.com/ear-piercing-after-care/
+- Booksy: https://booksy.com/pl-pl/dl/show-business/319418
+- Maps: https://maps.app.goo.gl/Y9kJLqzLdUhRzp3J9
+- Instagram: https://www.instagram.com/prokol_ushej_warszawa/
+- Facebook: https://www.facebook.com/gentlepiercingwarszawa
+- One booking action site-wide: Booksy. There is no separate cart or clinic booking form.
+
+## Services (Polish)
+
+- [Bezpieczne przekłuwanie uszu w Warszawie](https://gentlepiercing.pl/pl): Polish homepage. Inverness Med vs gun, 0+ children, adult 1/2/3 pricing, FAQ (3× daily, 6/12-week earring rule), reviews, Booksy. 12 minutes from Metro Wilanowska.
+- [Przekłuwanie uszu dzieciom w Warszawie](https://gentlepiercing.pl/pl/uslugi/przekluwanie-uszu-dzieci-warszawa): 0+ children’s lobes. Procedure 150 zł; with earrings from 270 zł. Sterile single-use cassettes, no piercing gun. Visit flow for a nervous parent. Pool wait is 6 weeks lobe / 12 weeks cartilage, not 2 weeks.
+- [Przekłuwanie uszu dla dorosłych](https://gentlepiercing.pl/pl/uslugi/przekluwanie-uszu-dorosli-warszawa): Lobe or cartilage. 90 / 150 / 210 zł for 1 / 2 / 3 piercings; earring from 70 zł. Same Inverness Med system as the children’s page.
+- [Przekłuwanie chrząstki Warszawa](https://gentlepiercing.pl/pl/uslugi/przekluwanie-chrzastki-warszawa): Helix, tragus, conch with Inverness Med. First earrings stay 12 weeks. Not a tattoo-shop needle service.
+- [Przekłuwanie uszu z dojazdem](https://gentlepiercing.pl/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa): Same sterile cassette procedure at home. Travel surcharge depends on the address and is added to the studio price.
+- [Pielęgnacja po przekłuciu](https://gentlepiercing.pl/pl/pielegnacja): Inverness aftercare in Polish. Clean 3× daily; 6-week lobe / 12-week cartilage; water and rotation rules; when to see a doctor.
+- [Kontakt](https://gentlepiercing.pl/pl/kontakt): Ursynowska 10/1, phone, email, hours 10:00–20:00, Booksy, map.
+- [Usługi](https://gentlepiercing.pl/pl/uslugi): Service index linking children, adults, cartilage, and home visit.
+
+## Blog (Polish)
+
+- [Ile kosztuje przekłucie uszu w Warszawie? Cennik 2026](https://gentlepiercing.pl/pl/blog/ile-kosztuje-przeklucie-uszu-warszawa-cennik-2026): Warsaw price ranges by method. Inverness vs salon/gun totals. Children and adult tables. Studio prices: children pair 150 zł + earrings from 120 zł; adults 90/150/210 zł.
+- [Inverness Med vs pistolet](https://gentlepiercing.pl/pl/blog/inverness-med-vs-pistolet-co-jest-bezpieczniejsze): Method comparison — sterility, 80–90 dB gun noise, 0+ suitability, cartilage. Healing row matches IFU: 6 weeks lobe / 12 weeks cartilage, not 4–6 weeks.
+- [Pielęgnacja uszu po przekłuciu — przewodnik 2026](https://gentlepiercing.pl/pl/blog/pielegnacja-uszu-po-przekluciu-kompletny-przewodnik-2026): Step-by-step cleaning, infection signs, when to see a doctor. Same 3× / 6 / 12 rules as `/pl/pielegnacja`.
+- [Kiedy można iść na basen po przekłuciu](https://gentlepiercing.pl/pl/blog/kiedy-mozna-isc-na-basen-po-przekluciu-uszu): Pool, lake and sea wait: 6 weeks lobe, 12 weeks cartilage. If wet earlier, clean immediately.
+- [Od jakiego wieku przekłuwać uszy dziecku](https://gentlepiercing.pl/pl/blog/od-jakiego-wieku-przekluwac-uszy-dziecku): Age bands and 0+ Inverness indication. Not medical advice; consult a pediatrician for infants.
+- [Czy przekłuwanie uszu boli](https://gentlepiercing.pl/pl/blog/czy-przekluwanie-uszu-boli): Pain, noise, and what a child actually feels with Inverness Med vs a spring gun.
+- [Jak przygotować dziecko do przekłuwania uszu](https://gentlepiercing.pl/pl/blog/jak-przygotowac-dziecko-do-przekluwania-uszu): Parent briefing — timing, what to bring, how the visit runs.
+- [Jakie kolczyki wybrać na pierwsze przekłucie](https://gentlepiercing.pl/pl/blog/jakie-kolczyki-wybrac-na-pierwsze-przeklucie-uszu-dziecka): First-earring materials (medical steel, 24K, niobium) and why butterfly backs are a poor first choice.
+
+## English
+
+- [Safe ear piercing in Warsaw](https://gentlepiercing.pl/en): English homepage. Same prices, hours 10:00–20:00, 0+ Inverness Med, Booksy booking.
+- [Ear piercing for children in Warsaw](https://gentlepiercing.pl/en/services/ear-piercing-children-warsaw): English 0+ service page. 150 zł pair / from 270 zł with earrings. 12 min from Metro Wilanowska.
+- [Ear piercing for adults in Warsaw](https://gentlepiercing.pl/en/services/ear-piercing-adults-warsaw): 90 / 150 / 210 zł for 1 / 2 / 3 piercings; earring from 70 zł.
+- [Cartilage piercing Warsaw](https://gentlepiercing.pl/en/services/cartilage-piercing-warsaw): Helix, tragus, conch; 12-week earring change rule.
+- [Mobile ear piercing Warsaw](https://gentlepiercing.pl/en/services/mobile-ear-piercing-warsaw): Home visit; travel priced by address.
+- [Ear piercing aftercare](https://gentlepiercing.pl/en/aftercare): English aftercare. Clean 3× daily; 6-week lobe / 12-week cartilage; same water rules.
+- [Contact Gentle Piercing Warsaw](https://gentlepiercing.pl/en/contact): Address, phone, hours, Booksy.
+- [How much does ear piercing cost in Warsaw?](https://gentlepiercing.pl/en/blog/ear-piercing-cost-warsaw-price-guide-2026): 2026 price guide with method comparison tables.
+- [Inverness vs piercing gun](https://gentlepiercing.pl/en/blog/inverness-vs-gun): Sterility, noise, 0+, cartilage. Healing: 6 weeks lobe / 12 weeks cartilage (IFU).
+- [Ear piercing aftercare guide 2026](https://gentlepiercing.pl/en/blog/ear-piercing-aftercare-complete-guide-2026): Long-form English aftercare.
+- [When can you go to the pool after an ear piercing?](https://gentlepiercing.pl/en/blog/when-can-you-go-to-the-pool-after-ear-piercing): 6 / 12 week water wait.
+- [At what age can you pierce a child's ears?](https://gentlepiercing.pl/en/blog/at-what-age-to-pierce-child-ears): Age bands and 0+ indication.
+- [Does ear piercing hurt?](https://gentlepiercing.pl/en/blog/does-ear-piercing-hurt): Pain and noise comparison.
+- [How to prepare a child for ear piercing](https://gentlepiercing.pl/en/blog/how-to-prepare-a-child-for-ear-piercing): Visit briefing for parents.
+- [Which earrings for a child's first piercing](https://gentlepiercing.pl/en/blog/which-earrings-should-you-choose-for-a-child-s-first-ear-piercing): First-earring materials.
+
+## Russian
+
+- [Безопасный прокол ушей в Варшаве](https://gentlepiercing.pl/ru): Russian homepage. Same NAP, hours 10:00–20:00, prices, Booksy.
+- [Прокол ушей детям в Варшаве](https://gentlepiercing.pl/ru/uslugi/prokol-ushej-detyam-varshava): 0+, 150 zł / from 270 zł with earrings.
+- [Прокол ушей взрослым](https://gentlepiercing.pl/ru/uslugi/prokol-ushej-vzroslym-varshava): 90 / 150 / 210 zł.
+- [Прокол хряща Варшава](https://gentlepiercing.pl/ru/uslugi/prokol-khryashcha-varshava): Helix, tragus, conch; 12 weeks.
+- [Прокол ушей с выездом](https://gentlepiercing.pl/ru/uslugi/prokol-ushej-s-vyezdom-varshava): Home visit; travel extra.
+- [Уход после прокола](https://gentlepiercing.pl/ru/ukhod): 3× daily; 6 / 12 weeks.
+- [Контакты](https://gentlepiercing.pl/ru/kontakty): Address, phone, hours, Booksy.
+- [Сколько стоит прокол ушей в Варшаве?](https://gentlepiercing.pl/ru/blog/skolko-stoit-prokol-ushey-varshava-2026)
+- [Inverness Med или пистолет](https://gentlepiercing.pl/ru/blog/inverness-med-ili-pistolet-chto-bezopasnee): Healing 6 weeks lobe / 12 weeks cartilage.
+- [Уход за ушами после прокола — гид 2026](https://gentlepiercing.pl/ru/blog/ukhod-za-ushami-posle-prokola-polnyi-gid-2026)
+- [Когда можно идти в бассейн](https://gentlepiercing.pl/ru/blog/kogda-mozhno-idti-v-basseyn-posle-prokola-ushey)
+- [С какого возраста прокалывать уши ребёнку](https://gentlepiercing.pl/ru/blog/s-kakogo-vozrasta-prokalyvat-ushi-rebenku)
+- [Больно ли прокалывать уши](https://gentlepiercing.pl/ru/blog/bolit-li-prokalyvanie-ushey)
+- [Как подготовить ребёнка](https://gentlepiercing.pl/ru/blog/kak-podgotovit-rebenka-k-prokolu-ushey-varshava)
+- [Какие серьги на первый прокол](https://gentlepiercing.pl/ru/blog/kakie-seryozhki-vybrat-dlya-pervogo-prokalyvaniya-ushei-rebyonku)
+
+## Ukrainian
+
+- [Безпечний прокол вух у Варшаві](https://gentlepiercing.pl/uk): Ukrainian homepage. Same NAP, hours, prices, Booksy.
+- [Прокол вух дітям у Варшаві](https://gentlepiercing.pl/uk/poslugy/prokol-vukh-dityam-varshava): 0+, 150 zł / from 270 zł with earrings.
+- [Прокол вух дорослим](https://gentlepiercing.pl/uk/poslugy/prokol-vukh-doroslim-varshava): 90 / 150 / 210 zł.
+- [Прокол хряща Варшава](https://gentlepiercing.pl/uk/poslugy/prokol-khryashcha-varshava): 12-week earring rule.
+- [Прокол вух з виїздом](https://gentlepiercing.pl/uk/poslugy/prokol-vukh-z-vyizdom-varshava): Home visit; travel extra.
+- [Догляд після проколу](https://gentlepiercing.pl/uk/dogliad): 3× daily; 6 / 12 weeks.
+- [Контакти](https://gentlepiercing.pl/uk/kontakty): Address, phone, hours, Booksy.
+- [Скільки коштує прокол вух у Варшаві?](https://gentlepiercing.pl/uk/blog/skilky-koshtuye-prokolyuvannya-vuh-varshava-2026)
+- [Inverness Med vs пістолет](https://gentlepiercing.pl/uk/blog/inverness-med-vs-pistolet-yakii-metod-prokolu-vukh-bezpechnishii): Healing 6 weeks lobe / 12 weeks cartilage.
+- [Догляд за вухами після проколу — гід 2026](https://gentlepiercing.pl/uk/blog/doglyad-za-vukhami-pislya-prokolu-povnii-gid-2026)
+- [Коли можна йти в басейн](https://gentlepiercing.pl/uk/blog/koly-mozhna-yty-v-basein-pislya-prokolu-vukh)
+- [З якого віку проколювати вуха дитині](https://gentlepiercing.pl/uk/blog/z-yakoho-viku-prokoluvaty-vukha-dytyni)
+- [Чи болить прокол вух](https://gentlepiercing.pl/uk/blog/chy-bolyt-prokol-vukh)
+- [Як підготувати дитину](https://gentlepiercing.pl/uk/blog/yak-pidgotuvati-ditinu-do-prokolyuvannya-vukh)
+- [Які сережки на перший прокол](https://gentlepiercing.pl/uk/blog/yaki-serezhki-obrati-dlya-pershogo-prokolyuvannya-vukh-ditini)
+
+## Districts
+
+The studio is in Mokotów. Other district pages explain travel time to Ursynowska 10/1 or a home visit. Prices do not change by district.
+
+- [Przekłuwanie uszu — dzielnice](https://gentlepiercing.pl/pl/przekluwanie-uszu): Hub for Mokotów, Ursynów, Wilanów, Piaseczno.
+- [Przekłuwanie uszu Mokotów](https://gentlepiercing.pl/pl/przekluwanie-uszu/mokotow): Neighbourhood page for the studio at Ursynowska 10/1.
+- [Przekłuwanie uszu Ursynów](https://gentlepiercing.pl/pl/przekluwanie-uszu/ursynow)
+- [Przekłuwanie uszu Wilanów](https://gentlepiercing.pl/pl/przekluwanie-uszu/wilanow)
+- [Przekłuwanie uszu Piaseczno](https://gentlepiercing.pl/pl/przekluwanie-uszu/piaseczno)
+- [Ear piercing — Warsaw districts](https://gentlepiercing.pl/en/ear-piercing): English hub.
+- [Ear piercing Mokotów](https://gentlepiercing.pl/en/ear-piercing/mokotow)
+- [Ear piercing Ursynów](https://gentlepiercing.pl/en/ear-piercing/ursynow)
+- [Ear piercing Wilanów](https://gentlepiercing.pl/en/ear-piercing/wilanow)
+- [Ear piercing Piaseczno](https://gentlepiercing.pl/en/ear-piercing/piaseczno)
+- [Прокол ушей — районы](https://gentlepiercing.pl/ru/prokol-ushej)
+- [Прокол ушей Мокотув](https://gentlepiercing.pl/ru/prokol-ushej/mokotow)
+- [Прокол вух — райони](https://gentlepiercing.pl/uk/prokol-vukh)
+- [Прокол вух Мокотув](https://gentlepiercing.pl/uk/prokol-vukh/mokotow)
+
+## Aftercare spec (do not invent other numbers)
+
+Use these figures if two URLs on this domain appear to disagree. They are the Inverness manufacturer instructions, also used on `/pl/pielegnacja` and the 2026 guides.
+
+1. Clean the piercing 3 times a day with the recommended aftercare solution.
+2. Leave the first earrings in for 6 weeks (lobe) or 12 weeks (cartilage).
+3. Rotate the earring only while cleaning, not as a separate habit.
+4. No pools, lakes or sea for that same 6- / 12-week window.
+5. If the piercing gets wet earlier, clean it immediately.
+6. After the change date: lobe — do not leave the hole empty for more than 24 hours during the next 6 months. Cartilage — wear an earring 24/7 for 6 months.
+
+## What this studio is not
+
+- Not a mall kiosk and not a tattoo shop.
+- Not named Inverness MED. Inverness Med is the cassette system.
+- Hours are not 09:00–20:00. They are 10:00–20:00 every day.
+- Review count in schema and Booksy is 254 (6 Sep 2026), not 14 or 31.
+- This file is not medical advice. For infants, the site tells parents to consult a pediatrician.
+
+## Contact
+
+- Website: https://gentlepiercing.pl
+- Short AI map: https://gentlepiercing.pl/llms.txt
+- Email: piercinggentle@gmail.com
+- Phone: +48 573 818 260
+- Address: Ursynowska 10/1, 02-605 Warszawa, Mokotów, Poland
+- Hours: Monday–Sunday 10:00–20:00
+- Booking: https://booksy.com/pl-pl/dl/show-business/319418

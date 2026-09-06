@@ -49,6 +49,7 @@
 
 ## Optional
 
+- [llms-full.txt](https://gentlepiercing.pl/llms-full.txt): Longer AI map — all locales, district spokes, full blog set, aftercare spec.
 - [Przekłuwanie uszu — dzielnice](https://gentlepiercing.pl/pl/przekluwanie-uszu): Hub for Mokotów, Ursynów, Wilanów, Piaseczno.
 - [Przekłuwanie uszu Mokotów](https://gentlepiercing.pl/pl/przekluwanie-uszu/mokotow): Studio neighbourhood page (Ursynowska 10/1).
 - [Usługi](https://gentlepiercing.pl/pl/uslugi): Service index.

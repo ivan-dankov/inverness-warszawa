@@ -217,6 +217,13 @@ export async function getArticleSchema(
 /**
  * Generate BreadcrumbList JSON-LD schema
  */
+export function toAbsoluteUrl(url: string): string {
+  if (!url) return SITE_URL;
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  const path = url.startsWith('/') ? url : `/${url}`;
+  return `${SITE_URL}${path}`;
+}
+
 export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
   return {
     '@context': 'https://schema.org',
@@ -224,10 +231,40 @@ export function getBreadcrumbSchema(items: Array<{ name: string; url: string }>)
     itemListElement: items.map((item, index) => ({
       '@type': 'ListItem',
       position: index + 1,
-      name: item.name,
-      item: item.url,
+      name: item.name.trim(),
+      item: toAbsoluteUrl(item.url),
     })),
   };
+}
+
+const CMS_ARTICLE_TYPES = new Set(['Article', 'BlogPosting']);
+
+function schemaTypeList(schema: { '@type'?: string | string[] }): string[] {
+  const type = schema['@type'];
+  return Array.isArray(type) ? type : type ? [type] : [];
+}
+
+/** Drop CMS Article graphs (stale images / truncated @id) and point leftover @ids at the live URL. */
+export function sanitizeCmsStructuredData(
+  schemas: unknown[],
+  canonicalUrl: string
+): Record<string, unknown>[] {
+  return schemas
+    .filter((schema): schema is Record<string, unknown> => Boolean(schema) && typeof schema === 'object')
+    .filter((schema) => !schemaTypeList(schema as { '@type'?: string | string[] }).some((type) => CMS_ARTICLE_TYPES.has(type)))
+    .map((schema) => {
+      const mainEntity = schema.mainEntityOfPage;
+      if (mainEntity && typeof mainEntity === 'object' && !Array.isArray(mainEntity) && '@id' in mainEntity) {
+        return {
+          ...schema,
+          mainEntityOfPage: {
+            ...(mainEntity as Record<string, unknown>),
+            '@id': canonicalUrl,
+          },
+        };
+      }
+      return schema;
+    });
 }
 
 const PAYMENT_ACCEPTED: Record<Locale, string> = {
