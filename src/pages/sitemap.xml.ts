@@ -183,6 +183,13 @@ export const GET: APIRoute = async () => {
     console.warn('Could not fetch blog posts for sitemap:', error);
   }
 
+  // AI discovery file (no hreflang — single locale-neutral document)
+  entries.push(`  <url>
+    <loc>${SITE_URL}/llms.txt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>`);
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
