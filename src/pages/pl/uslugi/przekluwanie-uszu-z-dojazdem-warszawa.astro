@@ -10,32 +10,6 @@ const seoData = {
   ogImage: siteMetadata.defaultOgImage,
 };
 
-const schemaData = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Mobile Ear Piercing",
-    "serviceType": "Mobile Ear Piercing",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Gentle Piercing",
-      "image": siteMetadata.defaultOgImage,
-      "telephone": "+48573818260",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ursynowska 10/1",
-        "addressLocality": "Warszawa",
-        "postalCode": "02-605",
-        "addressCountry": "PL"
-      }
-    },
-    "offers": {
-      "@type": "Offer",
-      "priceCurrency": "PLN",
-      "description": "Procedure from 90 PLN. Travel priced by location."
-    }
-  }
-];
 ---
 
 <ServicePageWrapper 
@@ -47,5 +21,4 @@ const schemaData = [
     'przekluwanie-chrzastki-warszawa',
   ]}
   seo={seoData}
-  schema={schemaData}
 />
