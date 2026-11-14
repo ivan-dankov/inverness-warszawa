@@ -19,8 +19,8 @@ export const siteMetadata = {
             countryCode: 'PL'
         },
         geo: {
-            latitude: '52.1946',
-            longitude: '21.0146'
+            latitude: '52.1982',
+            longitude: '21.0224'
         },
         hours: {
             opens: '10:00',

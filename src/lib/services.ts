@@ -20,6 +20,7 @@ export interface ServiceItem {
   name: string;
   description: string;
   price: string;
+  earringsNote: string;
   href: string;
 }
 
@@ -45,6 +46,7 @@ export function getServiceItems(
         name: t(locale, `services.catalog.${id}.name`),
         description: t(locale, `services.catalog.${id}.description`),
         price: cards[priceCardIndex]?.price || '',
+        earringsNote: cards[priceCardIndex]?.earringsNote || '',
         href: getServicePagePath(slug, locale),
       };
     });

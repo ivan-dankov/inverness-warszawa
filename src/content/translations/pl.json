@@ -79,6 +79,7 @@
         "description": "Profesjonalne przekłucie chrząstki lub płatka ucha z wykorzystaniem certyfikowanego systemu",
         "badge": "Cena standardowa",
         "price": "od 90 zł",
+        "earringsNote": "+ kolczyk 70–90 zł",
         "duration": "30 min",
         "features": [
           "Cena nie obejmuje kosztu kolczyków"
@@ -89,6 +90,7 @@
         "description": "Bezpieczne przekłuwanie dla najmłodszych, ze wskazaniem Inverness od 0+",
         "badge": "Dla Dzieci",
         "price": "150 zł za parę",
+        "earringsNote": "+ kolczyki 120–200 zł",
         "duration": "30 min",
         "features": [
           "Dla dzieci 0+",
@@ -112,13 +114,13 @@
     "pricing": {
       "title": "Informacje o Cenach",
       "earringsInfo": "Cena nie obejmuje kosztu kolczyków",
-      "earringsPrice": "Dodatkowa opłata za kolczyki: od 70 zł za jeden, od 120 zł za parę",
+      "earringsPrice": "Dodatkowa opłata za kolczyki: 70–90 zł za jeden, 120–200 zł za parę",
       "earringsOne": "od 70 zł za jeden",
       "earringsPair": "od 120 zł za parę",
       "earringsLabel": "Kolczyki oddzielnie",
-      "earringsOneValue": "od 70 zł",
+      "earringsOneValue": "70–90 zł",
       "earringsOneUnit": "za jeden",
-      "earringsPairValue": "od 120 zł",
+      "earringsPairValue": "120–200 zł",
       "earringsPairUnit": "za parę",
       "mobileVisit": "Dojazd: cena zależy od lokalizacji"
     },

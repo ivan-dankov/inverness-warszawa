@@ -122,7 +122,7 @@ export function Testimonials({ locale, testimonials }: TestimonialsProps) {
               >
                 <div className="flex items-start justify-between mb-3">
                   <div>
-                    <h4 className="font-semibold text-white text-sm">{testimonial.name}</h4>
+                    <p className="font-semibold text-white text-sm">{testimonial.name}</p>
                     <p className="text-xs text-white/40 mt-0.5">{formatTestimonialDate(testimonial.date, locale)}</p>
                   </div>
                   <div className="flex flex-shrink-0">

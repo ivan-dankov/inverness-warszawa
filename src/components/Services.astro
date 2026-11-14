@@ -55,6 +55,7 @@ const images = {
 } as const;
 
 const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
+const ItemHeadingTag = headingLevel === 1 ? 'h2' : 'h3';
 ---
 
 {items.length > 0 && (
@@ -127,22 +128,29 @@ const HeadingTag = headingLevel === 1 ? 'h1' : 'h2';
                       href={item.href}
                       class="min-w-0 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                     >
-                      <h3
+                      <ItemHeadingTag
                         class:list={[
                           'font-bold text-foreground group-hover:text-primary transition-colors leading-snug',
                           featured ? 'text-xl sm:text-2xl' : 'text-lg',
                         ]}
                       >
                         {item.name}
-                      </h3>
+                      </ItemHeadingTag>
                       <p class="text-sm sm:text-base text-muted-foreground leading-relaxed mt-1">
                         {item.description}
                       </p>
                     </a>
                     <div class="flex flex-col items-start sm:items-end gap-2 flex-shrink-0">
                       {item.price && (
-                        <span class="text-base sm:text-lg font-bold text-primary whitespace-nowrap">
-                          {item.price}
+                        <span class="flex flex-col items-start sm:items-end">
+                          <span class="text-base sm:text-lg font-bold text-primary whitespace-nowrap">
+                            {item.price}
+                          </span>
+                          {item.earringsNote && (
+                            <span class="text-sm text-muted-foreground whitespace-nowrap">
+                              {item.earringsNote}
+                            </span>
+                          )}
                         </span>
                       )}
                       <a

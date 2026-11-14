@@ -47,8 +47,8 @@ export const siteConfig: SiteConfig = {
       country: 'PL',
     },
     geo: {
-      latitude: 52.1946,
-      longitude: 21.0146,
+      latitude: 52.1982,
+      longitude: 21.0224,
     },
     telephone: '+48573818260',
     email: 'piercinggentle@gmail.com',
