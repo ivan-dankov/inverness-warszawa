@@ -53,7 +53,8 @@ describe('service and homepage SEO length', () => {
   });
 
   it('aligns homepage titles with the H1 wording', () => {
-    expect(siteMetadata.homepage.pl.title).toMatch(/^Bezpieczne przekłuwanie uszu w Warszawie/);
+    // PL leads with the exact head query; the H1 keeps the "Bezpieczne…" framing.
+    expect(siteMetadata.homepage.pl.title).toMatch(/^Przekłuwanie uszu Warszawa/);
     expect(siteMetadata.homepage.en.title).toMatch(/^Safe ear piercing in Warsaw/);
     expect(siteMetadata.homepage.ru.title).toMatch(/^Безопасный прокол ушей в Варшаве/);
     expect(siteMetadata.homepage.uk.title).toMatch(/^Безпечний прокол вух у Варшаві/);

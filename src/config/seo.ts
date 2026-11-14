@@ -33,7 +33,7 @@ export const siteMetadata = {
     // Homepage metadata by language
     homepage: {
         pl: {
-            title: 'Bezpieczne przekłuwanie uszu w Warszawie | Inverness Med 0+',
+            title: 'Przekłuwanie uszu Warszawa | dzieci i dorośli, od 90 zł',
             description: '✓ Certyfikat 0+ ✓ System Inverness Med, nie pistolet ✓ Płatek i chrząstka od 90zł ✓ Mokotów, metro Wilanowska 12min. Zarezerwuj wizytę online przez Booksy.'
         },
         en: {

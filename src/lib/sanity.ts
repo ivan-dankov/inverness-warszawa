@@ -112,7 +112,7 @@ export async function getAllPosts(): Promise<Post[]> {
     },
     publishedAt,
     updatedAt,
-    "seo": {
+    "seo": seo {
       metaTitle,
       metaDescription,
       ogImage {
@@ -258,7 +258,7 @@ export async function getPostBySlug(slug: string, locale: Locale): Promise<Post 
     },
     publishedAt,
     updatedAt,
-    "seo": {
+    "seo": seo {
       metaTitle,
       metaDescription,
       ogImage {

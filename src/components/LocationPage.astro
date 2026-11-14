@@ -74,7 +74,7 @@ const minutesCaption =
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10">
     <nav aria-label={t(locale, 'locations.breadcrumbDistricts')} class="pt-8 text-sm text-white/50">
       <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
-        <li><a href={`/${locale}`} class="hover:text-white transition-colors">Gentle Piercing</a></li>
+        <li><a href={`/${locale}`} class="hover:text-white transition-colors">{t(locale, 'breadcrumb.home')}</a></li>
         <li aria-hidden="true" class="text-white/25">/</li>
         <li>
           <a href={getLocationsBasePath(locale)} class="hover:text-white transition-colors">

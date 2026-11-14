@@ -20,6 +20,31 @@
       "permanent": true
     },
     {
+      "source": "/pl/przekluwanie-uszu-warszawa",
+      "destination": "/pl",
+      "permanent": true
+    },
+    {
+      "source": "/pl/uszy-dzieciom-warszawa",
+      "destination": "/pl/uslugi/przekluwanie-uszu-dzieci-warszawa",
+      "permanent": true
+    },
+    {
+      "source": "/pl/przekluwanie-uszu-dorosli-warszawa",
+      "destination": "/pl/uslugi/przekluwanie-uszu-dorosli-warszawa",
+      "permanent": true
+    },
+    {
+      "source": "/pl/przekluwanie-chrzastki-warszawa",
+      "destination": "/pl/uslugi/przekluwanie-chrzastki-warszawa",
+      "permanent": true
+    },
+    {
+      "source": "/pl/przekluwanie-uszu-z-dojazdem-warszawa",
+      "destination": "/pl/uslugi/przekluwanie-uszu-z-dojazdem-warszawa",
+      "permanent": true
+    },
+    {
       "source": "/:path*/",
       "destination": "/:path*",
       "permanent": true
