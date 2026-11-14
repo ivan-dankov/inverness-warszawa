@@ -466,6 +466,10 @@
     "viewAll": "Zobacz wszystkie artykuły"
   },
   "blog": {
+    "cta": {
+      "title": "Jesteś w Warszawie? Zapraszamy na Mokotów",
+      "subtitle": "Przekłuwamy uszy dzieciom i dorosłym, 12 minut od metra Wilanowska."
+    },
     "title": "Blog",
     "subtitle": "Poznaj więcej o przekłuwaniu uszu, pielęgnacji i wyborze kolczyków",
     "noPosts": "Brak artykułów do wyświetlenia.",

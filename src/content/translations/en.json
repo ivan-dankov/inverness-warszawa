@@ -507,6 +507,10 @@
     "viewAll": "View all articles"
   },
   "blog": {
+    "cta": {
+      "title": "In Warsaw? Come see us in Mokotów",
+      "subtitle": "We pierce ears for children and adults, 12 minutes from Wilanowska metro."
+    },
     "title": "Blog",
     "subtitle": "Learn more about ear piercing, aftercare, and choosing earrings",
     "noPosts": "No articles to display.",
