@@ -3,7 +3,6 @@ import { structureTool } from 'sanity/structure';
 import { table } from '@sanity/table';
 import postSchema from './sanity/schemas/post';
 import authorSchema from './sanity/schemas/author';
-import b2bLeadSchema from './sanity/schemas/b2bLead';
 
 export default defineConfig({
   name: 'gentle-piercing-blog',
@@ -22,14 +21,6 @@ export default defineConfig({
             S.listItem()
               .title('Authors')
               .child(S.documentTypeList('author').title('Authors')),
-            S.divider(),
-            S.listItem()
-              .title('B2B Leads (dla salonów)')
-              .child(
-                S.documentTypeList('b2bLead')
-                  .title('B2B Leads')
-                  .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }])
-              ),
           ]),
     }),
     table(),
@@ -38,7 +29,6 @@ export default defineConfig({
     types: [
       postSchema,
       authorSchema,
-      b2bLeadSchema,
     ],
   },
 });

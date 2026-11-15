@@ -69,6 +69,8 @@ const partners = [
 ];
 
 const whatsapp = 'https://wa.me/48573818260';
+// FormSubmit AJAX endpoint; after activation it can be swapped for the random alias FormSubmit e-mails.
+const formEndpoint = 'https://formsubmit.co/ajax/piercinggentle@gmail.com';
 
 const faqLd = {
   '@context': 'https://schema.org',
@@ -686,7 +688,7 @@ const jsCopy = c.js;
   </div>
 </section>
 
-<script is:inline define:vars={{ whatsapp, jsCopy, sendingLabel: c.contact.sending }}>
+<script is:inline define:vars={{ whatsapp, jsCopy, sendingLabel: c.contact.sending, formEndpoint }}>
   // scroll reveal
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -788,12 +790,28 @@ const jsCopy = c.js;
     submit.disabled = true;
     submit.textContent = sendingLabel;
     try {
-      const res = await fetch('/api/b2b-lead', {
+      // Leads are e-mailed by FormSubmit (https://formsubmit.co) to piercinggentle@gmail.com.
+      const digits = data.phone.replace(/\D/g, '').replace(/^00/, '');
+      const waDigits = digits.length === 9 ? '48' + digits : digits;
+      const res = await fetch(formEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: 'Zapytanie B2B: ' + (data.salon || data.name) + ', ' + data.city,
+          _template: 'table',
+          _captcha: 'false',
+          _honey: '',
+          'Imię': data.name,
+          'Telefon': data.phone,
+          'Miasto': data.city,
+          'Salon': data.salon || '—',
+          'Wiadomość': data.message || '—',
+          'WhatsApp': 'https://wa.me/' + waDigits,
+          'Strona': location.href,
+        }),
       });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || String(json.success) !== 'true') throw new Error(json.message || 'HTTP ' + res.status);
       form.hidden = true;
       okBox.hidden = false;
       okBox.focus();
