@@ -79,7 +79,7 @@
         "description": "Professional cartilage or earlobe piercing using certified system",
         "badge": "Standard price",
         "price": "from 90 PLN",
-        "earringsNote": "+ earring 70–90 PLN",
+        "earringsNote": "+ earring 70–110 PLN",
         "duration": "30 min",
         "features": [
           "Price does not include earrings"
@@ -114,11 +114,11 @@
     "pricing": {
       "title": "Pricing Information",
       "earringsInfo": "Price does not include earrings",
-      "earringsPrice": "Additional charge for earrings: 70–90 PLN each, 120–200 PLN a pair",
+      "earringsPrice": "Additional charge for earrings: 70–110 PLN each, 120–200 PLN a pair",
       "earringsOne": "from 70 PLN each",
       "earringsPair": "from 120 PLN a pair",
       "earringsLabel": "Earrings separately",
-      "earringsOneValue": "70–90 PLN",
+      "earringsOneValue": "70–110 PLN",
       "earringsOneUnit": "each",
       "earringsPairValue": "120–200 PLN",
       "earringsPairUnit": "a pair",
