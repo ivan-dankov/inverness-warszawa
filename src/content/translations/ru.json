@@ -9,6 +9,7 @@
       "contact": "Контакты",
       "aftercare": "Уход",
       "blog": "Блог",
+      "forSalons": "Для салонов",
       "testimonials": "Отзывы"
     },
     "buttons": {
@@ -365,7 +366,8 @@
       "title": "Полезные ссылки",
       "aftercare": "Уход",
       "blog": "Блог",
-      "contact": "Контакты"
+      "contact": "Контакты",
+      "forSalons": "Inverness MED для салонов"
     },
     "contact": {
       "title": "Контакты",

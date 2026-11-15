@@ -35,7 +35,7 @@ const aftercareSlug = PAGE_SLUGS.aftercare[locale];
         />
       </a>
 
-      <nav class="hidden lg:flex items-center gap-8">
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-8">
         <a
           href={`/${locale}`}
           class={`text-sm font-medium transition-colors ${isHomepage ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
@@ -65,6 +65,13 @@ const aftercareSlug = PAGE_SLUGS.aftercare[locale];
           class={`text-sm font-medium transition-colors ${currentPath.includes(`/${contactSlug}`) ? 'text-primary' : 'text-muted-foreground hover:text-primary'}`}
         >
           {t(locale, 'header.nav.contact')}
+        </a>
+        <a
+          href={`/${locale}/inverness-med`}
+          class="text-sm font-medium transition-colors text-muted-foreground hover:text-primary whitespace-nowrap"
+        >
+          <span class="xl:hidden">{t(locale, 'header.nav.forSalons')}</span>
+          <span class="hidden xl:inline">{t(locale, 'footer.links.forSalons')}</span>
         </a>
       </nav>
 
@@ -130,7 +137,10 @@ const aftercareSlug = PAGE_SLUGS.aftercare[locale];
       >
         {t(locale, 'header.nav.contact')}
       </a>
-      
+      <a href={`/${locale}/inverness-med`} class="block text-base font-medium transition-colors text-muted-foreground hover:text-primary">
+        {t(locale, 'footer.links.forSalons')}
+      </a>
+
       <div class="border-t pt-4 mt-4 flex flex-col gap-4">
         <div class="flex items-center gap-2">
           <slot name="language-switch" />

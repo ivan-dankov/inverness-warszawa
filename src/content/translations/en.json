@@ -9,6 +9,7 @@
       "contact": "Contact",
       "aftercare": "Aftercare",
       "blog": "Blog",
+      "forSalons": "For salons",
       "testimonials": "Reviews"
     },
     "buttons": {
@@ -365,7 +366,8 @@
       "title": "Useful Links",
       "aftercare": "Aftercare",
       "blog": "Blog",
-      "contact": "Contact"
+      "contact": "Contact",
+      "forSalons": "Inverness MED for salons"
     },
     "contact": {
       "title": "Contact",

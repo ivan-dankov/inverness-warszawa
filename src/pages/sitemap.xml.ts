@@ -125,6 +125,20 @@ export const GET: APIRoute = async () => {
     });
   });
 
+  // --- Inverness MED partner page for salons, all four locales ---
+  const b2bGroup: UrlGroup = {};
+  locales.forEach((locale) => {
+    b2bGroup[locale] = `${SITE_URL}/${locale}/inverness-med`;
+  });
+  locales.forEach((locale) => {
+    entries.push(
+      buildUrlEntry(b2bGroup[locale]!, b2bGroup, {
+        priority: '0.6',
+        changefreq: 'monthly',
+      })
+    );
+  });
+
   // --- Blog listing pages ---
   const blogGroup: UrlGroup = {};
   locales.forEach((locale) => {

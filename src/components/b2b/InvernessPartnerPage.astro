@@ -1,0 +1,809 @@
+---
+/**
+ * Inverness MED partner page for salons, rendered per locale at /{locale}/inverness-med.
+ * Standalone document: it keeps the partner-presentation design on purpose
+ * and does not use BaseLayout, the site header or the Booksy CTA.
+ */
+import { Image } from 'astro:assets';
+import type { Locale } from '../../lib/seo';
+import { b2bCopy, b2bLocales, b2bPath } from '../../lib/b2b-copy';
+
+import invernessSystem from '../../assets/inverness-system.png';
+import starterKit from '../../assets/hero/hero-1.jpg';
+import kseniya from '../../assets/b2b/kseniya.jpg';
+
+// Phosphor Icons, duotone weight (@phosphor-icons/core 2.1.1, MIT).
+import icShieldCheck from '../../assets/icons/phosphor/shield-check.svg?raw';
+import icDiamond from '../../assets/icons/phosphor/diamond.svg?raw';
+import icFeather from '../../assets/icons/phosphor/feather.svg?raw';
+import icSealCheck from '../../assets/icons/phosphor/seal-check.svg?raw';
+import icBookOpenText from '../../assets/icons/phosphor/book-open-text.svg?raw';
+import icTarget from '../../assets/icons/phosphor/target.svg?raw';
+import icUserFocus from '../../assets/icons/phosphor/user-focus.svg?raw';
+import icChatsCircle from '../../assets/icons/phosphor/chats-circle.svg?raw';
+
+// Partner logos and photos come from each salon's public Booksy profile.
+import pGentle from '../../assets/b2b/partners/gentle-piercing-logo.jpg';
+import pCute from '../../assets/b2b/partners/cute-piercing-logo.jpg';
+import pSoul from '../../assets/b2b/partners/soul-barbershop.jpg';
+import pKido from '../../assets/b2b/partners/kido.jpg';
+
+// Earring codes follow the product catalogue in the Gentle Piercing CRM.
+import eK010c from '../../assets/earrings/K010c-A.jpg';
+import e187c from '../../assets/earrings/187c-A.jpg';
+import e120 from '../../assets/earrings/120-A.jpg';
+import eK032c from '../../assets/earrings/K032c-A.jpg';
+import e24c1 from '../../assets/earrings/24c1-A.jpg';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = b2bCopy[locale];
+const icon = (svg: string) => svg.replace('<svg ', '<svg aria-hidden="true" focusable="false" ');
+
+const SITE_URL = 'https://gentlepiercing.pl';
+const canonical = `${SITE_URL}${b2bPath(locale)}`;
+const ogImage = `${SITE_URL}/images/og-default.jpg`;
+const hreflang: Record<Locale, string> = { pl: 'pl-PL', uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
+const langLabel: Record<Locale, string> = { pl: 'PL', uk: 'UA', ru: 'RU', en: 'EN' };
+
+const pillarIcons = [icShieldCheck, icDiamond, icFeather, icSealCheck];
+const trainingIcons = [icBookOpenText, icTarget, icUserFocus, icChatsCircle];
+
+const earringImages = [
+  { src: eK010c, sku: 'K010C' },
+  { src: e187c, sku: '187C' },
+  { src: e120, sku: '120' },
+  { src: eK032c, sku: 'K032C' },
+  { src: e24c1, sku: '24C1' },
+];
+const earrings = earringImages.map((e, i) => ({ ...e, name: c.earrings.names[i] }));
+
+const partners = [
+  { name: 'Gentle Piercing', place: c.partners.places.mokotow, href: `/${locale}`, photo: pGentle, pos: '50% 50%' },
+  { name: 'Cute Piercing', place: c.partners.places.wola, photo: pCute, pos: '50% 50%' },
+  { name: 'Soul Barbershop', place: c.partners.places.ozarow, photo: pSoul, pos: '50% 50%' },
+  { name: 'KIDO Family Beauty Space', place: c.partners.places.mokotow, photo: pKido, pos: '100% 50%' },
+];
+
+const whatsapp = 'https://wa.me/48573818260';
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: c.htmlLang,
+  mainEntity: c.faq.items.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: c.schema.name,
+  brand: { '@type': 'Brand', name: 'Inverness MED' },
+  serviceType: c.schema.serviceType,
+  areaServed: { '@type': 'Country', name: c.schema.areaServed },
+  inLanguage: c.htmlLang,
+  provider: {
+    '@type': 'Organization',
+    name: 'Gentle Piercing',
+    legalName: 'Kseniya Askerka',
+    url: `${SITE_URL}/${locale}`,
+    telephone: '+48573818260',
+    email: 'piercinggentle@gmail.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Ursynowska 10/1',
+      postalCode: '02-605',
+      addressLocality: 'Warszawa',
+      addressCountry: 'PL',
+    },
+  },
+  url: canonical,
+  description: c.description,
+};
+
+const check = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>';
+const jsCopy = c.js;
+---
+
+<!doctype html>
+<html lang={c.htmlLang}>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{c.title}</title>
+<meta name="description" content={c.description}>
+<link rel="canonical" href={canonical}>
+{b2bLocales.map((l) => <link rel="alternate" hreflang={hreflang[l]} href={`${SITE_URL}${b2bPath(l)}`} />)}
+<link rel="alternate" hreflang="x-default" href={`${SITE_URL}${b2bPath('pl')}`}>
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content={c.ogLocale}>
+<meta property="og:title" content={c.title}>
+<meta property="og:description" content={c.description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0a2f5e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-5XNL50H7LN';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-5XNL50H7LN');
+    }, 1000);
+  });
+</script>
+<style is:global>
+  :root{
+    --navy:#0a2f5e;
+    --navy-deep:#06203f;
+    --blue:#1e6fd9;
+    --blue-soft:#e8f1fd;
+    --gold:#e6437f;
+    --gold-soft:#fde4ee;
+    --ink:#0e1b2c;
+    --muted:#5b6b80;
+    --line:#e3eaf3;
+    --bg:#f4f8fd;
+    --white:#ffffff;
+    --radius:20px;
+    --shadow:0 18px 50px -20px rgba(8,35,70,.35);
+    --shadow-sm:0 8px 24px -12px rgba(8,35,70,.28);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:0 20px}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #7db4f5;outline-offset:2px}
+
+  /* ---------- shared ---------- */
+  .eyebrow{
+    font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--blue);display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;
+  }
+  .eyebrow.on-dark{color:#9ec5f5}
+  h2.sec{font-family:'Unbounded',sans-serif;font-weight:700;font-size:26px;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px}
+  .lead{color:var(--muted);font-size:15.5px}
+
+  section{padding:64px 0;position:relative}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+
+  /* ---------- photos ---------- */
+  .photo{display:block;width:100%;height:auto;object-fit:cover;border-radius:16px;background:#e9f0f9}
+  .r43{aspect-ratio:4/3}  .r1610{aspect-ratio:16/10}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:58px}
+  .topbar a.tcta{white-space:nowrap}
+  .logo{font-family:'Unbounded',sans-serif;font-weight:700;font-size:17px;color:var(--navy);letter-spacing:-.02em;text-decoration:none}
+  .logo b{color:var(--blue)}
+  .topbar a.tcta{font-size:13px;font-weight:700;color:var(--white);background:var(--navy);padding:9px 15px;border-radius:999px;text-decoration:none}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(120% 80% at 85% -10%,rgba(30,111,217,.45),transparent 60%),
+      radial-gradient(90% 70% at -10% 110%,rgba(230,67,127,.3),transparent 55%),
+      linear-gradient(165deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#fff;padding:54px 0 64px;overflow:hidden;
+  }
+  .hero .wrap{position:relative}
+  .hero h1{font-family:'Unbounded',sans-serif;font-weight:700;font-size:34px;line-height:1.08;letter-spacing:-.02em;margin-bottom:8px}
+  .hero h1 .em{color:#7db4f5}
+  .hero .sub{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9ec5f5;margin-bottom:20px}
+  .hero p{color:#cfe0f5;font-size:16px;max-width:30em;margin-bottom:30px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;text-decoration:none;padding:14px 22px;border-radius:999px;transition:transform .2s,box-shadow .2s;border:0;cursor:pointer;font-family:inherit}
+  .btn:active{transform:scale(.97)}
+  .btn-gold{background:linear-gradient(135deg,#f56aa0,#e6437f);color:#fff;box-shadow:0 14px 30px -12px rgba(230,67,127,.65)}
+  .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25)}
+  .hero-strip{display:flex;gap:22px;margin-top:36px;flex-wrap:wrap}
+  .hero-strip .hs{display:flex;flex-direction:column}
+  .hero-strip .hs b{font-family:'Unbounded',sans-serif;font-size:20px;color:#fff}
+  .hero-strip .hs span{font-size:12px;line-height:1.35;color:#9ec5f5}
+
+  /* ---------- pillars ---------- */
+  .pillars-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+  .pcard{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;box-shadow:var(--shadow-sm)}
+  .picon{width:46px;height:46px;border-radius:14px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .picon svg{width:26px;height:26px;color:var(--blue)}
+  .pcard h3{font-size:15px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--navy);margin-bottom:6px}
+  .pcard p{font-size:13.5px;color:var(--muted)}
+
+  /* ---------- revenue ---------- */
+  .revenue{background:linear-gradient(165deg,#0c356a,#06203f);color:#fff}
+  .money-hero{text-align:center;padding:8px 0 4px}
+  .money-hero .cap{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9ec5f5}
+  .money-hero .big{font-family:'Unbounded',sans-serif;font-weight:800;font-size:74px;line-height:1;letter-spacing:-.03em;margin:6px 0 2px}
+  .money-hero .big span{color:var(--gold)}
+  .money-hero .desc{color:#cfe0f5;font-size:15px}
+  .tiers{margin-top:30px;display:flex;flex-direction:column;gap:12px}
+  .tier{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 18px}
+  .tier .l{display:flex;align-items:center;gap:12px}
+  .tier .l .ic{width:38px;height:38px;border-radius:50%;background:rgba(126,180,245,.18);display:flex;align-items:center;justify-content:center;font-weight:800;color:#9ec5f5;font-size:14px}
+  .tier .l span{font-size:14.5px;color:#dbe7f7}
+  .tier .v{font-family:'Unbounded',sans-serif;font-weight:700;font-size:22px;color:#fff;white-space:nowrap}
+  .tier .v small{color:#9ec5f5;font-weight:600;font-size:13px}
+  .timenote{margin-top:22px;display:flex;gap:12px;align-items:flex-start;background:rgba(230,67,127,.13);border:1px solid rgba(230,67,127,.42);border-radius:16px;padding:16px 18px}
+  .timenote svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px}
+  .timenote p{font-size:14px;color:#f8d4e2}
+  .revnote{margin-top:14px;font-size:12.5px;color:#9ec5f5;text-align:center}
+
+  /* ---------- why ---------- */
+  .capsule-card{background:linear-gradient(160deg,#fff,#f3f8ff);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;box-shadow:var(--shadow-sm);margin-top:22px}
+  .capsule-card .photo{background:#fff;object-fit:contain;margin-bottom:20px}
+  .capsule-card h3{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+  ul.checks{list-style:none;display:flex;flex-direction:column;gap:13px}
+  ul.checks li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink)}
+  ul.checks li .ck{width:24px;height:24px;border-radius:50%;background:var(--blue);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  ul.checks li .ck svg{width:13px;height:13px;stroke:#fff;stroke-width:3;fill:none}
+  .material{margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);font-size:13.5px;color:var(--muted)}
+  .material b{color:var(--gold);font-weight:700}
+  .docs{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .docs a{font-size:12.5px;font-weight:700;color:var(--navy);background:var(--blue-soft);padding:6px 12px;border-radius:999px;text-decoration:none}
+
+  /* ---------- earrings ---------- */
+  .count-pill{display:inline-flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:10px 18px;box-shadow:var(--shadow-sm);margin-bottom:8px}
+  .count-pill b{font-family:'Unbounded',sans-serif;font-size:22px;color:var(--navy)}
+  .count-pill span{font-size:13px;color:var(--muted)}
+  .sku-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 24px}
+  .sku{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:8px 10px 8px 8px;box-shadow:var(--shadow-sm);min-width:0}
+  .sku img{display:block;width:72px;height:72px;flex-shrink:0;object-fit:contain;border-radius:10px}
+  .sku .si{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .sku b{font-size:13.5px;font-weight:800;line-height:1.2;color:var(--navy)}
+  .sku small{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--blue)}
+  .person .av{overflow:hidden;padding:0}
+  .person .av img{display:block;width:100%;height:100%;object-fit:cover}
+  .salon-hint{font-size:12px;color:#9ec5f5}
+
+  /* ---------- training ---------- */
+  .training{background:var(--navy);color:#fff}
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+  .titem{display:flex;flex-direction:column;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px 16px}
+  .ticon{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#f56aa0,#e6437f);display:flex;align-items:center;justify-content:center}
+  .ticon svg{width:26px;height:26px;color:#fff}
+  .titem b{font-size:14.5px;font-weight:700;line-height:1.3;color:#e6eefb}
+
+  /* ---------- partner benefits ---------- */
+  .benefits{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+  .bcard{display:flex;gap:16px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm)}
+  .bnum{font-family:'Unbounded',sans-serif;font-weight:700;font-size:16px;color:var(--blue);background:var(--blue-soft);width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bcard p{font-size:14.5px;font-weight:600;color:var(--ink)}
+
+  /* ---------- partners ---------- */
+  .partners{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+  .partner{display:flex;align-items:center;gap:16px;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:12px 18px 12px 12px;box-shadow:var(--shadow-sm);text-decoration:none;color:inherit}
+  .partner .pimg{display:block;width:60px;height:60px;flex-shrink:0;object-fit:cover;border-radius:12px;background:#e9f0f9}
+  .partner .ptxt{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .partner b{font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;line-height:1.2;color:var(--navy)}
+  .partner span{font-size:12.5px;color:var(--muted)}
+  a.partner:hover b{color:var(--blue)}
+  .partner-you{border-style:dashed;border-color:#f3a9c6;background:var(--gold-soft);box-shadow:none}
+  .pplus{width:60px;height:60px;flex-shrink:0;border-radius:12px;background:linear-gradient(135deg,#f56aa0,#e6437f);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-weight:700;font-size:28px}
+  .partner-you .ptxt span{color:var(--gold);font-weight:700}
+  .sku-more{text-decoration:none;color:inherit;background:var(--blue-soft);border-color:#cfe0f7;box-shadow:none}
+  .more-badge{width:72px;height:72px;flex-shrink:0;border-radius:10px;background:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-weight:700;font-size:20px;color:var(--navy)}
+  a.sku-more:hover b{color:var(--blue)}
+
+  /* ---------- faq ---------- */
+  .faq{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+  .faq-item{background:var(--white);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-sm)}
+  .faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;font-size:15px;font-weight:700;color:var(--navy)}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"+";flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;transition:transform .2s}
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item p{padding:0 18px 16px;font-size:14.5px;color:var(--muted)}
+  .faq-item p a{color:var(--blue);font-weight:700}
+
+  /* ---------- contact ---------- */
+  .contact{background:linear-gradient(165deg,var(--navy),var(--navy-deep));color:#fff;padding:64px 0 48px}
+  .contact h2{font-family:'Unbounded',sans-serif;font-weight:700;font-size:27px;line-height:1.15;margin-bottom:10px}
+  .contact .ld{color:#cfe0f5;font-size:15px;margin-bottom:28px}
+  .person{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .person .av{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1e6fd9,#0a2f5e);display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-weight:700;font-size:18px;color:#fff;border:2px solid rgba(255,255,255,.25)}
+  .person .pn b{font-size:16px;display:block}
+  .person .pn span{font-size:12.5px;color:#9ec5f5}
+  .contact-list{display:flex;flex-direction:column;gap:11px;margin-bottom:26px}
+  .crow{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 16px;text-decoration:none;color:#fff;transition:background .2s}
+  .crow:active{background:rgba(255,255,255,.12)}
+  .crow .ci{width:38px;height:38px;border-radius:10px;background:rgba(126,180,245,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .crow .ci svg{width:19px;height:19px;stroke:#9ec5f5;fill:none;stroke-width:2}
+  .crow .cd b{font-size:15px;display:block}
+  .crow .cd span{font-size:12px;color:#9ec5f5}
+  .or{display:flex;align-items:center;gap:12px;margin:30px 0 16px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9ec5f5}
+  .or::before,.or::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.16)}
+  .footer-note{text-align:center;margin-top:34px;font-size:12.5px;color:#7f9bc0;line-height:1.5}
+  .footer-note a{color:#bcd4f2}
+
+  /* ---------- lead form ---------- */
+  .lead-form{display:flex;flex-direction:column;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:22px 18px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field label{font-size:13px;font-weight:700;color:#dbe7f7}
+  .field label small{font-weight:600;color:#9ec5f5}
+  .field input,.field textarea{
+    width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;
+    border:1.5px solid transparent;border-radius:12px;padding:12px 14px;
+  }
+  .field textarea{min-height:96px;resize:vertical}
+  .field input:focus,.field textarea:focus{border-color:#7db4f5}
+  .field input[aria-invalid="true"]{border-color:#f56aa0}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:#bcd4f2;line-height:1.45}
+  .consent input{width:20px;height:20px;flex-shrink:0;margin-top:1px;accent-color:#e6437f}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .lead-form .btn{justify-content:center;margin-top:4px}
+  .lead-form .btn[disabled]{opacity:.7;cursor:wait}
+  .submit-note{margin-top:-4px;text-align:center;font-size:12.5px;color:#9ec5f5}
+  .form-msg{font-size:14px;line-height:1.5;border-radius:12px;padding:12px 14px}
+  .form-msg.err{background:rgba(230,67,127,.15);border:1px solid rgba(230,67,127,.45);color:#f8d4e2}
+  .form-msg.err a{color:#fff;font-weight:700}
+  .form-ok{text-align:center;padding:26px 18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:18px}
+  .form-ok .seal{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#f56aa0,#e6437f);margin:0 auto 12px;display:flex;align-items:center;justify-content:center}
+  .form-ok .seal svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:3}
+  .form-ok h3{font-family:'Unbounded',sans-serif;font-size:18px;margin-bottom:6px}
+  .form-ok p{font-size:14px;color:#cfe0f5}
+
+  /* ---------- language switch ---------- */
+  .langs{display:flex;justify-content:center;gap:6px;margin-top:30px}
+  .langs a{font-size:12px;font-weight:700;letter-spacing:.08em;color:#9ec5f5;text-decoration:none;padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16)}
+  .langs a[aria-current="page"]{background:rgba(255,255,255,.12);color:#fff}
+
+  @media(max-width:380px){
+    .hero h1{font-size:29px}
+    .money-hero .big{font-size:60px}
+    .pillars-grid,.row2{grid-template-columns:1fr}
+    .partner b{font-size:14px}
+    .sku-grid{gap:8px}
+    .sku{gap:8px;padding:8px}
+    .sku img,.more-badge{width:60px;height:60px}
+    .topbar a.tcta{padding:9px 12px;font-size:12.5px}
+    .logo{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Inverness MED">inverness<b>MED</b></a>
+    <a class="tcta" href="#kontakt">{c.topCta}</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="sub">{c.hero.sub}</div>
+    <h1><span class="em">Inverness MED</span> {c.hero.h1Rest}</h1>
+    <p>{c.hero.text}</p>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#kontakt">{c.hero.cta}</a>
+    </div>
+  </div>
+</header>
+
+<!-- PILLARS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">{c.pillars.eyebrow}</div>
+    <h2 class="sec reveal">{c.pillars.h2}</h2>
+    <div class="pillars-grid">
+      {c.pillars.items.map((p, i) => (
+        <div class="pcard reveal">
+          <div class="picon" set:html={icon(pillarIcons[i])} />
+          <h3>{p.title}</h3>
+          <p>{p.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section class="revenue" id="zarobki">
+  <div class="wrap">
+    <div class="eyebrow on-dark reveal">{c.revenue.eyebrow}</div>
+    <div class="money-hero reveal">
+      <div class="cap">{c.revenue.cap}</div>
+      <div class="big" data-count="300">300 <span>zł</span></div>
+      <div class="desc">{c.revenue.perProcedure}</div>
+    </div>
+
+    <div class="tiers">
+      {[[10, '3 000'], [20, '6 000'], [40, '12 000']].map(([n, v]) => (
+        <div class="tier reveal">
+          <div class="l"><span class="ic">{n}</span><span>{c.revenue.clientsPerMonth}</span></div>
+          <div class="v">≈ {v} <small>zł</small></div>
+        </div>
+      ))}
+    </div>
+
+    <div class="timenote reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <p>{c.revenue.timeNote}</p>
+    </div>
+    <p class="revnote reveal">{c.revenue.note}</p>
+  </div>
+</section>
+
+<!-- WHY / CAPSULE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">{c.system.eyebrow}</div>
+    <h2 class="sec reveal">{c.system.h2}</h2>
+    <p class="lead reveal">{c.system.lead}</p>
+    <div class="capsule-card reveal">
+      <Image
+        src={invernessSystem}
+        alt={c.system.imgAlt}
+        widths={[480, 960]}
+        sizes="(min-width: 600px) 470px, 100vw"
+        class="photo r1610"
+      />
+      <h3>{c.system.listTitle}</h3>
+      <ul class="checks">
+        {c.system.list.map((item) => <li><span class="ck" set:html={check} />{item}</li>)}
+      </ul>
+      <div class="material">{c.system.materialBefore} <b>{c.system.materialGold}</b>.</div>
+      <div class="docs">
+        <a href="/certificates/FDA-Certificate.pdf" target="_blank" rel="noopener">{c.system.fdaLabel}</a>
+        <a href="/certificates/Declaration-of-Conformity.pdf" target="_blank" rel="noopener">{c.system.docLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EARRINGS -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="eyebrow reveal">{c.earrings.eyebrow}</div>
+    <h2 class="sec reveal">{c.earrings.h2}</h2>
+    <div class="count-pill reveal"><b>80+</b><span>{c.earrings.countLabel}</span></div>
+    <div class="sku-grid reveal">
+      {earrings.map(({ src, sku, name }) => (
+        <div class="sku">
+          <Image src={src} alt={`${c.earrings.altPrefix} ${name}, ${c.earrings.skuPrefix} ${sku}`} widths={[160, 240]} sizes="80px" />
+          <div class="si">
+            <b>{name}</b>
+            <small>{c.earrings.skuPrefix} {sku}</small>
+          </div>
+        </div>
+      ))}
+      <a class="sku sku-more" href="#kontakt">
+        <span class="more-badge">+75</span>
+        <div class="si">
+          <b>{c.earrings.moreTitle}</b>
+          <small>{c.earrings.moreLink}</small>
+        </div>
+      </a>
+    </div>
+    <ul class="checks reveal" style="margin-top:6px">
+      {c.earrings.list.map((item) => <li><span class="ck" set:html={check} />{item}</li>)}
+    </ul>
+  </div>
+</section>
+
+<!-- TRAINING -->
+<section class="training">
+  <div class="wrap">
+    <div class="eyebrow on-dark reveal">{c.training.eyebrow}</div>
+    <h2 class="sec reveal">{c.training.h2}</h2>
+    <div class="tgrid">
+      {c.training.items.map((item, i) => (
+        <div class="titem reveal">
+          <span class="ticon" set:html={icon(trainingIcons[i])} />
+          <b>{item}</b>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER BENEFITS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">{c.kit.eyebrow}</div>
+    <h2 class="sec reveal">{c.kit.h2}</h2>
+    <Image
+      src={starterKit}
+      alt={c.kit.imgAlt}
+      widths={[480, 960]}
+      sizes="(min-width: 600px) 520px, 100vw"
+      class="photo r1610 reveal"
+      style="margin:4px 0 18px"
+    />
+    <div class="benefits">
+      {c.kit.items.map((item, i) => (
+        <div class="bcard reveal"><div class="bnum">{String(i + 1).padStart(2, '0')}</div><p>{item}</p></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section style="background:var(--white);padding-top:56px">
+  <div class="wrap">
+    <div class="eyebrow reveal">{c.partners.eyebrow}</div>
+    <h2 class="sec reveal">{c.partners.h2}</h2>
+    <div class="partners">
+      {partners.map((p) => {
+        const Tag = p.href ? 'a' : 'div';
+        return (
+          <Tag class="partner reveal" href={p.href}>
+            <Image
+              class="pimg"
+              src={p.photo}
+              alt={`${p.name}, ${p.place}`}
+              widths={[120, 180]}
+              sizes="60px"
+              style={`object-position:${p.pos}`}
+            />
+            <div class="ptxt"><b>{p.name}</b><span>{p.place}</span></div>
+          </Tag>
+        );
+      })}
+      <a class="partner partner-you reveal" href="#kontakt">
+        <div class="pplus" aria-hidden="true">+</div>
+        <div class="ptxt"><b>{c.partners.youTitle}</b><span>{c.partners.youText}</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow reveal">{c.faq.eyebrow}</div>
+    <h2 class="sec reveal">{c.faq.h2}</h2>
+    <div class="faq">
+      {c.faq.items.map(({ q, a, link }) => (
+        <details class="faq-item reveal">
+          <summary>{q}</summary>
+          <p>{a}{link && <> <a href={link.href}>{link.label}</a></>}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <div class="eyebrow on-dark reveal">{c.contact.eyebrow}</div>
+    <h2 class="reveal">{c.contact.h2}</h2>
+    <p class="ld reveal">{c.contact.lead}</p>
+
+    <div class="person reveal">
+      <div class="av"><Image src={kseniya} alt="Kseniya Askerka" widths={[104, 156]} sizes="52px" /></div>
+      <div class="pn"><b>Kseniya Askerka</b><span>{c.contact.personRole}</span></div>
+    </div>
+
+    <form class="lead-form" id="lead-form" novalidate>
+      <div class="row2">
+        <div class="field">
+          <label for="lf-name">{c.contact.name}</label>
+          <input id="lf-name" name="name" type="text" autocomplete="given-name" required maxlength="80">
+        </div>
+        <div class="field">
+          <label for="lf-phone">{c.contact.phone}</label>
+          <input id="lf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="30" placeholder="+48">
+        </div>
+      </div>
+      <div class="field">
+        <label for="lf-city">{c.contact.city}</label>
+        <input id="lf-city" name="city" type="text" autocomplete="address-level2" required maxlength="80">
+      </div>
+      <div class="field">
+        <label for="lf-salon">{c.contact.salon} <small>{c.contact.optional}</small></label>
+        <input id="lf-salon" name="salon" type="text" autocomplete="organization" maxlength="120">
+        <span class="salon-hint">{c.contact.salonHint}</span>
+      </div>
+      <div class="field">
+        <label for="lf-message">{c.contact.message} <small>{c.contact.optional}</small></label>
+        <textarea id="lf-message" name="message" maxlength="1000" placeholder={c.contact.messagePlaceholder}></textarea>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="lf-website">www</label>
+        <input id="lf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+      <label class="consent" for="lf-consent">
+        <input id="lf-consent" name="consent" type="checkbox" required>
+        <span>{c.contact.consent}</span>
+      </label>
+      <div class="form-msg err" id="lf-error" role="alert" hidden></div>
+      <button class="btn btn-gold" type="submit" id="lf-submit">{c.contact.submit}</button>
+      <p class="submit-note">{c.contact.submitNote}</p>
+    </form>
+
+    <div class="form-ok" id="lf-ok" role="status" hidden tabindex="-1">
+      <div class="seal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div>
+      <h3>{c.contact.okTitle}</h3>
+      <p>{c.contact.okText}</p>
+    </div>
+
+    <div class="or">{c.contact.or}</div>
+
+    <div class="contact-list">
+      <a class="crow" href={whatsapp} data-track="whatsapp">
+        <span class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-3 2a11 11 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span>
+        <span class="cd"><b>+48 573 818 260</b><span>{c.contact.whatsappLabel}</span></span>
+      </a>
+      <a class="crow" href="mailto:piercinggentle@gmail.com" data-track="email">
+        <span class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></span>
+        <span class="cd"><b>piercinggentle@gmail.com</b><span>E-mail</span></span>
+      </a>
+      <a class="crow" href="https://instagram.com/inverness.poland" target="_blank" rel="noopener" data-track="instagram">
+        <span class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#9ec5f5" stroke="none"/></svg></span>
+        <span class="cd"><b>@inverness.poland</b><span>Instagram</span></span>
+      </a>
+    </div>
+
+    <nav class="langs" aria-label="Language">
+      {b2bLocales.map((l) => (
+        <a href={b2bPath(l)} hreflang={l} lang={l} aria-current={l === locale ? 'page' : undefined}>{langLabel[l]}</a>
+      ))}
+    </nav>
+
+    <div class="footer-note">
+      {c.contact.footer}<br>
+      Ursynowska 10/1, 02-605 Warszawa · <a href={`/${locale}`}>gentlepiercing.pl</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ whatsapp, jsCopy, sendingLabel: c.contact.sending }}>
+  // scroll reveal
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (e.target.dataset.d || (i * 60)) + 'ms';
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
+
+  // count up for the 300 zł number
+  const counter = document.querySelector('[data-count]');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (counter && !reduce && 'IntersectionObserver' in window) {
+    let counted = false;
+    const co = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting && !counted) {
+          counted = true;
+          const target = +counter.dataset.count;
+          const dur = 1100; const start = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - start) / dur, 1);
+            const val = Math.round((1 - Math.pow(1 - p, 3)) * target);
+            counter.innerHTML = val + ' <span>zł</span>';
+            if (p < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
+      });
+    }, { threshold: .5 });
+    co.observe(counter);
+  }
+
+  // contact clicks
+  document.querySelectorAll('[data-track]').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (typeof gtag === 'function') gtag('event', 'b2b_contact_click', { method: el.dataset.track });
+    });
+  });
+
+  // lead form
+  const form = document.getElementById('lead-form');
+  const errBox = document.getElementById('lf-error');
+  const okBox = document.getElementById('lf-ok');
+  const submit = document.getElementById('lf-submit');
+  const submitLabel = submit.textContent;
+
+  const waLink = (d) => {
+    const text = jsCopy.waIntro + '\n' +
+      jsCopy.waName + ': ' + d.name + '\n' + jsCopy.waCity + ': ' + d.city + '\n' + jsCopy.waPhone + ': ' + d.phone +
+      (d.salon ? '\n' + jsCopy.waSalon + ': ' + d.salon : '') +
+      (d.message ? '\n' + d.message : '');
+    return whatsapp + '?text=' + encodeURIComponent(text);
+  };
+
+  const showError = (html) => { errBox.innerHTML = html; errBox.hidden = false; };
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+    errBox.hidden = true;
+    if (form.website.value) return; // bot
+
+    let firstInvalid = null;
+    ['name', 'phone', 'city'].forEach((n) => {
+      const input = form[n];
+      const bad = !input.value.trim() || (n === 'phone' && input.value.replace(/\D/g, '').length < 9);
+      input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      if (bad && !firstInvalid) firstInvalid = input;
+    });
+    if (firstInvalid) {
+      showError(jsCopy.errRequired);
+      firstInvalid.focus();
+      return;
+    }
+    if (!form.consent.checked) {
+      showError(jsCopy.errConsent);
+      form.consent.focus();
+      return;
+    }
+
+    const data = {
+      name: form.name.value.trim(),
+      phone: form.phone.value.trim(),
+      salon: form.salon.value.trim(),
+      city: form.city.value.trim(),
+      message: form.message.value.trim(),
+      consent: true,
+      website: '',
+      page: location.pathname,
+    };
+
+    submit.disabled = true;
+    submit.textContent = sendingLabel;
+    try {
+      const res = await fetch('/api/b2b-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      form.hidden = true;
+      okBox.hidden = false;
+      okBox.focus();
+      if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_type: 'b2b', city: data.city, language: document.documentElement.lang });
+    } catch (e) {
+      showError(jsCopy.errSend + ' <a href="' + waLink(data) + '">' + jsCopy.errSendWa + '</a> ' + jsCopy.errSendCall);
+      submit.disabled = false;
+      submit.textContent = submitLabel;
+    }
+  });
+</script>
+</body>
+</html>
