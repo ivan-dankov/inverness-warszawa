@@ -16,18 +16,9 @@ export interface B2BCopy {
   title: string;
   description: string;
   topCta: string;
-  hero: { sub: string; h1Rest: string; text: string; cta: string };
-  pillars: { eyebrow: string; h2: string; items: Array<{ title: string; text: string }> };
-  revenue: {
-    eyebrow: string;
-    cap: string;
-    perProcedure: string;
-    clientsPerMonth: string;
-    timeNote: string;
-    note: string;
-  };
+  hero: { sub: string; h1Rest: string; text: string; cta: string; orbitAlt: string };
+  pillars: { h2: string; items: Array<{ title: string; text: string }> };
   system: {
-    eyebrow: string;
     h2: string;
     lead: string;
     imgAlt: string;
@@ -39,7 +30,6 @@ export interface B2BCopy {
     docLabel: string;
   };
   earrings: {
-    eyebrow: string;
     h2: string;
     countLabel: string;
     names: [string, string, string, string, string];
@@ -47,21 +37,20 @@ export interface B2BCopy {
     altPrefix: string;
     moreTitle: string;
     moreLink: string;
-    list: string[];
   };
-  training: { eyebrow: string; h2: string; items: [string, string, string, string] };
-  kit: { eyebrow: string; h2: string; imgAlt: string; items: string[] };
+  training: { h2: string; imgAlt: string; items: Array<{ title: string; text: string }> };
+  kit: { h2: string; imgAlt: string; items: Array<{ title: string; text: string }> };
+  clasp: { h2: string; lead: string; imgAlt: string; points: Array<{ title: string; text: string }> };
   partners: {
-    eyebrow: string;
     h2: string;
     places: { mokotow: string; wola: string; ozarow: string };
     youTitle: string;
     youText: string;
   };
-  faq: { eyebrow: string; h2: string; items: B2BFaq[] };
+  faq: { h2: string; items: B2BFaq[] };
   contact: {
-    eyebrow: string;
     h2: string;
+    h2Accent: string;
     lead: string;
     personRole: string;
     name: string;
@@ -102,121 +91,158 @@ const pl: B2BCopy = {
   ogLocale: 'pl_PL',
   title: 'Inverness MED: system przekłuwania uszu dla salonów',
   description:
-    'Inverness MED w Twoim salonie: sterylne kasety, aplikator, 80+ modeli kolczyków i szkolenie od zera. Oryginalne produkty od europejskiego dystrybutora. Warszawa i cała Polska.',
+    "Inverness MED w Twoim salonie: sterylne, jednorazowe kasety, hipoalergiczne kolczyki, ponad 80 modeli oraz szkolenie teoretyczne i praktyczne. Warszawa i cała Polska.",
   topCta: 'Zapytaj o współpracę',
   hero: {
     sub: 'Inverness MED Polska',
-    h1Rest: '— bezpieczne przekłuwanie uszu w Twoim salonie',
-    text: 'Nowa usługa w Twoim salonie: 15 minut pracy i około 300 zł od klienta. Nie masz doświadczenia? Przeszkolimy Cię od zera i dostarczymy wszystko na start.',
+    h1Rest: 'do przekłuwania uszu w Twoim salonie',
+    text: "Medyczny system przekłuwania uszu z USA, z którego korzystają salony w ponad 70 krajach. Każdy kolczyk jest w sterylnej, jednorazowej kasecie. Nadaje się dla dzieci i dorosłych.",
     cta: 'Zapytaj o współpracę',
+    orbitAlt: "Kolczyki Inverness MED wokół systemu do przekłuwania uszu",
   },
   pillars: {
-    eyebrow: 'Dlaczego klienci Ci zaufają',
-    h2: 'Cztery powody, by wybrać Inverness MED',
+    h2: "Dlaczego salony wybierają Inverness MED",
     items: [
-      { title: 'Bezpieczeństwo', text: 'Sterylny, jednorazowy wkład dla każdego klienta.' },
-      { title: 'Jakość', text: 'Tytan medyczny i sprawdzone, certyfikowane materiały.' },
-      { title: 'Komfort', text: 'Delikatne i szybkie przekłucie, bez głośnego pistoletu.' },
-      { title: 'Zaufanie', text: 'Ponad 50 lat na rynku i dokumenty FDA oraz UL.' },
+      {
+        title: "Sterylna kaseta przy każdym zabiegu",
+        text: "Każdy kolczyk jest w osobnej sterylnej kasecie. Wszystko, co dotyka klienta, jest jednorazowe.",
+      },
+      {
+        title: "Kolczyki hipoalergiczne",
+        text: "Tytan medyczny, niob i stal medyczna z certyfikatem REACH. Pasują też dzieciom i osobom z wrażliwą skórą.",
+      },
+      {
+        title: "Ciche urządzenie zamiast pistoletu",
+        text: "Kolczyk wchodzi płynnym naciskiem, bez huku. Przy dzieciach to ma duże znaczenie.",
+      },
+      {
+        title: "Ponad 50 lat na rynku",
+        text: "Inverness MED produkuje się w USA od ponad 50 lat. Certyfikat FDA i deklarację zgodności znajdziesz niżej.",
+      },
     ],
-  },
-  revenue: {
-    eyebrow: 'Średnia wartość usługi',
-    cap: 'Przekłucie uszu + kolczyki',
-    perProcedure: 'za jeden zabieg',
-    clientsPerMonth: 'klientów miesięcznie',
-    timeNote: 'Zabieg trwa tylko 10–15 minut i łatwo wpisuje się w grafik salonu.',
-    note: 'Przychód brutto przy średniej wartości usługi 300 zł. Przykład: w studiu Gentle Piercing para dla dziecka to 150 zł za przekłucie + kolczyki 120–200 zł.',
   },
   system: {
-    eyebrow: 'Dlaczego Inverness MED',
-    h2: 'Czym jest system Inverness MED',
-    lead: 'Inverness MED to system przekłuwania uszu z USA. Kolczyk jest zamknięty w sterylnej, jednorazowej kasecie, a przekłucie wykonuje się ręcznym aplikatorem, bez strzału pistoletu.',
-    imgAlt: 'System Inverness MED: aplikator i sterylne kasety z kolczykami',
-    listTitle: 'Co zawiera system',
+    h2: "Czym jest system Inverness MED",
+    lead: "Inverness MED to medyczny system przekłuwania uszu z USA. Kolczyk jest w sterylnej, jednorazowej kasecie. Ucho przekłuwa się cichym urządzeniem, bez strzału pistoletu.",
+    imgAlt: "System Inverness MED: urządzenie do przekłuwania i sterylne kasety z kolczykami",
+    listTitle: "Co zawiera system",
     list: [
-      'Jednorazowa, sterylna kaseta z kolczykiem',
-      'Minimalne ryzyko alergii',
-      'Bezpieczny i precyzyjny system',
-      'Kolczyk nie jest dotykany dłońmi podczas zabiegu',
-      'Dla dzieci i dorosłych',
+      "Jednorazowa, sterylna kaseta z kolczykiem",
+      "Hipoalergiczne kolczyki z certyfikatem REACH",
+      "Wszystkie elementy, które mają kontakt z klientem, są jednorazowe",
+      "Ciche urządzenie bez strzału pistoletu",
+      "Dla dzieci i dorosłych",
     ],
-    materialBefore: 'Kolczyki z tytanu medycznego, niobu i stali nierdzewnej, także z powłoką',
-    materialGold: 'złota 24K',
-    fdaLabel: 'Certyfikat FDA (PDF)',
-    docLabel: 'Deklaracja zgodności (PDF)',
+    materialBefore: "Kolczyki z tytanu medycznego, niobu i stali medycznej, także z powłoką",
+    materialGold: "złota 24K",
+    fdaLabel: "Certyfikat FDA (PDF)",
+    docLabel: "Deklaracja zgodności (PDF)",
   },
   earrings: {
-    eyebrow: 'Szeroki wybór kolczyków',
     h2: 'Kolczyki Inverness MED',
     countLabel: 'modeli dla dzieci i dorosłych',
-    names: ['Jednorożec', 'Biedronka', 'Kwiatek kryształ i róż', 'Korona', 'Gwiazdka z kryształem'],
+    names: ['Jednorożec', 'Biedronka', 'Kwiatek kryształ i róż', 'Kwiatek szafirowy', 'Gwiazdka z kryształem'],
     skuPrefix: 'art.',
     altPrefix: 'Kolczyk Inverness MED',
-    moreTitle: 'i ponad 75 innych modeli',
+    moreTitle: 'i wiele innych modeli',
     moreLink: 'zapytaj o katalog',
-    list: [
-      'Wzory, które dzieci wybierają same',
-      'Materiały hipoalergiczne',
-      'Regularnie odnawiana kolekcja',
-      'Różne kolory i style',
-    ],
   },
   training: {
-    eyebrow: 'Szkolenie',
-    h2: 'Szkolenie Inverness MED od zera',
-    items: ['Szkolenie teoretyczne', 'Szkolenie praktyczne', 'Praca na modelu', 'Wsparcie po szkoleniu'],
+    h2: "Szkolenie: od teorii do pierwszych zabiegów",
+    imgAlt: "Szkolenie Inverness MED w salonie",
+    items: [
+      { title: "Szkolenie teoretyczne", text: "Higiena, technika i opieka po przekłuciu." },
+      { title: "Szkolenie praktyczne", text: "Ćwiczysz technikę zabiegu pod okiem instruktorki, aż poczujesz się pewnie." },
+      { title: "Wsparcie po szkoleniu", text: "Pomagamy przy pierwszych zabiegach." },
+    ],
   },
   kit: {
-    eyebrow: 'Co otrzymujesz jako partner',
-    h2: 'Zestaw startowy Inverness MED',
-    imgAlt: 'Aplikator Inverness MED, kasety z kolczykami, model ucha i płyn do pielęgnacji',
+    h2: "Co otrzymujesz jako partner?",
+    imgAlt: "Urządzenie Inverness MED, kasety z kolczykami, model ucha i płyn do pielęgnacji",
     items: [
-      'Zestaw startowy z narzędziami i materiałami',
-      'Dostęp do oryginalnego systemu Inverness MED',
-      'Szkolenie praktyczne z pracą na modelu',
-      'Materiały marketingowe i pomoc w promocji usługi',
-      'Konsultacje i wsparcie na każdym etapie',
+      {
+        title: "Zestaw startowy",
+        text: "Urządzenie, kasety z kolczykami i wszystko, czego potrzebujesz na start.",
+      },
+      {
+        title: "Szkolenie teoretyczne i praktyczne",
+        text: "Technika zabiegu, higiena i obsługa klienta, od podstaw.",
+      },
+      {
+        title: "Wsparcie marketingowe",
+        text: "Pomagamy opowiedzieć klientom o nowej usłudze.",
+      },
+      {
+        title: "Konsultacje na każdym etapie",
+        text: "Odpowiadamy na pytania przed startem i po pierwszych zabiegach.",
+      },
+      {
+        title: "Indywidualne rabaty",
+        text: "Rabat zależy od obrotów i wielkości zamówień. Nasi partnerzy już z niego korzystają.",
+      },
+    ],
+  },
+  clasp: {
+    h2: "Bezpieczne zapięcie Safety Back",
+    lead: "Opatentowane zapięcie Inverness MED. Kolczyk wygodnie nosi się w dzień i w nocy.",
+    imgAlt: "Kolczyk Inverness MED z zapięciem Safety Back",
+    points: [
+      {
+        title: "Zakrywa ostry koniec sztyftu",
+        text: "Nie kłuje w czasie snu ani na co dzień.",
+      },
+      {
+        title: "Nie ściska płatka",
+        text: "Między płatkiem a zapięciem zostaje trochę miejsca, więc ucho dobrze się goi.",
+      },
+      {
+        title: "Pewnie trzyma kolczyk",
+        text: "Zapięcie nie zsuwa się samo. Kolczyk zostaje na miejscu przez cały okres gojenia.",
+      },
     ],
   },
   partners: {
-    eyebrow: 'Salony partnerskie',
     h2: 'Już z nami pracują',
     places: { mokotow: 'Warszawa, Mokotów', wola: 'Warszawa, Wola', ozarow: 'Ożarów Mazowiecki' },
     youTitle: 'A teraz Twój salon',
     youText: 'Zostań partnerem Inverness MED',
   },
   faq: {
-    eyebrow: 'Pytania',
-    h2: 'Inverness MED: najczęstsze pytania',
+    h2: "Inverness MED: najczęstsze pytania",
     items: [
       {
-        q: 'Czym jest Inverness MED?',
-        a: 'To system przekłuwania uszu z USA. Każdy kolczyk jest zamknięty w sterylnej, jednorazowej kasecie, a przekłucie wykonuje się ręcznym aplikatorem, bez strzału pistoletu. Kolczyk nie dotyka rąk ani powietrza aż do momentu zabiegu.',
+        q: "Czym jest Inverness MED?",
+        a: "To medyczny system przekłuwania uszu z USA. Każdy kolczyk znajduje się w sterylnej, jednorazowej kasecie, a przekłucie wykonuje się specjalnym, cichym urządzeniem, bez strzału pistoletu. Wszystkie elementy, które mają kontakt z klientem, są jednorazowe.",
       },
       {
-        q: 'Gdzie salon może kupić kolczyki i kasety Inverness MED?',
-        a: 'Salonom partnerskim dostarczamy oryginalne kasety, kolczyki i aplikatory, które zamawiamy bezpośrednio u europejskiego dystrybutora Inverness MED. Zostaw dane w formularzu, a prześlemy ofertę i ceny.',
+        q: "Dla kogo jest ta usługa?",
+        a: "Dla dzieci i dorosłych, kobiet i mężczyzn. System nadaje się do pierwszego przekłucia i do ponownego.",
       },
       {
-        q: 'Czy do pracy z Inverness MED potrzebne jest doświadczenie?',
-        a: 'Nie. Przed startem prowadzimy szkolenie teoretyczne i praktyczne z pracą na modelu, a po szkoleniu pomagamy przy pierwszych zabiegach.',
+        q: "Czy do pracy z Inverness MED potrzebne jest doświadczenie?",
+        a: "Nie. Przed startem prowadzimy szkolenie teoretyczne i praktyczne, a po szkoleniu pomagamy przy pierwszych zabiegach.",
       },
       {
-        q: 'Czym Inverness MED różni się od pistoletu?',
-        a: 'Pistolet przebija ucho uderzeniem, a jego elementy często nie są jednorazowe. W Inverness MED przekłucie wykonuje się płynnym naciskiem, a kaseta z kolczykiem jest sterylna i jednorazowa. Szczegóły opisaliśmy w porównaniu Inverness MED i pistoletu na naszym blogu.',
-        link: { href: '/pl/blog/inverness-med-vs-pistolet-co-jest-bezpieczniejsze', label: 'Inverness MED czy pistolet?' },
+        q: "Czym Inverness MED różni się od pistoletu?",
+        a: "Pistolet przebija ucho uderzeniem, a jego elementy często nie są jednorazowe. W Inverness MED przekłucie wykonuje się płynnym naciskiem, a kaseta z kolczykiem jest sterylna i jednorazowa. Szczegóły opisaliśmy w porównaniu Inverness MED i pistoletu na naszym blogu.",
+        link: {
+          href: "/pl/blog/inverness-med-vs-pistolet-co-jest-bezpieczniejsze",
+          label: "Inverness MED czy pistolet?",
+        },
       },
       {
-        q: 'Gdzie przekłuć uszy systemem Inverness MED w Warszawie?',
-        a: 'W studiu Gentle Piercing na Mokotowie i w salonach partnerskich wymienionych wyżej.',
-        link: { href: '/pl', label: 'Studio Gentle Piercing' },
+        q: "Gdzie przekłuć uszy systemem Inverness MED w Warszawie?",
+        a: "W studiu Gentle Piercing na Mokotowie i w salonach partnerskich wymienionych wyżej.",
+        link: {
+          href: "/pl",
+          label: "Studio Gentle Piercing",
+        },
       },
     ],
   },
   contact: {
-    eyebrow: 'Zacznijmy współpracę',
-    h2: 'Bezpieczne przekłuwanie uszu na światowym poziomie — w Twoim salonie',
+    h2: "Poznaj warunki współpracy",
+    h2Accent: "w swoim mieście",
     lead: 'Zostaw dane, a oddzwonimy z warunkami współpracy i ceną zestawu startowego.',
     personRole: 'Partner Inverness MED · Warszawa',
     name: 'Imię',
@@ -228,7 +254,7 @@ const pl: B2BCopy = {
     message: 'Wiadomość',
     messagePlaceholder: 'Np. czy wykonujecie już przekłuwanie uszu i jaką metodą',
     consent:
-      'Wyrażam zgodę na kontakt w sprawie współpracy. Administratorem danych jest Kseniya Askerka, NIP 5214067116. Dane służą wyłącznie do odpowiedzi na zapytanie.',
+      'Zgadzam się na kontakt. Dane wykorzystamy tylko do odpowiedzi na Twoje zapytanie.',
     submit: 'Poznaj warunki',
     submitNote: 'Bez zobowiązań. Oddzwonimy i odpowiemy na pytania.',
     sending: 'Wysyłanie…',
@@ -262,121 +288,158 @@ const ru: B2BCopy = {
   ogLocale: 'ru_RU',
   title: 'Inverness MED: система прокола ушей для салонов в Польше',
   description:
-    'Inverness MED в вашем салоне: стерильные кассеты, аппликатор, 80+ моделей серёжек и обучение с нуля. Оригинальная продукция от европейского дистрибьютора. Варшава и вся Польша.',
+    "Inverness MED в вашем салоне: стерильные одноразовые кассеты, гипоаллергенные серьги, больше 80 моделей, теоретическое и практическое обучение. Варшава и вся Польша.",
   topCta: 'Сотрудничество',
   hero: {
     sub: 'Inverness MED Польша',
-    h1Rest: '— безопасный прокол ушей в вашем салоне',
-    text: 'Новая услуга в вашем салоне: 15 минут работы и около 300 zł с клиента. Нет опыта? Обучим с нуля и дадим всё необходимое для старта.',
+    h1Rest: 'для прокола ушей в вашем салоне',
+    text: "Медицинская система прокола ушей из США. Ей пользуются салоны в более чем 70 странах. Каждая серьга в стерильной одноразовой кассете. Подходит детям и взрослым.",
     cta: 'Обсудить сотрудничество',
+    orbitAlt: "Серьги Inverness MED вокруг системы для прокола ушей",
   },
   pillars: {
-    eyebrow: 'Почему вам доверятся клиенты',
-    h2: 'Четыре причины выбрать Inverness MED',
+    h2: "Почему салоны выбирают Inverness MED",
     items: [
-      { title: 'Безопасность', text: 'Стерильный одноразовый картридж для каждого клиента.' },
-      { title: 'Качество', text: 'Медицинский титан и проверенные сертифицированные материалы.' },
-      { title: 'Комфорт', text: 'Деликатный и быстрый прокол без громкого пистолета.' },
-      { title: 'Доверие', text: 'Более 50 лет на рынке, документы FDA и UL.' },
+      {
+        title: "Стерильная кассета на каждую процедуру",
+        text: "Каждая серьга в отдельной стерильной кассете. Всё, что касается клиента, одноразовое.",
+      },
+      {
+        title: "Гипоаллергенные серьги",
+        text: "Медицинский титан, ниобий и медицинская сталь с сертификатом REACH. Подходят детям и людям с чувствительной кожей.",
+      },
+      {
+        title: "Тихое устройство вместо пистолета",
+        text: "Серьга входит плавным нажатием, без хлопка. С детьми это очень важно.",
+      },
+      {
+        title: "Больше 50 лет на рынке",
+        text: "Inverness MED производят в США больше 50 лет. Сертификат FDA и декларация соответствия ниже.",
+      },
     ],
-  },
-  revenue: {
-    eyebrow: 'Средний чек за услугу',
-    cap: 'Прокол ушей + серьги',
-    perProcedure: 'за одну процедуру',
-    clientsPerMonth: 'клиентов в месяц',
-    timeNote: 'Процедура занимает всего 10–15 минут и легко встраивается в график салона.',
-    note: 'Выручка при среднем чеке 300 zł. Пример: в студии Gentle Piercing прокол для ребёнка стоит 150 zł + серьги 120–200 zł.',
   },
   system: {
-    eyebrow: 'Почему Inverness MED',
-    h2: 'Что такое система Inverness MED',
-    lead: 'Inverness MED — система прокола ушей из США. Серьга запечатана в стерильной одноразовой кассете, а прокол делается ручным аппликатором, без выстрела пистолета.',
-    imgAlt: 'Система Inverness MED: аппликатор и стерильные кассеты с серьгами',
-    listTitle: 'Что входит в систему',
+    h2: "Что такое система Inverness MED",
+    lead: "Inverness MED это медицинская система прокола ушей из США. Серьга лежит в стерильной одноразовой кассете. Ухо прокалывают тихим устройством, без выстрела пистолета.",
+    imgAlt: "Система Inverness MED: устройство для прокола и стерильные кассеты с серьгами",
+    listTitle: "Что входит в систему",
     list: [
-      'Одноразовая стерильная кассета с серьгой',
-      'Минимальный риск аллергии',
-      'Безопасная и точная система',
-      'Мастер не касается серьги руками',
-      'Для детей и взрослых',
+      "Одноразовая стерильная кассета с серьгой",
+      "Гипоаллергенные серьги с сертификатом REACH",
+      "Все элементы, которые касаются клиента, одноразовые",
+      "Тихое устройство без выстрела пистолета",
+      "Для детей и взрослых",
     ],
-    materialBefore: 'Серьги из медицинского титана, ниобия и нержавеющей стали, в том числе с покрытием',
-    materialGold: 'золотом 24K',
-    fdaLabel: 'Сертификат FDA (PDF)',
-    docLabel: 'Декларация соответствия (PDF)',
+    materialBefore: "Серьги из медицинского титана, ниобия и медицинской стали, в том числе с покрытием",
+    materialGold: "золотом 24K",
+    fdaLabel: "Сертификат FDA (PDF)",
+    docLabel: "Декларация соответствия (PDF)",
   },
   earrings: {
-    eyebrow: 'Широкий выбор серёжек',
     h2: 'Серьги Inverness MED',
     countLabel: 'моделей для детей и взрослых',
-    names: ['Единорог', 'Божья коровка', 'Цветок кристалл и роза', 'Корона', 'Звёздочка с кристаллом'],
+    names: ['Единорог', 'Божья коровка', 'Цветок кристалл и роза', 'Сапфировый цветок', 'Звёздочка с кристаллом'],
     skuPrefix: 'арт.',
     altPrefix: 'Серьга Inverness MED',
-    moreTitle: 'и ещё 75+ других моделей',
+    moreTitle: 'и много других моделей',
     moreLink: 'запросить каталог',
-    list: [
-      'Дизайны, которые дети выбирают сами',
-      'Гипоаллергенные материалы',
-      'Коллекция регулярно обновляется',
-      'Разные цвета и стили',
-    ],
   },
   training: {
-    eyebrow: 'Обучение',
-    h2: 'Обучение Inverness MED с нуля',
-    items: ['Теоретическое обучение', 'Практическое обучение', 'Работа на модели', 'Поддержка после обучения'],
+    h2: "Обучение: от теории до первых процедур",
+    imgAlt: "Обучение Inverness MED в салоне",
+    items: [
+      { title: "Теоретическое обучение", text: "Гигиена, техника и уход после прокола." },
+      { title: "Практическое обучение", text: "Отрабатываете технику процедуры под руководством инструктора, пока не почувствуете уверенность." },
+      { title: "Поддержка после обучения", text: "Помогаем на первых процедурах." },
+    ],
   },
   kit: {
-    eyebrow: 'Что вы получаете как партнёр',
-    h2: 'Стартовый набор Inverness MED',
-    imgAlt: 'Аппликатор Inverness MED, кассеты с серьгами, модель уха и лосьон для ухода',
+    h2: "Что вы получаете как партнёр?",
+    imgAlt: "Устройство Inverness MED, кассеты с серьгами, модель уха и лосьон для ухода",
     items: [
-      'Стартовый набор с инструментами и материалами',
-      'Доступ к оригинальной системе Inverness MED',
-      'Практическое обучение с работой на модели',
-      'Маркетинговые материалы и помощь в продвижении услуги',
-      'Консультации и поддержка на каждом этапе',
+      {
+        title: "Стартовый набор",
+        text: "Устройство, кассеты с серьгами и всё, что нужно для старта.",
+      },
+      {
+        title: "Теоретическое и практическое обучение",
+        text: "Техника процедуры, гигиена и работа с клиентом, с нуля.",
+      },
+      {
+        title: "Маркетинговая поддержка",
+        text: "Поможем рассказать клиентам о новой услуге.",
+      },
+      {
+        title: "Консультации на каждом этапе",
+        text: "Отвечаем на вопросы до старта и после первых процедур.",
+      },
+      {
+        title: "Индивидуальные скидки",
+        text: "Скидка зависит от оборота и объёма закупок. Наши партнёры уже ей пользуются.",
+      },
+    ],
+  },
+  clasp: {
+    h2: "Безопасная застёжка Safety Back",
+    lead: "Запатентованная застёжка Inverness MED. Серьгу удобно носить и днём, и ночью.",
+    imgAlt: "Серьга Inverness MED с застёжкой Safety Back",
+    points: [
+      {
+        title: "Закрывает острый кончик штифта",
+        text: "Не колет ни во сне, ни днём.",
+      },
+      {
+        title: "Не сжимает мочку",
+        text: "Между мочкой и застёжкой остаётся немного места, и ухо хорошо заживает.",
+      },
+      {
+        title: "Надёжно держит серьгу",
+        text: "Застёжка сама не соскальзывает. Серьга остаётся на месте весь период заживления.",
+      },
     ],
   },
   partners: {
-    eyebrow: 'Салоны-партнёры',
     h2: 'Уже работают с нами',
     places: { mokotow: 'Варшава, Мокотув', wola: 'Варшава, Воля', ozarow: 'Ожарув-Мазовецки' },
     youTitle: 'А теперь ваш салон',
     youText: 'Станьте партнёром Inverness MED',
   },
   faq: {
-    eyebrow: 'Вопросы',
-    h2: 'Inverness MED: частые вопросы',
+    h2: "Inverness MED: частые вопросы",
     items: [
       {
-        q: 'Что такое Inverness MED?',
-        a: 'Это система прокола ушей из США. Каждая серьга запечатана в стерильной одноразовой кассете, а прокол делается ручным аппликатором, без выстрела пистолета. До момента процедуры серьга не касается ни рук, ни воздуха.',
+        q: "Что такое Inverness MED?",
+        a: "Это медицинская система прокола ушей из США. Каждая серьга находится в стерильной одноразовой кассете, а прокол выполняется специальным бесшумным устройством, без выстрела пистолета. Все элементы, которые касаются клиента, одноразовые.",
       },
       {
-        q: 'Где салону купить серьги и кассеты Inverness MED?',
-        a: 'Салонам-партнёрам мы поставляем оригинальные кассеты, серьги и аппликаторы, которые заказываем напрямую у европейского дистрибьютора Inverness MED. Оставьте контакты в форме, и мы пришлём предложение и цены.',
+        q: "Для кого эта услуга?",
+        a: "Детям и взрослым, женщинам и мужчинам. Система подходит для первого прокола и для повторного.",
       },
       {
-        q: 'Нужен ли опыт, чтобы работать с Inverness MED?',
-        a: 'Нет. Перед стартом проводим теоретическое и практическое обучение с работой на модели, а после обучения помогаем с первыми процедурами.',
+        q: "Нужен ли опыт, чтобы работать с Inverness MED?",
+        a: "Нет. Перед стартом проводим теоретическое и практическое обучение, а после обучения помогаем с первыми процедурами.",
       },
       {
-        q: 'Чем Inverness MED отличается от пистолета?',
-        a: 'Пистолет пробивает ухо ударом, а его детали часто не одноразовые. В Inverness MED прокол делается плавным нажатием, а кассета с серьгой стерильная и одноразовая. Подробно мы сравнили оба метода в блоге.',
-        link: { href: '/ru/blog/inverness-med-ili-pistolet-chto-bezopasnee', label: 'Inverness MED или пистолет?' },
+        q: "Чем Inverness MED отличается от пистолета?",
+        a: "Пистолет пробивает ухо ударом, а его детали часто не одноразовые. В Inverness MED прокол делается плавным нажатием, а кассета с серьгой стерильная и одноразовая. Подробно мы сравнили оба метода в блоге.",
+        link: {
+          href: "/ru/blog/inverness-med-ili-pistolet-chto-bezopasnee",
+          label: "Inverness MED или пистолет?",
+        },
       },
       {
-        q: 'Где проколоть уши системой Inverness MED в Варшаве?',
-        a: 'В студии Gentle Piercing на Мокотуве и в салонах-партнёрах из списка выше.',
-        link: { href: '/ru', label: 'Студия Gentle Piercing' },
+        q: "Где проколоть уши системой Inverness MED в Варшаве?",
+        a: "В студии Gentle Piercing на Мокотуве и в салонах-партнёрах из списка выше.",
+        link: {
+          href: "/ru",
+          label: "Студия Gentle Piercing",
+        },
       },
     ],
   },
   contact: {
-    eyebrow: 'Начнём сотрудничество',
-    h2: 'Безопасный прокол ушей мирового уровня — в вашем салоне',
+    h2: "Узнайте условия сотрудничества",
+    h2Accent: "в вашем городе",
     lead: 'Оставьте контакты, и мы перезвоним с условиями сотрудничества и ценой стартового набора.',
     personRole: 'Партнёр Inverness MED · Варшава',
     name: 'Имя',
@@ -388,7 +451,7 @@ const ru: B2BCopy = {
     message: 'Сообщение',
     messagePlaceholder: 'Например, делаете ли вы уже проколы и каким методом',
     consent:
-      'Я согласен(на) на связь по вопросу сотрудничества. Администратор данных — Kseniya Askerka, NIP 5214067116. Данные используются только для ответа на запрос.',
+      'Я согласен(на) на связь. Данные используются только для ответа на ваш запрос.',
     submit: 'Узнать условия',
     submitNote: 'Ни к чему не обязывает. Перезвоним и ответим на вопросы.',
     sending: 'Отправляем…',
@@ -422,124 +485,158 @@ const uk: B2BCopy = {
   ogLocale: 'uk_UA',
   title: 'Inverness MED: система проколювання вух для салонів у Польщі',
   description:
-    'Inverness MED у вашому салоні: стерильні касети, аплікатор, 80+ моделей сережок і навчання з нуля. Оригінальна продукція від європейського дистриб’ютора. Варшава та вся Польща.',
+    "Inverness MED у вашому салоні: стерильні одноразові касети, гіпоалергенні сережки, понад 80 моделей, теоретичне й практичне навчання. Варшава та вся Польща.",
   topCta: 'Співпраця',
   hero: {
     sub: 'Inverness MED Польща',
-    h1Rest: '— безпечний прокол вух у вашому салоні',
-    text: 'Нова послуга у вашому салоні: 15 хвилин роботи й близько 300 zł з клієнта. Немає досвіду? Навчимо з нуля й дамо все необхідне для старту.',
+    h1Rest: 'для проколювання вух у вашому салоні',
+    text: "Медична система проколювання вух зі США. Нею користуються салони у понад 70 країнах. Кожна сережка в стерильній одноразовій касеті. Підходить дітям і дорослим.",
     cta: 'Обговорити співпрацю',
+    orbitAlt: "Сережки Inverness MED навколо системи для проколювання вух",
   },
   pillars: {
-    eyebrow: 'Чому вам довірятимуть клієнти',
-    h2: 'Чотири причини обрати Inverness MED',
+    h2: "Чому салони обирають Inverness MED",
     items: [
-      { title: 'Безпека', text: 'Стерильний одноразовий картридж для кожного клієнта.' },
-      { title: 'Якість', text: 'Медичний титан і перевірені сертифіковані матеріали.' },
-      { title: 'Комфорт', text: 'Делікатний і швидкий прокол без гучного пістолета.' },
-      { title: 'Довіра', text: 'Понад 50 років на ринку, документи FDA та UL.' },
+      {
+        title: "Стерильна касета на кожну процедуру",
+        text: "Кожна сережка в окремій стерильній касеті. Усе, що торкається клієнта, одноразове.",
+      },
+      {
+        title: "Гіпоалергенні сережки",
+        text: "Медичний титан, ніобій і медична сталь із сертифікатом REACH. Підходять дітям і людям із чутливою шкірою.",
+      },
+      {
+        title: "Тихий пристрій замість пістолета",
+        text: "Сережка входить плавним натисканням, без хлопка. З дітьми це дуже важливо.",
+      },
+      {
+        title: "Понад 50 років на ринку",
+        text: "Inverness MED виробляють у США понад 50 років. Сертифікат FDA та декларацію відповідності знайдете нижче.",
+      },
     ],
-  },
-  revenue: {
-    eyebrow: 'Середній чек за послугу',
-    cap: 'Прокол вух + сережки',
-    perProcedure: 'за одну процедуру',
-    clientsPerMonth: 'клієнтів на місяць',
-    timeNote: 'Процедура триває лише 10–15 хвилин і легко вписується в графік салону.',
-    note: 'Виручка за середнього чека 300 zł. Приклад: у студії Gentle Piercing прокол для дитини коштує 150 zł + сережки 120–200 zł.',
   },
   system: {
-    eyebrow: 'Чому Inverness MED',
-    h2: 'Що таке система Inverness MED',
-    lead: 'Inverness MED — система проколювання вух зі США. Сережка запечатана в стерильній одноразовій касеті, а прокол робиться ручним аплікатором, без пострілу пістолета.',
-    imgAlt: 'Система Inverness MED: аплікатор і стерильні касети з сережками',
-    listTitle: 'Що входить у систему',
+    h2: "Що таке система Inverness MED",
+    lead: "Inverness MED це медична система проколювання вух зі США. Сережка лежить у стерильній одноразовій касеті. Вухо проколюють тихим пристроєм, без пострілу пістолета.",
+    imgAlt: "Система Inverness MED: пристрій для проколу й стерильні касети із сережками",
+    listTitle: "Що входить у систему",
     list: [
-      'Одноразова стерильна касета з сережкою',
-      'Мінімальний ризик алергії',
-      'Безпечна й точна система',
-      'Майстер не торкається сережки руками',
-      'Для дітей і дорослих',
+      "Одноразова стерильна касета із сережкою",
+      "Гіпоалергенні сережки із сертифікатом REACH",
+      "Усі елементи, що контактують із клієнтом, одноразові",
+      "Тихий пристрій без пострілу пістолета",
+      "Для дітей і дорослих",
     ],
-    materialBefore: 'Сережки з медичного титану, ніобію та нержавіючої сталі, зокрема з покриттям',
-    materialGold: 'золотом 24K',
-    fdaLabel: 'Сертифікат FDA (PDF)',
-    docLabel: 'Декларація відповідності (PDF)',
+    materialBefore: "Сережки з медичного титану, ніобію та медичної сталі, зокрема з покриттям",
+    materialGold: "золотом 24K",
+    fdaLabel: "Сертифікат FDA (PDF)",
+    docLabel: "Декларація відповідності (PDF)",
   },
   earrings: {
-    eyebrow: 'Широкий вибір сережок',
     h2: 'Сережки Inverness MED',
     countLabel: 'моделей для дітей і дорослих',
-    names: ['Єдиноріг', 'Сонечко', 'Квітка кришталь і троянда', 'Корона', 'Зірочка з кристалом'],
+    names: ['Єдиноріг', 'Сонечко', 'Квітка кришталь і троянда', 'Сапфірова квітка', 'Зірочка з кристалом'],
     skuPrefix: 'арт.',
     altPrefix: 'Сережка Inverness MED',
-    moreTitle: 'і ще 75+ інших моделей',
+    moreTitle: 'і багато інших моделей',
     moreLink: 'запитати каталог',
-    list: [
-      'Дизайни, які діти обирають самі',
-      'Гіпоалергенні матеріали',
-      'Колекція регулярно оновлюється',
-      'Різні кольори та стилі',
-    ],
   },
   training: {
-    eyebrow: 'Навчання',
-    h2: 'Навчання Inverness MED з нуля',
-    items: ['Теоретичне навчання', 'Практичне навчання', 'Робота на моделі', 'Підтримка після навчання'],
+    h2: "Навчання: від теорії до перших процедур",
+    imgAlt: "Навчання Inverness MED у салоні",
+    items: [
+      { title: "Теоретичне навчання", text: "Гігієна, техніка та догляд після проколу." },
+      { title: "Практичне навчання", text: "Відпрацьовуєте техніку процедури під керівництвом інструкторки, доки не відчуєте впевненість." },
+      { title: "Підтримка після навчання", text: "Допомагаємо на перших процедурах." },
+    ],
   },
   kit: {
-    eyebrow: 'Що ви отримуєте як партнер',
-    h2: 'Стартовий набір Inverness MED',
-    imgAlt: 'Аплікатор Inverness MED, касети з сережками, модель вуха й лосьйон для догляду',
+    h2: "Що ви отримуєте як партнер?",
+    imgAlt: "Пристрій Inverness MED, касети із сережками, модель вуха й лосьйон для догляду",
     items: [
-      'Стартовий набір з інструментами й матеріалами',
-      'Доступ до оригінальної системи Inverness MED',
-      'Практичне навчання з роботою на моделі',
-      'Маркетингові матеріали й допомога в просуванні послуги',
-      'Консультації та підтримка на кожному етапі',
+      {
+        title: "Стартовий набір",
+        text: "Пристрій, касети із сережками й усе, що потрібно для старту.",
+      },
+      {
+        title: "Теоретичне й практичне навчання",
+        text: "Техніка процедури, гігієна й робота з клієнтом, з нуля.",
+      },
+      {
+        title: "Маркетингова підтримка",
+        text: "Допоможемо розповісти клієнтам про нову послугу.",
+      },
+      {
+        title: "Консультації на кожному етапі",
+        text: "Відповідаємо на питання до старту й після перших процедур.",
+      },
+      {
+        title: "Індивідуальні знижки",
+        text: "Знижка залежить від обороту та обсягу закупівель. Наші партнери вже нею користуються.",
+      },
+    ],
+  },
+  clasp: {
+    h2: "Безпечна застібка Safety Back",
+    lead: "Запатентована застібка Inverness MED. Сережку зручно носити і вдень, і вночі.",
+    imgAlt: "Сережка Inverness MED із застібкою Safety Back",
+    points: [
+      {
+        title: "Закриває гострий кінчик штифта",
+        text: "Не коле ні уві сні, ні вдень.",
+      },
+      {
+        title: "Не стискає мочку",
+        text: "Між мочкою та застібкою лишається трохи місця, і вухо добре загоюється.",
+      },
+      {
+        title: "Надійно тримає сережку",
+        text: "Застібка сама не зісковзує. Сережка залишається на місці весь період загоєння.",
+      },
     ],
   },
   partners: {
-    eyebrow: 'Салони-партнери',
     h2: 'Уже працюють з нами',
     places: { mokotow: 'Варшава, Мокотів', wola: 'Варшава, Воля', ozarow: 'Ожарув-Мазовецький' },
     youTitle: 'А тепер ваш салон',
     youText: 'Станьте партнером Inverness MED',
   },
   faq: {
-    eyebrow: 'Питання',
-    h2: 'Inverness MED: часті питання',
+    h2: "Inverness MED: часті питання",
     items: [
       {
-        q: 'Що таке Inverness MED?',
-        a: 'Це система проколювання вух зі США. Кожна сережка запечатана в стерильній одноразовій касеті, а прокол робиться ручним аплікатором, без пострілу пістолета. До моменту процедури сережка не торкається ні рук, ні повітря.',
+        q: "Що таке Inverness MED?",
+        a: "Це медична система проколювання вух зі США. Кожна сережка знаходиться в стерильній одноразовій касеті, а прокол виконується спеціальним безшумним пристроєм, без пострілу пістолета. Усі елементи, що контактують із клієнтом, одноразові.",
       },
       {
-        q: 'Де салону купити сережки й касети Inverness MED?',
-        a: 'Салонам-партнерам ми постачаємо оригінальні касети, сережки й аплікатори, які замовляємо напряму в європейського дистриб’ютора Inverness MED. Залиште контакти у формі, і ми надішлемо пропозицію та ціни.',
+        q: "Для кого ця послуга?",
+        a: "Дітям і дорослим, жінкам і чоловікам. Система підходить для першого проколу і для повторного.",
       },
       {
-        q: 'Чи потрібен досвід, щоб працювати з Inverness MED?',
-        a: 'Ні. Перед стартом проводимо теоретичне й практичне навчання з роботою на моделі, а після навчання допомагаємо з першими процедурами.',
+        q: "Чи потрібен досвід, щоб працювати з Inverness MED?",
+        a: "Ні. Перед стартом проводимо теоретичне й практичне навчання, а після навчання допомагаємо з першими процедурами.",
       },
       {
-        q: 'Чим Inverness MED відрізняється від пістолета?',
-        a: 'Пістолет пробиває вухо ударом, а його деталі часто не одноразові. В Inverness MED прокол робиться плавним натисканням, а касета з сережкою стерильна й одноразова. Детально ми порівняли обидва методи в блозі.',
+        q: "Чим Inverness MED відрізняється від пістолета?",
+        a: "Пістолет пробиває вухо ударом, а його деталі часто не одноразові. В Inverness MED прокол робиться плавним натисканням, а касета із сережкою стерильна й одноразова. Детально ми порівняли обидва методи в блозі.",
         link: {
-          href: '/uk/blog/inverness-med-vs-pistolet-yakii-metod-prokolu-vukh-bezpechnishii',
-          label: 'Inverness MED чи пістолет?',
+          href: "/uk/blog/inverness-med-vs-pistolet-yakii-metod-prokolu-vukh-bezpechnishii",
+          label: "Inverness MED чи пістолет?",
         },
       },
       {
-        q: 'Де проколоти вуха системою Inverness MED у Варшаві?',
-        a: 'У студії Gentle Piercing на Мокотові та в салонах-партнерах зі списку вище.',
-        link: { href: '/uk', label: 'Студія Gentle Piercing' },
+        q: "Де проколоти вуха системою Inverness MED у Варшаві?",
+        a: "У студії Gentle Piercing на Мокотові та в салонах-партнерах зі списку вище.",
+        link: {
+          href: "/uk",
+          label: "Студія Gentle Piercing",
+        },
       },
     ],
   },
   contact: {
-    eyebrow: 'Почнімо співпрацю',
-    h2: 'Безпечний прокол вух світового рівня — у вашому салоні',
+    h2: "Дізнайтеся умови співпраці",
+    h2Accent: "у вашому місті",
     lead: 'Залиште контакти, і ми передзвонимо з умовами співпраці та ціною стартового набору.',
     personRole: 'Партнер Inverness MED · Варшава',
     name: 'Ім’я',
@@ -551,7 +648,7 @@ const uk: B2BCopy = {
     message: 'Повідомлення',
     messagePlaceholder: 'Наприклад, чи робите ви вже проколи і яким методом',
     consent:
-      'Я погоджуюся на зв’язок щодо співпраці. Адміністратор даних — Kseniya Askerka, NIP 5214067116. Дані використовуються лише для відповіді на запит.',
+      'Я погоджуюся на зв’язок. Дані використовуються лише для відповіді на ваш запит.',
     submit: 'Дізнатися умови',
     submitNote: 'Ні до чого не зобов’язує. Передзвонимо й відповімо на запитання.',
     sending: 'Надсилаємо…',
@@ -585,121 +682,158 @@ const en: B2BCopy = {
   ogLocale: 'en_GB',
   title: 'Inverness MED: ear piercing system for salons in Poland',
   description:
-    'Inverness MED in your salon: sterile cassettes, applicator, 80+ earring models and training from scratch. Original products from the European distributor. Warsaw and all of Poland.',
+    "Inverness MED in your salon: sterile single-use cassettes, hypoallergenic earrings, 80+ models, theory and hands-on training. Warsaw and all of Poland.",
   topCta: 'Partner with us',
   hero: {
     sub: 'Inverness MED Poland',
-    h1Rest: '— safe ear piercing in your salon',
-    text: 'A new service for your salon: 15 minutes of work and about 300 zł per client. No experience? We train you from scratch and supply everything you need to start.',
+    h1Rest: 'ear piercing in your salon',
+    text: "A medical ear piercing system from the USA, used by salons in more than 70 countries. Every earring comes in a sterile, single-use cassette. Suitable for children and adults.",
     cta: 'Ask about partnership',
+    orbitAlt: "Inverness MED earrings around the ear piercing system",
   },
   pillars: {
-    eyebrow: 'Why clients will trust you',
-    h2: 'Four reasons to choose Inverness MED',
+    h2: "Why salons choose Inverness MED",
     items: [
-      { title: 'Safety', text: 'A sterile, single-use cartridge for every client.' },
-      { title: 'Quality', text: 'Medical-grade titanium and proven, certified materials.' },
-      { title: 'Comfort', text: 'Gentle, quick piercing without a loud gun.' },
-      { title: 'Trust', text: 'Over 50 years on the market, FDA and UL documents.' },
+      {
+        title: "A sterile cassette for every procedure",
+        text: "Each earring comes in its own sterile cassette. Everything that touches the client is single-use.",
+      },
+      {
+        title: "Hypoallergenic earrings",
+        text: "Medical titanium, niobium and medical steel with REACH certification. Suitable for children and sensitive skin.",
+      },
+      {
+        title: "A quiet device instead of a gun",
+        text: "The earring goes in with smooth pressure and no bang. With children, that matters a lot.",
+      },
+      {
+        title: "Over 50 years on the market",
+        text: "Inverness MED has been made in the USA for over 50 years. The FDA certificate and declaration of conformity are below.",
+      },
     ],
-  },
-  revenue: {
-    eyebrow: 'Average ticket',
-    cap: 'Ear piercing + earrings',
-    perProcedure: 'per procedure',
-    clientsPerMonth: 'clients per month',
-    timeNote: 'The procedure takes only 10–15 minutes and fits easily into a salon schedule.',
-    note: 'Gross revenue at an average ticket of 300 zł. Example: at the Gentle Piercing studio, a child’s piercing is 150 zł + earrings 120–200 zł.',
   },
   system: {
-    eyebrow: 'Why Inverness MED',
-    h2: 'What is the Inverness MED system',
-    lead: 'Inverness MED is an ear piercing system from the USA. The earring is sealed in a sterile, single-use cassette and the piercing is done with a hand-pressure applicator, with no gun shot.',
-    imgAlt: 'Inverness MED system: applicator and sterile earring cassettes',
-    listTitle: 'What the system includes',
+    h2: "What is the Inverness MED system",
+    lead: "Inverness MED is a medical ear piercing system from the USA. The earring comes in a sterile, single-use cassette. The ear is pierced with a quiet device, not a gun.",
+    imgAlt: "Inverness MED system: piercing device and sterile earring cassettes",
+    listTitle: "What the system includes",
     list: [
-      'Single-use sterile cassette with the earring',
-      'Minimal risk of allergy',
-      'Safe and precise system',
-      'The earring is never touched by hand',
-      'For children and adults',
+      "Single-use sterile cassette with the earring",
+      "Hypoallergenic earrings with REACH certification",
+      "Every part that touches the client is single-use",
+      "A quiet device, no piercing gun",
+      "For children and adults",
     ],
-    materialBefore: 'Earrings in medical titanium, niobium and stainless steel, including',
-    materialGold: '24K gold plating',
-    fdaLabel: 'FDA certificate (PDF)',
-    docLabel: 'Declaration of conformity (PDF)',
+    materialBefore: "Earrings in medical titanium, niobium and medical steel, including",
+    materialGold: "24K gold plating",
+    fdaLabel: "FDA certificate (PDF)",
+    docLabel: "Declaration of conformity (PDF)",
   },
   earrings: {
-    eyebrow: 'A wide choice of earrings',
     h2: 'Inverness MED earrings',
     countLabel: 'models for children and adults',
-    names: ['Unicorn', 'Ladybug', 'Crystal & Rose Flower', 'Crown', 'Star with Crystal'],
+    names: ['Unicorn', 'Ladybug', 'Crystal & Rose Flower', 'Sapphire Flower', 'Star with Crystal'],
     skuPrefix: 'SKU',
     altPrefix: 'Inverness MED earring',
-    moreTitle: 'and 75+ other models',
+    moreTitle: 'and many more models',
     moreLink: 'ask for the catalogue',
-    list: [
-      'Designs children pick themselves',
-      'Hypoallergenic materials',
-      'Regularly updated collection',
-      'Many colours and styles',
-    ],
   },
   training: {
-    eyebrow: 'Training',
-    h2: 'Inverness MED training from scratch',
-    items: ['Theory training', 'Hands-on training', 'Practice on a model', 'Support after training'],
+    h2: "Training: from theory to your first procedures",
+    imgAlt: "Inverness MED training in a salon",
+    items: [
+      { title: "Theory training", text: "Hygiene, technique and aftercare." },
+      { title: "Hands-on training", text: "You practise the technique with an instructor until you feel confident." },
+      { title: "Support after training", text: "We help with your first procedures." },
+    ],
   },
   kit: {
-    eyebrow: 'What you get as a partner',
-    h2: 'Inverness MED starter kit',
-    imgAlt: 'Inverness MED applicator, earring cassettes, ear model and aftercare lotion',
+    h2: "What do you get as a partner?",
+    imgAlt: "Inverness MED device, earring cassettes, ear model and aftercare lotion",
     items: [
-      'Starter kit with tools and materials',
-      'Access to the original Inverness MED system',
-      'Hands-on training with practice on a model',
-      'Marketing materials and help promoting the service',
-      'Advice and support at every step',
+      {
+        title: "Starter kit",
+        text: "The device, earring cassettes and everything you need to start.",
+      },
+      {
+        title: "Theory and hands-on training",
+        text: "Procedure technique, hygiene and client care, from the basics.",
+      },
+      {
+        title: "Marketing support",
+        text: "We help you tell clients about the new service.",
+      },
+      {
+        title: "Advice at every step",
+        text: "We answer questions before you start and after your first procedures.",
+      },
+      {
+        title: "Individual discounts",
+        text: "The discount depends on your turnover and order volume. Our partners already get it.",
+      },
+    ],
+  },
+  clasp: {
+    h2: "The safe Safety Back clasp",
+    lead: "The patented Inverness MED clasp. The earring is comfortable to wear day and night.",
+    imgAlt: "Inverness MED earring with a Safety Back clasp",
+    points: [
+      {
+        title: "Covers the sharp tip of the post",
+        text: "It does not scratch, at night or during the day.",
+      },
+      {
+        title: "Does not squeeze the lobe",
+        text: "There is a little space between the lobe and the clasp, so the ear heals well.",
+      },
+      {
+        title: "Holds the earring securely",
+        text: "The clasp does not slip off on its own. The earring stays in place while the ear heals.",
+      },
     ],
   },
   partners: {
-    eyebrow: 'Partner salons',
     h2: 'Already working with us',
     places: { mokotow: 'Warsaw, Mokotów', wola: 'Warsaw, Wola', ozarow: 'Ożarów Mazowiecki' },
     youTitle: 'Now it’s your salon',
     youText: 'Become an Inverness MED partner',
   },
   faq: {
-    eyebrow: 'Questions',
-    h2: 'Inverness MED: frequently asked questions',
+    h2: "Inverness MED: frequently asked questions",
     items: [
       {
-        q: 'What is Inverness MED?',
-        a: 'It is an ear piercing system from the USA. Each earring is sealed in a sterile, single-use cassette and the piercing is done with a hand-pressure applicator, with no gun shot. The earring touches neither hands nor air until the procedure.',
+        q: "What is Inverness MED?",
+        a: "It is a medical ear piercing system from the USA. Each earring sits in a sterile, single-use cassette and the piercing is done with a special quiet device, with no gun shot. Every part that touches the client is single-use.",
       },
       {
-        q: 'Where can a salon buy Inverness MED earrings and cassettes?',
-        a: 'We supply partner salons with original cassettes, earrings and applicators ordered directly from the European Inverness MED distributor. Leave your details in the form and we will send an offer and prices.',
+        q: "Who is this service for?",
+        a: "Children and adults, women and men. The system works for a first piercing and for re-piercing.",
       },
       {
-        q: 'Do I need experience to work with Inverness MED?',
-        a: 'No. Before you start we run theory and hands-on training with practice on a model, and after the training we help with your first procedures.',
+        q: "Do I need experience to work with Inverness MED?",
+        a: "No. Before you start we run theory and hands-on training, and after the training we help with your first procedures.",
       },
       {
-        q: 'How is Inverness MED different from a piercing gun?',
-        a: 'A gun punches through the ear with force, and its parts are often not single-use. With Inverness MED the piercing is done with smooth hand pressure, and the earring cassette is sterile and single-use. We compared both methods in detail on our blog.',
-        link: { href: '/en/blog/inverness-vs-gun', label: 'Inverness MED vs piercing gun' },
+        q: "How is Inverness MED different from a piercing gun?",
+        a: "A gun punches through the ear with force, and its parts are often not single-use. With Inverness MED the piercing is done with smooth pressure, and the earring cassette is sterile and single-use. We compared both methods in detail on our blog.",
+        link: {
+          href: "/en/blog/inverness-vs-gun",
+          label: "Inverness MED vs piercing gun",
+        },
       },
       {
-        q: 'Where can I get ears pierced with Inverness MED in Warsaw?',
-        a: 'At the Gentle Piercing studio in Mokotów and at the partner salons listed above.',
-        link: { href: '/en', label: 'Gentle Piercing studio' },
+        q: "Where can I get ears pierced with Inverness MED in Warsaw?",
+        a: "At the Gentle Piercing studio in Mokotów and at the partner salons listed above.",
+        link: {
+          href: "/en",
+          label: "Gentle Piercing studio",
+        },
       },
     ],
   },
   contact: {
-    eyebrow: 'Let’s work together',
-    h2: 'World-class safe ear piercing — in your salon',
+    h2: "Find out partnership terms",
+    h2Accent: "in your city",
     lead: 'Leave your details and we will call back with partnership terms and the starter kit price.',
     personRole: 'Inverness MED partner · Warsaw',
     name: 'Name',
@@ -711,7 +845,7 @@ const en: B2BCopy = {
     message: 'Message',
     messagePlaceholder: 'For example, whether you already do ear piercing and with what method',
     consent:
-      'I agree to be contacted about a partnership. The data controller is Kseniya Askerka, NIP 5214067116. Data is used only to reply to this enquiry.',
+      'I agree to be contacted. My details are used only to reply to my enquiry.',
     submit: 'Get the details',
     submitNote: 'No obligation. We will call back and answer your questions.',
     sending: 'Sending…',
